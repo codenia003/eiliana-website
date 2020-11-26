@@ -45,8 +45,13 @@ class ProfileController extends JoshController
 
     public function education()
     {
+        $user = Sentinel::getUser();
+        $educations = Education::where('user_id', $user->id)->with('educationtype')->get();
+        // print_r($educations);
+        // die();
         // Show the page
-        return view('profile/education-add');
+        // return view('profile/education');
+        return view('profile/education-add', compact('educations'));
     }
 
 
@@ -67,7 +72,8 @@ class ProfileController extends JoshController
     public function certification()
     {
         // Show the page
-        return view('profile/certification');
+        // return view('profile/certification');
+        return view('profile/certification-add');
     }
 
     public function certificationAdd()
@@ -145,21 +151,27 @@ class ProfileController extends JoshController
 
     public function registerEducation(Request $request)
     {
-        $education = new Education;
-        $education->user_id = $request->input('user_id');
-        $education->education_type = $request->input('education_type');
-        $education->name = $request->input('name');
-        $education->from_date = $request->input('from_date');
-        $education->to_date = $request->input('to_date');
-        $education->degree = $request->input('degree');
-        $education->area_of_education = $request->input('area_of_education');
-        $education->description = $request->input('description');
-        $education->save();
-        
-        $response['success'] = '1';
-        $response['errors'] = 'Updated';
-        $response['education'] = $education;
-        return response()->json($response);
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+        print_r($input);
+        die();
+        foreach ($input['education_type'] as $key => $value) {
+            echo $input['education_type'][$key];
+            echo $input['name'][$key];
+            
+            // $education = new Education;
+            // $education->user_id = $user->id;
+            // $education->education_type = $input['graduation_type'][$key];
+            // $education->name = $input['name'][$key];
+            // $education->month = $input['month'][$key];
+            // $education->year = $input['year'][$key];
+            // $education->degree = $input['degree'][$key];
+            // $education->save();
+        }
+    
+        // $response['errors'] = 'Updated';
+        // $response['education'] = $education;
+        return redirect('profile/certification')->with('success', 'Education added successfully');
     }
 
     public function getEducationById(Request $request)

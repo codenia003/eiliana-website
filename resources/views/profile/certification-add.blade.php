@@ -5,37 +5,78 @@
     <div class="card">
         <h4 class="card-header text-left">Certification</h4>
         <div class="card-body p-4">
-            <form [formGroup]="addInfoForm" (ngSubmit)="onSubmit()">
-		        <div class="form-row">
-		            <div class="form-group col">
-		                <label>Certification Id</label>
-		                <input type="text" formControlName="certificationId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.certificationId.errors }" />
-		                <div *ngIf="submitted && f.certificationId.errors" class="invalid-feedback">
-		                    <div *ngIf="f.certificationId.errors.required">Certification Id is required</div>
-		                </div>
-		            </div>
-		            <div class="form-group col">
-		                <label>Certification Name</label>
-		                <input type="text" formControlName="certificationName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.certificationName.errors }" />
-		                <div *ngIf="submitted && f.certificationName.errors" class="invalid-feedback">
-		                    <div *ngIf="f.certificationName.errors.required">Certification Name is required</div>
-		                </div>
-		            </div>
-		        </div>
-		        <div class="form-group">
-                    <label for="isactive">Valid Till</label>
-                    <input type="date" formControlName="validTill" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.validTill.errors }" />
-                    <div *ngIf="submitted && f.validTill.errors" class="invalid-feedback">
-                        <div *ngIf="f.validTill.errors.required">Valid Till is required</div>
+            <form action="{{ url('/profile/registerEducation') }}" method="POST" id="educationForm">
+                @csrf
+                <div class="certification-1">
+                    <div class="certification-2">
+                        <div class="certification-3">
+                            <h4 class="text-left mt-3 mb-4">Certification</h4>
+                            <div class="form-row">
+                                <div class="form-group col-4">
+                                    <label>Education Type</label>
+                                    <select name="education_type" class="form-control">
+                                        <option value=""></option>
+                                        <option value="NA">NAC</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-1">
+                                </div>
+                                <div class="form-group col-7">
+                                    <label>Institute Name</label>
+                                    <input type="text" name="name" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-4">
+                                    <label>Year of Graduation</label>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <select name="month" class="form-control" required>
+                                                <option value=""></option>
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <select name="year" class="form-control" required>
+                                                <option value=""></option>
+                                                <option value="2016">2016</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2016">2016</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-1">
+                                </div>
+                                <div class="form-group col-7">
+                                    <label>Certification</label>
+                                    <!-- <input type="text" name="degree" class="form-control" /> -->
+                                    <select name="degree" class="form-control">
+                                        <option value=""></option>
+                                        <option value="NA">NAC</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-md btn-info btn-copy-c" type="button">Add More Certification</button>
+                    <button class="btn btn-md btn-danger btn-copy-c" type="button"><span class="fa fa-plus"></span></button>
                 </div>
                 <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">
-                        <button [disabled]="loading" class="btn btn-primary">
-                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                            Save Details
+                        <button class="btn btn-primary" type="submit">
+                            <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                            Next >>>
                         </button>
-                        <button class="btn btn-outline-primary" type="reset">Discard</button>
+                        <!-- <button class="btn btn-outline-primary" type="reset">Discard</button> -->
                     </div>
                 </div>
             </form>

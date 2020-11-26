@@ -33,6 +33,9 @@ Profile Setting
 	            @include('profile._left_menu')
 	        </div>
 	        <div class="col-lg-9">
+	        	<div id="notific">
+		            @include('notifications')
+		        </div>
 	            @yield('profile_content')
 	        </div>
 	    </div>
@@ -68,6 +71,24 @@ Profile Setting
             },
         });
     }
+
+	$(function(){
+	  	$(".btn-copy-ug").on('click', function(){
+	  		var str = $("#graduation_type").val();
+	  		var element = '<div class="ug-qualification-3">'+$('.ug-qualification-2').html()+'</div>';
+	  		$('.ug-qualification-1').append(element);
+
+	  	});
+	  	$(".btn-copy-pg").on('click', function(){
+	  		var element = '<div class="pg-qualification-3">'+$('.pg-qualification-2').html()+'</div>';
+	  		$('.pg-qualification-1').append(element);
+	  	});
+	  	$(".btn-copy-c").on('click', function(){
+	  		var element = '<div class="certification-3">'+$('.certification-2').html()+'</div>';
+	  		$('.certification-1').append(element);
+	  	});
+	})
+
 </script>
 <!--global js starts-->
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>

@@ -14,7 +14,7 @@
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <!--global css starts-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lib.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/custom1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom1.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900" rel="stylesheet" type="text/css"/>
     <!--end of global css-->

@@ -41,3 +41,20 @@ blockquote {
 .fs16 {
   font-size: 16px;
 }
+.profile-basic button.btn-info {
+    background: #0053c3;
+    color: #fff;
+    border-radius: unset;
+    padding: 9px 35px;
+    font-size: 16px !important;
+    border-color: #0053c3;
+}
+.profile-basic button.btn-danger {
+    background: #de4b39;
+    color: #fff;
+    border-radius: unset;
+    padding: 9px 15px;
+    font-size: 16px !important;
+    border-color: #de4b39;
+    margin-left: -5px;
+}

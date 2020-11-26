@@ -145,7 +145,7 @@ Home
 {{-- content --}}
 @section('content')
 <section class="section container">
-  <div class="services mt-4 shadow border">
+  <div class="services mt-5 shadow border">
     <div class="row">
       <div class="col-md-4 mb-7 mb-md-0">
           <!-- Contacts -->

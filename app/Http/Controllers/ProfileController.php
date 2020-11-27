@@ -15,6 +15,7 @@ use View;
 use DB;
 use App\Models\User;
 use App\Models\Education;
+use App\Models\Certificate;
 use App\Models\Country;
 use stdClass;
 
@@ -55,48 +56,27 @@ class ProfileController extends JoshController
     }
 
 
-    public function educationAdd()
-    {
-        // Show the page
-        return view('profile/education-add');
-    }
-
-
-    public function educationEdit()
-    {
-        // Show the page
-        return view('profile/education-add');
-    }
-
-
     public function certification()
     {
+        $user = Sentinel::getUser();
+        $certificates = Certificate::where('user_id', $user->id)->get();
+        
         // Show the page
-        // return view('profile/certification');
-        return view('profile/certification-add');
-    }
-
-    public function certificationAdd()
-    {
-        // Show the page
-        return view('profile/certification-add');
+        return view('profile/certification-add', compact('certificates'));
     }
 
     public function professionalExperience()
     {
-        // Show the page
         return view('profile/prof-exp');
     }
 
     public function tax()
     {
-        // Show the page
         return view('profile/tax-info');
     }
 
     public function financial()
     {
-        // Show the page
         return view('profile/financial');
     }
 
@@ -143,60 +123,65 @@ class ProfileController extends JoshController
         return response()->json($response);
     }
 
-    public function getAllEducation(Request $request)
-    {
-        $users = Education::where('user_id', $request->input('user_id'))->with('educationtype')->get();
-        return response()->json($users);
-    }
-
     public function registerEducation(Request $request)
     {
         $user = Sentinel::getUser();
         $input = $request->except('_token');
-        print_r($input);
-        die();
-        foreach ($input['education_type'] as $key => $value) {
-            echo $input['education_type'][$key];
-            echo $input['name'][$key];
+        
+        foreach ($input['education_id'] as $key => $value) {
+            if ($input['education_id'][$key] != 0) {
+                $education = Education::find($input['education_id'][$key]);
+                $education->user_id = $user->id;
+                $education->education_type = $input['graduation_type'][$key];
+                $education->graduation_type = $input['graduation_type'][$key];
+                $education->name = $input['name'][$key];
+                $education->month = $input['month'][$key];
+                $education->year = $input['year'][$key];
+                $education->degree = $input['degree'][$key];
+                $education->save();   
+            } else {
+                $education = new Education;
+                $education->user_id = $user->id;
+                $education->education_type = $input['graduation_type'][$key];
+                $education->graduation_type = $input['graduation_type'][$key];
+                $education->name = $input['name'][$key];
+                $education->month = $input['month'][$key];
+                $education->year = $input['year'][$key];
+                $education->degree = $input['degree'][$key];
+                $education->save();
+            }
             
-            // $education = new Education;
-            // $education->user_id = $user->id;
-            // $education->education_type = $input['graduation_type'][$key];
-            // $education->name = $input['name'][$key];
-            // $education->month = $input['month'][$key];
-            // $education->year = $input['year'][$key];
-            // $education->degree = $input['degree'][$key];
-            // $education->save();
         }
-    
-        // $response['errors'] = 'Updated';
-        // $response['education'] = $education;
-        return redirect('profile/certification')->with('success', 'Education added successfully');
+        return redirect('profile/certification')->with('success', 'Education updated successfully');
     }
 
-    public function getEducationById(Request $request)
+    public function registerCertification(Request $request)
     {
-        $education = Education::where('education_id', $request->input('id'))->first();
-        return response()->json($education);
-    }
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
 
-    public function updateEducation(Request $request)
-    {
-        $education = Education::find($request->input('id'));
-        $education->user_id = $request->input('user_id');
-        $education->education_type = $request->input('education_type');
-        $education->name = $request->input('name');
-        $education->from_date = $request->input('from_date');
-        $education->to_date = $request->input('to_date');
-        $education->degree = $request->input('degree');
-        $education->area_of_education = $request->input('area_of_education');
-        $education->description = $request->input('description');
-        $education->save();
+        foreach ($input['certificate_id'] as $key => $value) {
 
-        $response['success'] = '1';
-        $response['errors'] = 'Updated';
-        $response['education'] = $education;
-        return response()->json($response);
+            if ($input['certificate_id'][$key] != 0) {
+                $certificate = Certificate::find($input['certificate_id'][$key]);
+                $certificate->user_id = $user->id;
+                $certificate->certificate_no = $input['certificate_no'][$key];
+                $certificate->name = $input['name'][$key];
+                $certificate->valid_till = $input['valid_till'][$key];
+                $certificate->display_status = 1;
+                $certificate->save();   
+            } else {
+                $certificate = new Certificate;
+                $certificate->user_id = $user->id;
+                $certificate->certificate_no = $input['certificate_no'][$key];
+                $certificate->name = $input['name'][$key];
+                $certificate->valid_till = $input['valid_till'][$key];
+                $certificate->display_status = 1;
+                $certificate->save();
+            }
+        }
+
+        return redirect('profile/professional-experience')->with('success', 'Certificate updated successfully');
     }
 
     public function uploadProfilePic(Request $request)

@@ -68,10 +68,10 @@ class AuthController extends JoshController
                 ['email' => $request->get('email'), 'mobile' => $request->get('mobile'), 'otp' => $otp, 'mobile_otp' => $mobile_otp]
             );
             $data['otp'] = $otp;
-            /*Mail::send('emails.emailTemplates.otp', $data, function ($m) use ($data) {
-                $m->from('info@ciliana.com', 'Eiliana App');
+            Mail::send('emails.emailTemplates.otp', $data, function ($m) use ($data) {
+                $m->from('info@eiliana.com', 'Eiliana App');
                 $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');
-            });*/
+            });
 
             $response['email'] = $this->obfuscate_email($request->get('email'));
             $response['mobile_number'] = str_repeat("X", (strlen($request->get('mobile')) - 4)).substr($request->get('mobile'),-4,4);
@@ -180,8 +180,8 @@ class AuthController extends JoshController
             $role->users()->attach($user);
 
             // Send the activation code through email
-            // Mail::to($user->email)
-            //     ->send(new Register($data));
+            Mail::to($user->email)
+                ->send(new Register($data));
 
             activity($user->full_name)
                 ->performedOn($user)
@@ -218,8 +218,8 @@ class AuthController extends JoshController
                     'user_name' => $user->first_name .' '. $user->last_name,
                 ];
             // welcome email
-            // Mail::to($user->email)
-            //     ->send(new Welcome($data));
+            Mail::to($user->email)
+                ->send(new Welcome($data));
 
             activity($user->full_name)
                     ->performedOn($user)

@@ -71,7 +71,7 @@ $(document).ready(function() {
                 swalWithBootstrapButtons.fire({
                   type: 'success',
                   title: 'Success...',
-                  text: 'Otp send to your mobile and email successful',
+                  text: 'OTP send to your mobile and email successful',
                 }).then(function() {
                     window.location.href = '/account/registerotp';
                 });

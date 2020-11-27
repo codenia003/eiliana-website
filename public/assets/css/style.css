@@ -56,7 +56,7 @@ a:hover {
     background-color: #b8180c !important;
 }
 .offset-md-20 {
-  margin-left: 20%;
+  margin-left: 21%;
 }
 .z-index-2 {
     z-index: 2;
@@ -128,6 +128,13 @@ a:hover {
 .btn-ghost-light {
     color: #f7faff !important;
     background-color: transparent !important;
+}
+.fa-google {
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 footer .btn-ghost-light:hover, .btn-ghost-light:focus, .btn-ghost-light:active, .btn-ghost-light.active {
     color: #f7faff !important;
@@ -294,18 +301,21 @@ footer {
     font-weight: 500;
     color: #595959;
     padding: 0px;
+    margin-bottom: 5px;
 }
 .singup-body .card {
     background: none;
     border: 0px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
 }
 .singup-body .card-header {
     background: #ffffff;
     text-align: center;
     color: #595959;
+    font-weight: 500;
     /* text-transform: uppercase; */
     font-size: 24px;
-    padding: 0.8rem 1rem;
+    margin: 0.5rem 0.8rem;
     /* border-top-left-radius: 36px !important; */
 }
 .singup-body {
@@ -315,7 +325,7 @@ footer {
     background: #fff;
     padding: 35px;
     /* border-left: 1px solid #b8180c; */
-    /* border-right: 1px solid #b8180c; */
+    /* border-right: 1px solid #a3a3a3; */
 }
 .singup-body span.input-group-text {
     background: none;
@@ -336,12 +346,12 @@ footer {
     font-size: 13px;
 }
 .singup-body .btn.btn-primary {
-    border: 1px solid #3b5999;
+    border: 1px solid #0053c3;
     border-radius: 0px;
     padding: 0px;
-    height: 46px;
-    line-height: 44px;
-    background: #3b5999;
+    height: 45px;
+    line-height: 42px;
+    background: #0053c3;
     color: #ffffff;
     font-weight: 400;
     font-size: 16px;
@@ -481,7 +491,7 @@ footer {
     padding: 24px 20px 20px;
     font-size: 16px;
     border: none;
-    background-color: #fff;
+    background-color: #f8f8fa;
     border: 1px solid #c7c7c7;
 }
 span.border-title i {
@@ -501,27 +511,32 @@ span.border-title i {
     padding-bottom: 85px;
 }
 .singup-body .form-group p a.bt {
-  text-decoration: underline;
-  color: #da4c38;
+  text-decoration: none;
+  color: #181818;
+  font-weight: 500;
 }
 .account-second-side img {
     margin-bottom: 30px;
 }
 
 .account-second-side p {
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #343434 !important;
 }
 
 .account-second-side a.bt {
-    color: #3b5999;
-    font-size: 18px !important;
+    color: #ffffff;
+    font-size: 13px !important;
     border-radius: 0px;
-    padding: 9px 35px;
-    font-weight: 600;
+    padding: 10px 35px;
+    font-weight: 400;
+    background-color: #de4b39;
+    border-color: #de4b39;
 }
 .singup-body select.form-control {
     border-radius: 0;
-    background-color: #ffffff;
+    background-color: #f8f8fa;
     height: 45px;
     border: none;
     border: 1px solid #c7c7c7;
@@ -676,6 +691,7 @@ span.fa.fa-angle-right.slick-arrow {
     color: #fff;
     font-size: 22px;
     padding: 0.8rem 1rem;
+    margin: -1px;
 }
 footer.custome-footer {
     background: #0d223f;
@@ -687,7 +703,7 @@ footer.custome-footer {
     background-color: #55ACEE !important;
 }
 .bg-linkedin {
-    background-color: #007bb5 !important;
+    background-color: #007ab9 !important;
 }
 .bg-instagram {
     background-color: #bb0000 !important;
@@ -701,8 +717,8 @@ footer.custome-footer {
     border: 1px solid #55ACEE;
 }
 .linkedin {
-    color: #007bb5 !important;
-    border: 1px solid #007bb5;
+    color: #007ab9 !important;
+    border: 1px solid #007ab9;
 }
 .instagram {
     color: #bb0000 !important;
@@ -711,10 +727,12 @@ footer.custome-footer {
 .omb_socialButtons a.btn {
     border-radius: 0px;
     width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 .account-second-side {
     position: relative;
-    bottom: 85px;
+    bottom: 115px;
 }
 .nav-link.messages {
   padding-right: 0.5rem !important;
@@ -799,4 +817,15 @@ h3.form-tittle {
 }
 .singup-body .form-group.form-check label {
     font-size: 12px;
+}
+.omb_socialButtons a.btn i {
+    position: relative;
+    top: 3px;
+    font-size: 20px;
+}
+.omb_socialButtons a.btn i.fa-google {
+    font-size: 35px;
+    left: -8px;
+    font-weight: 500;
+    top: -5px;
 }

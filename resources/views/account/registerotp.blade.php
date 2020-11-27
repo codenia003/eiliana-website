@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Register
+OTP Verification
 @parent
 @stop
 

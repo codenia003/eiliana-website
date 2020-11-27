@@ -68,15 +68,15 @@ Login
                                 </form>
                                 <div class="omb_row-sm-offset-3 omb_socialButtons text-center">
                                     <ul class="list-inline mb-0">
-                                        <li class="list-inline-item"><a href="{{ url('/facebook') }}" class="btn btn-icon btn-ghost-light facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li class="list-inline-item"><a href="{{ url('/linkedin') }}" class="btn btn-icon btn-ghost-light linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-                                        <li class="list-inline-item"><a href="{{ url('/google') }}" class="btn btn-icon btn-ghost-light instagram"><i class="fab fa-google"></i></a></li>
+                                        <li class="list-inline-item"><a href="{{ url('/facebook') }}" class="btn btn-icon btn-ghost-light bg-facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li class="list-inline-item"><a href="{{ url('/google') }}" class="btn btn-icon btn-ghost-light"><i class="fab fa-google"></i></a></li>
+                                        <li class="list-inline-item"><a href="{{ url('/linkedin') }}" class="btn btn-icon btn-ghost-light bg-linkedin"><i class="fab fa-linkedin-in"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col p-0 d-flex align-items-center justify-content-center bg-navy bg-img-hero" style="background-image: url(/assets/img/others/login-1.png);">
+                    <div class="col p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="background-image: url(/assets/img/others/login-1.png);">
                         <div class="account-second-side text-center">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Not a member yet?</p>

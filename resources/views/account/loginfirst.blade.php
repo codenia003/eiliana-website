@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Login
+Change Password
 @parent
 @stop
 
@@ -59,12 +59,12 @@ Login
                             </div>
                         </div>
                     </div>
-                    <div class="col p-0 d-flex align-items-center justify-content-center bg-navy bg-img-hero" style="background-image: url(/assets/img/others/login-1.png);">
-                        <div class="account-second-side text-center">
+                    <div class="col p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="background-image: url(/assets/img/others/change-password.png);">
+                        <!-- <div class="account-second-side text-center">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Not a member yet?</p>
                             <a href="/account/register" class="btn btn-light bt btn-lg">SingUp Now</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

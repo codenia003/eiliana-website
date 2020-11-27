@@ -355,13 +355,14 @@ Route::group(
         
         // education
         Route::get('education', 'ProfileController@education')->name('education');
-        Route::post('/registerEducation', 'ProfileController@registerEducation');
-        Route::get('education/education-add', 'ProfileController@educationAdd')->name('education/education-add');
-        Route::get('education/education-edit/{id}', 'ProfileController@educationEdit');
-        Route::post('/updateEducation', 'ProfileController@updateEducation');
+        Route::post('/registereducation', 'ProfileController@registerEducation');
+        // Route::get('education/education-add', 'ProfileController@educationAdd')->name('education/education-add');
+        // Route::get('education/education-edit/{id}', 'ProfileController@educationEdit');
         
         Route::get('certification', 'ProfileController@certification')->name('certification');
-        Route::get('certification/certification-add', 'ProfileController@certificationAdd');
+        Route::post('/registercertification', 'ProfileController@registerCertification');
+        // Route::get('certification/certification-add', 'ProfileController@certificationAdd');
+        
         Route::get('professional-experience', 'ProfileController@professionalExperience')->name('professional-experience');
         Route::get('tax', 'ProfileController@tax')->name('tax');
         Route::get('financial', 'ProfileController@financial')->name('financial');

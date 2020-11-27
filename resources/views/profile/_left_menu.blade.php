@@ -47,10 +47,10 @@
                         <a class="list-group-item list-group-item-action {!! (Request::is('profile/education') ? 'active' : '' ) !!}" href="/profile/education">Education</a>
                         <a class="list-group-item list-group-item-action {!! (Request::is('profile/certification') ? 'active' : '' ) !!}" href="/profile/certification">Certification</a>
                         <a class="list-group-item list-group-item-action {!! (Request::is('profile/professional-experience') ? 'active' : '' ) !!}" href="/profile/professional-experience">Professional Experience</a>
-                        <a class="list-group-item list-group-item-action {!! (Request::is('profile/tax') ? 'active' : '' ) !!}" href="/profile/tax">Tax Information</a>
+                        <!-- <a class="list-group-item list-group-item-action {!! (Request::is('profile/tax') ? 'active' : '' ) !!}" href="/profile/tax">Tax Information</a>
                         <a class="list-group-item list-group-item-action {!! (Request::is('profile/financial') ? 'active' : '' ) !!}" href="/profile/financial">Financial Accounts</a>
                         <a class="list-group-item list-group-item-action" href="/profile">Membership & Credits</a>
-                        <a class="list-group-item list-group-item-action" href="/profile">Members (Connections), Teams and Permissions</a>
+                        <a class="list-group-item list-group-item-action" href="/profile">Members (Connections), Teams and Permissions</a> -->
                         <a class="list-group-item list-group-item-action" href="/profile">Company Settings</a>
                     </div>
                 </div>

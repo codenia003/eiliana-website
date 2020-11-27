@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Register
+Basic Information
 @parent
 @stop
 

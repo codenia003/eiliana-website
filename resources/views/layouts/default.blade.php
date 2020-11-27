@@ -115,7 +115,7 @@
 
     <!-- Footer Section Start -->
     <footer class="custome-footer">
-        <div class="container space-2">
+        <div class="container space-1">
             <div class="row mb-9">
                 <div class="col-lg-3 mb-5 mb-lg-0">
                     <h5 class="text-white font-weight-500">Categories</h5>

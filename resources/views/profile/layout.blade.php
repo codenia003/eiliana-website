@@ -87,8 +87,16 @@ Profile Setting
 	  		var element = '<div class="certification-3">'+$('.certification-2').html()+'</div>';
 	  		$('.certification-1').append(element);
 	  	});
-	})
-
+	});
+	$(document).on('click','.remove-ug',function() {
+	 	$(this).parent('.ug-qualification-3').remove();
+	});
+	$(document).on('click','.remove-pg',function() {
+	 	$(this).parent('.pg-qualification-3').remove();
+	});
+	$(document).on('click','.remove-c',function() {
+	 	$(this).parent('.certification-3').remove();
+	});
 </script>
 <!--global js starts-->
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>

@@ -16,6 +16,8 @@ use DB;
 use App\Models\User;
 use App\Models\Education;
 use App\Models\Certificate;
+use App\Models\Qualification;
+use App\Models\EducationType;
 use App\Models\Country;
 use stdClass;
 
@@ -25,7 +27,10 @@ class ProfileController extends JoshController
      * Profile.
      *
      * @return View
-     */
+     */ 
+    public function __construct() {
+        
+    }
 
 
     public function basicInfo()
@@ -46,13 +51,13 @@ class ProfileController extends JoshController
 
     public function education()
     {
+        $educationtype = EducationType::all();
+        $qualifications = Qualification::all();
         $user = Sentinel::getUser();
-        $educations = Education::where('user_id', $user->id)->with('educationtype')->get();
-        // print_r($educations);
-        // die();
+        $educations = Education::where('user_id', $user->id)->get();
         // Show the page
         // return view('profile/education');
-        return view('profile/education-add', compact('educations'));
+        return view('profile/education-add', compact('educations','educationtype','qualifications'));
     }
 
 
@@ -132,7 +137,7 @@ class ProfileController extends JoshController
             if ($input['education_id'][$key] != 0) {
                 $education = Education::find($input['education_id'][$key]);
                 $education->user_id = $user->id;
-                $education->education_type = $input['graduation_type'][$key];
+                $education->education_type = $input['education_type'][$key];
                 $education->graduation_type = $input['graduation_type'][$key];
                 $education->name = $input['name'][$key];
                 $education->month = $input['month'][$key];
@@ -142,7 +147,7 @@ class ProfileController extends JoshController
             } else {
                 $education = new Education;
                 $education->user_id = $user->id;
-                $education->education_type = $input['graduation_type'][$key];
+                $education->education_type = $input['education_type'][$key];
                 $education->graduation_type = $input['graduation_type'][$key];
                 $education->name = $input['name'][$key];
                 $education->month = $input['month'][$key];
@@ -153,6 +158,15 @@ class ProfileController extends JoshController
             
         }
         return redirect('profile/certification')->with('success', 'Education updated successfully');
+    }
+
+    public function deleteEducation(Request $request) 
+    {    
+        $education = Education::find($request->input('edu_id'));
+        $education->delete();
+
+        $response['success'] = '1';
+        return response()->json($response);
     }
 
     public function registerCertification(Request $request)
@@ -182,6 +196,15 @@ class ProfileController extends JoshController
         }
 
         return redirect('profile/professional-experience')->with('success', 'Certificate updated successfully');
+    }
+
+    public function deleteCertification(Request $request) 
+    {    
+        $certificate = Certificate::find($request->input('cert_id'));
+        $certificate->delete();
+
+        $response['success'] = '1';
+        return response()->json($response);
     }
 
     public function uploadProfilePic(Request $request)

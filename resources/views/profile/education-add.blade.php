@@ -9,9 +9,10 @@
 	        	@csrf
 	        	<div class="ug-qualification-1">
 	        		@forelse ($educations as $education)
-	        			@if ($education->education_type === 3)
-						    <div class="ug-qualification">
-					        	<h4 class="text-left mt-3 mb-4">UG Qualification</h4>
+	        			@if ($education->graduation_type == 3)
+						    <div class="ug-qualification remove-qual-{{ $education->education_id }}">
+					        	<span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span>
+								<button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
 				            	<input type="hidden" name="graduation_type[]" value="3">
 				            	<input type="hidden" name="education_id[]" value="{{ $education->education_id }}">
 				            	<div class="form-row">
@@ -19,7 +20,9 @@
 						                <label>Education Type</label>
 						                <select name="education_type[]" class="form-control" required>
 				                            <option value=""></option>
-				                            <option value="1" selected>NA</option>
+				                            @foreach ($educationtype as $etype)
+					                        <option value="{{ $etype->education_type_id }}" {{ ($education->education_type==$etype->education_type_id)? "selected" : "" }} >{{ $etype->name }}</option>
+					                        @endforeach
 				                        </select>
 						            </div>
 						            <div class="form-group col-1">
@@ -41,6 +44,13 @@
 						                            <option value="03">03</option>
 						                            <option value="04">04</option>
 						                            <option value="05">05</option>
+						                            <option value="06">06</option>
+						                            <option value="07">07</option>
+						                            <option value="08">08</option>
+						                            <option value="09">09</option>
+						                            <option value="10">10</option>
+						                            <option value="11">11</option>
+						                            <option value="12">12</option>
 						                        </select>
 					                    	</div>
 					                    	<div class="col">
@@ -62,7 +72,11 @@
 						                <!-- <input type="text" name="degree" class="form-control" /> -->
 						                <select name="degree[]" class="form-control">
 				                            <option value=""></option>
-				                            <option value="NA" selected>NAC</option>
+				                            @foreach ($qualifications as $qualification)
+					                        @if ($qualification->type == 'UG')
+					                        <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }} >{{ $qualification->name }}</option>
+					                        @endif
+					                        @endforeach
 				                        </select>
 						            </div>
 						        </div>
@@ -78,7 +92,9 @@
 				                <label>Education Type</label>
 				                <select name="education_type[]" class="form-control" required>
 		                            <option value=""></option>
-		                            <option value="1">NA</option>
+		                            @foreach ($educationtype as $etype)
+			                        <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
+			                        @endforeach
 		                        </select>
 				            </div>
 				            <div class="form-group col-1">
@@ -121,7 +137,11 @@
 				                <!-- <input type="text" name="degree" class="form-control" /> -->
 				                <select name="degree[]" class="form-control" required>
 		                            <option value=""></option>
-		                            <option value="NA">NAC</option>
+		                            @foreach ($qualifications as $qualification)
+			                        @if ($qualification->type == 'UG')
+			                        <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
+			                        @endif
+			                        @endforeach
 		                        </select>
 				            </div>
 				        </div>
@@ -134,9 +154,11 @@
 		        </div>
 		        <div class="pg-qualification-1">
 		        	@forelse ($educations as $education)
-	        			@if ($education->education_type === 4)
-						    <div class="pg-qualification">
-				            	<h4 class="text-left mt-3 mb-4">PG Qualification</h4>
+	        			@if ($education->graduation_type == 4)
+						    <div class="pg-qualification remove-qual-{{ $education->education_id }}">
+						    	<span class="h4 text-left mt-3 mb-4 d-inline-block">PG Qualification</span>
+								<button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
+
 				            	<input type="hidden" name="graduation_type[]" value="4">
 				            	<input type="hidden" name="education_id[]" value="{{ $education->education_id }}">
 				            	<div class="form-row">
@@ -144,7 +166,9 @@
 						                <label>Education Type</label>
 						                <select name="education_type[]" class="form-control">
 				                            <option value=""></option>
-				                            <option value="1" selected>NAC</option>
+				                            @foreach ($educationtype as $etype)
+					                        <option value="{{ $etype->education_type_id }}" {{ ($education->education_type==$etype->education_type_id)? "selected" : "" }} >{{ $etype->name }}</option>
+					                        @endforeach
 				                        </select>
 						            </div>
 						            <div class="form-group col-1">
@@ -187,7 +211,11 @@
 						                <!-- <input type="text" name="degree" class="form-control" /> -->
 						                <select name="degree[]" class="form-control">
 				                            <option value=""></option>
-				                            <option value="NA" selected>NAC</option>
+				                            @foreach ($qualifications as $qualification)
+					                        @if ($qualification->type == 'PG')
+					                        <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }} >{{ $qualification->name }}</option>
+					                        @endif
+					                        @endforeach
 				                        </select>
 						            </div>
 						        </div>
@@ -203,7 +231,9 @@
 				                <label>Education Type</label>
 				                <select name="education_type[]" class="form-control" required>
 		                            <option value=""></option>
-		                            <option value="1">NAC</option>
+		                            @foreach ($educationtype as $etype)
+			                        <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
+			                        @endforeach
 		                        </select>
 				            </div>
 				            <div class="form-group col-1">
@@ -246,7 +276,11 @@
 				                <!-- <input type="text" name="degree" class="form-control" /> -->
 				                <select name="degree[]" class="form-control" required>
 		                            <option value=""></option>
-		                            <option value="NA">NAC</option>
+		                            @foreach ($qualifications as $qualification)
+			                        @if ($qualification->type == 'UG')
+			                        <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
+			                        @endif
+			                        @endforeach
 		                        </select>
 				            </div>
 				        </div>
@@ -272,7 +306,7 @@
 </div>
 <div class="ug-qualification-2 d-none">
 	<span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span>
-	<button type="button" class="remove-ug btn float-right mt-3"><i class="fas fa-times"></i></button>
+	<button type="button" class="remove-ug btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
 	
 	<input type="hidden" name="graduation_type[]" value="3">
 	<input type="hidden" name="education_id[]" value="0">
@@ -281,7 +315,9 @@
             <label>Education Type</label>
             <select name="education_type[]" class="form-control" required>
                 <option value=""></option>
-                <option value="1">NA</option>
+                @foreach ($educationtype as $etype)
+                <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group col-1">
@@ -324,14 +360,18 @@
             <!-- <input type="text" name="degree" class="form-control" /> -->
             <select name="degree[]" class="form-control" required>
                 <option value=""></option>
-                <option value="NA">NAC</option>
+                @foreach ($qualifications as $qualification)
+                @if ($qualification->type == 'UG')
+                <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
+                @endif
+                @endforeach
             </select>
         </div>
     </div>
 </div>
 <div class="pg-qualification-2 d-none">
 	<span class="h4 text-left mt-3 mb-4 d-inline-block">PG Qualification</span>
-	<button type="button" class="remove-pg btn float-right mt-3"><i class="fas fa-times"></i></button>
+	<button type="button" class="remove-pg btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
 	<input type="hidden" name="graduation_type[]" value="4">
 	<input type="hidden" name="education_id[]" value="0">
 	<div class="form-row">
@@ -339,7 +379,9 @@
             <label>Education Type</label>
             <select name="education_type[]" class="form-control" required>
                 <option value=""></option>
-                <option value="1">NAC</option>
+                @foreach ($educationtype as $etype)
+                <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group col-1">
@@ -382,7 +424,11 @@
             <!-- <input type="text" name="degree" class="form-control" /> -->
             <select name="degree[]" class="form-control" required>
                 <option value=""></option>
-                <option value="NA">NAC</option>
+                @foreach ($qualifications as $qualification)
+                @if ($qualification->type == 'PG')
+                <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
+                @endif
+                @endforeach
             </select>
         </div>
     </div>

@@ -46,7 +46,7 @@ Profile Setting
 {{-- footer scripts --}}
 @section('footer_scripts')
 <script>
-    function changeAnonymus(e) {
+   	function changeAnonymus(e) {
         var anonymous = e.target.value;
         var data= {
             anonymous:anonymous
@@ -97,6 +97,64 @@ Profile Setting
 	$(document).on('click','.remove-c',function() {
 	 	$(this).parent('.certification-3').remove();
 	});
+	function ConfirmDelete(edu_id,main_id)
+	{
+	  	var x = confirm("Are you sure you want to delete?");
+	  	var edu_id = edu_id;
+	  	if (x) {
+	  		if (main_id == '1') {
+	  			$.ajax({
+		            type: 'GET', 
+		            url: '/profile/deleteducation',
+		            data: {edu_id:edu_id},
+		            contentType: 'application/json',
+		            dataType: "json",
+		            success: function(data) {
+		            	$(".remove-qual-"+edu_id).remove();
+		                Swal.fire({
+			              type: 'success',
+			              title: 'Success...',
+			              text: 'Education Deleted successfully',
+			              showConfirmButton: false,
+			              timer: 1500
+			            })
+
+		            },
+		            error: function(xhr, status, error) {
+		                console.log("error: ",error);
+		            },
+		        });
+	  		} else {
+	  			$.ajax({
+		            type: 'GET', 
+		            url: '/profile/deletecertification',
+		            data: {cert_id:edu_id},
+		            contentType: 'application/json',
+		            dataType: "json",
+		            success: function(data) {
+		            	$(".remove-qual-"+edu_id).remove();
+		                Swal.fire({
+			              type: 'success',
+			              title: 'Success...',
+			              text: 'Certificate Deleted successfully',
+			              showConfirmButton: false,
+			              timer: 1500
+			            })
+
+		            },
+		            error: function(xhr, status, error) {
+		                console.log("error: ",error);
+		            },
+		        });
+	  		}
+	    	return true;
+	  	} else {
+	    	return false;
+		}
+	}
+	function changeInterested(e) {
+		$("#exampleModal1").modal();
+    }
 </script>
 <!--global js starts-->
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>

@@ -286,8 +286,8 @@ footer {
     margin: 4.50rem auto !important;
 }
 .modal-content {
-    background: transparent !important;
-    border: none !important;
+    /* background: transparent !important; */
+    /* border: none !important; */
 }
 .login-body {
     border: 1px solid #a3a3a3;
@@ -483,7 +483,7 @@ footer {
     margin-top: 5px;
 }
 .basic-info label {
-    padding: 0px;
+    padding: 2px;
 }
 
 .login-body input.form-control {
@@ -828,4 +828,7 @@ h3.form-tittle {
     left: -8px;
     font-weight: 500;
     top: -5px;
+}
+.form-check-inline {
+    margin-right: 0.5rem;
 }

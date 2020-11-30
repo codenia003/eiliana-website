@@ -74,12 +74,20 @@ $(document).ready(function() {
             } else {
                 localStorage.removeItem('reg_id');
                 $('.spinner-border').addClass("d-none");
+                var radioValue = $("input[name='wanttofill']:checked").val();
+                if (radioValue == 1 || radioValue == 3) {
+                    var redirect = '/profile/education';
+                } else if(radioValue == 2) {
+                    var redirect = '/profile/certification';
+                } else {
+                    var redirect = '/profile/professional-experience';
+                }
                 Swal.fire({
                     icon: 'success',
                     title: 'Success...',
                     text: 'Profile sucessfully updated',
                 }).then(function() {
-                    window.location.href = '/profile/education';
+                    window.location.href = redirect;
                 });
             }
         }, 'json');

@@ -19,6 +19,13 @@ $(document).ready(function() {
                     }
                 },
             },
+            interested: {
+                validators: {
+                    notEmpty: {
+                        message: 'Title is required',
+                    }
+                },
+            },
             first_name: {
                 validators: {
                     notEmpty: {
@@ -55,7 +62,7 @@ $(document).ready(function() {
         },
     }).on('success.form.bv', function(e) {
         e.preventDefault();
-        $('.spinner-border').removeClass("d-none");
+        // $('.spinner-border').removeClass("d-none");
         var $form = $(e.target);
         var bv = $form.data('bootstrapValidator');
         // console.log($form.serialize());
@@ -76,16 +83,23 @@ $(document).ready(function() {
                 $('.spinner-border').addClass("d-none");
                 var radioValue = $("input[name='wanttofill']:checked").val();
                 if (radioValue == 1 || radioValue == 3) {
+                    var msg = 'Redirecting To Education';
                     var redirect = '/profile/education';
                 } else if(radioValue == 2) {
+                    var msg = 'Redirecting To Certification';
                     var redirect = '/profile/certification';
-                } else {
+                } else if(radioValue == 4) {
+                    var msg = 'Redirecting To Professional Experience';
                     var redirect = '/profile/professional-experience';
+                } else {
+                    // var redirect = '/profile/professional-experience';
+                    var msg = 'Redirecting To Education';
+                    var redirect = '/profile/education';
                 }
                 Swal.fire({
                     icon: 'success',
                     title: 'Success...',
-                    text: 'Profile sucessfully updated',
+                    text: msg,
                 }).then(function() {
                     window.location.href = redirect;
                 });

@@ -73,7 +73,7 @@
 <div class="certification-2 d-none">
     <div class="certification-3">
         <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
-        <button type="button" class="remove-ug btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
+        <button type="button" class="remove-c btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
         <input type="hidden" name="certificate_id[]" value="0">
         <div class="form-row">
             <div class="form-group col-4">

@@ -29,7 +29,7 @@ $(document).ready(function() {
         },
     }).on('success.form.bv', function(e) {
         e.preventDefault();
-        $('.spinner-border').removeClass("d-none");
+        // $('.spinner-border').removeClass("d-none");
         var $form = $(e.target);
         var bv = $form.data('bootstrapValidator');
         $.post($form.attr('action'), $form.serialize(), function(result) {
@@ -93,7 +93,7 @@ $(document).ready(function() {
         },
     }).on('success.form.bv', function(e) {
         e.preventDefault();
-        $('.spinner-border').removeClass("d-none");
+        // $('.spinner-border').removeClass("d-none");
         var $form = $(e.target);
         var bv = $form.data('bootstrapValidator');
         $.post($form.attr('action'), $form.serialize(), function(result) {

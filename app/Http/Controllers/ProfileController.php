@@ -18,6 +18,7 @@ use App\Models\Education;
 use App\Models\Certificate;
 use App\Models\Qualification;
 use App\Models\EducationType;
+use App\Models\University;
 use App\Models\Country;
 use stdClass;
 
@@ -53,11 +54,12 @@ class ProfileController extends JoshController
     {
         $educationtype = EducationType::all();
         $qualifications = Qualification::all();
+        $universities = University::all();
         $user = Sentinel::getUser();
         $educations = Education::where('user_id', $user->id)->get();
         // Show the page
         // return view('profile/education');
-        return view('profile/education-add', compact('educations','educationtype','qualifications'));
+        return view('profile/education-add', compact('educations','educationtype','qualifications','universities'));
     }
 
 
@@ -205,6 +207,35 @@ class ProfileController extends JoshController
 
         $response['success'] = '1';
         return response()->json($response);
+    }
+
+    public function resgiterProfessionalExperience(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+
+        /*foreach ($input['certificate_id'] as $key => $value) {
+
+            if ($input['certificate_id'][$key] != 0) {
+                $certificate = Certificate::find($input['certificate_id'][$key]);
+                $certificate->user_id = $user->id;
+                $certificate->certificate_no = $input['certificate_no'][$key];
+                $certificate->name = $input['name'][$key];
+                $certificate->valid_till = $input['valid_till'][$key];
+                $certificate->display_status = 1;
+                $certificate->save();   
+            } else {
+                $certificate = new Certificate;
+                $certificate->user_id = $user->id;
+                $certificate->certificate_no = $input['certificate_no'][$key];
+                $certificate->name = $input['name'][$key];
+                $certificate->valid_till = $input['valid_till'][$key];
+                $certificate->display_status = 1;
+                $certificate->save();
+            }
+        }*/
+
+        return redirect('profile/professional-experience')->with('success', 'Professional Experience updated successfully');
     }
 
     public function uploadProfilePic(Request $request)

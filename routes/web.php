@@ -366,6 +366,8 @@ Route::group(
         // Route::get('certification/certification-add', 'ProfileController@certificationAdd');
         
         Route::get('professional-experience', 'ProfileController@professionalExperience')->name('professional-experience');
+        Route::post('registerprofexp', 'ProfileController@resgiterProfessionalExperience')->name('professional-experience');
+
         Route::get('tax', 'ProfileController@tax')->name('tax');
         Route::get('financial', 'ProfileController@financial')->name('financial');
     }

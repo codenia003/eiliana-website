@@ -10,11 +10,11 @@
 	        	<div class="ug-qualification-1">
 	        		@forelse ($educations as $education)
 	        			@if ($education->graduation_type == 3)
-						    <div class="ug-qualification remove-qual-{{ $education->education_id }}">
+						    <div class="ug-qualification-3 remove-qual-{{ $education->education_id }}">
 					        	<span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span>
-								<button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
+								<!-- <button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
 				            	<input type="hidden" name="graduation_type[]" value="3">
-				            	<input type="hidden" name="education_id[]" value="{{ $education->education_id }}">
+				            	<input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
 				            	<div class="form-row">
 						            <div class="form-group col-4">
 						                <label>UG Qualification</label>
@@ -126,16 +126,18 @@
 	            <div class="mb-5 mt-3">
 		        	<button class="btn btn-md btn-info btn-copy-ug" type="button">Add More Ug Qualification</button>
             		<button class="btn btn-md btn-danger btn-copy-ug" type="button"><span class="fa fa-plus"></span></button>
+
+            		<button type="button" class="remove-ug btn btn-danger ml-3 rounded-0"><i class="fas fa-times"></i></button>
 		        </div>
 		        <div class="pg-qualification-1">
 		        	@forelse ($educations as $education)
 	        			@if ($education->graduation_type == 4)
-						    <div class="pg-qualification remove-qual-{{ $education->education_id }}">
+						    <div class="pg-qualification-3 remove-qual-{{ $education->education_id }}">
 						    	<span class="h4 text-left mt-3 mb-4 d-inline-block">PG Qualification</span>
-								<button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
+								<!-- <button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
 
 				            	<input type="hidden" name="graduation_type[]" value="4">
-				            	<input type="hidden" name="education_id[]" value="{{ $education->education_id }}">
+				            	<input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
 				            	<div class="form-row">
 						            <div class="form-group col-4">
 						                <label>PG Qualification</label>
@@ -248,6 +250,7 @@
 	            <div class="mt-3">
 	            	<button class="btn btn-md btn-info btn-copy-pg" type="button">Add More PG Qualification</button>
 	            	<button class="btn btn-md btn-danger btn-copy-pg" type="button"><span class="fa fa-plus"></span></button>
+	            	<button type="button" class="remove-pg btn btn-danger ml-3 rounded-0"><i class="fas fa-times"></i></button>
                 </div>
 	            <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">
@@ -264,10 +267,10 @@
 </div>
 <div class="ug-qualification-2 d-none">
 	<span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span>
-	<button type="button" class="remove-ug btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
+	<!-- <button type="button" class="remove-ug btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
 	
 	<input type="hidden" name="graduation_type[]" value="3">
-	<input type="hidden" name="education_id[]" value="0">
+	<input type="hidden" name="education_id[]" id="education_id" value="0">
 	<div class="form-row">
         <div class="form-group col-4">
             <label>UG Qualification</label>
@@ -319,9 +322,9 @@
 </div>
 <div class="pg-qualification-2 d-none">
 	<span class="h4 text-left mt-3 mb-4 d-inline-block">PG Qualification</span>
-	<button type="button" class="remove-pg btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
+	<!-- <button type="button" class="remove-pg btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
 	<input type="hidden" name="graduation_type[]" value="4">
-	<input type="hidden" name="education_id[]" value="0">
+	<input type="hidden" name="education_id[]" id="education_id" value="0">
 	<div class="form-row">
         <div class="form-group col-4">
             <label>PG Qualification</label>

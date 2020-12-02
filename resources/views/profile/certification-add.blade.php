@@ -11,8 +11,8 @@
                     @forelse ($certificates as $certificate)
                         <div class="certification-3 remove-qual-{{ $certificate->certificate_id }}">
                             <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
-                            <button type="button" onclick="ConfirmDelete('{{ $certificate->certificate_id }}','2')" class="btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
-                            <input type="hidden" name="certificate_id[]" value="{{ $certificate-> certificate_id }}">
+                            <!-- <button type="button" onclick="ConfirmDelete('{{ $certificate->certificate_id }}','2')" class="btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
+                            <input type="hidden" name="certificate_id[]" id="certificate_id" value="{{ $certificate-> certificate_id }}">
                             <div class="form-row">
                                 <div class="form-group col-4">
                                     <label>Certification Number</label>
@@ -56,6 +56,7 @@
                 <div class="mt-3">
                     <button class="btn btn-md btn-info btn-copy-c" type="button">Add More Certification</button>
                     <button class="btn btn-md btn-danger btn-copy-c" type="button"><span class="fa fa-plus"></span></button>
+                    <button type="button" class="remove-c btn btn-danger ml-3 rounded-0"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">
@@ -71,26 +72,24 @@
     </div>
 </div>
 <div class="certification-2 d-none">
-    <div class="certification-3">
-        <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
-        <button type="button" class="remove-c btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button>
-        <input type="hidden" name="certificate_id[]" value="0">
-        <div class="form-row">
-            <div class="form-group col-4">
-                <label>Certification Number</label>
-                <input type="text" name="certificate_no[]" class="form-control" required/>
-            </div>
-            <div class="form-group col-1">
-            </div>
-            <div class="form-group col-7">
-                <label>Certification Name</label>
-                <input type="text" name="name[]" class="form-control" required/>
-            </div>
+    <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
+   <!--  <button type="button" class="remove-c btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
+    <input type="hidden" name="certificate_id[]" id="certificate_id" value="0">
+    <div class="form-row">
+        <div class="form-group col-4">
+            <label>Certification Number</label>
+            <input type="text" name="certificate_no[]" class="form-control" required/>
         </div>
-        <div class="form-group">
-            <label>Valid Till</label>
-            <input type="date" name="valid_till[]" class="form-control" required/>
+        <div class="form-group col-1">
         </div>
+        <div class="form-group col-7">
+            <label>Certification Name</label>
+            <input type="text" name="name[]" class="form-control" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Valid Till</label>
+        <input type="date" name="valid_till[]" class="form-control" required/>
     </div>
 </div>
 @stop

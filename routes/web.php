@@ -368,6 +368,9 @@ Route::group(
         Route::get('professional-experience', 'ProfileController@professionalExperience')->name('professional-experience');
         Route::post('registerprofexp', 'ProfileController@resgiterProfessionalExperience')->name('professional-experience');
 
+        Route::get('projects', 'ProfileController@projects')->name('projects');
+        Route::post('registerprojects', 'ProfileController@registerProjects')->name('registerprojects');
+
         Route::get('tax', 'ProfileController@tax')->name('tax');
         Route::get('financial', 'ProfileController@financial')->name('financial');
     }

@@ -77,6 +77,11 @@ class ProfileController extends JoshController
         return view('profile/prof-exp');
     }
 
+    public function projects()
+    {
+        return view('profile/projects');
+    }
+
     public function tax()
     {
         return view('profile/tax-info');
@@ -235,8 +240,17 @@ class ProfileController extends JoshController
             }
         }*/
 
-        return redirect('profile/professional-experience')->with('success', 'Professional Experience updated successfully');
+        return redirect('profile/projects')->with('success', 'Professional Experience updated successfully');
     }
+
+    public function registerProjects(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+
+        return redirect('profile/professional-experience')->with('success', 'Project updated successfully');
+    }
+
 
     public function uploadProfilePic(Request $request)
     {

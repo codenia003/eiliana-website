@@ -87,15 +87,43 @@ Profile Setting
 	  		var element = '<div class="certification-3">'+$('.certification-2').html()+'</div>';
 	  		$('.certification-1').append(element);
 	  	});
+	  	$(".btn-copy-p").on('click', function(){
+	  		var element = '<div class="project-3">'+$('.project-2').html()+'</div>';
+	  		$('.project-1').append(element);
+	  	});
 	});
 	$(document).on('click','.remove-ug',function() {
-	 	$(this).parent('.ug-qualification-3').remove();
+		var edu_id = $(".ug-qualification-3:last input#education_id").val();
+		if (edu_id != '0') {
+			ConfirmDelete(edu_id,'1');
+		} else {
+			$(".ug-qualification-3:last").remove();
+	 	}
+	 	// $(this).parent('.ug-qualification-3').remove();
 	});
 	$(document).on('click','.remove-pg',function() {
-	 	$(this).parent('.pg-qualification-3').remove();
+		var edu_id = $(".pg-qualification-3:last input#education_id").val();
+		if (edu_id != '0') {
+			ConfirmDelete(edu_id,'1');
+		} else {
+			$(".pg-qualification-3:last").remove();
+	 	}
 	});
 	$(document).on('click','.remove-c',function() {
-	 	$(this).parent('.certification-3').remove();
+		var cert_id = $(".certification-3:last input#certificate_id").val();
+		if (cert_id != '0') {
+			ConfirmDelete(cert_id,'2');
+		} else {
+			$(".certification-3:last").remove();
+	 	}
+	});
+	$(document).on('click','.remove-p',function() {
+		// var cert_id = $(".certification-3:last input#certificate_id").val();
+		// if (cert_id != '0') {
+		// 	ConfirmDelete(cert_id,'2');
+		// } else {
+		$(".project-3:last").remove();
+	 	// }
 	});
 	function ConfirmDelete(edu_id,main_id)
 	{

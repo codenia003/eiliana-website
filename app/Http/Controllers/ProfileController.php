@@ -20,6 +20,8 @@ use App\Models\Qualification;
 use App\Models\EducationType;
 use App\Models\University;
 use App\Models\Country;
+use App\Models\ProfessionalExperience;
+use App\Models\Project;
 use stdClass;
 
 class ProfileController extends JoshController
@@ -74,12 +76,17 @@ class ProfileController extends JoshController
 
     public function professionalExperience()
     {
-        return view('profile/prof-exp');
+        $user = Sentinel::getUser();
+        $proexps = ProfessionalExperience::where('user_id', $user->id)->get();
+        $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
+
+        return view('profile/prof-exp', compact('proexps','model_engagement_new'));
     }
 
     public function projects()
-    {
-        return view('profile/projects');
+    {   
+        $projects = Project::where('posted_by_user_id', Sentinel::getUser()->id)->get();
+        return view('profile/projects', compact('projects'));
     }
 
     public function tax()
@@ -217,28 +224,28 @@ class ProfileController extends JoshController
     public function resgiterProfessionalExperience(Request $request)
     {
         $user = Sentinel::getUser();
+
         $input = $request->except('_token');
+        $input['user_id'] = $user->id;
 
-        /*foreach ($input['certificate_id'] as $key => $value) {
+        if (!empty($input['professional_experience_id'])) {
 
-            if ($input['certificate_id'][$key] != 0) {
-                $certificate = Certificate::find($input['certificate_id'][$key]);
-                $certificate->user_id = $user->id;
-                $certificate->certificate_no = $input['certificate_no'][$key];
-                $certificate->name = $input['name'][$key];
-                $certificate->valid_till = $input['valid_till'][$key];
-                $certificate->display_status = 1;
-                $certificate->save();   
-            } else {
-                $certificate = new Certificate;
-                $certificate->user_id = $user->id;
-                $certificate->certificate_no = $input['certificate_no'][$key];
-                $certificate->name = $input['name'][$key];
-                $certificate->valid_till = $input['valid_till'][$key];
-                $certificate->display_status = 1;
-                $certificate->save();
-            }
-        }*/
+            $professionalExperience = ProfessionalExperience::find($input['professional_experience_id']);
+            $professionalExperience->user_id = $user->id;
+            $professionalExperience->video_url = $input['video_url'];
+            $professionalExperience->key_skills = $input['key_skills'];
+            $professionalExperience->technologty_pre = $input['technologty_pre'];
+            $professionalExperience->model_engagement = $input['model_engagement'];
+            $professionalExperience->experience_year = $input['experience_year'];
+            $professionalExperience->experience_month = $input['experience_month'];
+            $professionalExperience->support_project = $input['support_project'];
+            $professionalExperience->development_project = $input['development_project'];
+            $professionalExperience->save();   
+        
+        } else {
+
+            ProfessionalExperience::create($input);
+        }
 
         return redirect('profile/projects')->with('success', 'Professional Experience updated successfully');
     }
@@ -247,7 +254,13 @@ class ProfileController extends JoshController
     {
         $user = Sentinel::getUser();
         $input = $request->except('_token');
+        foreach ($input['certificate_id'] as $key => $value) {
+            if ($input['certificate_id'][$key] != 0) {
+            
+            } else {
 
+            }
+        }
         return redirect('profile/professional-experience')->with('success', 'Project updated successfully');
     }
 

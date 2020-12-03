@@ -301,7 +301,7 @@ footer {
     font-weight: 500;
     color: #595959;
     padding: 0px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
 .singup-body .card {
     background: none;
@@ -484,6 +484,7 @@ footer {
 }
 .basic-info label {
     padding: 2px;
+    /* padding-left: 10px; */
 }
 
 .login-body input.form-control {
@@ -831,7 +832,7 @@ h3.form-tittle {
     top: -5px;
 }
 .form-check-inline {
-    margin-right: 0.5rem;
+    margin-right: 1.5rem;
 }
 button.btn.btn-danger.float-right.mt-3.rounded-0 {
     padding: 5px 13px;
@@ -842,4 +843,8 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 .singup-body textarea.form-control {
     background: #f8f8fa;
     border-radius: unset;
+}
+.basic-info label.form-check-label {
+    padding-left: 10px;
+    padding-top: 4px;
 }

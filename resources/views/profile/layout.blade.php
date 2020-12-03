@@ -12,6 +12,7 @@ Profile Setting
 <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
 <link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('vendors/select2/css/select2.min.css') }}" rel="stylesheet" />
 <!--end of page level css-->
 @stop
 
@@ -45,7 +46,11 @@ Profile Setting
 @stop
 {{-- footer scripts --}}
 @section('footer_scripts')
+<script language="javascript" type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script>
+	$('#tag_list').select2({
+  		selectOnClose: true
+	});
    	function changeAnonymus(e) {
         var anonymous = e.target.value;
         var data= {

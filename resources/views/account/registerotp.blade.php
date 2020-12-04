@@ -35,7 +35,7 @@ OTP Verification
         </div>
     </div>
     <div class="col-md-8 offset-md-2 mt-6 shadow p-0 login-body register-otp">
-        <div class="singup-body register-otp">
+        <div class="singup-body register-otp account-register">
             <div class="container">
                 <div class="row">
                     <div class="col p-0">
@@ -49,13 +49,13 @@ OTP Verification
                                 <p class="text-secondary ml-4" id="mobile_otp"></p>
                                 <form action="{{ url('/account/registerotp') }}" method="POST" id="otp_form" class="list-form">
                                     @csrf
-                                    <div class="form-group">
+                                    <div class="form-group input-field">
+                                        <input type="text" name="otp" id="otp" class="form-control" required />
                                         <label for="otp">OTP For Email</label>
-                                        <input type="text" name="otp" id="otp" class="form-control" />
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group input-field">
+                                        <input type="text" name="otpm" id="otpm" class="form-control" required />
                                         <label for="otpm">OTP For Mobile</label>
-                                        <input type="text" name="otpm" id="otpm" class="form-control" />
                                         
                                     </div>
                                     <div class="form-group row justify-content-center mt-5 mb-2">

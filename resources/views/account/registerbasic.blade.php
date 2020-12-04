@@ -35,7 +35,7 @@ Basic Information
         </div>
     </div>
     <div class="col-md-7 offset-md-20 mt-6 shadow p-0 registration-basic register-basic">
-        <div class="singup-body login-body">
+        <div class="singup-body login-body account-register">
             <div class="card">
                 <h4 class="card-header text-left">Basic Info</h4>
                 <div class="card-body">

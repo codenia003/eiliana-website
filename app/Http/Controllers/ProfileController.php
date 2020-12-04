@@ -21,7 +21,7 @@ use App\Models\EducationType;
 use App\Models\University;
 use App\Models\Country;
 use App\Models\ProfessionalExperience;
-use App\Models\Project;
+use App\Models\UserProject;
 use stdClass;
 
 class ProfileController extends JoshController
@@ -85,7 +85,7 @@ class ProfileController extends JoshController
 
     public function projects()
     {   
-        $projects = Project::where('posted_by_user_id', Sentinel::getUser()->id)->get();
+        $projects = UserProject::where('user_id', Sentinel::getUser()->id)->get();
         return view('profile/projects', compact('projects'));
     }
 
@@ -254,13 +254,36 @@ class ProfileController extends JoshController
     {
         $user = Sentinel::getUser();
         $input = $request->except('_token');
-        foreach ($input['certificate_id'] as $key => $value) {
-            if ($input['certificate_id'][$key] != 0) {
-            
-            } else {
+        
+        foreach ($input['user_project_id'] as $key => $value) {
 
+            if ($input['user_project_id'][$key] != 0) {
+                $userproject = UserProject::find($input['user_project_id'][$key]);
+                $userproject->user_id = $user->id;
+                $userproject->project_name = $input['project_name'][$key];
+                $userproject->project_type = $input['project_type'][$key];
+                $userproject->duration = $input['duration'][$key];
+                $userproject->framework = $input['framework'][$key];
+                $userproject->version = $input['version'][$key];
+                $userproject->industry = $input['industry'][$key];
+                $userproject->project_details = $input['project_details'][$key];
+                $userproject->display_status = 1;
+                $userproject->save();   
+            } else {
+                $userproject = new UserProject;
+                $userproject->user_id = $user->id;
+                $userproject->project_name = $input['project_name'][$key];
+                $userproject->project_type = $input['project_type'][$key];
+                $userproject->duration = $input['duration'][$key];
+                $userproject->framework = $input['framework'][$key];
+                $userproject->version = $input['version'][$key];
+                $userproject->industry = $input['industry'][$key];
+                $userproject->project_details = $input['project_details'][$key];
+                $userproject->display_status = 1;
+                $userproject->save();   
             }
         }
+        
         return redirect('profile/professional-experience')->with('success', 'Project updated successfully');
     }
 

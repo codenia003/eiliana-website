@@ -42,12 +42,12 @@ blockquote {
   font-size: 16px;
 }
 .profile-basic button.btn-info {
-    background: #0053c3;
+    background: #003466;
     color: #fff;
     border-radius: unset;
     padding: 9px 35px;
     font-size: 16px !important;
-    border-color: #0053c3;
+    border-color: #003466;
 }
 .profile-basic button.btn-danger {
     background: #de4b39;

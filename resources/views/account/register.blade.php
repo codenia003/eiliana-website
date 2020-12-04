@@ -35,7 +35,7 @@ Register
         </div>
     </div>
     <div class="col-md-8 offset-md-2 mt-6 shadow p-0 login-body register">
-        <div class="singup-body">
+        <div class="singup-body account-register">
             <div class="container">
                 <div class="row">
                     <div class="col p-0">
@@ -44,21 +44,21 @@ Register
                             <div class="card-body">
                                 <form action="{{ url('/account/register') }}" method="POST" id="reg_form">
                                     @csrf
-                                    <div class="form-group mb-3 {{ $errors->first('mobile', 'has-error') }}">
+                                    <div class="form-group input-field mb-3 {{ $errors->first('mobile', 'has-error') }}">
+                                        <input type="text" class="form-control" id="mobile" name="mobile" required/>
                                         <label for="username">Mobile Number</label>
-                                        <input type="text" class="form-control" id="mobile" name="mobile"/>
                                         {!! $errors->first('mobile', '<span class="help-block">:message</span>') !!}
                                     </div>
-                                    <div class="form-group {{ $errors->first('email', 'has-error') }}">
+                                    <div class="form-group input-field {{ $errors->first('email', 'has-error') }}">
+                                        <input type="text" class="form-control" id="email" name="email" required>
                                         <label for="username">Email ID</label>
-                                        <input type="text" class="form-control" id="email" name="email">
                                         {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                     </div>
                                     <div class="form-group form-check">
                                         <input type="checkbox" name="acceptTerms" id="acceptTerms" class="custom_icheck custom-checkbox pos-rel p-l-30" />
                                         <label for="acceptTerms" class="form-check-label">I agree to the Eiliana User agreement and privacy policy</label>
                                     </div>
-                                    <div class="form-group row justify-content-center mt-4 mb-5">
+                                    <div class="form-group input-field row justify-content-center mt-4 mb-5">
                                         <button class="btn btn-primary">
                                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                                             Continue with OTP

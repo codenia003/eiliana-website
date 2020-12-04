@@ -3,7 +3,7 @@
 @section('profile_content')
 <div class="singup-body login-body profile-basic">
     <div class="card">
-        <h4 class="card-header text-left">Basic Information</h4>
+        <h4 class="card-header text-left">Primary Information</h4>
         <div class="card-body p-4">
             <form action="{{ url('/profile/updateProfile') }}" method="POST" id="basic_form">
                 @csrf
@@ -18,8 +18,9 @@
                         <div *ngIf="f.applyas.errors.required">Email id is required</div>
                     </div>
                 </div> -->
-                <div class="form-group basic-info mb-3 text-center">
-                    <div class="form-check form-check-inline">
+                <div class="form-group basic-info mb-3">
+                    <label>Do you keep your profile anonymous?</label>
+                    <div class="form-check form-check-inline ml-3">
                         <div class="custom-control custom-radio">
                             <input type="radio" id="public" name="anonymous" class="custom-control-input" value="0" {{ (Sentinel::getUser()->anonymous=="0")? "checked" : "" }} onchange="changeAnonymus(event)">
                             <label class="custom-control-label" for="public">Public</label>
@@ -70,7 +71,7 @@
                         <label>DOB</label>
                         <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control" value="{{ $user->dob }}" />
                     </div>
-                    <div class="form-group col anonymous {{ ($user->anonymous=='0')? 'd-none' : '' }}">
+                    <div class="form-group col anonymousShow {{ ($user->anonymous=='0')? 'd-none' : '' }}">
                         <label>Alias</label>
                         <input type="text" name="pseudoName" class="form-control" value="{{ $user->pseudoName }}" />
                     </div>

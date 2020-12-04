@@ -30,7 +30,7 @@ Login
       </div>
     </div>
     <div class="col-md-8 offset-md-2 mt-6 shadow p-0 login-body">
-        <div class="singup-body">
+        <div class="singup-body account-register">
             <div class="container">
                 <div class="row">
                     <div class="col p-0">
@@ -39,17 +39,17 @@ Login
                             <div class="card-body">
                                 <form action="{{ url('/account/login') }}" method="POST" id="omb_loginForm">
                                     @csrf
-                                    <div class="form-group">
+                                    <div class="form-group input-field">
+                                        <input type="text" name="email" class="form-control" required/>
                                         <label for="username">Email ID/UserName</label>
-                                        <input type="text" name="email" class="form-control" />
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group input-field">
+                                        <input type="password" name="password" class="form-control" required />
                                         <label for="password">Password</label>
-                                        <input type="password" name="password" class="form-control" />
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group form-check col-4">
-                                            <input type="checkbox" id="remenber" class="form-check-input" />
+                                            <input type="checkbox" id="remenber" class="form-check-input" required />
                                             <label for="remenber" class="form-check-label">Remember</label>
                                         </div>
                                         <div class="form-group col-8">

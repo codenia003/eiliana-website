@@ -294,7 +294,7 @@ footer {
 }
 .profile-basic {
     border: none;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; */
 }
 .login-body label {
     font-size: 14px;
@@ -305,8 +305,9 @@ footer {
 }
 .singup-body .card {
     background: none;
-    border: 0px solid #e5e5e5;
-    border-right: 1px solid #e5e5e5;
+    border: 1px solid #003466;
+    /* border-right: 1px solid #e5e5e5; */
+    border-radius: unset;
 }
 .singup-body .card-header {
     background: #ffffff;
@@ -346,12 +347,12 @@ footer {
     font-size: 13px;
 }
 .singup-body .btn.btn-primary {
-    border: 1px solid #0053c3;
+    border: 1px solid #003466;
     border-radius: 0px;
     padding: 0px;
     height: 45px;
     line-height: 42px;
-    background: #0053c3;
+    background: #003466;
     color: #ffffff;
     font-weight: 400;
     font-size: 16px;
@@ -492,8 +493,9 @@ footer {
     padding: 24px 20px 20px;
     font-size: 16px;
     border: none;
-    background-color: #f8f8fa;
+    background-color: #ffffff;
     border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
 }
 span.border-title i {
     /* border: 1px solid white; */
@@ -537,10 +539,11 @@ span.border-title i {
 }
 .singup-body select.form-control {
     border-radius: 0;
-    background-color: #f8f8fa;
+    background-color: #ffffff;
     height: 45px;
     border: none;
     border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
 }
 .singup-body .btn-group .btn {
     padding: 0px 40px !important;
@@ -685,10 +688,10 @@ span.fa.fa-angle-right.slick-arrow {
   background-color: #868485 !important;
 }
 .registration-basic .singup-body.login-body {
-  border: 1px solid #0053c3;
+  border: 1px solid #003466;
 }
 .registration-basic .card-header {
-    background-color: #0053c3;
+    background-color: #003466;
     color: #fff;
     font-size: 22px;
     padding: 0.8rem 1rem;
@@ -756,15 +759,15 @@ a.login_signup {
     margin-top: 1px;
 }
 .profile-basic .card-header {
-    background-color: #0053c3;
+    background-color: #003466;
     color: #fff;
     font-size: 19px;
-    padding: 0.8rem 1rem;
+    padding: 1rem 2rem;
     border-radius: 0px !important;
     margin: 0;
 }
 .singup-body.login-body.profile-basic {
-    /*border: 1px solid #0053c3;*/
+    /* border: 1px solid #0053c3; */
 }
 .explore-more li a {
   -webkit-transition: all 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
@@ -847,4 +850,133 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 .basic-info label.form-check-label {
     padding-left: 10px;
     padding-top: 4px;
+}
+.device-iphone-x {
+    border-radius: 2.75rem;
+    /*box-shadow: 0px 12px 15px rgba(140, 152, 164, 0.1);*/
+}
+.device {
+    position: relative;
+}
+.device-iphone-x-frame {
+    position: relative;
+    /*z-index: 2;*/
+    max-width: 100%;
+    height: auto;
+}
+.device-iphone-x-screen {
+    position: absolute;
+    top: 14%;
+    left: 9%;
+    width: 67%;
+    height: 100%;
+    /*-o-object-fit: cover;*/
+    /* object-fit: cover; */
+    /* border-radius: 0.5rem; */
+}
+.max-w-50rem {
+    max-width: 24.5rem;
+}
+.mobile-profile .bg-img-hero {
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    height: 155px;
+}
+.bg-blue {
+  background-color: #003466;
+  border-color: #003466;
+  color: #fff;
+}
+
+.bg-white-b {
+  background-color: #ffffff;
+  border-color: #003466;
+}
+.top-mobile {
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+.mobile-profile .top-mobile .col-8 {
+  padding-left: 24px;
+  padding-top: 29px;
+  padding-bottom: 20px;
+}
+.mobile-profile .top-mobile .img-upload {
+    color: #fefefe;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.mobile-profile .top-mobile button {
+  background: #ffffff;
+  border: none;
+  border-radius: 6px;
+  color: #dd4c3b;
+  width: 96%;
+  font-weight: 700;
+}
+.mobile-profile .top-mobile p {
+    color: #fff;
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+.mobile-profile .bottom-menu .list-group-item.active {
+    background-color: #de4b39;
+    border-color: #de4b39;
+}
+
+.mobile-profile .bottom-menu .list-group-item {
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 0px 10px 0px 8px;
+    font-weight: 600;
+    height: 48px;
+    line-height: 45px;
+}
+.mobile-profile .list-group-item + .list-group-item {
+    border-top-width: 1px;
+}
+.mobile-profile .list-group-item-action:hover,.mobile-profile .list-group-item-action:focus {
+    z-index: 1;
+    color: #495057;
+    text-decoration: none;
+    background-color: #de4b39;
+}
+.mobile-profile .list-group-item-action:hover,.mobile-profile .list-group-item-action:focus {
+    z-index: 1;
+    color: #495057;
+    text-decoration: none;
+    background-color: #de4b39;
+    border-color: #de4b39;
+    color: #fff !important;
+}
+.mobile-profile .bottom-menu .list-group-item span {
+    padding-left: 10px;
+}
+
+.account-register .input-field {
+    position: relative;
+}
+.account-register .input-field label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    transition: 0.2s all;
+    cursor: text;
+}
+.account-register input:focus~label,
+.account-register input:valid~label {
+    font-size: 14px;
+    top: -10px;
+    background: #fff;
+}
+.account-register .card {
+    border: 0px solid #003466;
+    border-right: 1px solid #e5e5e5;
+}
+.account-register .custom-control.custom-radio {
+    top: 10px;
 }

@@ -30,14 +30,14 @@ Profile Setting
 	</div>
 	<div class="container space-1 space-top-lg-0 mt-lg-n10">
 	    <div class="row">
-	        <div class="col-lg-3">
-	            @include('profile._left_menu')
-	        </div>
-	        <div class="col-lg-9">
+	        <div class="col-lg-8">
 	        	<div id="notific">
 		            @include('notifications')
 		        </div>
 	            @yield('profile_content')
+	        </div>
+	        <div class="col-lg-4">
+	            @include('profile._left_menu')
 	        </div>
 	    </div>
 	    <!-- End Row -->
@@ -53,10 +53,15 @@ Profile Setting
 	});
    	function changeAnonymus(e) {
         var anonymous = e.target.value;
+        if (anonymous == '0') {
+            $('.anonymousShow').addClass("d-none");
+        } else {
+            $('.anonymousShow').removeClass("d-none");
+        }
         var data= {
             anonymous:anonymous
         };
-        $.ajax({
+        /*$.ajax({
             type: 'GET', 
             url: '/profile/publicAnonymusUpdate',
             data: data,
@@ -74,7 +79,7 @@ Profile Setting
             error: function(xhr, status, error) {
                 console.log("error: ",error);
             },
-        });
+        });*/
     }
 
 	$(function(){

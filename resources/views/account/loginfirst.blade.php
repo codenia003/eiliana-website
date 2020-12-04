@@ -30,7 +30,7 @@ Change Password
       </div>
     </div>
     <div class="col-md-8 offset-md-2 mt-6 shadow p-0 login-body">
-        <div class="singup-body">
+        <div class="singup-body account-register">
             <div class="container">
                 <div class="row">
                     <div class="col p-0">
@@ -39,13 +39,13 @@ Change Password
                             <div class="card-body">
                                 <form action="{{ url('/account/loginfirst') }}" method="POST" id="first_loginForm">
                                     @csrf
-                                    <div class="form-group">
+                                    <div class="form-group input-field">
+                                        <input type="password" name="password" class="form-control" required />
                                         <label>Password</label>
-                                        <input type="password" name="password" class="form-control" />
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group input-field">
+                                        <input type="password" name="confirmPassword" class="form-control" required />
                                         <label>Confirm Password</label>
-                                        <input type="password" name="confirmPassword" class="form-control" />
                                     </div>
                                     <div class="form-group row justify-content-center mt-3 mb-5">
                                         <button class="btn btn-primary">

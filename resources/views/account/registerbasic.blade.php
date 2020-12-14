@@ -52,11 +52,17 @@ Basic Information
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group company_show d-none">
-                            <label>Company Name</label>
-                            <input type="text" name="company_name" class="form-control" />
+                        <div class="form-row company_show d-none">
+                            <div class="form-group col-6">
+                                <label>Company Name</label>
+                                <input type="text" name="company_name" class="form-control" />
+                            </div>
+                            <div class="form-group col-6">
+                                <label>GST Number/PAN Number</label>
+                                <input type="text" name="gst_number" class="form-control" />
+                            </div>
                         </div>
-                        <div class="form-group basic-info">
+                        <div class="form-group basic-info d-none">
                             <label>Title</label>
                             <div class="form-check form-check-inline ml-3">
                                 <div class="custom-control custom-radio">
@@ -112,7 +118,7 @@ Basic Information
                             </div>
                                 
                             <div class="form-group col anonymousShow-1">
-                                <label>DOB</label>
+                                <label>Date Of Birth</label>
                                 <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control" />
                             </div>
                         </div>
@@ -178,8 +184,10 @@ Basic Information
         // console.log(value);
         if (value == "2") {
             $('.company_show').addClass("d-none");
+            $('.anonymousShow-1 label').text("Date Of Birth");
         } else {
             $('.company_show').removeClass("d-none");
+            $('.anonymousShow-1 label').text("Date Of Incorporation");
         }
     }
 

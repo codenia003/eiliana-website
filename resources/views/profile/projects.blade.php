@@ -5,7 +5,7 @@
     <div class="card">
         <h4 class="card-header text-left">Projects</h4>
         <div class="card-body p-4">
-            <form action="{{ url('/profile/registerprojects') }}" method="POST" id="registerprojectsForm">
+            <form action="{{ url('/profile/registerprojects') }}" method="POST" id="registerprojectsForm" enctype="multipart/form-data">
                 @csrf
                 <div class="project-1">
                     @forelse ($projects as $project)
@@ -143,7 +143,7 @@
                     @endforelse
                 </div>
                 <div class="mt-3">
-                    <button class="btn btn-md btn-info btn-copy-p" type="button">Add More project</button>
+                    <button class="btn btn-md btn-info btn-copy-p" type="button">Add More Project</button>
                     <button class="btn btn-md btn-danger btn-copy-p" type="button"><span class="fa fa-plus"></span></button>
                     <button type="button" class="remove-p btn btn-danger ml-3 rounded-0"><i class="fas fa-times"></i></button>
                 </div>

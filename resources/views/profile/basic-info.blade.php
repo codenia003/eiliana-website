@@ -18,6 +18,7 @@
                         <div *ngIf="f.applyas.errors.required">Email id is required</div>
                     </div>
                 </div> -->
+
                 <div class="form-group basic-info mb-3">
                     <label>Do you keep your profile anonymous?</label>
                     <div class="form-check form-check-inline ml-3">
@@ -37,7 +38,7 @@
                     <label>User Id</label>
                     <input type="text" name="username" class="form-control" value="{{ $user->username }}" />
                 </div>
-                <div class="form-group basic-info">
+                <div class="form-group basic-info d-none">
                     <label>Title</label>
                     <div class="form-check form-check-inline ml-3">
                         <div class="custom-control custom-radio">
@@ -52,6 +53,18 @@
                         </div>
                     </div>
                 </div>
+                @if(!Sentinel::inRole('user'))
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Company Name</label>
+                        <input type="text" name="company_name" class="form-control" value="{{ $user->company_name }}" />
+                    </div>
+                    <div class="form-group col">
+                        <label>GST Number/PAN Number</label>
+                        <input type="text" name="gst_number" class="form-control" value="{{ $user->gst_number }}" />
+                    </div>
+                </div>
+                @endif
                 <div class="form-row">
                     <div class="form-group col">
                         <label>First Name</label>

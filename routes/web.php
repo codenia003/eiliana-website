@@ -283,9 +283,15 @@ Route::group(
 Route::get(
     '/',
     ['as' => 'home', function () {
-        return view('index');
+        return view('comingsoon');
     }]
 );
+// Route::get(
+//     '/',
+//     ['as' => 'home', function () {
+//         return view('index');
+//     }]
+// );
 
 // account
 Route::group(

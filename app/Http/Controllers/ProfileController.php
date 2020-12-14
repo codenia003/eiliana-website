@@ -41,6 +41,9 @@ class ProfileController extends JoshController
         $user = Sentinel::getUser();
         $countries = Country::all();
 
+        // print_r(Sentinel::getRoleRepository());
+        // die();
+
         return view('profile/basic-info', compact('user', 'countries'));
     }
 
@@ -254,7 +257,7 @@ class ProfileController extends JoshController
     {
         $user = Sentinel::getUser();
         $input = $request->except('_token');
-        
+
         foreach ($input['user_project_id'] as $key => $value) {
 
             if ($input['user_project_id'][$key] != 0) {
@@ -268,7 +271,19 @@ class ProfileController extends JoshController
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];
                 $userproject->display_status = 1;
+                
+                if ($file = $input['upload_file'][$key]) {
+            
+                    $extension = $file->extension();
+                    $folderName = '/uploads/projects/';
+                    $destinationPath = public_path() . $folderName;
+                    $safeName = str_random(10) . '.' . $extension;
+                    $file->move($destinationPath, $safeName);
+                    //save new file path into db
+                    $userproject->upload_file = '/uploads/projects/'.$safeName;
+                }
                 $userproject->save();   
+            
             } else {
                 $userproject = new UserProject;
                 $userproject->user_id = $user->id;
@@ -280,6 +295,17 @@ class ProfileController extends JoshController
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];
                 $userproject->display_status = 1;
+
+                if ($file =  $input['upload_file'][$key]) {
+                    $extension = $file->extension()?: 'png';
+                    $folderName = '/uploads/projects/';
+                    $destinationPath = public_path() . $folderName;
+                    $safeName = str_random(10) . '.' . $extension;
+                    $file->move($destinationPath, $safeName);
+
+                    //save new file path into db
+                    $userproject->upload_file =url('/').'/uploads/projects/'.$safeName;
+                }
                 $userproject->save();   
             }
         }

@@ -168,6 +168,7 @@ class AuthController extends JoshController
                 'password' => $request->get('password'),
                 'govtID' => $request->get('govtID'),
                 'idProofNo' => $request->get('idProofNo'),
+                'gst_number' => $request->get('gst_number'),
                 'registration_id' => $request->get('registration_id'),
                 'anonymous' => $request->get('anonymous'),
                 'pseudoName' => $request->get('pseudoName'),

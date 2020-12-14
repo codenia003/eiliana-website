@@ -12,7 +12,9 @@ Profile Setting
 <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
 <link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('vendors/select2/css/select2.min.css') }}" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
 <!--end of page level css-->
 @stop
 
@@ -46,7 +48,14 @@ Profile Setting
 @stop
 {{-- footer scripts --}}
 @section('footer_scripts')
-<script language="javascript" type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
+<!--global js starts-->
+<script type="text/javascript" src="{{ asset('vendors/moment/js/moment.min.js') }}"></script>
+<script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/profile_custom.js') }}"></script>
+<script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script>
 	$('#tag_list').select2({
   		selectOnClose: true
@@ -194,10 +203,5 @@ Profile Setting
 		$("#exampleModal1").modal();
     }
 </script>
-<!--global js starts-->
-<script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/assets/js/profile_custom.js') }}"></script>
-<script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <!--global js end-->
 @stop

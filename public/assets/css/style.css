@@ -841,11 +841,18 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
     padding: 5px 13px;
 }
 .basic-file .custom-file label {
-    padding: 5px;
+    padding: 6px 10px;
+    border-radius: 0;
+    font-size: 16px;
+    background-color: #ffffff;
+    border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
 }
 .singup-body textarea.form-control {
-    background: #f8f8fa;
+    /* background: #f8f8fa; */
     border-radius: unset;
+    border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
 }
 .basic-info label.form-check-label {
     padding-left: 10px;

@@ -36,6 +36,7 @@ Coming Soon
               </div>
               <div class="col-md-7">
                 <div class="banner1_content">
+                  <!-- <img src="/assets/img/coomingsoon.png" class="img-fluid" alt="coomingsoon"> -->
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
                   <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                   <div class="group_button">

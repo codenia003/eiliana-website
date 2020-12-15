@@ -280,18 +280,18 @@ Route::group(
 // FrontEndController
 
 // frontend views
-Route::get(
-    '/',
-    ['as' => 'home', function () {
-        return view('comingsoon');
-    }]
-);
 // Route::get(
 //     '/',
 //     ['as' => 'home', function () {
-//         return view('index');
+//         return view('comingsoon');
 //     }]
 // );
+Route::get(
+    '/',
+    ['as' => 'home', function () {
+        return view('index');
+    }]
+);
 
 // account
 Route::group(
@@ -379,6 +379,13 @@ Route::group(
 
         Route::get('tax', 'ProfileController@tax')->name('tax');
         Route::get('financial', 'ProfileController@financial')->name('financial');
+    }
+);
+Route::group(
+    ['prefix' => 'advance-search', 'middleware' => 'user'],
+    function () {
+        Route::get('projects', 'AdvanceSearchController@projects')->name('projects');
+        Route::get('contract-staffing', 'AdvanceSearchController@contractStaffing')->name('contract-staffing');
     }
 );
 

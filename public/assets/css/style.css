@@ -987,3 +987,16 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 .account-register .custom-control.custom-radio {
     top: 10px;
 }
+.advance-search .card-header {
+    text-align: left;
+    margin: 0.5rem 0.8rem;
+    padding: .5rem .5rem;
+    font-size: 19px;
+}
+.advance-search .card {
+    border: none;
+}
+.advance-search {
+    box-shadow: 0 0 2px 2px #e4ecf7;
+    border: none;
+}

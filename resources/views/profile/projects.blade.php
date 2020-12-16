@@ -10,7 +10,7 @@
                 <div class="project-1">
                     @forelse ($projects as $project)
                         <div class="project-3">
-                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span>
+                            <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span> -->
                             <input type="hidden" name="user_project_id[]" value="{{ $project->user_project_id }}">
                             <div class="form-group">
                                 <label>Project Name</label>
@@ -38,7 +38,7 @@
                                 </div>
 
                                 <div class="form-group col">
-                                    <label>Framework</label>
+                                    <label>Technology</label>
                                     <select name="framework[]" class="form-control" required>
                                         <option value=""></option>
                                         <option value="1">Core PHP</option>
@@ -49,7 +49,7 @@
 
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <label>Version</label>
+                                    <label>Framework</label>
                                     {!! Form::selectRange('version[]', 1, 20, $project->version, ['class' => 'form-control','required' =>'']) !!}
                                 </div>
                                 <div class="form-group col">
@@ -76,7 +76,7 @@
                         </div>
                     @empty
                         <div class="project-3">
-                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span>
+                            <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span> -->
                             <input type="hidden" name="user_project_id[]" value="0">
                             <div class="form-group">
                                 <label>Project Name</label>
@@ -104,7 +104,7 @@
                                 </div>
 
                                 <div class="form-group col">
-                                    <label>Framework</label>
+                                    <label>Technology</label>
                                     <select name="framework[]" class="form-control" required>
                                         <option value=""></option>
                                         <option value="1">Core PHP</option>
@@ -115,7 +115,7 @@
 
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <label>Version</label>
+                                    <label>Framework</label>
                                     {!! Form::selectRange('version[]', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
                                 </div>
                                 <div class="form-group col">
@@ -143,9 +143,9 @@
                     @endforelse
                 </div>
                 <div class="mt-3">
-                    <button class="btn btn-md btn-info btn-copy-p" type="button">Add More Project</button>
-                    <button class="btn btn-md btn-danger btn-copy-p" type="button"><span class="fa fa-plus"></span></button>
-                    <button type="button" class="remove-p btn btn-danger ml-3 rounded-0"><i class="fas fa-times"></i></button>
+                    <button class="btn btn-md btn-info btn-copy-p" type="button">Add Project <span class="fa fa-plus"></span></button>
+                    <!-- <button class="btn btn-md btn-danger btn-copy-p" type="button"></button> -->
+                    <button type="button" class="remove-p btn btn-md btn-info ml-3 rounded-0">Erase Project <span class="fas fa-times"></span></button>
                 </div>
                 <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">
@@ -161,7 +161,7 @@
     </div>
 </div>
 <div class="project-2 d-none">
-    <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span>
+    <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span> -->
     <input type="hidden" name="user_project_id[]" value="0">
     <div class="form-group">
         <label>Project Name</label>

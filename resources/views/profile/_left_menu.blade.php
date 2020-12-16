@@ -27,7 +27,7 @@
                             <img class="image-preview avatar-img" src="#" class="avatar" alt="Avatar">
                             @else
                             <img class="avatar-img" src="/assets/img/profile/avatar_icon.png" alt="Image Description">
-                             @endif
+                            @endif
                             <span class="border-circle-green"></span>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                 </div> 
                 <div class="bottom-menu">
                     <div class="list-group">
-                        <a class="list-group-item list-group-item-action bg-white-b {!! (Request::is('profile') ? 'active' : '' ) !!}" href="/profile">
+                        <a class="list-group-item list-group-item-action bg-white-b active" href="/profile">
                             <!-- <i class="fas fa-info-circle"></i> -->
                             <img class="img-fluid" src="/assets/img/profile/icon-1.png" alt="Avatar">
                             <span>Primary Information</span>

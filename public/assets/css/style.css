@@ -874,8 +874,8 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 .device-iphone-x-screen {
     position: absolute;
     top: 14%;
-    left: 9%;
-    width: 67%;
+    left: 8%;
+    width: 69%;
     height: 100%;
     /*-o-object-fit: cover;*/
     /* object-fit: cover; */
@@ -999,4 +999,43 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 .advance-search {
     box-shadow: 0 0 2px 2px #e4ecf7;
     border: none;
+}
+.mobile-profile .device {
+    left: 70px;
+}
+.profile-setting .singup-body {
+    position: relative;
+    right: 10px;
+}
+.profile-basic button.btn-info {
+    background: #003466;
+    color: #fff;
+    border-radius: unset;
+    /* padding: 15px 10px; */
+    width: 220px;
+    height: 52px;
+    text-transform: capitalize;
+    line-height: 22px;
+    font-weight: 600;
+    font-size: 16px !important;
+    border-color: #ffffff;
+    background: rgb(168,129,222);
+    background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);
+}
+.profile-basic button.btn-danger {
+    background: #de4b39;
+    color: #fff;
+    border-radius: unset;
+    padding: 15px 20px;
+    font-size: 16px !important;
+    border-color: #ffffff;
+    height: 52px;
+    text-transform: uppercase;
+    margin-left: -5px;
+    background: rgb(168,129,222);
+    background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);
+}
+.profile-basic button.btn-info span {
+    float: right;
+    font-size: 20px;
 }

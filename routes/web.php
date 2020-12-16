@@ -377,6 +377,9 @@ Route::group(
         Route::get('projects', 'ProfileController@projects')->name('projects');
         Route::post('registerprojects', 'ProfileController@registerProjects')->name('registerprojects');
 
+        Route::get('employer', 'ProfileController@employer')->name('employer');
+        Route::post('registeremployer', 'ProfileController@registeremployer')->name('registeremployer');
+
         Route::get('tax', 'ProfileController@tax')->name('tax');
         Route::get('financial', 'ProfileController@financial')->name('financial');
     }

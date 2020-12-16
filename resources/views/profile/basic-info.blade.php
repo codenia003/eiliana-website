@@ -123,12 +123,12 @@
                             <label class="custom-control-label" for="Contractual">Contractual Staffing</label>
                         </div>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <!-- <div class="form-check form-check-inline">
                         <div class="custom-control custom-radio">
                             <input type="radio" id="Both" class="custom-control-input" name="interested" value="3" {{ ($user->interested=="3")? "checked" : "" }}>
                             <label class="custom-control-label" for="Both">Both</label>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog" role="document">

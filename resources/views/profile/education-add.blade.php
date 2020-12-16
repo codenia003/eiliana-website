@@ -45,7 +45,7 @@
 						                <label>Year of Graduation</label>
 						                <div class="form-row">
 						                	<div class="col">
-								                {!! Form::selectMonth('month[]', $education->month, ['class' => 'form-control','required' =>'']) !!}
+								                {!! Form::selectRange('month[]', 2000, 2020, $education->month, ['class' => 'form-control','required' =>'']) !!}
 					                    	</div>
 					                    	<div class="col">
 						                        {!! Form::selectRange('year[]', 2000, 2020, $education->year, ['class' => 'form-control','required' =>'']) !!}
@@ -101,7 +101,7 @@
 				                <label>Year of Graduation</label>
 				                <div class="form-row">
 				                	<div class="col">
-						                {!! Form::selectMonth('month[]', null, ['class' => 'form-control','required' =>'']) !!}
+						                {!! Form::selectRange('month[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
 			                    	</div>
 			                    	<div class="col">
 				                        {!! Form::selectRange('year[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
@@ -123,11 +123,11 @@
 		            </div>
 		            @endforelse
 	        	</div>
-	            <div class="mb-5 mt-3">
-		        	<button class="btn btn-md btn-info btn-copy-ug" type="button">Add More Ug Qualification</button>
-            		<button class="btn btn-md btn-danger btn-copy-ug" type="button"><span class="fa fa-plus"></span></button>
+	            <div class="mb-3 mt-3">
+		        	<button class="btn btn-md btn-info btn-copy-ug" type="button">Add Education <span class="fa fa-plus"></span></button>
+            		<!-- <button class="btn btn-md btn-danger btn-copy-ug" type="button"></button> -->
 
-            		<button type="button" class="remove-ug btn btn-danger ml-3 rounded-0"><i class="fas fa-times"></i></button>
+            		<button type="button" class="remove-ug btn btn-md btn-info ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
 		        </div>
 		        <div class="pg-qualification-1">
 		        	@forelse ($educations as $education)
@@ -168,7 +168,7 @@
 						                <label>Year of Graduation</label>
 						                <div class="form-row">
 						                	<div class="col">
-						                		{!! Form::selectMonth('month[]', $education->month, ['class' => 'form-control','required' =>'']) !!}
+						                		{!! Form::selectRange('month[]', 2000, 2020, $education->month, ['class' => 'form-control','required' =>'']) !!}
 					                    	</div>
 					                    	<div class="col">
 					                    		{!! Form::selectRange('year[]', 2000, 2020, $education->year, ['class' => 'form-control','required' =>'']) !!}
@@ -222,7 +222,7 @@
 				                <label>Year of Graduation</label>
 				                <div class="form-row">
 				                	<div class="col">
-						                {!! Form::selectMonth('month[]', null, ['class' => 'form-control','required' =>'']) !!}
+						                {!! Form::selectRange('month[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
 			                    	</div>
 			                    	<div class="col">
 				                        {!! Form::selectRange('year[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
@@ -248,9 +248,9 @@
 		            @endforelse
 		       	</div>
 	            <div class="mt-3">
-	            	<button class="btn btn-md btn-info btn-copy-pg" type="button">Add More PG Qualification</button>
-	            	<button class="btn btn-md btn-danger btn-copy-pg" type="button"><span class="fa fa-plus"></span></button>
-	            	<button type="button" class="remove-pg btn btn-danger ml-3 rounded-0"><i class="fas fa-times"></i></button>
+	            	<button class="btn btn-md btn-info btn-copy-pg" type="button">Add Education <span class="fa fa-plus"></span></button>
+	            	<!-- <button class="btn btn-md btn-danger btn-copy-pg" type="button"></button> -->
+	            	<button type="button" class="remove-pg btn btn-md btn-info ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
                 </div>
 	            <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">
@@ -300,7 +300,7 @@
             <label>Year of Graduation</label>
             <div class="form-row">
             	<div class="col">
-	                {!! Form::selectMonth('month[]', null, ['class' => 'form-control','required' =>'']) !!}
+            		{!! Form::selectRange('month[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
             	</div>
             	<div class="col">
                     {!! Form::selectRange('year[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
@@ -355,7 +355,7 @@
             <label>Year of Graduation</label>
             <div class="form-row">
             	<div class="col">
-	                {!! Form::selectMonth('month[]', null, ['class' => 'form-control','required' =>'']) !!}
+            		{!! Form::selectRange('month[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
             	</div>
             	<div class="col">
                     {!! Form::selectRange('year[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}

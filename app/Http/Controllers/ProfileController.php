@@ -92,9 +92,9 @@ class ProfileController extends JoshController
         return view('profile/projects', compact('projects'));
     }
 
-    public function tax()
+    public function employer()
     {
-        return view('profile/tax-info');
+        return view('profile/employer');
     }
 
     public function financial()
@@ -235,7 +235,7 @@ class ProfileController extends JoshController
 
             $professionalExperience = ProfessionalExperience::find($input['professional_experience_id']);
             $professionalExperience->user_id = $user->id;
-            $professionalExperience->video_url = $input['video_url'];
+            // $professionalExperience->video_url = $input['video_url'];
             $professionalExperience->key_skills = $input['key_skills'];
             $professionalExperience->technologty_pre = $input['technologty_pre'];
             $professionalExperience->model_engagement = $input['model_engagement'];
@@ -282,6 +282,7 @@ class ProfileController extends JoshController
                     //save new file path into db
                     $userproject->upload_file = '/uploads/projects/'.$safeName;
                 }
+                
                 $userproject->save();   
             
             } else {
@@ -306,6 +307,7 @@ class ProfileController extends JoshController
                     //save new file path into db
                     $userproject->upload_file =url('/').'/uploads/projects/'.$safeName;
                 }
+
                 $userproject->save();   
             }
         }

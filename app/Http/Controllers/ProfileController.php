@@ -22,6 +22,9 @@ use App\Models\University;
 use App\Models\Country;
 use App\Models\ProfessionalExperience;
 use App\Models\UserProject;
+use App\Models\ProjectCategory;
+use App\Models\Employers;
+use App\Models\Designation;
 use stdClass;
 
 class ProfileController extends JoshController
@@ -80,10 +83,14 @@ class ProfileController extends JoshController
     public function professionalExperience()
     {
         $user = Sentinel::getUser();
+        $projectcategorys = ProjectCategory::all();
         $proexps = ProfessionalExperience::where('user_id', $user->id)->get();
-        $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
-
-        return view('profile/prof-exp', compact('proexps','model_engagement_new'));
+        if (count($proexps) > 0) {
+            $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
+        } else {
+            $model_engagement_new = [];
+        }
+        return view('profile/prof-exp', compact('proexps','model_engagement_new','projectcategorys'));
     }
 
     public function projects()
@@ -94,7 +101,10 @@ class ProfileController extends JoshController
 
     public function employer()
     {
-        return view('profile/employer');
+        $user = Sentinel::getUser();
+        $designations = Designation::all();
+        $employers = Employers::where('user_id', $user->id)->get();
+        return view('profile/employer', compact('employers','designations'));
     }
 
     public function financial()
@@ -237,7 +247,10 @@ class ProfileController extends JoshController
             $professionalExperience->user_id = $user->id;
             // $professionalExperience->video_url = $input['video_url'];
             $professionalExperience->key_skills = $input['key_skills'];
+            $professionalExperience->profile_headline = $input['profile_headline'];
+            $professionalExperience->project_category = $input['project_category'];
             $professionalExperience->technologty_pre = $input['technologty_pre'];
+            $professionalExperience->framework = $input['framework'];
             $professionalExperience->model_engagement = $input['model_engagement'];
             $professionalExperience->experience_year = $input['experience_year'];
             $professionalExperience->experience_month = $input['experience_month'];
@@ -250,7 +263,7 @@ class ProfileController extends JoshController
             ProfessionalExperience::create($input);
         }
 
-        return redirect('profile/projects')->with('success', 'Professional Experience updated successfully');
+        return redirect('profile/employer')->with('success', 'Professional Experience updated successfully');
     }
 
     public function registerProjects(Request $request)
@@ -313,6 +326,63 @@ class ProfileController extends JoshController
         }
         
         return redirect('profile/professional-experience')->with('success', 'Project updated successfully');
+    }
+
+    public function deleteProjects(Request $request) 
+    {    
+        $userproject = UserProject::find($request->input('user_project_id'));
+        $userproject->delete();
+
+        $response['success'] = '1';
+        return response()->json($response);
+    }
+
+    public function registeremployer(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+        
+        foreach ($input['employer_id'] as $key => $value) {
+
+            if ($input['employer_id'][$key] != 0) {
+                $employer = Employers::find($input['employer_id'][$key]);
+                $employer->user_id = $user->id;
+                $employer->current = $input['current'][$key];
+                $employer->employer_name = $input['employer_name'][$key];
+                $employer->designation = $input['designation'][$key];
+                $employer->duration_year = $input['duration_year'][$key];
+                $employer->duration_month = $input['duration_month'][$key];
+                $employer->employment_type = $input['employment_type'][$key];
+                $employer->job_profile = $input['job_profile'][$key];
+                $employer->notice_period = $input['notice_period'][$key];
+                $employer->display_status = 1;
+                $employer->save();   
+            } else {
+                $employer = new Employers;
+                $employer->user_id = $user->id;
+                $employer->current = $input['current'][$key];
+                $employer->employer_name = $input['employer_name'][$key];
+                $employer->designation = $input['designation'][$key];
+                $employer->duration_year = $input['duration_year'][$key];
+                $employer->duration_month = $input['duration_month'][$key];
+                $employer->employment_type = $input['employment_type'][$key];
+                $employer->job_profile = $input['job_profile'][$key];
+                $employer->notice_period = $input['notice_period'][$key];
+                $employer->display_status = 1;
+                $employer->save();
+            }
+        }
+
+        return redirect('profile/projects')->with('success', 'Employer updated successfully');
+    }
+
+    public function deleteemployer(Request $request) 
+    {    
+        $certificate = Certificate::find($request->input('cert_id'));
+        $certificate->delete();
+
+        $response['success'] = '1';
+        return response()->json($response);
     }
 
 

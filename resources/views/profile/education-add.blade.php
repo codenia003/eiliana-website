@@ -45,10 +45,20 @@
 						                <label>Year of Graduation</label>
 						                <div class="form-row">
 						                	<div class="col">
-								                {!! Form::selectRange('month[]', 2000, 2020, $education->month, ['class' => 'form-control','required' =>'']) !!}
+								                <select class="form-control" required="" name="month[]">
+			                                        <option value="">From</option>
+			                                        @for ($i = 2000; $i < 2021; $i++)
+			                                        <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
+			                                        @endfor
+			                                    </select>
 					                    	</div>
 					                    	<div class="col">
-						                        {!! Form::selectRange('year[]', 2000, 2020, $education->year, ['class' => 'form-control','required' =>'']) !!}
+					                    		<select class="form-control" required="" name="year[]">
+			                                        <option value="">Till</option>
+			                                        @for ($i = 2000; $i < 2021; $i++)
+			                                        <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
+			                                        @endfor
+			                                    </select>
 						                    </div>
 						                </div>
 						            </div>
@@ -97,14 +107,24 @@
 				            </div>
 				        </div>
 		            	<div class="form-row">
-		            		<div class="form-group col-4">
+				            <div class="form-group col-4">
 				                <label>Year of Graduation</label>
 				                <div class="form-row">
 				                	<div class="col">
-						                {!! Form::selectRange('month[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
+						                <select class="form-control" required="" name="month[]">
+	                                        <option value="">From</option>
+	                                        @for ($i = 2000; $i < 2021; $i++)
+	                                        <option value="{{ $i }}">{{ $i }}</option>
+	                                        @endfor
+	                                    </select>
 			                    	</div>
 			                    	<div class="col">
-				                        {!! Form::selectRange('year[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
+			                    		<select class="form-control" required="" name="year[]">
+	                                        <option value="">Till</option>
+	                                        @for ($i = 2000; $i < 2021; $i++)
+	                                        <option value="{{ $i }}">{{ $i }}</option>
+	                                        @endfor
+	                                    </select>
 				                    </div>
 				                </div>
 				            </div>
@@ -164,14 +184,24 @@
 						            </div>
 						        </div>
 				            	<div class="form-row">
-				            		<div class="form-group col-4">
+						            <div class="form-group col-4">
 						                <label>Year of Graduation</label>
 						                <div class="form-row">
 						                	<div class="col">
-						                		{!! Form::selectRange('month[]', 2000, 2020, $education->month, ['class' => 'form-control','required' =>'']) !!}
+								                <select class="form-control" required="" name="month[]">
+			                                        <option value="">From</option>
+			                                        @for ($i = 2000; $i < 2021; $i++)
+			                                        <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
+			                                        @endfor
+			                                    </select>
 					                    	</div>
 					                    	<div class="col">
-					                    		{!! Form::selectRange('year[]', 2000, 2020, $education->year, ['class' => 'form-control','required' =>'']) !!}
+					                    		<select class="form-control" required="" name="year[]">
+			                                        <option value="">Till</option>
+			                                        @for ($i = 2000; $i < 2021; $i++)
+			                                        <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
+			                                        @endfor
+			                                    </select>
 						                    </div>
 						                </div>
 						            </div>
@@ -222,10 +252,20 @@
 				                <label>Year of Graduation</label>
 				                <div class="form-row">
 				                	<div class="col">
-						                {!! Form::selectRange('month[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
+						                <select class="form-control" required="" name="month[]">
+	                                        <option value="">From</option>
+	                                        @for ($i = 2000; $i < 2021; $i++)
+	                                        <option value="{{ $i }}">{{ $i }}</option>
+	                                        @endfor
+	                                    </select>
 			                    	</div>
 			                    	<div class="col">
-				                        {!! Form::selectRange('year[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
+			                    		<select class="form-control" required="" name="year[]">
+	                                        <option value="">Till</option>
+	                                        @for ($i = 2000; $i < 2021; $i++)
+	                                        <option value="{{ $i }}">{{ $i }}</option>
+	                                        @endfor
+	                                    </select>
 				                    </div>
 				                </div>
 				            </div>
@@ -300,10 +340,20 @@
             <label>Year of Graduation</label>
             <div class="form-row">
             	<div class="col">
-            		{!! Form::selectRange('month[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
+	                <select class="form-control" required="" name="month[]">
+                        <option value="">From</option>
+                        @for ($i = 2000; $i < 2021; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
             	</div>
             	<div class="col">
-                    {!! Form::selectRange('year[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
+            		<select class="form-control" required="" name="year[]">
+                        <option value="">Till</option>
+                        @for ($i = 2000; $i < 2021; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
                 </div>
             </div>
         </div>
@@ -355,10 +405,20 @@
             <label>Year of Graduation</label>
             <div class="form-row">
             	<div class="col">
-            		{!! Form::selectRange('month[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
+	                <select class="form-control" required="" name="month[]">
+                        <option value="">From</option>
+                        @for ($i = 2000; $i < 2021; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
             	</div>
             	<div class="col">
-                    {!! Form::selectRange('year[]', 2000, 2020, null, ['class' => 'form-control','required' =>'']) !!}
+            		<select class="form-control" required="" name="year[]">
+                        <option value="">Till</option>
+                        @for ($i = 2000; $i < 2021; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
                 </div>
             </div>
         </div>

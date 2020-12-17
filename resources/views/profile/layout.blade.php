@@ -110,6 +110,10 @@ Profile Setting
 	  		var element = '<div class="project-3">'+$('.project-2').html()+'</div>';
 	  		$('.project-1').append(element);
 	  	});
+	  	$(".btn-copy-e").on('click', function(){
+	  		var element = '<div class="employer-3">'+$('.employer-2').html()+'</div>';
+	  		$('.employer-1').append(element);
+	  	});
 	});
 	$(document).on('click','.remove-ug',function() {
 		var edu_id = $(".ug-qualification-3:last input#education_id").val();
@@ -142,6 +146,14 @@ Profile Setting
 		// 	ConfirmDelete(cert_id,'2');
 		// } else {
 		$(".project-3:last").remove();
+	 	// }
+	});
+	$(document).on('click','.remove-e',function() {
+		// var cert_id = $(".certification-3:last input#certificate_id").val();
+		// if (cert_id != '0') {
+		// 	ConfirmDelete(cert_id,'2');
+		// } else {
+		$(".employer-3:last").remove();
 	 	// }
 	});
 	function ConfirmDelete(edu_id,main_id)

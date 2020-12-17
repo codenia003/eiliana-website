@@ -361,8 +361,8 @@ footer {
 }
 .singup-body .form-group p {
     text-align: center;
-    font-size: 15px;
-    margin: 6px;
+    /* font-size: 15px; */
+    margin: 0px 3px;
 }
 .singup-body .form-group p a.btn.btn-link {
     font-size: 12px;
@@ -517,6 +517,7 @@ span.border-title i {
   text-decoration: none;
   color: #181818;
   font-weight: 500;
+  font-size: 13px;
 }
 .account-second-side img {
     margin-bottom: 30px;
@@ -821,7 +822,8 @@ h3.form-tittle {
     padding-left: 0px; 
 }
 .singup-body .form-group.form-check label {
-    font-size: 12px;
+    font-size: 13px;
+    color: #181818;
 }
 .omb_socialButtons a.btn i {
     position: relative;
@@ -976,10 +978,14 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 }
 .account-register input:focus~label,
 .account-register input:valid~label {
-    font-size: 14px;
-    top: -10px;
+    font-size: 12px;
+    top: -8px;
     background: #fff;
 }
+.account-register input:focus, .account-register input:valid {
+    border-color: #003466;
+}
+
 .account-register .card {
     border: 0px solid #003466;
     border-right: 1px solid #e5e5e5;

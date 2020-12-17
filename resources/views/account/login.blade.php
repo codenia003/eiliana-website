@@ -41,20 +41,20 @@ Login
                                     @csrf
                                     <div class="form-group input-field">
                                         <input type="text" name="email" class="form-control" required/>
-                                        <label for="username">Email ID/UserName</label>
+                                        <label for="username">Email ID</label>
                                     </div>
                                     <div class="form-group input-field">
                                         <input type="password" name="password" class="form-control" required />
                                         <label for="password">Password</label>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group form-check col-4">
+                                        <div class="form-group form-check col-4 pl-1">
                                             <input type="checkbox" id="remenber" class="form-check-input" required />
                                             <label for="remenber" class="form-check-label">Remember</label>
                                         </div>
                                         <div class="form-group col-8">
                                            <!-- <p class="text-right"><a href="{{ route('forgot-password') }}" class="bt">Forgot Username/Password</a></p> -->
-                                           <p class="text-right"><a href="#" class="bt">Forgot Username/Password</a></p>
+                                           <p class="text-right"><a href="#" class="bt">Forgot Password</a></p>
                                         </div>
                                     </div>
                                     <div class="form-group row justify-content-center mt-3 mb-5">
@@ -80,7 +80,7 @@ Login
                         <div class="account-second-side text-center">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Not a member yet?</p>
-                            <a href="/account/register" class="btn btn-light bt btn-lg">SingUp Now</a>
+                            <a href="/account/register" class="btn btn-light bt btn-lg">SignUp Now</a>
                         </div>
                     </div>
                 </div>

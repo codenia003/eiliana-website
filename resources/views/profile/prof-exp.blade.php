@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group col">
                             <label>Framework</label>
-                            {!! Form::selectRange('version[]', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+                            {!! Form::selectRange('framework', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
                         </div>
                     </div>
                     @if(Sentinel::getUser()->interested == "2")
@@ -41,17 +41,25 @@
                             <span style="color: red;font-size: 12px;">Note: Key skills mentioned above will be used for contractual staffing</span>
                         </div>
                     </div>
+                    <input type="hidden" name="profile_headline">
+                    <input type="hidden" name="project_category">
                     @else
+                    <input type="hidden" name="key_skills">
                     <div class="form-row">
                         <div class="form-group col">
                             <label>Profile Headline</label>
-                            <input type="text" name="key_skills" class="form-control" value="{{ $proexp->key_skills }}" />
+                            <input type="text" name="profile_headline" class="form-control" value="{{ $proexp->profile_headline }}" />
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col">
                             <label>Freelancing Project Category</label>
-                            <input type="text" name="key_skills" class="form-control" value="{{ $proexp->key_skills }}" />
+                            <select name="project_category" class="form-control">
+                                <option value=""></option>
+                                @foreach ($projectcategorys as $category)
+                                <option value="{{ $category->id }}" {{ ($proexp->project_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     
@@ -72,8 +80,7 @@
                             <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
                         </div>
                     </div>
-                    @endif
-                    
+                    @endif           
                     
                     <div class="form-row">
                         <div class="form-group col-6">
@@ -81,7 +88,7 @@
                             <div class="form-row">
                                 <div class="col-5">
                                     <select class="form-control" required="" name="experience_year">
-                                        @for ($i = 1; $i < 21; $i++)
+                                        @for ($i = 0; $i < 21; $i++)
                                         <option value="{{ $i }}" {{ ($proexp->experience_year==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                         @endfor
                                     </select>
@@ -108,22 +115,47 @@
                 @empty
                     <div class="form-row">
                         <div class="form-group col">
-        	                <label>Video Intro URL</label>
-        	                <input type="text" name="video_url" class="form-control" />
-        	            </div>
-
-        	            <div class="form-group col">
-        	                <label>Key Skills</label>
-        	                <input type="text" name="key_skills" class="form-control" />
-        	            </div>
+                            <label>Technology Preference</label>
+                            <select name="technologty_pre" class="form-control" required>
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label>Framework</label>
+                            {!! Form::selectRange('framework', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+                        </div>
                     </div>
-    	            <div class="form-group">
-                        <label>Technology Preference</label>
-                        <select name="technologty_pre" class="form-control" required>
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
+
+                    @if(Sentinel::getUser()->interested == "2")
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Key Skills (Ex. Core Java, Hibernate, Html, Css)</label>
+                            <input type="text" name="key_skills" class="form-control" />
+                            <span style="color: red;font-size: 12px;">Note: Key skills mentioned above will be used for contractual staffing</span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="profile_headline">
+                    <input type="hidden" name="project_category">
+                    @else
+                    <input type="hidden" name="key_skills">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Profile Headline</label>
+                            <input type="text" name="profile_headline" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Freelancing Project Category</label>
+                            <select name="project_category" class="form-control">
+                                <option value=""></option>
+                                @foreach ($projectcategorys as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
     	            <div class="form-group basic-info">
@@ -141,7 +173,8 @@
     					  	<input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement[]" value="3">
     					  	<label class="form-check-label" for="inlineCheckbox3">Project-based</label>
     					</div>
-                    </div>
+                    </div> 
+                    @endif
                     
     	            <div class="form-row">
                 		<div class="form-group col-4">

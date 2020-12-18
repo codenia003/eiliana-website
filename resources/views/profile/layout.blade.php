@@ -18,18 +18,20 @@ Profile Setting
 <!--end of page level css-->
 @stop
 
+{{--@section('top')
+<div class="bg-red">
+  	<div class="px-5 py-2">
+    	<div class="align-items-center">
+        	<span class="border-title"><i class="fa fa-bars"></i></span>
+        	<span class="h5 text-white ml-2">Profile Setting</span>
+         	<!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
+    	</div>
+  	</div>
+</div>
+@stop--}}
 {{-- content --}}
 @section('content')
 <div class="profile-setting">
-	<div class="bg-red">
-	  <div class="px-5 py-2">
-	    <div class="align-items-center">
-	        <span class="border-title"><i class="fa fa-bars"></i></span>
-	        <span class="h5 text-white ml-2">Profile Setting</span>
-	         <!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
-	    </div>
-	  </div>
-	</div>
 	<div class="container space-1 space-top-lg-0 mt-lg-n10">
 	    <div class="row">
 	        <div class="col-lg-8">
@@ -115,6 +117,7 @@ Profile Setting
 	  		$('.employer-1').append(element);
 	  	});
 	});
+
 	$(document).on('click','.remove-ug',function() {
 		var edu_id = $(".ug-qualification-3:last input#education_id").val();
 		if (edu_id != '0') {
@@ -141,20 +144,20 @@ Profile Setting
 	 	}
 	});
 	$(document).on('click','.remove-p',function() {
-		// var cert_id = $(".certification-3:last input#certificate_id").val();
-		// if (cert_id != '0') {
-		// 	ConfirmDelete(cert_id,'2');
-		// } else {
-		$(".project-3:last").remove();
-	 	// }
+		var cert_id = $(".project-3:last input#user_project_id").val();
+		if (cert_id != '0') {
+			ConfirmDelete(cert_id,'3');
+		} else {
+			$(".project-3:last").remove();
+	 	}
 	});
 	$(document).on('click','.remove-e',function() {
-		// var cert_id = $(".certification-3:last input#certificate_id").val();
-		// if (cert_id != '0') {
-		// 	ConfirmDelete(cert_id,'2');
-		// } else {
-		$(".employer-3:last").remove();
-	 	// }
+		var cert_id = $(".employer-3:last input#employer_id").val();
+		if (cert_id != '0') {
+			ConfirmDelete(cert_id,'4');
+		} else {
+			$(".employer-3:last").remove();
+	 	}
 	});
 	function ConfirmDelete(edu_id,main_id)
 	{
@@ -162,50 +165,52 @@ Profile Setting
 	  	var edu_id = edu_id;
 	  	if (x) {
 	  		if (main_id == '1') {
-	  			$.ajax({
-		            type: 'GET', 
-		            url: '/profile/deleteducation',
-		            data: {edu_id:edu_id},
-		            contentType: 'application/json',
-		            dataType: "json",
-		            success: function(data) {
-		            	$(".remove-qual-"+edu_id).remove();
-		                Swal.fire({
-			              type: 'success',
-			              title: 'Success...',
-			              text: 'Education Deleted successfully',
-			              showConfirmButton: false,
-			              timer: 1500
-			            })
-
-		            },
-		            error: function(xhr, status, error) {
-		                console.log("error: ",error);
-		            },
-		        });
-	  		} else {
-	  			$.ajax({
-		            type: 'GET', 
-		            url: '/profile/deletecertification',
-		            data: {cert_id:edu_id},
-		            contentType: 'application/json',
-		            dataType: "json",
-		            success: function(data) {
-		            	$(".remove-qual-"+edu_id).remove();
-		                Swal.fire({
-			              type: 'success',
-			              title: 'Success...',
-			              text: 'Certificate Deleted successfully',
-			              showConfirmButton: false,
-			              timer: 1500
-			            })
-
-		            },
-		            error: function(xhr, status, error) {
-		                console.log("error: ",error);
-		            },
-		        });
+	  			var data= {
+		            edu_id:edu_id
+		        };
+		        var url = '/profile/deleteducation';
+		        var message = 'Education Deleted successfully';
+	  		} else if (main_id == '2') {
+	  			var data= {
+		            cert_id:edu_id
+		        };
+		        var url = '/profile/deletecertification';
+		        var message = 'Certificate Deleted successfully';
+	  		} else if (main_id == '3') {
+	  			var data= {
+		            project_id:edu_id
+		        };
+		        var url = '/profile/deleteprojects';
+		        var message = 'Project Deleted successfully';
+	  		} else if (main_id == '4') {
+	  			var data= {
+		            emp_id:edu_id
+		        };
+		        var url = '/profile/deleteemployer';
+		        var message = 'Employer Deleted successfully';
 	  		}
+
+	  		$.ajax({
+	            type: 'GET', 
+	            url: url,
+	            data: data,
+	            contentType: 'application/json',
+	            dataType: "json",
+	            success: function(data) {
+	            	$(".remove-qual-"+edu_id).remove();
+	                Swal.fire({
+		              type: 'success',
+		              title: 'Success...',
+		              text: message,
+		              showConfirmButton: false,
+		              timer: 1500
+		            })
+
+	            },
+	            error: function(xhr, status, error) {
+	                console.log("error: ",error);
+	            },
+	        });
 	    	return true;
 	  	} else {
 	    	return false;
@@ -214,6 +219,14 @@ Profile Setting
 	function changeInterested(e) {
 		$("#exampleModal1").modal();
     }
+    /*$(window).scroll(function(){
+	    if ($(window).scrollTop() >= 150) {
+	        $('#sidebarNav').addClass('fixed-topscroll');
+	    }
+	    else {
+	        $('#sidebarNav').removeClass('fixed-topscroll');
+	    }
+	});*/
 </script>
 <!--global js end-->
 @stop

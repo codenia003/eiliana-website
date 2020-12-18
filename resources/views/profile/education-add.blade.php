@@ -1,5 +1,15 @@
 @extends('profile/layout')
-
+@section('top')
+<div class="bg-red">
+    <div class="px-5 py-2">
+        <div class="align-items-center">
+            <span class="border-title"><i class="fa fa-bars"></i></span>
+            <span class="h5 text-white ml-2">Education Details</span>
+            <!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
+        </div>
+    </div>
+</div>
+@stop
 @section('profile_content')
 <div class="singup-body login-body profile-basic">
     <div class="card">

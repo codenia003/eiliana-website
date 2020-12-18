@@ -25,6 +25,8 @@ use App\Models\UserProject;
 use App\Models\ProjectCategory;
 use App\Models\Employers;
 use App\Models\Designation;
+use App\Models\EmployerDetails;
+use App\Models\EmployerType;
 use stdClass;
 
 class ProfileController extends JoshController
@@ -90,21 +92,25 @@ class ProfileController extends JoshController
         } else {
             $model_engagement_new = [];
         }
-        return view('profile/prof-exp', compact('proexps','model_engagement_new','projectcategorys'));
+        $designations = Designation::all();
+        return view('profile/prof-exp', compact('proexps','designations','model_engagement_new','projectcategorys'));
     }
 
     public function projects()
     {   
         $projects = UserProject::where('user_id', Sentinel::getUser()->id)->get();
-        return view('profile/projects', compact('projects'));
+        $employers = Employers::where('user_id', Sentinel::getUser()->id)->get();
+        return view('profile/projects', compact('projects','employers'));
     }
 
     public function employer()
     {
         $user = Sentinel::getUser();
         $designations = Designation::all();
+        $employertype = EmployerType::all();
         $employers = Employers::where('user_id', $user->id)->get();
-        return view('profile/employer', compact('employers','designations'));
+        $employerdetails = EmployerDetails::where('user_id', $user->id)->get();
+        return view('profile/employer', compact('employers','designations','employerdetails','employertype'));
     }
 
     public function financial()
@@ -255,6 +261,7 @@ class ProfileController extends JoshController
             $professionalExperience->experience_year = $input['experience_year'];
             $professionalExperience->experience_month = $input['experience_month'];
             $professionalExperience->support_project = $input['support_project'];
+            $professionalExperience->designation = $input['designation'];
             $professionalExperience->development_project = $input['development_project'];
             $professionalExperience->save();   
         
@@ -263,7 +270,11 @@ class ProfileController extends JoshController
             ProfessionalExperience::create($input);
         }
 
-        return redirect('profile/employer')->with('success', 'Professional Experience updated successfully');
+        if ($user->interested == "2") {
+            return redirect('profile/employer')->with('success', 'Professional Experience updated successfully');
+        } else {
+            return redirect('profile/projects')->with('success', 'Professional Experience updated successfully');
+        }
     }
 
     public function registerProjects(Request $request)
@@ -283,10 +294,11 @@ class ProfileController extends JoshController
                 $userproject->version = $input['version'][$key];
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];
+                $userproject->employer_id = $input['employer_id'][$key];
                 $userproject->display_status = 1;
                 
-                if ($file = $input['upload_file'][$key]) {
-            
+                if (isset($input['upload_file'][$key])) {
+                    $file = $input['upload_file'][$key];
                     $extension = $file->extension();
                     $folderName = '/uploads/projects/';
                     $destinationPath = public_path() . $folderName;
@@ -308,9 +320,11 @@ class ProfileController extends JoshController
                 $userproject->version = $input['version'][$key];
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];
+                $userproject->employer_id = $input['employer_id'][$key];
                 $userproject->display_status = 1;
 
-                if ($file =  $input['upload_file'][$key]) {
+                if (isset($input['upload_file'][$key])) {
+                    $file =  $input['upload_file'][$key];
                     $extension = $file->extension()?: 'png';
                     $folderName = '/uploads/projects/';
                     $destinationPath = public_path() . $folderName;
@@ -330,7 +344,7 @@ class ProfileController extends JoshController
 
     public function deleteProjects(Request $request) 
     {    
-        $userproject = UserProject::find($request->input('user_project_id'));
+        $userproject = UserProject::find($request->input('project_id'));
         $userproject->delete();
 
         $response['success'] = '1';
@@ -341,13 +355,37 @@ class ProfileController extends JoshController
     {
         $user = Sentinel::getUser();
         $input = $request->except('_token');
-        
+        if ($input['employer_details_id'] != 0) {
+            $employerdetails = EmployerDetails::find($input['employer_details_id']);
+            $employerdetails->user_id = $user->id;
+            $employerdetails->current = $input['current'];
+            $employerdetails->current_salary_lacs = $input['current_salary_lacs'];
+            $employerdetails->current_salary_thousand = $input['current_salary_thousand'];
+            $employerdetails->expected_salary_lacs = $input['expected_salary_lacs'];
+            $employerdetails->expected_salary_thousand = $input['expected_salary_thousand'];
+            $employerdetails->notice_period = $input['notice_period'];
+            $employerdetails->notice_period = $input['notice_period'];
+            $employerdetails->display_status = 1;
+            $employerdetails->save();
+        } else {
+            $employerdetails = new EmployerDetails;
+            $employerdetails->user_id = $user->id;
+            $employerdetails->current = $input['current'];
+            $employerdetails->current_salary_lacs = $input['current_salary_lacs'];
+            $employerdetails->current_salary_thousand = $input['current_salary_thousand'];
+            $employerdetails->expected_salary_lacs = $input['expected_salary_lacs'];
+            $employerdetails->expected_salary_thousand = $input['expected_salary_thousand'];
+            $employerdetails->notice_period = $input['notice_period'];
+            $employerdetails->notice_period = $input['notice_period'];
+            $employerdetails->display_status = 1;
+            $employerdetails->save();
+        }
         foreach ($input['employer_id'] as $key => $value) {
 
             if ($input['employer_id'][$key] != 0) {
                 $employer = Employers::find($input['employer_id'][$key]);
                 $employer->user_id = $user->id;
-                $employer->current = $input['current'][$key];
+                // $employer->current = $input['current'][$key];
                 $employer->employer_name = $input['employer_name'][$key];
                 $employer->designation = $input['designation'][$key];
                 $employer->duration_year = $input['duration_year'][$key];
@@ -360,7 +398,7 @@ class ProfileController extends JoshController
             } else {
                 $employer = new Employers;
                 $employer->user_id = $user->id;
-                $employer->current = $input['current'][$key];
+                // $employer->current = $input['current'][$key];
                 $employer->employer_name = $input['employer_name'][$key];
                 $employer->designation = $input['designation'][$key];
                 $employer->duration_year = $input['duration_year'][$key];
@@ -378,8 +416,8 @@ class ProfileController extends JoshController
 
     public function deleteemployer(Request $request) 
     {    
-        $certificate = Certificate::find($request->input('cert_id'));
-        $certificate->delete();
+        $employer = Employers::find($request->input('emp_id'));
+        $employer->delete();
 
         $response['success'] = '1';
         return response()->json($response);

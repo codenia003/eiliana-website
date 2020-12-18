@@ -21,7 +21,6 @@
                 <div class="text-center mb-5">
                     <div class="avatar avatar-xxl avatar-circle mb-3">
                         
-                        
                         <div>
                             @if(Sentinel::getUser()->pic)
                             <img class="image-preview avatar-img" src="#" class="avatar" alt="Avatar">

@@ -1,5 +1,15 @@
 @extends('profile/layout')
-
+@section('top')
+<div class="bg-red">
+    <div class="px-5 py-2">
+        <div class="align-items-center">
+            <span class="border-title"><i class="fa fa-bars"></i></span>
+            <span class="h5 text-white ml-2">Professional Experience</span>
+            <!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
+        </div>
+    </div>
+</div>
+@stop
 @section('profile_content')
 <div class="singup-body login-body profile-basic">
     <div class="card">
@@ -33,6 +43,12 @@
                             {!! Form::selectRange('framework', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Profile Headline</label>
+                            <input type="text" name="profile_headline" class="form-control" value="{{ $proexp->profile_headline }}" />
+                        </div>
+                    </div>
                     @if(Sentinel::getUser()->interested == "2")
                     <div class="form-row">
                         <div class="form-group col">
@@ -41,23 +57,27 @@
                             <span style="color: red;font-size: 12px;">Note: Key skills mentioned above will be used for contractual staffing</span>
                         </div>
                     </div>
-                    <input type="hidden" name="profile_headline">
                     <input type="hidden" name="project_category">
+                    <input type="hidden" name="designation">
+                    <input type="hidden" name="model_engagement">
                     @else
                     <input type="hidden" name="key_skills">
                     <div class="form-row">
-                        <div class="form-group col">
-                            <label>Profile Headline</label>
-                            <input type="text" name="profile_headline" class="form-control" value="{{ $proexp->profile_headline }}" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-6">
                             <label>Freelancing Project Category</label>
                             <select name="project_category" class="form-control">
                                 <option value=""></option>
                                 @foreach ($projectcategorys as $category)
                                 <option value="{{ $category->id }}" {{ ($proexp->project_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Designation</label>
+                            <select name="designation" class="form-control" required>
+                                <option value=""></option>
+                                @foreach ($designations as $designation)
+                                <option value="{{ $designation->designation_id }}" {{ ($proexp->designation==$designation->designation_id)? "selected" : "" }}>{{ $designation->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -127,7 +147,12 @@
                             {!! Form::selectRange('framework', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
                         </div>
                     </div>
-
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Profile Headline</label>
+                            <input type="text" name="profile_headline" class="form-control" />
+                        </div>
+                    </div>
                     @if(Sentinel::getUser()->interested == "2")
                     <div class="form-row">
                         <div class="form-group col">
@@ -136,23 +161,25 @@
                             <span style="color: red;font-size: 12px;">Note: Key skills mentioned above will be used for contractual staffing</span>
                         </div>
                     </div>
-                    <input type="hidden" name="profile_headline">
                     <input type="hidden" name="project_category">
                     @else
                     <input type="hidden" name="key_skills">
                     <div class="form-row">
-                        <div class="form-group col">
-                            <label>Profile Headline</label>
-                            <input type="text" name="profile_headline" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-6">
                             <label>Freelancing Project Category</label>
                             <select name="project_category" class="form-control">
                                 <option value=""></option>
                                 @foreach ($projectcategorys as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Designation</label>
+                            <select name="designation[]" class="form-control" required>
+                                <option value=""></option>
+                                @foreach ($designations as $designation)
+                                <option value="{{ $designation->designation_id }}">{{ $designation->name }}</option>
                                 @endforeach
                             </select>
                         </div>

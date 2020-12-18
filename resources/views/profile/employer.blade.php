@@ -1,5 +1,15 @@
 @extends('profile/layout')
-
+@section('top')
+<div class="bg-red">
+    <div class="px-5 py-2">
+        <div class="align-items-center">
+            <span class="border-title"><i class="fa fa-bars"></i></span>
+            <span class="h5 text-white ml-2">Employer Details</span>
+            <!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
+        </div>
+    </div>
+</div>
+@stop
 @section('profile_content')
 <div class="singup-body login-body profile-basic">
     <div class="card">
@@ -7,12 +17,153 @@
         <div class="card-body p-4">
             <form action="{{ url('/profile/registeremployer') }}" method="POST" id="certificateForm">
                 @csrf
+                <div class="employer">
+                    @forelse ($employerdetails as $details)
+                    <input type="hidden" name="employer_details_id" id="employer_details_id " value="{{ $details->employer_details_id }}">
+                    <div class="form-group basic-info mb-3">
+                        <label>Last Employer</label>
+                        <div class="form-check form-check-inline ml-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="Current" name="current" class="custom-control-input" value="1" {{ ($details->current=="1")? "checked" : "" }}>
+                                <label class="custom-control-label" for="Current">Current Employer</label>
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="Previous" name="current" class="custom-control-input" value="0" {{ ($details->current=="0")? "checked" : "" }}>
+                                <label class="custom-control-label" for="Previous">Previous Employer</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Current Salary</label>
+                            <div class="form-row">
+                                <div class="col-5 pr-1">
+                                    <select class="form-control" required="" name="current_salary_lacs">
+                                        <option value=""></option>
+                                        @for ($i = 0; $i < 51; $i++)
+                                        <option value="{{ $i }}" {{ ($details->current_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lacs</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col-5 ml-3">
+                                    <select class="form-control" required="" name="current_salary_thousand">
+                                        <option value=""></option>
+                                        @for ($i = 0; $i < 100; $i+=5)
+                                        <option value="{{ $i }}" {{ ($details->current_salary_thousand==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Expected Salary</label>
+                            <div class="form-row">
+                                <div class="col-5 pr-1">
+                                    <select class="form-control" required="" name="expected_salary_lacs">
+                                        @for ($i = 0; $i < 51; $i++)
+                                        <option value="{{ $i }}" {{ ($details->expected_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lacs</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col-5 ml-3">
+                                    <select class="form-control" required="" name="expected_salary_thousand">
+                                        @for ($i = 0; $i < 100; $i+=5)
+                                        <option value="{{ $i }}" {{ ($details->expected_salary_thousand==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-8">
+                            <label>Notice Period</label>
+                            <select class="form-control" required="" name="notice_period">
+                                <option value=""></option>
+                                @for ($i = 15; $i < 180; $i+=15)
+                                <option value="{{ $i }}" {{ ($details->notice_period==$i)? "selected" : "" }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    @empty
+                    <input type="hidden" name="employer_details_id" id="employer_details_id " value="0">
+                    <div class="form-group basic-info mb-3">
+                        <label>Last Employer</label>
+                        <div class="form-check form-check-inline ml-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="Current" name="current" class="custom-control-input" value="1" checked>
+                                <label class="custom-control-label" for="Current">Current Employer</label>
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="Previous" name="current" class="custom-control-input" value="0">
+                                <label class="custom-control-label" for="Previous">Previous Employer</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Current Salary</label>
+                            <div class="form-row">
+                                <div class="col-5 pr-1">
+                                    <select class="form-control" required="" name="current_salary_lacs">
+                                        @for ($i = 0; $i < 51; $i++)
+                                        <option value="{{ $i }}">{{ $i }} Lacs</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col-5 ml-3">
+                                    <select class="form-control" required="" name="current_salary_thousand">
+                                        @for ($i = 0; $i < 100; $i+=5)
+                                        <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Expected Salary</label>
+                            <div class="form-row">
+                                <div class="col-5 pr-1">
+                                    <select class="form-control" required="" name="expected_salary_lacs">
+                                        @for ($i = 0; $i < 51; $i++)
+                                        <option value="{{ $i }}">{{ $i }} Lacs</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col-5 ml-3">
+                                    <select class="form-control" required="" name="expected_salary_thousand">
+                                        @for ($i = 0; $i < 100; $i+=5)
+                                        <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-7">
+                            <label>Notice Period</label>
+                            <select class="form-control" required="" name="notice_period">
+                                <option value=""></option>
+                                @for ($i = 15; $i < 180; $i+=15)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    @endforelse
+                </div>
                 <div class="employer-1">
                     @forelse ($employers as $employer)
                     <div class="employer-3 remove-qual-{{ $employer->employer_id }}">
                         <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Employer</span> -->
                         <input type="hidden" name="employer_id[]" id="employer_id" value="{{ $employer->employer_id }}">
-                        @if ($employer->current == "1")
+                        {{-- @if ($employer->current == "1")
                         <div class="form-group basic-info mb-3">
                             <div class="form-check form-check-inline">
                                 <div class="custom-control custom-radio">
@@ -27,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                        @endif
+                        @endif --}}
                         <div class="form-row">
                             <div class="form-group col-11">
                                 <label>Employer Name</label>
@@ -44,7 +195,12 @@
                             </div>
                             <div class="form-group col-5 ml-5" style="margin-left: 3.5rem !important;">
                                 <label>Employment Type</label>
-                                <input type="text" name="employment_type[]" class="form-control" value="{{ $employer->employment_type }}" required/>
+                                <select name="employment_type[]" class="form-control" required>
+                                    <option value=""></option>
+                                    @foreach ($employertype as $type)
+                                    <option value="{{ $type->employer_type_id }}" {{ ($employer->employment_type==$type->employer_type_id)? "selected" : "" }}>{{ $type->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-row">
@@ -73,17 +229,6 @@
                         <div class="form-group">
                             <label>Job Profile</label>
                             <textarea class="form-control" name="job_profile[]" rows="4" cols="50" required>{{ $employer->job_profile }}</textarea>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-8">
-                                <label>Notice Period</label>
-                                <select class="form-control" required="" name="notice_period[]">
-                                    <option value=""></option>
-                                    @for ($i = 15; $i < 180; $i+=15)
-                                    <option value="{{ $i }}" {{ ($employer->notice_period==$i)? "selected" : "" }}>{{ $i }}</option>
-                                    @endfor
-                                </select>
-                            </div>
                         </div>
                     </div>
                     @empty
@@ -143,14 +288,19 @@
                             </div>
                             <div class="form-group col-6">
                                 <label>Employment Type</label>
-                                <input type="text" name="employment_type[]" class="form-control" required/>
+                                <select name="employment_type[]" class="form-control" required>
+                                    <option value=""></option>
+                                    @foreach ($employertype as $type)
+                                    <option value="{{ $type->employer_type_id }}">{{ $type->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Job Profile</label>
                             <textarea class="form-control" name="job_profile[]" rows="4" cols="50" required></textarea>
                         </div>
-                        <div class="form-row">
+                        <!-- <div class="form-row">
                             <div class="form-group col-8">
                                 <label>Notice Period</label>
                                 <select class="form-control" required="" name="notice_period[]">
@@ -160,7 +310,7 @@
                                     @endfor
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     @endforelse
                 </div>
@@ -231,7 +381,7 @@
         <label>Job Profile</label>
         <textarea class="form-control" name="job_profile[]" rows="4" cols="50" required></textarea>
     </div>
-    <div class="form-row">
+    <!-- <div class="form-row">
         <div class="form-group col-8">
             <label>Notice Period</label>
             <select class="form-control" required="" name="notice_period[]">
@@ -241,6 +391,6 @@
                 @endfor
             </select>
         </div>
-    </div>
+    </div> -->
 </div>
 @stop

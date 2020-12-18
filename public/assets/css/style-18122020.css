@@ -305,7 +305,7 @@ footer {
 }
 .singup-body .card {
     background: none;
-    /* border: 1px solid #003466; */
+    border: 1px solid #003466;
     /* border-right: 1px solid #e5e5e5; */
     border-radius: unset;
 }
@@ -603,7 +603,6 @@ span.border-title i {
     /*min-height: 50px;*/
     padding: 4px 0px;
     /*border-bottom: 1px solid #c7c7c7;*/
-    margin-bottom: 2px;
 }
 /*profile pages*/
 .loader {
@@ -767,7 +766,6 @@ a.login_signup {
     padding: 1rem 2rem;
     border-radius: 0px !important;
     margin: 0;
-    display: none;
 }
 .singup-body.login-body.profile-basic {
     /* border: 1px solid #0053c3; */
@@ -1046,14 +1044,4 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 .profile-basic button.btn-info span {
     float: right;
     font-size: 20px;
-}
-.custom-file .custom-file-label::after {
-    color: #ffffff;
-    background-color: #003466;
-    border-radius: 0px;
-}
-.fixed-topscroll .mobile-profile {
-    position: fixed !important;
-    top: 20px;
-    z-index: 9999;
 }

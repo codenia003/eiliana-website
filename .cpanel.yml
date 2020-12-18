@@ -2,3 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/eiliana/public_html/
+    - /bin/cp -r * $DEPLOYPATH #copy all from root

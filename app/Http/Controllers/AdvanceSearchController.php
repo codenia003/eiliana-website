@@ -17,6 +17,9 @@ use DB;
 use App\Models\User;
 use App\Models\Education;
 use App\Models\Project;
+use App\Models\Qualification;
+use App\Models\University;
+use App\Models\EducationType;
 use stdClass;
 use Carbon\Carbon;
 
@@ -29,9 +32,21 @@ class AdvanceSearchController extends Controller
         return view('search/projects');
     }
 
-    public function contractStaffing()
+    public function contractStaffing(Request $request)
     {
-        // Show the page
-        return view('search/contract-staffing');
+        $user = Sentinel::getUser();
+        if (empty($request->input('keyword'))) {
+
+            $educationtype = EducationType::all();
+            $qualifications = Qualification::all();
+            $universities = University::all();
+            return view('search/contract-staffing', compact('educationtype','qualifications','universities'));
+            
+        } else {
+            $count = '';
+            $keyword = '';
+            $projects = [];
+            return view('search/browse-contract-staffing', compact('count', 'projects', 'keyword'));
+        } 
     }
 }

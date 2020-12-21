@@ -236,11 +236,13 @@
 		            	<input type="hidden" name="education_id[]" value="0">
 		            	<div class="form-row">
 				            <div class="form-group col-4">
-				                <label>Education Type</label>
-				                <select name="education_type[]" class="form-control" required>
+				                <label>PG Qualification</label>
+				                <select name="degree[]" class="form-control" required>
 		                            <option value=""></option>
-		                            @foreach ($educationtype as $etype)
-			                        <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
+		                            @foreach ($qualifications as $qualification)
+			                        @if ($qualification->type == 'UG')
+			                        <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
+			                        @endif
 			                        @endforeach
 		                        </select>
 				            </div>
@@ -282,14 +284,11 @@
 				            <div class="form-group col-1">
 				            </div>
 				            <div class="form-group col-7">
-				                <label>PG Qualification</label>
-				                <!-- <input type="text" name="degree" class="form-control" /> -->
-				                <select name="degree[]" class="form-control" required>
+				            	<label>Education Type</label>
+				                <select name="education_type[]" class="form-control" required>
 		                            <option value=""></option>
-		                            @foreach ($qualifications as $qualification)
-			                        @if ($qualification->type == 'UG')
-			                        <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
-			                        @endif
+		                            @foreach ($educationtype as $etype)
+			                        <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
 			                        @endforeach
 		                        </select>
 				            </div>

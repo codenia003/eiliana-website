@@ -344,7 +344,7 @@ li.availableforaweak {
     left: 85px;
 }
 .slider3 .banner1_content h1 {
-    font-size: 1.6em !important;
+    font-size: 1.6em;
 }
 
 .slider5 .banner1_content {
@@ -354,8 +354,8 @@ li.availableforaweak {
 }
 .slider5 .banner1_content .group_button {
     position: relative;
-    top: 20px;
-    left: 17px;
+    top: 18px;
+    left: -5px;
 }
 
 .slider6 .banner1_content {

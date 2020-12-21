@@ -1,0 +1,36 @@
+
+.@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+	.banner1_content h1 {
+	    font-size: 1.2em !important;
+	}
+}
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+	section.section1 .bg-img-hero {
+	    background-size: contain !important;
+	}
+	.slider2 .banner1_content {
+	    top: -7px !important;
+    	left: 95px !important;
+	}
+	.banner1_content h1 {
+    	font-size: 1.4em !important;
+	}
+	.big_btn_shadow {
+	    padding: 12px 16px !important;
+	    font-size: 15px !important;
+	    width: 165px !important;
+	}
+	.slider3 .banner1_content h1 {
+	    font-size: 1.4em !important;
+	}
+	.slider3 .banner1_content .group_button {
+	    top: 30px !important;
+	}
+	.slider4 .banner1_content {
+    	left: 105px !important;
+	}
+	.slider6 .banner1_content {
+	    top: 30px !important;
+	    left: 95px !important;
+	}
+}

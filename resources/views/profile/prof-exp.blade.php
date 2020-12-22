@@ -132,6 +132,26 @@
                         </div>
                         <!-- <span style="color: red;font-size: 12px;">Note: Candidates needs to mention overall projects executed by them in there professional journey</span> -->
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Current Location</label>
+                            <select name="current_location" class="form-control" required>
+                                <option value=""></option>
+                                @for ($i = 1; $i < 4; $i++)
+                                <option value="{{ $i }}" {{ ($proexp->current_location==$i)? "selected" : "" }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label>Preferred Location</label>
+                            <select name="preferred_location" class="form-control" required>
+                                <option value=""></option>
+                                @for ($i = 1; $i < 4; $i++)
+                                <option value="{{ $i }}" {{ ($proexp->preferred_location==$i)? "selected" : "" }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
                 @empty
                     <div class="form-row">
                         <div class="form-group col">
@@ -176,7 +196,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label>Designation</label>
-                            <select name="designation[]" class="form-control" required>
+                            <select name="designation" class="form-control" required>
                                 <option value=""></option>
                                 @foreach ($designations as $designation)
                                 <option value="{{ $designation->designation_id }}">{{ $designation->name }}</option>
@@ -232,6 +252,26 @@
     		                {!! Form::selectRange('development_project', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
     		            </div>
     		        </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Current Location</label>
+                            <select name="current_location" class="form-control" required>
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label>Preferred Location</label>
+                            <select name="preferred_location" class="form-control" required>
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
                 @endforelse
                 <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">

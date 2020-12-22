@@ -247,6 +247,21 @@ class ProfileController extends JoshController
         $input = $request->except('_token');
         $input['user_id'] = $user->id;
 
+        $indexing = "";
+        if($input['key_skills'] != null) {
+            $words = explode(" " ,$input['key_skills']);
+            foreach($words as $word) {
+                $indexing .= metaphone($word). " ";
+            }
+        }
+        if($input['profile_headline'] != null)
+        {
+            $words=explode(" " ,$input['profile_headline']);
+            foreach($words as $word) {
+                $indexing .= metaphone($word). " ";
+            }
+        }
+
         if (!empty($input['professional_experience_id'])) {
 
             $professionalExperience = ProfessionalExperience::find($input['professional_experience_id']);
@@ -262,11 +277,14 @@ class ProfileController extends JoshController
             $professionalExperience->experience_month = $input['experience_month'];
             $professionalExperience->support_project = $input['support_project'];
             $professionalExperience->designation = $input['designation'];
+            $professionalExperience->current_location = $input['current_location'];
+            $professionalExperience->preferred_location = $input['preferred_location'];
             $professionalExperience->development_project = $input['development_project'];
+            $professionalExperience->indexing = $indexing;
             $professionalExperience->save();   
         
         } else {
-
+            $input['indexing'] = $indexing;
             ProfessionalExperience::create($input);
         }
 

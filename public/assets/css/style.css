@@ -1060,3 +1060,45 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
     top: 20px;
     z-index: 9999;
 }
+.advance-search h4 {
+    color: #003466;
+    margin: 15px 0px;
+}
+.advance-search span.h4 {
+    font-size: 15px;
+    display: none !important;
+}
+.contract-apply a.btn-icon {
+    color: #de4b39;
+    font-size: 25px;
+    font-weight: bold;
+}
+.refer-a-friend {
+    text-align: center;
+    font-size: 18px;
+    color: #003466;
+    font-weight: 500;
+}
+.contract-profile img.img-fluid {
+    border-radius: 5px;
+}
+.display-5 {
+    font-size: 15px;
+    font-weight: 600;
+}
+.contract-profile {
+    text-align: right;
+}
+.contract-profile img.img-fluid {
+    width: 100px;
+}
+.browse-project li.card {
+    border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
+    border-radius: unset;
+}
+.advanced-search .shadow {
+    margin: 50px;
+    box-shadow: 0 0 2px 2px #e4ecf7 !important;
+    border-radius: unset;
+}

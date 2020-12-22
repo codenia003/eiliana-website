@@ -3,9 +3,9 @@
 @section('search_content')
 <div class="advance-search singup-body login-body">
     <form action="{{ url('/advance-search/contract-staffing') }}" method="GET">
-        @csrf
+        {{-- @csrf --}}
         <div class="card">
-            <div class="card-header">
+            <div class="card-body p-4">
                 <div class="basic-info">
                     <label>Type of Project</label>
                     <div class="form-check form-check-inline ml-3">
@@ -27,14 +27,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-body p-4">
                 <div class="form-group">
                     <label>Any Keyword(Key Skills)</label>
                     <input type="text" name="keyword" class="form-control" value="" required />
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-8">
+                    <div class="form-group col-6">
                         <label>Total Experience</label>
                         <div class="form-row">
                             <div class="col-5">
@@ -50,6 +48,33 @@
                                     <option value="{{ $i }}">{{ $i }} Months</option>
                                     @endfor
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Salary Ranage</label>
+                        <div class="form-row">
+                            <div class="col-5 pr-1">
+                                <select class="form-control" name="range_salary_from">
+                                    <option value="">From</option>
+                                    @for ($i = 0; $i < 51; $i++)
+                                    <option value="{{ $i }}">{{ $i }} Lacs</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="col-5 ml-3">
+                                <select class="form-control" name="range_salary_to">
+                                    <option value="">To</option>
+                                    @for ($i = 0; $i < 51; $i++)
+                                    <option value="{{ $i }}">{{ $i }} Lacs</option>
+                                    @endfor
+                                </select>
+                                <!-- <select class="form-control" name="range_salary_thousand">
+                                    <option value=""></option>
+                                    @for ($i = 0; $i < 100; $i+=5)
+                                    <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                    @endfor
+                                </select> -->
                             </div>
                         </div>
                     </div>
@@ -97,37 +122,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-8">
-                        <label>Salary Ranage</label>
-                        <div class="form-row">
-                            <div class="col-5 pr-1">
-                                <select class="form-control" name="range_salary_from">
-                                    <option value="">From</option>
-                                    @for ($i = 0; $i < 51; $i++)
-                                    <option value="{{ $i }}">{{ $i }} Lacs</option>
-                                    @endfor
-                                </select>
-                            </div>
-                            <div class="col-5 ml-3">
-                                <select class="form-control" name="range_salary_to">
-                                    <option value="">To</option>
-                                    @for ($i = 0; $i < 51; $i++)
-                                    <option value="{{ $i }}">{{ $i }} Lacs</option>
-                                    @endfor
-                                </select>
-                                <!-- <select class="form-control" name="range_salary_thousand">
-                                    <option value=""></option>
-                                    @for ($i = 0; $i < 100; $i+=5)
-                                    <option value="{{ $i }}">{{ $i }} Thousand</option>
-                                    @endfor
-                                </select> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- eduction start -->
                 <h4 class="text-left">Education Details</h4>
-                <div class="ug-qualification">
+                <div class="ug-qualification mb-3">
                     <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span>
                     <input type="hidden" name="graduation_type" value="3">
                     <div class="form-row">
@@ -251,6 +248,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- certification start  -->
+                <h4 class="text-left">Certification</h4>
                 <div class="certification-3">
                     <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
                     <div class="form-row">
@@ -273,7 +272,7 @@
                 <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">
                         <button class="btn btn-primary" type="submit">
-                           Search & Find the Relevant Candidates
+                           Search & Find the Relevant Job
                         </button>
                     </div>
                 </div>

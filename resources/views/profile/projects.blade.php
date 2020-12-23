@@ -21,7 +21,7 @@
                     @forelse ($projects as $project)
                         <div class="project-3">
                             <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span> -->
-                            <input type="hidden" name="user_project_id[]" value="{{ $project->user_project_id }}">
+                            <input type="hidden" name="user_project_id[]" id="user_project_id" value="{{ $project->user_project_id }}">
                             <div class="form-group">
                                 <label>Project Name</label>
                                 <input type="text" name="project_name[]" class="form-control" value="{{ $project->project_name }}" />
@@ -114,7 +114,7 @@
                     @empty
                         <div class="project-3">
                             <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span> -->
-                            <input type="hidden" name="user_project_id[]" value="0">
+                            <input type="hidden" name="user_project_id[]" id="user_project_id" value="0">
                             <div class="form-group">
                                 <label>Project Name</label>
                                 <input type="text" name="project_name[]" class="form-control" />
@@ -221,7 +221,7 @@
 </div>
 <div class="project-2 d-none">
     <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span> -->
-    <input type="hidden" name="user_project_id[]" value="0">
+    <input type="hidden" name="user_project_id[]" id="user_project_id" value="0">
     <div class="form-group">
         <label>Project Name</label>
         <input type="text" name="project_name[]" class="form-control" />

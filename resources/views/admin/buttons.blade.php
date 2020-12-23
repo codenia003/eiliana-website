@@ -307,8 +307,7 @@ Buttons
                     <div class="row">
                         <div class="col-6 text-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars ml-1"></i>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars ml-1"></i>
                                     Select Me
                                 </button>
                                 <div class="dropdown-menu">

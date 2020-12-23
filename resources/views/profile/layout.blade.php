@@ -145,6 +145,7 @@ Profile Setting
 	});
 	$(document).on('click','.remove-p',function() {
 		var cert_id = $(".project-3:last input#user_project_id").val();
+		console.log(cert_id);
 		if (cert_id != '0') {
 			ConfirmDelete(cert_id,'3');
 		} else {

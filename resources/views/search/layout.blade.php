@@ -30,16 +30,17 @@ Advance Search
 	    </div>
 	  </div>
 	</div>
-	<div class="shadow">	
+	<div class="shadow1">	
 		<div class="container space-1 space-top-lg-0 mt-lg-n10">
+	    	@yield('search_tab_content')
 	    	<div class="row">
-		        <div class="col-lg-8">
+		        <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
 		        	<div id="notific">
 			            @include('notifications')
 			        </div>
 		            @yield('search_content')
 		        </div>
-		        <div class="col-lg-4">
+		        <div class="col-lg-4 col-md-4 col-sm-4 col-12">
 		            <div id="sidebarNav" class="navbar-collapse navbar-vertical " style="">
 					    <div class="position-relative max-w-50rem mx-auto mobile-profile">
 					        <!-- Device Mockup -->

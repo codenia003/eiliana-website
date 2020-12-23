@@ -311,6 +311,15 @@ footer {
     /* border: 1px solid #003466; */
     /* border-right: 1px solid #e5e5e5; */
     border-radius: unset;
+
+}
+.profile-setting .singup-body .card {
+    border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
+
+}
+.profile-setting {
+    /*margin: 40px 0px;*/
 }
 .singup-body .card-header {
     background: #ffffff;
@@ -1061,7 +1070,7 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
     z-index: 9999;
 }
 .advance-search h4 {
-    color: #003466;
+    color: #418bca;
     margin: 15px 0px;
 }
 .advance-search span.h4 {
@@ -1086,10 +1095,10 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
     font-size: 15px;
     font-weight: 600;
 }
-.contract-profile {
+.browse-job-posting .contract-profile {
     text-align: right;
 }
-.contract-profile img.img-fluid {
+.browse-job-posting .contract-profile img.img-fluid {
     width: 100px;
 }
 .browse-project li.card {
@@ -1097,8 +1106,52 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
     box-shadow: 0 0 2px 2px #e4ecf7;
     border-radius: unset;
 }
-.advanced-search .shadow {
-    margin: 50px;
+.advanced-search .shadow1 {
+    margin: 30px;
+    box-shadow: unset !important;
+    border-radius: unset;
+}
+.contract-body p {
+    margin-bottom: 8px;
+}
+.bs-advanced .nav-tabs {
+    border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
+    padding: 0 20px;
+}
+.bs-advanced .nav-tabs .nav-link {
+    border: unset;
+    padding: 20px 0px !important;
+    margin: 0px 20px !important;
+    border-bottom: 2px solid #ffffff00;
+    font-size: 15px;
+    font-weight: 600;
+    color: #418bca;
+}
+.bs-advanced .nav-tabs .nav-link.active {
+    border-color: #418bca;
+}
+.btn-advanced {
+    display: block;
+}
+.btn-advanced button {
+    padding: 20px;
+    border-radius: initial;
+    background-color: transparent;
+    border: 1px solid #c7c7c7;
     box-shadow: 0 0 2px 2px #e4ecf7 !important;
+    color: #418bca;
+}
+.btn-advanced button i {
+    padding-right: 20px;
+    font-size: 20px;
+    color: #418bca;
+}
+.profile-basic span.h4 {
+    color: #418bca;
+}
+.browse-contract-staffing li.card {
+    border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
     border-radius: unset;
 }

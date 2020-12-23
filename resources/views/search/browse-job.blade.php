@@ -46,17 +46,15 @@
 </div>
 @stop
 @section('search_content')
-<div class="browse-contract-staffing">
+<div class="browse-job-posting">
     <div class="mb-3 mb-lg-5">
         <ul class="list-unstyled">
             <!-- Project -->
             <li class="card p-4 mb-4">
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row no-gutters">
+                    <div class="col-md-3 d-none">
                         <div class="contract-profile mb-1">
-                            <a href="#">
-                                <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
-                            </a>
+                            <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
                         </div>
                         <div class="contract-apply text-center">
                             <ul class="list-inline mb-0">
@@ -68,30 +66,30 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- <div class="refer-a-friend">
+                        <div class="refer-a-friend">
                             <a href="#" class="" title="">Refer a friend</a>
-                        </div> -->
+                        </div>
                         <div class="user-details">
                             
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="contract-body">
-                            <div class="mb-2">
-                                <a href="#" class="h3">Ankur Gupta</a>
-                            </div>
                             <div class="row no-gutters">
                                 <div class="col-md-6">
                                     <div class="mb-2">
-                                        <div class="display-5">Key Skills</div>
+                                        <div class="display-5">Profile Title</div>
                                         <p>Website Designing</p>
                                     </div>
                                 </div>
-                                <div class="col-md-6 d-none">
+                                <div class="col-md-6">
                                     <div class="contract-profile mb-1">
                                         <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="mb-2">
+                                <a href="#" class="h3">Eiliana India Pvt Ltd</a>
                             </div>
                             <div class="mb-2">
                                 <div class="display-5">Job Description</div>
@@ -118,7 +116,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3 duration">
-                                        <div class="display-5">No of Projects</div>
+                                        <div class="display-5">Duration of Project</div>
                                         <p>10</p>
                                     </div>
                                 </div>
@@ -128,12 +126,10 @@
                 </div>
             </li>
             <li class="card p-4 mb-4">
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row no-gutters">
+                    <div class="col-md-3 d-none">
                         <div class="contract-profile mb-1">
-                            <a href="#">
-                            <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
-                            </a>
+                            <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
                         </div>
                         <div class="contract-apply text-center">
                             <ul class="list-inline mb-0">
@@ -145,18 +141,15 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- <div class="refer-a-friend">
+                        <div class="refer-a-friend">
                             <a href="#" class="" title="">Refer a friend</a>
-                        </div> -->
+                        </div>
                         <div class="user-details">
                             
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="contract-body">
-                            <div class="mb-2">
-                                <a href="#" class="h3">Abhishek Singh</a>
-                            </div>
                             <div class="row no-gutters">
                                 <div class="col-md-6">
                                     <div class="mb-2">
@@ -164,11 +157,14 @@
                                         <p>Website Designing</p>
                                     </div>
                                 </div>
-                                <div class="col-md-6 d-none">
+                                <div class="col-md-6">
                                     <div class="contract-profile mb-1">
-                                        <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
+                                        <img src="https://codeniatechnologies.com/images/codenia-logo.png" alt="..." class="img-fluid"/>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="mb-2">
+                                <div class="display-5">Eiliana Inida Pvt Ltd</div>
                             </div>
                             <div class="mb-2">
                                 <div class="display-5">Job Description</div>
@@ -195,7 +191,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3 duration">
-                                        <div class="display-5">No of Projects</div>
+                                        <div class="display-5">Duration of Project</div>
                                         <p>10</p>
                                     </div>
                                 </div>

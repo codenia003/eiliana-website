@@ -88,7 +88,7 @@
                                     <div class="col-lg-10 col-12">
                                     <div class="input-group input-group-append">
                                     <span class="input-group-text">
-                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
+                                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
                                     </span>
                                         <input type="text" placeholder=" " name="first_name" id="first_name"
                                                class="form-control" value="{!! old('first_name',$user->first_name) !!}">

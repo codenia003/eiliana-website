@@ -234,7 +234,7 @@
                     @empty
                     <div class="employer-3">
                         <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Employer</span> -->
-                        <input type="hidden" name="employer_id[]" value="0">
+                        <input type="hidden" name="employer_id[]" id="employer_id" value="0">
                         <div class="form-group basic-info mb-3">
                             <div class="form-check form-check-inline">
                                 <div class="custom-control custom-radio">
@@ -334,7 +334,7 @@
 </div>
 <div class="employer-2 d-none">
     <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Employer</span> -->
-    <input type="hidden" name="employer_id[]" value="0">
+    <input type="hidden" name="employer_id[]" id="employer_id" value="0">
     <div class="form-row">
         <div class="form-group col-6">
             <label>Employer Name</label>

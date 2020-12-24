@@ -23,7 +23,7 @@ Home
 	    </div>
 	  </div>
 	</div>
-	<div class="container space-1 space-top-lg-0 mt-lg-n10">
+	<div class="container space-2">
 	    <div class="row">
 	        <div class="col-lg-3">
 	        	@include('_left_menu')

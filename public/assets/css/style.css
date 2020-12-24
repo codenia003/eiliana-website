@@ -192,6 +192,26 @@ footer .btn-ghost-light:hover, .btn-ghost-light:focus, .btn-ghost-light:active, 
 .w-lg-35 {
     width: 35% !important;
 }
+.eiliana-btn {
+    color: #fff;
+    border-radius: unset;
+    width: 220px;
+    height: 53px;
+    text-transform: capitalize;
+    line-height: 22px;
+    font-weight: 500;
+    font-size: 18px !important;
+    border-color: #ffffff;
+    background: rgb(168,129,222);
+    background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);
+}
+.eiliana-btn i {
+    float: right;
+}
+.dropdown-menu {
+    margin: 0;
+}
+
 /* haeder */
 .custom_header .nav-link {
     color: #000 !important;
@@ -550,6 +570,11 @@ span.border-title i {
     background-color: #de4b39;
     border-color: #de4b39;
 }
+.account-second-side a:hover {
+    background: #003466;
+    border-color: #003466;
+    color: #fff !important;
+}
 .singup-body select.form-control {
     border-radius: 0;
     background-color: #ffffff;
@@ -836,7 +861,7 @@ h3.form-tittle {
     padding-left: 0px; 
 }
 .singup-body .form-group.form-check label {
-    font-size: 13px;
+    font-size: 12px;
     color: #181818;
 }
 .omb_socialButtons a.btn i {
@@ -997,7 +1022,7 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
     background: #fff;
 }
 .account-register input:focus, .account-register input:valid {
-    border-color: #003466;
+    /*border-color: #003466;*/
 }
 
 .account-register .card {
@@ -1074,8 +1099,8 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
     margin: 15px 0px;
 }
 .advance-search span.h4 {
-    font-size: 15px;
-    display: none !important;
+    font-size: 16px;
+    /* display: none !important; */
 }
 .contract-apply a.btn-icon {
     color: #de4b39;

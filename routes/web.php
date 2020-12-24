@@ -417,6 +417,7 @@ Route::group(
     }
 );
 
+Route::get('post-job', 'JobController@index')->name('post-job');
 Route::resource('user_emails', 'UsersEmailController');
 
 // contact form

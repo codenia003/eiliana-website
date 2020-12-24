@@ -84,7 +84,7 @@
                     </div>
                     
 
-                    <div class="form-group basic-info">
+                    <div class="form-group basic-info mb-3">
                         <label>Model Of Freelancing Engagement</label>
                         <br>
                         <div class="form-check form-check-inline">
@@ -205,7 +205,7 @@
                         </div>
                     </div>
 
-    	            <div class="form-group basic-info">
+    	            <div class="form-group basic-info mb-3">
                         <label>Model Of Engagement</label>
                         <br>
                         <div class="form-check form-check-inline">

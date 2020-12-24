@@ -80,7 +80,7 @@ Login
                         <div class="account-second-side text-center">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Not a member yet?</p>
-                            <a href="/account/register" class="btn btn-light bt btn-lg">SignUp Now</a>
+                            <a href="/account/register" class="btn btn-light bt btn-lg">Signup Now</a>
                         </div>
                     </div>
                 </div>

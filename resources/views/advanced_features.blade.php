@@ -115,7 +115,6 @@ Advanced Features
         <!-- Switch Section Start -->
         <div class="col-md-6 col-lg-6 col-sm-6 col-12">
             <h3>Switches</h3>
-            <input class="make-switch" data-on-text="YES" data-off-text="NO" type="checkbox" data-size="small">
             <input type="checkbox" class="js-switch2" checked />
         </div>
         <!-- //Switch Section End -->

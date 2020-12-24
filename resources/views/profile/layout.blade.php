@@ -32,7 +32,7 @@ Profile Setting
 {{-- content --}}
 @section('content')
 <div class="profile-setting">
-	<div class="container space-1 space-top-lg-0 mt-lg-n10">
+	<div class="container space-2">
 	    <div class="row">
 	        <div class="col-lg-8">
 	        	<div id="notific">

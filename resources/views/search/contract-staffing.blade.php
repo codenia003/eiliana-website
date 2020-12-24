@@ -6,7 +6,7 @@
         {{-- @csrf --}}
         <div class="card">
             <div class="card-body p-4">
-                <div class="basic-info">
+                <div class="basic-info mb-3">
                     <label>Type of Project</label>
                     <div class="form-check form-check-inline ml-3">
                         <div class="custom-control custom-radio">
@@ -35,14 +35,14 @@
                     <div class="form-group col-6">
                         <label>Total Experience</label>
                         <div class="form-row">
-                            <div class="col-5">
+                            <div class="col">
                                 <select class="form-control" name="experience_year">
                                     @for ($i = 0; $i < 21; $i++)
                                     <option value="{{ $i }}">{{ $i }} Years</option>
                                     @endfor
                                 </select>
                             </div>
-                            <div class="col-5">
+                            <div class="col">
                                 <select class="form-control" name="experience_month">
                                     @for ($i = 1; $i < 13; $i++)
                                     <option value="{{ $i }}">{{ $i }} Months</option>
@@ -54,7 +54,7 @@
                     <div class="form-group col-6">
                         <label>Salary Ranage</label>
                         <div class="form-row">
-                            <div class="col-5 pr-1">
+                            <div class="col">
                                 <select class="form-control" name="range_salary_from">
                                     <option value="">From</option>
                                     @for ($i = 0; $i < 51; $i++)
@@ -62,7 +62,7 @@
                                     @endfor
                                 </select>
                             </div>
-                            <div class="col-5 ml-3">
+                            <div class="col">
                                 <select class="form-control" name="range_salary_to">
                                     <option value="">To</option>
                                     @for ($i = 0; $i < 51; $i++)
@@ -122,13 +122,14 @@
                         </select>
                     </div>
                 </div>
+                
                 <!-- eduction start -->
                 <h4 class="text-left">Education Details</h4>
                 <div class="ug-qualification mb-3">
                     <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span>
                     <input type="hidden" name="graduation_type" value="3">
                     <div class="form-row">
-                        <div class="form-group col-4">
+                        <div class="form-group col-5">
                             <label>UG Qualification</label>
                             <select name="degree" class="form-control" >
                                 <option value=""></option>
@@ -139,8 +140,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-1">
-                        </div>
+                        <!-- <div class="form-group col-1"></div> -->
                         <div class="form-group col-7">
                             <label>University Name</label>
                             <select name="name" class="form-control">
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-4">
+                        <div class="form-group col-5">
                             <label>Year of Graduation</label>
                             <div class="form-row">
                                 <div class="col">
@@ -173,8 +173,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-1">
-                        </div>
+                        <!-- <div class="form-group col-1"></div> -->
                         <div class="form-group col-7">
                             <label>Education Type</label>
                             <select name="education_type" class="form-control">
@@ -190,7 +189,7 @@
                     <span class="h4 text-left mt-3 mb-4 d-inline-block">PG Qualification</span>
                     <input type="hidden" name="graduation_type" value="4">
                     <div class="form-row">
-                        <div class="form-group col-4">
+                        <div class="form-group col-5">
                             <label>PG Qualification</label>
                             <select name="degree" class="form-control">
                                 <option value=""></option>
@@ -201,8 +200,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-1">
-                        </div>
+                        <!-- <div class="form-group col-1"></div> -->
                         <div class="form-group col-7">
                             <label>University Name</label>
                             <select name="name" class="form-control">
@@ -214,7 +212,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-4">
+                        <div class="form-group col-5">
                             <label>Year of Graduation</label>
                             <div class="form-row">
                                 <div class="col">
@@ -235,8 +233,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-1">
-                        </div>
+                        <!-- <div class="form-group col-1"></div> -->
                         <div class="form-group col-7">
                             <label>Education Type</label>
                             <select name="education_type" class="form-control">
@@ -253,12 +250,11 @@
                 <div class="certification-3">
                     <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
                     <div class="form-row">
-                        <div class="form-group col-4">
+                        <div class="form-group col-5">
                             <label>Certification Number</label>
                             <input type="text" name="certificate_no" class="form-control"/>
                         </div>
-                        <div class="form-group col-1">
-                        </div>
+                        <!-- <div class="form-group col-1"></div> -->
                         <div class="form-group col-7">
                             <label>Certification Name</label>
                             <input type="text" name="name" class="form-control"/>

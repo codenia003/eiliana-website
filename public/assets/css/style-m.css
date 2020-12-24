@@ -33,4 +33,7 @@
 	    top: 30px !important;
 	    left: 95px !important;
 	}
+	.singup-body .form-group.form-check label {
+	    font-size: 11px;
+	}
 }

@@ -5,7 +5,7 @@
     <form action="{{ url('/advance-search/updateProfile') }}" method="POST">
         @csrf
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-none">
                 <div class="basic-info">
                     <label>Type of Project</label>
                     <div class="form-check form-check-inline ml-3">
@@ -30,10 +30,19 @@
             </div>
             <div class="card-body p-4">
                 <div class="form-group">
-                    <label>Looking to develope</label>
-                    <input type="text" name="username" class="form-control" value="" />
+                    <label>Looking to develop</label>
+                    <select name="project_category" class="form-control">
+                        <option value=""></option>
+                        @foreach ($projectcategorys as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="form-group basic-info">
+                <div class="form-group">
+                    <label>Any Keyword(Key Skills)</label>
+                    <input type="text" name="keyword" class="form-control" value="" required />
+                </div>
+                <div class="form-group basic-info mb-3">
                     <label>Model Of Engagement</label>
                     <br>
                     <div class="form-check form-check-inline">
@@ -58,17 +67,32 @@
                     </select>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-8">
+                    <div class="form-group col">
+                        <label>Framework</label>
+                        {!! Form::selectRange('version[]', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+                    </div>
+                    <div class="form-group col">
+                        <label>Industry that Product was designed for</label>
+                        <select name="industry[]" class="form-control">
+                            <option value=""></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
                         <label>Total Experience</label>
                         <div class="form-row">
-                            <div class="col">
+                            <div class="col-5">
                                 <select class="form-control" name="experience_year">
-                                    @for ($i = 1; $i < 21; $i++)
+                                    @for ($i = 0; $i < 21; $i++)
                                     <option value="{{ $i }}">{{ $i }} Years</option>
                                     @endfor
                                 </select>
                             </div>
-                            <div class="col">
+                            <div class="col-5">
                                 <select class="form-control" name="experience_month">
                                     @for ($i = 1; $i < 13; $i++)
                                     <option value="{{ $i }}">{{ $i }} Months</option>
@@ -77,21 +101,39 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Industry that Product was designed for</label>
-                    <select name="industry" class="form-control">
-                        <option value=""></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
+                    <div class="form-group col-6">
+                        <label>Budget</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <select class="form-control" name="range_salary_from">
+                                    <option value="">From</option>
+                                    @for ($i = 0; $i < 51; $i++)
+                                    <option value="{{ $i }}">{{ $i }} Lacs</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select class="form-control" name="range_salary_to">
+                                    <option value="">To</option>
+                                    @for ($i = 0; $i < 51; $i++)
+                                    <option value="{{ $i }}">{{ $i }} Lacs</option>
+                                    @endfor
+                                </select>
+                                <!-- <select class="form-control" name="range_salary_thousand">
+                                    <option value=""></option>
+                                    @for ($i = 0; $i < 100; $i+=5)
+                                    <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                    @endfor
+                                </select> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group basic-info mb-3">
                     <label>Sort By</label>
                     <div class="form-check form-check-inline ml-3">
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="Relevance" name="sortby" class="custom-control-input" value="0">
+                            <input type="radio" id="Relevance" name="sortby" class="custom-control-input" value="0" checked="">
                             <label class="custom-control-label" for="Relevance">Relevance</label>
                         </div>
                     </div>

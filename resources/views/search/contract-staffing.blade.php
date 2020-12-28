@@ -6,7 +6,7 @@
         {{-- @csrf --}}
         <div class="card">
             <div class="card-body p-4">
-                <div class="basic-info mb-3">
+                <div class="basic-info mb-3 d-none">
                     <label>Type of Project</label>
                     <div class="form-check form-check-inline ml-3">
                         <div class="custom-control custom-radio">
@@ -35,14 +35,14 @@
                     <div class="form-group col-6">
                         <label>Total Experience</label>
                         <div class="form-row">
-                            <div class="col">
+                            <div class="col-5">
                                 <select class="form-control" name="experience_year">
                                     @for ($i = 0; $i < 21; $i++)
                                     <option value="{{ $i }}">{{ $i }} Years</option>
                                     @endfor
                                 </select>
                             </div>
-                            <div class="col">
+                            <div class="col-5">
                                 <select class="form-control" name="experience_month">
                                     @for ($i = 1; $i < 13; $i++)
                                     <option value="{{ $i }}">{{ $i }} Months</option>
@@ -88,11 +88,12 @@
                             <option value="2">2</option>
                         </select>
                     </div>
-                    <div class="form-group col">
+                    <div class="form-group col-5">
                         <label>Framework</label>
                         {!! Form::selectRange('framework', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
                     </div>
-                    <div class="form-group col">
+                    <div class="form-group col-1"></div>
+                    <div class="form-group col-6">
                         <label>Industry that Product was designed for</label>
                         <select name="industry" class="form-control">
                             <option value=""></option>
@@ -103,7 +104,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col">
+                    <div class="form-group col-5">
                         <label>Current Location</label>
                         <select name="current_location" class="form-control">
                             <option value=""></option>
@@ -112,7 +113,8 @@
                             <option value="3">3</option>
                         </select>
                     </div>
-                    <div class="form-group col">
+                    <div class="form-group col-1"></div>
+                    <div class="form-group col-6">
                         <label>Preferred Location</label>
                         <select name="preferred_location" class="form-control">
                             <option value=""></option>
@@ -140,8 +142,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <!-- <div class="form-group col-1"></div> -->
-                        <div class="form-group col-7">
+                        <div class="form-group col-1"></div>
+                        <div class="form-group col-6">
                             <label>University Name</label>
                             <select name="name" class="form-control">
                                 <option value=""></option>
@@ -173,8 +175,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="form-group col-1"></div> -->
-                        <div class="form-group col-7">
+                        <div class="form-group col-1"></div>
+                        <div class="form-group col-6">
                             <label>Education Type</label>
                             <select name="education_type" class="form-control">
                                 <option value=""></option>
@@ -200,8 +202,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <!-- <div class="form-group col-1"></div> -->
-                        <div class="form-group col-7">
+                        <div class="form-group col-1"></div>
+                        <div class="form-group col-6">
                             <label>University Name</label>
                             <select name="name" class="form-control">
                                 <option value=""></option>
@@ -233,8 +235,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="form-group col-1"></div> -->
-                        <div class="form-group col-7">
+                        <div class="form-group col-1"></div>
+                        <div class="form-group col-6">
                             <label>Education Type</label>
                             <select name="education_type" class="form-control">
                                 <option value=""></option>
@@ -254,8 +256,8 @@
                             <label>Certification Number</label>
                             <input type="text" name="certificate_no" class="form-control"/>
                         </div>
-                        <!-- <div class="form-group col-1"></div> -->
-                        <div class="form-group col-7">
+                        <div class="form-group col-1"></div>
+                        <div class="form-group col-6">
                             <label>Certification Name</label>
                             <input type="text" name="name" class="form-control"/>
                         </div>
@@ -263,6 +265,27 @@
                     <div class="form-group">
                         <label>Valid Till</label>
                         <input type="date" name="valid_till" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group basic-info mb-3">
+                    <label>Sort By</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="Relevance" name="sortby" class="custom-control-input" value="0" checked="">
+                            <label class="custom-control-label" for="Relevance">Relevance</label>
+                        </div>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="Resume" name="sortby" class="custom-control-input" value="1">
+                            <label class="custom-control-label" for="Resume">Resume Fresher</label>
+                        </div>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="Last" name="sortby" class="custom-control-input" value="1">
+                            <label class="custom-control-label" for="Last">Last Active Date</label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group text-right mt-5">

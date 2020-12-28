@@ -32,10 +32,9 @@ Home
               <div class="col-md-7">
                 <div class="banner1_content">
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                   <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">< Find Projects</a>
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
                   </div>
                 </div>
               </div>
@@ -50,10 +49,9 @@ Home
                   <div class="mb-4">
                       <div class="banner1_content">
                         <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                        <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                         <div class="group_button">
                           <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
                         </div>
                       </div>
                   </div>
@@ -70,10 +68,9 @@ Home
               <div class="col-md-6">
                 <div class="banner1_content">
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                   <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
                   </div>
                 </div>
               </div>
@@ -88,10 +85,9 @@ Home
                   <div class="mb-4">
                       <div class="banner1_content">
                         <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                        <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                         <div class="group_button">
-                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
                         </div>
                       </div>
                   </div>
@@ -108,10 +104,9 @@ Home
               <div class="col-md-7">
                 <div class="banner1_content">
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                   <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
                   </div>
                 </div>
               </div>
@@ -126,10 +121,9 @@ Home
                   <div class="mb-4">
                       <div class="banner1_content">
                         <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                        <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                         <div class="group_button">
-                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
                         </div>
                       </div>
                   </div>

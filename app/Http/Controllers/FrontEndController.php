@@ -388,6 +388,7 @@ class FrontEndController extends JoshController
             Sentinel::logout();
         }
         // Redirect to the users page
+        // return view('logout');    
         return redirect('account/login')->with('success', 'You have successfully logged out!');
     }
 }

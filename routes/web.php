@@ -343,6 +343,7 @@ Route::group(
         Route::get('home', 'FrontEndController@getDashboard')->name('home');
         Route::get('search-project', 'ProjectController@getSearchProject')->name('search-project');
         Route::get('/project/{id}', 'ProjectController@getProjectDeatils');
+        Route::get('post-job', 'JobController@index')->name('post-job');
     }
 );
 // My account display and update details
@@ -417,8 +418,12 @@ Route::group(
     }
 );
 
-Route::get('post-job', 'JobController@index')->name('post-job');
+
 Route::resource('user_emails', 'UsersEmailController');
+
+Route::get('hire-talent', 'JobController@hireTalent')->name('hire-talent');
+Route::get('job-posting', 'JobController@jobProject')->name('job-posting');
+Route::get('talent-search', 'JobController@talentSearch')->name('talent-search');
 
 // contact form
 Route::post('contact', 'FrontEndController@postContact')->name('contact');

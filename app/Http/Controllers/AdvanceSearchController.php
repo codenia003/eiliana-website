@@ -20,6 +20,7 @@ use App\Models\Project;
 use App\Models\Qualification;
 use App\Models\University;
 use App\Models\EducationType;
+use App\Models\ProjectCategory;
 use stdClass;
 use Carbon\Carbon;
 
@@ -29,7 +30,9 @@ class AdvanceSearchController extends Controller
     public function projects()
     {
         // Show the page
-        return view('search/projects');
+        $projectcategorys = ProjectCategory::all();
+        
+        return view('search/projects', compact('projectcategorys'));
     }
 
     public function contractStaffing(Request $request)

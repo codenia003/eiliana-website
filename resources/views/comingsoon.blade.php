@@ -20,6 +20,32 @@ Coming Soon
 	footer.custome-footer {
 	    display: none;
 	}
+    section.section1 .bg-img-hero img.img-fluid {
+        position: absolute;
+        width: 450px;
+    }
+    section.section1 .slider1 .bg-img-hero img{
+        left: 18%;
+    }
+    section.section1 .slider2 .bg-img-hero img{
+        left: 8%;
+        top: 6%;
+    }
+    section.section1 .slider3 .bg-img-hero img{
+        left: 8%;
+    }
+    section.section1 .slider4 .bg-img-hero img{
+        left: 5%;
+        top: 5%;
+    }
+    section.section1 .slider5 .bg-img-hero img{
+        left: 23.5%;
+    }
+    section.section1 .slider6 .bg-img-hero img{
+        left: 8%;
+        top: 6%;
+    }
+
 </style>
 @stop
 {{-- slider --}}
@@ -35,13 +61,13 @@ Coming Soon
               <div class="col-md-5">
               </div>
               <div class="col-md-7">
+                <img src="/assets/img/coomingsoon.png" class="img-fluid" alt="coomingsoon">
                 <div class="banner1_content">
-                  <!-- <img src="/assets/img/coomingsoon.png" class="img-fluid" alt="coomingsoon"> -->
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                   <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                    <!-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> -->
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
                   </div>
                 </div>
               </div>
@@ -54,11 +80,12 @@ Coming Soon
           <div class="container space-2 space-lg-4">
               <div class="w-md-65 w-lg-35">
                   <div class="mb-4">
+                      <img src="/assets/img/coomingsoon.png" class="img-fluid" alt="coomingsoon">
                       <div class="banner1_content">
                         <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                        <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                         <div class="group_button">
                           <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                          <!-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> -->
                           <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
                         </div>
                       </div>
@@ -74,12 +101,13 @@ Coming Soon
               <div class="col-md-6">
               </div>
               <div class="col-md-6">
+                <img src="/assets/img/coomingsoon.png" class="img-fluid" alt="coomingsoon">
                 <div class="banner1_content">
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                   <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                    <!-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> -->
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
                   </div>
                 </div>
               </div>
@@ -92,12 +120,13 @@ Coming Soon
           <div class="container space-2 space-lg-4">
               <div class="w-md-65 w-lg-35">
                   <div class="mb-4">
+                      <img src="/assets/img/coomingsoon.png" class="img-fluid" alt="coomingsoon">
                       <div class="banner1_content">
                         <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                        <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                         <div class="group_button">
-                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                          <!-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> -->
+                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
                         </div>
                       </div>
                   </div>
@@ -112,12 +141,13 @@ Coming Soon
               <div class="col-md-5">
               </div>
               <div class="col-md-7">
+                <img src="/assets/img/coomingsoon.png" class="img-fluid" alt="coomingsoon">
                 <div class="banner1_content">
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                   <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                    <!-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> -->
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
                   </div>
                 </div>
               </div>
@@ -129,13 +159,14 @@ Coming Soon
         <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-6-1.png);">
           <div class="container space-2 space-lg-4">
               <div class="w-md-65 w-lg-35">
+                  <img src="/assets/img/coomingsoon.png" class="img-fluid" alt="coomingsoon">
                   <div class="mb-4">
                       <div class="banner1_content">
                         <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                        <!-- <p>Nullam quis ante. Etiam sit amet orci eget eros faucibus <br>tincidunt. Duis leo. Fringilla mauris sit amet. Donec sodales</p> -->
                         <div class="group_button">
-                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#"><!-- <span><i class="fa fa-search"></i></span> --> Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#"><!-- <span><i class="fa fa-user"></i></span> --> Hire Talent</a>
+                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                          <!-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> -->
+                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
                         </div>
                       </div>
                   </div>

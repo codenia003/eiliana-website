@@ -353,86 +353,78 @@ Home
   </div>
 </section>
 <section class="section container py-4 mt-1">
-  <div class="text-center">
-    <h1 class="headingmain1">Looking For A Project</h1>
-    <p class="subtitle1">Tell us your preference and we’ll help you choose the right one.</p>
-    <div class="dividerheading"></div>
-  </div>
-  <div class="banner_custom">
-    <div class="banner_custom_services">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="find_a_job">
-            <div class="border_text">
-              Find a project by timing
-            </div>
-            <ul class="find_project_by_timingfirst">
-              <li class="availableforaweak">
-                <div class="availablexyzdays">
-                  I’m available for X days for Y hours
-                </div>
-                <div class="dividersectiontest">
-                  <div class="dividerfindjob"></div>
-                </div>
-                <div class="find_job_button">
-                  <a class="btn_small red-linear-gradient" href="#">Find Job <!-- <span>></span> --></a>
-                </div>
-              </li>
-              <li class="availableforaweak">
-                <div class="availablexyzdays">
-                  I’m available for X days for Y hours
-                </div>
-                <div class="dividersectiontest">
-                  <div style="width: 90px;" class="dividerfindjob"></div>
-                </div>
-                <div class="find_job_button">
-                  <a class="btn_small yellow-linear-gradient" href="#">Find Job <!-- <span>></span> --></a>
-                </div>
-              </li>
-              <li class="availableforaweak">
-                <div class="availablexyzdays">
-                  I’m available for X days for Y hours
-                </div>
-                <div class="dividersectiontest">
-                  <div style="width: 120px;" class="dividerfindjob"></div>
-                </div>
-                <div class="find_job_button">
-                  <a class="btn_small red-linear-gradient" href="#">Find Job <!-- <span>></span> --></a>
-                </div>
-              </li>
-              <li class="availableforaweak">
-                <div class="availablexyzdays">
-                  I’m available for X days for Y hours
-                </div>
-                <div class="dividersectiontest">
-                  <div style="width: 150px;" class="dividerfindjob"></div>
-                </div>
-                <div class="find_job_button">
-                  <a class="btn_small yellow-linear-gradient" href="#">Find Job <!-- <span>></span> --></a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="find_a_job find_a_jobsec">
-            <div class="border_text">
-              Find a projecat by timing
-            </div>
-            <div class="find_project_by_timing">
-              <img class="img-fluid" src="/assets/img/map_image1.jpg">
-              <div class="search_by_name">
-                <div class="example" action="#">
-                  <input type="text" placeholder="Search.." name="search2">
-                  <button type="submit" class="btn_small red-linear-gradient">Find Job <!-- <span>></span> --></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="text-center">
+        <h1 class="headingmain1">Looking For A Project</h1>
+        <p class="subtitle1">Tell us your preference and we’ll help you choose the right one.</p>
+        <div class="dividerheading"></div>
     </div>
-  </div>
+    <div class="banner_custom">
+        <div class="singup-body login-body account-register">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h4 class="card-header text-left">Find Your Contract Job</h4>
+                        <div class="card-body">
+                            <form action="#" method="POST" id="register_basic_form">
+                                @csrf
+                                <div class="form-row">
+                                    <div class="form-group col-3">
+                                        <label>Key Skills</label>
+                                        <input type="text" name="keyskills" class="form-control" />
+                                    </div>
+
+                                    <div class="form-group col-3">
+                                        <label>Location</label>
+                                        <input type="text" name="location" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label>Experience</label>
+                                        <input type="text" name="experience" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-3 pt-2">
+                                        <br>
+                                        <div class="find_job_button">
+                                            <button class="btn btn-primary btn_small red-linear-gradient">
+                                                Find Job
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="job-details p-4">
+                        <h1>Java</h1>
+                        <div class="company-info">
+                            <span>TMB Tech Pvt. Ltd.</span>
+                            <span>Delhi</span>
+                            <span>0-1 Year</span>
+                        </div>
+                        <p class="descx">Lorems  sumpum</p>
+                        <div class="find_job_button">
+                            <a class="btn_small yellow-linear-gradient" href="#">Find Job</a>
+                        </div>
+                    </div>  
+                </div>
+                <div class="col-md-6">
+                    <div class="job-details p-4">
+                        <h1>Java</h1>
+                        <div class="company-info">
+                            <span>TMB Tech Pvt. Ltd.</span>
+                            <span>Delhi</span>
+                            <span>0-1 Year</span>
+                        </div>
+                        <p class="descx">Lorems  sumpum</p>
+                        <div class="find_job_button">
+                            <a class="btn_small yellow-linear-gradient" href="#">Find Job</a>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="section container my-2">
   <div class="text-center mb-5">

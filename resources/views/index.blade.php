@@ -362,29 +362,28 @@ Home
         <div class="singup-body login-body account-register">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card1">
                         <h4 class="card-header text-left">Find Your Contract Job</h4>
                         <div class="card-body">
                             <form action="#" method="POST" id="register_basic_form">
                                 @csrf
                                 <div class="form-row">
-                                    <div class="form-group col-3">
+                                    <div class="form-group col-3 mr-4">
                                         <label>Key Skills</label>
                                         <input type="text" name="keyskills" class="form-control" />
                                     </div>
-
-                                    <div class="form-group col-3">
+                                    <div class="form-group col-3 mr-4">
                                         <label>Location</label>
                                         <input type="text" name="location" class="form-control" />
                                     </div>
-                                    <div class="form-group col-3">
+                                    <div class="form-group col-3 mr-4">
                                         <label>Experience</label>
                                         <input type="text" name="experience" class="form-control" />
                                     </div>
-                                    <div class="form-group col-3 pt-2">
+                                    <div class="form-group col pt-2">
                                         <br>
                                         <div class="find_job_button">
-                                            <button class="btn btn-primary btn_small red-linear-gradient">
+                                            <button class="big_btn_shadow red-linear-gradient text-white">
                                                 Find Job
                                             </button>
                                         </div>
@@ -395,7 +394,7 @@ Home
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="job-details p-4">
+                    <div class="job-details m-4 p-4">
                         <h1>Java</h1>
                         <div class="company-info">
                             <span>TMB Tech Pvt. Ltd.</span>
@@ -404,12 +403,12 @@ Home
                         </div>
                         <p class="descx">Lorems  sumpum</p>
                         <div class="find_job_button">
-                            <a class="btn_small yellow-linear-gradient" href="#">Find Job</a>
+                            <a class="btn_small yellow-linear-gradient" href="#">Apply</a>
                         </div>
                     </div>  
                 </div>
                 <div class="col-md-6">
-                    <div class="job-details p-4">
+                    <div class="job-details m-4 p-4">
                         <h1>Java</h1>
                         <div class="company-info">
                             <span>TMB Tech Pvt. Ltd.</span>
@@ -418,7 +417,7 @@ Home
                         </div>
                         <p class="descx">Lorems  sumpum</p>
                         <div class="find_job_button">
-                            <a class="btn_small yellow-linear-gradient" href="#">Find Job</a>
+                            <a class="btn_small yellow-linear-gradient" href="#">Apply</a>
                         </div>
                     </div>  
                 </div>
@@ -435,7 +434,12 @@ Home
     <div class="row">
       <div class="col col1 pb-5 mb-md-0 border-right pt-4">
         <ul class="list-unstyled list-article">
-          <li><a class="link-underline" href="#">App Development</a></li>
+            <li class="dropdown">
+                <a class="link-underline dropdown-toggle" data-toggle="dropdown" href="#">App Development</a>
+                <div class="dropdown-menu">
+                  
+                </div>
+            </li>
           <li><a class="link-underline" href="#">Designing & Architecture</a></li>
           <li><a class="link-underline" href="#">IT Infrastructure</a></li>
           <li><a class="link-underline" href="#">SAP Skills</a></li>
@@ -447,7 +451,12 @@ Home
 
       <div class="col col1 pb-5 mb-md-0 border-right pt-4">
         <ul class="list-unstyled list-article">
-          <li><a class="link-underline" href="#">Sales & Marketing</a></li>
+          <li class="dropdown">
+            <a class="link-underline dropdown-toggle" data-toggle="dropdown" href="#">Sales & Marketing</a>
+            <div class="dropdown-menu">
+               
+            </div>
+          </li>
           <li><a class="link-underline" href="#">Legal</a></li>
           <li><a class="link-underline" href="#">CXO On Demand</a></li>
           <li><a class="link-underline" href="#">HTML</a></li>

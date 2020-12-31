@@ -46,7 +46,7 @@
 					                    <!-- <br> -->
 					                    <div class="form-check form-check-inline">
 					                        <div class="custom-control custom-radio">
-					                            <input type="radio" id="Freelance" class="custom-control-input" name="lookingfor" onchange="changeLookingFor(event)" value="2">
+					                            <input type="radio" id="Freelance" class="custom-control-input" name="lookingfor" onchange="changeLookingFor(event)" value="2" checked>
 					                            <label class="custom-control-label" for="Freelance">Freelance Projects</label>
 					                        </div>
 					                    </div>
@@ -58,7 +58,7 @@
 					                    </div>
 					                </div>
 
-					                <div class="projects d-none">
+					                <div class="projects">
 					                	<div class="form-group">
                                             <label>Category</label>
                                             <select name="industry" class="form-control">
@@ -88,22 +88,6 @@
 	                                                    <option value="{{ $i }}">{{ $i }}</option>
 	                                                    @endfor
 	                                                </select>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-					                	<div class="basic-info mb-3 ">
-	                                        <label>Search Method</label>
-	                                        <br>
-	                                        <div class="form-check form-check-inline">
-	                                            <div class="custom-control custom-radio">
-	                                                <input type="radio" id="support" class="custom-control-input" name="top" value="1" checked="">
-	                                                <label class="custom-control-label" for="support">Job Posting</label>
-	                                            </div>
-	                                        </div>
-	                                        <div class="form-check form-check-inline">
-	                                            <div class="custom-control custom-radio">
-	                                                <input type="radio" id="development" class="custom-control-input" name="top" value="2">
-	                                                <label class="custom-control-label" for="development">Database Search</label>
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -140,23 +124,23 @@
 	                                            <option value="2">2</option>
 	                                        </select>
 	                                    </div>
-	                                    <div class="basic-info mb-3 ">
-	                                        <label>Search Method</label>
-	                                        <br>
-	                                        <div class="form-check form-check-inline">
-	                                            <div class="custom-control custom-radio">
-	                                                <input type="radio" id="support" class="custom-control-input" name="top" value="1" checked="">
-	                                                <label class="custom-control-label" for="support">Job Posting</label>
-	                                            </div>
-	                                        </div>
-	                                        <div class="form-check form-check-inline">
-	                                            <div class="custom-control custom-radio">
-	                                                <input type="radio" id="development" class="custom-control-input" name="top" value="2">
-	                                                <label class="custom-control-label" for="development">Database Search</label>
-	                                            </div>
-	                                        </div>
-	                                    </div>
 					                </div>
+                                    <div class="basic-info mb-3 ">
+                                        <label>Search Method</label>
+                                        <br>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="support" class="custom-control-input" name="top" value="1" checked="">
+                                                <label class="custom-control-label" for="support">Job Posting</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="development" class="custom-control-input" name="top" value="2">
+                                                <label class="custom-control-label" for="development">Database Search</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
                                             <button class="btn btn-primary" type="submit">
@@ -170,7 +154,9 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-7 col-12">
-                	<img src="/assets/img/profile/hire-right.png" class="img-fluid" alt="">
+                	<div class="projects">
+                		<img src="/assets/img/profile/hire-right.png" class="img-fluid" alt="">
+                	</div>
                 	<div class="border bg-img-hero right-colume d-none" style="background: linear-gradient(to left, rgb(0 0 0 / 0%), rgb(0 0 0 / 0.65)), url(/assets/img/others/hire-talent.png);">
         				<div class="row no-gutters">
         					<div class="col-md-4">
@@ -262,6 +248,58 @@
         					</div>
         				</div>
                 	</div>
+                	<div class="contractual d-none">
+                		<div class="slider4">
+					        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-hirec.png);background-size: contain;border: 1px solid #e5e5e5;">
+					          	<div class="list-menu">
+    								<ul class="list-inline mb-2">
+				                        <li>
+				                            <a class="nav-link active" href="#">Post a Job</a>
+				                        </li>
+				                        <li>
+				                            <a class="nav-link" href="#">Login</a>
+				                        </li>
+				                        <li>
+				                            <a class="nav-link" href="#">Sing Up</a>
+				                        </li>
+				                        <li>
+				                            <a class="nav-link" href="#">Help</a>
+				                        </li>
+				                        <li>
+				                            <a class="nav-link" href="#"><i class="fas fa-bars"></i></a>
+				                        </li>
+				                    </ul>
+    							</div>
+					          	<div class="w-md-65 w-lg-35">
+				                  	<div class="mb-4">
+				                      	<div class="contractual_content">
+				                        	<h2>Transforming lives Through</h2>
+				                        	<h3>next Generation</h3>
+				                        	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor, nulla sagittis tempu liquetnunc.</p>
+				                        	<div class="group_button">
+							                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Download Cv</a>
+							                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Me</a>
+							                </div>
+				                      	</div>
+				                  	</div>
+				              	</div>
+				              	<div class="row">
+								    <div class="col-md-3 offset-md-1">
+								    	<h4>UI/UX Designer</h4>
+								        <span>Creative website for you</span>
+								    </div>
+								    <div class="col-md-3">
+								        <h4>Photographer</h4>
+								        <span>Awesome photo & video.</span>
+								    </div>
+								    <div class="col-md-3">
+								       <h4>Freelancer</h4>
+								       <span>Hire me now</span>
+								    </div>
+								</div>
+					        </div>
+					    </div>
+                	</div>
                 </div>
             </div>
         </div>
@@ -280,7 +318,7 @@
 
 	function changeLookingFor(e) {
         var anonymous = e.target.value;
-        console.log(anonymous);
+        // console.log(anonymous);
         if (anonymous == '1') {
             $('.contractual').removeClass("d-none");
             $('.projects').addClass("d-none");

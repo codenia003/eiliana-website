@@ -208,9 +208,6 @@ footer .btn-ghost-light:hover, .btn-ghost-light:focus, .btn-ghost-light:active, 
 .eiliana-btn i {
     float: right;
 }
-.dropdown-menu {
-    margin: 0;
-}
 .bg-pink {
     background-color: #eb0d80;
 }
@@ -424,81 +421,6 @@ footer {
     padding: 10px 5px;
     font-size: 15px;
     border-radius: 0px;
-}
-.link-underline {
-    color: #595959;
-    border-bottom: 0.0625rem solid #595959;
-}
-.link-underline:hover {
-    border-color: #b8180c;
-}
-.explore-more {
-    /*border-bottom-left-radius: 50px !important;*/
-    /*border-top-right-radius: 50px !important;*/
-}
-.explore-more li {
-  margin: 3px 0px;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 4px 0px;
-  position: relative;
-}
-.why-choose-us img.img-fluid {
-    height: 240px;
-    object-fit: cover;
-}
-
-.our-slotuion h3 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-.our-slotuion p {
-    font-size: 13px;
-    padding: 12px;
-    text-align: center;
-    min-height: 120px;
-}
-.our-slotuion a.btn {
-    color: #b8180c;
-    /* border-color: #b8180c; */
-    border-radius: 22px;
-    padding: 7px 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 13px;
-}
-.our-slotuion a.btn:hover {
-    background: none;
-    color: #000 !important;
-    border-color: #000;
-}
-.newsletter .input-group input {
-    border-radius: 30px;
-    height: 55px;
-    padding: 27px;
-}
-.newsletter .input-group button {
-  border-radius: 33px !important;
-  width: 230px;
-  /*background: #cd1b14;*/
-  border-color: #cd1b14;
-  position: relative;
-  left: -25px;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 20px;
-
-}
-.newsletter h2 {
-    font-size: 2rem;
-}
-.newsletter p {
-    font-size: 14px;
-}
-.video-player a.js-inline-video-player img {
-  border: 1px solid #b8180c;
-  padding: 15px;
 }
 .register-otp .card-footer p {
     margin: 13px;
@@ -812,33 +734,6 @@ a.login_signup {
 .singup-body.login-body.profile-basic {
     /* border: 1px solid #0053c3; */
 }
-.explore-more li a {
-  -webkit-transition: all 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
-  transition: all 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
-  color: #595959;
-  border: none;
-}
-.explore-more li:hover a:after{
-  width: 40px;
-  color: #b8180c;
-}
-.explore-more li a:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 1px;
-    border-bottom: 2px solid;
-    display: inline-block;
-    -webkit-transition: 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
-    -o-transition: 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
-    transition: 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
-    display: none;
-}
-/*.explore-more li a:hover {
-  padding: 10px 10px;
-}*/
 h3.form-tittle {
     margin: 30px 0px;
     font-size: 20px;
@@ -1257,9 +1152,10 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 }
 .hire-talent img.img-fluid {
     width: 100%;
-    height: 225px;
-    /*object-fit: cover;*/
-    padding: 18px 18px 0px;
+    /* height: 225px; */
+    /* object-fit: cover; */
+    padding: 0px 20px 0px;
+    margin-left: 120px;
 }
 .hire-talent .slick-slide {
     margin: 0 10px;
@@ -1291,6 +1187,24 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
     font-size: 25px;
     font-weight: 400;
 }
+.hire-talent .container {
+    max-width: 1230px !important;
+}
+.hire-talent .advance-search .card-header {
+    margin: 0;
+    padding: 10px 0px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #003466;
+}
+.hire-talent .login-body label {
+    font-size: 18px;
+    color: #003466;
+}
+.hire-talent label.custom-control-label {
+    font-size: 15px;
+    color: #595959;
+}
 
 /*home page new*/
 .search-form {
@@ -1309,11 +1223,4 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 .logout .img-fluid {
     z-index: -1;
     position: relative;
-}
-.find_job_button button {
-    width: 100% !important;
-    border-color: #bb180e !important;
-}
-.job-details {
-    border: 1px solid #e5e5e5;
 }

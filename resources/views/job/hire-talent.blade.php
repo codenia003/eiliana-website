@@ -29,7 +29,7 @@
 @section('content')
 <div class="hire-talent">
 	<div class="shadow1">   
-        <div class="container-fluid space-2">
+        <div class="container space-2">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-0">
                     <div id="notific">
@@ -39,10 +39,11 @@
                         <form action="{{ url('/talent-search') }}" method="post" id="postJobForm" enctype="multipart/form-data">
                             {{-- @csrf --}}
                             <div class="card">
-                                <div class="p-4">
-                                	<div class="form-group basic-info">
-					                    <label><span>Looking For</span></label>
-					                    <hr>
+                                <div class="px-3 py-2">
+                                	<h4 class="card-header text-left">Looking For</h4>
+                                	<div class="form-group basic-info my-3">
+					                    <!-- <label><span>Looking For</span></label> -->
+					                    <!-- <br> -->
 					                    <div class="form-check form-check-inline">
 					                        <div class="custom-control custom-radio">
 					                            <input type="radio" id="Freelance" class="custom-control-input" name="lookingfor" onchange="changeLookingFor(event)" value="2">
@@ -56,6 +57,106 @@
 					                        </div>
 					                    </div>
 					                </div>
+
+					                <div class="projects d-none">
+					                	<div class="form-group">
+                                            <label>Category</label>
+                                            <select name="industry" class="form-control">
+                                                <option value=""></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                        </div>
+					                	<div class="form-group">
+	                                        <label>Project Duration</label>
+	                                        <div class="form-row">
+	                                            <div class="col">
+	                                                <select class="form-control" name="experience_year">
+	                                                    <option value="">Minimum</option>}
+	                                                    option
+	                                                    @for ($i = 0; $i < 21; $i++)
+	                                                    <option value="{{ $i }}">{{ $i }}</option>
+	                                                    @endfor
+	                                                </select>
+	                                            </div>
+	                                            <div class="col">
+	                                                <select class="form-control" name="experience_month">
+	                                                    <option value="">Maximum</option>}
+	                                                    option
+	                                                    @for ($i = 1; $i < 21; $i++)
+	                                                    <option value="{{ $i }}">{{ $i }}</option>
+	                                                    @endfor
+	                                                </select>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+					                	<div class="basic-info mb-3 ">
+	                                        <label>Search Method</label>
+	                                        <br>
+	                                        <div class="form-check form-check-inline">
+	                                            <div class="custom-control custom-radio">
+	                                                <input type="radio" id="support" class="custom-control-input" name="top" value="1" checked="">
+	                                                <label class="custom-control-label" for="support">Job Posting</label>
+	                                            </div>
+	                                        </div>
+	                                        <div class="form-check form-check-inline">
+	                                            <div class="custom-control custom-radio">
+	                                                <input type="radio" id="development" class="custom-control-input" name="top" value="2">
+	                                                <label class="custom-control-label" for="development">Database Search</label>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+					                </div>
+					                <div class="contractual d-none">
+						                <div class="form-group">
+				                            <label>Key Skills</label>
+				                            <input type="text" name="key_skills" class="form-control" />
+				                        </div>
+						                <div class="form-group">
+	                                        <label>Experience</label>
+	                                        <div class="form-row">
+				                                <div class="col">
+				                                    <select class="form-control" required="" name="experience_year">
+				                                        @for ($i = 0; $i < 21; $i++)
+				                                        <option value="{{ $i }}">{{ $i }} Years</option>
+				                                        @endfor
+				                                    </select>
+				                                </div>
+				                                <div class="col">
+				                                    <select class="form-control" required="" name="experience_month">
+				                                        @for ($i = 1; $i < 13; $i++)
+				                                        <option value="{{ $i }}">{{ $i }} Months</option>
+				                                        @endfor
+				                                    </select>
+				                                </div>
+				                            </div>
+	                                    </div>
+	                                    <div class="form-group">
+	                                        <label>Job Location</label>
+	                                        <select name="customer_industry" class="form-control" required>
+	                                            <option value=""></option>
+	                                            <option value="1">1</option>
+	                                            <option value="2">2</option>
+	                                        </select>
+	                                    </div>
+	                                    <div class="basic-info mb-3 ">
+	                                        <label>Search Method</label>
+	                                        <br>
+	                                        <div class="form-check form-check-inline">
+	                                            <div class="custom-control custom-radio">
+	                                                <input type="radio" id="support" class="custom-control-input" name="top" value="1" checked="">
+	                                                <label class="custom-control-label" for="support">Job Posting</label>
+	                                            </div>
+	                                        </div>
+	                                        <div class="form-check form-check-inline">
+	                                            <div class="custom-control custom-radio">
+	                                                <input type="radio" id="development" class="custom-control-input" name="top" value="2">
+	                                                <label class="custom-control-label" for="development">Database Search</label>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+					                </div>
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
                                             <button class="btn btn-primary" type="submit">
@@ -68,8 +169,9 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-8 col-sm-8 col-12">
-                	<div class="border bg-img-hero right-colume" style="background: linear-gradient(to left, rgb(0 0 0 / 0%), rgb(0 0 0 / 0.65)), url(/assets/img/others/hire-talent.png);">
+                <div class="col-lg-7 col-md-7 col-sm-7 col-12">
+                	<img src="/assets/img/profile/hire-right.png" class="img-fluid" alt="">
+                	<div class="border bg-img-hero right-colume d-none" style="background: linear-gradient(to left, rgb(0 0 0 / 0%), rgb(0 0 0 / 0.65)), url(/assets/img/others/hire-talent.png);">
         				<div class="row no-gutters">
         					<div class="col-md-4">
         						<div class="left-side h-100">
@@ -112,7 +214,7 @@
 	        									<div class="col-md-5 offset-sm-1">
 	        										<div class="crowd_favrt">
 									                    <div class="servicesimg">
-									                        <img class="img-fluid bg-red" src="/assets/img/profile/hire-2.png">
+									                        <img class="img-fluid" src="/assets/img/photo/client1.png">
 									                        <div class="media align-items-center mb-0 mt-2">
 								                              	<span class="d-block font-size-1 mr-3 text-white">Lorem Ipsum</span>
 								                              	<div class="media-body text-right">
@@ -126,7 +228,7 @@
 								                              	</div>
 								                            </div>
 								                            <div class="media align-items-center mb-3">
-								                              	<span class="d-block mr-3 text-white">Digital</span>
+								                              	<span class="d-block mr-3 text-white">2 Digital</span>
 								                            </div>
 									                    </div>
 									                </div>
@@ -134,7 +236,7 @@
 	        									<div class="col-md-5">
 	        										<div class="crowd_favrt">
 									                    <div class="servicesimg">
-									                        <img class="img-fluid bg-pink" src="/assets/img/profile/hire-1.png">
+									                        <img class="img-fluid" src="/assets/img/photo/client2.jpg">
 									                        <div class="media align-items-center mb-0 mt-2">
 								                              	<span class="d-block font-size-1 mr-3 text-white">Lorem Ipsum</span>
 								                              	<div class="media-body text-right">
@@ -148,7 +250,7 @@
 								                              	</div>
 								                            </div>
 								                            <div class="media align-items-center mb-3">
-								                              	<span class="d-block mr-3 text-white">Software Developer</span>
+								                              	<span class="d-block mr-3 text-white">2 Software Developer</span>
 								                            </div>
 									                    </div>
 									                </div>
@@ -160,82 +262,6 @@
         					</div>
         				</div>
                 	</div>
-                	<div class="contractual d-none">
-                		<div class="slider4">
-					        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-hirec.png);background-size: contain;border: 1px solid #e5e5e5;">
-					          	<div class="list-menu">
-    								<ul class="list-inline mb-2">
-				                        <li>
-				                            <a class="nav-link active" href="#">Post a Job</a>
-				                        </li>
-				                        <li>
-				                            <a class="nav-link" href="#">Login</a>
-				                        </li>
-				                        <li>
-				                            <a class="nav-link" href="#">Sing Up</a>
-				                        </li>
-				                        <li>
-				                            <a class="nav-link" href="#">Help</a>
-				                        </li>
-				                        <li>
-				                            <a class="nav-link" href="#"><i class="fas fa-bars"></i></a>
-				                        </li>
-				                    </ul>
-    							</div>
-					          	<div class="w-md-65 w-lg-35">
-				                  	<div class="mb-4">
-				                      	<div class="contractual_content">
-				                        	<h2>Transforming lives Through</h2>
-				                        	<h3>next Generation</h3>
-				                        	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor, nulla sagittis tempu liquetnunc.</p>
-				                        	<div class="group_button">
-							                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Download Cv</a>
-							                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Me</a>
-							                </div>
-				                      	</div>
-				                  	</div>
-				              	</div>
-				              	<div class="row">
-								    <div class="col-md-3 offset-md-1">
-								    	<h4>UI/UX Designer</h4>
-								        <span>Creative website for you</span>
-								    </div>
-								    <div class="col-md-3">
-								        <h4>Photographer</h4>
-								        <span>Awesome photo & video.</span>
-								    </div>
-								    <div class="col-md-3">
-								       <h4>Freelancer</h4>
-								       <span>Hire me now</span>
-								    </div>
-								</div>
-					        </div>
-					    </div>
-                	</div>
-                	<div class="projects d-none">
-	                	<div class="basic-info mb-3 ">
-                            <label>Type of Project</label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="support" class="custom-control-input" name="top" value="1" checked="">
-                                    <label class="custom-control-label" for="support">Support</label>
-                                </div>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="development" class="custom-control-input" name="top" value="2">
-                                    <label class="custom-control-label" for="development">Development</label>
-                                </div>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="both" class="custom-control-input" name="top" value="3">
-                                    <label class="custom-control-label" for="both">Support Cum Development</label>
-                                </div>
-                            </div>
-                        </div>
-	                </div>
                 </div>
             </div>
         </div>

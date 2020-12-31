@@ -1,4 +1,4 @@
-@extends('layouts/default')
+  @extends('layouts/default')
 
 {{-- Page title --}}
 @section('title')
@@ -368,11 +368,11 @@ Home
                             <form action="#" method="POST" id="register_basic_form">
                                 @csrf
                                 <div class="form-row">
-                                    <div class="form-group col-3 mr-4">
+                                    <div class="form-group col-3 mr-5">
                                         <label>Key Skills</label>
                                         <input type="text" name="keyskills" class="form-control" />
                                     </div>
-                                    <div class="form-group col-3 mr-4">
+                                    <div class="form-group col-3 mr-5">
                                         <label>Location</label>
                                         <input type="text" name="location" class="form-control" />
                                     </div>
@@ -393,15 +393,17 @@ Home
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="job-details m-4 p-4">
-                        <h1>Java</h1>
+                        <h2>Java Developer</h2>
                         <div class="company-info">
-                            <span>TMB Tech Pvt. Ltd.</span>
+                            <span>Eiliana India Pvt. Ltd.</span>
                             <span>Delhi</span>
                             <span>0-1 Year</span>
                         </div>
-                        <p class="descx">Lorems  sumpum</p>
+                        <p class="descx">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print.</p>
                         <div class="find_job_button">
                             <a class="btn_small yellow-linear-gradient" href="#">Apply</a>
                         </div>
@@ -409,20 +411,24 @@ Home
                 </div>
                 <div class="col-md-6">
                     <div class="job-details m-4 p-4">
-                        <h1>Java</h1>
+                        <h2>PHP Developer</h2>
                         <div class="company-info">
-                            <span>TMB Tech Pvt. Ltd.</span>
+                            <span>Eiliana India Pvt. Ltd.</span>
                             <span>Delhi</span>
                             <span>0-1 Year</span>
                         </div>
-                        <p class="descx">Lorems  sumpum</p>
+                        <p class="descx">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print.</p>
                         <div class="find_job_button">
                             <a class="btn_small yellow-linear-gradient" href="#">Apply</a>
                         </div>
                     </div>  
+                </div>
+                <div class="col-md-12 text-right">
+                    <a class="view-alljobs" href="#">View All Jobs <span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span></a>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 <section class="section container my-2">
@@ -435,9 +441,37 @@ Home
       <div class="col col1 pb-5 mb-md-0 border-right pt-4">
         <ul class="list-unstyled list-article">
             <li class="dropdown">
-                <a class="link-underline dropdown-toggle" data-toggle="dropdown" href="#">App Development</a>
+                <a class="link-underline" data-toggle="dropdown" href="#">App Development</a>
                 <div class="dropdown-menu">
-                  
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#">Active</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Link item</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Link item</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="">
+                                    <img src="https://dummyimage.com/200x100/ccc/000&amp;text=image+link" alt="" class="img-fluid">
+                                    <p class="text-white">Short image call to action</p>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="">
+                                    <img src="https://dummyimage.com/200x100/ccc/000&amp;text=image+link" alt="" class="img-fluid">
+                                    <p class="text-white">Short image call to action</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </li>
           <li><a class="link-underline" href="#">Designing & Architecture</a></li>

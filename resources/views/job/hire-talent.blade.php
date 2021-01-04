@@ -248,57 +248,8 @@
         					</div>
         				</div>
                 	</div>
-                	<div class="contractual d-none">
-                		<div class="slider4">
-					        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-hirec.png);background-size: contain;border: 1px solid #e5e5e5;">
-					          	<div class="list-menu">
-    								<ul class="list-inline mb-2">
-				                        <li>
-				                            <a class="nav-link active" href="#">Post a Job</a>
-				                        </li>
-				                        <li>
-				                            <a class="nav-link" href="#">Login</a>
-				                        </li>
-				                        <li>
-				                            <a class="nav-link" href="#">Sing Up</a>
-				                        </li>
-				                        <li>
-				                            <a class="nav-link" href="#">Help</a>
-				                        </li>
-				                        <li>
-				                            <a class="nav-link" href="#"><i class="fas fa-bars"></i></a>
-				                        </li>
-				                    </ul>
-    							</div>
-					          	<div class="w-md-65 w-lg-35">
-				                  	<div class="mb-4">
-				                      	<div class="contractual_content">
-				                        	<h2>Transforming lives Through</h2>
-				                        	<h3>next Generation</h3>
-				                        	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor, nulla sagittis tempu liquetnunc.</p>
-				                        	<div class="group_button">
-							                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Download Cv</a>
-							                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Me</a>
-							                </div>
-				                      	</div>
-				                  	</div>
-				              	</div>
-				              	<div class="row">
-								    <div class="col-md-3 offset-md-1">
-								    	<h4>UI/UX Designer</h4>
-								        <span>Creative website for you</span>
-								    </div>
-								    <div class="col-md-3">
-								        <h4>Photographer</h4>
-								        <span>Awesome photo & video.</span>
-								    </div>
-								    <div class="col-md-3">
-								       <h4>Freelancer</h4>
-								       <span>Hire me now</span>
-								    </div>
-								</div>
-					        </div>
-					    </div>
+                	<div class="contractual padding-c d-none">
+                		<img src="/assets/img/profile/hire-right-2.png" class="img-fluid" alt="">
                 	</div>
                 </div>
             </div>

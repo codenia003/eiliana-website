@@ -274,7 +274,7 @@ Job Post
                                     <div class="mb-3 mt-3">
                                         <button class="btn eiliana-btn btn-copy-ug" type="button">Add Education <span class="fa fa-plus"></span></button>
 
-                                        <!-- <button type="button" class="remove-ug btn eiliana-btn ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button> -->
+                                        <button type="button" class="remove-ug btn eiliana-btn ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
                                     </div>
                                     <div class="pg-qualification-1">
                                         <div class="pg-qualification">
@@ -345,31 +345,33 @@ Job Post
                                     <div class="mt-3">
                                         <button class="btn eiliana-btn btn-copy-pg" type="button">Add Education <span class="fa fa-plus"></span></button>
 
-                                        <!-- <button type="button" class="remove-pg btn eiliana-btn ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button> -->
+                                        <button type="button" class="remove-pg btn eiliana-btn ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
                                     </div>
                                     <!-- certification start  -->
                                     <h4 class="text-left">Certification</h4>
-                                    <div class="certification-3">
-                                        <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
-                                        <div class="form-row">
-                                            <div class="form-group col-5">
-                                                <label>Certification Number</label>
-                                                <input type="text" name="certificate_no" class="form-control"/>
+                                    <div class="certification-1">
+                                        <div class="certification">
+                                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
+                                            <div class="form-row">
+                                                <div class="form-group col-5">
+                                                    <label>Certification Number</label>
+                                                    <input type="text" name="certificate_no" class="form-control"/>
+                                                </div>
+                                                <!-- <div class="form-group col-1"></div> -->
+                                                <div class="form-group col-7">
+                                                    <label>Certification Name</label>
+                                                    <input type="text" name="name" class="form-control"/>
+                                                </div>
                                             </div>
-                                            <!-- <div class="form-group col-1"></div> -->
-                                            <div class="form-group col-7">
-                                                <label>Certification Name</label>
-                                                <input type="text" name="name" class="form-control"/>
+                                            <div class="form-group">
+                                                <label>Valid Till</label>
+                                                <input type="date" name="valid_till" class="form-control"/>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Valid Till</label>
-                                            <input type="date" name="valid_till" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <button class="btn eiliana-btn btn-copy-c" type="button">Add Certification <span class="fa fa-plus"></span></button>
-                                        <!-- <button type="button" class="remove-c btn eiliana-btn ml-3 rounded-0">Erase Certification <span class="fas fa-times"></span></button> -->
+                                        <button type="button" class="remove-c btn eiliana-btn ml-3 rounded-0">Erase Certification <span class="fas fa-times"></span></button>
                                     </div>
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
@@ -464,6 +466,31 @@ $(document).ready(function() {
     var init = new Switchery(elem, {
         size: 'small',
         color: '#003466',
+    });
+
+    $(function(){
+        $(".btn-copy-ug").on('click', function(){
+            var element = '<div class="ug-qualification-3">'+$('.ug-qualification').html()+'</div>';
+            $('.ug-qualification-1').append(element);
+
+        });
+        $(".btn-copy-pg").on('click', function(){
+            var element = '<div class="pg-qualification-3">'+$('.pg-qualification').html()+'</div>';
+            $('.pg-qualification-1').append(element);
+        });
+        $(".btn-copy-c").on('click', function(){
+            var element = '<div class="certification-3">'+$('.certification').html()+'</div>';
+            $('.certification-1').append(element);
+        });
+    });
+    $(document).on('click','.remove-ug',function() {
+        $(".ug-qualification-3:last").remove();
+    });
+    $(document).on('click','.remove-pg',function() {
+        $(".pg-qualification-3:last").remove();
+    });
+    $(document).on('click','.remove-c',function() {
+        $(".certification-3:last").remove();
     });
 });
 </script>

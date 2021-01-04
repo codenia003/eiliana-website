@@ -54,6 +54,6 @@ class JobController extends Controller
         	'lookingfor' => '2'
     	];
         
-        return view('job/hire-talent', compact('pagename'));
+        return view('job/job-posting', compact('pagename'));
     }
 }

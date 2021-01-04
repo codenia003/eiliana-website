@@ -11,7 +11,6 @@
 <!--page level css starts-->
 <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
 <link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/slick-carousel/slick.css') }}">
 <!--end of page level css-->
 @stop
 {{-- breadcrumb --}}
@@ -264,7 +263,6 @@
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/frontend/jquery.circliful.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendors/slick-carousel/slick.min.js') }}"></script>
 <script>
 
 	function changeLookingFor(e) {
@@ -280,23 +278,6 @@
             $('.projects').removeClass("d-none");
         }
     }
-    $(document).ready(function() {
-	    $('.multiple-carousel').slick({
-	        "slidesToShow": 2,
-	        "slidesToScroll": 2,
-	        "nextArrow": "<span class=\"fa fa-angle-right slick-arrow slick-arrow-soft-white slick-arrow-right slick-arrow-centered-y rounded-circle mr-sm-2 mr-xl-4\"></span>",
-	        "prevArrow": "<span class=\"fa fa-angle-left slick-arrow slick-arrow-soft-white slick-arrow-left slick-arrow-centered-y rounded-circle ml-sm-2 ml-xl-4\"></span>",
-	        "dots": false,
-	        "infinite": true,
-	        "responsive": [{
-	            "breakpoint": 768,
-	            "settings": {
-	                "slidesToShow": 1,
-	                "arrows": false
-	             }
-	        }]
-	    });
-    });
 </script>
 <!--global js end-->
 @stop

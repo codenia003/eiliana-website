@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label>Any Keyword(Key Skills)</label>
-                    <input type="text" name="keyword" class="form-control" value="" required />
+                    <input type="text" name="keyword" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" required />
                 </div>
                 <div class="form-row">
                     <div class="form-group col-6">
@@ -38,14 +38,14 @@
                             <div class="col-5">
                                 <select class="form-control" name="experience_year">
                                     @for ($i = 0; $i < 21; $i++)
-                                    <option value="{{ $i }}">{{ $i }} Years</option>
+                                    <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_year']==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                     @endfor
                                 </select>
                             </div>
                             <div class="col-5">
                                 <select class="form-control" name="experience_month">
                                     @for ($i = 1; $i < 13; $i++)
-                                    <option value="{{ $i }}">{{ $i }} Months</option>
+                                    <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_month']==$i)? "selected" : "" }}>{{ $i }} Months</option>
                                     @endfor
                                 </select>
                             </div>
@@ -124,7 +124,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <!-- eduction start -->
                 <h4 class="text-left">Education Details</h4>
                 <div class="ug-qualification mb-3">

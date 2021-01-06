@@ -50,6 +50,7 @@
     <div class="mb-3 mb-lg-5">
         <ul class="list-unstyled">
             <!-- Project -->
+            @foreach ($users as $user)
             <li class="card p-4 mb-4">
                 <div class="row">
                     <div class="col-md-3">
@@ -72,19 +73,19 @@
                             <a href="#" class="" title="">Refer a friend</a>
                         </div> -->
                         <div class="user-details">
-                            
+
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="contract-body">
                             <div class="mb-2">
-                                <a href="#" class="h3">Ankur Gupta</a>
+                                <a href="#" class="h3">{{ $user->full_name }}</a>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Key Skills</div>
-                                        <p>Website Designing</p>
+                                        <p>{{ $user->key_skills }}{{ $user->profile_headline }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 d-none">
@@ -107,19 +108,19 @@
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Experience</div>
-                                        <p>4 Years 5 Month</p>
+                                        <p>{{ $user->experience_year }} Years {{ $user->experience_month }} Month</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Location</div>
-                                        <p>Delhi</p>
+                                        <p>{{ $user->current_location }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3 duration">
                                         <div class="display-5">No of Projects</div>
-                                        <p>10</p>
+                                        <p>{{ $user->support_project + $user->development_project }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +128,9 @@
                     </div>
                 </div>
             </li>
-            <li class="card p-4 mb-4">
+            @endforeach
+            <!-- End Project -->
+            <li class="card p-4 mb-4 d-none">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="contract-profile mb-1">
@@ -149,7 +152,7 @@
                             <a href="#" class="" title="">Refer a friend</a>
                         </div> -->
                         <div class="user-details">
-                            
+
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -204,7 +207,6 @@
                     </div>
                 </div>
             </li>
-            <!-- End Project -->
         </ul>
     </div>
     <!-- <div class="card mb-3 mb-lg-5 p-4 text-center d-block">

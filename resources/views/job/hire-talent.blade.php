@@ -27,7 +27,7 @@
 {{-- content --}}
 @section('content')
 <div class="hire-talent">
-	<div class="shadow1">   
+	<div class="shadow1">
         <div class="container space-2">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-0">
@@ -35,8 +35,8 @@
                         @include('notifications')
                     </div>
                     <div class="advance-search singup-body login-body">
-                        <form action="{{ url('/talent-search') }}" method="post" id="postJobForm" enctype="multipart/form-data">
-                            {{-- @csrf --}}
+                        <form action="{{ url('/talent-search') }}" method="post" id="hireTalentForm" enctype="multipart/form-data">
+                            @csrf
                             <div class="card">
                                 <div class="px-3 py-2">
                                 	<h4 class="card-header text-left">Looking For</h4>
@@ -45,13 +45,13 @@
 					                    <!-- <br> -->
 					                    <div class="form-check form-check-inline">
 					                        <div class="custom-control custom-radio">
-					                            <input type="radio" id="Freelance" class="custom-control-input" name="lookingfor" onchange="changeLookingFor(event)" value="2" checked>
+					                            <input type="radio" id="Freelance" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="2" checked>
 					                            <label class="custom-control-label" for="Freelance">Freelance Projects</label>
 					                        </div>
 					                    </div>
 					                    <div class="form-check form-check-inline">
 					                        <div class="custom-control custom-radio">
-					                            <input type="radio" id="Contractual" class="custom-control-input" name="lookingfor" onchange="changeLookingFor(event)" value="1">
+					                            <input type="radio" id="Contractual" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="1">
 					                            <label class="custom-control-label" for="Contractual">Contractual Staffing</label>
 					                        </div>
 					                    </div>
@@ -60,29 +60,26 @@
 					                <div class="projects">
 					                	<div class="form-group">
                                             <label>Category</label>
-                                            <select name="industry" class="form-control">
-                                                <option value=""></option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
+                                            <select name="project_category" class="form-control">
+                                                @foreach ($projectcategorys as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
 					                	<div class="form-group">
 	                                        <label>Project Duration</label>
 	                                        <div class="form-row">
 	                                            <div class="col">
-	                                                <select class="form-control" name="experience_year">
-	                                                    <option value="">Minimum</option>}
-	                                                    option
+	                                                <select class="form-control" name="dur_minimum">
+	                                                    <option value="">Minimum</option>
 	                                                    @for ($i = 0; $i < 21; $i++)
 	                                                    <option value="{{ $i }}">{{ $i }}</option>
 	                                                    @endfor
 	                                                </select>
 	                                            </div>
 	                                            <div class="col">
-	                                                <select class="form-control" name="experience_month">
-	                                                    <option value="">Maximum</option>}
-	                                                    option
+	                                                <select class="form-control" name="dur_maximum">
+	                                                    <option value="">Maximum</option>
 	                                                    @for ($i = 1; $i < 21; $i++)
 	                                                    <option value="{{ $i }}">{{ $i }}</option>
 	                                                    @endfor
@@ -117,7 +114,7 @@
 	                                    </div>
 	                                    <div class="form-group">
 	                                        <label>Job Location</label>
-	                                        <select name="customer_industry" class="form-control" required>
+	                                        <select name="current_location" class="form-control">
 	                                            <option value=""></option>
 	                                            <option value="1">1</option>
 	                                            <option value="2">2</option>
@@ -129,13 +126,13 @@
                                         <br>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="support" class="custom-control-input" name="top" value="1" checked="">
+                                                <input type="radio" id="support" class="custom-control-input" name="search_method" value="1" checked="">
                                                 <label class="custom-control-label" for="support">Job Posting</label>
                                             </div>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="development" class="custom-control-input" name="top" value="2">
+                                                <input type="radio" id="development" class="custom-control-input" name="search_method" value="2">
                                                 <label class="custom-control-label" for="development">Database Search</label>
                                             </div>
                                         </div>
@@ -168,7 +165,7 @@
         								<h4>Consultant</h4>
         								<p>4.5 Yrs Experience, India</p>
         							</div>
-        				
+
         						</div>
         					</div>
         					<div class="col-md-8">
@@ -240,7 +237,7 @@
 									                    </div>
 									                </div>
 	        									</div>
-	        								</div>	
+	        								</div>
         								</div>
         							</div>
         						</div>
@@ -264,9 +261,12 @@
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/frontend/jquery.circliful.js') }}"></script>
 <script>
-
-	function changeLookingFor(e) {
-        var anonymous = e.target.value;
+    $(window).bind("load", function() {
+        changeLookingFor();
+    });
+	function changeLookingFor() {
+        // var anonymous = e.target.value;
+        var anonymous = $('input[name="lookingfor"]:checked').attr('value');
         // console.log(anonymous);
         if (anonymous == '1') {
             $('.contractual').removeClass("d-none");

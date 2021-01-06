@@ -303,7 +303,7 @@ Route::group(
 
         Route::get('registerotp', 'AuthController@getregisterotp')->name('registerotp');
         Route::post('registerotp', 'AuthController@postregisterotp')->name('registerotp');
-        
+
         Route::get('registerbasic', 'AuthController@getregisterbasic')->name('registerbasic');
         Route::post('registerbasic', 'AuthController@postregisterbasic')->name('registerbasic');
 
@@ -314,7 +314,7 @@ Route::group(
         Route::post('login', 'AuthController@postLogin')->name('login');
 
         Route::get('activate/{userId}/{activationCode}', 'FrontEndController@getActivate')->name('activate');
-        
+
         Route::get('forgot-password', 'FrontEndController@getForgotPassword')->name('forgot-password');
         Route::post('forgot-password', 'FrontEndController@postForgotPassword');
     }
@@ -359,19 +359,19 @@ Route::group(
         Route::post('/uploadProfilePic', 'ProfileController@uploadProfilePic');
 
         Route::get('addtional-info', 'ProfileController@addtionalInfo')->name('addtional-info');
-        
+
         // education
         Route::get('education', 'ProfileController@education')->name('education');
         Route::post('/registereducation', 'ProfileController@registerEducation');
         Route::get('/deleteducation', 'ProfileController@deleteEducation');
         // Route::get('education/education-add', 'ProfileController@educationAdd')->name('education/education-add');
         // Route::get('education/education-edit/{id}', 'ProfileController@educationEdit');
-        
+
         Route::get('certification', 'ProfileController@certification')->name('certification');
         Route::post('/registercertification', 'ProfileController@registerCertification');
         Route::get('/deletecertification', 'ProfileController@deleteCertification');
         // Route::get('certification/certification-add', 'ProfileController@certificationAdd');
-        
+
         Route::get('professional-experience', 'ProfileController@professionalExperience')->name('professional-experience');
         Route::post('registerprofexp', 'ProfileController@resgiterProfessionalExperience')->name('professional-experience');
 
@@ -423,7 +423,7 @@ Route::resource('user_emails', 'UsersEmailController');
 
 Route::get('hire-talent', 'JobController@hireTalent')->name('hire-talent');
 Route::get('job-posting', 'JobController@jobProject')->name('job-posting');
-Route::get('talent-search', 'JobController@talentSearch')->name('talent-search');
+Route::post('talent-search', 'JobController@talentSearch')->name('talent-search');
 
 // contact form
 Route::post('contact', 'FrontEndController@postContact')->name('contact');

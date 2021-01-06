@@ -28,7 +28,7 @@ Job Post
             </div>
         </div>
     </div>
-    <div class="shadow1">   
+    <div class="shadow1">
         <div class="container space-1 space-top-lg-0 mt-lg-n10">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -136,7 +136,7 @@ Job Post
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Technology Preference</label>
@@ -202,7 +202,7 @@ Job Post
                                         <label>Auto Match:&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <input type="checkbox" class="js-switch2" checked />
                                     </div>
-                                    
+
                                     <!-- eduction start -->
                                     <h4 class="text-left">Education Details</h4>
                                     <div class="ug-qualification-1">
@@ -373,6 +373,136 @@ Job Post
                                         <button class="btn eiliana-btn btn-copy-c" type="button">Add Certification <span class="fa fa-plus"></span></button>
                                         <button type="button" class="remove-c btn eiliana-btn ml-3 rounded-0">Erase Certification <span class="fas fa-times"></span></button>
                                     </div>
+                                    <!-- question set -->
+                                    <div class="border mt-5">
+                                        <div class="p-4 border-bottom">
+                                            <h4 class="text-left">Question 1</h4>
+                                            <div class="question1-1">
+                                                <div class="question1">
+                                                    <div class="form-group">
+                                                        {{-- <label>Question</label> --}}
+                                                        <input type="text" name="question" class="form-control"/>
+                                                    </div>
+                                                    <div class="form-group basic-info my-3">
+                                                        <label>Lorem Isume</label>
+                                                        <br>
+                                                        <div class="form-check form-check-inline">
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="Yes" class="custom-control-input" name="lookingfor" value="1" checked>
+                                                                <label class="custom-control-label" for="Yes">Yes</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="No" class="custom-control-input" name="lookingfor" value="0">
+                                                                <label class="custom-control-label" for="No">No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn eiliana-btn btn-copy-q1" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                <button type="button" class="remove-q1 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 border-bottom">
+                                            <h4 class="text-left">Question 2</h4>
+                                            <div class="question2-1">
+                                                <div class="question2">
+                                                    <div class="form-group">
+                                                        {{-- <label>Question</label> --}}
+                                                        <input type="text" name="question" class="form-control"/>
+                                                    </div>
+                                                    <div class="form-group basic-info my-3">
+                                                        <label>Lorem Isume</label>
+                                                        <br>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxQue1" name="model_engagement" value="1">
+                                                            <label class="form-check-label" for="inlineCheckboQue1">Lorem Isume</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxQue2" name="model_engagement" value="2">
+                                                            <label class="form-check-label" for="inlineCheckboxQue2">Lorem Isume</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn eiliana-btn btn-copy-q2" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                <button type="button" class="remove-q2 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 border-bottom">
+                                            <h4 class="text-left">Question 3</h4>
+                                            <div class="question3-1">
+                                                <div class="question3">
+                                                    <div class="form-group">
+                                                        {{-- <label>Question</label> --}}
+                                                        <input type="text" name="question" class="form-control"/>
+                                                    </div>
+                                                    <div class="form-row align-items-center">
+                                                        <div class="form-group col-2">
+                                                            <label>Lorem Isume</label>
+                                                        </div>
+                                                        <div class="form-group input-group col-4">
+                                                            <input type="text" class="form-control">
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-btn input-group-append">
+                                                                    <button class="btn btn-secondary input-group-text image_radius" type="button">
+                                                                        <i class="fas fa-percent"></i>
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn eiliana-btn btn-copy-q3" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                <button type="button" class="remove-q3 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 border-bottom">
+                                            <h4 class="text-left">Question 4</h4>
+                                            <div class="question4-1">
+                                                <div class="question4">
+                                                    <div class="form-group">
+                                                        {{-- <label>Question</label> --}}
+                                                        <input type="text" name="question" class="form-control"/>
+                                                    </div>
+                                                    <div class="form-row align-items-center">
+                                                        <div class="form-group col-2">
+                                                            <label>Lorem Isume</label>
+                                                        </div>
+                                                        <div class="form-group input-group col-4">
+                                                            <input type="text" name="name" class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn eiliana-btn btn-copy-q4" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                <button type="button" class="remove-q4 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-4">
+                                            <h4 class="text-left">Question 5</h4>
+                                            <div class="question5-1">
+                                                <div class="question5">
+                                                    <div class="form-group">
+                                                        {{-- <label>Question</label> --}}
+                                                        <input type="text" name="question" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn eiliana-btn btn-copy-q5" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                <button type="button" class="remove-q5 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
                                             <button class="btn btn-primary" type="submit">
@@ -404,7 +534,7 @@ Job Post
                                                 <button class="btn">{{ Sentinel::getUser()->full_name }}</button>
                                                 <p class="card-text font-size-1">
                                                     @isset(Sentinel::getUser()->city)
-                                                    {{ Sentinel::getUser()->city }}, 
+                                                    {{ Sentinel::getUser()->city }},
                                                     @endisset
                                                     {{ Session::get('users')['country_name'] }}
                                                     <br>
@@ -412,7 +542,7 @@ Job Post
                                                 </p>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="bottom-menu">
                                         <div class="list-group">
                                             <a class="list-group-item list-group-item-action bg-white-b {!! (Request::is('profile') ? 'active' : '' ) !!}" href="/profile">
@@ -482,6 +612,29 @@ $(document).ready(function() {
             var element = '<div class="certification-3">'+$('.certification').html()+'</div>';
             $('.certification-1').append(element);
         });
+
+        // question start
+        $(".btn-copy-q1").on('click', function(){
+            var element = '<div class="question1-3">'+$('.question1').html()+'</div>';
+            $('.question1-1').append(element);
+        });
+        $(".btn-copy-q2").on('click', function(){
+            var element = '<div class="question2-3">'+$('.question2').html()+'</div>';
+            $('.question2-1').append(element);
+        });
+        $(".btn-copy-q3").on('click', function(){
+            var element = '<div class="question3-3">'+$('.question3').html()+'</div>';
+            $('.question3-1').append(element);
+        });
+        $(".btn-copy-q4").on('click', function(){
+            var element = '<div class="question4-3">'+$('.question4').html()+'</div>';
+            $('.question4-1').append(element);
+        });
+        $(".btn-copy-q5").on('click', function(){
+            var element = '<div class="question5-3">'+$('.question5').html()+'</div>';
+            $('.question5-1').append(element);
+        });
+
     });
     $(document).on('click','.remove-ug',function() {
         $(".ug-qualification-3:last").remove();
@@ -492,6 +645,24 @@ $(document).ready(function() {
     $(document).on('click','.remove-c',function() {
         $(".certification-3:last").remove();
     });
+
+    // question start
+    $(document).on('click','.remove-q1',function() {
+        $(".question1-3:last").remove();
+    });
+    $(document).on('click','.remove-q2',function() {
+        $(".question2-3:last").remove();
+    });
+    $(document).on('click','.remove-q3',function() {
+        $(".question3-3:last").remove();
+    });
+    $(document).on('click','.remove-q4',function() {
+        $(".question4-3:last").remove();
+    });
+    $(document).on('click','.remove-q5',function() {
+        $(".question5-3:last").remove();
+    });
+
 });
 </script>
 <!--global js end-->

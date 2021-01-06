@@ -31,7 +31,7 @@ class AdvanceSearchController extends Controller
     {
         // Show the page
         $projectcategorys = ProjectCategory::all();
-        
+
         return view('search/projects', compact('projectcategorys'));
     }
 
@@ -44,12 +44,24 @@ class AdvanceSearchController extends Controller
             $qualifications = Qualification::all();
             $universities = University::all();
             return view('search/contract-staffing', compact('educationtype','qualifications','universities'));
-            
+
         } else {
-            $count = '';
-            $keyword = '';
-            $projects = [];
-            return view('search/browse-contract-staffing', compact('count', 'projects', 'keyword'));
-        } 
+            $sound = "";
+            $words = explode(" " , $request->input('keyword')) ;
+            foreach($words as $word) {
+                $sound .= metaphone($word);
+                if (next($words)==true) {
+                    $sound .= " ";
+                };
+            }
+
+            $users = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('indexing', 'LIKE', '%'.$sound.'%')->get();
+            $id = DB::table('search_keyword')->insertGetId(
+                ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
+            );
+            // print_r($userlist);
+            // die();
+            return view('search/browse-contract-staffing', compact('users'));
+        }
     }
 }

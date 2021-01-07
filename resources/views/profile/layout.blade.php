@@ -59,9 +59,14 @@ Profile Setting
 <script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script>
-	$('#tag_list').select2({
-  		selectOnClose: true
-	});
+	$('#technologty_pre').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
+    $('#framework').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
    	function changeAnonymus(e) {
         var anonymous = e.target.value;
         if (anonymous == '0') {
@@ -73,7 +78,7 @@ Profile Setting
             anonymous:anonymous
         };
         /*$.ajax({
-            type: 'GET', 
+            type: 'GET',
             url: '/profile/publicAnonymusUpdate',
             data: data,
             contentType: 'application/json',
@@ -192,7 +197,7 @@ Profile Setting
 	  		}
 
 	  		$.ajax({
-	            type: 'GET', 
+	            type: 'GET',
 	            url: url,
 	            data: data,
 	            contentType: 'application/json',
@@ -219,6 +224,29 @@ Profile Setting
 	}
 	function changeInterested(e) {
 		$("#exampleModal1").modal();
+    }
+
+    function change_framework()
+    {
+        var technologty_pre = $("#technologty_pre").val();
+        console.log(technologty_pre);
+        $.ajax({
+            type:"GET",
+            url:"/getframework",
+            data:"technologty_pre="+technologty_pre,
+            success: function(data) {
+                console.log("data",data);
+                var options = '<option value=""></option>';
+                $.each( data, function( key, value ) {
+                    options += "<option value='"+value['technology_id']+"'>"+value['technology_name']+"</option>";
+                });
+                //console.log(options);
+                $('#framework').html(options);
+            },
+            error: function(xhr, status, error) {
+                console.log("error: ",error);
+            },
+        });
     }
     /*$(window).scroll(function(){
 	    if ($(window).scrollTop() >= 150) {

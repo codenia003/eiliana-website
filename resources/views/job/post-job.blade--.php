@@ -28,7 +28,7 @@ Job Post
             </div>
         </div>
     </div>
-    <div class="shadow1">   
+    <div class="shadow1">
         <div class="container space-1 space-top-lg-0 mt-lg-n10">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -136,7 +136,7 @@ Job Post
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Technology Preference</label>
@@ -202,7 +202,7 @@ Job Post
                                         <label>Auto Match:&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <input type="checkbox" class="js-switch2" checked />
                                     </div>
-                                    
+
                                     <!-- eduction start -->
                                     <h4 class="text-left">Education Details</h4>
                                     <div class="ug-qualification mb-3">
@@ -359,7 +359,7 @@ Job Post
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-                    <div id="sidebarNav" class="navbar-collapse navbar-vertical " style="">
+                    <div id="sidebarNav" class="navbar-collapse navbar-vertical">
                         <div class="position-relative max-w-50rem mx-auto mobile-profile">
                             <!-- Device Mockup -->
                             <div class="device device-iphone-x w-100 mx-auto">
@@ -376,7 +376,7 @@ Job Post
                                                 <button class="btn">{{ Sentinel::getUser()->full_name }}</button>
                                                 <p class="card-text font-size-1">
                                                     @isset(Sentinel::getUser()->city)
-                                                    {{ Sentinel::getUser()->city }}, 
+                                                    {{ Sentinel::getUser()->city }},
                                                     @endisset
                                                     {{ Session::get('users')['country_name'] }}
                                                     <br>
@@ -384,7 +384,7 @@ Job Post
                                                 </p>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="bottom-menu">
                                         <div class="list-group">
                                             <a class="list-group-item list-group-item-action bg-white-b {!! (Request::is('profile') ? 'active' : '' ) !!}" href="/profile">

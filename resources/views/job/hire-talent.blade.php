@@ -66,7 +66,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-					                	<div class="form-group">
+					                	<div class="form-group job-posting d-none">
 	                                        <label>Project Duration</label>
 	                                        <div class="form-row">
 	                                            <div class="col">
@@ -112,7 +112,7 @@
 				                                </div>
 				                            </div>
 	                                    </div>
-	                                    <div class="form-group">
+	                                    <div class="form-group job-posting d-none">
 	                                        <label>Job Location</label>
 	                                        <select name="current_location" class="form-control">
 	                                            <option value=""></option>
@@ -126,14 +126,14 @@
                                         <br>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="support" class="custom-control-input" name="search_method" value="1" checked="">
-                                                <label class="custom-control-label" for="support">Job Posting</label>
+                                                <input type="radio" id="development" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="2" checked="">
+                                                <label class="custom-control-label" for="development">Database Search</label>
                                             </div>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="development" class="custom-control-input" name="search_method" value="2">
-                                                <label class="custom-control-label" for="development">Database Search</label>
+                                                <input type="radio" id="support" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="1">
+                                                <label class="custom-control-label" for="support">Job Posting</label>
                                             </div>
                                         </div>
                                     </div>
@@ -263,7 +263,16 @@
 <script>
     $(window).bind("load", function() {
         changeLookingFor();
+        changeSearchMethod();
     });
+    function changeSearchMethod() {
+        var method = $('input[name="search_method"]:checked').attr('value');
+        if (method == '1') {
+            $('.job-posting').removeClass("d-none");
+        } else {
+        	$('.job-posting').addClass("d-none");
+        }
+    }
 	function changeLookingFor() {
         // var anonymous = e.target.value;
         var anonymous = $('input[name="lookingfor"]:checked').attr('value');

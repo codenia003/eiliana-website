@@ -425,6 +425,8 @@ Route::get('hire-talent', 'JobController@hireTalent')->name('hire-talent');
 Route::get('job-posting', 'JobController@jobProject')->name('job-posting');
 Route::post('talent-search', 'JobController@talentSearch')->name('talent-search');
 
+Route::get('/getframework', 'ProfileController@getframework');
+
 // contact form
 Route::post('contact', 'FrontEndController@postContact')->name('contact');
 

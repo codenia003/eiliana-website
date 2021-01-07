@@ -11,8 +11,8 @@ body {
 p {
     text-align: inherit;
 }
-a { 
-  cursor: pointer 
+a {
+  cursor: pointer
 }
 .container {
     max-width: 1160px !important;
@@ -168,7 +168,7 @@ footer .btn-ghost-light:hover, .btn-ghost-light:focus, .btn-ghost-light:active, 
     margin-bottom: 0;
 }
 .red-linear-gradient {
-  background-color: #3f0d12; 
+  background-color: #3f0d12;
   background-image: linear-gradient(#ec201f 0%, #b6180d 74%) !important;
 }
 .yellow-linear-gradient {
@@ -756,8 +756,8 @@ h3.form-tittle {
     font-size: 1.25rem;
 }
 .list-inline > li {
-    padding-right: 0px; 
-    padding-left: 0px; 
+    padding-right: 0px;
+    padding-left: 0px;
 }
 .singup-body .form-group.form-check label {
     font-size: 12px;
@@ -1223,4 +1223,15 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 .logout .img-fluid {
     z-index: -1;
     position: relative;
+}
+.singup-body ul.select2-selection__rendered {
+    border-radius: 0;
+    background-color: #ffffff;
+    min-height: 45px;
+    border: none;
+    border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
+}
+.singup-body li.select2-search {
+    line-height: 43px;
 }

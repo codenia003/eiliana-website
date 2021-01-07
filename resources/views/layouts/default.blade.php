@@ -37,8 +37,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto topnav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Post a Project</a>
-                            <!-- <a class="nav-link" href="{{ url('/job-posting') }}">Post a Project</a> -->
+                            {{-- <a class="nav-link" href="#">Post a Project</a> --}}
+                            <a class="nav-link" href="{{ url('/post-job') }}">Post a Project</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">How It Works</a>
@@ -80,7 +80,7 @@
                     <div class="navbar-nav ml-auto">
                         <a href="#" class="nav-item nav-link active">Free Credit</a>
                         <a href="#" class="nav-item nav-link">My Works</a>
-                        <a href="{{ url('/job-posting') }}" class="nav-item nav-link login_signup">Post Project</a>
+                        <a href="{{ url('/post-job') }}" class="nav-item nav-link login_signup">Post Project</a>
                         <!-- <a href="#" class="nav-item nav-link messages"><i class="fa fa-comments"></i><span class="badge">10</span></a> -->
                         <a href="#" class="nav-item nav-link notifications"><i class="far fa-bell"></i></i><span class="badge">2</span></a>
                         <div class="nav-item dropdown">
@@ -90,7 +90,7 @@
                                 @else
                                 <img src="/assets/img/profile/avatar.svg" class="avatar" alt="Avatar">
                                 @endif
-                                {{ Sentinel::getUser()->full_name }} 
+                                {{ Sentinel::getUser()->full_name }}
                                 <b class="caret"></b>
                             </a>
                             <div class="dropdown-menu">

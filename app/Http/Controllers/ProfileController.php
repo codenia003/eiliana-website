@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\JoshController;
@@ -27,6 +27,7 @@ use App\Models\Employers;
 use App\Models\Designation;
 use App\Models\EmployerDetails;
 use App\Models\EmployerType;
+use App\Models\Technology;
 use stdClass;
 
 class ProfileController extends JoshController
@@ -35,9 +36,9 @@ class ProfileController extends JoshController
      * Profile.
      *
      * @return View
-     */ 
+     */
     public function __construct() {
-        
+
     }
 
 
@@ -77,7 +78,7 @@ class ProfileController extends JoshController
     {
         $user = Sentinel::getUser();
         $certificates = Certificate::where('user_id', $user->id)->get();
-        
+
         // Show the page
         return view('profile/certification-add', compact('certificates'));
     }
@@ -87,17 +88,26 @@ class ProfileController extends JoshController
         $user = Sentinel::getUser();
         $projectcategorys = ProjectCategory::all();
         $proexps = ProfessionalExperience::where('user_id', $user->id)->get();
+        $technologies = Technology::where('parent_id', '0')->get();
         if (count($proexps) > 0) {
             $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
         } else {
             $model_engagement_new = [];
         }
         $designations = Designation::all();
-        return view('profile/prof-exp', compact('proexps','designations','model_engagement_new','projectcategorys'));
+        return view('profile/prof-exp', compact('proexps','designations','model_engagement_new','projectcategorys','technologies'));
+    }
+
+    public function getframework(Request $request)
+    {
+        $ids = [$request->input('technologty_pre')];
+        print_r($ids);
+        $technologies = Technology::whereIn('parent_id', $ids)->get();
+        return response()->json($technologies);
     }
 
     public function projects()
-    {   
+    {
         $projects = UserProject::where('user_id', Sentinel::getUser()->id)->get();
         $employers = Employers::where('user_id', Sentinel::getUser()->id)->get();
         return view('profile/projects', compact('projects','employers'));
@@ -127,7 +137,7 @@ class ProfileController extends JoshController
     {
         $users = Sentinel::getUser();
         Sentinel::update($users, array('anonymous' => $request->input('anonymous')));
-        
+
         return response()->json($users);
     }
 
@@ -165,7 +175,7 @@ class ProfileController extends JoshController
     {
         $user = Sentinel::getUser();
         $input = $request->except('_token');
-        
+
         foreach ($input['education_id'] as $key => $value) {
             if ($input['education_id'][$key] != 0) {
                 $education = Education::find($input['education_id'][$key]);
@@ -176,7 +186,7 @@ class ProfileController extends JoshController
                 $education->month = $input['month'][$key];
                 $education->year = $input['year'][$key];
                 $education->degree = $input['degree'][$key];
-                $education->save();   
+                $education->save();
             } else {
                 $education = new Education;
                 $education->user_id = $user->id;
@@ -188,13 +198,13 @@ class ProfileController extends JoshController
                 $education->degree = $input['degree'][$key];
                 $education->save();
             }
-            
+
         }
         return redirect('profile/certification')->with('success', 'Education updated successfully');
     }
 
-    public function deleteEducation(Request $request) 
-    {    
+    public function deleteEducation(Request $request)
+    {
         $education = Education::find($request->input('edu_id'));
         $education->delete();
 
@@ -216,7 +226,7 @@ class ProfileController extends JoshController
                 $certificate->name = $input['name'][$key];
                 $certificate->valid_till = $input['valid_till'][$key];
                 $certificate->display_status = 1;
-                $certificate->save();   
+                $certificate->save();
             } else {
                 $certificate = new Certificate;
                 $certificate->user_id = $user->id;
@@ -231,8 +241,8 @@ class ProfileController extends JoshController
         return redirect('profile/professional-experience')->with('success', 'Certificate updated successfully');
     }
 
-    public function deleteCertification(Request $request) 
-    {    
+    public function deleteCertification(Request $request)
+    {
         $certificate = Certificate::find($request->input('cert_id'));
         $certificate->delete();
 
@@ -281,8 +291,8 @@ class ProfileController extends JoshController
             $professionalExperience->preferred_location = $input['preferred_location'];
             $professionalExperience->development_project = $input['development_project'];
             $professionalExperience->indexing = $indexing;
-            $professionalExperience->save();   
-        
+            $professionalExperience->save();
+
         } else {
             $input['indexing'] = $indexing;
             ProfessionalExperience::create($input);
@@ -314,7 +324,7 @@ class ProfileController extends JoshController
                 $userproject->project_details = $input['project_details'][$key];
                 $userproject->employer_id = $input['employer_id'][$key];
                 $userproject->display_status = 1;
-                
+
                 if (isset($input['upload_file'][$key])) {
                     $file = $input['upload_file'][$key];
                     $extension = $file->extension();
@@ -325,9 +335,9 @@ class ProfileController extends JoshController
                     //save new file path into db
                     $userproject->upload_file = '/uploads/projects/'.$safeName;
                 }
-                
-                $userproject->save();   
-            
+
+                $userproject->save();
+
             } else {
                 $userproject = new UserProject;
                 $userproject->user_id = $user->id;
@@ -353,15 +363,15 @@ class ProfileController extends JoshController
                     $userproject->upload_file =url('/').'/uploads/projects/'.$safeName;
                 }
 
-                $userproject->save();   
+                $userproject->save();
             }
         }
-        
+
         return redirect('profile/professional-experience')->with('success', 'Project updated successfully');
     }
 
-    public function deleteProjects(Request $request) 
-    {    
+    public function deleteProjects(Request $request)
+    {
         $userproject = UserProject::find($request->input('project_id'));
         $userproject->delete();
 
@@ -412,7 +422,7 @@ class ProfileController extends JoshController
                 $employer->job_profile = $input['job_profile'][$key];
                 $employer->notice_period = $input['notice_period'][$key];
                 $employer->display_status = 1;
-                $employer->save();   
+                $employer->save();
             } else {
                 $employer = new Employers;
                 $employer->user_id = $user->id;
@@ -432,8 +442,8 @@ class ProfileController extends JoshController
         return redirect('profile/projects')->with('success', 'Employer updated successfully');
     }
 
-    public function deleteemployer(Request $request) 
-    {    
+    public function deleteemployer(Request $request)
+    {
         $employer = Employers::find($request->input('emp_id'));
         $employer->delete();
 

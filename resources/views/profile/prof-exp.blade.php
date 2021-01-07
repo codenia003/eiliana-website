@@ -32,15 +32,18 @@
 
                         <div class="form-group col">
                             <label>Technology Preference</label>
-                            <select name="technologty_pre" class="form-control" required>
+                            <select name="technologty_pre" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
                                 <option value=""></option>
-                                <option value="1" {{ ($proexp->technologty_pre==1)? "selected" : "" }}>1</option>
-                                <option value="2" {{ ($proexp->technologty_pre==2)? "selected" : "" }}>2</option>
+                                @foreach ($technologies as $technology)
+                                <option value="{{ $technology->technology_id }}" {{ ($proexp->technologty_pre==$technology->technology_id)? "selected" : "" }} >{{ $technology->technology_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col">
                             <label>Framework</label>
-                            {!! Form::selectRange('framework', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+                            <select class="form-control select2" required="" name="framework" id="framework" multiple>
+                                <option value=""></option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -82,7 +85,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
 
                     <div class="form-group basic-info mb-3">
                         <label>Model Of Freelancing Engagement</label>
@@ -100,8 +103,8 @@
                             <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
                         </div>
                     </div>
-                    @endif           
-                    
+                    @endif
+
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label>Total <br>Experience</label>
@@ -158,8 +161,9 @@
                             <label>Technology Preference</label>
                             <select name="technologty_pre" class="form-control" required>
                                 <option value=""></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
+                                @foreach ($technologies as $technology)
+                                <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col">
@@ -220,9 +224,9 @@
     					  	<input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement[]" value="3">
     					  	<label class="form-check-label" for="inlineCheckbox3">Project-based</label>
     					</div>
-                    </div> 
+                    </div>
                     @endif
-                    
+
     	            <div class="form-row">
                 		<div class="form-group col-4">
     		                <label>Total Experience</label>

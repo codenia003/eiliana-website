@@ -32,17 +32,20 @@
 
                         <div class="form-group col">
                             <label>Technology Preference</label>
-                            <select name="technologty_pre" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
+                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
                                 <option value=""></option>
                                 @foreach ($technologies as $technology)
-                                <option value="{{ $technology->technology_id }}" {{ ($proexp->technologty_pre==$technology->technology_id)? "selected" : "" }} >{{ $technology->technology_name }}</option>
+                                <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_technologies)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col">
                             <label>Framework</label>
-                            <select class="form-control select2" required="" name="framework" id="framework" multiple>
+                            <select class="form-control select2" required="" name="framework[]" id="framework" multiple>
                                 <option value=""></option>
+                                @foreach ($childtechnologies as $technology)
+                                <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_framework)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -159,7 +162,7 @@
                     <div class="form-row">
                         <div class="form-group col">
                             <label>Technology Preference</label>
-                            <select name="technologty_pre" class="form-control" required>
+                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
                                 <option value=""></option>
                                 @foreach ($technologies as $technology)
                                 <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
@@ -168,7 +171,9 @@
                         </div>
                         <div class="form-group col">
                             <label>Framework</label>
-                            {!! Form::selectRange('framework', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+                            <select class="form-control select2" required="" name="framework[]" id="framework" multiple>
+                                <option value=""></option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">

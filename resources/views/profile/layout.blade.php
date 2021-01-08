@@ -229,7 +229,7 @@ Profile Setting
     function change_framework()
     {
         var technologty_pre = $("#technologty_pre").val();
-        console.log(technologty_pre);
+        // console.log(technologty_pre);
         $.ajax({
             type:"GET",
             url:"/getframework",

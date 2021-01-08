@@ -89,20 +89,29 @@ class ProfileController extends JoshController
         $projectcategorys = ProjectCategory::all();
         $proexps = ProfessionalExperience::where('user_id', $user->id)->get();
         $technologies = Technology::where('parent_id', '0')->get();
+
         if (count($proexps) > 0) {
             $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
+            $selected_technologies = explode(",", $proexps[0]['technologty_pre']);
+            $selected_framework = explode(",", $proexps[0]['framework']);
+            $childtechnologies = Technology::whereIn('parent_id', array($proexps[0]['technologty_pre']))->get();
         } else {
             $model_engagement_new = [];
+            $selected_technologies = [];
+            $selected_framework = [];
+            $childtechnologies = [];
         }
         $designations = Designation::all();
-        return view('profile/prof-exp', compact('proexps','designations','model_engagement_new','projectcategorys','technologies'));
+        // print_r($childtechnologies);
+        return view('profile/prof-exp', compact('proexps','designations','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework'));
     }
 
     public function getframework(Request $request)
     {
-        $ids = [$request->input('technologty_pre')];
-        print_r($ids);
-        $technologies = Technology::whereIn('parent_id', $ids)->get();
+        $alldata = $request->input('technologty_pre');
+        // $technologies = Technology::whereIn('parent_id', $alldata)->get();
+        $sqlQuery_at = "SELECT * FROM technologies WHERE parent_id in (".$alldata.") and display_status = '1'";
+        $technologies = DB::select(DB::raw($sqlQuery_at));
         return response()->json($technologies);
     }
 
@@ -271,6 +280,14 @@ class ProfileController extends JoshController
                 $indexing .= metaphone($word). " ";
             }
         }
+
+        $technologty_pre = $request->input('technologty_pre');
+        $technologty_pre = implode(',', $technologty_pre);
+        $input['technologty_pre'] = $technologty_pre;
+
+        $framework = $request->input('framework');
+        $framework = implode(',', $framework);
+        $input['framework'] = $framework;
 
         if (!empty($input['professional_experience_id'])) {
 

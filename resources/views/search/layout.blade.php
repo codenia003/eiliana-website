@@ -30,7 +30,7 @@ Advance Search
 	    </div>
 	  </div>
 	</div>
-	<div class="shadow1">	
+	<div class="shadow1">
 		<div class="container space-1 space-top-lg-0 mt-lg-n10">
 	    	@yield('search_tab_content')
 	    	<div class="row">
@@ -58,16 +58,16 @@ Advance Search
 					                            <button class="btn">{{ Sentinel::getUser()->full_name }}</button>
 					                            <p class="card-text font-size-1">
 					                                @isset(Sentinel::getUser()->city)
-					                                {{ Sentinel::getUser()->city }}, 
+					                                {{ Sentinel::getUser()->city }},
 					                                @endisset
 					                                {{ Session::get('users')['country_name'] }}
 					                                <br>
 					                                {{ \Carbon\Carbon::parse(Sentinel::getUser()->created_at)->format('M d, Y')}}
 					                            </p>
-					                        
+
 					                        </div>
 					                    </div>
-					                </div> 
+					                </div>
 					                <div class="bottom-menu">
 					                    <div class="list-group">
 					                        <a class="list-group-item list-group-item-action bg-white-b {!! (Request::is('profile') ? 'active' : '' ) !!}" href="/profile">
@@ -115,8 +115,5 @@ Advance Search
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
-<script>
-	
-</script>
 <!--global js end-->
 @stop

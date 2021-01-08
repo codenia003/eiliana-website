@@ -82,15 +82,18 @@
                 <div class="form-row">
                     <div class="form-group col-12">
                         <label>Technology Preference</label>
-                        <select name="technologty_pre" class="form-control" required>
+                        <select name="technologty_pre" class="form-control" id="technologty_pre" onchange="change_framework();">
                             <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            @foreach ($technologies as $technology)
+                            <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group col-5">
                         <label>Framework</label>
-                        {!! Form::selectRange('framework', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+                        <select class="form-control" name="framework" id="framework">
+                            <option value=""></option>
+                        </select>
                     </div>
                     <div class="form-group col-1"></div>
                     <div class="form-group col-6">

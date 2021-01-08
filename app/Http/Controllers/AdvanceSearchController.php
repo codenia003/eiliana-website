@@ -21,6 +21,7 @@ use App\Models\Qualification;
 use App\Models\University;
 use App\Models\EducationType;
 use App\Models\ProjectCategory;
+use App\Models\Technology;
 use stdClass;
 use Carbon\Carbon;
 
@@ -43,7 +44,8 @@ class AdvanceSearchController extends Controller
             $educationtype = EducationType::all();
             $qualifications = Qualification::all();
             $universities = University::all();
-            return view('search/contract-staffing', compact('educationtype','qualifications','universities'));
+            $technologies = Technology::where('parent_id', '0')->get();
+            return view('search/contract-staffing', compact('educationtype','qualifications','universities','technologies'));
 
         } else {
             $sound = "";

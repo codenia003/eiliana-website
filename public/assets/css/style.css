@@ -1235,3 +1235,6 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 .singup-body li.select2-search {
     line-height: 43px;
 }
+.singup-body .select2-selection__choice {
+    margin-top: 10px !important;
+}

@@ -344,6 +344,7 @@ Route::group(
         Route::get('search-project', 'ProjectController@getSearchProject')->name('search-project');
         Route::get('/project/{id}', 'ProjectController@getProjectDeatils');
         Route::get('post-job', 'JobController@index')->name('post-job');
+        Route::post('post-job-on', 'JobController@postJobon')->name('post-job-on');
     }
 );
 // My account display and update details
@@ -424,6 +425,7 @@ Route::resource('user_emails', 'UsersEmailController');
 Route::get('hire-talent', 'JobController@hireTalent')->name('hire-talent');
 Route::get('job-posting', 'JobController@jobProject')->name('job-posting');
 Route::post('talent-search', 'JobController@talentSearch')->name('talent-search');
+Route::post('job-posting-search', 'JobController@jobPostingSearch')->name('job-posting');
 
 Route::get('/getframework', 'ProfileController@getframework');
 

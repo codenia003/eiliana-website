@@ -385,9 +385,34 @@ Job Post
                                                     <input type="text" name="name" class="form-control"/>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label>Valid Till</label>
-                                                <input type="date" name="valid_till" class="form-control"/>
+                                            <div class="form-row">
+                                                <div class="form-group col-4">
+                                                    <label>Year of Certification</label>
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <select class="form-control" required="" name="from_date[]">
+                                                                <option value="">From</option>
+                                                                @for ($i = 2000; $i < 2021; $i++)
+                                                                <option value="{{ $i }}">{{ $i }}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                        <div class="col">
+                                                            <select class="form-control" required="" name="till_date[]">
+                                                                <option value="">Till</option>
+                                                                @for ($i = 2000; $i < 2021; $i++)
+                                                                <option value="{{ $i }}">{{ $i }}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-1">
+                                                </div>
+                                                <div class="form-group col-7">
+                                                    <label>Institute Name</label>
+                                                    <input type="text" name="institutename[]" class="form-control" required />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

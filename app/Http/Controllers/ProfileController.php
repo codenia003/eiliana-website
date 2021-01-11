@@ -233,7 +233,9 @@ class ProfileController extends JoshController
                 $certificate->user_id = $user->id;
                 $certificate->certificate_no = $input['certificate_no'][$key];
                 $certificate->name = $input['name'][$key];
-                $certificate->valid_till = $input['valid_till'][$key];
+                $certificate->from_date = $input['from_date'][$key];
+                $certificate->till_date = $input['till_date'][$key];
+                $certificate->institutename = $input['institutename'][$key];
                 $certificate->display_status = 1;
                 $certificate->save();
             } else {
@@ -241,7 +243,9 @@ class ProfileController extends JoshController
                 $certificate->user_id = $user->id;
                 $certificate->certificate_no = $input['certificate_no'][$key];
                 $certificate->name = $input['name'][$key];
-                $certificate->valid_till = $input['valid_till'][$key];
+                $certificate->from_date = $input['from_date'][$key];
+                $certificate->till_date = $input['till_date'][$key];
+                $certificate->institutename = $input['institutename'][$key];
                 $certificate->display_status = 1;
                 $certificate->save();
             }

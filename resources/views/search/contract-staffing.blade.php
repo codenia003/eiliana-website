@@ -131,7 +131,7 @@
                 <!-- eduction start -->
                 <h4 class="text-left">Education Details</h4>
                 <div class="ug-qualification mb-3">
-                    <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span>
+                    {{-- <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span> --}}
                     <input type="hidden" name="graduation_type" value="3">
                     <div class="form-row">
                         <div class="form-group col-5">
@@ -191,7 +191,7 @@
                     </div>
                 </div>
                 <div class="pg-qualification">
-                    <span class="h4 text-left mt-3 mb-4 d-inline-block">PG Qualification</span>
+                    {{-- <span class="h4 text-left mt-3 mb-4 d-inline-block">PG Qualification</span> --}}
                     <input type="hidden" name="graduation_type" value="4">
                     <div class="form-row">
                         <div class="form-group col-5">
@@ -253,7 +253,7 @@
                 <!-- certification start  -->
                 <h4 class="text-left">Certification</h4>
                 <div class="certification-3">
-                    <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
+                    {{-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span> --}}
                     <div class="form-row">
                         <div class="form-group col-5">
                             <label>Certification Number</label>
@@ -265,9 +265,34 @@
                             <input type="text" name="name" class="form-control"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Valid Till</label>
-                        <input type="date" name="valid_till" class="form-control"/>
+                    <div class="form-row">
+                        <div class="form-group col-5">
+                            <label>Year of Certification</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <select class="form-control" name="from_date[]">
+                                        <option value="">From</option>
+                                        @for ($i = 2000; $i < 2021; $i++)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" name="till_date[]">
+                                        <option value="">Till</option>
+                                        @for ($i = 2000; $i < 2021; $i++)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-1">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Institute Name</label>
+                            <input type="text" name="institutename[]" class="form-control" />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group basic-info mb-3">

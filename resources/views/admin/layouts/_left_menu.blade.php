@@ -6,7 +6,7 @@
             <span class="title">Dashboard 1</span>
         </a>
     </li>
-    <li {!! (Request::is('admin/index1') ? 'class="active"' : '' ) !!}>
+    <li {!! (Request::is('admin/index1') ? 'class="active"' : '' ) !!} >
         <a href="{{  URL::to('admin/index1') }}">
             <i class="livicon" data-name="dashboard" data-size="18" data-c="#EF6F6C" data-hc="#EF6F6C" data-loop="true"></i>
             Dashboard 2
@@ -32,7 +32,7 @@
             Activity Log
         </a>
     </li>
-    <li {!! (Request::is('admin/datatables') || Request::is('admin/editable_datatables') || Request::is('admin/dropzone') || Request::is('admin/multiple_upload') || Request::is('admin/custom_datatables')|| Request::is('admin/selectfilter') ? 'class="active"' : '' ) !!}>
+    <li {!! (Request::is('admin/datatables') || Request::is('admin/editable_datatables') || Request::is('admin/dropzone') || Request::is('admin/multiple_upload') || Request::is('admin/custom_datatables')|| Request::is('admin/selectfilter') ? 'class="active"' : '' ) !!} class="d-none">
         <a href="#">
             <i class="livicon" data-name="medal" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
             <span class="title">Laravel Examples</span>

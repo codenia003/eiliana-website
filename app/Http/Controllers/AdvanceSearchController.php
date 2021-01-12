@@ -32,8 +32,11 @@ class AdvanceSearchController extends Controller
     {
         // Show the page
         $projectcategorys = ProjectCategory::all();
-
-        return view('search/projects', compact('projectcategorys'));
+        $educationtype = EducationType::all();
+        $qualifications = Qualification::all();
+        $universities = University::all();
+        $technologies = Technology::where('parent_id', '0')->get();
+        return view('search/projects', compact('projectcategorys','educationtype','qualifications','universities','technologies'));
     }
 
     public function contractStaffing(Request $request)

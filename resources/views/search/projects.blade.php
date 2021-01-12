@@ -34,7 +34,7 @@
                     <select name="project_category" class="form-control">
                         <option value=""></option>
                         @foreach ($projectcategorys as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" {{ (Session::get('contractsattfing')['project_category']==$category->id)? "selected" : "" }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -60,16 +60,19 @@
                 </div>
                 <div class="form-group">
                     <label>Technology Preference</label>
-                    <select name="technologty_pre" class="form-control" required>
+                    <select name="technologty_pre" class="form-control" id="technologty_pre" onchange="change_framework();">
                         <option value=""></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        @foreach ($technologies as $technology)
+                        <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
                         <label>Framework</label>
-                        {!! Form::selectRange('version[]', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+                        <select class="form-control" name="framework" id="framework">
+                            <option value=""></option>
+                        </select>
                     </div>
                     <div class="form-group col">
                         <label>Industry that Product was designed for</label>

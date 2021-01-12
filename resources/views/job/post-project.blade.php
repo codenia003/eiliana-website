@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Job Post
+Post Project
 @parent
 @stop
 
@@ -52,10 +52,9 @@ Job Post
                                     </div>
                                     @if (Session::get('contractsattfing')['lookingfor'] === '1')
                                         <div class="form-group basic-info mb-3">
-                                            <label>Contract Duration(Months)</label>
+                                            <label>Contract Duration</label>
                                             <br />
-                                            <input type="number" name="model_engagement" class="form-control" value="" required />
-                                            {{-- <div class="form-check form-check-inline">
+                                            <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="1">
                                                 <label class="form-check-label" for="inlineCheckbox1">Monthly</label>
                                             </div>
@@ -66,7 +65,7 @@ Job Post
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="3">
                                                 <label class="form-check-label" for="inlineCheckbox3">Yearly</label>
-                                            </div> --}}
+                                            </div>
                                         </div>
                                     @else
                                         <div class="form-group basic-info mb-3">

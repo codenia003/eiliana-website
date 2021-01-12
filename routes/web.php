@@ -345,6 +345,8 @@ Route::group(
         Route::get('/project/{id}', 'ProjectController@getProjectDeatils');
         Route::get('post-job', 'JobController@index')->name('post-job');
         Route::post('post-job-on', 'JobController@postJobon')->name('post-job-on');
+        Route::get('post-project', 'JobController@postProject')->name('post-project');
+        Route::post('post-project-on', 'JobController@postProjecton')->name('post-project-on');
     }
 );
 // My account display and update details

@@ -124,6 +124,14 @@ class JobController extends Controller
 
         $input['indexing'] = $indexing;
 
+        $technologty_pre = $request->input('technologty_pre');
+        $technologty_pre = implode(',', $technologty_pre);
+        $input['technologty_pre'] = $technologty_pre;
+
+        $framework = $request->input('framework');
+        $framework = implode(',', $framework);
+        $input['framework'] = $framework;
+
         $jobs = new Job;
         $jobs->user_id = $user->id;
         $jobs->job_status_id = 1;
@@ -168,28 +176,41 @@ class JobController extends Controller
 
         $input['indexing'] = $indexing;
 
-        $jobs = new Job;
-        $jobs->user_id = $user->id;
-        $jobs->job_status_id = 1;
-        $jobs->about_company = $input['about_company'];
-        $jobs->job_title = $input['job_title'];
-        $jobs->key_skills = $input['key_skills'];
-        $jobs->role_summary = $input['role_summary'];
-        $jobs->type_of_project = $input['type_of_project'];
-        $jobs->experience_year = $input['experience_year'];
-        $jobs->experience_month = $input['experience_month'];
-        $jobs->customer_industry = $input['customer_industry'];
-        $jobs->technologty_pre = $input['technologty_pre'];
-        $jobs->framework = $input['framework'];
-        $jobs->candidate_role = $input['candidate_role'];
-        $jobs->product_industry_exprience = $input['product_industry_exprience'];
-        $jobs->location = $input['location'];
-        $jobs->budget_from = $input['budget_from'];
-        $jobs->budget_to = $input['budget_to'];
-        $jobs->auto_match = $input['auto_match'];
-        $jobs->indexing = $input['indexing'];
-        $jobs->display_status = 1;
-        $jobs->save();
+        $technologty_pre = $request->input('technologty_pre');
+        $technologty_pre = implode(',', $technologty_pre);
+        $input['technologty_pre'] = $technologty_pre;
+
+        $framework = $request->input('framework');
+        $framework = implode(',', $framework);
+        $input['framework'] = $framework;
+
+        $current = Carbon::now();
+        $projectExpires = $current->addDays(7);
+
+        $projects = new Project;
+        $projects->posted_by_user_id = $user->id;
+        $projects->project_status_id = 1;
+        $projects->about_company = $input['about_company'];
+        $projects->project_title = $input['project_title'];
+        $projects->key_skills = $input['key_skills'];
+        $projects->project_summary = $input['project_summary'];
+        $projects->type_of_project = $input['type_of_project'];
+        $projects->experience_year = $input['experience_year'];
+        $projects->experience_month = $input['experience_month'];
+        $projects->customer_industry = $input['customer_industry'];
+        $projects->technologty_pre = $input['technologty_pre'];
+        $projects->framework = $input['framework'];
+        $projects->candidate_role = $input['candidate_role'];
+        $projects->product_industry_exprience = $input['product_industry_exprience'];
+        $projects->location = $input['location'];
+        $projects->budget_from = $input['budget_from'];
+        $projects->budget_to = $input['budget_to'];
+        $projects->payment_type_id = 1;
+        $projects->currency_id = 1;
+        $projects->language_id = 1;
+        $projects->expiry_datetime = $projectExpires;
+        $projects->indexing = $input['indexing'];
+        $projects->save();
 
         return redirect('post-job')->with('success', 'Job Posted successfully');
     }

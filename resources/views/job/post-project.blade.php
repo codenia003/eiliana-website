@@ -42,7 +42,7 @@ Post Project
                         @include('notifications')
                     </div>
                     <div class="advance-search singup-body login-body">
-                        <form action="{{ url('/post-job-on') }}" method="POST" id="postJobForm" enctype="multipart/form-data">
+                        <form action="{{ url('/post-project-on') }}" method="POST" id="postJobForm" enctype="multipart/form-data">
                             @csrf
                             <div class="card">
                                 <div class="p-4">
@@ -50,56 +50,37 @@ Post Project
                                         <label>About Company</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" name="about_company" rows="3"></textarea>
                                     </div>
-                                    @if (Session::get('contractsattfing')['lookingfor'] === '1')
-                                        <div class="form-group basic-info mb-3">
-                                            <label>Contract Duration</label>
-                                            <br />
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="1">
-                                                <label class="form-check-label" for="inlineCheckbox1">Monthly</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="2">
-                                                <label class="form-check-label" for="inlineCheckbox2">Quarterly</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="3">
-                                                <label class="form-check-label" for="inlineCheckbox3">Yearly</label>
-                                            </div>
+                                    <div class="form-group basic-info mb-3">
+                                        <label>Pricing Model</label>
+                                        <br />
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="1">
+                                            <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
                                         </div>
-                                    @else
-                                        <div class="form-group basic-info mb-3">
-                                            <label>Pricing Model</label>
-                                            <br />
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="1">
-                                                <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="2">
-                                                <label class="form-check-label" for="inlineCheckbox2">Retainership</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="3">
-                                                <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="model_engagement" value="4">
-                                                <label class="form-check-label" for="inlineCheckbox4">Contract Staffing</label>
-                                            </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Retainership</label>
                                         </div>
-                                    @endif
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="3">
+                                            <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="model_engagement" value="4">
+                                            <label class="form-check-label" for="inlineCheckbox4">Contract Staffing</label>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
-                                        <label>Job Title</label>
-                                        <input type="text" name="job_title" class="form-control" value="" required />
+                                        <label>Project Title</label>
+                                        <input type="text" name="project_title" class="form-control" value="" required />
                                     </div>
                                     <div class="form-group">
                                         <label>Key Skills</label>
                                         <input type="text" name="key_skills" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" required />
                                     </div>
                                     <div class="form-group">
-                                        <label>Role Summary</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="role_summary" rows="3"></textarea>
+                                        <label>Project Summary</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="project_summary" rows="3"></textarea>
                                     </div>
 
                                     <div class="basic-info mb-3">
@@ -159,7 +140,7 @@ Post Project
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Technology Preference</label>
-                                            <select name="technologty_pre" class="form-control" id="technologty_pre" onchange="change_framework();">
+                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple>
                                                 <option value=""></option>
                                                 @foreach ($technologies as $technology)
                                                 <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
@@ -168,7 +149,7 @@ Post Project
                                         </div>
                                         <div class="form-group col-12">
                                             <label>Framework</label>
-                                            <select class="form-control" name="framework" id="framework">
+                                            <select class="form-control select2" name="framework[]" id="framework" multiple>
                                                 <option value=""></option>
                                             </select>
                                         </div>
@@ -220,93 +201,23 @@ Post Project
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group mb-4">
-                                        <label>Auto Match:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                        <input type="checkbox" class="js-switch2" name="auto_match" value="1" checked />
+                                    <div class="my-3">
+                                        <button class="btn eiliana-btn btn-additional" type="button">Additional Fields <span class="fa fa-plus"></span></button>
                                     </div>
 
-                                    <!-- eduction start -->
-                                    <h4 class="text-left">Education Details</h4>
-                                    <div class="ug-qualification-1">
-                                        <div class="ug-qualification mb-3">
-                                        <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span>
-                                        <input type="hidden" name="graduation_type[]" value="3">
-                                        <input type="hidden" name="education_id[]" value="0">
-                                        <div class="form-row">
-                                            <div class="form-group col-4">
-                                                <label>UG Qualification</label>
-                                                <select name="degree[]" class="form-control" required>
-                                                    <option value=""></option>
-                                                    @foreach ($qualifications as $qualification)
-                                                    @if ($qualification->type == 'UG')
-                                                    <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
-                                                    @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-1">
-                                            </div>
-                                            <div class="form-group col-7">
-                                                <label>University Name</label>
-                                                <select name="name[]" class="form-control">
-                                                    <option value=""></option>
-                                                    @foreach ($universities as $university)
-                                                    <option value="{{ $university->university_id }}">{{ $university->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <!-- <input type="text" name="name[]" class="form-control" required /> -->
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-4">
-                                                <label>Year of Graduation</label>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <select class="form-control" required="" name="month[]">
-                                                            <option value="">From</option>
-                                                            @for ($i = 2000; $i < 2021; $i++)
-                                                            <option value="{{ $i }}">{{ $i }}</option>
-                                                            @endfor
-                                                        </select>
-                                                    </div>
-                                                    <div class="col">
-                                                        <select class="form-control" required="" name="year[]">
-                                                            <option value="">Till</option>
-                                                            @for ($i = 2000; $i < 2021; $i++)
-                                                            <option value="{{ $i }}">{{ $i }}</option>
-                                                            @endfor
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-1">
-                                            </div>
-                                            <div class="form-group col-7">
-                                                <label>Education Type</label>
-                                                <select name="education_type[]" class="form-control" required>
-                                                    <option value=""></option>
-                                                    @foreach ($educationtype as $etype)
-                                                    <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 mt-3">
-                                        <button class="btn eiliana-btn btn-copy-ug" type="button">Add Education <span class="fa fa-plus"></span></button>
-
-                                        <button type="button" class="remove-ug btn eiliana-btn ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
-                                    </div>
-                                    <div class="pg-qualification-1">
-                                        <div class="pg-qualification">
-                                            <span class="h4 text-left mt-3 mb-4 d-inline-block">PG Qualification</span>
-                                            <input type="hidden" name="graduation_type[]" value="4">
+                                    {{-- additonal field --}}
+                                    <div class="additional-filter d-none">
+                                        <!-- eduction start -->
+                                        <h4 class="text-left">Education Details</h4>
+                                        <div class="ug-qualification-1">
+                                            <div class="ug-qualification mb-3">
+                                            {{-- <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span> --}}
+                                            <input type="hidden" name="graduation_type[]" value="3">
                                             <input type="hidden" name="education_id[]" value="0">
                                             <div class="form-row">
                                                 <div class="form-group col-4">
-                                                    <label>PG Qualification</label>
-                                                    <select name="degree[]" class="form-control" required>
+                                                    <label>UG Qualification</label>
+                                                    <select name="degree[]" class="form-control">
                                                         <option value=""></option>
                                                         @foreach ($qualifications as $qualification)
                                                         @if ($qualification->type == 'UG')
@@ -325,7 +236,6 @@ Post Project
                                                         <option value="{{ $university->university_id }}">{{ $university->name }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <!-- <input type="text" name="name[]" class="form-control" required/> -->
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -333,7 +243,7 @@ Post Project
                                                     <label>Year of Graduation</label>
                                                     <div class="form-row">
                                                         <div class="col">
-                                                            <select class="form-control" required="" name="month[]">
+                                                            <select class="form-control" name="month[]">
                                                                 <option value="">From</option>
                                                                 @for ($i = 2000; $i < 2021; $i++)
                                                                 <option value="{{ $i }}">{{ $i }}</option>
@@ -341,7 +251,7 @@ Post Project
                                                             </select>
                                                         </div>
                                                         <div class="col">
-                                                            <select class="form-control" required="" name="year[]">
+                                                            <select class="form-control" name="year[]">
                                                                 <option value="">Till</option>
                                                                 @for ($i = 2000; $i < 2021; $i++)
                                                                 <option value="{{ $i }}">{{ $i }}</option>
@@ -354,7 +264,7 @@ Post Project
                                                 </div>
                                                 <div class="form-group col-7">
                                                     <label>Education Type</label>
-                                                    <select name="education_type[]" class="form-control" required>
+                                                    <select name="education_type[]" class="form-control">
                                                         <option value=""></option>
                                                         @foreach ($educationtype as $etype)
                                                         <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
@@ -362,190 +272,271 @@ Post Project
                                                     </select>
                                                 </div>
                                             </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="mt-3">
-                                        <button class="btn eiliana-btn btn-copy-pg" type="button">Add Education <span class="fa fa-plus"></span></button>
+                                        <div class="mb-3 mt-3">
+                                            <button class="btn eiliana-btn btn-copy-ug" type="button">Add Education <span class="fa fa-plus"></span></button>
 
-                                        <button type="button" class="remove-pg btn eiliana-btn ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
-                                    </div>
-                                    <!-- certification start  -->
-                                    <h4 class="text-left">Certification</h4>
-                                    <div class="certification-1">
-                                        <div class="certification">
-                                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
-                                            <div class="form-row">
-                                                <div class="form-group col-5">
-                                                    <label>Certification Number</label>
-                                                    <input type="text" name="certificate_no" class="form-control"/>
-                                                </div>
-                                                <!-- <div class="form-group col-1"></div> -->
-                                                <div class="form-group col-7">
-                                                    <label>Certification Name</label>
-                                                    <input type="text" name="name" class="form-control"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-4">
-                                                    <label>Year of Certification</label>
-                                                    <div class="form-row">
-                                                        <div class="col">
-                                                            <select class="form-control" required="" name="from_date[]">
-                                                                <option value="">From</option>
-                                                                @for ($i = 2000; $i < 2021; $i++)
-                                                                <option value="{{ $i }}">{{ $i }}</option>
-                                                                @endfor
-                                                            </select>
-                                                        </div>
-                                                        <div class="col">
-                                                            <select class="form-control" required="" name="till_date[]">
-                                                                <option value="">Till</option>
-                                                                @for ($i = 2000; $i < 2021; $i++)
-                                                                <option value="{{ $i }}">{{ $i }}</option>
-                                                                @endfor
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-1">
-                                                </div>
-                                                <div class="form-group col-7">
-                                                    <label>Institute Name</label>
-                                                    <input type="text" name="institutename[]" class="form-control" required />
-                                                </div>
-                                            </div>
+                                            <button type="button" class="remove-ug btn eiliana-btn ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
                                         </div>
-                                    </div>
-                                    <div class="mt-3">
-                                        <button class="btn eiliana-btn btn-copy-c" type="button">Add Certification <span class="fa fa-plus"></span></button>
-                                        <button type="button" class="remove-c btn eiliana-btn ml-3 rounded-0">Erase Certification <span class="fas fa-times"></span></button>
-                                    </div>
-                                    <!-- question set -->
-                                    <div class="border mt-5">
-                                        <div class="p-4 border-bottom">
-                                            <h4 class="text-left">Question 1</h4>
-                                            <div class="question1-1">
-                                                <div class="question1">
-                                                    <div class="form-group">
-                                                        {{-- <label>Question</label> --}}
-                                                        <input type="text" name="question" class="form-control"/>
+                                        <div class="pg-qualification-1">
+                                            <div class="pg-qualification">
+                                                {{-- <span class="h4 text-left mt-3 mb-4 d-inline-block">PG Qualification</span> --}}
+                                                <input type="hidden" name="graduation_type[]" value="4">
+                                                <input type="hidden" name="education_id[]" value="0">
+                                                <div class="form-row">
+                                                    <div class="form-group col-4">
+                                                        <label>PG Qualification</label>
+                                                        <select name="degree[]" class="form-control">
+                                                            <option value=""></option>
+                                                            @foreach ($qualifications as $qualification)
+                                                            @if ($qualification->type == 'UG')
+                                                            <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
+                                                            @endif
+                                                            @endforeach
+                                                        </select>
                                                     </div>
-                                                    <div class="form-group basic-info my-3">
-                                                        <label>Lorem Isume</label>
-                                                        <br>
-                                                        <div class="form-check form-check-inline">
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="Yes" class="custom-control-input" name="lookingfor" value="1" checked>
-                                                                <label class="custom-control-label" for="Yes">Yes</label>
+                                                    <div class="form-group col-1">
+                                                    </div>
+                                                    <div class="form-group col-7">
+                                                        <label>University Name</label>
+                                                        <select name="name[]" class="form-control">
+                                                            <option value=""></option>
+                                                            @foreach ($universities as $university)
+                                                            <option value="{{ $university->university_id }}">{{ $university->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <!-- <input type="text" name="name[]" class="form-control" required/> -->
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-4">
+                                                        <label>Year of Graduation</label>
+                                                        <div class="form-row">
+                                                            <div class="col">
+                                                                <select class="form-control" name="month[]">
+                                                                    <option value="">From</option>
+                                                                    @for ($i = 2000; $i < 2021; $i++)
+                                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                                    @endfor
+                                                                </select>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" id="No" class="custom-control-input" name="lookingfor" value="0">
-                                                                <label class="custom-control-label" for="No">No</label>
+                                                            <div class="col">
+                                                                <select class="form-control" name="year[]">
+                                                                    <option value="">Till</option>
+                                                                    @for ($i = 2000; $i < 2021; $i++)
+                                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                                    @endfor
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-3">
-                                                <button class="btn eiliana-btn btn-copy-q1" type="button">Add Question <span class="fa fa-plus"></span></button>
-                                                <button type="button" class="remove-q1 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
-                                            </div>
-                                        </div>
-                                        <div class="p-4 border-bottom">
-                                            <h4 class="text-left">Question 2</h4>
-                                            <div class="question2-1">
-                                                <div class="question2">
-                                                    <div class="form-group">
-                                                        {{-- <label>Question</label> --}}
-                                                        <input type="text" name="question" class="form-control"/>
+                                                    <div class="form-group col-1">
                                                     </div>
-                                                    <div class="form-group basic-info my-3">
-                                                        <label>Lorem Isume</label>
-                                                        <br>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxQue1" name="model_engagement" value="1">
-                                                            <label class="form-check-label" for="inlineCheckboQue1">Lorem Isume</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxQue2" name="model_engagement" value="2">
-                                                            <label class="form-check-label" for="inlineCheckboxQue2">Lorem Isume</label>
-                                                        </div>
+                                                    <div class="form-group col-7">
+                                                        <label>Education Type</label>
+                                                        <select name="education_type[]" class="form-control">
+                                                            <option value=""></option>
+                                                            @foreach ($educationtype as $etype)
+                                                            <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mt-3">
-                                                <button class="btn eiliana-btn btn-copy-q2" type="button">Add Question <span class="fa fa-plus"></span></button>
-                                                <button type="button" class="remove-q2 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
-                                            </div>
                                         </div>
-                                        <div class="p-4 border-bottom">
-                                            <h4 class="text-left">Question 3</h4>
-                                            <div class="question3-1">
-                                                <div class="question3">
-                                                    <div class="form-group">
-                                                        {{-- <label>Question</label> --}}
-                                                        <input type="text" name="question" class="form-control"/>
+                                        <div class="mt-3">
+                                            <button class="btn eiliana-btn btn-copy-pg" type="button">Add Education <span class="fa fa-plus"></span></button>
+
+                                            <button type="button" class="remove-pg btn eiliana-btn ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
+                                        </div>
+                                        <!-- certification start  -->
+                                        <h4 class="text-left">Certification</h4>
+                                        <div class="certification-1">
+                                            <div class="certification">
+                                                {{-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span> --}}
+                                                <div class="form-row">
+                                                    <div class="form-group col-5">
+                                                        <label>Certification Number</label>
+                                                        <input type="text" name="certificate_no" class="form-control"/>
                                                     </div>
-                                                    <div class="form-row align-items-center">
-                                                        <div class="form-group col-2">
-                                                            <label>Lorem Isume</label>
-                                                        </div>
-                                                        <div class="form-group input-group col-4">
-                                                            <input type="text" class="form-control">
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-btn input-group-append">
-                                                                    <button class="btn btn-secondary input-group-text image_radius" type="button">
-                                                                        <i class="fas fa-percent"></i>
-                                                                    </button>
-                                                                </span>
+                                                    <!-- <div class="form-group col-1"></div> -->
+                                                    <div class="form-group col-7">
+                                                        <label>Certification Name</label>
+                                                        <input type="text" name="name" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-4">
+                                                        <label>Year of Certification</label>
+                                                        <div class="form-row">
+                                                            <div class="col">
+                                                                <select class="form-control" name="from_date[]">
+                                                                    <option value="">From</option>
+                                                                    @for ($i = 2000; $i < 2021; $i++)
+                                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                                    @endfor
+                                                                </select>
+                                                            </div>
+                                                            <div class="col">
+                                                                <select class="form-control" name="till_date[]">
+                                                                    <option value="">Till</option>
+                                                                    @for ($i = 2000; $i < 2021; $i++)
+                                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                                    @endfor
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="form-group col-1">
+                                                    </div>
+                                                    <div class="form-group col-7">
+                                                        <label>Institute Name</label>
+                                                        <input type="text" name="institutename[]" class="form-control" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="mt-3">
-                                                <button class="btn eiliana-btn btn-copy-q3" type="button">Add Question <span class="fa fa-plus"></span></button>
-                                                <button type="button" class="remove-q3 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
                                             </div>
                                         </div>
-                                        <div class="p-4 border-bottom">
-                                            <h4 class="text-left">Question 4</h4>
-                                            <div class="question4-1">
-                                                <div class="question4">
-                                                    <div class="form-group">
-                                                        {{-- <label>Question</label> --}}
-                                                        <input type="text" name="question" class="form-control"/>
-                                                    </div>
-                                                    <div class="form-row align-items-center">
-                                                        <div class="form-group col-2">
-                                                            <label>Lorem Isume</label>
-                                                        </div>
-                                                        <div class="form-group input-group col-4">
-                                                            <input type="text" name="name" class="form-control"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-3">
-                                                <button class="btn eiliana-btn btn-copy-q4" type="button">Add Question <span class="fa fa-plus"></span></button>
-                                                <button type="button" class="remove-q4 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
-                                            </div>
+                                        <div class="mt-3">
+                                            <button class="btn eiliana-btn btn-copy-c" type="button">Add Certification <span class="fa fa-plus"></span></button>
+                                            <button type="button" class="remove-c btn eiliana-btn ml-3 rounded-0">Erase Certification <span class="fas fa-times"></span></button>
                                         </div>
-                                        <div class="p-4">
-                                            <h4 class="text-left">Question 5</h4>
-                                            <div class="question5-1">
-                                                <div class="question5">
-                                                    <div class="form-group">
-                                                        {{-- <label>Question</label> --}}
-                                                        <input type="text" name="question" class="form-control"/>
+                                        <div class="form-group my-4">
+                                            <label>Auto Match:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                            <input type="checkbox" class="js-switch2" name="auto_match" value="1" checked />
+                                        </div>
+                                        <div class="my-3">
+                                            <button class="btn eiliana-btn btn-additional-ques" type="button">Additional Filters <span class="fa fa-plus"></span></button>
+                                        </div>
+                                        <div class="additional-filter-ques d-none">
+                                            <!-- question set -->
+                                            <div class="border mt-5">
+                                                <div class="p-4 border-bottom">
+                                                    <h4 class="text-left">Question 1</h4>
+                                                    <div class="question1-1">
+                                                        <div class="question1">
+                                                            <div class="form-group">
+                                                                {{-- <label>Question</label> --}}
+                                                                <input type="text" name="question" class="form-control"/>
+                                                            </div>
+                                                            <div class="form-group basic-info my-3">
+                                                                <label>Lorem Isume</label>
+                                                                <br>
+                                                                <div class="form-check form-check-inline">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" id="Yes" class="custom-control-input" name="lookingfor" value="1" checked>
+                                                                        <label class="custom-control-label" for="Yes">Yes</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" id="No" class="custom-control-input" name="lookingfor" value="0">
+                                                                        <label class="custom-control-label" for="No">No</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <button class="btn eiliana-btn btn-copy-q1" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                        <button type="button" class="remove-q1 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="mt-3">
-                                                <button class="btn eiliana-btn btn-copy-q5" type="button">Add Question <span class="fa fa-plus"></span></button>
-                                                <button type="button" class="remove-q5 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                                <div class="p-4 border-bottom">
+                                                    <h4 class="text-left">Question 2</h4>
+                                                    <div class="question2-1">
+                                                        <div class="question2">
+                                                            <div class="form-group">
+                                                                {{-- <label>Question</label> --}}
+                                                                <input type="text" name="question" class="form-control"/>
+                                                            </div>
+                                                            <div class="form-group basic-info my-3">
+                                                                <label>Lorem Isume</label>
+                                                                <br>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckboxQue1" name="model_engagement" value="1">
+                                                                    <label class="form-check-label" for="inlineCheckboQue1">Lorem Isume</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckboxQue2" name="model_engagement" value="2">
+                                                                    <label class="form-check-label" for="inlineCheckboxQue2">Lorem Isume</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <button class="btn eiliana-btn btn-copy-q2" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                        <button type="button" class="remove-q2 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                                    </div>
+                                                </div>
+                                                <div class="p-4 border-bottom">
+                                                    <h4 class="text-left">Question 3</h4>
+                                                    <div class="question3-1">
+                                                        <div class="question3">
+                                                            <div class="form-group">
+                                                                {{-- <label>Question</label> --}}
+                                                                <input type="text" name="question" class="form-control"/>
+                                                            </div>
+                                                            <div class="form-row align-items-center">
+                                                                <div class="form-group col-2">
+                                                                    <label>Lorem Isume</label>
+                                                                </div>
+                                                                <div class="form-group input-group col-4">
+                                                                    <input type="text" class="form-control">
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-btn input-group-append">
+                                                                            <button class="btn btn-secondary input-group-text image_radius" type="button">
+                                                                                <i class="fas fa-percent"></i>
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <button class="btn eiliana-btn btn-copy-q3" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                        <button type="button" class="remove-q3 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                                    </div>
+                                                </div>
+                                                <div class="p-4 border-bottom">
+                                                    <h4 class="text-left">Question 4</h4>
+                                                    <div class="question4-1">
+                                                        <div class="question4">
+                                                            <div class="form-group">
+                                                                {{-- <label>Question</label> --}}
+                                                                <input type="text" name="question" class="form-control"/>
+                                                            </div>
+                                                            <div class="form-row align-items-center">
+                                                                <div class="form-group col-2">
+                                                                    <label>Lorem Isume</label>
+                                                                </div>
+                                                                <div class="form-group input-group col-4">
+                                                                    <input type="text" name="name" class="form-control"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <button class="btn eiliana-btn btn-copy-q4" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                        <button type="button" class="remove-q4 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                                    </div>
+                                                </div>
+                                                <div class="p-4">
+                                                    <h4 class="text-left">Question 5</h4>
+                                                    <div class="question5-1">
+                                                        <div class="question5">
+                                                            <div class="form-group">
+                                                                {{-- <label>Question</label> --}}
+                                                                <input type="text" name="question" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <button class="btn eiliana-btn btn-copy-q5" type="button">Add Question <span class="fa fa-plus"></span></button>
+                                                        <button type="button" class="remove-q5 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -636,6 +627,14 @@ Post Project
 <script type="text/javascript" src="{{ asset('vendors/switchery/js/switchery.js') }}"></script>
 <script>
 $(document).ready(function() {
+    $('#technologty_pre').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
+    $('#framework').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
     $(".form-check-input").iCheck({
         checkboxClass: 'icheckbox_minimal-red',
     });
@@ -681,6 +680,17 @@ $(document).ready(function() {
             var element = '<div class="question5-3">'+$('.question5').html()+'</div>';
             $('.question5-1').append(element);
         });
+
+        $(".btn-additional").on('click', function(){
+            $('.additional-filter').removeClass("d-none");
+            $('.btn-additional').addClass("d-none");
+        });
+
+        $(".btn-additional-ques").on('click', function(){
+            $('.additional-filter-ques').removeClass("d-none");
+            $('.btn-additional-ques').addClass("d-none");
+        });
+
 
     });
     $(document).on('click','.remove-ug',function() {

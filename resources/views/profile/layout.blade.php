@@ -221,7 +221,8 @@ Profile Setting
 	  	} else {
 	    	return false;
 		}
-	}
+    }
+
 	function changeInterested(e) {
 		$("#exampleModal1").modal();
     }

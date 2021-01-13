@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <label>Technology Preference</label>
-                    <select name="technologty_pre" class="form-control" id="technologty_pre" onchange="change_framework();">
+                    <select name="technologty_pre" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple>
                         <option value=""></option>
                         @foreach ($technologies as $technology)
                         <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
@@ -70,7 +70,7 @@
                 <div class="form-row">
                     <div class="form-group col">
                         <label>Framework</label>
-                        <select class="form-control" name="framework" id="framework">
+                        <select class="form-control" name="framework select2" id="framework" multiple>
                             <option value=""></option>
                         </select>
                     </div>

@@ -53,8 +53,8 @@
                             <form action="{{ route('signin') }}" autocomplete="on" method="post" role="form"
                                 id="login_form" class="my-3">
                                 <h3 class="black_bg">
-                                    <img src="{{ asset('img/logo.png') }}" alt="josh logo">
-                                    <br>Log In</h3>
+                                   <img src="{{ asset('assets/img/logo-dark.png') }}" alt="josh logo">
+                                    </h3>
                                 <!-- CSRF Token -->
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <div class="form-group {{ $errors->first('email', 'has-error') }}">
@@ -89,9 +89,9 @@
                                     </label>
                                 </div>
                                 <p class="login button">
-                                    <input type="submit" value="Log In" class="btn btn-success btn-block" />
+                                    <input type="submit" value="Log In" class="btn btn-success btn-block btncolor" style="background-color: #e49906; border-color: #e49906;" />
                                 </p>
-                                <p class="change_link">
+                                <!-- <p class="change_link">
                                     <a href="#toforgot">
                                         <button type="button" class="btn btn-warning btn-sm">Forgot
                                             password
@@ -102,8 +102,8 @@
                                             style="float:right;">Sign Up
                                         </button>
                                     </a>
-                                </p>
-                                <div class="row">
+                                </p> -->
+                                <!-- <div class="row">
                                     <div class="col-lg-12 text-center social_login mb-3">
                                         <a class="btn btn-block btn-social btn-facebook" href="{{ url('/facebook') }}">
                                             <i class="fab fa-facebook-f"></i> Sign in with Facebook
@@ -115,14 +115,14 @@
                                             <i class="fab fa-linkedin-in"></i> Sign in with LinkedIn
                                         </a>
                                     </div>
-                                </div>
+                                </div> -->
                             </form>
                         </div>
                         <div id="register" class="animate form">
                             <form action="{{ route('admin.signup') }}" autocomplete="on" method="post" role="form"
                                 id="register_here">
                                 <h3 class="black_bg my-3">
-                                    <img src="{{ asset('img/logo.png') }}" alt="josh logo">
+                                    <img src="{{ asset('assets/img/logo-dark.png') }}" alt="josh logo">
                                     <br>Log In</h3>
                                 <!-- CSRF Token -->
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -222,7 +222,7 @@
                             <form action="{{ url('admin/forgot-password') }}" autocomplete="on" method="post"
                                 role="form" id="reset_pw">
                                 <h3 class="black_bg my-3">
-                                    <img src="{{ asset('img/logo.png') }}" alt="josh logo"><br>Forgot Password</h3>
+                                    <img src="{{ asset('assets/img/logo-dark.png') }}" alt="josh logo"><br>Forgot Password</h3>
                                 <p style="font-size:14px !important;">
                                     Enter your email address below and we'll send a special reset password link to your
                                     inbox.

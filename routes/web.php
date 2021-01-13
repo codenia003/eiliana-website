@@ -82,13 +82,13 @@ Route::group(
         Route::post('modelCheck', 'ModelcheckController@modelCheck');
 
         // Dashboard / Index
-        Route::get(
-            '/',
-            function () {
-                return view('admin.index');
-            }
-        )->name('dashboard');
-        Route::get('index1', 'JoshController@showHome');
+        // Route::get(
+        //     '/',
+        //     function () {
+        //         return view('admin.index');
+        //     }
+        // )->name('dashboard');
+        Route::get('/', 'JoshController@showHome')->name('dashboard');
         // crop demo
         Route::post('crop_demo', 'JoshController@cropDemo')->name('crop_demo');
         //Log viewer routes

@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Josh Admin Template
+Eiliana Admin 
 @parent
 @stop
 
@@ -20,7 +20,7 @@ Josh Admin Template
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>Welcome to Dashboard <span class="d-none d-md-inline-block header_info">( Dynamic Dashboard )</span></h1>
+    <h1>Welcome to Dashboard <span class="d-none d-md-inline-block header_info"></span></h1>
     <ol class="breadcrumb">
         <li class=" breadcrumb-item active">
             <a href="#">
@@ -34,7 +34,7 @@ Josh Admin Template
 <!--</section>-->
 <section class="content pl-3 pr-3">
     @if ($analytics_error != 0)
-    <div class="alert alert-danger alert-dismissable margin5">
+    <div class="alert alert-danger alert-dismissable margin5 d-none">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <strong>Error:</strong> You Need to add Google Analytics file for full working of the page
     </div>

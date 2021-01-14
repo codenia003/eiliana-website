@@ -24,7 +24,7 @@ use App\Models\EducationType;
 use App\Models\ProjectCategory;
 use App\Models\Technology;
 use App\Models\Job;
-
+use App\Models\User;
 
 class JobController extends Controller
 {
@@ -174,6 +174,13 @@ class JobController extends Controller
             }
         }
 
+        if($input['project_title'] != null) {
+            $words = explode(" " ,$input['project_title']);
+            foreach($words as $word) {
+                $indexing .= metaphone($word). " ";
+            }
+        }
+
         $input['indexing'] = $indexing;
 
         $technologty_pre = $request->input('technologty_pre');
@@ -213,5 +220,12 @@ class JobController extends Controller
         $projects->save();
 
         return redirect('post-job')->with('success', 'Job Posted successfully');
+    }
+
+    public function getJobDeatils($id){
+
+        $user = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('user_id', $id)->first();
+
+        return view('job/job-details', compact('user'));
     }
 }

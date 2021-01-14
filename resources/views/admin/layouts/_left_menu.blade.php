@@ -14,7 +14,7 @@
         </a>
     </li>
 
-    <li {!! (Request::is('admin/generator_builder') ? 'class="active"' : '' ) !!}>
+    <li {!! (Request::is('admin/generator_builder') ? 'class="active"' : '' ) !!} class="d-none">
         <a href="{{ URL('admin/generator_builder') }}">
             <i class="livicon" data-name="shield" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
             CRUD Generator
@@ -477,7 +477,7 @@
             <span class="badge badge-danger event_count">7</span>
         </a>
     </li>
-    <li {!! (Request::is('admin/emails/inbox') || Request::is('admin/emails/compose') || Request::is('admin/emails/sent') ? 'class="menu-dropdown active"' : "class='menu-dropdown d-none'" ) !!} class="d-none">
+    <li {!! (Request::is('admin/emails/inbox') || Request::is('admin/emails/compose') || Request::is('admin/emails/sent') ? 'class="menu-dropdown active"' : "class='menu-dropdown d-none'" ) !!} >
         <a href="#">
             <i class="livicon" data-name="mail" data-size="18" data-c="#67C5DF" data-hc="#67C5DF" data-loop="true"></i>
             <span>Email</span>

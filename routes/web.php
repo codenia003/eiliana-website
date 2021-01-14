@@ -336,19 +336,7 @@ Route::get('forgot-password/{userId}/{passwordResetCode}', 'FrontEndController@g
 
 // logout
 Route::get('logout', 'FrontEndController@getLogout')->name('logout');
-// My account display and update details
-Route::group(
-    ['middleware' => 'user'],
-    function () {
-        Route::get('home', 'FrontEndController@getDashboard')->name('home');
-        Route::get('search-project', 'ProjectController@getSearchProject')->name('search-project');
-        Route::get('/project/{id}', 'ProjectController@getProjectDeatils');
-        Route::get('post-job', 'JobController@index')->name('post-job');
-        Route::post('post-job-on', 'JobController@postJobon')->name('post-job-on');
-        Route::get('post-project', 'JobController@postProject')->name('post-project');
-        Route::post('post-project-on', 'JobController@postProjecton')->name('post-project-on');
-    }
-);
+
 // My account display and update details
 Route::group(
     ['prefix' => 'profile', 'middleware' => 'user'],
@@ -390,11 +378,32 @@ Route::group(
         Route::get('financial', 'ProfileController@financial')->name('financial');
     }
 );
+
+
+Route::group(
+    ['middleware' => 'user'],
+    function () {
+        Route::get('home', 'FrontEndController@getDashboard')->name('home');
+        Route::get('search-project', 'ProjectController@getSearchProject')->name('search-project');
+        Route::get('/project/{id}', 'ProjectController@getProjectDeatils');
+        Route::get('post-job', 'JobController@index')->name('post-job');
+        Route::post('post-job-on', 'JobController@postJobon')->name('post-job-on');
+        Route::get('post-project', 'JobController@postProject')->name('post-project');
+        Route::post('post-project-on', 'JobController@postProjecton')->name('post-project-on');
+
+        Route::get('project/{id}', 'ProjectController@getProjectDeatils');
+        Route::get('job/{id}', 'JobController@getJobDeatils');
+    }
+);
+
+
 Route::group(
     ['prefix' => 'advance-search', 'middleware' => 'user'],
     function () {
         Route::get('projects', 'AdvanceSearchController@projects')->name('projects');
+        Route::post('projects', 'AdvanceSearchController@projects')->name('projects');
         Route::get('contract-staffing', 'AdvanceSearchController@contractStaffing')->name('contract-staffing');
+        Route::post('contract-staffing', 'AdvanceSearchController@contractStaffing')->name('contract-staffing');
     }
 );
 

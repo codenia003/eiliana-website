@@ -48,7 +48,8 @@
                     @endforeach
             @endisset
         <li class="footer">
-            <a href="{{ url('admin/emails/inbox') }}">View all</a>
+            <!-- <a href="{{ url('admin/emails/inbox') }}">View all</a> -->
+            <a href="#">View all</a>
         </li>
     </ul>
 </li>

@@ -28,15 +28,38 @@ use Carbon\Carbon;
 
 class AdvanceSearchController extends Controller
 {
-    public function projects()
+    public function projects(Request $request)
     {
-        // Show the page
-        $projectcategorys = ProjectCategory::all();
-        $educationtype = EducationType::all();
-        $qualifications = Qualification::all();
-        $universities = University::all();
-        $technologies = Technology::where('parent_id', '0')->get();
-        return view('search/projects', compact('projectcategorys','educationtype','qualifications','universities','technologies'));
+        $user = Sentinel::getUser();
+        if (empty($request->input('keyword'))) {
+
+            // Show the page
+            $projectcategorys = ProjectCategory::all();
+            $educationtype = EducationType::all();
+            $qualifications = Qualification::all();
+            $universities = University::all();
+            $technologies = Technology::where('parent_id', '0')->get();
+            return view('search/projects', compact('projectcategorys','educationtype','qualifications','universities','technologies'));
+
+        } else {
+            $sound = "";
+            $words = explode(" " , $request->input('keyword')) ;
+            foreach($words as $word) {
+                $sound .= metaphone($word);
+                if (next($words)==true) {
+                    $sound .= " ";
+                };
+            }
+
+            $projects = Project::where('indexing', 'LIKE', '%'.$sound.'%')->get();
+
+            // $id = DB::table('search_keyword')->insertGetId(
+            //     ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
+            // );
+
+            return view('search/browse-project', compact('projects'));
+
+        }
     }
 
     public function contractStaffing(Request $request)

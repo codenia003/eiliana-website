@@ -57,8 +57,8 @@ Search Project
                         <div class="spinner-border spinner-border-lg"></div>
                     </div> -->
                     <div class="card-body">
-                        <h5>{{ $project->project_name }}</h5>
-                        <p>{{ $project->project_description }}</p>
+                        <h5>{{ $project->project_title }}</h5>
+                        <p>{{ $project->project_summary }}</p>
                         <div class="skills mt-4">
                             <span class="h5">Skills Required</span>
                             <ul class="nav mt-4">
@@ -80,7 +80,7 @@ Search Project
                 <div class="card mb-5 shadow p-4 mb-4">
                     <div class="border-bottom pb-4">
                         <h4>About the Employer</h4>
-                    </div> 
+                    </div>
                     <!-- <div class="border-bottom pb-4 mt-4">
                         <h4 class="mb-2"><strong>Employer Verification</strong></h4>
                     </div> -->
@@ -92,7 +92,7 @@ Search Project
                                 <div class="col-10 px-2">
                                     <span class="text-dark">Bid Left</span>
                                 </div>
-                                
+
                                 <div class="col-2 text-right px-2">
                                     <span>12</span>
                                 </div>

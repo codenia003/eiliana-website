@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\JoshController;
@@ -47,27 +47,15 @@ class ProjectController extends JoshController
         return view('my-project/add-edit');
     }
 
-    public function searchProject()
-    {
-        // Show the page
-        return view('browse-project');
-    }
-
-    public function fetchProjectStatus() {
-        // get the current time
-        $project_status = DB::table('project_status')->get();
-        return response()->json($trialExpires);
-    }
-
     public function getSearchProject(Request $request)
     {
         $user = Sentinel::getUser();
         if (empty($request->input('keyword'))) {
-            
+
             $count = '';
             $keyword = '';
             $projects = [];
-        
+
         } else {
             $sound = "";
             $words = explode(" " , $request->input('keyword')) ;
@@ -80,14 +68,14 @@ class ProjectController extends JoshController
             // print_r($sound);
             // $projects = Project::where('indexing', $sound)->get();
             $result = Project::where('indexing', 'LIKE', '%'.$sound.'%')->get();
-            
+
             $id = DB::table('search_keyword')->insertGetId(
                 ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
             );
 
             $details = array();
 
-            foreach($result as $key => $res)        
+            foreach($result as $key => $res)
             {
                 $from = strtotime($res['expiry_datetime']);
                 $today = time();
@@ -120,69 +108,21 @@ class ProjectController extends JoshController
     public function getProjectDeatils($id)
     {
         $project = Project::where('project_id', $id)->first();
-        
+
         $from = strtotime($project['expiry_datetime']);
         $today = time();
         $difference = $from - $today;
 
         $project['expiry_days'] = floor($difference / 86400);
-        return view('project-details', compact('project'));
-        // return response()->json($project);
+
+
+        return view('project/project-details', compact('project'));
     }
 
     public function getAllProject(Request $request)
     {
         $projects = Project::where('posted_by_user_id', $request->input('user_id'))->get();
         return response()->json($projects);
-    }
-
-    public function createProject(Request $request)
-    {
-        $current = Carbon::now();
-        $projectExpires = $current->addDays(7);
-
-        $project = new Project;
-        $project->posted_by_user_id = $request->input('user_id');
-        $project->project_status_id = '1';
-        $project->expiry_datetime = $projectExpires;
-        $project->project_name = $request->input('project_name');
-        $project->project_description = $request->input('project_description');
-        $project->payment_type_id = $request->input('payment_type_id');
-        $project->project_awarded_to_user_id = '0';
-        $project->language_id = '0';
-        $project->currency_id = '0';
-        $project->indexing = '0';
-        $project->save();
-        
-        $response['success'] = '1';
-        $response['errors'] = 'Updated';
-        $response['project'] = $project;
-        return response()->json($response);
-    }
-
-    public function getProjectById(Request $request)
-    {
-        $education = Project::where('education_id', $request->input('id'))->first();
-        return response()->json($education);
-    }
-
-    public function updateProject(Request $request)
-    {
-        $education = Project::find($request->input('id'));
-        $education->user_id = $request->input('user_id');
-        $education->education_type = $request->input('education_type');
-        $education->name = $request->input('name');
-        $education->from_date = $request->input('from_date');
-        $education->to_date = $request->input('to_date');
-        $education->degree = $request->input('degree');
-        $education->area_of_education = $request->input('area_of_education');
-        $education->description = $request->input('description');
-        $education->save();
-
-        $response['success'] = '1';
-        $response['errors'] = 'Updated';
-        $response['education'] = $education;
-        return response()->json($response);
     }
 
 }

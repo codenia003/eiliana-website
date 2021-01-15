@@ -66,7 +66,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-					                	<div class="form-group job-posting d-none">
+					                	<div class="form-group job-posting">
 	                                        <label>Project Duration</label>
 	                                        <div class="form-row">
 	                                            <div class="col">
@@ -112,7 +112,7 @@
 				                                </div>
 				                            </div>
 	                                    </div>
-	                                    <div class="form-group job-posting d-none">
+	                                    <div class="form-group job-posting">
 	                                        <label>Job Location</label>
 	                                        <select name="current_location" class="form-control">
 	                                            <option value=""></option>

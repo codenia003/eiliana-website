@@ -393,6 +393,7 @@ Route::group(
 
         Route::get('project/{id}', 'ProjectController@getProjectDeatils');
         Route::get('job/{id}', 'JobController@getJobDeatils');
+        Route::get('profile/{id}', 'JobController@getProfileDeatils');
     }
 );
 

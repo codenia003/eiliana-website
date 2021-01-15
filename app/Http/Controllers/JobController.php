@@ -222,10 +222,17 @@ class JobController extends Controller
         return redirect('post-job')->with('success', 'Job Posted successfully');
     }
 
-    public function getJobDeatils($id){
+    public function getJobDeatils($id) {
 
         $user = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('user_id', $id)->first();
 
         return view('job/job-details', compact('user'));
+    }
+
+    public function getProfileDeatils($id) {
+
+        $user = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('user_id', $id)->first();
+
+        return view('job/profile-details', compact('user'));
     }
 }

@@ -79,7 +79,7 @@
                     <div class="col-md-9">
                         <div class="contract-body">
                             <div class="mb-2">
-                                <a href="{{ url('job') }}/{{ $user->id }}" class="h3">{{ $user->full_name }}</a>
+                                <a href="{{ url('profile') }}/{{ $user->id }}" class="h3">{{ $user->full_name }}</a>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-md-6">

@@ -54,20 +54,39 @@ Post Project
                                         <label>Pricing Model</label>
                                         <br />
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="1">
-                                            <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="hourly" class="custom-control-input" name="model_engagement" value="1" onchange="changePricingModel()" checked="">
+                                                <label class="custom-control-label" for="hourly">Hourly</label>
+                                            </div>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Retainership</label>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="retainership" class="custom-control-input" name="model_engagement" value="2" onchange="changePricingModel()">
+                                                <label class="custom-control-label" for="retainership">Retainership</label>
+                                            </div>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="3">
-                                            <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="projectbase" class="custom-control-input" name="model_engagement" value="3" onchange="changePricingModel()">
+                                                <label class="custom-control-label" for="projectbase">Project Based</label>
+                                            </div>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="model_engagement" value="4">
-                                            <label class="form-check-label" for="inlineCheckbox4">Contract Staffing</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="hourly">Rate Per Hour</label>
+                                        <label class="retainership d-none">Rate Per Month</label>
+                                        <label class="project-based d-none">Total Project Amount</label>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <input type="text" name="amount" class="form-control" value="" required />
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-control" name="curreny">
+                                                    @for ($i = 1; $i < 5; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -626,6 +645,25 @@ Post Project
 <script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/switchery/js/switchery.js') }}"></script>
 <script>
+$(window).bind("load", function() {
+    changePricingModel();
+});
+function changePricingModel() {
+    var engagement = $('input[name="model_engagement"]:checked').attr('value');
+    if (engagement == '1') {
+        $('.hourly').removeClass("d-none");
+        $('.retainership').addClass("d-none");
+        $('.project-based').addClass("d-none");
+    } else if (engagement == '2') {
+        $('.hourly').addClass("d-none");
+        $('.retainership').removeClass("d-none");
+        $('.project-based').addClass("d-none");
+    } else {
+        $('.hourly').addClass("d-none");
+        $('.retainership').addClass("d-none");
+        $('.project-based').removeClass("d-none");
+    }
+}
 $(document).ready(function() {
     $('#technologty_pre').select2({
         theme: 'bootstrap',

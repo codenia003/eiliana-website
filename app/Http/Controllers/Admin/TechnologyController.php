@@ -37,8 +37,10 @@ class TechnologyController extends InfyOmBaseController
         $this->technologyRepository->pushCriteria(new RequestCriteria($request));
         $technologies = $this->technologyRepository->where('display_status', '1')->get();
 
-        return view('admin.technologies.index')
-            ->with('technologies', $technologies);
+        $technologies_name = $this->technologyRepository->where('display_status', '1')->where('parent_id', '0')->get(); 
+        
+        return view('admin.settings.technologies.index',compact('technologies','technologies_name'));
+           
     }
 
     /**
@@ -50,7 +52,7 @@ class TechnologyController extends InfyOmBaseController
     {   
         $technologies = $this->technologyRepository->where('display_status', '1')->where('parent_id', '0')->get(); 
           
-        return view('admin.technologies.create',compact('technologies'));
+        return view('admin.settings.technologies.create',compact('technologies'));
     }
 
     /**
@@ -88,7 +90,7 @@ class TechnologyController extends InfyOmBaseController
             return redirect(route('technologies.index'));
         }
 
-        return view('admin.technologies.show')->with('technology', $technology);
+        return view('admin.settings.technologies.show')->with('technology', $technology);
     }
 
     /**
@@ -110,7 +112,7 @@ class TechnologyController extends InfyOmBaseController
         }
 
         // return view('admin.technologies.edit')->with('technology', $technology);
-        return view('admin.technologies.edit',compact('technology','technologies'));
+        return view('admin.settings.technologies.edit',compact('technology','technologies'));
     }
 
     /**

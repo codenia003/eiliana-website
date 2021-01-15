@@ -17,3 +17,19 @@ Route::get('technologies/{technologies}/edit', ['as'=> 'technologies.edit', 'use
 
 });
 
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('designations', ['as'=> 'designations.index', 'uses' => 'DesignationController@index']);
+Route::post('designations', ['as'=> 'designations.store', 'uses' => 'DesignationController@store']);
+Route::get('designations/create', ['as'=> 'designations.create', 'uses' => 'DesignationController@create']);
+Route::put('designations/{designations}', ['as'=> 'designations.update', 'uses' => 'DesignationController@update']);
+Route::patch('designations/{designations}', ['as'=> 'designations.update', 'uses' => 'DesignationController@update']);
+Route::get('designations/{id}/delete', array('as' => 'designations.delete', 'uses' => 'DesignationController@getDelete'));
+Route::get('designations/{id}/confirm-delete', array('as' => 'designations.confirm-delete', 'uses' => 'DesignationController@getModalDelete'));
+Route::get('designations/{designations}', ['as'=> 'designations.show', 'uses' => 'DesignationController@show']);
+Route::get('designations/{designations}/edit', ['as'=> 'designations.edit', 'uses' => 'DesignationController@edit']);
+
+});
+
+
+

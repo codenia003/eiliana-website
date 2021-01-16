@@ -24,7 +24,6 @@
                           @endif 
                          @endif>{{$techno->technology_name}}</option>
 				@endforeach
-				<option value="0">No Select</option>
 			</select>       
 	</div>
 

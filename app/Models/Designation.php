@@ -12,12 +12,8 @@ class Designation extends Model
     public $table = 'Designations';
 
     protected $primaryKey = 'designation_id';
-    
 
-
-    public $fillable = [
-        'name'
-    ];
+    protected $fillable = ['name'];
 
     /**
      * The attributes that should be casted to native types.

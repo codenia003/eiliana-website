@@ -1,22 +1,22 @@
 @extends('admin/layouts/default')
 
 @section('title')
-Technologies
+EducationTypes
 @parent
 @stop
 
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>Technologies</h1>
+    <h1>EducationTypes</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                 Dashboard
             </a>
         </li>
-        <li>Technologies</li>
-        <li class="active">Technologies List</li>
+        <li>EducationTypes</li>
+        <li class="active">EducationTypes List</li>
     </ol>
 </section>
 
@@ -28,15 +28,15 @@ Technologies
         <div class="card border-primary ">
             <div class="card-header bg-primary text-white">
                 <h4 class="card-title float-left"> <i class="livicon" data-name="list-ul" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                    Technologies List
+                    EducationTypes List
                 </h4>
                 <div class="float-right">
-                    <a href="{{ route('admin.technologies.create') }}" class="btn btn-sm btn-secondary"><span class="fa fa-plus"></span> @lang('button.create')</a>
+                    <a href="{{ route('admin.educationTypes.create') }}" class="btn btn-sm btn-secondary"><span class="fa fa-plus"></span> @lang('button.create')</a>
                 </div>
             </div>
             <br />
             <div class="card-body table-responsive">
-                 @include('admin.technologies.table')
+                 @include('admin.educationTypes.table')
                  
             </div>
         </div>

@@ -45,7 +45,7 @@ Job Post
                     @include('notifications')
                 </div>
                 <div class="profile-information">
-                    <div class="card p-3 mb-4">
+                    <div class="card p-3 mb-4 pb-4">
                         <div class="row align-items-center">
                             <div class="col-md-3">
                                 <div class="contract-profile mb-1">
@@ -64,11 +64,56 @@ Job Post
                                     </div>
                                 </div>
                             </div>
-                            <div class="pricing-model col-md-8">
-                                <div class="a">
-                                    <span>Pricing Model: </span>
+                            <div class="pricing-model col-md-9">
+                                <div class="a p-1">
+                                    <span class="b">Pricing Model: </span>
                                     <span>Hourly | Retainership | Project Based</span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-3 mb-4 pb-4">
+                        <div class="card-header">
+                            <h5 class="card-title">Projects</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="project">
+                                @foreach ($projects as $project)
+                                <div>{{ $project->project_name }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card p-3 mb-4 pb-4">
+                        <div class="card-header">
+                            <h5 class="card-title">Educations</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-education">
+                                <span class="h4 text-left mt-3 mb-4 d-inline-block">Under Graduate Qualification</span>
+                                @foreach ($ug_educations as $education)
+                                    <div>{{ $education->university->name }}</div>
+                                    <div>{{ $education->qualification->name }}</div>
+                                    <div>{{ $education->month }} - {{ $education->year }}</div>
+                                @endforeach
+                            </div>
+                            <div class="card-education">
+                                <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graduate Qualification</span>
+                                @foreach ($pg_educations as $education)
+                                    <div>{{ $education->university->name }}</div>
+                                    <div>{{ $education->qualification->name }}</div>
+                                    <div>{{ $education->month }} - {{ $education->year }}</div>
+                                @endforeach
+                            </div>
+                            <h3 class="card-title mt-4">Certifications</h5>
+                            <hr>
+                            <div class="card-education">
+                                @foreach ($certificates as $certificate)
+                                    <div>{{ $certificate->name }}</div>
+                                    <div>{{ $certificate->institutename }}</div>
+                                    <div>{{ $certificate->from_date }} - {{ $certificate->till_date }}</div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

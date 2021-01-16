@@ -317,7 +317,7 @@
 <div class="ug-qualification-2 d-none">
 	<span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span>
 	<!-- <button type="button" class="remove-ug btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
-	
+
 	<input type="hidden" name="graduation_type[]" value="3">
 	<input type="hidden" name="education_id[]" id="education_id" value="0">
 	<div class="form-row">

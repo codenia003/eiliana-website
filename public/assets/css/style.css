@@ -8,10 +8,10 @@ body {
     text-align: left;
     background-color: #fff;
   }
-  p {
+p {
       text-align: inherit;
   }
-  a {
+a {
     cursor: pointer
   }
   .container {
@@ -1264,3 +1264,20 @@ body {
       font-size: 18px;
       font-weight: 500;
   }
+  .profile-information .pricing-model {
+    position: absolute;
+    bottom: -13px;
+    box-shadow: 0 0 2px 2px #e4ecf7;
+    background-color: #fff;
+    left: 20px;
+}
+.profile-information .pricing-model .a {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #de4b39;
+}
+
+.profile-information .pricing-model .a .b {
+    color: #000000;
+}

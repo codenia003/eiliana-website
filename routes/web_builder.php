@@ -33,3 +33,18 @@ Route::get('designations/{designations}/edit', ['as'=> 'designations.edit', 'use
 
 
 
+
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('educationTypes', ['as'=> 'educationTypes.index', 'uses' => 'EducationTypeController@index']);
+Route::post('educationTypes', ['as'=> 'educationTypes.store', 'uses' => 'EducationTypeController@store']);
+Route::get('educationTypes/create', ['as'=> 'educationTypes.create', 'uses' => 'EducationTypeController@create']);
+Route::put('educationTypes/{educationTypes}', ['as'=> 'educationTypes.update', 'uses' => 'EducationTypeController@update']);
+Route::patch('educationTypes/{educationTypes}', ['as'=> 'educationTypes.update', 'uses' => 'EducationTypeController@update']);
+Route::get('educationTypes/{id}/delete', array('as' => 'educationTypes.delete', 'uses' => 'EducationTypeController@getDelete'));
+Route::get('educationTypes/{id}/confirm-delete', array('as' => 'educationTypes.confirm-delete', 'uses' => 'EducationTypeController@getModalDelete'));
+Route::get('educationTypes/{educationTypes}', ['as'=> 'educationTypes.show', 'uses' => 'EducationTypeController@show']);
+Route::get('educationTypes/{educationTypes}/edit', ['as'=> 'educationTypes.edit', 'uses' => 'EducationTypeController@edit']);
+
+});

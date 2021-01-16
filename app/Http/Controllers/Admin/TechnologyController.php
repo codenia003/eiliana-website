@@ -35,7 +35,7 @@ class TechnologyController extends InfyOmBaseController
     {
 
         $this->technologyRepository->pushCriteria(new RequestCriteria($request));
-        $technologies = $this->technologyRepository->where('display_status', '1')->get();
+        $technologies = $this->technologyRepository->where('display_status', '1')->where('parent_id', '!=', 0)->get();
 
         $technologies_name = $this->technologyRepository->where('display_status', '1')->where('parent_id', '0')->get(); 
         

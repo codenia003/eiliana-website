@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         @section('title')
-            | Eiliana Admin 
+            | Eiliana Admin
         @show
     </title>
 
@@ -85,19 +85,19 @@
                             <p class="topprofiletext">{{ Sentinel::getUser()->first_name }} {{ Sentinel::getUser()->last_name }}</p>
                         </li>
                         <!-- Menu Body -->
-                        <li>
+                        {{-- <li>
                             <a href="{{ URL::route('admin.users.show',Sentinel::getUser()->id) }}">
                                 <i class="livicon" data-name="user" data-s="18"></i>
                                 My Profile
                             </a>
-                        </li>
+                        </li> --}}
                         <li role="presentation"></li>
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('admin.users.edit', Sentinel::getUser()->id) }}">
                                 <i class="livicon" data-name="gears" data-s="18"></i>
                                 Account Settings
                             </a>
-                        </li>
+                        </li> --}}
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="float-left">

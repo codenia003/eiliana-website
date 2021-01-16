@@ -1,21 +1,21 @@
 @extends('admin/layouts/default')
 
 @section('title')
-Technologies
+EducationTypes
 @parent
 @stop
 @section('content')
   @include('common.errors')
     <section class="content-header">
-     <h1>Technologies Edit</h1>
+     <h1>EducationTypes Edit</h1>
      <ol class="breadcrumb">
          <li>
              <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                  Dashboard
              </a>
          </li>
-         <li>Technologies</li>
-         <li class="active">Edit Technology </li>
+         <li>EducationTypes</li>
+         <li class="active">Edit EducationType </li>
      </ol>
     </section>
     <section class="content">
@@ -25,13 +25,13 @@ Technologies
               <div class="card border-primary">
                     <div class="card-header bg-primary text-white">
                         <h4 class="card-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                            Edit  Technology
+                            Edit  EducationType
                         </h4></div>
                     <br />
                 <div class="card-body">
-                {!! Form::model($technology, ['route' => ['admin.technologies.update', collect($technology)->first() ], 'method' => 'patch']) !!}
+                {!! Form::model($educationType, ['route' => ['admin.educationTypes.update', collect($educationType)->first() ], 'method' => 'patch']) !!}
 
-                @include('admin.technologies.fields')
+                @include('admin.educationTypes.fields')
 
                 {!! Form::close() !!}
                 </div>

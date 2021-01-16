@@ -1,22 +1,22 @@
 @extends('admin/layouts/default')
 
 @section('title')
-Technology
+EducationType
 @parent
 @stop
 
 @section('content')
 @include('common.errors')
 <section class="content-header">
-    <h1>Technology</h1>
+    <h1>EducationType</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                 Dashboard
             </a>
         </li>
-        <li>Technologies</li>
-        <li class="active">Create Technology </li>
+        <li>EducationTypes</li>
+        <li class="active">Create EducationType </li>
     </ol>
 </section>
 <section class="content">
@@ -26,13 +26,13 @@ Technology
      <div class="card border-primary">
             <div class="card-header bg-primary text-white">
                 <h4 class="card-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                    Create New  Technology
+                    Create New  EducationType
                 </h4></div>
             <br />
             <div class="card-body">
-            {!! Form::open(['route' => 'admin.technologies.store']) !!}
+            {!! Form::open(['route' => 'admin.educationTypes.store']) !!}
 
-                @include('admin.technologies.fields')
+                @include('admin.educationTypes.fields')
 
             {!! Form::close() !!}
         </div>

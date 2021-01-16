@@ -37,7 +37,7 @@ Home
 				    <div class="card-body">
 				        <div class="card-body card-body-centered" style="min-height: 15rem;">
 						    <p>Start bidding now on projects that meet your skills.</p>
-						    <a class="btn btn-primary bg-orange" href="{{ url('search-project') }}">Browse Projects</a>
+						    <a class="btn btn-primary bg-orange" href="{{ url('hire-talent') }}">Browse Projects And Talent</a>
 						    <!-- <a class="btn btn-primary bg-orange" routerLink="/project/1">Browse Projects</a> -->
 						 </div>
 				    </div>

@@ -30,7 +30,7 @@ Technology
                     </h4>
                 </div>
                     <div class="card-body">
-                        @include('admin.technologies.show_fields')
+                        @include('admin.settings.technologies.show_fields')
                     </div>
                 </div>
 

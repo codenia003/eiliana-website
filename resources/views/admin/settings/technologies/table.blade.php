@@ -2,8 +2,8 @@
 <table class="table table-striped table-bordered" id="technologies-table" width="100%">
     <thead>
      <tr>
+        <th>Framework</th>
         <th>Technology Name</th>
-        <th>Parent Id</th>
         <th>Display Status</th>
         <th >Action</th>
      </tr>
@@ -12,7 +12,13 @@
     @foreach($technologies as $technology)
         <tr>
             <td>{!! $technology->technology_name !!}</td>
-            <td>{!! $technology->parent_id !!}</td>
+            <td>@foreach($technologies_name as $parent)
+              @if( $technology->parent_id == $parent->technology_id )
+              {{ $parent->technology_name }}
+              
+              @endif
+            @endforeach
+</td>
             <td>{!! $technology->display_status !!}</td>
             <td>
                  <a href="{{ route('admin.technologies.show', collect($technology)->first() ) }}" class="d-none">

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Designation extends Model
 {
 
-    public $table = 'Designations';
+    public $table = 'designations';
 
     protected $primaryKey = 'designation_id';
 

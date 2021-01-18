@@ -235,13 +235,13 @@ class JobController extends Controller
 
     public function getProfileDeatils($id) {
 
-        $user = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('user_id', $id)->first();
+        $user = User::where('id', $id)->first();
 
         $ug_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '3')->get();
         $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
         $certificates = Certificate::where('user_id', $id)->get();
-        $proexps = ProfessionalExperience::where('user_id', $id)->get();
-        $projects = UserProject::where('user_id', $id)->get();
+        $proexps = ProfessionalExperience::where('user_id', $id)->first();
+        $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
         $employers = Employers::where('user_id', $id)->get();
 
         return view('job/profile-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers'));

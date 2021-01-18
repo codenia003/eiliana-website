@@ -41,6 +41,7 @@ class User extends EloquentUser
     protected $dates = ['deleted_at'];
 
     protected $appends = ['full_name'];
+
     public function getFullNameAttribute()
     {
         return Str::limit($this->first_name . ' ' . $this->last_name, 30);

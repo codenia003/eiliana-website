@@ -12,6 +12,21 @@ class UserProject extends Model
      * @var string
      */
     protected $table = 'user_projects';
-    
+
     protected $primaryKey = 'user_project_id';
+
+    public function projecttypes()
+    {
+        return $this->belongsTo('App\Models\ProjectType', 'project_type', 'project_type_id');
+    }
+
+    public function technologuname()
+    {
+        return $this->belongsTo('App\Models\Technology', 'technologty_pre', 'technology_id');
+    }
+
+    public function frameworkname()
+    {
+        return $this->belongsTo('App\Models\Technology', 'framework', 'technology_id');
+    }
 }

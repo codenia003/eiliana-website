@@ -48,3 +48,33 @@ Route::get('educationTypes/{educationTypes}', ['as'=> 'educationTypes.show', 'us
 Route::get('educationTypes/{educationTypes}/edit', ['as'=> 'educationTypes.edit', 'uses' => 'EducationTypeController@edit']);
 
 });
+
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('employerTypes', ['as'=> 'employerTypes.index', 'uses' => 'EmployerTypeController@index']);
+Route::post('employerTypes', ['as'=> 'employerTypes.store', 'uses' => 'EmployerTypeController@store']);
+Route::get('employerTypes/create', ['as'=> 'employerTypes.create', 'uses' => 'EmployerTypeController@create']);
+Route::put('employerTypes/{employerTypes}', ['as'=> 'employerTypes.update', 'uses' => 'EmployerTypeController@update']);
+Route::patch('employerTypes/{employerTypes}', ['as'=> 'employerTypes.update', 'uses' => 'EmployerTypeController@update']);
+Route::get('employerTypes/{id}/delete', array('as' => 'employerTypes.delete', 'uses' => 'EmployerTypeController@getDelete'));
+Route::get('employerTypes/{id}/confirm-delete', array('as' => 'employerTypes.confirm-delete', 'uses' => 'EmployerTypeController@getModalDelete'));
+Route::get('employerTypes/{employerTypes}', ['as'=> 'employerTypes.show', 'uses' => 'EmployerTypeController@show']);
+Route::get('employerTypes/{employerTypes}/edit', ['as'=> 'employerTypes.edit', 'uses' => 'EmployerTypeController@edit']);
+
+});
+
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('projectCategories', ['as'=> 'projectCategories.index', 'uses' => 'ProjectCategoryController@index']);
+Route::post('projectCategories', ['as'=> 'projectCategories.store', 'uses' => 'ProjectCategoryController@store']);
+Route::get('projectCategories/create', ['as'=> 'projectCategories.create', 'uses' => 'ProjectCategoryController@create']);
+Route::put('projectCategories/{projectCategories}', ['as'=> 'projectCategories.update', 'uses' => 'ProjectCategoryController@update']);
+Route::patch('projectCategories/{projectCategories}', ['as'=> 'projectCategories.update', 'uses' => 'ProjectCategoryController@update']);
+Route::get('projectCategories/{id}/delete', array('as' => 'projectCategories.delete', 'uses' => 'ProjectCategoryController@getDelete'));
+Route::get('projectCategories/{id}/confirm-delete', array('as' => 'projectCategories.confirm-delete', 'uses' => 'ProjectCategoryController@getModalDelete'));
+Route::get('projectCategories/{projectCategories}', ['as'=> 'projectCategories.show', 'uses' => 'ProjectCategoryController@show']);
+Route::get('projectCategories/{projectCategories}/edit', ['as'=> 'projectCategories.edit', 'uses' => 'ProjectCategoryController@edit']);
+
+});

@@ -4,9 +4,35 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class ProjectCategory extends Model
 {
-    protected $table = 'project_category';
+
+    public $table = 'project_category';
+     protected $primaryKey = 'id';
     
-    protected $primaryKey = 'id';
+
+
+    public $fillable = [
+        'name'
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'name' => 'string'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required'
+    ];
 }

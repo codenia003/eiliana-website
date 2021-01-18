@@ -35,7 +35,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <!-- <div class="form-group basic-info">
                                 <label>Project Type</label>
                                 <div class="form-check form-check-inline ml-3">
@@ -59,10 +59,11 @@
 
                                 <div class="form-group col">
                                     <label>Technology</label>
-                                    <select name="framework[]" class="form-control" required>
+                                    <select name="technologty_pre[]" class="form-control" id="technologty_pre" onchange="change_framework();" required>
                                         <option value=""></option>
-                                        <option value="1">Core PHP</option>
-                                        <option value="2">Laravel</option>
+                                        @foreach ($technologies as $technology)
+                                        <option value="{{ $technology->technology_id }}" {{ ($project->project_type==$technology->technology_id)? "selected" : "" }} >{{ $technology->technology_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -70,7 +71,9 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Framework</label>
-                                    {!! Form::selectRange('version[]', 1, 20, $project->version, ['class' => 'form-control','required' =>'']) !!}
+                                    <select class="form-control" required="" name="framework[]" id="framework">
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                                 <div class="form-group col">
                                     <label>Industry that Product was designed for</label>
@@ -86,7 +89,7 @@
                                 <label for="exampleFormControlTextarea1">Project Details</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" name="project_details[]" rows="3">{{ $project->project_details }}</textarea>
                             </div>
-                            
+
                             <div class="form-group basic-file">
                                 <label>Project Upload</label>
                                 <div class="custom-file">
@@ -142,7 +145,7 @@
                                         <label class="custom-control-label" for="Support">Support</label>
                                     </div>
                                 </div>
-                            </div>-->                            
+                            </div>-->
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Duration</label>
@@ -151,10 +154,11 @@
 
                                 <div class="form-group col">
                                     <label>Technology</label>
-                                    <select name="framework[]" class="form-control" required>
+                                    <select name="technologty_pre[]" class="form-control" id="technologty_pre" onchange="change_framework();" required>
                                         <option value=""></option>
-                                        <option value="1">Core PHP</option>
-                                        <option value="2">Laravel</option>
+                                        @foreach ($technologies as $technology)
+                                        <option value="{{ $technology->technology_id }}" >{{ $technology->technology_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -162,7 +166,9 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Framework</label>
-                                    {!! Form::selectRange('version[]', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+                                    <select class="form-control" required="" name="framework[]" id="framework">
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                                 <div class="form-group col">
                                     <label>Industry that Product was designed for</label>
@@ -257,19 +263,22 @@
         </div>
 
         <div class="form-group col">
-            <label>Framework</label>
-            <select name="framework[]" class="form-control" required>
+            <label>Technology</label>
+            <select name="technologty_pre[]" class="form-control" id="technologty_pre" onchange="change_framework();" required>
                 <option value=""></option>
-                <option value="1">Core PHP</option>
-                <option value="2">Laravel</option>
+                @foreach ($technologies as $technology)
+                <option value="{{ $technology->technology_id }}" >{{ $technology->technology_name }}</option>
+                @endforeach
             </select>
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col">
-            <label>Version</label>
-            {!! Form::selectRange('version[]', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+            <label>Framework</label>
+            <select class="form-control" required="" name="framework[]" id="framework">
+                <option value=""></option>
+            </select>
         </div>
         <div class="form-group col">
             <label>Industry that Product was designed for</label>

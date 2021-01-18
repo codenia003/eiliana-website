@@ -1281,3 +1281,55 @@ a {
 .profile-information .pricing-model .a .b {
     color: #000000;
 }
+.project-count ul {
+    padding: 0;
+    display: inline-flex;
+}
+.project-count ul li {
+    margin-right: 23px;
+    font-size: 15px;
+    font-weight: 500;
+}
+span.select2-selection.select2-selection--single {
+    border-radius: 0;
+    background-color: #ffffff;
+    height: 45px;
+    border: 1px solid #c7c7c7 !important;
+    box-shadow: 0 0 2px 2px #e4ecf7 !important;
+    line-height: 32px;
+}
+.profile-information .card-header {
+    padding: 10px 0px;
+    border-bottom: 0.0625rem solid #9e9e9e;
+}
+.profile-information .card-header h5.card-title {
+    font-size: 18px;
+}
+.project-date .info-train td.heading {
+    font-weight: 600;
+}
+.project-date .info-train td {
+    padding: 0.25rem;
+    font-weight: 500;
+}
+.project-slid span.fa.fa-angle-left.slick-arrow {
+    left: -50px;
+}
+.project-slid span.fa.fa-angle-right.slick-arrow {
+    right: -45px;
+}
+.project-date {
+    padding-left: 10px;
+}
+.card-education .row {
+    margin-bottom: 20px;
+}
+.card-education .edu_name {
+    color: #003466;
+}
+.card-education .quli_name {
+    font-weight: 500;
+}
+.card-education .from_to {
+    font-weight: 500;
+}

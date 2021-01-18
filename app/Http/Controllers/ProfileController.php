@@ -117,9 +117,12 @@ class ProfileController extends JoshController
 
     public function projects()
     {
+
         $projects = UserProject::where('user_id', Sentinel::getUser()->id)->get();
         $employers = Employers::where('user_id', Sentinel::getUser()->id)->get();
-        return view('profile/projects', compact('projects','employers'));
+        $technologies = Technology::where('parent_id', '0')->get();
+
+        return view('profile/projects', compact('projects','employers','technologies'));
     }
 
     public function employer()

@@ -18,17 +18,25 @@ use stdClass;
 use Carbon\Carbon;
 use App\Models\Education;
 use App\Models\Project;
+use App\Models\ProjectsEducation;
+use App\Models\ProjectsCertificate;
+use App\Models\ProjectsQuestion;
 use App\Models\Qualification;
 use App\Models\University;
 use App\Models\EducationType;
 use App\Models\ProjectCategory;
 use App\Models\Technology;
 use App\Models\Job;
+use App\Models\JobsCertificate;
+use App\Models\JobsEducation;
+use App\Models\JobsQuestion;
 use App\Models\User;
 use App\Models\Certificate;
 use App\Models\ProfessionalExperience;
 use App\Models\UserProject;
 use App\Models\Employers;
+use App\Models\Location;
+use App\Models\CustomerIndustry;
 
 class JobController extends Controller
 {
@@ -39,8 +47,10 @@ class JobController extends Controller
         $qualifications = Qualification::all();
         $universities = University::all();
         $technologies = Technology::where('parent_id', '0')->get();
+        $locations = Location::all();
+        $customerindustries = CustomerIndustry::all();
 
-        return view('job/post-job', compact('educationtype','qualifications','universities','technologies'));
+        return view('job/post-job', compact('educationtype','qualifications','universities','technologies','locations','customerindustries'));
     }
 
     public function postProject()
@@ -49,8 +59,10 @@ class JobController extends Controller
         $qualifications = Qualification::all();
         $universities = University::all();
         $technologies = Technology::where('parent_id', '0')->get();
+        $locations = Location::all();
+        $customerindustries = CustomerIndustry::all();
 
-        return view('job/post-project', compact('educationtype','qualifications','universities','technologies'));
+        return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries'));
     }
 
     public function hireTalent()
@@ -72,7 +84,9 @@ class JobController extends Controller
         	'lookingfor' => '2'
     	];
         $projectcategorys = ProjectCategory::all();
-        return view('job/job-posting', compact('pagename','projectcategorys'));
+        $locations = Location::all();
+
+        return view('job/job-posting', compact('pagename','projectcategorys','locations'));
     }
 
     public function talentSearch(Request $request){
@@ -159,9 +173,36 @@ class JobController extends Controller
         $jobs->display_status = 1;
         $jobs->save();
 
+        $insertedId = $jobs->job_id;
+
+        foreach ($input['education_id'] as $key => $value) {
+            $education = new JobsEducation;
+            $education->user_id = $user->id;
+            $education->job_id = $insertedId;
+            $education->education_type = $input['education_type'][$key];
+            $education->graduation_type = $input['graduation_type'][$key];
+            $education->name = $input['universityname'][$key];
+            $education->month = $input['month'][$key];
+            $education->year = $input['year'][$key];
+            $education->degree = $input['degree'][$key];
+            $education->save();
+        }
+
+        foreach ($input['certificate_id'] as $key => $value) {
+                $certificate = new JobsCertificate;
+                $certificate->user_id = $user->id;
+                $certificate->job_id = $insertedId;
+                $certificate->certificate_no = $input['certificate_no'][$key];
+                $certificate->name = $input['certificate_name'][$key];
+                $certificate->from_date = $input['from_date'][$key];
+                $certificate->till_date = $input['till_date'][$key];
+                $certificate->institutename = $input['institutename'][$key];
+                $certificate->display_status = 1;
+                $certificate->save();
+        }
+
         return redirect('post-job')->with('success', 'Job Posted successfully');
     }
-
 
     public function postProjecton(Request $request) {
 

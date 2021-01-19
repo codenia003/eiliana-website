@@ -105,7 +105,7 @@ Job Post
                                     </div>
                                     <div class="form-group">
                                         <label>Role Summary</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="role_summary" rows="3"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea2" name="role_summary" rows="3"></textarea>
                                     </div>
 
                                     <div class="basic-info mb-3">
@@ -156,8 +156,9 @@ Job Post
                                             <label>Customer Industry</label>
                                             <select name="customer_industry" class="form-control" required>
                                                 <option value=""></option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
+                                                @foreach ($customerindustries as $industry)
+                                                <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -197,9 +198,9 @@ Job Post
                                             <label>Location</label>
                                             <select name="location" class="form-control">
                                                 <option value=""></option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
+                                                @foreach ($locations as $location)
+                                                <option value="{{ $location->location_id }}" {{ (Session::get('contractsattfing')['current_location']==$location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col">
@@ -225,6 +226,10 @@ Job Post
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group my-4">
+                                        <label>Auto Match:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <input type="checkbox" class="js-switch2" name="auto_match" value="1" checked />
                                     </div>
                                     <div class="my-3">
                                         <button class="btn eiliana-btn btn-additional" type="button">Additional Fields <span class="fa fa-plus"></span></button>
@@ -254,13 +259,12 @@ Job Post
                                                 </div>
                                                 <div class="form-group col-7">
                                                     <label>University Name</label>
-                                                    <select name="name[]" class="form-control">
+                                                    <select name="universityname[]" class="form-control">
                                                         <option value=""></option>
                                                         @foreach ($universities as $university)
                                                         <option value="{{ $university->university_id }}">{{ $university->name }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <!-- <input type="text" name="name[]" class="form-control" required /> -->
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -325,7 +329,7 @@ Job Post
                                                     </div>
                                                     <div class="form-group col-7">
                                                         <label>University Name</label>
-                                                        <select name="name[]" class="form-control">
+                                                        <select name="universityname[]" class="form-control">
                                                             <option value=""></option>
                                                             @foreach ($universities as $university)
                                                             <option value="{{ $university->university_id }}">{{ $university->name }}</option>
@@ -380,6 +384,7 @@ Job Post
                                         <div class="certification-1">
                                             <div class="certification">
                                                 {{-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span> --}}
+                                                <input type="hidden" name="certificate_id[]" value="0">
                                                 <div class="form-row">
                                                     <div class="form-group col-5">
                                                         <label>Certification Number</label>
@@ -388,7 +393,7 @@ Job Post
                                                     <!-- <div class="form-group col-1"></div> -->
                                                     <div class="form-group col-7">
                                                         <label>Certification Name</label>
-                                                        <input type="text" name="name" class="form-control"/>
+                                                        <input type="text" name="certificate_name" class="form-control"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
@@ -426,10 +431,6 @@ Job Post
                                             <button class="btn eiliana-btn btn-copy-c" type="button">Add Certification <span class="fa fa-plus"></span></button>
                                             <button type="button" class="remove-c btn eiliana-btn ml-3 rounded-0">Erase Certification <span class="fas fa-times"></span></button>
                                         </div>
-                                        <div class="form-group my-4">
-                                            <label>Auto Match:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                            <input type="checkbox" class="js-switch2" name="auto_match" value="1" checked />
-                                        </div>
                                         <div class="my-3">
                                             <button class="btn eiliana-btn btn-additional-ques" type="button">Additional Filters <span class="fa fa-plus"></span></button>
                                         </div>
@@ -440,21 +441,23 @@ Job Post
                                                     <h4 class="text-left">Question 1</h4>
                                                     <div class="question1-1">
                                                         <div class="question1">
+                                                            <input type="hidden" name="question_type[]" class="form-control" value="1"/>
+                                                            <input type="hidden" name="radio_count" id="radio_count_id" value="0"/>
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question" class="form-control"/>
+                                                                <input type="text" name="question_name[]" class="form-control"/>
                                                             </div>
                                                             <div class="form-group basic-info my-3">
                                                                 <label>Lorem Isume</label>
                                                                 <br>
                                                                 <div class="form-check form-check-inline">
-                                                                    <div class="custom-control custom-radio">
+                                                                    <div class="custom-control custom-radio radioappend1">
                                                                         <input type="radio" id="Yes" class="custom-control-input" name="lookingfor" value="1" checked>
                                                                         <label class="custom-control-label" for="Yes">Yes</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-check form-check-inline">
-                                                                    <div class="custom-control custom-radio">
+                                                                    <div class="custom-control custom-radio radioappend2">
                                                                         <input type="radio" id="No" class="custom-control-input" name="lookingfor" value="0">
                                                                         <label class="custom-control-label" for="No">No</label>
                                                                     </div>
@@ -467,13 +470,15 @@ Job Post
                                                         <button type="button" class="remove-q1 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
                                                     </div>
                                                 </div>
+                                                {{-- question 2 --}}
                                                 <div class="p-4 border-bottom">
                                                     <h4 class="text-left">Question 2</h4>
                                                     <div class="question2-1">
                                                         <div class="question2">
+                                                            <input type="hidden" name="question_type[]" class="form-control" value="2"/>
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question" class="form-control"/>
+                                                                <input type="text" name="question_name" class="form-control"/>
                                                             </div>
                                                             <div class="form-group basic-info my-3">
                                                                 <label>Lorem Isume</label>
@@ -494,13 +499,15 @@ Job Post
                                                         <button type="button" class="remove-q2 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
                                                     </div>
                                                 </div>
+                                                {{-- question 3 --}}
                                                 <div class="p-4 border-bottom">
                                                     <h4 class="text-left">Question 3</h4>
                                                     <div class="question3-1">
                                                         <div class="question3">
+                                                            <input type="hidden" name="question_type[]" class="form-control" value="3"/>
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question" class="form-control"/>
+                                                                <input type="text" name="question_name" class="form-control"/>
                                                             </div>
                                                             <div class="form-row align-items-center">
                                                                 <div class="form-group col-2">
@@ -524,13 +531,15 @@ Job Post
                                                         <button type="button" class="remove-q3 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
                                                     </div>
                                                 </div>
+                                                {{-- question 4 --}}
                                                 <div class="p-4 border-bottom">
                                                     <h4 class="text-left">Question 4</h4>
                                                     <div class="question4-1">
                                                         <div class="question4">
+                                                            <input type="hidden" name="question_type[]" class="form-control" value="4"/>
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question" class="form-control"/>
+                                                                <input type="text" name="question_name" class="form-control"/>
                                                             </div>
                                                             <div class="form-row align-items-center">
                                                                 <div class="form-group col-2">
@@ -547,13 +556,15 @@ Job Post
                                                         <button type="button" class="remove-q4 btn eiliana-btn ml-3 rounded-0">Erase Question <span class="fas fa-times"></span></button>
                                                     </div>
                                                 </div>
+                                                {{-- question 5 --}}
                                                 <div class="p-4">
                                                     <h4 class="text-left">Question 5</h4>
                                                     <div class="question5-1">
                                                         <div class="question5">
+                                                            <input type="hidden" name="question_type[]" class="form-control" value="5"/>
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question" class="form-control"/>
+                                                                <input type="text" name="question_name" class="form-control"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -685,8 +696,20 @@ $(document).ready(function() {
 
         // question start
         $(".btn-copy-q1").on('click', function(){
+            var count = $(".question1-3:last input#radio_count_id").val();
+            if (typeof count !== "undefined") {
+                var count = parseInt(count)+parseInt(1);
+                $('.question1 input#radio_count_id').val(count);
+                console.log(count);
+            } else {
+                $('question1-3:last input#radio_count_id').val('0');
+            }
+            $(".question1-3:last radioappend1").html('<input type="radio" id="Yes'+count+'" class="custom-control-input" name="lookingfor" value="1" checked=""><label class="custom-control-label" for="Yes'+count+'">Yes</label>');
+            $(".question1-3:last radioappend2").html('<input type="radio" id="No'+count+'" class="custom-control-input" name="lookingfor" value="0"><label class="custom-control-label" for="No'+count+'">No</label>');
             var element = '<div class="question1-3">'+$('.question1').html()+'</div>';
             $('.question1-1').append(element);
+
+
         });
         $(".btn-copy-q2").on('click', function(){
             var element = '<div class="question2-3">'+$('.question2').html()+'</div>';

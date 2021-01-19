@@ -40,15 +40,30 @@
                     Project Categories
                 </a>
             </li>
+            <li {!! (Request::is('admin/projectStatuses*') ? 'class="active"' : '' ) !!}>
+                <a href="{{ route('admin.projectStatuses.index') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Project Status
+                </a>
+            </li>
+             <li {!! (Request::is('admin/qualifications*') ? 'class="active"' : '' ) !!}>
+                <a href="{{ route('admin.qualifications.index') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Qualifications
+                </a>
+            </li>
 
         </ul>
     </li>
    
-<!-- <li class="{{ Request::is('admin/projectCategories*') ? 'active' : '' }}">
-    <a href="{!! route('admin.projectCategories.index') !!}">
+
+
+<!-- 
+<li class="{{ Request::is('admin/qualifications*') ? 'active' : '' }}">
+    <a href="{!! route('admin.qualifications.index') !!}">
     <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list" data-size="18"
                data-loop="true"></i>
-               ProjectCategories
+               Qualifications
     </a>
 </li> -->
 

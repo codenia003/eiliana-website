@@ -150,8 +150,9 @@ Post Project
                                             <label>Customer Industry</label>
                                             <select name="customer_industry" class="form-control" required>
                                                 <option value=""></option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
+                                                @foreach ($customerindustries as $industry)
+                                                <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -191,9 +192,9 @@ Post Project
                                             <label>Location</label>
                                             <select name="location" class="form-control">
                                                 <option value=""></option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
+                                                @foreach ($locations as $location)
+                                                <option value="{{ $location->location_id }}" {{ (Session::get('contractsattfing')['current_location']==$location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col">
@@ -249,7 +250,7 @@ Post Project
                                                 </div>
                                                 <div class="form-group col-7">
                                                     <label>University Name</label>
-                                                    <select name="name[]" class="form-control">
+                                                    <select name="universityname[]" class="form-control">
                                                         <option value=""></option>
                                                         @foreach ($universities as $university)
                                                         <option value="{{ $university->university_id }}">{{ $university->name }}</option>
@@ -319,7 +320,7 @@ Post Project
                                                     </div>
                                                     <div class="form-group col-7">
                                                         <label>University Name</label>
-                                                        <select name="name[]" class="form-control">
+                                                        <select name="universityname[]" class="form-control">
                                                             <option value=""></option>
                                                             @foreach ($universities as $university)
                                                             <option value="{{ $university->university_id }}">{{ $university->name }}</option>

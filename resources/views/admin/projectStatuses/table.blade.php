@@ -1,40 +1,26 @@
 <div class="card-body table-responsive-lg table-responsive-sm table-responsive-md">
-<table class="table table-striped table-bordered" id="technologies-table" width="100%">
+<table class="table table-striped table-bordered" id="projectStatuses-table" width="100%">
     <thead>
      <tr>
-        <th>Framework</th>
-        <th>Technology Name</th>
-        <th>Display Status</th>
+        <th>Sr.no</th>
+        <th>Project Status</th>
         <th >Action</th>
      </tr>
     </thead>
     <tbody>
-    @foreach($technologies as $technology)
+    @foreach($projectStatuses as $projectStatus)
         <tr>
-            <td>{!! $technology->technology_name !!}</td>
-            <td>@foreach($technologies_name as $parent)
-              @if( $technology->parent_id == $parent->technology_id )
-              {{ $parent->technology_name }}
-              
-              @endif
-            @endforeach
-           </td>
-
-            <td>@if($technology->display_status == 1)
-               Active
-              @else
-              Inactive
-              @endif
-            </td>
+            <td>{!! $projectStatus->project_status_id !!}</td>
+            <td>{!! $projectStatus->project_status !!}</td>
             <td>
-                 <a href="{{ route('admin.technologies.show', collect($technology)->first() ) }}" class="d-none">
-                     <i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view technology"></i>
+                <!--  <a href="{{ route('admin.projectStatuses.show', collect($projectStatus)->first() ) }}">
+                     <i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view projectStatus"></i>
+                 </a> -->
+                 <a href="{{ route('admin.projectStatuses.edit', collect($projectStatus)->first() ) }}">
+                     <i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="edit projectStatus"></i>
                  </a>
-                 <a href="{{ route('admin.technologies.edit', collect($technology)->first() ) }}">
-                     <i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="edit technology"></i>
-                 </a>
-                 <a href="{{ route('admin.technologies.confirm-delete', collect($technology)->first() ) }}" data-toggle="modal" data-target="#delete_confirm" data-id="{{ route('admin.technologies.delete', collect($technology)->first() ) }}">
-                     <i class="livicon" data-name="remove-alt" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete technology"></i>
+                 <a href="{{ route('admin.projectStatuses.confirm-delete', collect($projectStatus)->first() ) }}" data-toggle="modal" data-target="#delete_confirm" data-id="{{ route('admin.projectStatuses.delete', collect($projectStatus)->first() ) }}">
+                     <i class="livicon" data-name="remove-alt" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete projectStatus"></i>
 
                  </a>
             </td>
@@ -70,16 +56,16 @@
  <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap4.js') }}" ></script>
 
     <script>
-        $('#technologies-table').DataTable({
+        $('#projectStatuses-table').DataTable({
                       responsive: true,
                       pageLength: 10
                   });
-                  $('#technologies-table').on( 'page.dt', function () {
+                  $('#projectStatuses-table').on( 'page.dt', function () {
                      setTimeout(function(){
                            $('.livicon').updateLivicon();
                      },500);
                   } );
-                  $('#technologies-table').on( 'length.dt', function ( e, settings, len ) {
+                  $('#projectStatuses-table').on( 'length.dt', function ( e, settings, len ) {
                      setTimeout(function(){
                             $('.livicon').updateLivicon();
                      },500);

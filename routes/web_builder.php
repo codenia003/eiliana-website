@@ -78,3 +78,33 @@ Route::get('projectCategories/{projectCategories}', ['as'=> 'projectCategories.s
 Route::get('projectCategories/{projectCategories}/edit', ['as'=> 'projectCategories.edit', 'uses' => 'ProjectCategoryController@edit']);
 
 });
+
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('projectStatuses', ['as'=> 'projectStatuses.index', 'uses' => 'ProjectStatusController@index']);
+Route::post('projectStatuses', ['as'=> 'projectStatuses.store', 'uses' => 'ProjectStatusController@store']);
+Route::get('projectStatuses/create', ['as'=> 'projectStatuses.create', 'uses' => 'ProjectStatusController@create']);
+Route::put('projectStatuses/{projectStatuses}', ['as'=> 'projectStatuses.update', 'uses' => 'ProjectStatusController@update']);
+Route::patch('projectStatuses/{projectStatuses}', ['as'=> 'projectStatuses.update', 'uses' => 'ProjectStatusController@update']);
+Route::get('projectStatuses/{id}/delete', array('as' => 'projectStatuses.delete', 'uses' => 'ProjectStatusController@getDelete'));
+Route::get('projectStatuses/{id}/confirm-delete', array('as' => 'projectStatuses.confirm-delete', 'uses' => 'ProjectStatusController@getModalDelete'));
+Route::get('projectStatuses/{projectStatuses}', ['as'=> 'projectStatuses.show', 'uses' => 'ProjectStatusController@show']);
+Route::get('projectStatuses/{projectStatuses}/edit', ['as'=> 'projectStatuses.edit', 'uses' => 'ProjectStatusController@edit']);
+
+});
+
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('qualifications', ['as'=> 'qualifications.index', 'uses' => 'QualificationController@index']);
+Route::post('qualifications', ['as'=> 'qualifications.store', 'uses' => 'QualificationController@store']);
+Route::get('qualifications/create', ['as'=> 'qualifications.create', 'uses' => 'QualificationController@create']);
+Route::put('qualifications/{qualifications}', ['as'=> 'qualifications.update', 'uses' => 'QualificationController@update']);
+Route::patch('qualifications/{qualifications}', ['as'=> 'qualifications.update', 'uses' => 'QualificationController@update']);
+Route::get('qualifications/{id}/delete', array('as' => 'qualifications.delete', 'uses' => 'QualificationController@getDelete'));
+Route::get('qualifications/{id}/confirm-delete', array('as' => 'qualifications.confirm-delete', 'uses' => 'QualificationController@getModalDelete'));
+Route::get('qualifications/{qualifications}', ['as'=> 'qualifications.show', 'uses' => 'QualificationController@show']);
+Route::get('qualifications/{qualifications}/edit', ['as'=> 'qualifications.edit', 'uses' => 'QualificationController@edit']);
+
+});

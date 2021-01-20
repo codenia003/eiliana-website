@@ -125,3 +125,16 @@ Route::get('universities/{universities}/edit', ['as'=> 'universities.edit', 'use
 });
 
 
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('currencies', ['as'=> 'currencies.index', 'uses' => 'CurrencyController@index']);
+Route::post('currencies', ['as'=> 'currencies.store', 'uses' => 'CurrencyController@store']);
+Route::get('currencies/create', ['as'=> 'currencies.create', 'uses' => 'CurrencyController@create']);
+Route::put('currencies/{currencies}', ['as'=> 'currencies.update', 'uses' => 'CurrencyController@update']);
+Route::patch('currencies/{currencies}', ['as'=> 'currencies.update', 'uses' => 'CurrencyController@update']);
+Route::get('currencies/{id}/delete', array('as' => 'currencies.delete', 'uses' => 'CurrencyController@getDelete'));
+Route::get('currencies/{id}/confirm-delete', array('as' => 'currencies.confirm-delete', 'uses' => 'CurrencyController@getModalDelete'));
+Route::get('currencies/{currencies}', ['as'=> 'currencies.show', 'uses' => 'CurrencyController@show']);
+Route::get('currencies/{currencies}/edit', ['as'=> 'currencies.edit', 'uses' => 'CurrencyController@edit']);
+
+});

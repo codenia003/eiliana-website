@@ -437,12 +437,14 @@ Job Post
                                         <div class="additional-filter-ques d-none">
                                             <!-- question set -->
                                             <div class="border mt-5">
+                                                {{-- question 1 --}}
                                                 <div class="p-4 border-bottom">
                                                     <h4 class="text-left">Question 1</h4>
                                                     <div class="question1-1">
                                                         <div class="question1">
                                                             <input type="hidden" name="question_type[]" class="form-control" value="1"/>
-                                                            <input type="hidden" name="radio_count" id="radio_count_id" value="0"/>
+                                                            {{-- <input type="hidden" name="radio_count" id="radio_count_id" value="0"/> --}}
+                                                            <input type="hidden" name="question_option[]" value="0">
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
                                                                 <input type="text" name="question_name[]" class="form-control"/>
@@ -452,13 +454,13 @@ Job Post
                                                                 <br>
                                                                 <div class="form-check form-check-inline">
                                                                     <div class="custom-control custom-radio radioappend1">
-                                                                        <input type="radio" id="Yes" class="custom-control-input" name="lookingfor" value="1" checked>
+                                                                        <input type="radio" id="Yes" class="custom-control-input" name="question_radio0" value="1" checked>
                                                                         <label class="custom-control-label" for="Yes">Yes</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-check form-check-inline">
                                                                     <div class="custom-control custom-radio radioappend2">
-                                                                        <input type="radio" id="No" class="custom-control-input" name="lookingfor" value="0">
+                                                                        <input type="radio" id="No" class="custom-control-input" name="question_radio0" value="0">
                                                                         <label class="custom-control-label" for="No">No</label>
                                                                     </div>
                                                                 </div>
@@ -475,20 +477,21 @@ Job Post
                                                     <h4 class="text-left">Question 2</h4>
                                                     <div class="question2-1">
                                                         <div class="question2">
-                                                            <input type="hidden" name="question_type[]" class="form-control" value="2"/>
+                                                            <input type="hidden" name="question_type[]"  value="2"/>
+                                                            <input type="hidden" name="question_option[]" value="0">
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question_name" class="form-control"/>
+                                                                <input type="text" name="question_name[]" class="form-control"/>
                                                             </div>
                                                             <div class="form-group basic-info my-3">
                                                                 <label>Lorem Isume</label>
                                                                 <br>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckboxQue1" name="model_engagement" value="1">
+                                                                <div class="form-check form-check-inline checkboxappend1">
+                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckboxQue1" name="question_checkbox0[]" value="1">
                                                                     <label class="form-check-label" for="inlineCheckboQue1">Lorem Isume</label>
                                                                 </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckboxQue2" name="model_engagement" value="2">
+                                                                <div class="form-check form-check-inline checkboxappend2">
+                                                                    <input class="form-check-input" type="checkbox" id="inlineCheckboxQue2" name="question_checkbox0[]" value="2">
                                                                     <label class="form-check-label" for="inlineCheckboxQue2">Lorem Isume</label>
                                                                 </div>
                                                             </div>
@@ -507,14 +510,14 @@ Job Post
                                                             <input type="hidden" name="question_type[]" class="form-control" value="3"/>
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question_name" class="form-control"/>
+                                                                <input type="text" name="question_name[]" class="form-control"/>
                                                             </div>
                                                             <div class="form-row align-items-center">
                                                                 <div class="form-group col-2">
                                                                     <label>Lorem Isume</label>
                                                                 </div>
                                                                 <div class="form-group input-group col-4">
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="text" name="question_option[]" class="form-control">
                                                                     <div class="input-group-append">
                                                                         <span class="input-group-btn input-group-append">
                                                                             <button class="btn btn-secondary input-group-text image_radius" type="button">
@@ -539,14 +542,14 @@ Job Post
                                                             <input type="hidden" name="question_type[]" class="form-control" value="4"/>
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question_name" class="form-control"/>
+                                                                <input type="text" name="question_name[]" class="form-control"/>
                                                             </div>
                                                             <div class="form-row align-items-center">
                                                                 <div class="form-group col-2">
                                                                     <label>Lorem Isume</label>
                                                                 </div>
                                                                 <div class="form-group input-group col-4">
-                                                                    <input type="text" name="name" class="form-control"/>
+                                                                    <input type="text" name="question_option[]" class="form-control"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -561,10 +564,11 @@ Job Post
                                                     <h4 class="text-left">Question 5</h4>
                                                     <div class="question5-1">
                                                         <div class="question5">
-                                                            <input type="hidden" name="question_type[]" class="form-control" value="5"/>
+                                                            <input type="hidden" name="question_type[]"  value="5"/>
+                                                            <input type="hidden" name="question_option[]" value="0">
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question_name" class="form-control"/>
+                                                                <input type="text" name="question_name[]" class="form-control"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -695,20 +699,17 @@ $(document).ready(function() {
         });
 
         // question start
+        var i = 1;
         $(".btn-copy-q1").on('click', function(){
-            var count = $(".question1-3:last input#radio_count_id").val();
-            if (typeof count !== "undefined") {
-                var count = parseInt(count)+parseInt(1);
-                $('.question1 input#radio_count_id').val(count);
-                console.log(count);
-            } else {
-                $('question1-3:last input#radio_count_id').val('0');
-            }
-            $(".question1-3:last radioappend1").html('<input type="radio" id="Yes'+count+'" class="custom-control-input" name="lookingfor" value="1" checked=""><label class="custom-control-label" for="Yes'+count+'">Yes</label>');
-            $(".question1-3:last radioappend2").html('<input type="radio" id="No'+count+'" class="custom-control-input" name="lookingfor" value="0"><label class="custom-control-label" for="No'+count+'">No</label>');
-            var element = '<div class="question1-3">'+$('.question1').html()+'</div>';
+            // var count = $(".question1-3:last input#radio_count_id").val();
+
+            var element = '<div class="question1-3 radioques'+i+'">'+$('.question1').html()+'</div>';
             $('.question1-1').append(element);
 
+            $(".radioques"+i+"  .radioappend1").html('<input type="radio" id="Yes'+i+'" class="custom-control-input" name="question_radio'+i+'" value="1"><label class="custom-control-label" for="Yes'+i+'">Yes</label>');
+
+            $(".radioques"+i+" .radioappend2").html('<input type="radio" id="No'+i+'" class="custom-control-input" name="question_radio'+i+'" value="0"><label class="custom-control-label" for="No'+i+'">No</label>');
+            i++;
 
         });
         $(".btn-copy-q2").on('click', function(){

@@ -94,7 +94,8 @@ class ProfileController extends JoshController
             $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
             $selected_technologies = explode(",", $proexps[0]['technologty_pre']);
             $selected_framework = explode(",", $proexps[0]['framework']);
-            $childtechnologies = Technology::whereIn('parent_id', array($proexps[0]['technologty_pre']))->get();
+            //$dd =
+            $childtechnologies = Technology::whereIn('parent_id', $selected_technologies)->get();
         } else {
             $model_engagement_new = [];
             $selected_technologies = [];
@@ -109,9 +110,8 @@ class ProfileController extends JoshController
     public function getframework(Request $request)
     {
         $alldata = $request->input('technologty_pre');
-        // $technologies = Technology::whereIn('parent_id', $alldata)->get();
-        $sqlQuery_at = "SELECT * FROM technologies WHERE parent_id in (".$alldata.") and display_status = '1'";
-        $technologies = DB::select(DB::raw($sqlQuery_at));
+        $selected_technologies = explode(",", $alldata);
+        $technologies = Technology::whereIn('parent_id', $selected_technologies)->get();
         return response()->json($technologies);
     }
 

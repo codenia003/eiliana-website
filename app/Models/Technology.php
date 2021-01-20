@@ -10,7 +10,7 @@ class Technology extends Model
 {
 
     public $table = 'technologies';
-    
+
     protected $primaryKey = 'technology_id';
 
     public $fillable = [

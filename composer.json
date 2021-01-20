@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "Josh - Laravel Admin Template with GUI crud builder",
+    "description": "Laravel Admin Template with GUI crud builder",
     "keywords": [
         "GUI crud",
         "laravel",

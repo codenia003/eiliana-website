@@ -108,3 +108,20 @@ Route::get('qualifications/{qualifications}', ['as'=> 'qualifications.show', 'us
 Route::get('qualifications/{qualifications}/edit', ['as'=> 'qualifications.edit', 'uses' => 'QualificationController@edit']);
 
 });
+
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('universities', ['as'=> 'universities.index', 'uses' => 'UniversityController@index']);
+Route::post('universities', ['as'=> 'universities.store', 'uses' => 'UniversityController@store']);
+Route::get('universities/create', ['as'=> 'universities.create', 'uses' => 'UniversityController@create']);
+Route::put('universities/{universities}', ['as'=> 'universities.update', 'uses' => 'UniversityController@update']);
+Route::patch('universities/{universities}', ['as'=> 'universities.update', 'uses' => 'UniversityController@update']);
+Route::get('universities/{id}/delete', array('as' => 'universities.delete', 'uses' => 'UniversityController@getDelete'));
+Route::get('universities/{id}/confirm-delete', array('as' => 'universities.confirm-delete', 'uses' => 'UniversityController@getModalDelete'));
+Route::get('universities/{universities}', ['as'=> 'universities.show', 'uses' => 'UniversityController@show']);
+Route::get('universities/{universities}/edit', ['as'=> 'universities.edit', 'uses' => 'UniversityController@edit']);
+
+});
+
+

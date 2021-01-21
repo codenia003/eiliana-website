@@ -116,8 +116,9 @@
 	                                        <label>Job Location</label>
 	                                        <select name="current_location" class="form-control">
 	                                            <option value=""></option>
-	                                            <option value="1">1</option>
-	                                            <option value="2">2</option>
+	                                            @foreach ($locations as $location)
+                                                <option value="{{ $location->location_id }}" >{{ $location->name }}</option>
+                                                @endforeach
 	                                        </select>
 	                                    </div>
 					                </div>

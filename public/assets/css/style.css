@@ -1333,3 +1333,8 @@ span.select2-selection.select2-selection--single {
 .card-education .from_to {
     font-weight: 500;
 }
+.browse-job-posting li.card {
+    border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
+    border-radius: unset;
+}

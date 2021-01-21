@@ -72,8 +72,9 @@ class JobController extends Controller
         	'lookingfor' => '1'
         ];
         $projectcategorys = ProjectCategory::all();
+        $locations = Location::all();
 
-        return view('job/hire-talent', compact('pagename','projectcategorys'));
+        return view('job/hire-talent', compact('pagename','projectcategorys','locations'));
     }
 
     public function jobProject()
@@ -106,7 +107,8 @@ class JobController extends Controller
             if ($data['search_method'] == '1') {
                 return redirect('/post-project');
             } else {
-                return redirect('/advance-search/projects');
+                return redirect('/advance-search/jobs');
+                // return redirect('/advance-search/projects');
             }
         }
     }
@@ -133,8 +135,22 @@ class JobController extends Controller
         $input['user_id'] = $user->id;
 
         $indexing = "";
+        if($input['job_title'] != null) {
+            $words = explode(" " ,$input['job_title']);
+            foreach($words as $word) {
+                $indexing .= metaphone($word). " ";
+            }
+        }
+
         if($input['key_skills'] != null) {
             $words = explode(" " ,$input['key_skills']);
+            foreach($words as $word) {
+                $indexing .= metaphone($word). " ";
+            }
+        }
+
+        if($input['role_summary'] != null) {
+            $words = explode(" " ,$input['role_summary']);
             foreach($words as $word) {
                 $indexing .= metaphone($word). " ";
             }

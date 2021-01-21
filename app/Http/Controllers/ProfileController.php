@@ -28,6 +28,7 @@ use App\Models\Designation;
 use App\Models\EmployerDetails;
 use App\Models\EmployerType;
 use App\Models\Technology;
+use App\Models\Location;
 use stdClass;
 
 class ProfileController extends JoshController
@@ -89,6 +90,7 @@ class ProfileController extends JoshController
         $projectcategorys = ProjectCategory::all();
         $proexps = ProfessionalExperience::where('user_id', $user->id)->get();
         $technologies = Technology::where('parent_id', '0')->get();
+        $locations = Location::all();
 
         if (count($proexps) > 0) {
             $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
@@ -104,7 +106,7 @@ class ProfileController extends JoshController
         }
         $designations = Designation::all();
         // print_r($childtechnologies);
-        return view('profile/prof-exp', compact('proexps','designations','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework'));
+        return view('profile/prof-exp', compact('proexps','designations','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework','locations'));
     }
 
     public function getframework(Request $request)

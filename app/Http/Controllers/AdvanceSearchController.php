@@ -22,12 +22,47 @@ use App\Models\University;
 use App\Models\EducationType;
 use App\Models\ProjectCategory;
 use App\Models\Technology;
+use App\Models\Job;
 use stdClass;
 use Carbon\Carbon;
 
 
 class AdvanceSearchController extends Controller
 {
+    public function jobs(Request $request)
+    {
+        $user = Sentinel::getUser();
+        if (empty($request->input('keyword'))) {
+
+            // Show the page
+            $projectcategorys = ProjectCategory::all();
+            $educationtype = EducationType::all();
+            $qualifications = Qualification::all();
+            $universities = University::all();
+            $technologies = Technology::where('parent_id', '0')->get();
+            return view('search/jobs', compact('projectcategorys','educationtype','qualifications','universities','technologies'));
+
+        } else {
+            $sound = "";
+            $words = explode(" " , $request->input('keyword')) ;
+            foreach($words as $word) {
+                $sound .= metaphone($word);
+                if (next($words)==true) {
+                    $sound .= " ";
+                };
+            }
+
+            $jobs = Job::where('indexing', 'LIKE', '%'.$sound.'%')->get();
+
+            // $id = DB::table('search_keyword')->insertGetId(
+            //     ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
+            // );
+
+            return view('search/browse-job', compact('jobs'));
+
+        }
+    }
+
     public function projects(Request $request)
     {
         $user = Sentinel::getUser();

@@ -208,19 +208,17 @@ Job Post
                                             <div class="form-row">
                                                 <div class="col">
                                                     <select class="form-control" name="budget_from">
-                                                        <option value="">From</option>}
-                                                        option
-                                                        @for ($i = 0; $i < 21; $i++)
-                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                        <option value="">From</option>
+                                                        @for ($i = 0; $i < 51; $i++)
+                                                        <option value="{{ $i }}">{{ $i }} Lacs</option>
                                                         @endfor
                                                     </select>
                                                 </div>
                                                 <div class="col">
                                                     <select class="form-control" name="budget_to">
-                                                        <option value="">To</option>}
-                                                        option
-                                                        @for ($i = 1; $i < 13; $i++)
-                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                        <option value="">To</option>
+                                                        @for ($i = 1; $i < 51; $i++)
+                                                        <option value="{{ $i }}">{{ $i }} Lacs</option>
                                                         @endfor
                                                     </select>
                                                 </div>

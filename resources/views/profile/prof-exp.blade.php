@@ -143,18 +143,18 @@
                             <label>Current Location</label>
                             <select name="current_location" class="form-control" required>
                                 <option value=""></option>
-                                @for ($i = 1; $i < 4; $i++)
-                                <option value="{{ $i }}" {{ ($proexp->current_location==$i)? "selected" : "" }}>{{ $i }}</option>
-                                @endfor
+                                @foreach ($locations as $location)
+                                <option value="{{ $location->location_id }}" {{ ($proexp->current_location == $location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col">
                             <label>Preferred Location</label>
                             <select name="preferred_location" class="form-control" required>
                                 <option value=""></option>
-                                @for ($i = 1; $i < 4; $i++)
-                                <option value="{{ $i }}" {{ ($proexp->preferred_location==$i)? "selected" : "" }}>{{ $i }}</option>
-                                @endfor
+                                @foreach ($locations as $location)
+                                <option value="{{ $location->location_id }}" {{ ($proexp->preferred_location == $location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

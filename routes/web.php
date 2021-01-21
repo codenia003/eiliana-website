@@ -401,6 +401,8 @@ Route::group(
 Route::group(
     ['prefix' => 'advance-search', 'middleware' => 'user'],
     function () {
+        Route::get('jobs', 'AdvanceSearchController@jobs')->name('jobs');
+        Route::post('jobs', 'AdvanceSearchController@jobs')->name('jobs');
         Route::get('projects', 'AdvanceSearchController@projects')->name('projects');
         Route::post('projects', 'AdvanceSearchController@projects')->name('projects');
         Route::get('contract-staffing', 'AdvanceSearchController@contractStaffing')->name('contract-staffing');

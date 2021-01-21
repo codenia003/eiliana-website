@@ -2,7 +2,7 @@
 
 
 
- <li {!! ( Request::is('admin/technologies*') || Request::is('admin/designations*') || Request::is('admin/educationTypes*') || Request::is('admin/employerTypes*') || Request::is('admin/projectCategories*') || Request::is('admin/projectStatuses*') || Request::is('admin/qualifications*') || Request::is('admin/universities*') || Request::is('admin/currencies*') ? 'class="active"' : '' ) !!}>
+ <li {!! ( Request::is('admin/technologies*') || Request::is('admin/designations*') || Request::is('admin/educationTypes*') || Request::is('admin/employerTypes*') || Request::is('admin/projectCategories*') || Request::is('admin/projectStatuses*') || Request::is('admin/qualifications*') || Request::is('admin/universities*') || Request::is('admin/currencies*') || Request::is('admin/languages*') ? 'class="active"' : '' ) !!}>
         <a href="#">
             <i class="livicon" data-name="wrench" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
             <span class="title">Settings</span>
@@ -64,16 +64,24 @@
                     Currencies
                 </a>
             </li>
+             <li {!! (Request::is('admin/languages*') ? 'class="active"' : '' ) !!}>
+                <a href="{{ route('admin.languages.index') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Languages
+                </a>
+            </li>
 
         </ul>
     </li>
+
+
    
 <!-- 
-<li class="{{ Request::is('admin/currencies*') ? 'active' : '' }}">
-    <a href="{!! route('admin.currencies.index') !!}">
+<li class="{{ Request::is('admin/languages*') ? 'active' : '' }}">
+    <a href="{!! route('admin.languages.index') !!}">
     <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list" data-size="18"
                data-loop="true"></i>
-               Currencies
+               Languages
     </a>
 </li> -->
 

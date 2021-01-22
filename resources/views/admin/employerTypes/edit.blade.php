@@ -7,15 +7,15 @@ EmployerTypes
 @section('content')
   @include('common.errors')
     <section class="content-header">
-     <h1>EmployerTypes Edit</h1>
+     <h1>Employer Types Edit</h1>
      <ol class="breadcrumb">
          <li>
              <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                  Dashboard
              </a>
          </li>
-         <li>EmployerTypes</li>
-         <li class="active">Edit EmployerType </li>
+         <li>Employer Types</li>
+         <li class="active">Edit Employer Type </li>
      </ol>
     </section>
     <section class="content">
@@ -25,7 +25,7 @@ EmployerTypes
               <div class="card border-primary">
                     <div class="card-header bg-primary text-white">
                         <h4 class="card-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                            Edit  EmployerType
+                            Edit  Employer Type
                         </h4></div>
                     <br />
                 <div class="card-body">

@@ -2,15 +2,18 @@
 <table class="table table-striped table-bordered" id="educationTypes-table" width="100%">
     <thead>
      <tr>
-        <th>Sr.no</th>
+        <th>Sr.No</th>
         <th>Name</th>
         <th >Action</th>
      </tr>
     </thead>
     <tbody>
+      @php
+            $a = 1;
+      @endphp
     @foreach($educationTypes as $educationType)
         <tr>
-            <td>{!! $educationType->education_type_id !!}</td>
+            <td>{!! $a++ !!}</td>
             <td>{!! $educationType->name !!}</td>
             <td>
                  <!-- <a href="{{ route('admin.educationTypes.show', collect($educationType)->first() ) }}">

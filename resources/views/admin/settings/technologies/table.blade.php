@@ -2,6 +2,7 @@
 <table class="table table-striped table-bordered" id="technologies-table" width="100%">
     <thead>
      <tr>
+        <th>Sr.No</th>
         <th>Framework</th>
         <th>Technology Name</th>
         <th>Display Status</th>
@@ -9,8 +10,12 @@
      </tr>
     </thead>
     <tbody>
+       @php
+            $a = 1;
+      @endphp
     @foreach($technologies as $technology)
         <tr>
+            <td>{!! $a++ !!}</td>
             <td>{!! $technology->technology_name !!}</td>
             <td>@foreach($technologies_name as $parent)
               @if( $technology->parent_id == $parent->technology_id )

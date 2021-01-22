@@ -1,12 +1,9 @@
 <div class="card-body table-responsive-lg table-responsive-sm table-responsive-md">
-<table class="table table-striped table-bordered" id="currencies-table" width="100%">
+<table class="table table-striped table-bordered" id="locations-table" width="100%">
     <thead>
      <tr>
         <th>Sr.No</th>
-        <th>Title</th>
-        <th>Code</th>
-        <th>Symbol</th>
-        <th>Display Status</th>
+        <th>Name</th>
         <th >Action</th>
      </tr>
     </thead>
@@ -14,27 +11,20 @@
       @php
             $a = 1;
       @endphp
-    @foreach($currencies as $currency)
+    @foreach($locations as $location)
         <tr>
+           
             <td>{!! $a++ !!}</td>
-            <td>{!! $currency->title !!}</td>
-            <td>{!! $currency->code !!}</td>
-            <td>{!! $currency->symbol !!}</td>
-            <td>@if($currency->display_status == 1)
-               Active
-              @else
-              Inactive
-              @endif
-            </td>
+            <td>{!! $location->name !!}</td>
             <td>
-                 <!-- <a href="{{ route('admin.currencies.show', collect($currency)->first() ) }}">
-                     <i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view currency"></i>
+                <!--  <a href="{{ route('admin.locations.show', collect($location)->first() ) }}">
+                     <i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view location"></i>
                  </a> -->
-                 <a href="{{ route('admin.currencies.edit', collect($currency)->first() ) }}">
-                     <i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="edit currency"></i>
+                 <a href="{{ route('admin.locations.edit', collect($location)->first() ) }}">
+                     <i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="edit location"></i>
                  </a>
-                 <a href="{{ route('admin.currencies.confirm-delete', collect($currency)->first() ) }}" data-toggle="modal" data-target="#delete_confirm" data-id="{{ route('admin.currencies.delete', collect($currency)->first() ) }}">
-                     <i class="livicon" data-name="remove-alt" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete currency"></i>
+                 <a href="{{ route('admin.locations.confirm-delete', collect($location)->first() ) }}" data-toggle="modal" data-target="#delete_confirm" data-id="{{ route('admin.locations.delete', collect($location)->first() ) }}">
+                     <i class="livicon" data-name="remove-alt" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete location"></i>
 
                  </a>
             </td>
@@ -70,16 +60,16 @@
  <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap4.js') }}" ></script>
 
     <script>
-        $('#currencies-table').DataTable({
+        $('#locations-table').DataTable({
                       responsive: true,
                       pageLength: 10
                   });
-                  $('#currencies-table').on( 'page.dt', function () {
+                  $('#locations-table').on( 'page.dt', function () {
                      setTimeout(function(){
                            $('.livicon').updateLivicon();
                      },500);
                   } );
-                  $('#currencies-table').on( 'length.dt', function ( e, settings, len ) {
+                  $('#locations-table').on( 'length.dt', function ( e, settings, len ) {
                      setTimeout(function(){
                             $('.livicon').updateLivicon();
                      },500);

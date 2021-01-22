@@ -1,40 +1,29 @@
 <div class="card-body table-responsive-lg table-responsive-sm table-responsive-md">
-<table class="table table-striped table-bordered" id="currencies-table" width="100%">
+<table class="table table-striped table-bordered" id="candidateRoles-table" width="100%">
     <thead>
      <tr>
         <th>Sr.No</th>
-        <th>Title</th>
-        <th>Code</th>
-        <th>Symbol</th>
-        <th>Display Status</th>
+        <th>Name</th>
         <th >Action</th>
      </tr>
     </thead>
     <tbody>
-      @php
+       @php
             $a = 1;
       @endphp
-    @foreach($currencies as $currency)
+    @foreach($candidateRoles as $candidateRole)
         <tr>
             <td>{!! $a++ !!}</td>
-            <td>{!! $currency->title !!}</td>
-            <td>{!! $currency->code !!}</td>
-            <td>{!! $currency->symbol !!}</td>
-            <td>@if($currency->display_status == 1)
-               Active
-              @else
-              Inactive
-              @endif
-            </td>
+            <td>{!! $candidateRole->name !!}</td>
             <td>
-                 <!-- <a href="{{ route('admin.currencies.show', collect($currency)->first() ) }}">
-                     <i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view currency"></i>
+                <!--  <a href="{{ route('admin.candidateRoles.show', collect($candidateRole)->first() ) }}">
+                     <i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view candidateRole"></i>
                  </a> -->
-                 <a href="{{ route('admin.currencies.edit', collect($currency)->first() ) }}">
-                     <i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="edit currency"></i>
+                 <a href="{{ route('admin.candidateRoles.edit', collect($candidateRole)->first() ) }}">
+                     <i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="edit candidateRole"></i>
                  </a>
-                 <a href="{{ route('admin.currencies.confirm-delete', collect($currency)->first() ) }}" data-toggle="modal" data-target="#delete_confirm" data-id="{{ route('admin.currencies.delete', collect($currency)->first() ) }}">
-                     <i class="livicon" data-name="remove-alt" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete currency"></i>
+                 <a href="{{ route('admin.candidateRoles.confirm-delete', collect($candidateRole)->first() ) }}" data-toggle="modal" data-target="#delete_confirm" data-id="{{ route('admin.candidateRoles.delete', collect($candidateRole)->first() ) }}">
+                     <i class="livicon" data-name="remove-alt" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete candidateRole"></i>
 
                  </a>
             </td>
@@ -70,16 +59,16 @@
  <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap4.js') }}" ></script>
 
     <script>
-        $('#currencies-table').DataTable({
+        $('#candidateRoles-table').DataTable({
                       responsive: true,
                       pageLength: 10
                   });
-                  $('#currencies-table').on( 'page.dt', function () {
+                  $('#candidateRoles-table').on( 'page.dt', function () {
                      setTimeout(function(){
                            $('.livicon').updateLivicon();
                      },500);
                   } );
-                  $('#currencies-table').on( 'length.dt', function ( e, settings, len ) {
+                  $('#candidateRoles-table').on( 'length.dt', function ( e, settings, len ) {
                      setTimeout(function(){
                             $('.livicon').updateLivicon();
                      },500);

@@ -2,15 +2,18 @@
 <table class="table table-striped table-bordered" id="employerTypes-table" width="100%">
     <thead>
      <tr>
-        <th>Sr.no</th> 
+        <th>Sr.No</th> 
         <th>Name</th>
         <th >Action</th>
      </tr>
     </thead>
     <tbody>
+      @php
+            $a = 1;
+      @endphp
     @foreach($employerTypes as $employerType)
         <tr>
-            <td>{!! $employerType->employer_type_id !!}</td>
+            <td>{!! $a++ !!}</td>
             <td>{!! $employerType->name !!}</td>
             <td>
                  <!-- <a href="{{ route('admin.employerTypes.show', collect($employerType)->first() ) }}">

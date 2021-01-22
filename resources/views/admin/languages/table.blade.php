@@ -10,9 +10,12 @@
      </tr>
     </thead>
     <tbody>
+       @php
+            $a = 1;
+      @endphp
     @foreach($languages as $language)
         <tr>
-            <td>{!! $language->language_id !!}</td>
+            <td>{!! $a++ !!}</td>
             <td>{!! $language->name !!}</td>
             <td>{!! $language->code !!}</td>
             <td>@if($language->display_status == 1)

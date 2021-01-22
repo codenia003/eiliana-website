@@ -1,22 +1,22 @@
 @extends('admin/layouts/default')
 
 @section('title')
-EducationType
+CandidateRole
 @parent
 @stop
 
 @section('content')
 @include('common.errors')
 <section class="content-header">
-    <h1>Education Type</h1>
+    <h1>Candidate Role</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                 Dashboard
             </a>
         </li>
-        <li>Education Types</li>
-        <li class="active">Create Education Type </li>
+        <li>Candidate Roles</li>
+        <li class="active">Create Candidate Role </li>
     </ol>
 </section>
 <section class="content">
@@ -26,13 +26,13 @@ EducationType
      <div class="card border-primary">
             <div class="card-header bg-primary text-white">
                 <h4 class="card-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                    Create New  Education Type
+                    Create New  Candidate Role
                 </h4></div>
             <br />
             <div class="card-body">
-            {!! Form::open(['route' => 'admin.educationTypes.store']) !!}
+            {!! Form::open(['route' => 'admin.candidateRoles.store']) !!}
 
-                @include('admin.educationTypes.fields')
+                @include('admin.candidateRoles.fields')
 
             {!! Form::close() !!}
         </div>

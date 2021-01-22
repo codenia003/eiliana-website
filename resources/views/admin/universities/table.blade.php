@@ -10,9 +10,12 @@
      </tr>
     </thead>
     <tbody>
+      @php
+            $a = 1;
+      @endphp
     @foreach($universities as $university)
         <tr>
-            <td>{!! $university->university_id !!}</td>
+            <td>{!! $a++ !!}</td>
             <td>{!! $university->name !!}</td>
             <td>{!! $university->town !!}</td>
              <td>@if($university->display_status == 1)

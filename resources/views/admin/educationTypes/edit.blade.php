@@ -7,15 +7,15 @@ EducationTypes
 @section('content')
   @include('common.errors')
     <section class="content-header">
-     <h1>EducationTypes Edit</h1>
+     <h1>Education Types Edit</h1>
      <ol class="breadcrumb">
          <li>
              <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                  Dashboard
              </a>
          </li>
-         <li>EducationTypes</li>
-         <li class="active">Edit EducationType </li>
+         <li>Education Types</li>
+         <li class="active">Edit Education Type </li>
      </ol>
     </section>
     <section class="content">
@@ -25,7 +25,7 @@ EducationTypes
               <div class="card border-primary">
                     <div class="card-header bg-primary text-white">
                         <h4 class="card-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                            Edit  EducationType
+                            Edit  Education Type
                         </h4></div>
                     <br />
                 <div class="card-body">

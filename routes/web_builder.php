@@ -153,3 +153,33 @@ Route::get('languages/{languages}', ['as'=> 'languages.show', 'uses' => 'Languag
 Route::get('languages/{languages}/edit', ['as'=> 'languages.edit', 'uses' => 'LanguageController@edit']);
 
 });
+
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('locations', ['as'=> 'locations.index', 'uses' => 'LocationController@index']);
+Route::post('locations', ['as'=> 'locations.store', 'uses' => 'LocationController@store']);
+Route::get('locations/create', ['as'=> 'locations.create', 'uses' => 'LocationController@create']);
+Route::put('locations/{locations}', ['as'=> 'locations.update', 'uses' => 'LocationController@update']);
+Route::patch('locations/{locations}', ['as'=> 'locations.update', 'uses' => 'LocationController@update']);
+Route::get('locations/{id}/delete', array('as' => 'locations.delete', 'uses' => 'LocationController@getDelete'));
+Route::get('locations/{id}/confirm-delete', array('as' => 'locations.confirm-delete', 'uses' => 'LocationController@getModalDelete'));
+Route::get('locations/{locations}', ['as'=> 'locations.show', 'uses' => 'LocationController@show']);
+Route::get('locations/{locations}/edit', ['as'=> 'locations.edit', 'uses' => 'LocationController@edit']);
+
+});
+
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+Route::get('candidateRoles', ['as'=> 'candidateRoles.index', 'uses' => 'CandidateRoleController@index']);
+Route::post('candidateRoles', ['as'=> 'candidateRoles.store', 'uses' => 'CandidateRoleController@store']);
+Route::get('candidateRoles/create', ['as'=> 'candidateRoles.create', 'uses' => 'CandidateRoleController@create']);
+Route::put('candidateRoles/{candidateRoles}', ['as'=> 'candidateRoles.update', 'uses' => 'CandidateRoleController@update']);
+Route::patch('candidateRoles/{candidateRoles}', ['as'=> 'candidateRoles.update', 'uses' => 'CandidateRoleController@update']);
+Route::get('candidateRoles/{id}/delete', array('as' => 'candidateRoles.delete', 'uses' => 'CandidateRoleController@getDelete'));
+Route::get('candidateRoles/{id}/confirm-delete', array('as' => 'candidateRoles.confirm-delete', 'uses' => 'CandidateRoleController@getModalDelete'));
+Route::get('candidateRoles/{candidateRoles}', ['as'=> 'candidateRoles.show', 'uses' => 'CandidateRoleController@show']);
+Route::get('candidateRoles/{candidateRoles}/edit', ['as'=> 'candidateRoles.edit', 'uses' => 'CandidateRoleController@edit']);
+
+});

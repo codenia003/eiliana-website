@@ -10,9 +10,12 @@
      </tr>
     </thead>
     <tbody>
+      @php
+          $a = 1;
+      @endphp
     @foreach($qualifications as $qualification)
         <tr>
-            <td>{!! $qualification->qualification_id !!}</td>
+            <td>{!! $a++ !!}</td>
             <td>{!! $qualification->name !!}</td>
             <td>{!! $qualification->type !!}</td>
              <td>@if($qualification->display_status == 1)

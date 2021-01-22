@@ -8,15 +8,15 @@ ProjectCategory
 @section('content')
 @include('common.errors')
 <section class="content-header">
-    <h1>ProjectCategory</h1>
+    <h1>Project Category</h1>
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                 Dashboard
             </a>
         </li>
-        <li>ProjectCategories</li>
-        <li class="active">Create ProjectCategory </li>
+        <li>Project Categories</li>
+        <li class="active">Create Project Category </li>
     </ol>
 </section>
 <section class="content">
@@ -26,7 +26,7 @@ ProjectCategory
      <div class="card border-primary">
             <div class="card-header bg-primary text-white">
                 <h4 class="card-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                    Create New  ProjectCategory
+                    Create New  Project Category
                 </h4></div>
             <br />
             <div class="card-body">

@@ -2,15 +2,18 @@
 <table class="table table-striped table-bordered" id="projectCategories-table" width="100%" id="example">
     <thead>
      <tr>
-        <th>Sr.no</th>
+        <th>Sr.No</th>
         <th>Name</th>
         <th >Action</th>
      </tr>
     </thead>
     <tbody>
+      @php
+            $a = 1;
+      @endphp
     @foreach($projectCategories as $projectCategory)
         <tr>
-            <td>{!! $projectCategory->id !!}</td>      
+            <td>{!! $a++ !!}</td>      
             <td>{!! $projectCategory->name !!}</td>
             <td>
                 <!--  <a href="{{ route('admin.projectCategories.show', collect($projectCategory)->first() ) }}">

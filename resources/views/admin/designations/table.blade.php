@@ -2,15 +2,18 @@
 <table class="table table-bordered table-hover" id="designations-table">
     <thead class="thead-light">
      <tr>
-        <th>Sr.no</th>
+        <th>Sr.No</th>
         <th>Name</th>
         <th>Action</th>
      </tr>
     </thead>
     <tbody>
+      @php
+            $a = 1;
+      @endphp
     @foreach($designations as $designation)
         <tr>
-            <td>{!! $designation->designation_id !!}</td>
+            <td>{!! $a++ !!}</td>
             <td>{!! $designation->name !!}</td>
             <td>
                  <a href="{{ route('admin.designations.edit', $designation->designation_id) }}">

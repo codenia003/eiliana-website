@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 
 
-class Location extends Model
+class CandidateRole extends Model
 {
 
-    public $table = 'Locations';
-    protected $primaryKey = 'location_id';
+    public $table = 'candidate_roles';
+
+     protected $primaryKey = 'candidate_role_id';
     
 
 

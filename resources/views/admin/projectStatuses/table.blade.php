@@ -2,15 +2,18 @@
 <table class="table table-striped table-bordered" id="projectStatuses-table" width="100%">
     <thead>
      <tr>
-        <th>Sr.no</th>
+        <th>Sr.No</th>
         <th>Project Status</th>
         <th >Action</th>
      </tr>
     </thead>
     <tbody>
+       @php
+            $a = 1;
+      @endphp
     @foreach($projectStatuses as $projectStatus)
         <tr>
-            <td>{!! $projectStatus->project_status_id !!}</td>
+             <td>{!! $a++ !!}</td> 
             <td>{!! $projectStatus->project_status !!}</td>
             <td>
                 <!--  <a href="{{ route('admin.projectStatuses.show', collect($projectStatus)->first() ) }}">

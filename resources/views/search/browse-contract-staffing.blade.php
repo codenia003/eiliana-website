@@ -137,6 +137,9 @@
             @endforelse
             <!-- End Project -->
         </ul>
+        <ul class="pager">
+            {{ $users->withQueryString()->links() }}
+        </ul>
     </div>
 </div>
 @stop

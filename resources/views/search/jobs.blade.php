@@ -2,8 +2,8 @@
 
 @section('search_content')
 <div class="advance-search singup-body login-body">
-    <form action="{{ url('/advance-search/jobs') }}" method="POST">
-        @csrf
+    <form action="{{ url('/advance-search/jobs') }}" method="GET">
+        {{-- @csrf --}}
         <div class="card">
             <div class="card-header d-none">
                 <div class="basic-info">
@@ -31,7 +31,7 @@
             <div class="card-body p-4">
                 <div class="form-group">
                     <label>Looking to develop</label>
-                    <select name="project_category" class="form-control">
+                    <select name="job_category" class="form-control" required>
                         <option value=""></option>
                         @foreach ($projectcategorys as $category)
                         <option value="{{ $category->id }}" {{ (Session::get('contractsattfing')['project_category']==$category->id)? "selected" : "" }}>{{ $category->name }}</option>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label>Any Keyword(Key Skills)</label>
-                    <input type="text" name="keyword" class="form-control" value="" required />
+                    <input type="text" name="keyword" class="form-control" value="" />
                 </div>
                 <div class="form-group basic-info mb-3">
                     <label>Model Of Engagement</label>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <label>Technology Preference</label>
-                    <select name="technologty_pre" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple>
+                    <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple>
                         <option value=""></option>
                         @foreach ($technologies as $technology)
                         <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
@@ -70,17 +70,17 @@
                 <div class="form-row">
                     <div class="form-group col">
                         <label>Framework</label>
-                        <select class="form-control" name="framework select2" id="framework" multiple>
+                        <select class="form-control select2" name="framework[]" id="framework" multiple>
                             <option value=""></option>
                         </select>
                     </div>
                     <div class="form-group col">
                         <label>Industry that Product was designed for</label>
-                        <select name="industry[]" class="form-control">
+                        <select name="customer_industry" class="form-control">
                             <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            @foreach ($customerindustries as $industry)
+                            <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

@@ -135,6 +135,9 @@
             @endforelse
             <!-- End Project -->
         </ul>
+        <ul class="pager">
+            {{ $jobs->withQueryString()->links() }}
+        </ul>
     </div>
 </div>
 @stop

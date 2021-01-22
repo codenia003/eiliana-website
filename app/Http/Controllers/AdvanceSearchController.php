@@ -23,6 +23,7 @@ use App\Models\EducationType;
 use App\Models\ProjectCategory;
 use App\Models\Technology;
 use App\Models\Job;
+use App\Models\CustomerIndustry;
 use stdClass;
 use Carbon\Carbon;
 
@@ -32,7 +33,7 @@ class AdvanceSearchController extends Controller
     public function jobs(Request $request)
     {
         $user = Sentinel::getUser();
-        if (empty($request->input('keyword'))) {
+        if (empty($request->input('job_category'))) {
 
             // Show the page
             $projectcategorys = ProjectCategory::all();
@@ -40,9 +41,14 @@ class AdvanceSearchController extends Controller
             $qualifications = Qualification::all();
             $universities = University::all();
             $technologies = Technology::where('parent_id', '0')->get();
-            return view('search/jobs', compact('projectcategorys','educationtype','qualifications','universities','technologies'));
+            $customerindustries = CustomerIndustry::all();
+
+            return view('search/jobs', compact('projectcategorys','educationtype','qualifications','universities','technologies','customerindustries'));
 
         } else {
+
+            // print_r($request->all());
+
             $sound = "";
             $words = explode(" " , $request->input('keyword')) ;
             foreach($words as $word) {
@@ -52,7 +58,28 @@ class AdvanceSearchController extends Controller
                 };
             }
 
-            $jobs = Job::where('indexing', 'LIKE', '%'.$sound.'%')->get();
+            if(!empty($technologty_pre)){
+                $technologty_pre = $request->input('technologty_pre');
+                $technologty_pre = implode(',', $technologty_pre);
+            } else {
+                $technologty_pre = [];
+            }
+
+            if(!empty($framework)){
+                $framework = $request->input('framework');
+                $framework = implode(',', $framework);
+            } else {
+                $framework = [];
+            }
+
+            $jobs = Job::where('indexing', 'LIKE', '%'.$sound.'%')
+                    ->orWhere('job_category', '=', $request->input('job_category'))
+                    ->orWhere('experience_year', '=', $request->input('experience_year'))
+                    ->orWhere('experience_month', '=', $request->input('experience_month'))
+                    ->orWhere('customer_industry', '=', $request->input('customer_industry'))
+                    ->whereIn('technologty_pre',$technologty_pre)
+                    ->whereIn('framework',$framework)
+                    ->paginate(5);
 
             // $id = DB::table('search_keyword')->insertGetId(
             //     ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
@@ -86,7 +113,7 @@ class AdvanceSearchController extends Controller
                 };
             }
 
-            $projects = Project::where('indexing', 'LIKE', '%'.$sound.'%')->get();
+            $projects = Project::where('indexing', 'LIKE', '%'.$sound.'%')->paginate(10);
 
             // $id = DB::table('search_keyword')->insertGetId(
             //     ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
@@ -118,7 +145,8 @@ class AdvanceSearchController extends Controller
                 };
             }
 
-            $users = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('indexing', 'LIKE', '%'.$sound.'%')->get();
+            $users = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('indexing', 'LIKE', '%'.$sound.'%')->paginate(10);
+
             $id = DB::table('search_keyword')->insertGetId(
                 ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
             );

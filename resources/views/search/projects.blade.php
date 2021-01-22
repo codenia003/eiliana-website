@@ -2,8 +2,8 @@
 
 @section('search_content')
 <div class="advance-search singup-body login-body">
-    <form action="{{ url('/advance-search/projects') }}" method="POST">
-        @csrf
+    <form action="{{ url('/advance-search/projects') }}" method="GET">
+        {{-- @csrf --}}
         <div class="card">
             <div class="card-header d-none">
                 <div class="basic-info">

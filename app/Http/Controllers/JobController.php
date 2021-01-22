@@ -90,11 +90,14 @@ class JobController extends Controller
         return view('job/job-posting', compact('pagename','projectcategorys','locations'));
     }
 
-    public function talentSearch(Request $request){
+    public function talentSearch(Request $request) {
+
         $data = $request->all();
         $contractsattfing = $data;
         $request->session()->forget('contractsattfing');
         $request->session()->put('contractsattfing', $contractsattfing);
+
+        $roleda = $request->session()->get('users');
         if ($data['lookingfor'] == '1') {
             // contract-sattfing
             if ($data['search_method'] == '1') {
@@ -107,8 +110,11 @@ class JobController extends Controller
             if ($data['search_method'] == '1') {
                 return redirect('/post-project');
             } else {
-                return redirect('/advance-search/jobs');
-                // return redirect('/advance-search/projects');
+                if($roleda['role'] == '2') {
+                    return redirect('/advance-search/jobs');
+                } else {
+                    return redirect('/advance-search/projects');
+                }
             }
         }
     }

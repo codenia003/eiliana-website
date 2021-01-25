@@ -52,12 +52,34 @@ Basic Information
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group basic-info">
+                            <label>Register As</label>
+                            <br>
+                            <div class="form-check form-check-inline mb-3">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="register_as1" class="custom-control-input" name="regsiter_as" value="1" checked>
+                                    <label class="custom-control-label" for="register_as1">Freelancer</label>
+                                </div>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="register_as2" class="custom-control-input" name="regsiter_as" value="2">
+                                    <label class="custom-control-label" for="register_as2">Client</label>
+                                </div>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="register_as3" class="custom-control-input" name="regsiter_as" value="2">
+                                    <label class="custom-control-label" for="register_as3">Both</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-row company_show d-none">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label>Company Name</label>
                                 <input type="text" name="company_name" class="form-control" />
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label>GST Number/PAN Number</label>
                                 <input type="text" name="gst_number" class="form-control" />
                             </div>

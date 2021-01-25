@@ -76,12 +76,12 @@
                     Locations
                 </a>
             </li>
-             <!-- <li {!! (Request::is('admin/candidateRoles*') ? 'class="active"' : '' ) !!}>
+             <li {!! (Request::is('admin/candidateRoles*') ? 'class="active"' : '' ) !!}>
                 <a href="{{ route('admin.candidateRoles.index') }}">
                     <i class="fa fa-angle-double-right"></i>
                     Candidate Roles
                 </a>
-            </li> -->
+            </li>
 
         </ul>
     </li>

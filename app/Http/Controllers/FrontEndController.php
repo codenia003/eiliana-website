@@ -43,6 +43,8 @@ class FrontEndController extends JoshController
 
     public function getDashboard()
     {
+        // $value = session('users');
+        // print_r($value['first_name']);
         // Show the login page
         return view('home');
     }
@@ -388,7 +390,7 @@ class FrontEndController extends JoshController
             Sentinel::logout();
         }
         // Redirect to the users page
-        return view('logout');    
+        return view('logout');
         // return redirect('account/login')->with('success', 'You have successfully logged out!');
     }
 }

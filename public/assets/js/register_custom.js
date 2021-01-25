@@ -145,6 +145,13 @@ $(document).ready(function() {
                     }
                 },
             },
+            register_as: {
+                validators: {
+                    notEmpty: {
+                        message: 'Register As is required',
+                    }
+                },
+            },
             title: {
                 validators: {
                     notEmpty: {

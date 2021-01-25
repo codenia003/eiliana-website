@@ -53,7 +53,7 @@ class AuthController extends JoshController
     {
         $data = $request->all();
         $usersemail = User::where('email', $request->get('email'))->first();
-        $usersmobile = User::where('mobile', $request->get('mobile'))->first();                    
+        $usersmobile = User::where('mobile', $request->get('mobile'))->first();
         if($usersemail){
             $response['usersexist'] = '1';
             $response['error'] = 'Email id already exists';
@@ -88,7 +88,7 @@ class AuthController extends JoshController
         $name = implode('@', array_slice($em, 0, count($em)-1));
         $len  = floor(strlen($name)/2);
 
-        return substr($name,0, $len) . str_repeat('X', $len) . "@" . end($em);   
+        return substr($name,0, $len) . str_repeat('X', $len) . "@" . end($em);
     }
 
     public function getregisterotp()
@@ -102,7 +102,7 @@ class AuthController extends JoshController
         $data = $request->all();
         $otp = $data['otp'];
         $otpm = $data['otpm'];
-        
+
         $otp_data = DB::table('user_registration')->where('id', '=', $data['reg_id'])->first();
         $otpkdop = $otp_data->otp;
         $mobile_otp = $otp_data->mobile_otp;
@@ -119,7 +119,7 @@ class AuthController extends JoshController
             $response['success'] = '0';
             $response['errors'] = 'Your Otp Mismatch';
         }
-        return response()->json($response); 
+        return response()->json($response);
     }
 
     public function getregisterbasic()
@@ -129,7 +129,7 @@ class AuthController extends JoshController
         // Show the page
         return view('account/registerbasic', compact('roles', 'countries'));
     }
-    
+
      /**
      * Account sign up form processing.
      *
@@ -137,9 +137,9 @@ class AuthController extends JoshController
      */
     public function postregisterbasic(UserRequest $request)
     {
-        // die('dbjb');
         $activate = $this->user_activation;
         $data = $request->all();
+
         try {
 
             // $address_image_parts = explode(";base64,", $data['fileData']);
@@ -162,6 +162,7 @@ class AuthController extends JoshController
                 'last_name' => $request->get('last_name'),
                 'username' => $request->get('username'),
                 'company_name' => $request->get('company_name'),
+                'register_as' => $request->get('register_as'),
                 'email' => $registration_data->email,
                 'mobile' => $registration_data->mobile,
                 'dob' => $request->get('dob'),
@@ -188,7 +189,7 @@ class AuthController extends JoshController
                 ->performedOn($user)
                 ->causedBy($user)
                 ->log('Registered');
-            
+
             // Redirect to the home page with success menu
             $response['success'] = '1';
             $response['message'] = trans('auth/message.signup.success');
@@ -208,13 +209,13 @@ class AuthController extends JoshController
     }
 
     public function postloginfirst(Request $request)
-    {   
+    {
         $data = $request->all();
         $response['success'] = '0';
         $user = Sentinel::findById($data['user_id']);
         if ($user) {
             Sentinel::update($user, array('password' => $data['password'], 'first_time' =>'1'));
-            
+
             $data=[
                     'user_name' => $user->first_name .' '. $user->last_name,
                 ];
@@ -226,7 +227,15 @@ class AuthController extends JoshController
                     ->performedOn($user)
                     ->causedBy($user)
                     ->log('LoggedIn');
-            
+
+
+            if($user->register_as == '3') {
+                $response['success'] = '3';
+            } else {
+                $response['success'] = '1';
+                $user['login_as'] = $user->register_as;
+            }
+
             $role_users = DB::table('role_users')->where('user_id', $user->id)->first();
             $user['role'] = $role_users->role_id;
 
@@ -234,10 +243,9 @@ class AuthController extends JoshController
             $user['country_name'] = $country_name->name;
 
             $response['user'] = $user;
-            $response['success'] = '1';
             $request->session()->put('users', $user);
             $response['errors'] = trans('auth/message.signin.success');
-        
+
         } else {
             $response['errors'] = trans('auth/message.account_not_found');
         }
@@ -272,16 +280,26 @@ class AuthController extends JoshController
                     ->performedOn($user)
                     ->causedBy($user)
                     ->log('LoggedIn');
-                    $response['success'] = '2';
+
+                    if($user->register_as == '3') {
+                        $response['success'] = '3';
+                    } else {
+                        $response['success'] = '2';
+                        $user['login_as'] = $user->register_as;
+                    }
+
                     $role_users = DB::table('role_users')->where('user_id', $user->id)->first();
+
                     $user['role'] = $role_users->role_id;
                     $country_name = DB::table('countries')->where('id', $user->country)->first();
+
                     $user['country_name'] = $country_name->name;
+
                     $response['user'] = $user;
                     $response['errors'] = trans('auth/message.signin.success');
                     $request->session()->put('users', $user);
 
-                }   
+                }
             } else {
                 $response['errors'] = trans('auth/message.account_not_found');
             }
@@ -323,6 +341,19 @@ class AuthController extends JoshController
     public function fetchCountry() {
         $countries = Country::all();
         return response()->json($countries);
+    }
+
+    public function getLoginAs()
+    {
+        return view('account/loginas');
+    }
+
+    public function postLoginAs(Request $request)
+    {
+        $user = $request->session()->get('users');
+        $user['login_as'] = $request->input('login_as');
+        $request->session()->put('users', $user);
+        return redirect('home')->with('success', 'Login successfully');
     }
 
 }

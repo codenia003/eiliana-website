@@ -46,14 +46,23 @@ $(document).ready(function() {
                 $('.spinner-border').addClass("d-none");
             } else if (userCheck.success == '1') {
                 Swal.fire({
-                  type: 'error',
-                  title: 'Oops...',
+                  type: 'success',
+                  title: 'Success...',
                   text: userCheck.errors,
                   showConfirmButton: false,
                   timer: 2000
                 });
                 localStorage.setItem("user_id", userCheck.id);
                 window.location.href = '/account/loginfirst';
+            } else if (userCheck.success == '3') {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Success...',
+                  text: userCheck.errors,
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+                window.location.href = '/account/loginas';
             } else {
                 // get return url from query parameters or default to home page
                 // localStorage.setItem('user', JSON.stringify(this.userCheck.user));
@@ -70,9 +79,13 @@ $(document).ready(function() {
                     notEmpty: {
                         message: 'The password is required and cannot be empty',
                     },
+                    stringLength: {
+                        min: 8,
+                        message: 'The password must be more than 8 characters long'
+                    },
                     regexp: {
-                        regexp: /^\d{6}$/,
-                        message: 'Password must be at least 6 characters',
+                        regexp: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,50}$/,
+                        message: 'The password can only consist of alphabetical, number and speical'
                     },
                 },
             },
@@ -107,7 +120,16 @@ $(document).ready(function() {
                   showConfirmButton: false,
                   timer: 2000
                 });
-                $('.spinner-border').addClass("d-none");                
+                $('.spinner-border').addClass("d-none");
+            } else if (userCheck.success == '3') {
+                Swal.fire({
+                  type: 'success',
+                  title: 'Success...',
+                  text: userCheck.errors,
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+                window.location.href = '/account/loginas';
             } else {
                 localStorage.removeItem('reg_id');
                 localStorage.setItem("user_id", userCheck.id);
@@ -118,7 +140,7 @@ $(document).ready(function() {
                 }).then(function() {
                     window.location.href = '/profile';
                 });
-                
+
             }
         }, 'json');
     });

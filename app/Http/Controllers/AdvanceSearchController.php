@@ -33,6 +33,7 @@ class AdvanceSearchController extends Controller
     public function jobs(Request $request)
     {
         $user = Sentinel::getUser();
+        $userlogin = $request->session()->get('users');
         if (empty($request->input('job_category'))) {
 
             // Show the page
@@ -72,7 +73,8 @@ class AdvanceSearchController extends Controller
                 $framework = [];
             }
 
-            $jobs = Job::where('indexing', 'LIKE', '%'.$sound.'%')
+            if($userlogin['login_as'] == '1') {
+                $jobs = Job::where('indexing', 'LIKE', '%'.$sound.'%')
                     ->orWhere('job_category', '=', $request->input('job_category'))
                     ->orWhere('experience_year', '=', $request->input('experience_year'))
                     ->orWhere('experience_month', '=', $request->input('experience_month'))
@@ -81,12 +83,22 @@ class AdvanceSearchController extends Controller
                     ->whereIn('framework',$framework)
                     ->paginate(5);
 
-            // $id = DB::table('search_keyword')->insertGetId(
-            //     ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
-            // );
+                // $id = DB::table('search_keyword')->insertGetId(
+                //     ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
+                // );
 
-            return view('search/browse-job', compact('jobs'));
+                return view('search/browse-job', compact('jobs'));
+            } else {
 
+                $users = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('indexing', 'LIKE', '%'.$sound.'%')->paginate(10);
+
+                $id = DB::table('search_keyword')->insertGetId(
+                    ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
+                );
+                // print_r($userlist);
+                // die();
+                return view('search/browse-contract-staffing', compact('users'));
+            }
         }
     }
 

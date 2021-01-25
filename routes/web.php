@@ -313,6 +313,9 @@ Route::group(
         Route::get('login', 'AuthController@getLogin')->name('login');
         Route::post('login', 'AuthController@postLogin')->name('login');
 
+        Route::get('loginas', 'AuthController@getLoginAs')->name('loginas');
+        Route::post('loginas', 'AuthController@postLoginAs')->name('loginas');
+
         Route::get('activate/{userId}/{activationCode}', 'FrontEndController@getActivate')->name('activate');
 
         Route::get('forgot-password', 'FrontEndController@getForgotPassword')->name('forgot-password');

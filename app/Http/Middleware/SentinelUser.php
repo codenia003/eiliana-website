@@ -29,6 +29,12 @@ class SentinelUser
             if($user->first_time == 0) {
                 Sentinel::logout();
                 return Redirect::route('login');
+            } else {
+                $userlogin = $request->session()->get('users');
+                if(empty($userlogin['login_as'])){
+                    return Redirect::route('loginas');
+                }
+
             }
         }
         return $next($request);

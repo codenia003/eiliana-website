@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
 
-    public $table = 'Locations';
+    public $table = 'locations';
     protected $primaryKey = 'location_id';
-    
+
 
 
     public $fillable = [

@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Change Password
+Login As
 @parent
 @stop
 
@@ -25,7 +25,7 @@ Change Password
       <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Change Your Password</span>
+            <span class="h5 text-white ml-2">Login As</span>
         </div>
       </div>
     </div>
@@ -35,22 +35,28 @@ Change Password
                 <div class="row">
                     <div class="col p-0">
                         <div class="card">
-                            <h4 class="card-header">Change Your Password</h4>
+                            <h4 class="card-header">Login As</h4>
                             <div class="card-body">
-                                <form action="{{ url('/account/loginfirst') }}" method="POST" id="first_loginForm">
+                                <form action="{{ url('/account/loginas') }}" method="POST">
                                     @csrf
-                                    <div class="form-group input-field">
-                                        <input type="password" name="password" class="form-control" required />
-                                        <label>Password</label>
-                                    </div>
-                                    <div class="form-group input-field">
-                                        <input type="password" name="confirmPassword" class="form-control" required />
-                                        <label>Confirm Password</label>
+                                    <div class="form-group basic-info text-center">
+                                        <div class="form-check form-check-inline mb-3">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="register_as1" class="custom-control-input" name="login_as" value="1" checked>
+                                                <label class="custom-control-label" for="register_as1">Freelancer</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="register_as2" class="custom-control-input" name="login_as" value="2">
+                                                <label class="custom-control-label" for="register_as2">Client</label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group row justify-content-center mt-3 mb-5">
                                         <button class="btn btn-primary">
                                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
-                                            Change Password
+                                            Submit
                                         </button>
                                         <!-- <br /> -->
                                         <!-- <p>Not a member yet? <a href="../register" class="bt">Singup Now</a></p> -->
@@ -59,7 +65,7 @@ Change Password
                             </div>
                         </div>
                     </div>
-                    <div class="col p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="background-image: url(/assets/img/others/change-password.png);">
+                    <div class="col p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="background-image: url(/assets/img/crowdimg3.jpg);">
                         <!-- <div class="account-second-side text-center">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Not a member yet?</p>

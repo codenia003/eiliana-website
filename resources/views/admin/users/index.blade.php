@@ -38,8 +38,8 @@ Users List
                 <h4 class="card-title my-2 float-left"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
                     Users List
                 </h4>
-                 <a href="{{ URL('admin/bulk_import_users') }}" class="float-right btn btn-success import_btn">
-                                <i class="fa fa-plus fa-fw"></i>Bulk Import</a>
+                 <!-- <a href="{{ URL('admin/bulk_import_users') }}" class="float-right btn btn-success import_btn">
+                                <i class="fa fa-plus fa-fw"></i>Bulk Import</a> -->
             </div>
             <div class="card-body">
                 <div class="table-responsive-lg table-responsive-sm table-responsive-md">
@@ -47,9 +47,10 @@ Users List
                     <thead>
                         <tr class="filters">
                             <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>User E-mail</th>
+                            <th>Full Name</th>
+                            <!-- <th>Last Name</th> -->
+                            <th>E-mail</th>
+                            <th>Mobile</th>
                             <th>Status</th>
                             <th>Created At</th>
                             <th>Actions</th>
@@ -81,9 +82,10 @@ Users List
             ajax: '{!! route('admin.users.data') !!}',
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'first_name', name: 'first_name' },
-                { data: 'last_name', name: 'last_name' },
+                { data: 'full_name', name: 'first_name' },
+                // { data: 'last_name', name: 'last_name' },
                 { data: 'email', name: 'email' },
+                { data: 'mobile', name: 'mobile' },
                 { data: 'status', name: 'status'},
                 { data: 'created_at', name:'created_at'},
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }

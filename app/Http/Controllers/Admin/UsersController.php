@@ -18,6 +18,11 @@ use Validator;
 use App\Mail\Restore;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Country;
+use App\Models\Education;
+use App\Models\Certificate;
+use App\Models\ProfessionalExperience;
+use App\Models\UserProject;
+use App\Models\Employers;
 
 class UsersController extends JoshController
 {
@@ -38,7 +43,7 @@ class UsersController extends JoshController
 
     public function index()
     {
-        $users = User::get(['id', 'first_name', 'last_name', 'email','created_at']);
+        $users = User::get(['id', 'first_name', 'last_name', 'email','created_at','mobile']);
         // Show the page
         return view('admin.users.index', compact('users'));
     }
@@ -51,7 +56,7 @@ class UsersController extends JoshController
      */
     public function data()
     {
-        $users = User::get(['id', 'first_name', 'last_name', 'email','created_at']);
+        $users = User::get(['id', 'first_name', 'last_name', 'email','created_at','mobile']);
 
         return DataTables::of($users)
             ->editColumn(
@@ -75,9 +80,9 @@ class UsersController extends JoshController
                 'actions',
                 function ($user) {
                     $actions = '<a href='. route('admin.users.show', $user->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                            <a href='. route('admin.users.edit', $user->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>';
+                            <a href='. route('admin.users.edit', $user->id) .'><i class="livicon d-none" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>';
                     if ((Sentinel::getUser()->id != $user->id) && ($user->id >2)) {
-                        $actions .= '<a href='. route('admin.users.confirm-delete', $user->id) .' data-id="'.$user->id.'" data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i></a>';
+                        $actions .= '<a href='. route('admin.users.confirm-delete', $user->id) .' data-id="'.$user->id.'" data-toggle="modal" data-target="#delete_confirm"><i class="livicon d-none" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i></a>';
                     }
                     return $actions;
                 }
@@ -430,10 +435,14 @@ class UsersController extends JoshController
         try {
             // Get the user information
             $user = Sentinel::findUserById($id);
-            //get country name
-            if ($user->country) {
-                $user->country = $this->countries[$user->country];
-            }
+            $countries = Country::all();
+            $ug_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '3')->get();
+            $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
+            $certificates = Certificate::where('user_id', $id)->get();
+            $proexps = ProfessionalExperience::where('user_id', $id)->first();
+            $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
+            $employers = Employers::where('user_id', $id)->get();
+
         } catch (UserNotFoundException $e) {
             // Prepare the error message
             $error = trans('users/message.user_not_found', compact('id'));
@@ -441,7 +450,7 @@ class UsersController extends JoshController
             return Redirect::route('admin.users.index')->with('error', $error);
         }
         // Show the page
-        return view('admin.users.show', compact('user'));
+        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries'));
     }
 
     public function passwordreset(Request $request)

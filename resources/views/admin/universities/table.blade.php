@@ -5,6 +5,7 @@
         <th>Sr.No</th>
         <th>Name</th>
         <th>Town</th>
+        <th>Logo</th>
         <th>Display Status</th>
         <th >Action</th>
      </tr>
@@ -18,6 +19,7 @@
             <td>{!! $a++ !!}</td>
             <td>{!! $university->name !!}</td>
             <td>{!! $university->town !!}</td>
+            <td>{!! $university->logo !!}</td>
              <td>@if($university->display_status == 1)
                Active
               @else

@@ -85,7 +85,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Key Skills</div>
-                                        <p>{{ $user->key_skills }}{{ $user->profile_headline }}</p>
+                                        <p>{{ $user->key_skills }} {{ $user->profile_headline }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 d-none">

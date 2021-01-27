@@ -11,6 +11,7 @@ Job Post
 <!--page level css starts-->
 <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="{{ asset('vendors/slick-carousel/slick.css') }}">
+<link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
 <!--end of page level css-->
 <style>
     .eiliana-btn {
@@ -32,9 +33,37 @@ Job Post
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="mb-4 mt-3 text-right">
-                    <button class="btn btn-md btn-info eiliana-btn" type="button">Modify Search <i class="far fa-edit"></i></button>
-                    <button type="button" class="btn btn-md btn-info ml-3 eiliana-btn">New Search <i class="far fa-edit"></i></button>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-5">
+                        <div class="bs-advanced">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#" role="tab"
+                                        aria-controls="home" aria-selected="true">My Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" id="team-tab" data-toggle="tab" href="#" role="tab"
+                                        aria-controls="team" aria-selected="false">Create Team</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" id="saved-tab" data-toggle="tab" href="#" role="tab"
+                                        aria-controls="saved" aria-selected="false">Saved Search</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" id="modify-tab" data-toggle="tab" href="#" role="tab"
+                                        aria-controls="modify" aria-selected="false">Modify Search</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" id="live-tab" data-toggle="tab" href="#" role="tab"
+                                        aria-controls="live" aria-selected="false">Live Chat</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
@@ -51,7 +80,7 @@ Job Post
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-7">
                                 <div class="contract-body">
                                     <div class="mb-2">
                                         <p class="h3">{{ $user->full_name }}</p>
@@ -59,6 +88,18 @@ Job Post
                                         <p class="user_exper">User Experience | User Experience</p>
                                         <p class="experience_year">{{ $user->experience_year }} Years {{ $user->experience_month }} Month</p>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="contract-apply text-center">
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a class="btn-icon" data-toggle="modal" data-target="#modal-4"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn-icon"><i class="far fa-comment"></i></a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="pricing-model col-md-9">
@@ -257,6 +298,51 @@ Job Post
             </div>
         </div>
     </div>
+    <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ url('/post-staffing-lead') }}" method="POST" id="staffingflead">
+                    @csrf
+                    <div class="modal-header bg-blue text-white">
+                        <h4 class="modal-title" id="modalLabelnews">Contact Freelancer</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="from-name" class="col-form-label">From:</label>
+                                <input type="text" class="form-control" id="from-name" name="fromname" value="{{ Sentinel::getUser()->full_name }} " readonly>
+                            </div>
+                            <div class="form-group col">
+                                <label for="to-name" class="col-form-label">To:</label>
+                                <input type="text" class="form-control" id="to-name" name="toname" value="{{ $user->full_name }}" readonly>
+                                <input type="hidden" name="to_user_id" value="{{ $user->id }}">
+                                <input type="hidden" name="toemail" value="{{ $user->email }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-id" class="col-form-label">Lead Id:</label>
+                            <input type="text" class="form-control" id="lead-id" value="{{ $staffingleadsid }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="col-form-label">Subject:</label>
+                            <input type="text" class="form-control" name="subject" id="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text" name="messagetext" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer singup-body">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary">Send</button>
+                            <button class="btn btn-outline-primary" data-dismiss="modal">Discard</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @stop
 
 {{-- footer scripts --}}
@@ -264,6 +350,7 @@ Job Post
 <!--global js starts-->
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('vendors/slick-carousel/slick.min.js') }}"></script>
+<script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
     $('.project-slid').slick({
@@ -287,6 +374,52 @@ $(document).ready(function(){
                 slidesToShow: 1
             }
         }]
+    });
+
+    $('#staffingflead').bootstrapValidator({
+        fields: {
+            subject: {
+                validators: {
+                    notEmpty: {
+                        message: 'The subject is required',
+                    },
+                },
+            },
+            messagetext: {
+                validators: {
+                    notEmpty: {
+                        message: 'The message is required',
+                    },
+                },
+            },
+        },
+    }).on('success.form.bv', function(e) {
+        e.preventDefault();
+        var $form = $(e.target);
+        var bv = $form.data('bootstrapValidator');
+        $.post($form.attr('action'), $form.serialize(), function(result) {
+            var userCheck = result;
+            if (userCheck.success == '1') {
+                $('#modal-4').modal('toggle');
+                $('#subject').val('');
+                $('#message-text').val('');
+                Swal.fire({
+                  type: 'success',
+                  title: 'Success...',
+                  text: 'Form Submitted',
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+            } else {
+                Swal.fire({
+                  type: 'error',
+                  title: 'Oops...',
+                  text: 'Error Found',
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+            }
+        }, 'json');
     });
 });
 </script>

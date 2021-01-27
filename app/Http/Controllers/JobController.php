@@ -13,7 +13,7 @@ use Sentinel;
 use URL;
 use Validator;
 use View;
-use DB;
+use Illuminate\Support\Facades\DB;
 use stdClass;
 use Carbon\Carbon;
 use App\Models\Education;
@@ -37,6 +37,7 @@ use App\Models\UserProject;
 use App\Models\Employers;
 use App\Models\Location;
 use App\Models\CustomerIndustry;
+use App\Models\ContractStaffingLeads;
 
 class JobController extends Controller
 {
@@ -368,7 +369,34 @@ class JobController extends Controller
         $proexps = ProfessionalExperience::where('user_id', $id)->first();
         $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
         $employers = Employers::where('user_id', $id)->get();
+        $staffingleadsid = ContractStaffingLeads::all()->last()->staffing_leads_id;
+        $staffingleadsid = $staffingleadsid + 1;
 
-        return view('job/profile-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
+        return view('job/profile-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','staffingleadsid'));
+    }
+
+    public function postStaffingLead(Request $request){
+
+        $input = $request->except('_token');
+
+        $staffingleads = new ContractStaffingLeads;
+        $staffingleads->from_user_id = Sentinel::getUser()->id;
+        $staffingleads->to_user_id = $input['to_user_id'];
+        $staffingleads->subject = $input['subject'];
+        $staffingleads->message = $input['messagetext'];
+        $staffingleads->notify = '0';
+        $staffingleads->display_status = '1';
+        $staffingleads->lead_status = '1';
+        $staffingleads->save();
+
+        Mail::send('emails.emailTemplates.staffingleads', $input, function ($m) use ($input) {
+            $m->from('info@eiliana.com', $input['fromname']);
+            $m->to($input['toemail'], $input['toname'])->subject('New Job Application From ');
+        });
+
+        $response['success'] = '1';
+
+        return response()->json($response);
+
     }
 }

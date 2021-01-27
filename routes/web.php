@@ -265,8 +265,6 @@ Route::group(
     }
 );
 
-
-
 // Remaining pages will be called from below controller method
 // in real world scenario, you may be required to define all routes manually
 
@@ -397,6 +395,8 @@ Route::group(
         Route::get('project/{id}', 'ProjectController@getProjectDeatils');
         Route::get('job/{id}', 'JobController@getJobDeatils');
         Route::get('profile/{id}', 'JobController@getProfileDeatils');
+
+        Route::post('post-staffing-lead', 'JobController@postStaffingLead');
     }
 );
 

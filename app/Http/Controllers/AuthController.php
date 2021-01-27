@@ -18,7 +18,7 @@ use Sentinel;
 use URL;
 use Validator;
 use View;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Country;
 use App\Http\Requests\UserRequest;

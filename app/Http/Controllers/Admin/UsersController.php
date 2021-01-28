@@ -437,9 +437,14 @@ class UsersController extends JoshController
             $user = Sentinel::findUserById($id);
             $countries = Country::all();
             $ug_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '3')->get();
+
             $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
             $certificates = Certificate::where('user_id', $id)->get();
             $proexps = ProfessionalExperience::where('user_id', $id)->first();
+            
+            $selected_technologty_pre = explode(',', $proexps->technologty_pre);
+            $selected_framework = explode(',', $proexps->framework);
+            
             $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
             $employers = Employers::where('user_id', $id)->get();
 
@@ -450,7 +455,7 @@ class UsersController extends JoshController
             return Redirect::route('admin.users.index')->with('error', $error);
         }
         // Show the page
-        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries'));
+        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','selected_framework'));
     }
 
     public function passwordreset(Request $request)

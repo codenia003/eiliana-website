@@ -130,7 +130,7 @@
             </li>
             @empty
             <li class="card p-4 mb-4">
-                <div class="card mb-3 p-4 text-center d-block">
+                <div class="text-center d-block">
                     <div>Search list is empty</div>
                 </div>
             </li>

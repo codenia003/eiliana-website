@@ -100,7 +100,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Industry</div>
-                                        <p>Website Designing</p>
+                                        <p>{{ $job->profile_headline }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -128,7 +128,7 @@
             </li>
             @empty
             <li class="card p-4 mb-4">
-                <div class="card mb-3 p-4 text-center d-block">
+                <div class="text-center d-block">
                     <div>Search list is empty</div>
                 </div>
             </li>

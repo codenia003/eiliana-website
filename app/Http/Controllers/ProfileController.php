@@ -66,7 +66,7 @@ class ProfileController extends JoshController
     {
         $educationtype = EducationType::all();
         $qualifications = Qualification::all();
-        $universities = University::all();
+        $universities = University::orderBy('name', 'asc')->get();
         $user = Sentinel::getUser();
         $educations = Education::where('user_id', $user->id)->get();
         // Show the page
@@ -344,8 +344,9 @@ class ProfileController extends JoshController
                 $userproject->project_name = $input['project_name'][$key];
                 $userproject->project_type = $input['project_type'][$key];
                 $userproject->duration = $input['duration'][$key];
+                $userproject->technologty_pre = $input['technologty_pre'][$key];
                 $userproject->framework = $input['framework'][$key];
-                $userproject->version = $input['version'][$key];
+                $userproject->version = '1';
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];
                 $userproject->employer_id = $input['employer_id'][$key];
@@ -370,8 +371,9 @@ class ProfileController extends JoshController
                 $userproject->project_name = $input['project_name'][$key];
                 $userproject->project_type = $input['project_type'][$key];
                 $userproject->duration = $input['duration'][$key];
+                $userproject->technologty_pre = $input['technologty_pre'][$key];
                 $userproject->framework = $input['framework'][$key];
-                $userproject->version = $input['version'][$key];
+                $userproject->version = '1';
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];
                 $userproject->employer_id = $input['employer_id'][$key];

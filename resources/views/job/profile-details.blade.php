@@ -84,9 +84,9 @@ Job Post
                                 <div class="contract-body">
                                     <div class="mb-2">
                                         <p class="h3">{{ $user->full_name }}</p>
-                                        <p class="key_skills">{{ $user->key_skills }}{{ $user->profile_headline }}</p>
+                                        <p class="key_skills">{{ $proexps->key_skills }}{{ $proexps->profile_headline }}</p>
                                         <p class="user_exper">User Experience | User Experience</p>
-                                        <p class="experience_year">{{ $user->experience_year }} Years {{ $user->experience_month }} Month</p>
+                                        <p class="experience_year">{{ $proexps->experience_year }} Years {{ $proexps->experience_month }} Month</p>
                                     </div>
                                 </div>
                             </div>
@@ -321,7 +321,7 @@ Job Post
                         </div>
                         <div class="form-group">
                             <label for="lead-id" class="col-form-label">Lead Id:</label>
-                            <input type="text" class="form-control" id="lead-id" value="{{ $staffingleadsid }}" readonly>
+                            <input type="text" class="form-control" id="lead-id" name="leadid" value="{{ $staffingleadsid }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="subject" class="col-form-label">Subject:</label>
@@ -411,10 +411,13 @@ $(document).ready(function(){
                   timer: 2000
                 });
             } else {
+                $('#modal-4').modal('toggle');
+                $('#subject').val('');
+                $('#message-text').val('');
                 Swal.fire({
                   type: 'error',
                   title: 'Oops...',
-                  text: 'Error Found',
+                  text: userCheck.errors,
                   showConfirmButton: false,
                   timer: 2000
                 });

@@ -3,10 +3,13 @@
 use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentTaggable\Taggable;
+use Illuminate\Notifications\Notifiable;
 use Str;
 
 class User extends EloquentUser
 {
+
+    use Notifiable;
     /**
      * The database table used by the model.
      *

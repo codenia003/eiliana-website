@@ -14,6 +14,7 @@ use URL;
 use Validator;
 use View;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use stdClass;
 use Carbon\Carbon;
 use App\Models\Education;
@@ -38,6 +39,7 @@ use App\Models\Employers;
 use App\Models\Location;
 use App\Models\CustomerIndustry;
 use App\Models\ContractStaffingLeads;
+use App\Notifications\UserNotification;
 
 class JobController extends Controller
 {
@@ -378,25 +380,52 @@ class JobController extends Controller
     public function postStaffingLead(Request $request){
 
         $input = $request->except('_token');
+        $response['success'] = '0';
+        $staffingleadcheck = ContractStaffingLeads::where('from_user_id', '=', Sentinel::getUser()->id)->where('to_user_id', '=', $input['to_user_id'])->first();
+        if ($staffingleadcheck === null) {
+            $staffingleads = new ContractStaffingLeads;
+            $staffingleads->from_user_id = Sentinel::getUser()->id;
+            $staffingleads->to_user_id = $input['to_user_id'];
+            $staffingleads->subject = $input['subject'];
+            $staffingleads->message = $input['messagetext'];
+            $staffingleads->notify = '0';
+            $staffingleads->display_status = '1';
+            $staffingleads->lead_status = '1';
+            $staffingleads->save();
 
-        $staffingleads = new ContractStaffingLeads;
-        $staffingleads->from_user_id = Sentinel::getUser()->id;
-        $staffingleads->to_user_id = $input['to_user_id'];
-        $staffingleads->subject = $input['subject'];
-        $staffingleads->message = $input['messagetext'];
-        $staffingleads->notify = '0';
-        $staffingleads->display_status = '1';
-        $staffingleads->lead_status = '1';
-        $staffingleads->save();
+            $insertedId = $staffingleads->staffing_leads_id;
 
-        Mail::send('emails.emailTemplates.staffingleads', $input, function ($m) use ($input) {
-            $m->from('info@eiliana.com', $input['fromname']);
-            $m->to($input['toemail'], $input['toname'])->subject('New Job Application From ');
-        });
+            $user = User::find($input['to_user_id']);
 
-        $response['success'] = '1';
+            $details = [
+                'greeting' => 'Hi Artisan',
+                'body' => 'This is my first notification from eiliana.com',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/staffing-lead-response',
+                'main_id' => $insertedId
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+            // Mail::send('emails.emailTemplates.staffingleads', $input, function ($m) use ($input) {
+            //     $m->from('info@eiliana.com', $input['fromname']);
+            //     $m->to($input['toemail'], $input['toname'])->subject('New Job Application From ');
+            // });
+            $response['success'] = '1';
+        } else {
+            $response['errors'] = 'You are already connected to this user';
+        }
 
         return response()->json($response);
 
+    }
+
+    public function staffingLeadResponse($id) {
+
+        $staffingleads = ContractStaffingLeads::where('staffing_leads_id', $id)->first();
+
+        $user = User::where('id', $staffingleads->from_user_id)->first();
+        return view('job/stafflead-response', compact('user','staffingleads'));
     }
 }

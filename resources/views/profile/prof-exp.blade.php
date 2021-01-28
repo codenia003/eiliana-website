@@ -266,18 +266,18 @@
                             <label>Current Location</label>
                             <select name="current_location" class="form-control" required>
                                 <option value=""></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                                @foreach ($locations as $location)
+                                <option value="{{ $location->location_id }}">{{ $location->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col">
                             <label>Preferred Location</label>
                             <select name="preferred_location" class="form-control" required>
                                 <option value=""></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                                @foreach ($locations as $location)
+                                <option value="{{ $location->location_id }}">{{ $location->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

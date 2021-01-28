@@ -1,7 +1,6 @@
 <?php
 require_once 'web_builder.php';
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -338,6 +337,11 @@ Route::get('forgot-password/{userId}/{passwordResetCode}', 'FrontEndController@g
 // logout
 Route::get('logout', 'FrontEndController@getLogout')->name('logout');
 
+Route::get('DatabaseNotificationsMarkasRead', function () {
+    Sentinel::getUser()->unreadNotifications->markAsRead();
+    return redirect()->back();
+})->name('databasenotifications.markasread');
+
 // My account display and update details
 Route::group(
     ['prefix' => 'profile', 'middleware' => 'user'],
@@ -397,6 +401,9 @@ Route::group(
         Route::get('profile/{id}', 'JobController@getProfileDeatils');
 
         Route::post('post-staffing-lead', 'JobController@postStaffingLead');
+
+        Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');
+
     }
 );
 

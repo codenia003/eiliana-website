@@ -81,7 +81,7 @@ class AdvanceSearchController extends Controller
                     ->orWhere('customer_industry', '=', $request->input('customer_industry'))
                     ->whereIn('technologty_pre',$technologty_pre)
                     ->whereIn('framework',$framework)
-                    ->paginate(5);
+                    ->paginate(10);
 
                 // $id = DB::table('search_keyword')->insertGetId(
                 //     ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
@@ -90,7 +90,7 @@ class AdvanceSearchController extends Controller
                 return view('search/browse-job', compact('jobs'));
             } else {
 
-                $users = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('indexing', 'LIKE', '%'.$sound.'%')->paginate(10);
+                $users = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->join('locations', 'locations.location_id', '=', 'professional_experience.current_location')->where('indexing', 'LIKE', '%'.$sound.'%')->where('id', '!=', $user->id)->select('users.*', 'professional_experience.*', 'locations.name as locationname')->paginate(10);
 
                 $id = DB::table('search_keyword')->insertGetId(
                     ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
@@ -157,7 +157,7 @@ class AdvanceSearchController extends Controller
                 };
             }
 
-            $users = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('indexing', 'LIKE', '%'.$sound.'%')->paginate(10);
+            $users = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('indexing', 'LIKE', '%'.$sound.'%')->where('id', '!=', $user->id)->paginate(10);
 
             $id = DB::table('search_keyword')->insertGetId(
                 ['user_id' => $user->id, 'keyword' => $request->input('keyword')]

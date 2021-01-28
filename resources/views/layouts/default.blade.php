@@ -82,7 +82,8 @@
                         <a href="#" class="nav-item nav-link">My Works</a>
                         <a href="{{ url('/job-posting') }}" class="nav-item nav-link login_signup">Post Project</a>
                         <!-- <a href="#" class="nav-item nav-link messages"><i class="fa fa-comments"></i><span class="badge">10</span></a> -->
-                        <a href="#" class="nav-item nav-link notifications"><i class="far fa-bell"></i></i><span class="badge">2</span></a>
+                        {{-- <a href="#" class="nav-item nav-link notifications"><i class="far fa-bell"></i></i><span class="badge">2</span></a> --}}
+                        <x-database-notifications/>
                         <div class="nav-item dropdown">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
                                 @if(Sentinel::getUser()->pic)

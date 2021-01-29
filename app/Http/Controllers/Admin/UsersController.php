@@ -23,6 +23,10 @@ use App\Models\Certificate;
 use App\Models\ProfessionalExperience;
 use App\Models\UserProject;
 use App\Models\Employers;
+use App\Models\Technology;
+use App\Models\Location;
+use App\Models\Designation;
+
 
 class UsersController extends JoshController
 {
@@ -444,10 +448,15 @@ class UsersController extends JoshController
             
             $selected_technologty_pre = explode(',', $proexps->technologty_pre);
             $selected_framework = explode(',', $proexps->framework);
+            $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
+            $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
+            $locations = Location::where('location_id', $proexps->current_location)->first();
+            $preferred_location = Location::where('location_id', $proexps->preferred_location)->first();
             
-            $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
-            $employers = Employers::where('user_id', $id)->get();
-
+            $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname','customerindustry','employername')->where('user_id', $id)->get();
+            $employers = Employers::with('designationtype','employertype')->where('user_id', $id)->get();
+             
+          
         } catch (UserNotFoundException $e) {
             // Prepare the error message
             $error = trans('users/message.user_not_found', compact('id'));
@@ -455,7 +464,7 @@ class UsersController extends JoshController
             return Redirect::route('admin.users.index')->with('error', $error);
         }
         // Show the page
-        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','selected_framework'));
+        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','selected_framework','technologies','childtechnologies','locations','preferred_location'));
     }
 
     public function passwordreset(Request $request)

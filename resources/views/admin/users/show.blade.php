@@ -54,6 +54,11 @@ View User Details
                         <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>Professional Experience
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#tab5" data-toggle="tab" class="nav-link">
+                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>Project
+                    </a>
+                </li>
                 <!--  <li class="nav-item">
                         <a href="{{ URL::to('admin/user_profile') }}" class=" nav-link" >
                             <i class="livicon" data-name="gift" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
@@ -168,86 +173,81 @@ View User Details
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                     <div class="col-md-12">
+                                        <div class="col-md-12">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
                                                 @php
                                                 $i = 1;
                                                 @endphp
-                                                 @foreach($ug_educations as $education)
+                                                @foreach($ug_educations as $education)
                                                 <table class="table table-bordered table-striped" id="users">
                                                     <h6>UG Qualification - {!! $i++ !!}</h6><br>
-                                                   
-                                                <tr>
+                                                    <tr>
                                                         <td>Qualification </td>
                                                         <td>
-                                                             {{ $education->qualification->name }}
+                                                            {{ $education->qualification->name }}
                                                         </td>
                                                     </tr>
-                                                     <tr>
+                                                    <tr>
                                                         <td>University Name</td>
                                                         <td>
-                                                             {{ $education->university->name }}
+                                                            {{ $education->university->name }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Year of Graduation</td>
                                                         <td>
-                                                             {{ $education->month }} - {{ $education->year }}
+                                                            {{ $education->month }} - {{ $education->year }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Education Type</td>
                                                         <td>
-                                                           {{ $education->educationtype->name }}
+                                                            {{ $education->educationtype->name }}
                                                         </td>
                                                     </tr>
-                                                             
-                                              </table>
-                                              @endforeach 
-                                              
-                                              @php
+                                                </table>
+                                                @endforeach
+                                                @php
                                                 $i = 1;
                                                 @endphp
                                                 @foreach($pg_educations as $education)
-                                              <table class="table table-bordered table-striped" id="users">
-                                                  <h6>PG Qualification - {!! $i++ !!}</h6><br>
-                                                    
-                                                <tr>
+                                                <table class="table table-bordered table-striped" id="users">
+                                                    <h6>PG Qualification - {!! $i++ !!}</h6><br>
+                                                    <tr>
                                                         <td>PG Qualification</td>
                                                         <td>
-                                                             {{ $education->qualification->name }}
+                                                            {{ $education->qualification->name }}
                                                         </td>
                                                     </tr>
-                                                     <tr>
+                                                    <tr>
                                                         <td>University Name</td>
                                                         <td>
-                                                             {{ $education->university->name }}
+                                                            {{ $education->university->name }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Year of Graduation</td>
                                                         <td>
-                                                             {{ $education->month }} - {{ $education->year }}
+                                                            {{ $education->month }} - {{ $education->year }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Education Type</td>
                                                         <td>
-                                                           {{ $education->educationtype->name }}
+                                                            {{ $education->educationtype->name }}
                                                         </td>
                                                     </tr>
-                                                   
-                                               </table> 
+                                                </table>
                                                 @endforeach
-                                              </div>
-                                              </div>     
-                                       </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-               <div id="tab3" class="tab-pane fade">
+                <div id="tab3" class="tab-pane fade">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -258,43 +258,42 @@ View User Details
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                   <div class="col-md-12">
+                                        <div class="col-md-12">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                                 @php
-                                                   $i = 1;
+                                                @php
+                                                $i = 1;
                                                 @endphp
-                                                 @foreach ($certificates as $certificate)
+                                                @foreach ($certificates as $certificate)
                                                 <table class="table table-bordered table-striped" id="users">
-                                                 <h6> Certificate - {!! $i++ !!}</h6>                
-                                                 <tr>
+                                                    <h6> Certificate - {!! $i++ !!}</h6>
+                                                    <tr>
                                                         <td>Certification Number</td>
                                                         <td>
-                                                             {{ $certificate->certificate_no }}
+                                                            {{ $certificate->certificate_no }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Certification Name</td>
                                                         <td>
-                                                             {{ $certificate->name }}
+                                                            {{ $certificate->name }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td> Institute Name</td>
                                                         <td>
-                                                             {{ $certificate->institutename }}
+                                                            {{ $certificate->institutename }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Year of Certification</td>
                                                         <td>
-                                                             {{ $certificate->from_date }} - {{ $certificate->till_date }}
+                                                            {{ $certificate->from_date }} - {{ $certificate->till_date }}
                                                         </td>
                                                     </tr>
-                                              </table>
-                                                @endforeach 
-                                              </div>
-                                              </div>     
-
+                                                </table>
+                                                @endforeach
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -307,33 +306,174 @@ View User Details
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">
-                                       Professional Experience
+                                        Professional Experience
                                     </h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                   <div class="col-md-12">
+                                        <div class="col-md-12">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                               
                                                 <table class="table table-bordered table-striped" id="users">
-                                                   <h6>Professional Experience</h6>
-                                                   <tr>
+                                                    <h6>Professional Experience</h6>
+                                                    <tr>
                                                         <td> Technology Preference</td>
                                                         <td>
-                                                             {{ $proexps->key_skills }}
+                                                            @foreach ($technologies as $technology)
+                                                            {{ $technology->technology_name }} ,
+                                                            @endforeach
                                                         </td>
                                                     </tr>
-                                              </table> 
-                                             
-                                              </div>
-                                              </div>     
-
+                                                    <tr>
+                                                        <td>Framework</td>
+                                                        <td>
+                                                            @foreach ($childtechnologies as $technology)
+                                                            {{ $technology->technology_name }} ,
+                                                            @endforeach
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Profile Headline</td>
+                                                        <td>
+                                                            {{ $proexps->profile_headline }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Key Skills</td>
+                                                        <td>
+                                                            {{ $proexps->key_skills }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Experience</td>
+                                                            
+                                                        <td>
+                                                            {{ $proexps->experience_year }} Years  -  {{ $proexps->experience_month }} Months
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>No of Support Projects </td>
+                                                          
+                                                        <td>
+                                                            {{ $proexps->support_project  }} 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>No of Development Projects</td>
+                                                        <td>
+                                                            {{ $proexps->development_project  }} 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Current Location</td>
+                                                        <td>
+                                                            {{ $locations->name  }} 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Preferred Location</td>
+                                                        <td>
+                                                            {{ $preferred_location->name  }} 
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                 <div id="tab5" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        Projects
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
+                                                @php
+                                                $i = 1;
+                                                @endphp
+                                                 @foreach ($projects as $project)
+                                                <table class="table table-bordered table-striped" id="users">
+                                                    <h6>Projects - {{$i++}}</h6>
+
+                                                    <tr>
+                                                        <td>Project Name </td>
+                                                        <td>
+                                                            {{ $project->project_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Project Type </td>
+                                                        <td>
+                                                            {{ $project->projecttypes->name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Technology </td>
+                                                        <td>
+                                                            {{ $project->technologuname->technology_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Duration </td>
+                                                        <td>
+                                                             {{ $project->duration }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Framework</td>
+                                                        <td>
+                                                            {{ $project->frameworkname->technology_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Customer Industry</td>
+                                                        <td>
+                                                            {{ $project->customerindustry->name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Project Details </td>
+                                                        <td>
+                                                             {{ $project->project_details }}
+                                                        </td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Project Upload </td>
+                                                        <td>
+                                                            @if($project->upload_file)
+                                                    <img src="{{ $project->upload_file }}" alt="img" class="img-fluid"/>
+                                                     @else
+                                                     <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
+                                                     @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Employer Name</td>
+                                                        <td>
+                                                            {{ $project->employername->employer_name }}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

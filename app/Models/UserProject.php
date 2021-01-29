@@ -29,4 +29,14 @@ class UserProject extends Model
     {
         return $this->belongsTo('App\Models\Technology', 'framework', 'technology_id');
     }
+
+    public function customerindustry()
+    {
+        return $this->belongsTo('App\Models\CustomerIndustry', 'industry', 'customer_industry_id');
+    }
+
+    public function employername()
+    {
+        return $this->belongsTo('App\Models\Employers', 'employer_id', 'employer_id');
+    }
 }

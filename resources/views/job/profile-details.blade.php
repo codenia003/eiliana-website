@@ -93,12 +93,22 @@ Job Post
                             <div class="col-md-2">
                                 <div class="contract-apply text-center">
                                     <ul class="list-inline mb-0">
-                                        <li class="list-inline-item">
-                                            <a class="btn-icon" data-toggle="modal" data-target="#modal-4"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="btn-icon"><i class="far fa-comment"></i></a>
-                                        </li>
+                                        @if ($response['leadcheck'] === '0')
+                                            <li class="list-inline-item">
+                                                <a class="btn-icon" data-toggle="modal" data-target="#modal-4"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a class="btn-icon" data-toggle="modal" data-target="#modal-4"><i class="far fa-comment"></i></a>
+                                            </li>
+                                        @else
+                                            <li class="list-inline-item">
+                                                <a class="start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" title="Live Chat!"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a class="start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" title="Live Chat!"><i class="far fa-comment"></i></a>
+                                            </li>
+                                        @endif
+
                                     </ul>
                                 </div>
                             </div>
@@ -426,5 +436,6 @@ $(document).ready(function(){
     });
 });
 </script>
+<x-chat-message/>
 <!--global js end-->
 @stop

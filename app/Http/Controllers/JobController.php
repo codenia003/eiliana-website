@@ -374,7 +374,15 @@ class JobController extends Controller
         $staffingleadsid = ContractStaffingLeads::all()->last()->staffing_leads_id;
         $staffingleadsid = $staffingleadsid + 1;
 
-        return view('job/profile-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','staffingleadsid'));
+        $staffingleadcheck = ContractStaffingLeads::where('from_user_id', '=', Sentinel::getUser()->id)->where('to_user_id', '=', $id)->first();
+
+        if ($staffingleadcheck === null) {
+            $response['leadcheck'] = '0';
+        } else {
+            $response['leadcheck'] = '1';
+        }
+
+        return view('job/profile-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','staffingleadsid','response'));
     }
 
     public function postStaffingLead(Request $request){
@@ -398,8 +406,8 @@ class JobController extends Controller
             $user = User::find($input['to_user_id']);
 
             $details = [
-                'greeting' => 'Hi Artisan',
-                'body' => 'This is my first notification from eiliana.com',
+                'greeting' => 'Hi '. $input['toname'],
+                'body' => 'This is my your notification from eiliana.com',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
                 'actionURL' => '/staffing-lead-response',
@@ -427,5 +435,40 @@ class JobController extends Controller
 
         $user = User::where('id', $staffingleads->from_user_id)->first();
         return view('job/stafflead-response', compact('user','staffingleads'));
+    }
+
+    public function staffingLeadConvert(Request $request) {
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $staffingleads = ContractStaffingLeads::find($input['lead_id']);
+        $staffingleads->lead_status = $input['lead_status'];
+        $staffingleads->save();
+
+        if($input['lead_status'] === '2'){
+            $response['success'] = '1';
+            $response['msg'] = 'Opportunity Accepted successfully';
+            // $response['redirect'] = 'Opportunity Accepted successfully';
+        } else {
+            $response['errors'] = 'Opportunity Decline';
+            // $response['redirect'] = 'Opportunity Decline';
+        }
+
+        $user = User::find($staffingleads->from_user_id);
+
+        $details = [
+            'greeting' => 'Hi '. $user->full_name,
+            'body' => 'This is my your notification from eiliana.com',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => '/staffing-lead-response',
+            'main_id' => $input['lead_id']
+        ];
+
+        Notification::send($user, new UserNotification($details));
+
+        return response()->json($response);
+
     }
 }

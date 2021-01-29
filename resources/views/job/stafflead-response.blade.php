@@ -38,9 +38,9 @@ Job Post
             </div>
             <div class="singup-body login-body account-register">
                 <div class="card">
-                    <h4 class="card-header text-left">ConatactBy Client</h4>
+                    <h4 class="card-header text-left">Contact By Client</h4>
                     <div class="card-body">
-                        <form action="{{ url('/post-staffing-lead') }}" method="POST" id="staffingflead">
+                        <form action="#" method="POST" id="staffingflead">
                             @csrf
                             <div class="form-new">
                                 <div class="form-row">
@@ -67,9 +67,9 @@ Job Post
                                     <label for="message-text" class="col-form-label">Message:</label>
                                     <textarea class="form-control" id="message-text" name="messagetext" rows="3" readonly>{{ $staffingleads->message }}</textarea>
                                 </div>
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-primary">Convert to Opportunity</button>
-                                    <button class="btn btn-outline-primary">Decline to Opportunity</button>
+                                <div class="stafflead-basic">
+                                    <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="leadConvert('{{ $staffingleads->staffing_leads_id }}','2')">Convert to Opportunity <img class="img-fluid" src="/assets/img/icons/convertlead.png"></button>
+                                    <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="leadConvert('{{ $staffingleads->staffing_leads_id }}','4')">Decline to Opportunity <img class="img-fluid" src="/assets/img/icons/declinelead.png" alt="Avatar"></button>
                                 </div>
                             </div>
                         </form>
@@ -146,4 +146,51 @@ Job Post
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <!--global js end-->
+<script>
+    function leadConvert(lead_id,lead_status){
+        var url = '/staffing-lead-convert';
+        var data= {
+            _token: "{{ csrf_token() }}",
+            lead_id: lead_id,
+            lead_status: lead_status
+        };
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            success: function(data) {
+                var userCheck = data;
+                if (userCheck.success == '1') {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Success...',
+                        text: userCheck.msg,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                } else {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: userCheck.errors,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+                //
+                // Swal.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //     text: message,
+                //     showConfirmButton: false,
+                //     timer: 1500
+                // })
+
+            },
+            error: function(xhr, status, error) {
+                console.log("error: ",error);
+            },
+        });
+    }
+</script>
 @stop

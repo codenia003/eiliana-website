@@ -401,9 +401,17 @@ Route::group(
         Route::get('profile/{id}', 'JobController@getProfileDeatils');
 
         Route::post('post-staffing-lead', 'JobController@postStaffingLead');
-
         Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');
+        Route::post('staffing-lead-convert', 'JobController@staffingLeadConvert');
 
+    }
+);
+
+Route::group(
+    ['prefix' => 'chat', 'middleware' => 'user'],
+    function () {
+        Route::post('fetch_chat_history', 'ChatController@fetchChatHistory')->name('fetch_chat_history');
+        Route::post('insert_chat', 'ChatController@insertChat')->name('insert_chat');
     }
 );
 

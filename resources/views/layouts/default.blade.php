@@ -22,6 +22,7 @@
     <!--page level css-->
     @yield('header_styles')
     <!--end of page level css-->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 
 <body>
@@ -112,6 +113,10 @@
 
     <!-- slider / breadcrumbs section -->
     @yield('top')
+    <div class="table-responsive">
+        <div id="user_details"></div>
+        <div id="user_model_details"></div>
+    </div>
 
     <!-- Content -->
     @yield('content')

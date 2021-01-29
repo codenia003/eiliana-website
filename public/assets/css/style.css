@@ -1141,9 +1141,8 @@ a {
       border-radius: unset;
   }
   .bg-light-blue {
-      background-color: #4477a2;
-      background: rgb(19,56,100);
-      background: linear-gradient(180deg, rgba(19,56,100,1) 22%, rgba(97,156,182,1) 100%) !important;
+      background: rgb(168,129,222,1);
+      background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%); !important;
   }
   /*hire talent*/
   .hire-talent .form-check-inline {
@@ -1404,4 +1403,18 @@ span.select2-selection.select2-selection--single {
     font-weight: bold;
     position: relative;
     top: 4px;
+}
+.stafflead-basic {
+    text-align: right;
+}
+.stafflead-basic button.btn-info {
+    color: #fff;
+    border-radius: unset;
+    width: 40%;
+    height: 55px;
+    text-transform: capitalize;
+    line-height: 24px;
+    font-weight: 500;
+    font-size: 15px !important;
+    border-color: #ffffff;
 }

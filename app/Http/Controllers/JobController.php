@@ -442,32 +442,38 @@ class JobController extends Controller
         $input = $request->except('_token');
         $response['success'] = '0';
 
-        $staffingleads = ContractStaffingLeads::find($input['lead_id']);
-        $staffingleads->lead_status = $input['lead_status'];
-        $staffingleads->save();
+        $staffingleadcheck = ContractStaffingLeads::where('staffing_leads_id', '=', $input['lead_id'])->where('lead_status', '=', $input['lead_status'])->first();
+        if ($staffingleadcheck === null) {
 
-        if($input['lead_status'] === '2'){
-            $response['success'] = '1';
-            $response['msg'] = 'Opportunity Accepted successfully';
-            // $response['redirect'] = 'Opportunity Accepted successfully';
+            $staffingleads = ContractStaffingLeads::find($input['lead_id']);
+            $staffingleads->lead_status = $input['lead_status'];
+            $staffingleads->save();
+
+            if($input['lead_status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Opportunity Accepted successfully';
+                // $response['redirect'] = 'Opportunity Accepted successfully';
+            } else {
+                $response['errors'] = 'Opportunity Decline';
+                // $response['redirect'] = 'Opportunity Decline';
+            }
+
+            $user = User::find($staffingleads->from_user_id);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'This is my your notification from eiliana.com',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/staffing-lead-response',
+                'main_id' => $input['lead_id']
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
         } else {
-            $response['errors'] = 'Opportunity Decline';
-            // $response['redirect'] = 'Opportunity Decline';
+            $response['errors'] = 'You are already reply to this user';
         }
-
-        $user = User::find($staffingleads->from_user_id);
-
-        $details = [
-            'greeting' => 'Hi '. $user->full_name,
-            'body' => 'This is my your notification from eiliana.com',
-            'thanks' => 'Thank you for using eiliana.com!',
-            'actionText' => 'View My Site',
-            'actionURL' => '/staffing-lead-response',
-            'main_id' => $input['lead_id']
-        ];
-
-        Notification::send($user, new UserNotification($details));
-
         return response()->json($response);
 
     }

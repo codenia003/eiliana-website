@@ -541,7 +541,7 @@
             </li>
         </ul>
     </li>
-    <li {!! (Request::is('admin/users') || Request::is('admin/users/*') || Request::is('admin/deleted_users') ? 'class="active"' : '' ) !!}>
+    <li {!! (Request::is('admin/users') || Request::is('admin/users/*')  ? 'class="active"' : '' ) !!}>
         <a href="#">
             <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C" data-loop="true"></i>
             <span class="title">Users</span>
@@ -566,12 +566,12 @@
                     View Profile
                 </a>
             </li> -->
-            <li {!! (Request::is('admin/deleted_users') ? 'class="active" id="active"' : '' ) !!}>
+            <!-- <li {!! (Request::is('admin/deleted_users') ? 'class="active" id="active"' : '' ) !!}>
                 <a href="{{ URL::to('admin/deleted_users') }}">
                     <i class="fa fa-angle-double-right"></i>
                     Deleted Users
                 </a>
-            </li>
+            </li> -->
         </ul>
     </li>
     <li {!! (Request::is('admin/roles') || Request::is('admin/roles/create') || Request::is('admin/roles/*') ? 'class="active"' : '' ) !!} class="d-none">

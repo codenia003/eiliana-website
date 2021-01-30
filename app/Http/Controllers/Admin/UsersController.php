@@ -26,6 +26,7 @@ use App\Models\Employers;
 use App\Models\Technology;
 use App\Models\Location;
 use App\Models\Designation;
+use App\Models\EmployerDetails;
 
 
 class UsersController extends JoshController
@@ -83,10 +84,12 @@ class UsersController extends JoshController
             ->addColumn(
                 'actions',
                 function ($user) {
-                    $actions = '<a href='. route('admin.users.show', $user->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
+
+                    $actions = '
                             <a href='. route('admin.users.edit', $user->id) .'><i class="livicon d-none" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>';
-                    if ((Sentinel::getUser()->id != $user->id) && ($user->id >2)) {
-                        $actions .= '<a href='. route('admin.users.confirm-delete', $user->id) .' data-id="'.$user->id.'" data-toggle="modal" data-target="#delete_confirm"><i class="livicon d-none" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i></a>';
+                    if ((Sentinel::getUser()->id != $user->id) && ($user->id >1)) {
+                        $actions .= '<a href='. route('admin.users.show', $user->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
+                            <a href='. route('admin.users.confirm-delete', $user->id) .' data-id="'.$user->id.'" data-toggle="modal" data-target="#delete_confirm"><i class="livicon " data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i></a>';
                     }
                     return $actions;
                 }
@@ -455,7 +458,9 @@ class UsersController extends JoshController
             
             $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname','customerindustry','employername')->where('user_id', $id)->get();
             $employers = Employers::with('designationtype','employertype')->where('user_id', $id)->get();
-             
+            $employer_details = EmployerDetails::where('user_id', $id)->get();
+            
+                
           
         } catch (UserNotFoundException $e) {
             // Prepare the error message
@@ -464,7 +469,7 @@ class UsersController extends JoshController
             return Redirect::route('admin.users.index')->with('error', $error);
         }
         // Show the page
-        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','selected_framework','technologies','childtechnologies','locations','preferred_location'));
+        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','selected_framework','technologies','childtechnologies','locations','preferred_location','employer_details'));
     }
 
     public function passwordreset(Request $request)

@@ -374,7 +374,12 @@
         </div>
         <div class="form-group col-6">
             <label>Employment Type</label>
-            <input type="text" name="employment_type[]" class="form-control" required/>
+            <select name="employment_type[]" class="form-control" required>
+                <option value=""></option>
+                @foreach ($employertype as $type)
+                <option value="{{ $type->employer_type_id }}">{{ $type->name }}</option>
+                @endforeach
+            </select>
         </div>
     </div>
     <div class="form-group">

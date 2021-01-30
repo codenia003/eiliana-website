@@ -59,6 +59,11 @@ View User Details
                         <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>Project
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#tab6" data-toggle="tab" class="nav-link">
+                        <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>Employer Details
+                    </a>
+                </li>
                 <!--  <li class="nav-item">
                         <a href="{{ URL::to('admin/user_profile') }}" class=" nav-link" >
                             <i class="livicon" data-name="gift" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
@@ -196,7 +201,7 @@ View User Details
                                                     <tr>
                                                         <td>Year of Graduation</td>
                                                         <td>
-                                                            {{ $education->month }} - {{ $education->year }}
+                                                            {{ $education->month }} &nbsp- &nbsp {{ $education->year }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -228,7 +233,7 @@ View User Details
                                                     <tr>
                                                         <td>Year of Graduation</td>
                                                         <td>
-                                                            {{ $education->month }} - {{ $education->year }}
+                                                            {{ $education->month }} &nbsp- &nbsp {{ $education->year }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -287,7 +292,7 @@ View User Details
                                                     <tr>
                                                         <td>Year of Certification</td>
                                                         <td>
-                                                            {{ $certificate->from_date }} - {{ $certificate->till_date }}
+                                                            {{ $certificate->from_date }} &nbsp- &nbsp {{ $certificate->till_date }}
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -347,7 +352,7 @@ View User Details
                                                         <td>Total Experience</td>
                                                             
                                                         <td>
-                                                            {{ $proexps->experience_year }} Years  -  {{ $proexps->experience_month }} Months
+                                                            {{ $proexps->experience_year }} Years  &nbsp - &nbsp  {{ $proexps->experience_month }} Months
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -465,6 +470,93 @@ View User Details
                                                     </tr>
                                                 </table>
                                                 @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+                 <div id="tab6" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        Employer Details
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
+                                                 @php
+                                                $i = 1;
+                                                @endphp
+                                                @foreach ($employer_details as $employer_detail)
+                                                <table class="table table-bordered table-striped" id="users">
+                                                    
+                                                    <tr>
+                                                        <td>Current Salary</td>
+                                                        <td>
+                                                            {{ $employer_detail->current_salary_lacs }} Lacs &nbsp- &nbsp {{ $employer_detail->current_salary_thousand }} Thousands
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Expected Salary</td>
+                                                        <td>
+                                                            {{ $employer_detail->expected_salary_lacs }}  Lacs &nbsp- &nbsp {{ $employer_detail->expected_salary_thousand }}  Thousands
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Notice Period</td>
+                                                        <td>
+                                                            {{ $employer_detail->notice_period }} Days
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                    @endforeach
+                                                     <br>
+                                                     @foreach ($employers as $employer)
+                                                   <table class="table table-bordered table-striped" id="users">
+                                                    
+                                                     <h6>Employer - {{ $i++ }}</h6> 
+                                                    <tr>
+                                                        <td>Employer Name</td>
+                                                        <td>
+                                                            {{ $employer->employer_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Designation</td>
+                                                        <td>
+                                                            {{ $employer->designationtype->name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Employment Type</td>
+                                                        <td>
+                                                            {{ $employer->employertype->name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Employment Duration</td>
+                                                        <td>
+                                                            {{ $employer->duration_year }} Years  &nbsp- &nbsp {{ $employer->duration_month }} Months
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Job Profile</td>
+                                                        <td>
+                                                            {{ $employer->job_profile }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+
+                                                </table>
+                                                
                                             </div>
                                         </div>
                                     </div>

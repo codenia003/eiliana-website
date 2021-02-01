@@ -381,9 +381,10 @@ Route::group(
 
         Route::get('tax', 'ProfileController@tax')->name('tax');
         Route::get('financial', 'ProfileController@financial')->name('financial');
+
+
     }
 );
-
 
 Route::group(
     ['middleware' => 'user'],
@@ -415,6 +416,28 @@ Route::group(
     }
 );
 
+Route::group(
+    ['prefix' => 'client', 'middleware' => 'user'],
+    function () {
+        Route::get('my-lead', 'ClientController@myLead')->name('my-lead');
+        Route::get('my-requirement', 'ClientController@myRequirement')->name('my-requirement');
+        Route::get('my-requirement/{id}', 'ClientController@myRequirementView')->name('my-requirement.view');
+        Route::get('my-proposal', 'ClientController@myProposal')->name('my-proposal');
+        Route::get('my-project', 'ClientController@myProject')->name('my-project');
+    }
+);
+
+Route::group(
+    ['prefix' => 'freelancer', 'middleware' => 'user'],
+    function () {
+        Route::get('my-lead', 'FreelancerController@myLead')->name('my-lead');
+        Route::get('my-opportunity', 'FreelancerController@myOpportunity')->name('my-opportunity');
+        Route::get('my-opportunity/{id}', 'FreelancerController@myOpportunityView')->name('my-opportunity.view');
+        Route::get('my-proposal', 'FreelancerController@myProposal')->name('my-proposal');
+        Route::get('my-project', 'FreelancerController@myProject')->name('my-project');
+
+    }
+);
 
 Route::group(
     ['prefix' => 'advance-search', 'middleware' => 'user'],

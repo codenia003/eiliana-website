@@ -79,11 +79,35 @@
                         </div>
                     </div> -->
                     <div class="navbar-nav ml-auto">
-                        <a href="#" class="nav-item nav-link active">Free Credit</a>
-                        <a href="#" class="nav-item nav-link">My Works</a>
-                        <a href="{{ url('/job-posting') }}" class="nav-item nav-link login_signup">Post Project</a>
-                        <!-- <a href="#" class="nav-item nav-link messages"><i class="fa fa-comments"></i><span class="badge">10</span></a> -->
-                        {{-- <a href="#" class="nav-item nav-link notifications"><i class="far fa-bell"></i></i><span class="badge">2</span></a> --}}
+                        @if (Session::get('users')['login_as'] == '1')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Lead</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/freelancer/my-opportunity') }}">My Opportunity</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/freelancer/my-proposal') }}">My Proposal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/freelancer/my-project') }}">My Project</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/client/my-lead') }}">My Lead</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/client/my-requirement') }}">My Requirement</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/client/my-proposal') }}">My Proposal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/client/my-project') }}">My Project</a>
+                            </li>
+                        @endif
+                        {{-- <a href="{{ url('/job-posting') }}" class="nav-item nav-link login_signup">Post Project</a> --}}
+                        {{-- <a href="#" class="nav-item nav-link messages"><i class="fa fa-comments"></i><span class="badge">10</span></a> --}}
                         <x-database-notifications/>
                         <div class="nav-item dropdown">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">

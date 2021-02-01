@@ -7,11 +7,7 @@ use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
-use Mail;
-use Reminder;
 use Sentinel;
-use URL;
-use Validator;
 use View;
 use DB;
 use App\Models\User;
@@ -28,7 +24,7 @@ use stdClass;
 use Carbon\Carbon;
 
 
-class AdvanceSearchController extends Controller
+class AdvanceSearchController extends JoshController
 {
     public function jobs(Request $request)
     {

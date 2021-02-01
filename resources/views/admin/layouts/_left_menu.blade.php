@@ -551,7 +551,7 @@
             <li {!! (Request::is('admin/users') ? 'class="active" id="active"' : '' ) !!}>
                 <a href="{{ URL::to('admin/users') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    Users
+                    Users List
                 </a>
             </li>
            <!--  <li {!! (Request::is('admin/users/create') ? 'class="active" id="active"' : '' ) !!}>

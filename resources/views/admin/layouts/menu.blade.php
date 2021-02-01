@@ -5,7 +5,7 @@
  <li {!! ( Request::is('admin/technologies*') || Request::is('admin/designations*') || Request::is('admin/educationTypes*') || Request::is('admin/employerTypes*') || Request::is('admin/projectCategories*') || Request::is('admin/projectStatuses*') || Request::is('admin/qualifications*') || Request::is('admin/universities*') || Request::is('admin/currencies*') || Request::is('admin/languages*') || Request::is('admin/locations*') || Request::is('admin/candidateRoles*') ? 'class="active"' : '' ) !!}>
         <a href="#">
             <i class="livicon" data-name="wrench" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-            <span class="title">Settings</span>
+            <span class="title">Master</span>
             <span class="fa arrow"></span>
         </a>
 

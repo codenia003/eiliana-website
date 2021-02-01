@@ -78,6 +78,7 @@ View User Details
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         User Information
+                                        <button class="btn btn-primary" onclick="editfrom_data()" style="float: right;">Edit</button>
                                     </h3>
                                 </div>
                                 <div class="card-body">
@@ -97,68 +98,113 @@ View User Details
                                         </div>
                                         <div class="col-md-8">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                                <table class="table table-bordered table-striped" id="users">
-                                                    <tr>
-                                                        <td>@lang('users/title.first_name')</td>
-                                                        <td>
-                                                            <p class="user_name_max">{{ $user->first_name }}</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>@lang('users/title.last_name')</td>
-                                                        <td>
-                                                            <p class="user_name_max">{{ $user->last_name }}</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>@lang('users/title.dob')</td>
-                                                        @if($user->dob=='0000-00-00')
-                                                        <td>
-                                                        </td>
-                                                        @else
-                                                        <td>
-                                                            {{ $user->dob }}
-                                                        </td>
-                                                        @endif
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Alias</td>
-                                                        <td>
-                                                            {{ $user->pseudoName }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>@lang('users/title.country')</td>
-                                                        <td>
-                                                            <!--  {{ $user->country }} -->
-                                                            @foreach ($countries as $country)
-                                                            @if($user->country==$country->id)
-                                                            {{ $country->name }}
-                                                            @endif
-                                                            @endforeach
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Interested In</td>
-                                                        <td>
-                                                            @if($user->interested ==1)
-                                                            Freelance Projects
+                                                <form action="" method="">
+                                                    <table class="table table-bordered table-striped" id="users">
+                                                        <tr>
+                                                            <td>@lang('users/title.first_name')</td>
+                                                            <td>
+                                                                <p class="none_edit user_name_max">{{ $user->first_name }}</p>
+                                                                <input class="form-control d-none edit_from" type="text" name="first_name" value="{{ $user->first_name }}">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@lang('users/title.last_name')</td>
+                                                            <td>
+                                                                <p class="none_edit user_name_max">{{ $user->last_name }}</p>
+                                                                <input class="form-control d-none edit_from" type="text" name="last_name" value="{{ $user->last_name }}">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@lang('users/title.dob')</td>
+                                                            @if($user->dob=='0000-00-00')
+                                                            <td>
+                                                            </td>
                                                             @else
-                                                            Contractual Staffing
+                                                            <td>
+                                                                <p class="none_edit user_name_max">{{ \Carbon\Carbon::parse($user->dob)->format('d F, Y')}}</p>
+                                                                <input type="date" name="dob" class="form-control d-none edit_from" value="{{ $user->dob }}" />
+                                                            </td>
                                                             @endif
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Anonymus</td>
-                                                        <td>
-                                                            @if($user->anonymous == 1)
-                                                            Anonymus
-                                                            @else
-                                                            Public
-                                                            @endif
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Alias</td>
+                                                            <td>
+                                                                <p class="none_edit user_name_max">{{ $user->pseudoName }}</p>
+                                                                <input class="form-control d-none edit_from" type="text" name="pseudoName" value="{{ $user->pseudoName }}">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@lang('users/title.country')</td>
+                                                            <td>
+                                                                <!--  {{ $user->country }} -->
+                                                                @foreach ($countries as $country)
+                                                                @if($user->country==$country->id)
+                                                                <p class="none_edit user_name_max">{{ $country->name }}</p>
+                                                                @endif
+                                                                @endforeach
+                                                                <select name="country" class="form-control d-none edit_from">
+                                                                    <option value="">--Select--</option>
+                                                                    @foreach ($countries as $country)
+                                                                    <option value="{{ $country->id }}" {{ ($user->country==$country->id)? "selected" : "" }}>{{ $country->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Interested In</td>
+                                                            <td>
+                                                                @if($user->interested ==1)
+                                                                <p class="none_edit user_name_max">Freelance Projects</p>
+                                                                @else
+                                                                <p class="none_edit user_name_max">Contractual Staffing</p>
+                                                                @endif
+                                                                <div class="form-group basic-info d-none edit_from">
+                                                                    <div class="form-check form-check-inline ml-3">
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input type="radio" id="Freelance" class="custom-control-input" name="interested" readonly="" value="1" {{ ($user->interested=="1")? "checked" : "" }}>
+                                                                            <label class="custom-control-label" for="Freelance">Freelance Projects</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input type="radio" id="Contractual" class="custom-control-input" name="interested" readonly="" value="2" {{ ($user->interested=="2")? "checked" : "" }}>
+                                                                            <label class="custom-control-label" for="Contractual">Contractual Staffing</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Anonymus</td>
+                                                            <td>
+                                                                @if($user->anonymous == 1)
+                                                                <p class="none_edit user_name_max">Anonymus</p>
+                                                                @else
+                                                                <p class="none_edit user_name_max"> Public</p>
+                                                                @endif
+                                                                <div class="form-group basic-info mb-3 d-none edit_from">
+                                                                    <div class="form-check form-check-inline ml-3">
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input type="radio" id="public" name="anonymous" class="custom-control-input" value="0" readonly="" >
+                                                                            <label class="custom-control-label" for="public">Public</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <div class="custom-control custom-radio">
+                                                                            <input type="radio" id="anonymous" name="anonymous" class="custom-control-input" value="1" readonly="" >
+                                                                            <label class="custom-control-label" for="anonymous">Anonymus</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                       
+                                                    </table>
+                                                    <div class="modal-footer d-none edit_from">
+                                                        <button class="btn btn-primary" type="Submit">Submit</button>
+                                                        <p onclick="editfrom_cancel()" class="btn btn-primary">Cancel</p>
+                                                                  </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -350,34 +396,32 @@ View User Details
                                                     </tr>
                                                     <tr>
                                                         <td>Total Experience</td>
-                                                            
                                                         <td>
-                                                            {{ $proexps->experience_year }} Years  &nbsp - &nbsp  {{ $proexps->experience_month }} Months
+                                                            {{ $proexps->experience_year }} Years &nbsp - &nbsp {{ $proexps->experience_month }} Months
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>No of Support Projects </td>
-                                                          
                                                         <td>
-                                                            {{ $proexps->support_project  }} 
+                                                            {{ $proexps->support_project }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>No of Development Projects</td>
                                                         <td>
-                                                            {{ $proexps->development_project  }} 
+                                                            {{ $proexps->development_project }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Current Location</td>
                                                         <td>
-                                                            {{ $locations->name  }} 
+                                                            {{ $locations->name }}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Preferred Location</td>
                                                         <td>
-                                                            {{ $preferred_location->name  }} 
+                                                            {{ $preferred_location->name }}
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -389,8 +433,7 @@ View User Details
                         </div>
                     </div>
                 </div>
-                
-                 <div id="tab5" class="tab-pane fade">
+                <div id="tab5" class="tab-pane fade">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -406,10 +449,9 @@ View User Details
                                                 @php
                                                 $i = 1;
                                                 @endphp
-                                                 @foreach ($projects as $project)
+                                                @foreach ($projects as $project)
                                                 <table class="table table-bordered table-striped" id="users">
                                                     <h6>Projects - {{$i++}}</h6>
-
                                                     <tr>
                                                         <td>Project Name </td>
                                                         <td>
@@ -431,7 +473,7 @@ View User Details
                                                     <tr>
                                                         <td>Duration </td>
                                                         <td>
-                                                             {{ $project->duration }}
+                                                            {{ $project->duration }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -449,17 +491,17 @@ View User Details
                                                     <tr>
                                                         <td>Project Details </td>
                                                         <td>
-                                                             {{ $project->project_details }}
+                                                            {{ $project->project_details }}
                                                         </td>
                                                     </tr>
-                                                     <tr>
+                                                    <tr>
                                                         <td>Project Upload </td>
                                                         <td>
                                                             @if($project->upload_file)
-                                                    <img src="{{ $project->upload_file }}" alt="img" class="img-fluid"/>
-                                                     @else
-                                                     <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
-                                                     @endif
+                                                            <img src="{{ $project->upload_file }}" alt="img" class="img-fluid" />
+                                                            @else
+                                                            <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid" />
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -478,8 +520,7 @@ View User Details
                         </div>
                     </div>
                 </div>
-              
-                 <div id="tab6" class="tab-pane fade">
+                <div id="tab6" class="tab-pane fade">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
@@ -492,12 +533,11 @@ View User Details
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                                 @php
+                                                @php
                                                 $i = 1;
                                                 @endphp
                                                 @foreach ($employer_details as $employer_detail)
                                                 <table class="table table-bordered table-striped" id="users">
-                                                    
                                                     <tr>
                                                         <td>Current Salary</td>
                                                         <td>
@@ -507,7 +547,7 @@ View User Details
                                                     <tr>
                                                         <td>Expected Salary</td>
                                                         <td>
-                                                            {{ $employer_detail->expected_salary_lacs }}  Lacs &nbsp- &nbsp {{ $employer_detail->expected_salary_thousand }}  Thousands
+                                                            {{ $employer_detail->expected_salary_lacs }} Lacs &nbsp- &nbsp {{ $employer_detail->expected_salary_thousand }} Thousands
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -517,12 +557,11 @@ View User Details
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                    @endforeach
-                                                     <br>
-                                                     @foreach ($employers as $employer)
-                                                   <table class="table table-bordered table-striped" id="users">
-                                                    
-                                                     <h6>Employer - {{ $i++ }}</h6> 
+                                                @endforeach
+                                                <br>
+                                                @foreach ($employers as $employer)
+                                                <table class="table table-bordered table-striped" id="users">
+                                                    <h6>Employer - {{ $i++ }}</h6>
                                                     <tr>
                                                         <td>Employer Name</td>
                                                         <td>
@@ -544,7 +583,7 @@ View User Details
                                                     <tr>
                                                         <td>Employment Duration</td>
                                                         <td>
-                                                            {{ $employer->duration_year }} Years  &nbsp- &nbsp {{ $employer->duration_month }} Months
+                                                            {{ $employer->duration_year }} Years &nbsp- &nbsp {{ $employer->duration_month }} Months
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -553,10 +592,8 @@ View User Details
                                                             {{ $employer->job_profile }}
                                                         </td>
                                                     </tr>
-                                                @endforeach
-
+                                                    @endforeach
                                                 </table>
-                                                
                                             </div>
                                         </div>
                                     </div>
@@ -565,7 +602,6 @@ View User Details
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -576,39 +612,6 @@ View User Details
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#change-password').click(function(e) {
-        e.preventDefault();
-        var check = false;
-        if ($('#password').val() === "") {
-            alert('Please Enter password');
-        } else if ($('#password').val() !== $('#password-confirm').val()) {
-            alert("confirm password should match with password");
-        } else if ($('#password').val() === $('#password-confirm').val()) {
-            check = true;
-        }
-
-        if (check == true) {
-            var sendData = '_token=' + $("input[name='_token']").val() + '&password=' + $('#password').val() + '&id=' + { { $user - > id } };
-            var path = "passwordreset";
-            $.ajax({
-                url: path,
-                type: "post",
-                data: sendData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
-                },
-                success: function(data) {
-                    $('#password, #password-confirm').val('');
-                    alert('password reset successful');
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert('error in password reset');
-                }
-            });
-        }
-    });
-});
 
 
 
@@ -618,5 +621,13 @@ $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
     $("#clothing-nav-content .tab-pane").removeClass("show active");
 });
 
+ function editfrom_data(){
+    $('.none_edit').addClass("d-none");
+    $('.edit_from').removeClass("d-none");
+ }
+ function editfrom_cancel(){
+    $('.none_edit').removeClass("d-none");
+    $('.edit_from').addClass("d-none");
+ }
 </script>
 @stop

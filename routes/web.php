@@ -439,6 +439,8 @@ Route::group(
         Route::get('my-proposal', 'FreelancerController@myProposal')->name('my-proposal');
         Route::get('my-project', 'FreelancerController@myProject')->name('my-project');
 
+
+
     }
 );
 

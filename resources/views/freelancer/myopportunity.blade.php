@@ -46,7 +46,9 @@
                     @endif
                 </td>
                 <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('F d, Y') }}</td>
-                <td><a href="{{ route('my-opportunity.view',$lead->staffing_leads_id) }}"><i class="fas fa-info-circle"></i></a></td>
+                <td>
+                    <a href="{{ route('my-opportunity.view',$lead->staffing_leads_id) }}"><i class="fas fa-info-circle"></i></a>
+                </td>
             </tr>
         @endforeach
         </tbody>

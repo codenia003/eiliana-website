@@ -168,6 +168,7 @@ Job Post
                         showConfirmButton: false,
                         timer: 2000
                     });
+                    window.location.href = '/freelancer/my-opportunity';
                 } else {
                     Swal.fire({
                         type: 'error',
@@ -176,6 +177,9 @@ Job Post
                         showConfirmButton: false,
                         timer: 3000
                     });
+                    if (userCheck.success == '2') {
+                        window.location.href = '/freelancer/my-opportunity';
+                    }
                 }
                 //
                 // Swal.fire({

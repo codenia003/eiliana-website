@@ -379,7 +379,11 @@ class JobController extends Controller
         if ($staffingleadcheck === null) {
             $response['leadcheck'] = '0';
         } else {
-            $response['leadcheck'] = '1';
+            if($staffingleadcheck['lead_status'] == '1'){
+                $response['leadcheck'] = '0';
+            } else {
+                $response['leadcheck'] = '1';
+            }
         }
 
         return view('job/profile-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','staffingleadsid','response'));
@@ -407,10 +411,10 @@ class JobController extends Controller
 
             $details = [
                 'greeting' => 'Hi '. $input['toname'],
-                'body' => 'This is my your notification from eiliana.com',
+                'body' => 'You have new opportunity',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/staffing-lead-response',
+                'actionURL' => 'staffing-lead-response/'. $insertedId,
                 'main_id' => $insertedId
             ];
 
@@ -454,6 +458,7 @@ class JobController extends Controller
                 $response['msg'] = 'Opportunity Accepted successfully';
                 // $response['redirect'] = 'Opportunity Accepted successfully';
             } else {
+                $response['success'] = '2';
                 $response['errors'] = 'Opportunity Decline';
                 // $response['redirect'] = 'Opportunity Decline';
             }
@@ -472,6 +477,7 @@ class JobController extends Controller
             Notification::send($user, new UserNotification($details));
 
         } else {
+            $response['success'] = '2';
             $response['errors'] = 'You are already reply to this user';
         }
         return response()->json($response);

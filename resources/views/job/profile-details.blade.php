@@ -102,10 +102,10 @@ Job Post
                                             </li>
                                         @else
                                             <li class="list-inline-item">
-                                                <a class="start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" title="Live Chat!"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
+                                                <a class="start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" data-chattype="4" title="Live Chat!"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
                                             </li>
                                             <li class="list-inline-item">
-                                                <a class="start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" title="Live Chat!"><i class="far fa-comment"></i></a>
+                                                <a class="start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" data-chattype="4" title="Live Chat!"><i class="far fa-comment"></i></a>
                                             </li>
                                         @endif
 

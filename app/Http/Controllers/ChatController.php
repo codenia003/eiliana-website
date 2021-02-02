@@ -19,23 +19,25 @@ use stdClass;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\ChatMessage;
+use App\Notifications\ChatNotification;
 
 class ChatController extends JoshController
 {
-    public function fetchChatHistory(Request $request){
-
+    public function fetchChatHistory(Request $request)
+    {
         $input = $request->except('_token');
         $response['success'] = '0';
 
         $user = Sentinel::getUser();
         $input['user_id'] = $user->id;
+        $output = '';
 
         $chat_message = ChatMessage::where('from_user_id', $user->id)->where('to_user_id', $input['to_user_id'])->orWhere(function($query) use ($input) {
                             $query->where('from_user_id', $input['to_user_id'])
                                 ->where('to_user_id', $input['user_id']);
                         })->latest()->get();
 
-        $output = '<ul class="list-unstyled">';
+        $output .= '<ul class="list-unstyled">';
         foreach($chat_message as $row)
         {
             $user_name = '';
@@ -95,8 +97,30 @@ class ChatController extends JoshController
         $chatmessage->from_user_id = Sentinel::getUser()->id;
         $chatmessage->to_user_id = $input['to_user_id'];
         $chatmessage->chat_message = $input['chat_message'];
+        $chatmessage->chat_type  = $input['chat_type'];
         $chatmessage->status = '1';
         $chatmessage->save();
+
+        $user = User::find($input['to_user_id']);
+        if($input['chat_type'] == '2'){
+            $url = '';
+        } elseif($input['chat_type'] == '3'){
+            $url = '';
+        } elseif($input['chat_type'] == '4'){
+            $url = 'client/my-requirement';
+        } else {
+            $url = '';
+        }
+        $details = [
+            'greeting' => 'Hi '.$user->full_name,
+            'body' => 'You have new opportunity',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => $url,
+            'main_id' => $chatmessage->chat_message_id
+        ];
+
+        Notification::send($user, new ChatNotification($details));
 
         return response()->json($response);
 

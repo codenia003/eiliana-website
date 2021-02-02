@@ -1010,7 +1010,7 @@ a {
   }
   .profile-setting .singup-body {
       position: relative;
-      right: 10px;
+      /* right: 10px; */
   }
   .profile-basic button.btn-info {
       background: #003466;
@@ -1417,4 +1417,13 @@ span.select2-selection.select2-selection--single {
     font-weight: 500;
     font-size: 15px !important;
     border-color: #ffffff;
+}
+.chat_message {
+    border-radius: unset;
+    border: 1px solid #c7c7c7;
+    box-shadow: 0 0 2px 2px #e4ecf7;
+}
+
+.chat_history {
+    box-shadow: 0 0 2px 2px #e4ecf7;
 }

@@ -7,11 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserNotification extends Notification
+class ChatNotification extends Notification
 {
     use Queueable;
     private $details;
-
     /**
      * Create a new notification instance.
      *
@@ -44,15 +43,10 @@ class UserNotification extends Notification
     {
         return (new MailMessage)
                     ->subject('Notification Subject')
-                    //->greeting('Hello!')
                     ->greeting($this->details['greeting'])
-                    //->line('The introduction to the notification.')
                     ->line($this->details['body'])
-                    //->action('Notification Action', url('/'))
                     ->action($this->details['actionText'], $this->details['actionURL'])
-                    //->line('Thank you for using our application!');
                     ->line($this->details['thanks']);
-
     }
 
     /**
@@ -64,11 +58,11 @@ class UserNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-           //'data' => 'this is my notification',
-           'data' => "You have new opportunity:- ".$this->details['main_id'],
-           'notify_type' => '1',
-           'actionURL' => $this->details['actionURL'],
-           'main_id' => $this->details['main_id']
-        ];
+            //'data' => 'this is my notification',
+            'data' => "You have new message:- ".$this->details['main_id'],
+            'notify_type' => '2',
+            'actionURL' => $this->details['actionURL'],
+            'main_id' => $this->details['main_id']
+         ];
     }
 }

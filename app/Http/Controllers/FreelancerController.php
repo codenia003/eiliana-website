@@ -26,8 +26,8 @@ class FreelancerController extends Controller
         return view('freelancer/myopportunity', compact('leads'));
     }
 
-    public function myOpportunityView($id) {
-
+    public function myOpportunityView($id)
+    {
         $leads = ContractStaffingLeads::with('fromuser')->where('staffing_leads_id', $id)->first();
         return view('freelancer/myopportunityview', compact('leads'));
     }

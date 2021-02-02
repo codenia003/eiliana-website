@@ -27,6 +27,9 @@ use App\Models\Technology;
 use App\Models\Location;
 use App\Models\Designation;
 use App\Models\EmployerDetails;
+use App\Models\Qualification;
+use App\Models\University;
+use App\Models\EducationType;
 
 
 class UsersController extends JoshController
@@ -444,7 +447,9 @@ class UsersController extends JoshController
             $user = Sentinel::findUserById($id);
             $countries = Country::all();
             $ug_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '3')->get();
-
+            $response['qualifications'] = Qualification::all();
+            $response['universities'] = University::orderBy('name', 'asc')->get();
+            $response['educationtype'] = EducationType::all();
             $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
             $certificates = Certificate::where('user_id', $id)->get();
             $proexps = ProfessionalExperience::where('user_id', $id)->first();
@@ -469,7 +474,7 @@ class UsersController extends JoshController
             return Redirect::route('admin.users.index')->with('error', $error);
         }
         // Show the page
-        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','selected_framework','technologies','childtechnologies','locations','preferred_location','employer_details'));
+        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','selected_framework','technologies','childtechnologies','locations','preferred_location','employer_details','response'));
     }
 
     public function passwordreset(Request $request)
@@ -479,6 +484,29 @@ class UsersController extends JoshController
         $password = $request->get('password');
         $user->password = Hash::make($password);
         $user->save();
+    }
+
+    public function updateuser_information(Request $request)
+    {
+        
+        $id = $request->id;
+        $user = Sentinel::findUserById($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->dob = $request->dob;
+        $user->pseudoName = $request->pseudoName;
+        $user->country = $request->country;
+        $user->save();
+    
+     return Redirect::route('admin.users.show', $id);
+    }
+
+    public function updateuser_education(Request $request)
+    {
+        $id = $request->user_id;
+       
+    
+     return Redirect::route('admin.users.show', $id);
     }
 
     public function import()

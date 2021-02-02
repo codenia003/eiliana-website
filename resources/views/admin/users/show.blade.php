@@ -98,7 +98,8 @@ View User Details
                                         </div>
                                         <div class="col-md-8">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                                <form action="" method="">
+                                                <form action="{{ url('admin/users/updateinformation') }}" method="POST">
+                                                    @csrf
                                                     <table class="table table-bordered table-striped" id="users">
                                                         <tr>
                                                             <td>@lang('users/title.first_name')</td>
@@ -161,13 +162,13 @@ View User Details
                                                                 <div class="form-group basic-info d-none edit_from">
                                                                     <div class="form-check form-check-inline ml-3">
                                                                         <div class="custom-control custom-radio">
-                                                                            <input type="radio" id="Freelance" class="custom-control-input" name="interested" readonly="" value="1" {{ ($user->interested=="1")? "checked" : "" }}>
+                                                                            <input type="radio" id="Freelance" class="custom-control-input" name="interested" disabled="" value="1" {{ ($user->interested=="1")? "checked" : "" }}>
                                                                             <label class="custom-control-label" for="Freelance">Freelance Projects</label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-check form-check-inline">
                                                                         <div class="custom-control custom-radio">
-                                                                            <input type="radio" id="Contractual" class="custom-control-input" name="interested" readonly="" value="2" {{ ($user->interested=="2")? "checked" : "" }}>
+                                                                            <input type="radio" id="Contractual" class="custom-control-input" name="interested" disabled="" value="2" {{ ($user->interested=="2")? "checked" : "" }}>
                                                                             <label class="custom-control-label" for="Contractual">Contractual Staffing</label>
                                                                         </div>
                                                                     </div>
@@ -185,25 +186,25 @@ View User Details
                                                                 <div class="form-group basic-info mb-3 d-none edit_from">
                                                                     <div class="form-check form-check-inline ml-3">
                                                                         <div class="custom-control custom-radio">
-                                                                            <input type="radio" id="public" name="anonymous" class="custom-control-input" value="0" readonly="" >
+                                                                            <input type="radio" id="public" name="anonymous" class="custom-control-input" value="0" disabled="" {{ (Sentinel::getUser()->anonymous=="0")? "checked" : "" }}>
                                                                             <label class="custom-control-label" for="public">Public</label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-check form-check-inline">
                                                                         <div class="custom-control custom-radio">
-                                                                            <input type="radio" id="anonymous" name="anonymous" class="custom-control-input" value="1" readonly="" >
+                                                                            <input type="radio" id="anonymous" name="anonymous" class="custom-control-input" value="1" disabled="" {{ (Sentinel::getUser()->anonymous=="1")? "checked" : "" }}>
                                                                             <label class="custom-control-label" for="anonymous">Anonymus</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                       
+                                                        <input type="hidden" name="id" value="{{$user->id}}">
                                                     </table>
                                                     <div class="modal-footer d-none edit_from">
                                                         <button class="btn btn-primary" type="Submit">Submit</button>
                                                         <p onclick="editfrom_cancel()" class="btn btn-primary">Cancel</p>
-                                                                  </div>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -220,12 +221,16 @@ View User Details
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         User Education
+                                        <button class="btn btn-primary" onclick="edit_education_data()" style="float: right;">Edit</button>
                                     </h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
+                                        <!-- <form action="" method=""> -->
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
+                                             <form action="{{ url('admin/users/update-education') }}" method="POST">
+                                                    @csrf   
                                                 @php
                                                 $i = 1;
                                                 @endphp
@@ -235,27 +240,67 @@ View User Details
                                                     <tr>
                                                         <td>Qualification </td>
                                                         <td>
-                                                            {{ $education->qualification->name }}
+                                                            <p class="none_education_edit user_name_max">{{ $education->qualification->name }}</p>
+                                                            <select name="degree[]" class="form-control col-6 d-none education_edit">
+                                                                <option value=""></option>
+                                                                @foreach ($response['qualifications'] as $qualification)
+                                                                @if ($qualification->type == 'UG')
+                                                                <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }}>{{ $qualification->name }}</option>
+                                                                @endif
+                                                                @endforeach
+                                                            </select>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>University Name</td>
                                                         <td>
-                                                            {{ $education->university->name }}
+                                                            <p class="none_education_edit user_name_max">{{ $education->university->name }}<p>
+                                                                    <select name="name[]" class="form-control col-6 d-none education_edit">
+                                                                        <option value=""></option>
+                                                                        @foreach ($response['universities'] as $university)
+                                                                        <option value="{{ $university->university_id }}" {{ ($education->name==$university->university_id)? "selected" : "" }}>{{ $university->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Year of Graduation</td>
                                                         <td>
-                                                            {{ $education->month }} &nbsp- &nbsp {{ $education->year }}
+                                                            <p class="none_education_edit user_name_max">{{ $education->month }} &nbsp- &nbsp {{ $education->year }}</p>
+                                                            <div class="form-group col-6 d-none education_edit">
+                                                                <div class="form-row ">
+                                                                    <div class="col">
+                                                                        <select class="form-control" required="" name="month[]">
+                                                                            <option value="">From</option>
+                                                                            @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                @endfor
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <select class="form-control" required="" name="year[]">
+                                                                            <option value="">Till</option>
+                                                                            @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                @endfor
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Education Type</td>
                                                         <td>
-                                                            {{ $education->educationtype->name }}
+                                                            <p class="none_education_edit user_name_max">{{ $education->educationtype->name }}</p>
+                                                            <select name="education_type[]" class="form-control d-none col-6 education_edit" required>
+                                                                <option value=""></option>
+                                                                @foreach ( $response['educationtype'] as $etype)
+                                                                <option value="{{ $etype->education_type_id }}" {{ ($education->education_type==$etype->education_type_id)? "selected" : "" }}>{{ $etype->name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </td>
                                                     </tr>
+                                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                    <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
                                                 </table>
                                                 @endforeach
                                                 @php
@@ -267,30 +312,76 @@ View User Details
                                                     <tr>
                                                         <td>PG Qualification</td>
                                                         <td>
-                                                            {{ $education->qualification->name }}
+                                                            <p class="none_education_edit user_name_max">{{ $education->qualification->name }}</p>
+                                                            <select name="degree[]" class="form-control col-6 d-none education_edit" required>
+                                                                <option value=""></option>
+                                                                @foreach ($response['qualifications'] as $qualification)
+                                                                @if ($qualification->type == 'PG')
+                                                                <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }}>{{ $qualification->name }}</option>
+                                                                @endif
+                                                                @endforeach
+                                                            </select>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>University Name</td>
                                                         <td>
-                                                            {{ $education->university->name }}
+                                                            <p class="none_education_edit user_name_max">{{ $education->university->name }}</p>
+                                                            <select name="name[]" class="form-control col-6 d-none education_edit">
+                                                                <option value=""></option>
+                                                                @foreach ($response['universities'] as $university)
+                                                                <option value="{{ $university->university_id }}" {{ ($education->name==$university->university_id)? "selected" : "" }}>{{ $university->name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Year of Graduation</td>
                                                         <td>
-                                                            {{ $education->month }} &nbsp- &nbsp {{ $education->year }}
+                                                            <p class="none_education_edit user_name_max"> {{ $education->month }} &nbsp- &nbsp {{ $education->year }}</p>
+                                                            <div class="form-group col-6 d-none education_edit">
+                                                                <div class="form-row">
+                                                                    <div class="col">
+                                                                        <select class="form-control" required="" name="month[]">
+                                                                            <option value="">From</option>
+                                                                            @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                @endfor
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <select class="form-control" required="" name="year[]">
+                                                                            <option value="">Till</option>
+                                                                            @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                @endfor
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Education Type</td>
                                                         <td>
-                                                            {{ $education->educationtype->name }}
+                                                            <p class="none_education_edit user_name_max">{{ $education->educationtype->name }}</p>
+                                                            <select name="education_type[]" class="form-control col-6 d-none education_edit" required>
+                                                                <option value=""></option>
+                                                                @foreach ($response['educationtype'] as $etype)
+                                                                <option value="{{ $etype->education_type_id }}" {{ ($education->education_type==$etype->education_type_id)? "selected" : "" }}>{{ $etype->name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </td>
                                                     </tr>
+                                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                    <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
                                                 </table>
-                                                @endforeach
+                                                <div class="modal-footer d-none education_edit">
+                                                        <button class="btn btn-primary" type="Submit">Submit</button>
+                                                        <p onclick="editeducation_cancel()" class="btn btn-primary">Cancel</p>
+                                                    </div>
+                                                 @endforeach
+                                            </form>
                                             </div>
+                                        
                                         </div>
                                     </div>
                                 </div>
@@ -612,22 +703,31 @@ View User Details
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
-
-
-
 $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
     e.target // newly activated tab
     e.relatedTarget // previous active tab
     $("#clothing-nav-content .tab-pane").removeClass("show active");
 });
 
- function editfrom_data(){
+function editfrom_data() {
     $('.none_edit').addClass("d-none");
     $('.edit_from').removeClass("d-none");
- }
- function editfrom_cancel(){
+}
+
+function editfrom_cancel() {
     $('.none_edit').removeClass("d-none");
     $('.edit_from').addClass("d-none");
- }
+}
+
+function edit_education_data() {
+    $('.none_education_edit').addClass("d-none");
+    $('.education_edit').removeClass("d-none");
+}
+
+function editeducation_cancel() {
+    $('.none_education_edit').removeClass("d-none");
+    $('.education_edit').addClass("d-none");
+}
+
 </script>
 @stop

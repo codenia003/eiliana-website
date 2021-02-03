@@ -56,7 +56,7 @@ OTP Verification
                                     <div class="form-group input-field">
                                         <input type="text" name="otpm" id="otpm" class="form-control" required />
                                         <label for="otpm">OTP For Mobile</label>
-                                        
+
                                     </div>
                                     <div class="form-group row justify-content-center mt-5 mb-2">
                                         <button class="btn btn-primary">
@@ -69,7 +69,7 @@ OTP Verification
                             </div>
                         </div>
                     </div>
-                    <div class="col p-0 d-flex align-items-center justify-content-center bg-navy bg-img-hero" style="background-image: url(/assets/img/others/OTP-verification.png);">
+                    <div class="col p-0 d-flex align-items-center justify-content-center bg-img-hero" style="background-image: url(/assets/img/others/OTP-verification.png);">
                         <div class="account-second-side text-center">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Already have an account?</p>
@@ -78,7 +78,7 @@ OTP Verification
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -96,7 +96,7 @@ OTP Verification
 <!--global js end-->
 <script>
     getDetails();
-    
+
     function getDetails(){
         // console.log(localStorage.getItem("reg_id"));
         var reg_id = localStorage.getItem("reg_id");

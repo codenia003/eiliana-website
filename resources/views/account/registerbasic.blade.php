@@ -52,7 +52,7 @@ Basic Information
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group basic-info">
+                        <div class="form-group basic-info register-as d-none">
                             <label>Register As</label>
                             <br>
                             <div class="form-check form-check-inline mb-3">
@@ -211,6 +211,7 @@ Basic Information
             $('.company_show').removeClass("d-none");
             $('.anonymousShow-1 label').text("Date Of Incorporation");
         }
+        $('.register-as').removeClass("d-none");
     }
 
 </script>

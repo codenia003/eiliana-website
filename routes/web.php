@@ -386,7 +386,8 @@ Route::group(
         Route::get('tax', 'ProfileController@tax')->name('tax');
         Route::get('financial', 'ProfileController@financial')->name('financial');
 
-
+        Route::get('change-password', 'ProfileController@getChangePassword')->name('change-password');
+        Route::post('change-password', 'ProfileController@postChangePassword');
     }
 );
 
@@ -394,8 +395,6 @@ Route::group(
     ['middleware' => 'user'],
     function () {
         Route::get('home', 'FrontEndController@getDashboard')->name('home');
-        Route::get('search-project', 'ProjectController@getSearchProject')->name('search-project');
-        Route::get('/project/{id}', 'ProjectController@getProjectDeatils');
         Route::get('post-job', 'JobController@index')->name('post-job');
         Route::post('post-job-on', 'JobController@postJobon')->name('post-job-on');
         Route::get('post-project', 'JobController@postProject')->name('post-project');
@@ -439,9 +438,6 @@ Route::group(
         Route::get('my-opportunity/{id}', 'FreelancerController@myOpportunityView')->name('my-opportunity.view');
         Route::get('my-proposal', 'FreelancerController@myProposal')->name('my-proposal');
         Route::get('my-project', 'FreelancerController@myProject')->name('my-project');
-
-
-
     }
 );
 
@@ -482,11 +478,14 @@ Route::group(
 
 
 Route::resource('user_emails', 'UsersEmailController');
-
+// client seaech and post
 Route::get('hire-talent', 'JobController@hireTalent')->name('hire-talent');
-Route::get('job-posting', 'JobController@jobProject')->name('job-posting');
 Route::post('talent-search', 'JobController@talentSearch')->name('talent-search');
+Route::get('job-posting', 'JobController@jobProject')->name('job-posting');
 Route::post('job-posting-search', 'JobController@jobPostingSearch')->name('job-posting');
+
+// feeelancer
+Route::get('search-project', 'ProjectController@getSearchProject')->name('search-project');
 
 Route::get('/getframework', 'ProfileController@getframework');
 

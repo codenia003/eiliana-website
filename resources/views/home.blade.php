@@ -37,8 +37,12 @@ Home
 				    <div class="card-body">
 				        <div class="card-body card-body-centered" style="min-height: 15rem;">
 						    <p>Start bidding now on projects that meet your skills.</p>
-						    <a class="btn btn-primary bg-orange" href="{{ url('hire-talent') }}">Browse Projects And Talent</a>
-						    <!-- <a class="btn btn-primary bg-orange" routerLink="/project/1">Browse Projects</a> -->
+                            @if (Session::get('users')['login_as'] == '1')
+                            <a class="btn btn-primary bg-orange" href="{{ url('search-project') }}">Browse Projects And Jobs</a>
+                            @else
+                            <a class="btn btn-primary bg-orange" href="{{ url('hire-talent') }}">Browse Freelancer And Talent</a>
+                            @endif
+                            <!-- <a class="btn btn-primary bg-orange" routerLink="/project/1">Browse Projects</a> -->
 						 </div>
 				    </div>
 				    <!-- End Body -->

@@ -35,7 +35,7 @@
                         @include('notifications')
                     </div>
                     <div class="advance-search singup-body login-body">
-                        <form action="{{ url('/talent-search') }}" method="post" id="hireTalentForm" enctype="multipart/form-data">
+                        <form action="{{ url('/project-search') }}" method="post" id="hireTalentForm" enctype="multipart/form-data">
                             @csrf
                             <div class="card">
                                 <div class="px-3 py-2">
@@ -46,13 +46,13 @@
 					                    <div class="form-check form-check-inline">
 					                        <div class="custom-control custom-radio">
 					                            <input type="radio" id="Freelance" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="2" checked>
-					                            <label class="custom-control-label" for="Freelance">Freelancer</label>
+					                            <label class="custom-control-label" for="Freelance">Freelance Projects</label>
 					                        </div>
 					                    </div>
 					                    <div class="form-check form-check-inline">
 					                        <div class="custom-control custom-radio">
 					                            <input type="radio" id="Contractual" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="1">
-					                            <label class="custom-control-label" for="Contractual">Contractual Employer</label>
+					                            <label class="custom-control-label" for="Contractual">Job Search</label>
 					                        </div>
 					                    </div>
 					                </div>
@@ -123,7 +123,7 @@
 	                                    </div>
 					                </div>
                                     <div class="basic-info mb-3 ">
-                                        <label>Search Method</label>
+                                        <label>Browse Project By</label>
                                         <br>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">

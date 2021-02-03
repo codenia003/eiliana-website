@@ -105,8 +105,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-project') }}">My Project</a>
                             </li>
+                            <a href="{{ url('/job-posting') }}" class="nav-item nav-link login_signup">Post Project</a>
                         @endif
-                        {{-- <a href="{{ url('/job-posting') }}" class="nav-item nav-link login_signup">Post Project</a> --}}
                         {{-- <a href="#" class="nav-item nav-link messages"><i class="fa fa-comments"></i><span class="badge">10</span></a> --}}
                         <x-database-notifications/>
                         <div class="nav-item dropdown">

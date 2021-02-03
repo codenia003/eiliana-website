@@ -498,16 +498,54 @@ class UsersController extends JoshController
         $user->country = $request->country;
         $user->save();
     
-     return Redirect::route('admin.users.show', $id);
+     // return Redirect::route('admin.users.show', $id);
+        $url = "admin/users/".$id."#tab1";
+     return redirect($url)->with('success', 'User Information updated successfully');
     }
 
     public function updateuser_education(Request $request)
     {
-        $id = $request->user_id;
-       
+        $input = $request->except('_token');    
+         $id  = $request->user_id;   
+
+         foreach ($input['education_id'] as $key => $value) {              
+               
+                $education = Education::find($input['education_id'][$key]);
+                $education->education_type = $input['education_type'][$key];
+                $education->name = $input['name'][$key];
+                $education->month = $input['month'][$key];
+                $education->year = $input['year'][$key];
+                $education->degree = $input['degree'][$key];                            
+                $education->save();
+         }
+        
     
-     return Redirect::route('admin.users.show', $id);
+       // return Redirect::route('admin.users.show', $id);
+         $url = "admin/users/".$id."#tab2";
+     return redirect($url)->with('success', 'Education updated successfully');
     }
+
+   public function updateuser_certificate(Request $request)
+    {
+        $input = $request->except('_token');  
+         $id  = $request->user_id;   
+                 
+         foreach ($input['certificate_id'] as $key => $value) {              
+               
+                $certificate = Certificate::find($input['certificate_id'][$key]);
+                $certificate->certificate_no = $input['certificate_no'][$key];
+                $certificate->name = $input['name'][$key];
+                $certificate->from_date = $input['from_date'][$key];
+                $certificate->till_date = $input['till_date'][$key];
+                $certificate->institutename = $input['institutename'][$key];
+                $certificate->save();
+         }
+        
+    
+          $url = "admin/users/".$id."#tab3";
+     return redirect($url)->with('success', 'Certificate updated successfully');
+    }
+
 
     public function import()
     {

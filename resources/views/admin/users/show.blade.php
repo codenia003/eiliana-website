@@ -33,7 +33,7 @@ View User Details
 <section class="content user_profile  pr-3 pl-3">
     <div class="row">
         <div class="col-lg-12">
-            <ul class="nav  nav-tabs first_svg">
+            <ul class="nav  nav-tabs first_svg" id="myTab">
                 <li class="nav-item">
                     <a href="#tab1" data-toggle="tab" class="nav-link active">
                         <i class="livicon" data-name="user" data-size="16" data-c="#777" data-hc="#000" data-loop="true"></i>
@@ -227,161 +227,159 @@ View User Details
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                        <!-- <form action="" method=""> -->
+                                            <!-- <form action="" method=""> -->
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                             <form action="{{ url('admin/users/update-education') }}" method="POST">
-                                                    @csrf   
-                                                @php
-                                                $i = 1;
-                                                @endphp
-                                                @foreach($ug_educations as $education)
-                                                <table class="table table-bordered table-striped" id="users">
-                                                    <h6>UG Qualification - {!! $i++ !!}</h6><br>
-                                                    <tr>
-                                                        <td>Qualification </td>
-                                                        <td>
-                                                            <p class="none_education_edit user_name_max">{{ $education->qualification->name }}</p>
-                                                            <select name="degree[]" class="form-control col-6 d-none education_edit">
-                                                                <option value=""></option>
-                                                                @foreach ($response['qualifications'] as $qualification)
-                                                                @if ($qualification->type == 'UG')
-                                                                <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }}>{{ $qualification->name }}</option>
-                                                                @endif
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>University Name</td>
-                                                        <td>
-                                                            <p class="none_education_edit user_name_max">{{ $education->university->name }}<p>
-                                                                    <select name="name[]" class="form-control col-6 d-none education_edit">
-                                                                        <option value=""></option>
-                                                                        @foreach ($response['universities'] as $university)
-                                                                        <option value="{{ $university->university_id }}" {{ ($education->name==$university->university_id)? "selected" : "" }}>{{ $university->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Year of Graduation</td>
-                                                        <td>
-                                                            <p class="none_education_edit user_name_max">{{ $education->month }} &nbsp- &nbsp {{ $education->year }}</p>
-                                                            <div class="form-group col-6 d-none education_edit">
-                                                                <div class="form-row ">
-                                                                    <div class="col">
-                                                                        <select class="form-control" required="" name="month[]">
-                                                                            <option value="">From</option>
-                                                                            @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
-                                                                                @endfor
+                                                <form action="{{ url('admin/users/update-education') }}" method="POST">
+                                                    @csrf
+                                                    @php
+                                                    $i = 1;
+                                                    @endphp
+                                                    @foreach($ug_educations as $education)
+                                                    <table class="table table-bordered table-striped" id="users">
+                                                        <h6>UG Qualification - {!! $i++ !!}</h6><br>
+                                                        <tr>
+                                                            <td>Qualification </td>
+                                                            <td>
+                                                                <p class="none_education_edit user_name_max">{{ $education->qualification->name }}</p>
+                                                                <select name="degree[]" class="form-control col-6 d-none education_edit">
+                                                                    <option value=""></option>
+                                                                    @foreach ($response['qualifications'] as $qualification)
+                                                                    @if ($qualification->type == 'UG')
+                                                                    <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }}>{{ $qualification->name }}</option>
+                                                                    @endif
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>University Name</td>
+                                                            <td>
+                                                                <p class="none_education_edit user_name_max">{{ $education->university->name }}<p>
+                                                                        <select name="name[]" class="form-control col-6 d-none education_edit">
+                                                                            <option value=""></option>
+                                                                            @foreach ($response['universities'] as $university)
+                                                                            <option value="{{ $university->university_id }}" {{ ($education->name==$university->university_id)? "selected" : "" }}>{{ $university->name }}</option>
+                                                                            @endforeach
                                                                         </select>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <select class="form-control" required="" name="year[]">
-                                                                            <option value="">Till</option>
-                                                                            @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
-                                                                                @endfor
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Education Type</td>
-                                                        <td>
-                                                            <p class="none_education_edit user_name_max">{{ $education->educationtype->name }}</p>
-                                                            <select name="education_type[]" class="form-control d-none col-6 education_edit" required>
-                                                                <option value=""></option>
-                                                                @foreach ( $response['educationtype'] as $etype)
-                                                                <option value="{{ $etype->education_type_id }}" {{ ($education->education_type==$etype->education_type_id)? "selected" : "" }}>{{ $etype->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <input type="hidden" name="user_id" value="{{$user->id}}">
-                                                    <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
-                                                </table>
-                                                @endforeach
-                                                @php
-                                                $i = 1;
-                                                @endphp
-                                                @foreach($pg_educations as $education)
-                                                <table class="table table-bordered table-striped" id="users">
-                                                    <h6>PG Qualification - {!! $i++ !!}</h6><br>
-                                                    <tr>
-                                                        <td>PG Qualification</td>
-                                                        <td>
-                                                            <p class="none_education_edit user_name_max">{{ $education->qualification->name }}</p>
-                                                            <select name="degree[]" class="form-control col-6 d-none education_edit" required>
-                                                                <option value=""></option>
-                                                                @foreach ($response['qualifications'] as $qualification)
-                                                                @if ($qualification->type == 'PG')
-                                                                <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }}>{{ $qualification->name }}</option>
-                                                                @endif
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>University Name</td>
-                                                        <td>
-                                                            <p class="none_education_edit user_name_max">{{ $education->university->name }}</p>
-                                                            <select name="name[]" class="form-control col-6 d-none education_edit">
-                                                                <option value=""></option>
-                                                                @foreach ($response['universities'] as $university)
-                                                                <option value="{{ $university->university_id }}" {{ ($education->name==$university->university_id)? "selected" : "" }}>{{ $university->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Year of Graduation</td>
-                                                        <td>
-                                                            <p class="none_education_edit user_name_max"> {{ $education->month }} &nbsp- &nbsp {{ $education->year }}</p>
-                                                            <div class="form-group col-6 d-none education_edit">
-                                                                <div class="form-row">
-                                                                    <div class="col">
-                                                                        <select class="form-control" required="" name="month[]">
-                                                                            <option value="">From</option>
-                                                                            @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
-                                                                                @endfor
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <select class="form-control" required="" name="year[]">
-                                                                            <option value="">Till</option>
-                                                                            @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
-                                                                                @endfor
-                                                                        </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Year of Graduation</td>
+                                                            <td>
+                                                                <p class="none_education_edit user_name_max">{{ $education->month }} &nbsp- &nbsp {{ $education->year }}</p>
+                                                                <div class="form-group col-6 d-none education_edit">
+                                                                    <div class="form-row ">
+                                                                        <div class="col">
+                                                                            <select class="form-control" required="" name="month[]">
+                                                                                <option value="">From</option>
+                                                                                @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <select class="form-control" required="" name="year[]">
+                                                                                <option value="">Till</option>
+                                                                                @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Education Type</td>
-                                                        <td>
-                                                            <p class="none_education_edit user_name_max">{{ $education->educationtype->name }}</p>
-                                                            <select name="education_type[]" class="form-control col-6 d-none education_edit" required>
-                                                                <option value=""></option>
-                                                                @foreach ($response['educationtype'] as $etype)
-                                                                <option value="{{ $etype->education_type_id }}" {{ ($education->education_type==$etype->education_type_id)? "selected" : "" }}>{{ $etype->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <input type="hidden" name="user_id" value="{{$user->id}}">
-                                                    <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
-                                                </table>
-                                                <div class="modal-footer d-none education_edit">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Education Type</td>
+                                                            <td>
+                                                                <p class="none_education_edit user_name_max">{{ $education->educationtype->name }}</p>
+                                                                <select name="education_type[]" class="form-control d-none col-6 education_edit" required>
+                                                                    <option value=""></option>
+                                                                    @foreach ( $response['educationtype'] as $etype)
+                                                                    <option value="{{ $etype->education_type_id }}" {{ ($education->education_type==$etype->education_type_id)? "selected" : "" }}>{{ $etype->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
+                                                    </table>
+                                                    @endforeach
+                                                    @php
+                                                    $i = 1;
+                                                    @endphp
+                                                    @foreach($pg_educations as $education)
+                                                    <table class="table table-bordered table-striped" id="users">
+                                                        <h6>PG Qualification - {!! $i++ !!}</h6><br>
+                                                        <tr>
+                                                            <td>PG Qualification</td>
+                                                            <td>
+                                                                <p class="none_education_edit user_name_max">{{ $education->qualification->name }}</p>
+                                                                <select name="degree[]" class="form-control col-6 d-none education_edit" required>
+                                                                    <option value=""></option>
+                                                                    @foreach ($response['qualifications'] as $qualification)
+                                                                    @if ($qualification->type == 'PG')
+                                                                    <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }}>{{ $qualification->name }}</option>
+                                                                    @endif
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>University Name</td>
+                                                            <td>
+                                                                <p class="none_education_edit user_name_max">{{ $education->university->name }}</p>
+                                                                <select name="name[]" class="form-control col-6 d-none education_edit">
+                                                                    <option value=""></option>
+                                                                    @foreach ($response['universities'] as $university)
+                                                                    <option value="{{ $university->university_id }}" {{ ($education->name==$university->university_id)? "selected" : "" }}>{{ $university->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Year of Graduation</td>
+                                                            <td>
+                                                                <p class="none_education_edit user_name_max"> {{ $education->month }} &nbsp- &nbsp {{ $education->year }}</p>
+                                                                <div class="form-group col-6 d-none education_edit">
+                                                                    <div class="form-row">
+                                                                        <div class="col">
+                                                                            <select class="form-control" required="" name="month[]">
+                                                                                <option value="">From</option>
+                                                                                @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <select class="form-control" required="" name="year[]">
+                                                                                <option value="">Till</option>
+                                                                                @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Education Type</td>
+                                                            <td>
+                                                                <p class="none_education_edit user_name_max">{{ $education->educationtype->name }}</p>
+                                                                <select name="education_type[]" class="form-control col-6 d-none education_edit" required>
+                                                                    <option value=""></option>
+                                                                    @foreach ($response['educationtype'] as $etype)
+                                                                    <option value="{{ $etype->education_type_id }}" {{ ($education->education_type==$etype->education_type_id)? "selected" : "" }}>{{ $etype->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                        <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
+                                                    </table>
+                                                    @endforeach
+                                                    <div class="modal-footer d-none education_edit">
                                                         <button class="btn btn-primary" type="Submit">Submit</button>
                                                         <p onclick="editeducation_cancel()" class="btn btn-primary">Cancel</p>
                                                     </div>
-                                                 @endforeach
-                                            </form>
+                                                </form>
                                             </div>
-                                        
                                         </div>
                                     </div>
                                 </div>
@@ -396,44 +394,75 @@ View User Details
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         User Certification
+                                        <button class="btn btn-primary" onclick="edit_certificate_data()" style="float: right;">Edit</button>
                                     </h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                                @php
-                                                $i = 1;
-                                                @endphp
-                                                @foreach ($certificates as $certificate)
-                                                <table class="table table-bordered table-striped" id="users">
-                                                    <h6> Certificate - {!! $i++ !!}</h6>
-                                                    <tr>
-                                                        <td>Certification Number</td>
-                                                        <td>
-                                                            {{ $certificate->certificate_no }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Certification Name</td>
-                                                        <td>
-                                                            {{ $certificate->name }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> Institute Name</td>
-                                                        <td>
-                                                            {{ $certificate->institutename }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Year of Certification</td>
-                                                        <td>
-                                                            {{ $certificate->from_date }} &nbsp- &nbsp {{ $certificate->till_date }}
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                @endforeach
+                                                <form action="{{ url('admin/users/update-certificate') }}" method="POST">
+                                                    @csrf
+                                                    @php
+                                                    $i = 1;
+                                                    @endphp
+                                                    @foreach ($certificates as $certificate)
+                                                    <table class="table table-bordered table-striped" id="users">
+                                                        <h6> Certificate - {!! $i++ !!}</h6>
+                                                        <tr>
+                                                            <td>Certification Number</td>
+                                                            <td>
+                                                                <p class="none_certificate_edit user_name_max">{{ $certificate->certificate_no }}</p>
+                                                                <input type="text" name="certificate_no[]" class="form-control d-none certificate_edit" value="{{ $certificate->certificate_no }}" required />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Certification Name</td>
+                                                            <td>
+                                                                <p class="none_certificate_edit user_name_max">{{ $certificate->name }}</p>
+                                                                <input type="text" name="name[]" class="form-control d-none certificate_edit" value="{{ $certificate->name }}" required />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Institute Name</td>
+                                                            <td>
+                                                                <p class="none_certificate_edit user_name_max">{{ $certificate->institutename }}</p>
+                                                                <input type="text" name="institutename[]" class="form-control d-none certificate_edit" value="{{ $certificate->institutename }}" required />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Year of Certification</td>
+                                                            <td>
+                                                                <p class="none_certificate_edit user_name_max">{{ $certificate->from_date }} &nbsp- &nbsp {{ $certificate->till_date }}</p>
+                                                                <div class="form-group col-6 d-none certificate_edit">
+                                                                    <div class="form-row">
+                                                                        <div class="col">
+                                                                            <select class="form-control" required="" name="from_date[]">
+                                                                                <option value="">From</option>
+                                                                                @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($certificate->from_date==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <select class="form-control" required="" name="till_date[]">
+                                                                                <option value="">Till</option>
+                                                                                @for ($i = 2000; $i < 2021; $i++) <option value="{{ $i }}" {{ ($certificate->from_date==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <input type="hidden" name="certificate_id[]" value="{{ $certificate->certificate_id}}">
+                                                    @endforeach
+                                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                    <div class="modal-footer d-none certificate_edit">
+                                                        <button class="btn btn-primary" type="Submit">Submit</button>
+                                                        <p onclick="editcertificate_cancel()" class="btn btn-primary">Cancel</p>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -461,7 +490,7 @@ View User Details
                                                         <td> Technology Preference</td>
                                                         <td>
                                                             @foreach ($technologies as $technology)
-                                                            {{ $technology->technology_name }} ,
+                                                            {{ $technology->technology_name }} , 
                                                             @endforeach
                                                         </td>
                                                     </tr>
@@ -476,43 +505,75 @@ View User Details
                                                     <tr>
                                                         <td>Profile Headline</td>
                                                         <td>
-                                                            {{ $proexps->profile_headline }}
+                                                            <p>{{ $proexps->profile_headline }}</p>
+                                                            <input type="text" name="profile_headline" class="form-control d-none" value="{{ $proexps->profile_headline }}" />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Key Skills</td>
                                                         <td>
-                                                            {{ $proexps->key_skills }}
+                                                            <p>{{ $proexps->key_skills }}</p>
+                                                            <input type="text" name="key_skills" class="form-control d-none" value="{{ $proexps->key_skills }}" />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Total Experience</td>
                                                         <td>
-                                                            {{ $proexps->experience_year }} Years &nbsp - &nbsp {{ $proexps->experience_month }} Months
+                                                            <p>{{ $proexps->experience_year }} Years &nbsp - &nbsp {{ $proexps->experience_month }} Months</p>
+                                                            <div class="form-group col-6 d-none">
+                                                                <div class="form-row">
+                                                                    <div class="col-5">
+                                                                        <select class="form-control" required="" name="experience_year">
+                                                                            @for ($i = 0; $i < 21; $i++) <option value="{{ $i }}" {{ ($proexps->experience_year==$i)? "selected" : "" }}>{{ $i }} Years</option>
+                                                                                @endfor
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-5">
+                                                                        <select class="form-control" required="" name="experience_month">
+                                                                            @for ($i = 1; $i < 13; $i++) <option value="{{ $i }}" {{ ($proexps->experience_month==$i)? "selected" : "" }}>{{ $i }} Months</option>
+                                                                                @endfor
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>No of Support Projects </td>
                                                         <td>
-                                                            {{ $proexps->support_project }}
+                                                            <p>{{ $proexps->support_project }}</p>
+                                                            {!! Form::selectRange('support_project', 1, 20, $proexps->support_project, ['class' => 'form-control d-none','required' =>'']) !!}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>No of Development Projects</td>
                                                         <td>
-                                                            {{ $proexps->development_project }}
+                                                            <p>{{ $proexps->development_project }}</p>
+                                                            {!! Form::selectRange('development_project', 1, 20, $proexps->development_project, ['class' => 'form-control d-none','required' =>'']) !!}
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Current Location</td>
                                                         <td>
-                                                            {{ $locations->name }}
+                                                            <p>{{ $locations->name }}</p>
+                                                            <select name="current_location" class="form-control d-none" required>
+                                                                <option value=""></option>
+                                                                @foreach ($locations as $location)
+                                                                <option value="" >{{ $locations->name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Preferred Location</td>
                                                         <td>
-                                                            {{ $preferred_location->name }}
+                                                            <p>{{ $preferred_location->name }}</p>
+                                                            <select name="preferred_location" class="form-control d-none" required>
+                                                                <option value=""></option>
+                                                                @foreach ($locations as $location)
+                                                                <option value="" >{{ $locations->name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -728,6 +789,32 @@ function editeducation_cancel() {
     $('.none_education_edit').removeClass("d-none");
     $('.education_edit').addClass("d-none");
 }
+
+function edit_certificate_data() {
+    $('.none_certificate_edit').addClass("d-none");
+    $('.certificate_edit').removeClass("d-none");
+}
+
+function editcertificate_cancel() {
+    $('.none_certificate_edit').removeClass("d-none");
+    $('.certificate_edit').addClass("d-none");
+}
+
+
+$('#myTab a').click(function(e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
+
+// store the currently selected tab in the hash value
+$("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
+    var id = $(e.target).attr("href").substr(1);
+    window.location.hash = id;
+});
+
+// on load of the page: switch to the currently selected tab
+var hash = window.location.hash;
+$('#myTab a[href="' + hash + '"]').tab('show');
 
 </script>
 @stop

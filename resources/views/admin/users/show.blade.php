@@ -478,105 +478,113 @@ View User Details
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         Professional Experience
+                                        <button class="btn btn-primary" onclick="edit_professinal_exp()" style="float: right;">Edit</button>
                                     </h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                                <table class="table table-bordered table-striped" id="users">
-                                                    <h6>Professional Experience</h6>
-                                                    <tr>
-                                                        <td> Technology Preference</td>
-                                                        <td>
-                                                            @foreach ($technologies as $technology)
-                                                            {{ $technology->technology_name }} , 
-                                                            @endforeach
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Framework</td>
-                                                        <td>
-                                                            @foreach ($childtechnologies as $technology)
-                                                            {{ $technology->technology_name }} ,
-                                                            @endforeach
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Profile Headline</td>
-                                                        <td>
-                                                            <p>{{ $proexps->profile_headline }}</p>
-                                                            <input type="text" name="profile_headline" class="form-control d-none" value="{{ $proexps->profile_headline }}" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Key Skills</td>
-                                                        <td>
-                                                            <p>{{ $proexps->key_skills }}</p>
-                                                            <input type="text" name="key_skills" class="form-control d-none" value="{{ $proexps->key_skills }}" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Total Experience</td>
-                                                        <td>
-                                                            <p>{{ $proexps->experience_year }} Years &nbsp - &nbsp {{ $proexps->experience_month }} Months</p>
-                                                            <div class="form-group col-6 d-none">
-                                                                <div class="form-row">
-                                                                    <div class="col-5">
-                                                                        <select class="form-control" required="" name="experience_year">
-                                                                            @for ($i = 0; $i < 21; $i++) <option value="{{ $i }}" {{ ($proexps->experience_year==$i)? "selected" : "" }}>{{ $i }} Years</option>
-                                                                                @endfor
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-5">
-                                                                        <select class="form-control" required="" name="experience_month">
-                                                                            @for ($i = 1; $i < 13; $i++) <option value="{{ $i }}" {{ ($proexps->experience_month==$i)? "selected" : "" }}>{{ $i }} Months</option>
-                                                                                @endfor
-                                                                        </select>
+                                                <form action="{{ url('admin/users/update-professionalexp') }}" method="POST">
+                                                    @csrf
+                                                    <table class="table table-bordered table-striped" id="users">
+                                                        <h6>Professional Experience</h6>
+                                                        <tr>
+                                                            <td> Technology Preference</td>
+                                                            <td>
+                                                                @foreach ($technologies as $technology)
+                                                                {{ $technology->technology_name }} ,
+                                                                @endforeach
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Framework</td>
+                                                            <td>
+                                                                @foreach ($childtechnologies as $technology)
+                                                                {{ $technology->technology_name }} ,
+                                                                @endforeach
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Profile Headline</td>
+                                                            <td>
+                                                                <p class="none_professionalexp_edit user_name_max">{{ $proexps->profile_headline }}</p>
+                                                                <input type="text" name="profile_headline" class="form-control d-none professionalexp_edit" value="{{ $proexps->profile_headline }}" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Key Skills</td>
+                                                            <td>
+                                                                <p class="none_professionalexp_edit user_name_max">{{ $proexps->key_skills }}</p>
+                                                                <input type="text" name="key_skills" class="form-control d-none professionalexp_edit" value="{{ $proexps->key_skills }}" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total Experience</td>
+                                                            <td>
+                                                                <p class="none_professionalexp_edit user_name_max">{{ $proexps->experience_year }} Years &nbsp - &nbsp {{ $proexps->experience_month }} Months</p>
+                                                                <div class="form-group col-6 d-none professionalexp_edit">
+                                                                    <div class="form-row">
+                                                                        <div class="col-5">
+                                                                            <select class="form-control" required="" name="experience_year">
+                                                                                @for ($i = 0; $i < 21; $i++) <option value="{{ $i }}" {{ ($proexps->experience_year==$i)? "selected" : "" }}>{{ $i }} Years</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-5">
+                                                                            <select class="form-control" required="" name="experience_month">
+                                                                                @for ($i = 1; $i < 13; $i++) <option value="{{ $i }}" {{ ($proexps->experience_month==$i)? "selected" : "" }}>{{ $i }} Months</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>No of Support Projects </td>
-                                                        <td>
-                                                            <p>{{ $proexps->support_project }}</p>
-                                                            {!! Form::selectRange('support_project', 1, 20, $proexps->support_project, ['class' => 'form-control d-none','required' =>'']) !!}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>No of Development Projects</td>
-                                                        <td>
-                                                            <p>{{ $proexps->development_project }}</p>
-                                                            {!! Form::selectRange('development_project', 1, 20, $proexps->development_project, ['class' => 'form-control d-none','required' =>'']) !!}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Current Location</td>
-                                                        <td>
-                                                            <p>{{ $locations->name }}</p>
-                                                            <select name="current_location" class="form-control d-none" required>
-                                                                <option value=""></option>
-                                                                @foreach ($locations as $location)
-                                                                <option value="" >{{ $locations->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Preferred Location</td>
-                                                        <td>
-                                                            <p>{{ $preferred_location->name }}</p>
-                                                            <select name="preferred_location" class="form-control d-none" required>
-                                                                <option value=""></option>
-                                                                @foreach ($locations as $location)
-                                                                <option value="" >{{ $locations->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>No of Support Projects </td>
+                                                            <td>
+                                                                <p class="none_professionalexp_edit user_name_max">{{ $proexps->support_project }}</p>
+                                                                {!! Form::selectRange('support_project', 1, 20, $proexps->support_project, ['class' => 'form-control d-none professionalexp_edit','required' =>'']) !!}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>No of Development Projects</td>
+                                                            <td>
+                                                                <p class="none_professionalexp_edit user_name_max">{{ $proexps->development_project }}</p>
+                                                                {!! Form::selectRange('development_project', 1, 20, $proexps->development_project, ['class' => 'form-control d-none professionalexp_edit','required' =>'']) !!}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Current Location</td>
+                                                            <td>
+                                                                <p class="none_professionalexp_edit user_name_max">{{ $locations->name }}</p>
+                                                                <select name="current_location" class="form-control d-none professionalexp_edit" required>
+                                                                    @foreach ($response['locations'] as $location)
+                                                                    <option value="{{ $location->location_id }}" {{ ($proexps->current_location == $location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Preferred Location</td>
+                                                            <td>
+                                                                <p class="none_professionalexp_edit user_name_max">{{ $preferred_location->name }}</p>
+                                                                <select name="preferred_location" class="form-control d-none professionalexp_edit" required>
+                                                                    @foreach ($response['locations'] as $location)
+                                                                    <option value="{{ $location->location_id }}" {{ ($proexps->preferred_location == $location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                    <input type="hidden" name="professional_experience_id" value="{{ $proexps->professional_experience_id }}">
+                                                    <div class="modal-footer d-none professionalexp_edit">
+                                                        <button class="btn btn-primary" type="Submit">Submit</button>
+                                                        <p onclick="editprofessionalexp_cancel()" class="btn btn-primary">Cancel</p>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -592,6 +600,7 @@ View User Details
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         Projects
+                                        <button class="btn btn-primary" onclick="edit_project()" style="float: right;">Edit</button>
                                     </h3>
                                 </div>
                                 <div class="card-body">
@@ -605,45 +614,57 @@ View User Details
                                                 <table class="table table-bordered table-striped" id="users">
                                                     <h6>Projects - {{$i++}}</h6>
                                                     <tr>
-                                                        <td>Project Name </td>
+                                                        <td >Project Name </td>
                                                         <td>
-                                                            {{ $project->project_name }}
+                                                            <p class="none_project_edit user_name_max">{{ $project->project_name }}</p>
+                                                            <input type="text" name="project_name[]" class="form-control col-6 d-none project_edit" value="{{ $project->project_name }}" />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Project Type </td>
                                                         <td>
-                                                            {{ $project->projecttypes->name }}
+                                                            <p class="none_project_edit user_name_max">{{ $project->projecttypes->name }}</p>
+                                                            <select name="project_type[]" class="form-control col-6 d-none project_edit" required>
+                                                                <option value="1" {{ ($project->project_type=="1")? "selected" : "" }}>Development</option>
+                                                                <option value="2" {{ ($project->project_type=="2")? "selected" : "" }}>Support</option>
+                                                            </select>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Technology </td>
                                                         <td>
-                                                            {{ $project->technologuname->technology_name }}
+                                                            <p>{{ $project->technologuname->technology_name }}</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Duration </td>
                                                         <td>
-                                                            {{ $project->duration }}
+                                                            <p class="none_project_edit user_name_max">{{ $project->duration }}</p>
+                                                            <input type="text" name="duration[]" class="form-control col-6 d-none project_edit" value="{{ $project->duration }}" />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Framework</td>
                                                         <td>
-                                                            {{ $project->frameworkname->technology_name }}
+                                                            <p>{{ $project->frameworkname->technology_name }}</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Customer Industry</td>
                                                         <td>
-                                                            {{ $project->customerindustry->name }}
+                                                            <p>{{ $project->customerindustry->name }}</p>
+                                                           <!--  <select name="industry[]" class="form-control col-6 d-none">
+                                                                <option value="1" selected>1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                            </select> -->
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Project Details </td>
                                                         <td>
-                                                            {{ $project->project_details }}
+                                                            <p class="none_project_edit user_name_max">{{ $project->project_details }}</p>
+                                                            <textarea class="form-control col-6 d-none project_edit" id="exampleFormControlTextarea1" name="project_details[]" rows="3">{{ $project->project_details }}</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -654,6 +675,10 @@ View User Details
                                                             @else
                                                             <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid" />
                                                             @endif
+                                                           <!--  <div class="custom-file col-6 d-none">
+                                                                <input type="file" class="custom-file-input" id="customFile" name="upload_file[]">
+                                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                                            </div> -->
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -664,6 +689,10 @@ View User Details
                                                     </tr>
                                                 </table>
                                                 @endforeach
+                                                <div class="modal-footer d-none project_edit">
+                                                       <!--  <button class="btn btn-primary" type="Submit">Submit</button> -->
+                                                        <p onclick="editproject_cancel()" class="btn btn-primary">Cancel</p>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -800,21 +829,24 @@ function editcertificate_cancel() {
     $('.certificate_edit').addClass("d-none");
 }
 
+function edit_professinal_exp() {
+    $('.none_professionalexp_edit').addClass("d-none");
+    $('.professionalexp_edit').removeClass("d-none");
+}
 
-$('#myTab a').click(function(e) {
-    e.preventDefault();
-    $(this).tab('show');
-});
 
-// store the currently selected tab in the hash value
-$("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
-    var id = $(e.target).attr("href").substr(1);
-    window.location.hash = id;
-});
+function editprofessionalexp_cancel() {
+    $('.none_professionalexp_edit').removeClass("d-none");
+    $('.professionalexp_edit').addClass("d-none");
+}
 
-// on load of the page: switch to the currently selected tab
-var hash = window.location.hash;
-$('#myTab a[href="' + hash + '"]').tab('show');
-
+function edit_project() {
+    $('.none_project_edit').addClass("d-none");
+    $('.project_edit').removeClass("d-none");
+}
+function editproject_cancel() {
+    $('.none_project_edit').removeClass("d-none");
+    $('.project_edit').addClass("d-none");
+}
 </script>
 @stop

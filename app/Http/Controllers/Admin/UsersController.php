@@ -30,7 +30,7 @@ use App\Models\EmployerDetails;
 use App\Models\Qualification;
 use App\Models\University;
 use App\Models\EducationType;
-
+use App\Models\ProjectCategory;
 
 class UsersController extends JoshController
 {
@@ -450,6 +450,8 @@ class UsersController extends JoshController
             $response['qualifications'] = Qualification::all();
             $response['universities'] = University::orderBy('name', 'asc')->get();
             $response['educationtype'] = EducationType::all();
+            $response['locations'] = Location::all();
+                                    
             $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
             $certificates = Certificate::where('user_id', $id)->get();
             $proexps = ProfessionalExperience::where('user_id', $id)->first();
@@ -499,7 +501,7 @@ class UsersController extends JoshController
         $user->save();
     
      // return Redirect::route('admin.users.show', $id);
-        $url = "admin/users/".$id."#tab1";
+        $url = "admin/users/".$id;
      return redirect($url)->with('success', 'User Information updated successfully');
     }
 
@@ -521,7 +523,7 @@ class UsersController extends JoshController
         
     
        // return Redirect::route('admin.users.show', $id);
-         $url = "admin/users/".$id."#tab2";
+         $url = "admin/users/".$id;
      return redirect($url)->with('success', 'Education updated successfully');
     }
 
@@ -542,8 +544,29 @@ class UsersController extends JoshController
          }
         
     
-          $url = "admin/users/".$id."#tab3";
+          $url = "admin/users/".$id;
      return redirect($url)->with('success', 'Certificate updated successfully');
+    }
+
+    public function updateuser_professionalexp(Request $request)
+    {
+         $input = $request->except('_token');         
+         $id  = $request->user_id;   
+         $professional_experience_Id = $request->professional_experience_id;
+
+         $professionalexp = ProfessionalExperience::find($professional_experience_Id);
+         $professionalexp->key_skills =          $request->key_skills;
+         $professionalexp->profile_headline =    $request->profile_headline;
+         $professionalexp->experience_year  =    $request->experience_year;
+         $professionalexp->experience_month =    $request->experience_month;
+         $professionalexp->support_project  =    $request->support_project;
+         $professionalexp->development_project = $request->development_project;
+         $professionalexp->current_location    = $request->current_location;
+         $professionalexp->preferred_location  = $request->preferred_location;
+         $professionalexp->save(); 
+    
+          $url = "admin/users/".$id;
+     return redirect($url)->with('success', 'Professional Experience updated successfully');
     }
 
 

@@ -124,9 +124,7 @@ Route::group(
             }
         );
         Route::resource('users', 'UsersController');
-        Route::post('users/updateinformation', 'UsersController@updateuser_information')->name('user_information');
-        Route::post('users/update-education', 'UsersController@updateuser_education')->name('updateuser_education');
-         Route::post('users/update-certificate', 'UsersController@updateuser_certificate')->name('updateuser_certificate');
+        
         /************
      * bulk import
     ****************************/

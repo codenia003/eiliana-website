@@ -30,8 +30,9 @@
                                 <div class="form-group col-8">
                                     <label>Project Type</label>
                                     <select name="project_type[]" class="form-control" required>
-                                        <option value="1" {{ ($project->project_type=="1")? "selected" : "" }} >Development</option>
-                                        <option value="2" {{ ($project->project_type=="2")? "selected" : "" }}>Support</option>
+                                        @foreach ($projecttypes as $type)
+                                        <option value="{{ $type->project_type_id }}" {{ ($project->project_type==$type->project_type_id)? "selected" : "" }} >{{ $type->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

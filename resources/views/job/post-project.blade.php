@@ -102,6 +102,15 @@ Post Project
                                         <textarea class="form-control" id="exampleFormControlTextarea1" name="project_summary" rows="3"></textarea>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Project Category</label>
+                                        <select name="project_category" class="form-control">
+                                            @foreach ($projectcategorys as $category)
+                                            <option value="{{ $category->id }}" {{ (Session::get('contractsattfing')['project_category']==$category->id )? "selected" : "" }}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
                                     <div class="basic-info mb-3">
                                         <label>Type of Project</label>
                                         <br>
@@ -202,8 +211,7 @@ Post Project
                                             <div class="form-row">
                                                 <div class="col">
                                                     <select class="form-control" name="budget_from">
-                                                        <option value="">From</option>}
-                                                        option
+                                                        <option value="">From</option>
                                                         @for ($i = 0; $i < 21; $i++)
                                                         <option value="{{ $i }}">{{ $i }}</option>
                                                         @endfor
@@ -211,8 +219,7 @@ Post Project
                                                 </div>
                                                 <div class="col">
                                                     <select class="form-control" name="budget_to">
-                                                        <option value="">To</option>}
-                                                        option
+                                                        <option value="">To</option>
                                                         @for ($i = 1; $i < 13; $i++)
                                                         <option value="{{ $i }}">{{ $i }}</option>
                                                         @endfor

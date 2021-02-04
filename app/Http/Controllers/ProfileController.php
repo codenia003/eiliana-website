@@ -23,6 +23,7 @@ use App\Models\Country;
 use App\Models\ProfessionalExperience;
 use App\Models\UserProject;
 use App\Models\ProjectCategory;
+use App\Models\ProjectType;
 use App\Models\Employers;
 use App\Models\Designation;
 use App\Models\EmployerDetails;
@@ -123,8 +124,9 @@ class ProfileController extends JoshController
         $projects = UserProject::where('user_id', Sentinel::getUser()->id)->get();
         $employers = Employers::where('user_id', Sentinel::getUser()->id)->get();
         $technologies = Technology::where('parent_id', '0')->get();
+        $projecttypes = ProjectType::all();
 
-        return view('profile/projects', compact('projects','employers','technologies'));
+        return view('profile/projects', compact('projects','employers','technologies','projecttypes'));
     }
 
     public function employer()

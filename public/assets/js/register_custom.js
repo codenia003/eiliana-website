@@ -18,7 +18,7 @@ $(document).ready(function() {
                     },
                     regexp: {
                         regexp: /^\d{10}$/,
-                        message: 'Mobile Number must be at least 10 digits',
+                        message: 'Mobile Number must be at least 10 digits or valid',
                     },
                 },
             },
@@ -29,6 +29,13 @@ $(document).ready(function() {
                     },
                     emailAddress: {
                         message: 'Email must be a valid email address',
+                    },
+                },
+            },
+            acceptTerms: {
+                validators: {
+                    notEmpty: {
+                        message: 'You have to accept the terms and policies',
                     },
                 },
             },
@@ -77,6 +84,9 @@ $(document).ready(function() {
                 });
             }
         }, 'json');
+    });
+    $('#acceptTerms').on('ifChanged', function(event) {
+        $('#reg_form').bootstrapValidator('revalidateField', $('#acceptTerms'));
     });
 
     $('#otp_form').bootstrapValidator({

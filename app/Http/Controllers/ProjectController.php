@@ -14,10 +14,11 @@ use Validator;
 use View;
 use DB;
 use App\Models\User;
-use App\Models\Education;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\Location;
+use App\Models\Technology;
+use App\Models\Job;
 use stdClass;
 use Carbon\Carbon;
 
@@ -29,68 +30,69 @@ class ProjectController extends JoshController
      * @return View
      */
 
-    public function getSearchProject()
+    public function getSearchProject(Request $request)
     {
         $pagename = [
         	'page_title' => 'Project Search',
         	'lookingfor' => '1'
         ];
-        $projectcategorys = ProjectCategory::all();
-        $locations = Location::all();
-
-        return view('project/search-project', compact('pagename','projectcategorys','locations'));
-    }
-
-    public function postSearchProject(Request $request)
-    {
         $user = Sentinel::getUser();
 
-        $sound = "";
-        $words = explode(" " , $request->input('keyword')) ;
-        foreach($words as $word) {
-            $sound .= metaphone($word);
-            if (next($words)==true) {
-                $sound .= " ";
-            };
+        if (empty($request->input('lookingfor'))) {
+                $technologies = Technology::where('parent_id', '0')->get();
+            $projectcategorys = ProjectCategory::all();
+            $locations = Location::all();
+
+            return view('project/search-project', compact('pagename','projectcategorys','locations','technologies'));
+        } else {
+            $data = $request->all();
+            $contractsattfing = $data;
+            $request->session()->forget('contractsattfing');
+            $request->session()->put('contractsattfing', $contractsattfing);
+
+            $sound = "";
+            $words = explode(" " , $request->input('keyword')) ;
+            foreach($words as $word) {
+                $sound .= metaphone($word);
+                if (next($words)==true) {
+                    $sound .= " ";
+                };
+            }
+
+            if ($data['lookingfor'] == '1') {
+
+                // if(!empty($technologty_pre)){
+                //     $technologty_pre = $request->input('technologty_pre');
+                //     $technologty_pre = implode(',', $technologty_pre);
+                // } else {
+                //     $technologty_pre = [];
+                // }
+
+                // if(!empty($framework)){
+                //     $framework = $request->input('framework');
+                //     $framework = implode(',', $framework);
+                // } else {
+                //     $framework = [];
+                // }
+
+                $projects = Project::where('project_category', '=', $data['project_category'])->paginate(10);
+
+                $count = count($projects);
+
+                return view('search/browse-project', compact('count', 'projects'));
+            } else {
+
+                $jobs = Job::where('indexing', 'LIKE', '%'.$sound.'%')
+                    ->orWhere('experience_year', '=', $request->input('experience_year'))
+                    ->orWhere('experience_month', '=', $request->input('experience_month'))
+                    ->paginate(10);
+
+                return view('search/browse-job', compact('jobs'));
+
+            }
         }
-        // print_r($sound);
-        // $projects = Project::where('indexing', $sound)->get();
-        $result = Project::where('indexing', 'LIKE', '%'.$sound.'%')->get();
-
-        $id = DB::table('search_keyword')->insertGetId(
-            ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
-        );
-
-        $details = array();
-
-        foreach($result as $key => $res)
-        {
-            $from = strtotime($res['expiry_datetime']);
-            $today = time();
-            $difference = $from - $today;
-
-            $details[$key]['project_id'] = $res['project_id'];
-            $details[$key]['posted_by_user_id'] = $res['posted_by_user_id'];
-            $details[$key]['project_status_id'] = $res['project_status_id'];
-            $details[$key]['post_datetime'] = $res['post_datetime'];
-            $details[$key]['expiry_datetime'] = $res['expiry_datetime'];
-            $details[$key]['expiry_days'] = floor($difference / 86400);
-            $details[$key]['project_name'] = $res['project_name'];
-            $details[$key]['project_description'] = $res['project_description'];
-            $details[$key]['payment_type_id'] = $res['payment_type_id'];
-            $details[$key]['project_awarded_to_user_id'] = $res['project_awarded_to_user_id'];
-            $details[$key]['language_id'] = $res['language_id'];
-            $details[$key]['currency_id'] = $res['currency_id'];
-        }
-
-        $success = '1';
-        $keyword = $request->input('keyword');
-        $count = count($details);
-        $projects = $details;
 
 
-        return view('browse-project', compact('count', 'projects', 'keyword'));
-        // return response()->json($response);
     }
 
     public function getProjectDeatils($id)

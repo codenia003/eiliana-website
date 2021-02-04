@@ -55,8 +55,10 @@ Register
                                         {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                     </div>
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="acceptTerms" id="acceptTerms" class="custom_icheck custom-checkbox pos-rel p-l-30" />
-                                        <label for="acceptTerms" class="form-check-label">I agree to the Eiliana User agreement and privacy policy</label>
+                                        <label for="acceptTerms" class="form-check-label">
+                                            <input type="checkbox" name="acceptTerms" id="acceptTerms" class="custom_icheck custom-checkbox pos-rel p-l-30" />
+                                            I agree to the Eiliana User agreement and privacy policy
+                                        </label>
                                     </div>
                                     <div class="form-group input-field row justify-content-center mt-4 mb-5">
                                         <button class="btn btn-primary">

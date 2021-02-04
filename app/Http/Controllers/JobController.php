@@ -64,8 +64,9 @@ class JobController extends Controller
         $technologies = Technology::where('parent_id', '0')->get();
         $locations = Location::all();
         $customerindustries = CustomerIndustry::all();
+        $projectcategorys = ProjectCategory::all();
 
-        return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries'));
+        return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys'));
     }
 
     public function hireTalent()
@@ -252,8 +253,8 @@ class JobController extends Controller
         return redirect('post-job')->with('success', 'Job Posted successfully');
     }
 
-    public function postProjecton(Request $request) {
-
+    public function postProjecton(Request $request)
+    {
         $user = Sentinel::getUser();
 
         $input = $request->except('_token');
@@ -293,6 +294,7 @@ class JobController extends Controller
         $projects->about_company = $input['about_company'];
         $projects->project_title = $input['project_title'];
         $projects->key_skills = $input['key_skills'];
+        $projects->project_category = $input['project_category'];
         $projects->project_summary = $input['project_summary'];
         $projects->type_of_project = $input['type_of_project'];
         $projects->experience_year = $input['experience_year'];

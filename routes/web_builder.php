@@ -8,6 +8,8 @@ Route::group(
         Route::post('users/update-education', 'UsersController@updateuser_education')->name('updateuser_education');
          Route::post('users/update-certificate', 'UsersController@updateuser_certificate')->name('updateuser_certificate');
          Route::post('users/update-professionalexp', 'UsersController@updateuser_professionalexp')->name('updateuser_professionalexp');
+         Route::post('users/update-project', 'UsersController@updateuser_project')->name('updateuser_project');
+         Route::post('users/update-employer', 'UsersController@updateuser_employer')->name('updateuser_employer');
     }
 );
 

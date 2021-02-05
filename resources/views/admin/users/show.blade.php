@@ -607,92 +607,103 @@ View User Details
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                                @php
-                                                $i = 1;
-                                                @endphp
-                                                @foreach ($projects as $project)
-                                                <table class="table table-bordered table-striped" id="users">
-                                                    <h6>Projects - {{$i++}}</h6>
-                                                    <tr>
-                                                        <td >Project Name </td>
-                                                        <td>
-                                                            <p class="none_project_edit user_name_max">{{ $project->project_name }}</p>
-                                                            <input type="text" name="project_name[]" class="form-control col-6 d-none project_edit" value="{{ $project->project_name }}" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Project Type </td>
-                                                        <td>
-                                                            <p class="none_project_edit user_name_max">{{ $project->projecttypes->name }}</p>
-                                                            <select name="project_type[]" class="form-control col-6 d-none project_edit" required>
-                                                                <option value="1" {{ ($project->project_type=="1")? "selected" : "" }}>Development</option>
-                                                                <option value="2" {{ ($project->project_type=="2")? "selected" : "" }}>Support</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Technology </td>
-                                                        <td>
-                                                            <p>{{ $project->technologuname->technology_name }}</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Duration </td>
-                                                        <td>
-                                                            <p class="none_project_edit user_name_max">{{ $project->duration }}</p>
-                                                            <input type="text" name="duration[]" class="form-control col-6 d-none project_edit" value="{{ $project->duration }}" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Framework</td>
-                                                        <td>
-                                                            <p>{{ $project->frameworkname->technology_name }}</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Customer Industry</td>
-                                                        <td>
-                                                            <p>{{ $project->customerindustry->name }}</p>
-                                                           <!--  <select name="industry[]" class="form-control col-6 d-none">
-                                                                <option value="1" selected>1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                            </select> -->
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Project Details </td>
-                                                        <td>
-                                                            <p class="none_project_edit user_name_max">{{ $project->project_details }}</p>
-                                                            <textarea class="form-control col-6 d-none project_edit" id="exampleFormControlTextarea1" name="project_details[]" rows="3">{{ $project->project_details }}</textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Project Upload </td>
-                                                        <td>
-                                                            @if($project->upload_file)
-                                                            <img src="{{ $project->upload_file }}" alt="img" class="img-fluid" />
-                                                            @else
-                                                            <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid" />
-                                                            @endif
-                                                           <!--  <div class="custom-file col-6 d-none">
+                                                <form action="{{ url('admin/users/update-project') }}" method="POST">
+                                                    @csrf
+                                                    @php
+                                                    $i = 1;
+                                                    @endphp
+                                                    @foreach ($projects as $project)
+                                                    <table class="table table-bordered table-striped" id="users">
+                                                        <h6>Projects - {{$i++}}</h6>
+                                                        <tr>
+                                                            <td>Project Name </td>
+                                                            <td>
+                                                                <p class="none_project_edit user_name_max">{{ $project->project_name }}</p>
+                                                                <input type="text" name="project_name[]" class="form-control col-6 d-none project_edit" value="{{ $project->project_name }}" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Project Type </td>
+                                                            <td>
+                                                                <p class="none_project_edit user_name_max">{{ $project->projecttypes->name }}</p>
+                                                                <select name="project_type[]" class="form-control col-6 d-none project_edit" required>
+                                                                    @foreach ($response['projecttypes'] as $type)
+                                                                    <option value="{{ $type->project_type_id }}" {{ ($project->project_type==$type->project_type_id)? "selected" : "" }}>{{ $type->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Technology </td>
+                                                            <td>
+                                                                <p class="none_project_edit user_name_max">{{ $project->technologuname->technology_name }}</p>
+                                                                <select name="technologty_pre[]" class="form-control col-6 d-none project_edit" id="technologty_pre" required>
+                                                                    @foreach ($response['technologies'] as $technology)
+                                                                    <option value="{{ $technology->technology_id }}" {{ ($project->technologty_pre==$technology->technology_id)? "selected" : "" }}>{{ $technology->technology_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Duration </td>
+                                                            <td>
+                                                                <p class="none_project_edit user_name_max">{{ $project->duration }}</p>
+                                                                <input type="text" name="duration[]" class="form-control col-6 d-none project_edit" value="{{ $project->duration }}" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Framework</td>
+                                                            <td>
+                                                                <p>{{ $project->frameworkname->technology_name }}</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Customer Industry</td>
+                                                            <td>
+                                                                <p class="none_project_edit user_name_max">{{ $project->customerindustry->name }}</p>
+                                                                <select name="industry[]" class="form-control col-6 d-none project_edit">
+                                                                    @foreach ($response['customer_industrys'] as $customer_industry)
+                                                                    <option value="{{ $customer_industry->customer_industry_id }}" {{ ($project->industry == $customer_industry->customer_industry_id)? "selected" : "" }}>{{ $customer_industry->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Project Details </td>
+                                                            <td>
+                                                                <p class="none_project_edit user_name_max">{{ $project->project_details }}</p>
+                                                                <textarea class="form-control col-6 d-none project_edit" id="exampleFormControlTextarea1" name="project_details[]" rows="3">{{ $project->project_details }}</textarea>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Project Upload </td>
+                                                            <td>
+                                                                @if($project->upload_file)
+                                                                <img src="{{ $project->upload_file }}" alt="img" class="img-fluid" />
+                                                                @else
+                                                                <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid" />
+                                                                @endif
+                                                                <!--  <div class="custom-file col-6 d-none">
                                                                 <input type="file" class="custom-file-input" id="customFile" name="upload_file[]">
                                                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                                             </div> -->
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Employer Name</td>
-                                                        <td>
-                                                            {{ $project->employername->employer_name }}
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                @endforeach
-                                                <div class="modal-footer d-none project_edit">
-                                                       <!--  <button class="btn btn-primary" type="Submit">Submit</button> -->
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Employer Name</td>
+                                                            <td>
+                                                                {{ $project->employername->employer_name }}
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <input type="hidden" name="user_project_id[]" id="user_project_id" value="{{ $project->user_project_id }}">
+                                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                    @endforeach
+                                                    <div class="modal-footer d-none project_edit">
+                                                        <button class="btn btn-primary" type="Submit">Submit</button>
                                                         <p onclick="editproject_cancel()" class="btn btn-primary">Cancel</p>
                                                     </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -708,73 +719,153 @@ View User Details
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         Employer Details
+                                        <button class="btn btn-primary" onclick="edit_employer()" style="float: right;">Edit</button>
                                     </h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
-                                                @php
-                                                $i = 1;
-                                                @endphp
-                                                @foreach ($employer_details as $employer_detail)
-                                                <table class="table table-bordered table-striped" id="users">
-                                                    <tr>
-                                                        <td>Current Salary</td>
-                                                        <td>
-                                                            {{ $employer_detail->current_salary_lacs }} Lacs &nbsp- &nbsp {{ $employer_detail->current_salary_thousand }} Thousands
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Expected Salary</td>
-                                                        <td>
-                                                            {{ $employer_detail->expected_salary_lacs }} Lacs &nbsp- &nbsp {{ $employer_detail->expected_salary_thousand }} Thousands
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Notice Period</td>
-                                                        <td>
-                                                            {{ $employer_detail->notice_period }} Days
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                @endforeach
-                                                <br>
-                                                @foreach ($employers as $employer)
-                                                <table class="table table-bordered table-striped" id="users">
-                                                    <h6>Employer - {{ $i++ }}</h6>
-                                                    <tr>
-                                                        <td>Employer Name</td>
-                                                        <td>
-                                                            {{ $employer->employer_name }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Designation</td>
-                                                        <td>
-                                                            {{ $employer->designationtype->name }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Employment Type</td>
-                                                        <td>
-                                                            {{ $employer->employertype->name }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Employment Duration</td>
-                                                        <td>
-                                                            {{ $employer->duration_year }} Years &nbsp- &nbsp {{ $employer->duration_month }} Months
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Job Profile</td>
-                                                        <td>
-                                                            {{ $employer->job_profile }}
-                                                        </td>
-                                                    </tr>
+                                                <form action="{{ url('admin/users/update-employer') }}" method="POST">
+                                                    @csrf
+                                                    @php
+                                                    $a = 1;
+                                                    @endphp
+                                                    @foreach ($employer_details as $employer_detail)
+                                                    <table class="table table-bordered table-striped" id="users">
+                                                        <tr>
+                                                            <td>Current Salary</td>
+                                                            <td>
+                                                                <p class="none_employer_edit user_name_max">{{ $employer_detail->current_salary_lacs }} Lacs &nbsp- &nbsp {{ $employer_detail->current_salary_thousand }} Thousands</p>
+                                                                <div class="form-group col-6 d-none employer_edit">
+                                                                    <div class="form-row">
+                                                                        <div class="col-5 pr-1">
+                                                                            <select class="form-control" required="" name="current_salary_lacs">
+                                                                                <option value=""></option>
+                                                                                @for ($i = 0; $i < 51; $i++) <option value="{{ $i }}" {{ ($employer_detail->current_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lacs</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-5 ml-3">
+                                                                            <select class="form-control" required="" name="current_salary_thousand">
+                                                                                <option value=""></option>
+                                                                                @for ($i = 0; $i < 100; $i+=5) <option value="{{ $i }}" {{ ($employer_detail->current_salary_thousand==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Expected Salary</td>
+                                                            <td>
+                                                                <p class="none_employer_edit user_name_max">{{ $employer_detail->expected_salary_lacs }} Lacs &nbsp- &nbsp {{ $employer_detail->expected_salary_thousand }} Thousands</p>
+                                                                <div class="form-group col-6 d-none employer_edit">
+                                                                    <div class="form-row">
+                                                                        <div class="col-5 pr-1">
+                                                                            <select class="form-control" required="" name="expected_salary_lacs">
+                                                                                @for ($i = 0; $i < 51; $i++) <option value="{{ $i }}" {{ ($employer_detail->expected_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lacs</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-5 ml-3">
+                                                                            <select class="form-control" required="" name="expected_salary_thousand">
+                                                                                @for ($i = 0; $i < 100; $i+=5) <option value="{{ $i }}" {{ ($employer_detail->expected_salary_thousand==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Notice Period</td>
+                                                            <td>
+                                                                <p class="none_employer_edit user_name_max">{{ $employer_detail->notice_period }} Days</p>
+                                                                <select class="form-control col-6 d-none employer_edit" required="" name="notice_period">
+                                                                    <option value=""></option>
+                                                                    @for ($i = 15; $i < 180; $i+=15) <option value="{{ $i }}" {{ ($employer_detail->notice_period==$i)? "selected" : "" }}>{{ $i }}</option>
+                                                                        @endfor
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
                                                     @endforeach
-                                                </table>
+                                                    <br>
+                                                    @foreach ($employers as $employer)
+                                                    <table class="table table-bordered table-striped" id="users">
+                                                        <h6>Employer - {{ $a++ }}</h6>
+                                                        <tr>
+                                                            <td>Employer Name</td>
+                                                            <td>
+                                                                <p class="none_employer_edit user_name_max">{{ $employer->employer_name }}</p>
+                                                                <input type="text" name="employer_name[]" class="form-control col-6 d-none employer_edit" value="{{ $employer->employer_name }}" required />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Designation</td>
+                                                            <td>
+                                                                <p class="none_employer_edit user_name_max">{{ $employer->designationtype->name }}</p>
+                                                                <select name="designation[]" class="form-control col-6 d-none employer_edit" required>
+                                                                    @foreach ($response['designations'] as $designation)
+                                                                    <option value="{{ $designation->designation_id }}" {{ ($employer->designation==$designation->designation_id)? "selected" : "" }}>{{ $designation->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Employment Type</td>
+                                                            <td>
+                                                                <p class="none_employer_edit user_name_max">{{ $employer->employertype->name }}</p>
+                                                                <select name="employment_type[]" class="form-control col-6 d-none employer_edit" required>
+                                                                    @foreach ($response['employertype'] as $type)
+                                                                    <option value="{{ $type->employer_type_id }}" {{ ($employer->employment_type==$type->employer_type_id)? "selected" : "" }}>{{ $type->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Employment Duration</td>
+                                                            <td>
+                                                                <p class="none_employer_edit user_name_max">{{ $employer->duration_year }} Years &nbsp- &nbsp {{ $employer->duration_month }} Months</p>
+                                                                <div class="form-group col-6 d-none employer_edit">
+                                                                    <div class="form-row">
+                                                                        <div class="col-5 pr-1">
+                                                                            <select class="form-control" required="" name="duration_year[]">
+                                                                                <option value=""></option>
+                                                                                @for ($i = 0; $i < 21; $i++) <option value="{{ $i }}" {{ ($employer->duration_year==$i)? "selected" : "" }}>{{ $i }} Years</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-5 ml-3">
+                                                                            <select class="form-control" required="" name="duration_month[]">
+                                                                                <option value=""></option>
+                                                                                @for ($i = 1; $i < 13; $i++) <option value="{{ $i }}" {{ ($employer->duration_month==$i)? "selected" : "" }}>{{ $i }} Months</option>
+                                                                                    @endfor
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Job Profile</td>
+                                                            <td>
+                                                                <p class="none_employer_edit user_name_max">{{ $employer->job_profile }}</p>
+                                                                <textarea class="form-control col-6 d-none employer_edit" name="job_profile[]" rows="4" cols="50" required>{{ $employer->job_profile }}</textarea>
+                                                            </td>
+                                                        </tr>
+                                                        <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                        <input type="hidden" name="employer_details_id" id="employer_details_id " value="{{ $employer_detail->employer_details_id }}">
+                                                        <input type="hidden" name="employer_id[]" id="employer_id" value="{{ $employer->employer_id }}">
+                                                        @endforeach
+                                                    </table>
+                                                    <div class="modal-footer d-none employer_edit">
+                                                        <button class="btn btn-primary" type="Submit">Submit</button>
+                                                        <p onclick="editemployer_cancel()" class="btn btn-primary">Cancel</p>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -844,9 +935,21 @@ function edit_project() {
     $('.none_project_edit').addClass("d-none");
     $('.project_edit').removeClass("d-none");
 }
+
 function editproject_cancel() {
     $('.none_project_edit').removeClass("d-none");
     $('.project_edit').addClass("d-none");
 }
+
+function edit_employer() {
+    $('.none_employer_edit').addClass("d-none");
+    $('.employer_edit').removeClass("d-none");
+}
+
+function editemployer_cancel() {
+    $('.none_employer_edit').removeClass("d-none");
+    $('.employer_edit').addClass("d-none");
+}
+
 </script>
 @stop

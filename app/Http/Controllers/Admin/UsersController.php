@@ -31,6 +31,9 @@ use App\Models\Qualification;
 use App\Models\University;
 use App\Models\EducationType;
 use App\Models\ProjectCategory;
+use App\Models\CustomerIndustry;
+use App\Models\ProjectType;
+use App\Models\EmployerType;
 
 class UsersController extends JoshController
 {
@@ -451,7 +454,11 @@ class UsersController extends JoshController
             $response['universities'] = University::orderBy('name', 'asc')->get();
             $response['educationtype'] = EducationType::all();
             $response['locations'] = Location::all();
-                                    
+            $response['customer_industrys'] = CustomerIndustry::all();
+            $response['projecttypes'] = ProjectType::all();
+            $response['designations'] = Designation::all();
+            $response['employertype'] = EmployerType::all();
+            $response['technologies'] = Technology::where('parent_id', '0')->get();                        
             $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
             $certificates = Certificate::where('user_id', $id)->get();
             $proexps = ProfessionalExperience::where('user_id', $id)->first();
@@ -507,8 +514,8 @@ class UsersController extends JoshController
 
     public function updateuser_education(Request $request)
     {
-        $input = $request->except('_token');    
-         $id  = $request->user_id;   
+                $input = $request->except('_token');    
+                $id  = $request->user_id;   
 
          foreach ($input['education_id'] as $key => $value) {              
                
@@ -529,8 +536,8 @@ class UsersController extends JoshController
 
    public function updateuser_certificate(Request $request)
     {
-        $input = $request->except('_token');  
-         $id  = $request->user_id;   
+                $input = $request->except('_token');  
+                $id  = $request->user_id;   
                  
          foreach ($input['certificate_id'] as $key => $value) {              
                
@@ -568,7 +575,59 @@ class UsersController extends JoshController
           $url = "admin/users/".$id;
      return redirect($url)->with('success', 'Professional Experience updated successfully');
     }
+    
+     public function updateuser_project(Request $request)
+    {
+               $input = $request->except('_token');
+               $id  = $request->user_id;   
+                 
+         foreach ($input['user_project_id'] as $key => $value) {              
+               
+                $userproject = UserProject::find($input['user_project_id'][$key]);
+                $userproject->project_name = $input['project_name'][$key];
+                $userproject->project_type = $input['project_type'][$key];
+                $userproject->technologty_pre = $input['technologty_pre'][$key];
+                $userproject->duration = $input['duration'][$key];
+                $userproject->industry = $input['industry'][$key];
+                $userproject->project_details = $input['project_details'][$key];
+                $userproject->save();
+         }
+        
+               $url = "admin/users/".$id;
+     return redirect($url)->with('success', 'Project updated successfully');
+    }
 
+
+     public function updateuser_employer(Request $request)
+    {
+            $input = $request->except('_token');
+            $id  = $request->user_id;  
+
+            $employerdetails = EmployerDetails::find($input['employer_details_id']);           
+            $employerdetails->current_salary_lacs = $input['current_salary_lacs'];
+            $employerdetails->current_salary_thousand = $input['current_salary_thousand'];
+            $employerdetails->expected_salary_lacs = $input['expected_salary_lacs'];
+            $employerdetails->expected_salary_thousand = $input['expected_salary_thousand'];
+            $employerdetails->notice_period = $input['notice_period'];     
+            $employerdetails->save(); 
+                 
+         foreach ($input['employer_id'] as $key => $value) {              
+               
+            $employer = Employers::find($input['employer_id'][$key]);
+            $employer->employer_name = $input['employer_name'][$key];
+            $employer->designation = $input['designation'][$key];
+            $employer->duration_year = $input['duration_year'][$key];
+            $employer->duration_month = $input['duration_month'][$key];
+            $employer->employment_type = $input['employment_type'][$key];
+            $employer->job_profile = $input['job_profile'][$key];
+            $employer->save();
+               
+         }
+        
+    
+          $url = "admin/users/".$id;
+     return redirect($url)->with('success', 'Employer updated successfully');
+    }
 
     public function import()
     {

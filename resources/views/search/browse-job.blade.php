@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <a href="#" class="h3">{{ $job->about_company }}</a>
+                                <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->about_company }}</a>
                             </div>
                             <div class="mb-2">
                                 <div class="display-5">Job Description</div>

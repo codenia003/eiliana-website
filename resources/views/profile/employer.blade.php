@@ -43,7 +43,7 @@
                                     <select class="form-control" required="" name="current_salary_lacs">
                                         <option value=""></option>
                                         @for ($i = 0; $i < 51; $i++)
-                                        <option value="{{ $i }}" {{ ($details->current_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lacs</option>
+                                        <option value="{{ $i }}" {{ ($details->current_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lakh</option>
                                         @endfor
                                     </select>
                                 </div>
@@ -63,7 +63,7 @@
                                 <div class="col-5 pr-1">
                                     <select class="form-control" required="" name="expected_salary_lacs">
                                         @for ($i = 0; $i < 51; $i++)
-                                        <option value="{{ $i }}" {{ ($details->expected_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lacs</option>
+                                        <option value="{{ $i }}" {{ ($details->expected_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lakh</option>
                                         @endfor
                                     </select>
                                 </div>

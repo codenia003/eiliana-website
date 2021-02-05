@@ -59,7 +59,7 @@ class ProjectController extends JoshController
                 };
             }
 
-            if ($data['lookingfor'] == '1') {
+            if ($data['lookingfor'] == '2') {
 
                 // if(!empty($technologty_pre)){
                 //     $technologty_pre = $request->input('technologty_pre');

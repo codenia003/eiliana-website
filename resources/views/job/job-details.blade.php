@@ -28,24 +28,80 @@ Job Post
         <div class="px-5 py-2">
             <div class="align-items-center">
                 <span class="border-title"><i class="fa fa-bars"></i></span>
-                <span class="h5 text-white ml-2">{{ $user->full_name }}</span>
+                <span class="h5 text-white ml-2"></span>
             </div>
         </div>
     </div>
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="mb-4 mt-3 text-right">
-                    <button class="btn btn-md btn-info eiliana-btn" type="button">Modify Search <i class="far fa-edit"></i></button>
-                    <button type="button" class="btn btn-md btn-info ml-3 eiliana-btn">New Search <i class="far fa-edit"></i></button>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 pr-0">
                 <div id="notific">
                     @include('notifications')
                 </div>
-                <div class="">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="card mb-3 mb-lg-5">
+                            <div class="card-header">
+                                <span class="h5 card-title text-secondary">Job Deatils</span>
+                                <div class="float-right font-weight-700">
+                                </div>
+                            </div>
+                            <!-- <div class="card-body mb-3 mb-lg-5 p-4 text-center d-block" *ngIf="loading">
+                                <div class="spinner-border spinner-border-lg"></div>
+                            </div> -->
+                            <div class="card-body">
+                                <h5>{{ $job->job_title }}</h5>
+                                <p>{{ $job->role_summary }}</p>
+                                <div class="skills mt-4">
+                                    <span class="h5">Skills Required</span>
+                                    <p>{{ $job->key_skills }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card mb-5 shadow p-4 mb-4">
+                            <div class="border-bottom pb-4">
+                                <h4>About the Company</h4>
+                                <p>{{ $job->about_company }}</p>
+                                <p>
+                                    @if ($job->companydetails->company_name)
+                                    {{ $job->companydetails->company_name }}
+                                    @else
+                                    {{ $job->companydetails->full_name }}
+                                    @endif
+                                </p>
+                            </div>
+                            <!-- <div class="border-bottom pb-4 mt-4">
+                                <h4 class="mb-2"><strong>Employer Verification</strong></h4>
+                            </div> -->
+                        </div>
+                        <div class="card mb-5 shadow p-4">
+                            <ul class="list-unstyled list-sm-article">
+                                <li>
+                                    <a class="row align-items-center mx-n2 font-size-1" href="javascript:;">
+                                        <div class="col-10 px-2">
+                                            <span class="text-dark">Bid Left</span>
+                                        </div>
 
+                                        <div class="col-2 text-right px-2">
+                                            <span>12</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="row align-items-center mx-n2 font-size-1" href="javascript:;">
+                                        <div class="col-10 px-2">
+                                            <span class="text-dark">Average Bid</span>
+                                        </div>
+                                        <div class="col-2 text-right px-2">
+                                            <span>12</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

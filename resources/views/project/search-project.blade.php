@@ -52,7 +52,7 @@
 					                    <div class="form-check form-check-inline">
 					                        <div class="custom-control custom-radio">
 					                            <input type="radio" id="Contractual" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="1">
-					                            <label class="custom-control-label" for="Contractual">Job Search</label>
+					                            <label class="custom-control-label" for="Contractual">Contractual Job</label>
 					                        </div>
 					                    </div>
 					                </div>
@@ -96,7 +96,7 @@
 	                                                <select class="form-control" name="dur_minimum">
 	                                                    <option value="">Minimum</option>
 	                                                    @for ($i = 0; $i < 21; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }}</option>
+	                                                    <option value="{{ $i }}">{{ $i }} Lakh</option>
 	                                                    @endfor
 	                                                </select>
 	                                            </div>
@@ -104,14 +104,14 @@
 	                                                <select class="form-control" name="dur_maximum">
 	                                                    <option value="">Maximum</option>
 	                                                    @for ($i = 1; $i < 21; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }}</option>
+	                                                    <option value="{{ $i }}">{{ $i }} Lakh</option>
 	                                                    @endfor
 	                                                </select>
 	                                            </div>
 	                                        </div>
                                         </div>
                                         <div class="form-group project-technology d-none">
-	                                        <label>Project Technology</label>
+	                                        <label>Project Framework</label>
 	                                        <div class="form-row">
                                                 <div class="form-group col">
                                                     {{-- <label>Technology Preference</label> --}}
@@ -131,7 +131,7 @@
 	                                        </div>
                                         </div>
                                         <div class="form-group project-duration d-none">
-	                                        <label>Budget</label>
+	                                        <label>Project Duration</label>
                                             <div class="form-row">
                                                 <div class="col">
                                                     <select class="form-control" name="budget_from">
@@ -161,14 +161,14 @@
 	                                        <label>Experience</label>
 	                                        <div class="form-row">
 				                                <div class="col">
-				                                    <select class="form-control" required="" name="experience_year">
+				                                    <select class="form-control" name="experience_year">
 				                                        @for ($i = 0; $i < 21; $i++)
 				                                        <option value="{{ $i }}">{{ $i }} Years</option>
 				                                        @endfor
 				                                    </select>
 				                                </div>
 				                                <div class="col">
-				                                    <select class="form-control" required="" name="experience_month">
+				                                    <select class="form-control" name="experience_month">
 				                                        @for ($i = 1; $i < 13; $i++)
 				                                        <option value="{{ $i }}">{{ $i }} Months</option>
 				                                        @endfor

@@ -69,7 +69,7 @@ class AuthController extends JoshController
             );
             $data['otp'] = $otp;
             Mail::send('emails.emailTemplates.otp', $data, function ($m) use ($data) {
-                $m->from('info@eiliana.com', 'Eiliana App');
+                $m->from('info@eiliana.com', 'Eiliana OTP');
                 $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');
             });
 

@@ -28,8 +28,8 @@ class Register extends Mailable
      */
     public function build()
     {
-        return $this->from('example@example.com')
-            ->subject('Activate Your Josh Account')
+        return $this->from('info@eiliana.com')
+            ->subject('Welcome To Eiliana')
             ->markdown('emails.emailTemplates.activate');
     }
 }

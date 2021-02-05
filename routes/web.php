@@ -124,7 +124,7 @@ Route::group(
             }
         );
         Route::resource('users', 'UsersController');
-        
+
         /************
      * bulk import
     ****************************/
@@ -399,7 +399,7 @@ Route::group(
         Route::post('post-project-on', 'JobController@postProjecton')->name('post-project-on');
 
         Route::get('project/{id}', 'ProjectController@getProjectDeatils');
-        Route::get('job/{id}', 'JobController@getJobDeatils');
+        Route::get('job/{id}', 'JobController@getJobDeatils')->name('jobdetails');
         Route::get('profile/{id}', 'JobController@getProfileDeatils');
 
         Route::post('post-staffing-lead', 'JobController@postStaffingLead');

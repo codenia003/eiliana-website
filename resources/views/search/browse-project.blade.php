@@ -54,49 +54,23 @@
             @forelse ($projects as $project)
             <li class="card p-4 mb-4">
                 <div class="row">
-                    <div class="col-md-3 d-none">
-                        <div class="contract-profile mb-1">
-                            <a href="#">
-                                <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
-                            </a>
-                        </div>
-                        <div class="contract-apply text-center">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn-icon"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn-icon"><img class="img-fluid" src="/assets/img/icons/icon-6.png" alt="Avatar"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- <div class="refer-a-friend">
-                            <a href="#" class="" title="">Refer a friend</a>
-                        </div> -->
-                        <div class="user-details">
-
-                        </div>
-                    </div>
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="contract-body">
-                            <div class="mb-2">
-                                <a href="{{ url('project') }}/{{ $project->project_id }}" class="h3">{{ $project->project_title }}</a>
-                            </div>
                             <div class="row no-gutters">
                                 <div class="col-md-6">
                                     <div class="mb-2">
-                                        <div class="display-5">Key Skills</div>
-                                        <p>{{ $project->key_skills }}</p>
+                                        <div class="display-5">Project Title</div>
+                                        <a href="{{ url('project') }}/{{ $project->project_id }}" class="h3">{{ $project->project_title }}</a>
                                     </div>
                                 </div>
-                                <div class="col-md-6 d-none">
-                                    <div class="contract-profile mb-1">
-                                        <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
+                                <div class="col-md-6">
+                                    <div class="contract-profile mb-1 text-right">
+                                        <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid w-25"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <div class="display-5">Job Description</div>
+                                <div class="display-5">Project summary</div>
                                 <p class="description">{{ $project->project_summary }}</p>
                             </div>
                             <div class="row no-gutters">

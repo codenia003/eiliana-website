@@ -358,9 +358,9 @@ class JobController extends Controller
 
     public function getJobDeatils($id) {
 
-        $user = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->where('user_id', $id)->first();
-
-        return view('job/job-details', compact('user'));
+        $job = Job::with('companydetails','jobseducation','jobscertificate','jobsquestion')->where('job_id', $id)->first();
+        // return $job;
+        return view('job/job-details', compact('job'));
     }
 
     public function getProfileDeatils($id) {

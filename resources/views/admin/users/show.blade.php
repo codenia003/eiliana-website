@@ -10,6 +10,8 @@ View User Details
 <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
 <link href="{{ asset('vendors/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet" />
 <link href="{{ asset('css/pages/user_profile.css') }}" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}">
 @stop
 {{-- Page content --}}
 @section('content')
@@ -493,16 +495,34 @@ View User Details
                                                             <td> Technology Preference</td>
                                                             <td>
                                                                 @foreach ($technologies as $technology)
-                                                                {{ $technology->technology_name }} ,
+                                                                <p class="none_professionalexp_edit user_name_max">{{ $technology->technology_name }} ,</p>
                                                                 @endforeach
+                                                                
+                                                               <div class="form-group d-none professionalexp_edit">
+                                                                <select name="technologty_pre[]" class="form-control select2" onchange="change_framework();" id="technologty_pre"  multiple required>
+                                
+									                            @foreach ($response['technologies'] as $technology)
+									                            <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_technologty_pre)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
+									                            @endforeach
+									                        </select>
+                                                              </div> 
+                                                             
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Framework</td>
                                                             <td>
                                                                 @foreach ($childtechnologies as $technology)
-                                                                {{ $technology->technology_name }} ,
+                                                                <p class="none_professionalexp_edit user_name_max">{{ $technology->technology_name }} ,</p>
                                                                 @endforeach
+                                                                <div class="form-group d-none professionalexp_edit">
+										                            <select class="form-control select2" required="" name="framework[]" id="framework" multiple>
+						
+										                                @foreach ($childtechnologies as $technology)
+										                                <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_framework)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
+										                                @endforeach
+										                            </select>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -523,15 +543,15 @@ View User Details
                                                             <td>Total Experience</td>
                                                             <td>
                                                                 <p class="none_professionalexp_edit user_name_max">{{ $proexps->experience_year }} Years &nbsp - &nbsp {{ $proexps->experience_month }} Months</p>
-                                                                <div class="form-group col-6 d-none professionalexp_edit">
+                                                                <div class="form-group col-12 d-none professionalexp_edit">
                                                                     <div class="form-row">
-                                                                        <div class="col-5">
+                                                                        <div class="col-6">
                                                                             <select class="form-control" required="" name="experience_year">
                                                                                 @for ($i = 0; $i < 21; $i++) <option value="{{ $i }}" {{ ($proexps->experience_year==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                                                                     @endfor
                                                                             </select>
                                                                         </div>
-                                                                        <div class="col-5">
+                                                                        <div class="col-6">
                                                                             <select class="form-control" required="" name="experience_month">
                                                                                 @for ($i = 1; $i < 13; $i++) <option value="{{ $i }}" {{ ($proexps->experience_month==$i)? "selected" : "" }}>{{ $i }} Months</option>
                                                                                     @endfor
@@ -654,7 +674,12 @@ View User Details
                                                         <tr>
                                                             <td>Framework</td>
                                                             <td>
-                                                                <p>{{ $project->frameworkname->technology_name }}</p>
+                                                                <p class="none_project_edit user_name_max">{{ $project->frameworkname->technology_name }}</p>
+                                                                <select name="framework[]" class="form-control col-6 d-none project_edit" id="technologty_pre" required>
+                                                                    @foreach ($response['technologies_framework'] as $technology)
+                                                                    <option value="{{ $technology->technology_id }}" {{ ($project->framework==$technology->technology_id)? "selected" : "" }}>{{ $technology->technology_name }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -741,14 +766,14 @@ View User Details
                                                                     <div class="form-row">
                                                                         <div class="col-5 pr-1">
                                                                             <select class="form-control" required="" name="current_salary_lacs">
-                                                                                <option value=""></option>
+                                                                             
                                                                                 @for ($i = 0; $i < 51; $i++) <option value="{{ $i }}" {{ ($employer_detail->current_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lacs</option>
                                                                                     @endfor
                                                                             </select>
                                                                         </div>
                                                                         <div class="col-5 ml-3">
                                                                             <select class="form-control" required="" name="current_salary_thousand">
-                                                                                <option value=""></option>
+                                                                           
                                                                                 @for ($i = 0; $i < 100; $i+=5) <option value="{{ $i }}" {{ ($employer_detail->current_salary_thousand==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
                                                                                     @endfor
                                                                             </select>
@@ -784,7 +809,7 @@ View User Details
                                                             <td>
                                                                 <p class="none_employer_edit user_name_max">{{ $employer_detail->notice_period }} Days</p>
                                                                 <select class="form-control col-6 d-none employer_edit" required="" name="notice_period">
-                                                                    <option value=""></option>
+                                                                   
                                                                     @for ($i = 15; $i < 180; $i+=15) <option value="{{ $i }}" {{ ($employer_detail->notice_period==$i)? "selected" : "" }}>{{ $i }}</option>
                                                                         @endfor
                                                                 </select>
@@ -833,14 +858,14 @@ View User Details
                                                                     <div class="form-row">
                                                                         <div class="col-5 pr-1">
                                                                             <select class="form-control" required="" name="duration_year[]">
-                                                                                <option value=""></option>
+                                                                               
                                                                                 @for ($i = 0; $i < 21; $i++) <option value="{{ $i }}" {{ ($employer->duration_year==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                                                                     @endfor
                                                                             </select>
                                                                         </div>
                                                                         <div class="col-5 ml-3">
                                                                             <select class="form-control" required="" name="duration_month[]">
-                                                                                <option value=""></option>
+                                                                                
                                                                                 @for ($i = 1; $i < 13; $i++) <option value="{{ $i }}" {{ ($employer->duration_month==$i)? "selected" : "" }}>{{ $i }} Months</option>
                                                                                     @endfor
                                                                             </select>
@@ -882,13 +907,54 @@ View User Details
 {{-- page level scripts --}}
 @section('footer_scripts')
 <!-- Bootstrap WYSIHTML5 -->
+<style>
+	.professionalexp_edit span.select2 {
+    width: 100% !important;
+}
+</style>
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
+
+
+
 <script type="text/javascript">
 $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
     e.target // newly activated tab
     e.relatedTarget // previous active tab
     $("#clothing-nav-content .tab-pane").removeClass("show active");
 });
+
+$('#technologty_pre').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
+ $('#framework').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
+
+    function change_framework()
+    {
+        var technologty_pre = $("#technologty_pre").val();
+        // console.log(technologty_pre);
+        $.ajax({
+            type:"GET",
+            url:"/getframework",
+            data:"technologty_pre="+technologty_pre,
+            success: function(data) {
+                console.log("data",data);
+                var options = '<option value=""></option>';
+                $.each( data, function( key, value ) {
+                    options += "<option value='"+value['technology_id']+"'>"+value['technology_name']+"</option>";
+                });
+                //console.log(options);
+                $('#framework').html(options);
+            },
+            error: function(xhr, status, error) {
+                console.log("error: ",error);
+            },
+        });
+    }
 
 function editfrom_data() {
     $('.none_edit').addClass("d-none");

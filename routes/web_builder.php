@@ -10,6 +10,7 @@ Route::group(
          Route::post('users/update-professionalexp', 'UsersController@updateuser_professionalexp')->name('updateuser_professionalexp');
          Route::post('users/update-project', 'UsersController@updateuser_project')->name('updateuser_project');
          Route::post('users/update-employer', 'UsersController@updateuser_employer')->name('updateuser_employer');
+         Route::get('/getframework', 'UsersController@getframework');
     }
 );
 

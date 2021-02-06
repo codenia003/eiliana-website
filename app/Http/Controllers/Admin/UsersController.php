@@ -458,7 +458,8 @@ class UsersController extends JoshController
             $response['projecttypes'] = ProjectType::all();
             $response['designations'] = Designation::all();
             $response['employertype'] = EmployerType::all();
-            $response['technologies'] = Technology::where('parent_id', '0')->get();                        
+            $response['technologies'] = Technology::where('parent_id', '0')->get();
+            $response['technologies_framework'] = Technology::where('parent_id', '!=', 0)->get();                        
             $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
             $certificates = Certificate::where('user_id', $id)->get();
             $proexps = ProfessionalExperience::where('user_id', $id)->first();
@@ -484,6 +485,15 @@ class UsersController extends JoshController
         }
         // Show the page
         return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','selected_framework','technologies','childtechnologies','locations','preferred_location','employer_details','response'));
+    }
+
+    public function getframework(Request $request)
+    {
+
+        $alldata = $request->input('technologty_pre');
+        $selected_technologies = explode(",", $alldata);
+        $technologies = Technology::whereIn('parent_id', $selected_technologies)->get();
+        return response()->json($technologies);
     }
 
     public function passwordreset(Request $request)
@@ -559,18 +569,29 @@ class UsersController extends JoshController
     {
          $input = $request->except('_token');         
          $id  = $request->user_id;   
-         $professional_experience_Id = $request->professional_experience_id;
 
-         $professionalexp = ProfessionalExperience::find($professional_experience_Id);
-         $professionalexp->key_skills =          $request->key_skills;
-         $professionalexp->profile_headline =    $request->profile_headline;
-         $professionalexp->experience_year  =    $request->experience_year;
-         $professionalexp->experience_month =    $request->experience_month;
-         $professionalexp->support_project  =    $request->support_project;
-         $professionalexp->development_project = $request->development_project;
-         $professionalexp->current_location    = $request->current_location;
-         $professionalexp->preferred_location  = $request->preferred_location;
-         $professionalexp->save(); 
+        $technologty_pre = $request->input('technologty_pre');
+        $technologty_pre = implode(',', $technologty_pre);
+        $input['technologty_pre'] = $technologty_pre;
+
+        $framework = $request->input('framework');
+        $framework = implode(',', $framework);
+        $input['framework'] = $framework;
+
+
+            $professionalExperience = ProfessionalExperience::find($input['professional_experience_id']);      
+            $professionalExperience->key_skills = $input['key_skills'];
+            $professionalExperience->profile_headline = $input['profile_headline'];
+            $professionalExperience->technologty_pre = $input['technologty_pre'];
+            $professionalExperience->framework = $input['framework'];        
+            $professionalExperience->experience_year = $input['experience_year'];
+            $professionalExperience->experience_month = $input['experience_month'];
+            $professionalExperience->support_project = $input['support_project'];       
+            $professionalExperience->current_location = $input['current_location'];
+            $professionalExperience->preferred_location = $input['preferred_location'];
+            $professionalExperience->development_project = $input['development_project'];
+            
+            $professionalExperience->save();
     
           $url = "admin/users/".$id;
      return redirect($url)->with('success', 'Professional Experience updated successfully');
@@ -587,6 +608,7 @@ class UsersController extends JoshController
                 $userproject->project_name = $input['project_name'][$key];
                 $userproject->project_type = $input['project_type'][$key];
                 $userproject->technologty_pre = $input['technologty_pre'][$key];
+                $userproject->framework = $input['framework'][$key];
                 $userproject->duration = $input['duration'][$key];
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];

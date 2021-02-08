@@ -17,6 +17,7 @@ class University extends Model
     public $fillable = [
         'name',
         'town',
+        'logo',
         'display_status'
     ];
 

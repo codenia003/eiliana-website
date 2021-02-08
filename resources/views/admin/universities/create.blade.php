@@ -7,6 +7,7 @@ University
 
 @section('content')
 @include('common.errors')
+
 <section class="content-header">
     <h1>University</h1>
     <ol class="breadcrumb">
@@ -30,7 +31,7 @@ University
                 </h4></div>
             <br />
             <div class="card-body">
-            {!! Form::open(['route' => 'admin.universities.store']) !!}
+            {!! Form::open(['route' => 'admin.universities.store','files'=>true]) !!}
 
                 @include('admin.universities.fields')
 
@@ -44,6 +45,11 @@ University
 </section>
  @stop
 @section('footer_scripts')
+
+<script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" ></script>
+    <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
+    <script src="{{ asset('js/pages/form_examples.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $("form").submit(function() {

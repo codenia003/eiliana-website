@@ -15,12 +15,56 @@
 
     <!-- global css -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}"  rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/iCheck/css/all.css') }}"  rel="stylesheet" type="text/css" />
     <!-- end of global css -->
 
     <!--page level css-->
     @yield('header_styles')
     <!--end of page level css-->
+<style>
 
+        .container{
+            margin-top:20px;
+        }
+        .image-preview-input {
+            position: relative;
+            overflow: hidden;
+            margin: 0px;
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+        .image-preview-input input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+        .image-preview-input-title {
+            margin-left:2px;
+        }
+        .image_radius{
+            border-top-right-radius: 4px !important;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            border-bottom-right-radius: 4px !important;
+        }
+        .fileinput .thumbnail > img{
+            width:100%;
+        }
+        .color_a{
+            color: #333;
+        }
+        .btn-file > input{
+            width: auto;
+        }
+    </style>
 <body class="skin-josh">
 <header class="header">
     <a href="{{ route('admin.dashboard') }}" class="logo">
@@ -180,10 +224,6 @@
 <!-- global js -->
 
 <script src="{{ asset('js/admin.js') }}" type="text/javascript"></script>
-
-
-
-
 <!-- end of global js -->
 <!-- begin page level js -->
 @yield('footer_scripts')

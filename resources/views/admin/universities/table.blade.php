@@ -19,7 +19,14 @@
             <td>{!! $a++ !!}</td>
             <td>{!! $university->name !!}</td>
             <td>{!! $university->town !!}</td>
-            <td>{!! $university->logo !!}</td>
+            <td>
+             
+              @if(empty($university->logo)) 
+                No Image      
+              @else
+             <img class="thumbnail" style="width: 100px;" src="../uploads/university/{{$university->logo}}">
+              @endif
+            </td>
              <td>@if($university->display_status == 1)
                Active
               @else

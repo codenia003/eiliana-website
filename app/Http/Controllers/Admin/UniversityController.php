@@ -59,6 +59,13 @@ class UniversityController extends InfyOmBaseController
     public function store(CreateUniversityRequest $request)
     {
         $input = $request->all();
+        
+        $fileName = "";
+        if ($input['logo']) {
+            $fileName = str_random(20).'.'.$request->logo->extension(); 
+            $request->logo->move(public_path('uploads/university/'), $fileName);
+            $input['logo'] = $fileName;
+        }
 
         $university = $this->universityRepository->create($input);
 
@@ -119,7 +126,7 @@ class UniversityController extends InfyOmBaseController
     {
         $university = $this->universityRepository->findWithoutFail($id);
 
-        
+        $input = $request->all();
 
         if (empty($university)) {
             Flash::error('University not found');
@@ -127,7 +134,16 @@ class UniversityController extends InfyOmBaseController
             return redirect(route('universities.index'));
         }
 
-        $university = $this->universityRepository->update($request->all(), $id);
+        $fileName = $university->logo;
+        if ($request->hasFile('logo')) {
+            $fileName = str_random(20).'.'.$request->logo->extension(); 
+            $request->logo->move(public_path('uploads/university/'), $fileName);
+        }
+        $input['logo'] = $fileName;
+
+
+
+        $university = $this->universityRepository->update($input, $id);
 
         Flash::success('University updated successfully.');
 

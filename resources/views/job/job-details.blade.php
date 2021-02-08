@@ -10,10 +10,7 @@ Job Post
 @section('header_styles')
 <!--page level css starts-->
 <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
-<link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}">
-<link type="text/css" rel="stylesheet" href="{{ asset('vendors/switchery/css/switchery.css') }}" />
+<link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
 <!--end of page level css-->
 <style>
     .eiliana-btn {
@@ -44,6 +41,7 @@ Job Post
                             <div class="card-header">
                                 <span class="h5 card-title text-secondary">Job Deatils</span>
                                 <div class="float-right font-weight-700">
+                                    <a class="btn-icon bg-blue btn rounded-0 text-white" data-toggle="modal" data-target="#modal-4">Apply Now</a>
                                 </div>
                             </div>
                             <!-- <div class="card-body mb-3 mb-lg-5 p-4 text-center d-block" *ngIf="loading">
@@ -51,10 +49,43 @@ Job Post
                             </div> -->
                             <div class="card-body">
                                 <h5>{{ $job->job_title }}</h5>
-                                <p>{{ $job->role_summary }}</p>
+                                @if ($job->companydetails->company_name)
+                                {{ $job->companydetails->company_name }}
+                                @else
+                                {{ $job->companydetails->full_name }}
+                                @endif
+                                <p>{{ $job->locations->name }}</p>
+                                <p>Posted On {{  \Carbon\Carbon::parse($job->created_at)->isoFormat('MMM Do YYYY') }}</p>
+                                <div class="skills mt-4">
+                                    <span class="h5">Job Description</span>
+                                    <p>{{ $job->role_summary }}</p>
+                                </div>
+                                <div class="skills mt-4">
+                                    <span class="h5">Budget</span>
+                                    <p>{{ $job->budget_from }} to {{ $job->budget_to }}</p>
+                                </div>
+                                <div class="skills mt-4">
+                                    <span class="h5">Years of Experience</span>
+                                    <p>{{ $job->experience_year }} Years {{ $job->experience_month }} Month</p>
+                                </div>
                                 <div class="skills mt-4">
                                     <span class="h5">Skills Required</span>
                                     <p>{{ $job->key_skills }}</p>
+                                </div>
+                                <hr>
+                                <h3>Additional Information</h3>
+                                <div class="skills mt-4">
+                                    <span class="h5">Technology: </span>
+                                    @foreach ($technologies as $technology)
+                                        {{ $loop->first ? '' : ', ' }}
+                                        <span>{{ $technology->technology_name }}</span>
+                                    @endforeach
+                                    <br>
+                                    <span class="h5">Framework: </span>
+                                    @foreach ($childtechnologies as $technology)
+                                        {{ $loop->first ? '' : ', ' }}
+                                        <span>{{ $technology->technology_name }}</span>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -76,7 +107,7 @@ Job Post
                                 <h4 class="mb-2"><strong>Employer Verification</strong></h4>
                             </div> -->
                         </div>
-                        <div class="card mb-5 shadow p-4">
+                        {{-- <div class="card mb-5 shadow p-4">
                             <ul class="list-unstyled list-sm-article">
                                 <li>
                                     <a class="row align-items-center mx-n2 font-size-1" href="javascript:;">
@@ -100,8 +131,39 @@ Job Post
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form action="{{ route('postJobLead.new') }}" method="POST" id="staffingflead">
+                        @csrf
+                        <input type="hidden" name="job_id" value="{{ $job->job_id }}">
+                        <input type="hidden" name="to_user_id" value="{{ $job->companydetails->id }}">
+                        <div class="modal-header bg-blue text-white">
+                            <h4 class="modal-title" id="modalLabelnews">Apply JOB</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="subject" class="col-form-label">Subject:</label>
+                                <input type="text" class="form-control" name="subject" id="subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text" name="messagetext" rows="3"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer singup-body">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Apply</button>
+                                <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -112,9 +174,57 @@ Job Post
 @section('footer_scripts')
 <!--global js starts-->
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendors/switchery/js/switchery.js') }}"></script>
-<script></script>
+<script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
+<script>$('#staffingflead').bootstrapValidator({
+    fields: {
+        subject: {
+            validators: {
+                notEmpty: {
+                    message: 'The subject is required',
+                },
+            },
+        },
+        messagetext: {
+            validators: {
+                notEmpty: {
+                    message: 'The message is required',
+                },
+            },
+        },
+    },
+}).on('success.form.bv', function(e) {
+    e.preventDefault();
+    var $form = $(e.target);
+    var bv = $form.data('bootstrapValidator');
+    $('.spinner-border').removeClass("d-none");
+    $.post($form.attr('action'), $form.serialize(), function(result) {
+        var userCheck = result;
+        if (userCheck.success == '1') {
+            $('#modal-4').modal('toggle');
+            $('#subject').val('');
+            $('#message-text').val('');
+            $('.spinner-border').addClass("d-none");
+            Swal.fire({
+              type: 'success',
+              title: 'Success...',
+              text: userCheck.msg,
+              showConfirmButton: false,
+              timer: 2000
+            });
+        } else {
+            $('#modal-4').modal('toggle');
+            $('#subject').val('');
+            $('#message-text').val('');
+            $('.spinner-border').addClass("d-none");
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: userCheck.errors,
+              showConfirmButton: false,
+              timer: 2000
+            });
+        }
+    }, 'json');
+});</script>
 <!--global js end-->
 @stop

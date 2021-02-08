@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="card-body p-4">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label>Looking to develop</label>
                     <select name="job_category" class="form-control" required>
                         <option value=""></option>
@@ -37,10 +37,10 @@
                         <option value="{{ $category->id }}" {{ (Session::get('contractsattfing')['project_category']==$category->id)? "selected" : "" }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label>Any Keyword(Key Skills)</label>
-                    <input type="text" name="keyword" class="form-control" value="" />
+                    <input type="text" name="keyword" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" />
                 </div>
                 <div class="form-group basic-info mb-3">
                     <label>Model Of Engagement</label>

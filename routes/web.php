@@ -406,6 +406,10 @@ Route::group(
         Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');
         Route::post('staffing-lead-convert', 'JobController@staffingLeadConvert');
 
+        Route::post('job/post-job-lead', 'JobController@postJobLead')->name('postJobLead.new');
+
+
+
     }
 );
 

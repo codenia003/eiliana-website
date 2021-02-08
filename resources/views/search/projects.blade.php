@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label>Any Keyword(Key Skills)</label>
-                    <input type="text" name="keyword" class="form-control" value="" required />
+                    <input type="text" name="keyword" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" required />
                 </div>
                 <div class="form-group basic-info mb-3">
                     <label>Model Of Engagement</label>

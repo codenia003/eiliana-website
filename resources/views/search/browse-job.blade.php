@@ -31,8 +31,9 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2 col-lg-2 col-sm-2 col-2 mb-5">
-        <div class="btn-group btn-advanced">
+    <div class="col-md-2 col-lg-2 col-sm-2 col-2 mb-5 btn-advanced">
+        <a href="{{ url('advance-search/jobs')}}" class="btn btn-block btn-lg btn-secondary">Advance Search</a>
+        {{-- <div class="btn-group btn-advanced">
             <button type="button" class="btn btn-block btn-lg btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-filter"></i>
                 Sort By
             </button>
@@ -41,7 +42,7 @@
                 <a class="dropdown-item" href="#">Option Link 2 </a>
                 <a class="dropdown-item" href="#">Option Link 3</a>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @stop

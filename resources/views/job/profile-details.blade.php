@@ -345,7 +345,7 @@ Job Post
                     </div>
                     <div class="modal-footer singup-body">
                         <div class="btn-group" role="group">
-                            <button class="btn btn-primary">Send</button>
+                            <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Send</button>
                             <button class="btn btn-outline-primary" data-dismiss="modal">Discard</button>
                         </div>
                     </div>
@@ -407,16 +407,18 @@ $(document).ready(function(){
         e.preventDefault();
         var $form = $(e.target);
         var bv = $form.data('bootstrapValidator');
+        $('.spinner-border').removeClass("d-none");
         $.post($form.attr('action'), $form.serialize(), function(result) {
             var userCheck = result;
             if (userCheck.success == '1') {
                 $('#modal-4').modal('toggle');
                 $('#subject').val('');
                 $('#message-text').val('');
+                $('.spinner-border').addClass("d-none");
                 Swal.fire({
                   type: 'success',
                   title: 'Success...',
-                  text: 'Form Submitted',
+                  text: userCheck.msg,
                   showConfirmButton: false,
                   timer: 2000
                 });
@@ -424,6 +426,7 @@ $(document).ready(function(){
                 $('#modal-4').modal('toggle');
                 $('#subject').val('');
                 $('#message-text').val('');
+                $('.spinner-border').addClass("d-none");
                 Swal.fire({
                   type: 'error',
                   title: 'Oops...',

@@ -17,6 +17,11 @@ class Job extends Model
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 
+    public function locations()
+    {
+        return $this->belongsTo('App\Models\Location', 'location', 'location_id');
+    }
+
     public function jobseducation()
     {
         return $this->hasMany('App\Models\JobsEducation', 'job_id', 'job_id');

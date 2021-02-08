@@ -64,8 +64,8 @@ class UserNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-           //'data' => 'this is my notification',
-           'data' => "You have new opportunity:- ".$this->details['main_id'],
+           'greeting' => $this->details['greeting'],
+           'data' => $this->details['body']. ":- ".$this->details['main_id'],
            'notify_type' => '1',
            'actionURL' => $this->details['actionURL'],
            'main_id' => $this->details['main_id']

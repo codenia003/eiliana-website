@@ -39,6 +39,7 @@ use App\Models\Employers;
 use App\Models\Location;
 use App\Models\CustomerIndustry;
 use App\Models\ContractStaffingLeads;
+use App\Models\JobLeads;
 use App\Notifications\UserNotification;
 
 class JobController extends Controller
@@ -358,9 +359,14 @@ class JobController extends Controller
 
     public function getJobDeatils($id) {
 
-        $job = Job::with('companydetails','jobseducation','jobscertificate','jobsquestion')->where('job_id', $id)->first();
+        $job = Job::with('companydetails','locations','jobseducation','jobseducation.educationtype','jobscertificate','jobsquestion')->where('job_id', $id)->first();
+
+        $selected_technologty_pre = explode(',', $job->technologty_pre);
+        $selected_framework = explode(',', $job->framework);
+        $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
+        $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
         // return $job;
-        return view('job/job-details', compact('job'));
+        return view('job/job-details', compact('job','technologies','childtechnologies'));
     }
 
     public function getProfileDeatils($id) {
@@ -427,6 +433,7 @@ class JobController extends Controller
             //     $m->to($input['toemail'], $input['toname'])->subject('New Job Application From ');
             // });
             $response['success'] = '1';
+            $response['msg'] = 'Proposal Submitted Successfully';
         } else {
             $response['errors'] = 'You are already connected to this user';
         }
@@ -482,6 +489,47 @@ class JobController extends Controller
             $response['success'] = '2';
             $response['errors'] = 'You are already reply to this user';
         }
+        return response()->json($response);
+
+    }
+
+    public function postJobLead(Request $request){
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+        $jobleadcheck = JobLeads::where('job_id', '=', $input['job_id'])->where('from_user_id', '=', Sentinel::getUser()->id)->first();
+        if ($jobleadcheck === null) {
+            $jobleads = new JobLeads;
+            $jobleads->job_id = $input['job_id'];
+            $jobleads->from_user_id = Sentinel::getUser()->id;
+            $jobleads->subject = $input['subject'];
+            $jobleads->message = $input['messagetext'];
+            $jobleads->notify = '0';
+            $jobleads->display_status = '1';
+            $jobleads->lead_status = '1';
+            $jobleads->save();
+
+            $insertedId = $jobleads->job_leads_id;
+
+            $user = User::find($input['to_user_id']);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have new job proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => 'job/job-lead-response/'. $insertedId,
+                'main_id' => $insertedId
+            ];
+
+            Notification::send($user, new UserNotification($details));
+            $response['success'] = '1';
+            $response['msg'] = 'Proposal Submitted Successfully';
+
+        } else {
+            $response['errors'] = 'You are already submitted proposal';
+        }
+
         return response()->json($response);
 
     }

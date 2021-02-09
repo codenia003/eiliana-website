@@ -369,6 +369,19 @@ class JobController extends Controller
         return view('job/job-details', compact('job','technologies','childtechnologies'));
     }
 
+    public function jobLeadResponse($id) {
+
+        $job = Job::with('companydetails','locations','jobleadresponse','jobleadresponse.fromuser','jobleadresponse.fromuser.userprofessionalexp','jobleadresponse.fromuser.userprofessionalexp.currentlocation')->where('job_id', $id)->first();
+
+        $selected_technologty_pre = explode(',', $job->technologty_pre);
+        $selected_framework = explode(',', $job->framework);
+        $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
+        $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
+        // return $job;
+
+        return view('job/job-leadres', compact('job','technologies','childtechnologies'));
+    }
+
     public function getProfileDeatils($id) {
 
         $user = User::where('id', $id)->first();
@@ -395,6 +408,22 @@ class JobController extends Controller
         }
 
         return view('job/profile-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','staffingleadsid','response'));
+    }
+
+    public function profileJobLead($id)
+    {
+
+        $joblead = JobLeads::with('jobdetail')->where('job_leads_id', $id)->first();
+        $user = User::where('id', $joblead->from_user_id)->first();
+
+        $ug_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $joblead->from_user_id)->where('graduation_type', '3')->get();
+        $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $joblead->from_user_id)->where('graduation_type', '4')->get();
+        $certificates = Certificate::where('user_id', $joblead->from_user_id)->get();
+        $proexps = ProfessionalExperience::where('user_id', $joblead->from_user_id)->first();
+        $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $joblead->from_user_id)->get();
+        $employers = Employers::where('user_id', $joblead->from_user_id)->get();
+
+        return view('job/profile-job-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
     }
 
     public function postStaffingLead(Request $request){
@@ -509,7 +538,7 @@ class JobController extends Controller
             $jobleads->lead_status = '1';
             $jobleads->save();
 
-            $insertedId = $jobleads->job_leads_id;
+            $insertedId = $input['job_id'];
 
             $user = User::find($input['to_user_id']);
 
@@ -531,6 +560,5 @@ class JobController extends Controller
         }
 
         return response()->json($response);
-
     }
 }

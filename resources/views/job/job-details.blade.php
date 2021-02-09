@@ -175,7 +175,8 @@ Job Post
 <!--global js starts-->
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
-<script>$('#staffingflead').bootstrapValidator({
+<script>
+$('#staffingflead').bootstrapValidator({
     fields: {
         subject: {
             validators: {

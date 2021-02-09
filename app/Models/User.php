@@ -53,4 +53,29 @@ class User extends EloquentUser
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function usereducation()
+    {
+        return $this->hasMany('App\Models\Education', 'user_id', 'id');
+    }
+
+    public function usercertificate()
+    {
+        return $this->hasMany('App\Models\Certificate', 'user_id', 'id');
+    }
+
+    public function userprofessionalexp()
+    {
+        return $this->hasOne('App\Models\ProfessionalExperience', 'user_id', 'id');
+    }
+
+    public function userprojects()
+    {
+        return $this->hasMany('App\Models\UserProject', 'user_id', 'id');
+    }
+
+    public function useremployers()
+    {
+        return $this->hasMany('App\Models\Employers', 'user_id', 'id');
+    }
 }

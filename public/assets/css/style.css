@@ -1436,3 +1436,6 @@ span.select2-selection.select2-selection--single {
     border-radius: unset;
     color: #418bca;
 }
+.profile-information .stafflead-basic button.btn-info {
+    width: 20%;
+}

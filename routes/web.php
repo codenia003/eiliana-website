@@ -406,11 +406,15 @@ Route::group(
         Route::post('post-staffing-lead', 'JobController@postStaffingLead');
         Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');
         Route::post('staffing-lead-convert', 'JobController@staffingLeadConvert');
+    }
+);
 
-        Route::post('job/post-job-lead', 'JobController@postJobLead')->name('postJobLead.new');
-
-
-
+Route::group(
+    ['prefix' => 'job', 'middleware' => 'user'],
+    function () {
+        Route::post('post-job-lead', 'JobController@postJobLead')->name('postJobLead.new');
+        Route::get('job-lead-response/{id}', 'JobController@jobLeadResponse');
+        Route::get('profilejoblead/{id}', 'JobController@profileJobLead')->name('job.profilejoblead');
     }
 );
 

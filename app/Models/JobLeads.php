@@ -15,8 +15,8 @@ class JobLeads extends Model
         return $this->belongsTo('App\Models\Job', 'job_id', 'job_id');
     }
 
-    public function touser()
+    public function fromuser()
     {
-        return $this->belongsTo('App\Models\User', 'to_user_id', 'id');
+        return $this->belongsTo('App\Models\User', 'from_user_id', 'id');
     }
 }

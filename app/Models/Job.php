@@ -36,4 +36,9 @@ class Job extends Model
     {
         return $this->hasMany('App\Models\JobsQuestion', 'job_id', 'job_id');
     }
+
+    public function jobleadresponse()
+    {
+        return $this->hasMany('App\Models\JobLeads', 'job_id', 'job_id');
+    }
 }

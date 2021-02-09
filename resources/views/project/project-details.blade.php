@@ -50,8 +50,12 @@ Search Project
                         <div class="float-right font-weight-700">
                             <span class="bid">$15 - 25 USD /hr</span>
                             <br>
-                            <span class="day-left">Bidding Ends In {{ $project->expiry_days }} Days</span>
+                            <span class="day-left">Bidding Ends In {{ $project->expiry_days }} Days</span><br>
+                            <div class="float-right font-weight-700 mt-1">
+                                    <a class="btn-icon bg-blue btn rounded-0 text-white" data-toggle="modal" data-target="#modal-4">Apply Now</a>
+                                </div>
                         </div>
+
                     </div>
                     <!-- <div class="card-body mb-3 mb-lg-5 p-4 text-center d-block" *ngIf="loading">
                         <div class="spinner-border spinner-border-lg"></div>
@@ -112,6 +116,37 @@ Search Project
                 </div>
             </div>
         </div>
+        <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form action="{{ route('ProjectLead.new') }}" method="POST" id="projectlead">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $project->project_id }}">
+                        <input type="hidden" name="to_user_id" value="{{ $project->companydetails->id }}">
+                        <div class="modal-header bg-blue text-white">
+                            <h4 class="modal-title" id="modalLabelnews">Apply JOB</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="subject" class="col-form-label">Subject:</label>
+                                <input type="text" class="form-control" name="subject" id="subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text" name="messagetext" rows="3"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer singup-body">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Apply</button>
+                                <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @stop
@@ -123,5 +158,57 @@ Search Project
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/frontend/login_custom.js') }}"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
+<script>$('#projectlead').bootstrapValidator({
+    fields: {
+        subject: {
+            validators: {
+                notEmpty: {
+                    message: 'The subject is required',
+                },
+            },
+        },
+        messagetext: {
+            validators: {
+                notEmpty: {
+                    message: 'The message is required',
+                },
+            },
+        },
+    },
+}).on('success.form.bv', function(e) {
+    e.preventDefault();
+    var $form = $(e.target);
+    var bv = $form.data('bootstrapValidator');
+    $('.spinner-border').removeClass("d-none");
+    $.post($form.attr('action'), $form.serialize(), function(result) {
+        var userCheck = result;
+        if (userCheck.success == '1') {
+            $('#modal-4').modal('toggle');
+            $('#subject').val('');
+            $('#message-text').val('');
+            $('.spinner-border').addClass("d-none");
+            Swal.fire({
+              type: 'success',
+              title: 'Success...',
+              text: userCheck.msg,
+              showConfirmButton: false,
+              timer: 2000
+            });
+        } else {
+            $('#modal-4').modal('toggle');
+            $('#subject').val('');
+            $('#message-text').val('');
+            $('.spinner-border').addClass("d-none");
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: userCheck.errors,
+              showConfirmButton: false,
+              timer: 2000
+            });
+        }
+    }, 'json');
+});</script>
+
 <!--global js end-->
 @stop

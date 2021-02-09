@@ -87,11 +87,14 @@
     </li>
 
 
-<!-- <li class="{{ Request::is('admin/candidateRoles*') ? 'active' : '' }}">
-    <a href="{!! route('admin.candidateRoles.index') !!}">
-    <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list" data-size="18"
-               data-loop="true"></i>
-               CandidateRoles
-    </a>
-</li> -->
+<li>
+    <a href="#">
+            <i class="livicon" data-name="doc-portrait" data-size="18" data-c="#67C5DF" data-hc="#67C5DF" data-loop="true"></i>
+            <span class="title">Reports</span>
+            <span class="fa arrow"></span>
+        </a>
+        <ul>
+            
+        </ul>
+</li>
 

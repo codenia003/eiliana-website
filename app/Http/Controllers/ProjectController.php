@@ -13,14 +13,17 @@ use URL;
 use Validator;
 use View;
 use DB;
+use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\Location;
 use App\Models\Technology;
 use App\Models\Job;
+use App\Models\ProjectLeads;
 use stdClass;
 use Carbon\Carbon;
+use App\Notifications\UserNotification;
 
 class ProjectController extends JoshController
 {
@@ -97,7 +100,8 @@ class ProjectController extends JoshController
 
     public function getProjectDeatils($id)
     {
-        $project = Project::where('project_id', $id)->first();
+        $project = Project::with('companydetails')->where('project_id', $id)->first();
+        
 
         $from = strtotime($project['expiry_datetime']);
         $today = time();
@@ -113,6 +117,47 @@ class ProjectController extends JoshController
     {
         $projects = Project::where('posted_by_user_id', $request->input('user_id'))->get();
         return response()->json($projects);
+    }
+
+    public function postProjectLead(Request $request){
+
+        $input = $request->except('_token'); 
+        $response['success'] = '0';
+        $projectleadcheck = ProjectLeads::where('project_id', '=', $input['project_id'])->where('from_user_id', '=', Sentinel::getUser()->id)->first();
+        if ($projectleadcheck === null) {
+            $projectleads = new ProjectLeads;
+            $projectleads->project_id = $input['project_id'];
+            $projectleads->from_user_id = Sentinel::getUser()->id;
+            $projectleads->subject = $input['subject'];
+            $projectleads->message = $input['messagetext'];
+            $projectleads->notify = '0';
+            $projectleads->display_status = '1';
+            $projectleads->lead_status = '1';
+            $projectleads->save();
+
+            $insertedId = $projectleads->project_leads_id;
+
+            $user = User::find($input['to_user_id']);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have new job proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => 'job/job-lead-response/'. $insertedId,
+                'main_id' => $insertedId
+            ];
+
+            Notification::send($user, new UserNotification($details));
+            $response['success'] = '1';
+            $response['msg'] = 'Proposal Submitted Successfully';
+
+        } else {
+            $response['errors'] = 'You are already submitted proposal';
+        }
+
+        return response()->json($response);
+
     }
 
 }

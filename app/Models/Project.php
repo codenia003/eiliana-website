@@ -12,4 +12,9 @@ class Project extends Model
 
     const CREATED_AT = 'post_datetime';
 
+    public function companydetails()
+    {
+        return $this->belongsTo('App\Models\User', 'posted_by_user_id', 'id');
+    }
+
 }

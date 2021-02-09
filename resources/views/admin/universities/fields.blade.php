@@ -13,8 +13,10 @@
 </div>
 
 <!-- Logo Field -->
+<label>Logo:</label>
 <div class="form-row">
 <div class="fileinput fileinput-new form-group col-sm-6" data-provides="fileinput">
+
                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
                                 <div>
                                             <span class="btn btn-secondary btn-file">

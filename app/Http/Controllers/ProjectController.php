@@ -141,10 +141,10 @@ class ProjectController extends JoshController
 
             $details = [
                 'greeting' => 'Hi '. $user->full_name,
-                'body' => 'You have new job proposal',
+                'body' => 'You have new project proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => 'job/job-lead-response/'. $insertedId,
+                'actionURL' => 'project/project-bid-response/'. $insertedId,
                 'main_id' => $insertedId
             ];
 
@@ -158,6 +158,18 @@ class ProjectController extends JoshController
 
         return response()->json($response);
 
+    }
+
+    public function projectBidResponse($id) {
+
+       $project = Project::with('companydetails','locations')->where('project_id', $id)->first();
+       
+       $selected_technologty_pre = explode(',', $project->technologty_pre);
+        $selected_framework = explode(',', $project->framework);
+        $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
+        $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
+
+        return view('project/project-bids', compact('project','technologies','childtechnologies'));
     }
 
 }

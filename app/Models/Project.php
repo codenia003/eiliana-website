@@ -16,5 +16,9 @@ class Project extends Model
     {
         return $this->belongsTo('App\Models\User', 'posted_by_user_id', 'id');
     }
-
+    
+    public function locations()
+    {
+        return $this->belongsTo('App\Models\Location', 'location', 'location_id');
+    }
 }

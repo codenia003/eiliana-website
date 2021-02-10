@@ -124,7 +124,7 @@ Search Project
                         <input type="hidden" name="project_id" value="{{ $project->project_id }}">
                         <input type="hidden" name="to_user_id" value="{{ $project->companydetails->id }}">
                         <div class="modal-header bg-blue text-white">
-                            <h4 class="modal-title" id="modalLabelnews">Apply JOB</h4>
+                            <h4 class="modal-title" id="modalLabelnews">Apply Project</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">

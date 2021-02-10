@@ -382,15 +382,16 @@ Post Project
                                         <div class="certification-1">
                                             <div class="certification">
                                                 {{-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span> --}}
+                                                <input type="hidden" name="certificate_id[]" value="0">
                                                 <div class="form-row">
                                                     <div class="form-group col-5">
                                                         <label>Certification Number</label>
-                                                        <input type="text" name="certificate_no" class="form-control"/>
+                                                        <input type="text" name="certificate_no[]" class="form-control"/>
                                                     </div>
                                                     <!-- <div class="form-group col-1"></div> -->
                                                     <div class="form-group col-7">
                                                         <label>Certification Name</label>
-                                                        <input type="text" name="name" class="form-control"/>
+                                                        <input type="text" name="certificate_name[]" class="form-control"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">

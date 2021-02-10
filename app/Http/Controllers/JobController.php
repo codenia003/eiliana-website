@@ -259,6 +259,7 @@ class JobController extends Controller
         $user = Sentinel::getUser();
 
         $input = $request->except('_token');
+       
         $input['user_id'] = $user->id;
 
         $indexing = "";
@@ -315,7 +316,7 @@ class JobController extends Controller
         $projects->indexing = $input['indexing'];
         $projects->save();
 
-        $insertedId = $projects->job_id;
+        $insertedId = $projects->project_id;
 
         foreach ($input['education_id'] as $key => $value) {
             $education = new ProjectsEducation;
@@ -346,7 +347,7 @@ class JobController extends Controller
         foreach ($input['question_type'] as $key => $value) {
             $questions = new ProjectsQuestion;
             $questions->user_id = $user->id;
-            $questions->job_id = $insertedId;
+            $questions->project_id = $insertedId;
             $questions->question_type = $input['question_type'][$key];
             $questions->question_name = $input['question_name'][$key];
             $questions->question_option = $input['question_option'][$key];

@@ -506,7 +506,7 @@ class JobController extends Controller
 
             $details = [
                 'greeting' => 'Hi '. $user->full_name,
-                'body' => 'This is my your notification from eiliana.com',
+                'body' => 'You have response on your proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
                 'actionURL' => '/staffing-lead-response',
@@ -518,6 +518,50 @@ class JobController extends Controller
         } else {
             $response['success'] = '2';
             $response['errors'] = 'You are already reply to this user';
+        }
+        return response()->json($response);
+
+    }
+
+    public function jobLeadConvert(Request $request) {
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $jobleadcheck = JobLeads::where('job_leads_id', '=', $input['lead_id'])->where('lead_status', '!=', '1')->first();
+        if ($jobleadcheck === null) {
+
+            $jobleads = JobLeads::find($input['lead_id']);
+            $jobleads->lead_status = $input['lead_status'];
+            $jobleads->save();
+
+            if($input['lead_status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Accepted successfully';
+            } elseif($input['lead_status'] === '5') {
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Onhold successfully';
+            } else {
+                $response['success'] = '2';
+                $response['errors'] = 'Proposal Decline successfully';
+            }
+
+            $user = User::find($jobleads->from_user_id);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have response on your job proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/freelancer/my-proposal',
+                'main_id' => $input['lead_id']
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+        } else {
+            $response['success'] = '2';
+            $response['errors'] = 'You are already accept this proposal';
         }
         return response()->json($response);
 

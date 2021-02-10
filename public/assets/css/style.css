@@ -12,7 +12,8 @@ p {
       text-align: inherit;
   }
 a {
-    cursor: pointer
+    cursor: pointer;
+    color: #003466;
   }
   .container {
       max-width: 1160px !important;
@@ -1439,3 +1440,26 @@ span.select2-selection.select2-selection--single {
 .profile-information .stafflead-basic button.btn-info {
     width: 20%;
 }
+.profile-setting .my-alldata.card-body {
+    border: 1px solid #3ccade !important;
+}
+.profile-setting .my-alldata thead tr {
+    background-color: #003466 !important;
+    color: #fff;
+    font-size: 15px;
+}
+.profile-setting .my-alldata thead tr {
+    border: unset;
+}
+
+.profile-setting .my-alldata thead tr th {
+    font-weight: 400;
+    border: unset !important;
+}
+.profile-setting .my-alldata tr:nth-child(odd) {
+    background-color: #fff;
+}
+.profile-setting .my-alldata tr:nth-child(even) {
+    background-color: #e1e8f5;
+}
+

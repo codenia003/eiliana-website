@@ -65,7 +65,8 @@ class UserNotification extends Notification
     {
         return [
            'greeting' => $this->details['greeting'],
-           'data' => $this->details['body']. ":- ".$this->details['main_id'],
+           'data' => $this->details['body'],
+           'datawith' => $this->details['body']. ":- ".$this->details['main_id'],
            'notify_type' => '1',
            'actionURL' => $this->details['actionURL'],
            'main_id' => $this->details['main_id']

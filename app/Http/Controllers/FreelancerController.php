@@ -11,6 +11,7 @@ use Sentinel;
 use View;
 use DB;
 use App\Models\ContractStaffingLeads;
+use App\Models\JobLeads;
 
 class FreelancerController extends Controller
 {
@@ -21,7 +22,7 @@ class FreelancerController extends Controller
 
     public function myOpportunity()
     {
-        $leads = ContractStaffingLeads::with('fromuser')->where('to_user_id', Sentinel::getUser()->id)->get();
+        $leads = ContractStaffingLeads::with('fromuser')->where('to_user_id', Sentinel::getUser()->id)->paginate(10);
         // return $leads;
         return view('freelancer/myopportunity', compact('leads'));
     }
@@ -34,7 +35,14 @@ class FreelancerController extends Controller
 
     public function myProposal()
     {
-        return view('freelancer/myproposal');
+        $leads = JobLeads::with('fromuser')->where('from_user_id', Sentinel::getUser()->id)->paginate(10);
+        return view('freelancer/myproposal', compact('leads'));
+    }
+
+    public function myProposalView($id)
+    {
+        $leads = JobLeads::with('fromuser')->where('job_leads_id', $id)->first();
+        return view('freelancer/myproposalview', compact('leads'));
     }
 
     public function myProject()

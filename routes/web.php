@@ -415,6 +415,7 @@ Route::group(
         Route::post('post-job-lead', 'JobController@postJobLead')->name('postJobLead.new');
         Route::get('job-lead-response/{id}', 'JobController@jobLeadResponse');
         Route::get('profilejoblead/{id}', 'JobController@profileJobLead')->name('job.profilejoblead');
+        Route::post('job-lead-convert', 'JobController@jobLeadConvert');
     }
 );
 
@@ -444,6 +445,7 @@ Route::group(
         Route::get('my-opportunity', 'FreelancerController@myOpportunity')->name('my-opportunity');
         Route::get('my-opportunity/{id}', 'FreelancerController@myOpportunityView')->name('my-opportunity.view');
         Route::get('my-proposal', 'FreelancerController@myProposal')->name('my-proposal');
+        Route::get('my-proposal/{id}', 'FreelancerController@myProposalView')->name('my-proposal.view');
         Route::get('my-project', 'FreelancerController@myProject')->name('my-project');
     }
 );

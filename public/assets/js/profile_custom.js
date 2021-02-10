@@ -62,16 +62,16 @@ $(document).ready(function() {
         },
     }).on('success.form.bv', function(e) {
         e.preventDefault();
-        // $('.spinner-border').removeClass("d-none");
         var $form = $(e.target);
         var bv = $form.data('bootstrapValidator');
+        // $('.spinner-border').removeClass("d-none");
         // console.log($form.serialize());
         $.post($form.attr('action'), $form.serialize(), function(result) {
             // console.log(result);
             var userDatas = result;
             if (userDatas.success == '0') {
                 Swal.fire({
-                   icon: 'error',
+                   type: 'error',
                    title: 'Oops...',
                    text: userDatas.errors,
                    showConfirmButton: false,
@@ -97,7 +97,7 @@ $(document).ready(function() {
                     var redirect = '/profile/education';
                 }
                 Swal.fire({
-                    icon: 'success',
+                    type: 'success',
                     title: 'Success...',
                     text: msg,
                 }).then(function() {

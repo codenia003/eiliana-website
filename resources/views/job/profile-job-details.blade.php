@@ -72,9 +72,10 @@ Job Post
                 </div>
                 <div class="profile-information">
                     <div class="stafflead-basic mb-4">
-                        <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="leadConvert('{{ $joblead->job_leads_id }}','2')">Accept</button>
-                        <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="leadConvert('{{ $joblead->job_leads_id }}','4')">Reject</button>
-                        <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="leadConvert('{{ $joblead->job_leads_id }}','5')">On Hold</button>
+                        <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                        <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','2')">Accept</button>
+                        <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','4')">Reject</button>
+                        <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','5')">On Hold</button>
                     </div>
                     <div class="card p-3 mb-4 pb-4">
                         <div class="row align-items-center">
@@ -336,55 +337,49 @@ $(document).ready(function(){
         }]
     });
 });
-function leadConvert(lead_id,lead_status){
-    alert('working on it');
-    // var url = '/job-lead-convert';
-    // var data= {
-    //     _token: "{{ csrf_token() }}",
-    //     lead_id: lead_id,
-    //     lead_status: lead_status
-    // };
-    // $.ajax({
-    //     type: 'POST',
-    //     url: url,
-    //     data: data,
-    //     success: function(data) {
-    //         var userCheck = data;
-    //         if (userCheck.success == '1') {
-    //             Swal.fire({
-    //                 type: 'success',
-    //                 title: 'Success...',
-    //                 text: userCheck.msg,
-    //                 showConfirmButton: false,
-    //                 timer: 2000
-    //             });
-    //             window.location.href = '/freelancer/my-opportunity';
-    //         } else {
-    //             Swal.fire({
-    //                 type: 'error',
-    //                 title: 'Oops...',
-    //                 text: userCheck.errors,
-    //                 showConfirmButton: false,
-    //                 timer: 3000
-    //             });
-    //             if (userCheck.success == '2') {
-    //                 window.location.href = '/freelancer/my-opportunity';
-    //             }
-    //         }
-    //         //
-    //         // Swal.fire({
-    //         //     type: 'success',
-    //         //     title: 'Success...',
-    //         //     text: message,
-    //         //     showConfirmButton: false,
-    //         //     timer: 1500
-    //         // })
+function jobleadConvert(lead_id,lead_status){
+    // alert(lead_id);
+    $('.spinner-border').removeClass("d-none");
+    var url = '/job/job-lead-convert';
+    var data= {
+        _token: "{{ csrf_token() }}",
+        lead_id: lead_id,
+        lead_status: lead_status
+    };
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: function(data) {
+            var userCheck = data;
+            $('.spinner-border').addClass("d-none");
+            if (userCheck.success == '1') {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Success...',
+                    text: userCheck.msg,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                // window.location.href = '/freelancer/my-opportunity';
+            } else {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: userCheck.errors,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                // if (userCheck.success == '2') {
+                //     window.location.href = '/freelancer/my-opportunity';
+                // }
+            }
 
-    //     },
-    //     error: function(xhr, status, error) {
-    //         console.log("error: ",error);
-    //     },
-    // });
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
 }
 </script>
 <!--global js end-->

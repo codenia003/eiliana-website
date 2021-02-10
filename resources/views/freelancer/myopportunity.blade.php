@@ -1,8 +1,5 @@
 @extends('profile/layout')
 @section('profile_css')
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap4.css') }}"/>
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/dataTables.bootstrap4.css') }}"/>
- <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap4.css') }}">
 @stop
 
 @section('top')
@@ -17,7 +14,7 @@
 @stop
 @section('profile_content')
 <div class="card-body table-responsive-lg table-responsive-sm table-responsive-md">
-    <table class="table table-striped table-bordered" id="myopportunity-table">
+    <table class="table table-striped" id="myopportunity-table">
         <thead>
          <tr>
             <th>Opportunity Id</th>
@@ -53,20 +50,11 @@
         @endforeach
         </tbody>
     </table>
+    <div class="pager">
+        {{ $leads->withQueryString()->links() }}
+    </div>
 </div>
 @stop
 
 @section('profile_script')
-<script type="text/javascript" src="{{ asset('vendors/datatables/js/jquery.dataTables.js') }}" ></script>
-<script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap4.js') }}" ></script>
-<script>
-    $('#myopportunity-table').DataTable({
-        responsive: true,
-        pageLength: 10,
-        searching: false,
-        paging: true,
-        info: false,
-        bSort: false
-    });
-   </script>
 @stop

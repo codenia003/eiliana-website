@@ -121,7 +121,7 @@ Job Lead Response
                                                         <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
                                                     </a>
                                                 </div>
-                                                <div class="contract-apply text-center">
+                                                <div class="contract-apply text-center d-none">
                                                     <ul class="list-inline mb-0">
                                                         <li class="list-inline-item">
                                                             <a href="#" class="btn-icon"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>

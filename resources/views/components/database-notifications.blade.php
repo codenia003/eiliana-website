@@ -16,6 +16,7 @@
             @foreach (Sentinel::getUser()->unreadNotifications as $notification)
             <a href="{{ url($notification->data['actionURL']) }}" class="list-group-item">
                 <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-1">{{$notification->data['greeting']}}</h5>
                     <div class="text-right text-muted">
                         <small>
                         @if (is_null($notification->read_at))

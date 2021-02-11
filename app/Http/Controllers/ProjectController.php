@@ -54,6 +54,7 @@ class ProjectController extends JoshController
         $user = Sentinel::getUser();
 
         $input = $request->except('_token');
+        
 
         $input['user_id'] = $user->id;
 
@@ -140,12 +141,22 @@ class ProjectController extends JoshController
         }
 
         foreach ($input['question_type'] as $key => $value) {
+            
+            if ($input['question_type'][$key] == '1') {
+                $question_option = $input['question_radio'.$key];
+            } elseif($input['question_type'][$key] == '2') {
+        
+                $question_option = '1';
+            } else {
+                $question_option = $input['question_option'][$key];
+            }
+
             $questions = new ProjectsQuestion;
             $questions->user_id = $user->id;
             $questions->project_id = $insertedId;
             $questions->question_type = $input['question_type'][$key];
             $questions->question_name = $input['question_name'][$key];
-            $questions->question_option = $input['question_option'][$key];
+            $questions->question_option = $question_option;
             $questions->display_status = 1;
             $questions->save();
         }
@@ -255,7 +266,7 @@ class ProjectController extends JoshController
             $projectleads->lead_status = '1';
             $projectleads->save();
 
-            $insertedId = $projectleads->project_leads_id;
+            $insertedId = $input['project_id'];
 
             $user = User::find($input['to_user_id']);
 
@@ -282,7 +293,7 @@ class ProjectController extends JoshController
 
     public function projectBidResponse($id) {
 
-       $project = Project::with('companydetails','locations')->where('project_id', $id)->first();
+       $project = Project::with('companydetails','locations','projectbidresponse','projectbidresponse.fromuser','projectbidresponse.fromuser.userprofessionalexp','projectbidresponse.fromuser.userprofessionalexp.currentlocation')->where('project_id', $id)->first();
 
        $selected_technologty_pre = explode(',', $project->technologty_pre);
         $selected_framework = explode(',', $project->framework);

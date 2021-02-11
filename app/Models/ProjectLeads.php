@@ -15,8 +15,8 @@ class ProjectLeads extends Model
         return $this->belongsTo('App\Models\Project', 'project_id', 'project_id');
     }
 
-    public function touser()
+    public function fromuser()
     {
-        return $this->belongsTo('App\Models\User', 'to_user_id', 'id');
+        return $this->belongsTo('App\Models\User', 'from_user_id', 'id');
     }
 }

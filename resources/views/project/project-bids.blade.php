@@ -48,15 +48,8 @@ Project Bid Response
                             <!-- <div class="card-body mb-3 mb-lg-5 p-4 text-center d-block" *ngIf="loading">
                                 <div class="spinner-border spinner-border-lg"></div>
                             </div> -->
-                            <div class="card-body">
-                                <h5>{{ $project->project_title }}</h5>
-                                @if ($project->companydetails->company_name)
-                                {{ $project->companydetails->company_name }}
-                                @else
-                                {{ $project->companydetails->full_name }}
-                                @endif
-                                <p>{{ $project->locations->name }}</p>
-                                <p>Posted On {{  \Carbon\Carbon::parse($project->created_at)->isoFormat('MMM Do YYYY') }}</p>
+                            <div class="card-body"> 
+                                
                                 <div class="skills mt-4">
                                     <span class="h5">Project Description</span>
                                     <p>{{ $project->project_summary }}</p>
@@ -78,10 +71,16 @@ Project Bid Response
                                 <hr>
                                 <div class="skills mt-4">
                                     <span class="h5">Technology: </span>
-                                   
+                                    @foreach ($technologies as $technology)
+                                        {{ $loop->first ? '' : ', ' }}
+                                        <span>{{ $technology->technology_name }}</span>
+                                    @endforeach
                                     <br>
                                     <span class="h5">Framework: </span>
-                                   
+                                   @foreach ($childtechnologies as $technology)
+                                        {{ $loop->first ? '' : ', ' }}
+                                        <span>{{ $technology->technology_name }}</span>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -97,7 +96,9 @@ Project Bid Response
                                     @else
                                     {{ $project->companydetails->full_name }}
                                     @endif
-                                </p>                             
+
+                                </p> 
+                                <p>Posted On- {{  \Carbon\Carbon::parse($project->created_at)->isoFormat('MMM Do YYYY') }}</p>                            
                             </div>
                         </div>
                     </div>
@@ -108,7 +109,7 @@ Project Bid Response
                             <div class="mb-3 mb-lg-5">
                                 <ul class="list-unstyled">
                                     <!-- leads by freelancers -->
-                                   
+                                    @forelse ($project->projectbidresponse as $projectlead)
                                     <li class="card p-4 mb-4">
                                         <div class="row">
                                             <div class="col-md-3">
@@ -137,13 +138,16 @@ Project Bid Response
                                             <div class="col-md-9">
                                                 <div class="contract-body">
                                                     <div class="mb-2">
-                                                       
+                                                       <a href="#" class="h3">{{ $projectlead->fromuser->full_name }}</a>
+                                                        @if ($projectlead->lead_status === '1')
+                                                        <span class="badge badge-success float-right h4">New</span>
+                                                        @endif 
                                                     </div>
                                                     <div class="row no-gutters">
                                                         <div class="col-md-6">
                                                             <div class="mb-2">
                                                                 <div class="display-5">Key Skills</div>
-                                                                
+                                                                <p>{{ $projectlead->fromuser->userprofessionalexp->key_skills }} {{ $projectlead->fromuser->userprofessionalexp->profile_headline }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 d-none">
@@ -156,25 +160,25 @@ Project Bid Response
                                                         <div class="col-md-6">
                                                             <div class="mb-2">
                                                                 <div class="display-5">Industry</div>
-                                                               <!--  <p>Website Designing</p> -->
+                                                            
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="mb-2">
                                                                 <div class="display-5">Experience</div>
-                                                                
+                                                                <p>{{ $projectlead->fromuser->userprofessionalexp->experience_year }} Years {{ $projectlead->fromuser->userprofessionalexp->experience_month }} Month</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="mb-2">
                                                                 <div class="display-5">Location</div>
-                                                                
+                                                                <p>{{ $projectlead->fromuser->userprofessionalexp->currentlocation->name }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="mb-3 duration">
                                                                 <div class="display-5">No of Projects</div>
-                                                                
+                                                                <p>{{ $projectlead->fromuser->support_project + $projectlead->fromuser->development_project }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -182,13 +186,13 @@ Project Bid Response
                                             </div>
                                         </div>
                                     </li>
-                                    
+                                     @empty
                                     <li class="card p-4 mb-4">
                                         <div class="text-center d-block">
                                             <div>Search list is empty</div>
                                         </div>
                                     </li>
-                                 
+                                  @endforelse
                                     <!-- End Project -->
                                 </ul>
                                

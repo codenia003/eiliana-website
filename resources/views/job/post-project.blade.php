@@ -24,7 +24,7 @@ Post Project
         <div class="px-5 py-2">
             <div class="align-items-center">
                 <span class="border-title"><i class="fa fa-bars"></i></span>
-                <span class="h5 text-white ml-2">Job Post</span>
+                <span class="h5 text-white ml-2">Project Post</span>
             </div>
         </div>
     </div>
@@ -32,10 +32,10 @@ Post Project
         <div class="container space-1 space-top-lg-0 mt-lg-n10">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="mb-4 mt-3 text-right">
+                    <!-- <div class="mb-4 mt-3 text-right">
                         <button class="btn btn-md btn-info eiliana-btn" type="button">Save Job <i class="far fa-edit"></i></button>
                         <button type="button" class="btn btn-md btn-info ml-3 eiliana-btn">Modify Job <i class="far fa-edit"></i></button>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
                     <div id="notific">
@@ -443,22 +443,24 @@ Post Project
                                                     <h4 class="text-left">Question 1</h4>
                                                     <div class="question1-1">
                                                         <div class="question1">
+                                                             <input type="hidden" name="question_type[]" class="form-control" value="1"/>
+                                                              <input type="hidden" name="question_option[]" value="0">
                                                             <div class="form-group">
                                                                 {{-- <label>Question</label> --}}
-                                                                <input type="text" name="question" class="form-control"/>
+                                                                <input type="text" name="question_name[]" class="form-control"/>
                                                             </div>
                                                             <div class="form-group basic-info my-3">
                                                                 <label>Lorem Isume</label>
                                                                 <br>
                                                                 <div class="form-check form-check-inline">
                                                                     <div class="custom-control custom-radio">
-                                                                        <input type="radio" id="Yes" class="custom-control-input" name="lookingfor" value="1" checked>
+                                                                        <input type="radio" id="Yes" class="custom-control-input" name="question_radio0" value="1" checked>
                                                                         <label class="custom-control-label" for="Yes">Yes</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-check form-check-inline">
                                                                     <div class="custom-control custom-radio">
-                                                                        <input type="radio" id="No" class="custom-control-input" name="lookingfor" value="0">
+                                                                        <input type="radio" id="No" class="custom-control-input" name="question_radio0" value="0">
                                                                         <label class="custom-control-label" for="No">No</label>
                                                                     </div>
                                                                 </div>

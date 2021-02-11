@@ -21,4 +21,24 @@ class Project extends Model
     {
         return $this->belongsTo('App\Models\Location', 'location', 'location_id');
     }
+
+     public function projectseducation()
+    {
+        return $this->hasMany('App\Models\ProjectsEducation', 'project_id', 'project_id');
+    }
+
+    public function projectscertificate()
+    {
+        return $this->hasMany('App\Models\ProjectsCertificate', 'project_id', 'project_id');
+    }
+
+    public function projectsquestion()
+    {
+        return $this->hasMany('App\Models\ProjectsQuestion', 'project_id', 'project_id');
+    }
+
+    public function projectbidresponse()
+    {
+        return $this->hasMany('App\Models\ProjectLeads', 'project_id', 'project_id');
+    }
 }

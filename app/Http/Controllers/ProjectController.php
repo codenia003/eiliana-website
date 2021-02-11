@@ -2,15 +2,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\JoshController;
-use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Mail;
-use Reminder;
 use Sentinel;
-use URL;
-use Validator;
 use View;
 use DB;
 use Illuminate\Support\Facades\Notification;
@@ -21,6 +17,13 @@ use App\Models\Location;
 use App\Models\Technology;
 use App\Models\Job;
 use App\Models\ProjectLeads;
+use App\Models\ProjectsEducation;
+use App\Models\ProjectsCertificate;
+use App\Models\ProjectsQuestion;
+use App\Models\EducationType;
+use App\Models\Qualification;
+use App\Models\University;
+use App\Models\CustomerIndustry;
 use stdClass;
 use Carbon\Carbon;
 use App\Notifications\UserNotification;
@@ -32,6 +35,123 @@ class ProjectController extends JoshController
      *
      * @return View
      */
+
+    public function postProject()
+    {
+        $educationtype = EducationType::all();
+        $qualifications = Qualification::all();
+        $universities = University::all();
+        $technologies = Technology::where('parent_id', '0')->get();
+        $locations = Location::all();
+        $customerindustries = CustomerIndustry::all();
+        $projectcategorys = ProjectCategory::all();
+
+        return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys'));
+    }
+
+    public function postProjecton(Request $request)
+    {
+        $user = Sentinel::getUser();
+
+        $input = $request->except('_token');
+
+        $input['user_id'] = $user->id;
+
+        $indexing = "";
+        if($input['key_skills'] != null) {
+            $words = explode(" " ,$input['key_skills']);
+            foreach($words as $word) {
+                $indexing .= metaphone($word). " ";
+            }
+        }
+
+        if($input['project_title'] != null) {
+            $words = explode(" " ,$input['project_title']);
+            foreach($words as $word) {
+                $indexing .= metaphone($word). " ";
+            }
+        }
+
+        $input['indexing'] = $indexing;
+
+        $technologty_pre = $request->input('technologty_pre');
+        $technologty_pre = implode(',', $technologty_pre);
+        $input['technologty_pre'] = $technologty_pre;
+
+        $framework = $request->input('framework');
+        $framework = implode(',', $framework);
+        $input['framework'] = $framework;
+
+        $current = Carbon::now();
+        $projectExpires = $current->addDays(7);
+
+        $projects = new Project;
+        $projects->posted_by_user_id = $user->id;
+        $projects->project_status_id = 1;
+        $projects->about_company = $input['about_company'];
+        $projects->project_title = $input['project_title'];
+        $projects->key_skills = $input['key_skills'];
+        $projects->project_category = $input['project_category'];
+        $projects->project_summary = $input['project_summary'];
+        $projects->type_of_project = $input['type_of_project'];
+        $projects->experience_year = $input['experience_year'];
+        $projects->experience_month = $input['experience_month'];
+        $projects->customer_industry = $input['customer_industry'];
+        $projects->technologty_pre = $input['technologty_pre'];
+        $projects->framework = $input['framework'];
+        $projects->candidate_role = $input['candidate_role'];
+        $projects->product_industry_exprience = $input['product_industry_exprience'];
+        $projects->location = $input['location'];
+        $projects->budget_from = $input['budget_from'];
+        $projects->budget_to = $input['budget_to'];
+        $projects->payment_type_id = 1;
+        $projects->currency_id = 1;
+        $projects->language_id = 1;
+        $projects->expiry_datetime = $projectExpires;
+        $projects->indexing = $input['indexing'];
+        $projects->save();
+
+        $insertedId = $projects->project_id;
+
+        foreach ($input['education_id'] as $key => $value) {
+            $education = new ProjectsEducation;
+            $education->user_id = $user->id;
+            $education->project_id = $insertedId;
+            $education->education_type = $input['education_type'][$key];
+            $education->graduation_type = $input['graduation_type'][$key];
+            $education->name = $input['universityname'][$key];
+            $education->month = $input['month'][$key];
+            $education->year = $input['year'][$key];
+            $education->degree = $input['degree'][$key];
+            $education->save();
+        }
+
+        foreach ($input['certificate_id'] as $key => $value) {
+            $certificate = new ProjectsCertificate;
+            $certificate->user_id = $user->id;
+            $certificate->project_id = $insertedId;
+            $certificate->certificate_no = $input['certificate_no'][$key];
+            $certificate->name = $input['certificate_name'][$key];
+            $certificate->from_date = $input['from_date'][$key];
+            $certificate->till_date = $input['till_date'][$key];
+            $certificate->institutename = $input['institutename'][$key];
+            $certificate->display_status = 1;
+            $certificate->save();
+        }
+
+        foreach ($input['question_type'] as $key => $value) {
+            $questions = new ProjectsQuestion;
+            $questions->user_id = $user->id;
+            $questions->project_id = $insertedId;
+            $questions->question_type = $input['question_type'][$key];
+            $questions->question_name = $input['question_name'][$key];
+            $questions->question_option = $input['question_option'][$key];
+            $questions->display_status = 1;
+            $questions->save();
+        }
+
+        return redirect('post-job')->with('success', 'Job Posted successfully');
+    }
 
     public function getSearchProject(Request $request)
     {
@@ -101,7 +221,7 @@ class ProjectController extends JoshController
     public function getProjectDeatils($id)
     {
         $project = Project::with('companydetails')->where('project_id', $id)->first();
-        
+
 
         $from = strtotime($project['expiry_datetime']);
         $today = time();
@@ -121,7 +241,7 @@ class ProjectController extends JoshController
 
     public function postProjectLead(Request $request){
 
-        $input = $request->except('_token'); 
+        $input = $request->except('_token');
         $response['success'] = '0';
         $projectleadcheck = ProjectLeads::where('project_id', '=', $input['project_id'])->where('from_user_id', '=', Sentinel::getUser()->id)->first();
         if ($projectleadcheck === null) {
@@ -163,7 +283,7 @@ class ProjectController extends JoshController
     public function projectBidResponse($id) {
 
        $project = Project::with('companydetails','locations')->where('project_id', $id)->first();
-       
+
        $selected_technologty_pre = explode(',', $project->technologty_pre);
         $selected_framework = explode(',', $project->framework);
         $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();

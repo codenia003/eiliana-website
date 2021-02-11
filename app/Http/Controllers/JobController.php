@@ -18,10 +18,6 @@ use Illuminate\Support\Facades\Notification;
 use stdClass;
 use Carbon\Carbon;
 use App\Models\Education;
-use App\Models\Project;
-use App\Models\ProjectsEducation;
-use App\Models\ProjectsCertificate;
-use App\Models\ProjectsQuestion;
 use App\Models\Qualification;
 use App\Models\University;
 use App\Models\EducationType;
@@ -55,19 +51,6 @@ class JobController extends Controller
         $customerindustries = CustomerIndustry::all();
 
         return view('job/post-job', compact('educationtype','qualifications','universities','technologies','locations','customerindustries'));
-    }
-
-    public function postProject()
-    {
-        $educationtype = EducationType::all();
-        $qualifications = Qualification::all();
-        $universities = University::all();
-        $technologies = Technology::where('parent_id', '0')->get();
-        $locations = Location::all();
-        $customerindustries = CustomerIndustry::all();
-        $projectcategorys = ProjectCategory::all();
-
-        return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys'));
     }
 
     public function hireTalent()
@@ -247,110 +230,6 @@ class JobController extends Controller
             $questions->question_type = $input['question_type'][$key];
             $questions->question_name = $input['question_name'][$key];
             $questions->question_option = $question_option;
-            $questions->display_status = 1;
-            $questions->save();
-        }
-
-        return redirect('post-job')->with('success', 'Job Posted successfully');
-    }
-
-    public function postProjecton(Request $request)
-    {
-        $user = Sentinel::getUser();
-
-        $input = $request->except('_token');
-       
-        $input['user_id'] = $user->id;
-
-        $indexing = "";
-        if($input['key_skills'] != null) {
-            $words = explode(" " ,$input['key_skills']);
-            foreach($words as $word) {
-                $indexing .= metaphone($word). " ";
-            }
-        }
-
-        if($input['project_title'] != null) {
-            $words = explode(" " ,$input['project_title']);
-            foreach($words as $word) {
-                $indexing .= metaphone($word). " ";
-            }
-        }
-
-        $input['indexing'] = $indexing;
-
-        $technologty_pre = $request->input('technologty_pre');
-        $technologty_pre = implode(',', $technologty_pre);
-        $input['technologty_pre'] = $technologty_pre;
-
-        $framework = $request->input('framework');
-        $framework = implode(',', $framework);
-        $input['framework'] = $framework;
-
-        $current = Carbon::now();
-        $projectExpires = $current->addDays(7);
-
-        $projects = new Project;
-        $projects->posted_by_user_id = $user->id;
-        $projects->project_status_id = 1;
-        $projects->about_company = $input['about_company'];
-        $projects->project_title = $input['project_title'];
-        $projects->key_skills = $input['key_skills'];
-        $projects->project_category = $input['project_category'];
-        $projects->project_summary = $input['project_summary'];
-        $projects->type_of_project = $input['type_of_project'];
-        $projects->experience_year = $input['experience_year'];
-        $projects->experience_month = $input['experience_month'];
-        $projects->customer_industry = $input['customer_industry'];
-        $projects->technologty_pre = $input['technologty_pre'];
-        $projects->framework = $input['framework'];
-        $projects->candidate_role = $input['candidate_role'];
-        $projects->product_industry_exprience = $input['product_industry_exprience'];
-        $projects->location = $input['location'];
-        $projects->budget_from = $input['budget_from'];
-        $projects->budget_to = $input['budget_to'];
-        $projects->payment_type_id = 1;
-        $projects->currency_id = 1;
-        $projects->language_id = 1;
-        $projects->expiry_datetime = $projectExpires;
-        $projects->indexing = $input['indexing'];
-        $projects->save();
-
-        $insertedId = $projects->project_id;
-
-        foreach ($input['education_id'] as $key => $value) {
-            $education = new ProjectsEducation;
-            $education->user_id = $user->id;
-            $education->project_id = $insertedId;
-            $education->education_type = $input['education_type'][$key];
-            $education->graduation_type = $input['graduation_type'][$key];
-            $education->name = $input['universityname'][$key];
-            $education->month = $input['month'][$key];
-            $education->year = $input['year'][$key];
-            $education->degree = $input['degree'][$key];
-            $education->save();
-        }
-
-        foreach ($input['certificate_id'] as $key => $value) {
-            $certificate = new ProjectsCertificate;
-            $certificate->user_id = $user->id;
-            $certificate->project_id = $insertedId;
-            $certificate->certificate_no = $input['certificate_no'][$key];
-            $certificate->name = $input['certificate_name'][$key];
-            $certificate->from_date = $input['from_date'][$key];
-            $certificate->till_date = $input['till_date'][$key];
-            $certificate->institutename = $input['institutename'][$key];
-            $certificate->display_status = 1;
-            $certificate->save();
-        }
-
-        foreach ($input['question_type'] as $key => $value) {
-            $questions = new ProjectsQuestion;
-            $questions->user_id = $user->id;
-            $questions->project_id = $insertedId;
-            $questions->question_type = $input['question_type'][$key];
-            $questions->question_name = $input['question_name'][$key];
-            $questions->question_option = $input['question_option'][$key];
             $questions->display_status = 1;
             $questions->save();
         }

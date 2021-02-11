@@ -395,11 +395,10 @@ Route::group(
         Route::get('home', 'FrontEndController@getDashboard')->name('home');
         Route::get('post-job', 'JobController@index')->name('post-job');
         Route::post('post-job-on', 'JobController@postJobon')->name('post-job-on');
-        Route::get('post-project', 'JobController@postProject')->name('post-project');
-        Route::post('post-project-on', 'JobController@postProjecton')->name('post-project-on');
+        Route::get('post-project', 'ProjectController@postProject')->name('post-project');
+        Route::post('post-project-on', 'ProjectController@postProjecton')->name('post-project-on');
 
         Route::get('project/{id}', 'ProjectController@getProjectDeatils');
-        Route::post('project/post-project-lead', 'ProjectController@postProjectLead')->name('ProjectLead.new');
         Route::get('job/{id}', 'JobController@getJobDeatils')->name('jobdetails');
         Route::get('profile/{id}', 'JobController@getProfileDeatils');
 

@@ -138,7 +138,7 @@ Project Bid Response
                                             <div class="col-md-9">
                                                 <div class="contract-body">
                                                     <div class="mb-2">
-                                                       <a href="#" class="h3">{{ $projectlead->fromuser->full_name }}</a>
+                                                       <a href="{{ url('project/profile-projectbid') }}/{{ $projectlead->project_leads_id }}" class="h3">{{ $projectlead->fromuser->full_name }}</a>
                                                         @if ($projectlead->lead_status === '1')
                                                         <span class="badge badge-success float-right h4">New</span>
                                                         @endif 

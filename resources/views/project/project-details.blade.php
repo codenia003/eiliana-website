@@ -62,9 +62,41 @@ Search Project
                     </div> -->
                     <div class="card-body">
                         <h5>{{ $project->project_title }}</h5>
-                        <p>{{ $project->project_summary }}</p>
+                              
+                            <div class="skills mt-4">
+                                    <span class="h5">Project Description</span>
+                                   <p>{{ $project->project_summary }}</p>
+                                </div>
+                                <div class="skills mt-4">
+                                    <span class="h5">Budget</span>
+                                    <p>{{ $project->budget_from }} to {{ $project->budget_to }}</p>
+                                </div>
+                                <div class="skills mt-4">
+                                    <span class="h5">Years of Experience</span>
+                                    <p>{{ $project->experience_year }} Years {{ $project->experience_month }} Month</p>
+                                </div>
+                                <div class="skills mt-4">
+                                    <span class="h5">Skills Required</span>
+                                    <p>{{ $project->key_skills }}</p>
+                                </div>
+                         <hr>
+                                <h3>Additional Information</h3>
+                                <div class="skills mt-4">
+                                    <span class="h5">Technology: </span>
+                                    @foreach ($technologies as $technology)
+                                        {{ $loop->first ? '' : ', ' }}
+                                        <span>{{ $technology->technology_name }}</span>
+                                    @endforeach
+                                    <br>
+                                    <span class="h5">Framework: </span>
+                                    @foreach ($childtechnologies as $technology)
+                                        {{ $loop->first ? '' : ', ' }}
+                                        <span>{{ $technology->technology_name }}</span>
+                                    @endforeach
+                                </div>
                         <div class="skills mt-4">
-                            <span class="h5">Skills Required</span>
+                          <!--   <span class="h5">Skills Required</span> -->
+
                             <ul class="nav mt-4">
                                 <li class="nav-item">
                                     <a class="nav-link btn btn-light text-dark" href="#">Sales</a>
@@ -77,6 +109,7 @@ Search Project
                                 </li>
                             </ul>
                         </div>
+                      
                     </div>
                 </div>
             </div>
@@ -84,6 +117,8 @@ Search Project
                 <div class="card mb-5 shadow p-4 mb-4">
                     <div class="border-bottom pb-4">
                         <h4>About the Employer</h4>
+                         <p>{{ $project->about_company }}</p>
+                          <p>Posted On {{  \Carbon\Carbon::parse($project->created_at)->isoFormat('MMM Do YYYY') }}</p>
                     </div>
                     <!-- <div class="border-bottom pb-4 mt-4">
                         <h4 class="mb-2"><strong>Employer Verification</strong></h4>

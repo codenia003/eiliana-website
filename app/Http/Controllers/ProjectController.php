@@ -15,6 +15,8 @@ use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\Location;
 use App\Models\Technology;
+use App\Models\Education;
+use App\Models\Certificate;
 use App\Models\Job;
 use App\Models\ProjectLeads;
 use App\Models\ProjectsEducation;
@@ -24,6 +26,9 @@ use App\Models\EducationType;
 use App\Models\Qualification;
 use App\Models\University;
 use App\Models\CustomerIndustry;
+use App\Models\ProfessionalExperience;
+use App\Models\UserProject;
+use App\Models\Employers;
 use stdClass;
 use Carbon\Carbon;
 use App\Notifications\UserNotification;
@@ -161,7 +166,7 @@ class ProjectController extends JoshController
             $questions->save();
         }
 
-        return redirect('post-job')->with('success', 'Job Posted successfully');
+        return redirect('post-project')->with('success', 'Project Posted successfully');
     }
 
     public function getSearchProject(Request $request)
@@ -231,8 +236,12 @@ class ProjectController extends JoshController
 
     public function getProjectDeatils($id)
     {
-        $project = Project::with('companydetails')->where('project_id', $id)->first();
-
+        $project = Project::with('companydetails','locations')->where('project_id', $id)->first();
+        
+        $selected_technologty_pre = explode(',', $project->technologty_pre);
+        $selected_framework = explode(',', $project->framework);
+        $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
+        $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
 
         $from = strtotime($project['expiry_datetime']);
         $today = time();
@@ -241,7 +250,7 @@ class ProjectController extends JoshController
         $project['expiry_days'] = floor($difference / 86400);
 
 
-        return view('project/project-details', compact('project'));
+        return view('project/project-details', compact('project','technologies','childtechnologies'));
     }
 
     public function getAllProject(Request $request)
@@ -301,6 +310,22 @@ class ProjectController extends JoshController
         $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
 
         return view('project/project-bids', compact('project','technologies','childtechnologies'));
+    }
+
+    public function profileProjectbid($id)
+    {
+
+        $joblead = ProjectLeads::with('projectdetail')->where('project_leads_id', $id)->first();
+        $user = User::where('id', $joblead->from_user_id)->first();
+
+        $ug_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $joblead->from_user_id)->where('graduation_type', '3')->get();
+        $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $joblead->from_user_id)->where('graduation_type', '4')->get();
+        $certificates = Certificate::where('user_id', $joblead->from_user_id)->get();
+        $proexps = ProfessionalExperience::where('user_id', $joblead->from_user_id)->first();
+        $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $joblead->from_user_id)->get();
+        $employers = Employers::where('user_id', $joblead->from_user_id)->get();
+
+        return view('project/profile-project-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
     }
 
 }

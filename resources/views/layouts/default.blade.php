@@ -38,8 +38,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto topnav">
                         <li class="nav-item">
-                            {{-- <a class="nav-link" href="#">Post a Project</a> --}}
-                            <a class="nav-link" href="{{ url('/job-posting') }}">Post a Project</a>
+                            <a class="nav-link" href="#">Post a Project</a>
+                            {{-- <a class="nav-link" href="{{ url('/job-posting') }}">Post a Project</a> --}}
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">How It Works</a>
@@ -53,14 +53,14 @@
                         <li class="nav-item">
                             <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/register'">Sign Up</button>
                         </li>
-                        <li class="nav-item dropdown language">
+                        {{-- <li class="nav-item dropdown language">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="/assets/img/lnguage_icon.jpg">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#"><img src="/assets/img/lnguage_icon.jpg"> India</a>
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </nav>

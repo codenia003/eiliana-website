@@ -285,12 +285,12 @@ Route::get(
         return view('comingsoon');
     }]
 );
-Route::get(
-    '/',
-    ['as' => 'home', function () {
-        return view('index');
-    }]
-);
+// Route::get(
+//     '/',
+//     ['as' => 'home', function () {
+//         return view('index');
+//     }]
+// );
 
 // account
 Route::group(
@@ -405,6 +405,8 @@ Route::group(
         Route::post('post-staffing-lead', 'JobController@postStaffingLead');
         Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');
         Route::post('staffing-lead-convert', 'JobController@staffingLeadConvert');
+
+        Route::get('sales-referral', 'SalesController@salesReferral');
     }
 );
 

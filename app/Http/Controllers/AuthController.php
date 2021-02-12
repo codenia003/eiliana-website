@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\JoshController;
 use App\Http\Requests\ConfirmPasswordRequest;
+use App\Providers\RouteServiceProvider;
 use App\Mail\Register;
 use App\Mail\Welcome;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
@@ -294,7 +295,7 @@ class AuthController extends JoshController
                     $country_name = DB::table('countries')->where('id', $user->country)->first();
 
                     $user['country_name'] = $country_name->name;
-
+                    $response['url'] = RouteServiceProvider::HOME;
                     $response['user'] = $user;
                     $response['errors'] = trans('auth/message.signin.success');
                     $request->session()->put('users', $user);

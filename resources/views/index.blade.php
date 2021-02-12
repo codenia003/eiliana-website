@@ -23,7 +23,6 @@ Home
 <section class="section1">
   <div class="slick-carousel">
     <div class="slide slider1">
-      
       <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-1.png);">
           <div class="container space-2 space-lg-4">
             <div class="row">
@@ -131,7 +130,7 @@ Home
           </div>
       </div>
     </div>
-  </div>  
+  </div>
 </section>
 <!-- //Carousel End -->
 @stop
@@ -368,15 +367,15 @@ Home
                             <form action="#" method="POST" id="register_basic_form">
                                 @csrf
                                 <div class="form-row">
-                                    <div class="form-group col-3 mr-5">
+                                    <div class="form-group col-md-3 col-12 mr-5">
                                         <label>Key Skills</label>
                                         <input type="text" name="keyskills" class="form-control" />
                                     </div>
-                                    <div class="form-group col-3 mr-5">
+                                    <div class="form-group col-md-3 col-12 mr-5">
                                         <label>Location</label>
                                         <input type="text" name="location" class="form-control" />
                                     </div>
-                                    <div class="form-group col-3 mr-4">
+                                    <div class="form-group col-md-3 col-12 mr-4">
                                         <label>Experience</label>
                                         <input type="text" name="experience" class="form-control" />
                                     </div>
@@ -407,7 +406,7 @@ Home
                         <div class="find_job_button">
                             <a class="btn_small yellow-linear-gradient" href="#">Apply</a>
                         </div>
-                    </div>  
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="job-details m-4 p-4">
@@ -421,7 +420,7 @@ Home
                         <div class="find_job_button">
                             <a class="btn_small yellow-linear-gradient" href="#">Apply</a>
                         </div>
-                    </div>  
+                    </div>
                 </div>
                 <div class="col-md-12 text-right">
                     <a class="view-alljobs" href="#">View All Jobs <span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span></a>
@@ -488,7 +487,7 @@ Home
           <li class="dropdown">
             <a class="link-underline dropdown-toggle" data-toggle="dropdown" href="#">Sales & Marketing</a>
             <div class="dropdown-menu">
-               
+
             </div>
           </li>
           <li><a class="link-underline" href="#">Legal</a></li>
@@ -519,7 +518,7 @@ Home
           <li><a class="link-underline" href="#">Bookkeeper</a></li>
           <li><a class="link-underline" href="#">Content Writer</a></li>
           <li><a class="link-underline" href="#">Copywriter</a></li>
-          <li><a class="link-underline" href="#">Customer Service</a></li> 
+          <li><a class="link-underline" href="#">Customer Service</a></li>
           <li><a class="link-underline" href="#">Database Administrator</a></li>
           <li><a class="link-underline" href="#">Data Scientist</a></li>
           <li><a class="link-underline" href="#">Facebook Developer</a></li>
@@ -529,7 +528,7 @@ Home
       <div class="col col1 pb-5 mb-md-0 pt-4">
         <ul class="list-unstyled list-article">
           <li><a class="link-underline" href="#">Graphic Designer</a></li>
-          <li><a class="link-underline" href="#">Information Security Analyst</a></li> 
+          <li><a class="link-underline" href="#">Information Security Analyst</a></li>
           <li><a class="link-underline" href="#">iOS Developer</a></li>
           <li><a class="link-underline" href="#">Java Developer</a></li>
           <li><a class="link-underline" href="#">JavaScript Developer</a></li>
@@ -616,7 +615,7 @@ Home
                 <!-- <h5 class="text-orange">24X7 Support</h5> -->
               </div>
             </div>
-          </div>        
+          </div>
         </div>
         <div class="slide">
           <div class="crowd_favrt">

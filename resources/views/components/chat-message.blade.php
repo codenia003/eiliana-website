@@ -39,7 +39,8 @@ $(document).ready(function(){
         modal_content += '<div class="modal-dialog float"><div class="modal-content">';
         modal_content += ' <div class="modal-header bg-blue text-white"><h5 class="modal-title">You have chat with <b>'+to_user_name+'</b>.</h5><button type="button" class="close" data-dismiss="modal">&times;</button></div>';
         modal_content += '<div class="modal-body delivery-details"><div class="chat_history" data-touserid="'+to_user_id+'" id="chat_history_'+to_user_id+'" style="height:360px; border:1px solid #ccc; overflow-y: scroll; margin-bottom:24px; padding:16px;">';
-        modal_content += fetch_user_chat_history(to_user_id);
+        // modal_content += fetch_user_chat_history(to_user_id);
+        modal_content += '<span class="spinner-border spinner-border-sm mr-1"></span>';
         modal_content += '</div>';
         modal_content += '<div id="error_show_'+to_user_id+'"></div>';
         modal_content += '<div class="form-group">';

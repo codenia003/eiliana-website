@@ -1462,4 +1462,7 @@ span.select2-selection.select2-selection--single {
 .profile-setting .my-alldata tr:nth-child(even) {
     background-color: #e1e8f5;
 }
-
+.bs-advanced .nav-tabs span {
+    position: relative;
+    top: 20px;
+}

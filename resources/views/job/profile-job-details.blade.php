@@ -38,30 +38,24 @@ Job Post
                         <div class="bs-advanced">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#" role="tab"
-                                        aria-controls="home" aria-selected="true">My Projects</a>
+                                    <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','2')">Accept</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link disabled" id="team-tab" data-toggle="tab" href="#" role="tab"
-                                        aria-controls="team" aria-selected="false">Create Team</a>
+                                    <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','4')">Reject</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link disabled" id="saved-tab" data-toggle="tab" href="#" role="tab"
-                                        aria-controls="saved" aria-selected="false">Saved Search</a>
+                                    <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','5')">On Hold</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link disabled" id="modify-tab" data-toggle="tab" href="#" role="tab"
-                                        aria-controls="modify" aria-selected="false">Modify Search</a>
+                                    <a class="nav-link" href="#">Assign Other Job</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link disabled" id="live-tab" data-toggle="tab" href="#" role="tab"
-                                        aria-controls="live" aria-selected="false">Live Chat</a>
+                                    <a class="nav-link start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" data-chattype="4" title="Live Chat!">Live Chat</a>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                                 </li>
                             </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,12 +65,12 @@ Job Post
                     @include('notifications')
                 </div>
                 <div class="profile-information">
-                    <div class="stafflead-basic mb-4">
+                    {{-- <div class="stafflead-basic mb-4">
                         <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                         <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','2')">Accept</button>
                         <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','4')">Reject</button>
                         <button type="button" class="btn btn-md btn-info bg-light-blue" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','5')">On Hold</button>
-                    </div>
+                    </div> --}}
                     <div class="card p-3 mb-4 pb-4">
                         <div class="row align-items-center">
                             <div class="col-md-3">
@@ -382,5 +376,6 @@ function jobleadConvert(lead_id,lead_status){
     });
 }
 </script>
+<x-chat-message/>
 <!--global js end-->
 @stop

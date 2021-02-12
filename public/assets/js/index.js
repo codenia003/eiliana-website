@@ -20,7 +20,7 @@ $(document).ready(function() {
             .removeClass('fa-minus')
             .addClass('fa-plus');
     });
-    var slide = Math.floor(Math.random() * 5) + 1  
+    var slide = Math.floor(Math.random() * 5) + 1
     // console.log(slide);
     $('.slick-carousel').slick({
         "slidesToShow": 1,
@@ -57,6 +57,7 @@ $(document).ready(function() {
             "breakpoint": 768,
             "settings": {
                 "slidesToShow": 1,
+                "slidesToScroll": 1,
                 "arrows": false
              }
         }]

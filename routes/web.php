@@ -285,12 +285,12 @@ Route::get(
         return view('comingsoon');
     }]
 );
-// Route::get(
-//     '/',
-//     ['as' => 'home', function () {
-//         return view('index');
-//     }]
-// );
+Route::get(
+    '/',
+    ['as' => 'home', function () {
+        return view('index');
+    }]
+);
 
 // account
 Route::group(

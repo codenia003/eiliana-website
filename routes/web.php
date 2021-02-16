@@ -407,6 +407,8 @@ Route::group(
         Route::post('staffing-lead-convert', 'JobController@staffingLeadConvert');
 
         Route::get('sales-referral', 'SalesController@salesReferral');
+        Route::get('sales-referral-form', 'SalesController@salesReferralForm');
+        Route::post('sales/post-referral-form', 'SalesController@postSalesReferralForm')->name('referralform');
     }
 );
 

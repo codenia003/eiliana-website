@@ -13,7 +13,7 @@
 </div>
 @stop
 @section('profile_content')
-<div class="card-body table-responsive-lg table-responsive-sm table-responsive-md">
+<div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md">
     <table class="table table-striped" id="myopportunity-table">
         <thead>
          <tr>

@@ -11,12 +11,14 @@ use Sentinel;
 use View;
 use DB;
 use App\Models\ContractStaffingLeads;
+use App\Models\SalesReferral;
 
 class ClientController extends JoshController
 {
     public function myLead()
     {
-        return view('client/mylead');
+        $leads = SalesReferral::where('from_user_id', Sentinel::getUser()->id)->get();
+        return view('client/mylead', compact('leads'));
     }
 
     public function myRequirement()

@@ -16,8 +16,8 @@
 </div>
 @stop
 @section('profile_content')
-<div class="card-body table-responsive-lg table-responsive-sm table-responsive-md">
-    <table class="table table-striped table-bordered" id="myrequirement-table">
+<div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md">
+    <table class="table table-striped" id="myrequirement-table">
         <thead>
          <tr>
             <th>Requirement Id</th>
@@ -58,12 +58,12 @@
 <script type="text/javascript" src="{{ asset('vendors/datatables/js/jquery.dataTables.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap4.js') }}" ></script>
 <script>
-    $('#myrequirement-table').DataTable({
-        responsive: true,
-        pageLength: 10,
-        searching: false,
-        paging: false,
-        info: false
-    });
-   </script>
+    // $('#myrequirement-table').DataTable({
+    //     responsive: true,
+    //     pageLength: 10,
+    //     searching: false,
+    //     paging: false,
+    //     info: false
+    // });
+</script>
 @stop

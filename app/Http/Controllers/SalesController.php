@@ -29,8 +29,23 @@ class SalesController extends JoshController
         $input = $request->except('_token');
         $input['user_id'] = $user->id;
 
+        $referral_code = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 6);
+        $input['referral_code'] = $referral_code;
+
         SalesReferral::create($input);
 
         return redirect('sales-referral')->with('success', 'Form updated successfully');
+    }
+
+    public function identifyconsultant(Request $request)
+    {
+        $data = $request->all();
+        $salesreferral = $data;
+        $request->session()->forget('sales_referral');
+        $request->session()->put('sales_referral', $salesreferral);
+
+        $response['success'] = '1';
+        $response['msg'] = 'Now process the next phase';
+        return response()->json($response);
     }
 }

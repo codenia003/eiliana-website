@@ -35,14 +35,12 @@
             <div class="col-md-2">
                 <div class="contract-apply text-center">
                     <ul class="list-inline mb-0">
-
-                            <li class="list-inline-item">
-                                <a class="start_chat btn-icon" data-touserid="{{$leads->touser->id }}" data-tousername="{{$leads->touser->full_name }}" data-chattype="4" title="Proposal!"><img class="img-fluid" src="/assets/img/icons/icon-6.png" alt="Avatar"></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="start_chat btn-icon" data-touserid="{{$leads->touser->id }}" data-tousername="{{$leads->touser->full_name }}" data-chattype="4" title="Live Chat!"><i class="far fa-comment"></i></a>
-                            </li>
-
+                        <li class="list-inline-item">
+                            <a class="start_chat btn-icon" data-touserid="{{$leads->touser->id }}" data-tousername="{{$leads->touser->full_name }}" data-chattype="4" title="Proposal!"><img class="img-fluid" src="/assets/img/icons/icon-6.png" alt="Avatar"></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="start_chat btn-icon" data-touserid="{{$leads->touser->id }}" data-tousername="{{$leads->touser->full_name }}" data-chattype="4" title="Live Chat!"><i class="far fa-comment"></i></a>
+                        </li>
                     </ul>
                 </div>
             </div>

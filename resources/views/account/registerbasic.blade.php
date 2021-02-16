@@ -15,6 +15,8 @@ Basic Information
 <link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/register.css') }}">
+<link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
+type="text/css"/>
 <!--end of page level css-->
 @stop
 
@@ -141,7 +143,8 @@ Basic Information
 
                             <div class="form-group col anonymousShow-1">
                                 <label>Date Of Birth</label>
-                                <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control" />
+                                {{-- <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control" /> --}}
+                                <input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker">
                             </div>
                         </div>
                         <div class="form-group">
@@ -221,6 +224,12 @@ Basic Information
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/assets/js/register_custom.js') }}"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
 <script src="https://kit.fontawesome.com/a8d4ee811a.js" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+    flatpickr('.flatpickr');
+});
+</script>
 <!--global js end-->
 @stop

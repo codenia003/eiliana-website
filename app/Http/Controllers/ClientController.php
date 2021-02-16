@@ -17,8 +17,15 @@ class ClientController extends JoshController
 {
     public function myLead()
     {
-        $leads = SalesReferral::where('from_user_id', Sentinel::getUser()->id)->get();
+        $leads = SalesReferral::where('user_id', Sentinel::getUser()->id)->get();
         return view('client/mylead', compact('leads'));
+    }
+
+    public function myLeadView($id) {
+
+        $leads = SalesReferral::where('sales_referral_id', $id)->first();
+
+        return view('client/myleadview', compact('leads'));
     }
 
     public function myRequirement()

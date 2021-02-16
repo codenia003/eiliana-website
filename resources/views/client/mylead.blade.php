@@ -14,10 +14,10 @@
     <table class="table table-striped" id="myrequirement-table">
         <thead>
          <tr>
-            <th>Sales Referral Id</th>
+            <th>Referral Code</th>
             <th>Company Name</th>
             <th>Contact Person</th>
-            <th>Email</th>
+            {{-- <th>Email</th> --}}
             <th>Mobile No</th>
             <th>View</th>
          </tr>
@@ -25,12 +25,12 @@
         <tbody>
         @foreach($leads as $lead)
             <tr>
-                <td>{{ $lead->sales_referral_id }}</td>
+                <td>{{ $lead->referral_code }}</td>
                 <td>{{ $lead->company_name }}</td>
                 <td>{{ $lead->contact_person }}</td>
-                <td>{{ $lead->email }}</td>
+                {{-- <td>{{ $lead->email }}</td> --}}
                 <td>{{ $lead->mobile_no }}</td>
-                <td><a href="#"><i class="fas fa-info-circle"></i></a></td>
+                <td><a href="{{ route('my-lead.view',$lead->sales_referral_id) }}"><i class="fas fa-info-circle"></i></a></td>
             </tr>
         @endforeach
         </tbody>

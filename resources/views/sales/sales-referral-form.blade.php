@@ -6,6 +6,14 @@ Sales Referral
 @parent
 @stop
 
+{{-- page level styles --}}
+@section('header_styles')
+<!--page level css starts-->
+<link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
+type="text/css"/>
+<!--end of page level css-->
+@stop
+
 @section('top')
 <div class="bg-red">
     <div class="px-5 py-2">
@@ -84,7 +92,8 @@ Sales Referral
                                     </div>
                                     <div class="form-group col">
                                         <label>Date/Time Connect</label>
-                                        <input type="datetime-local" name="datetimeconnect" class="form-control" value="" required />
+                                        {{-- <input type="datetime-local" name="datetimeconnect" class="form-control" value="" required /> --}}
+                                        <input class="form-control flatpickr" data-enabletime=true data-time_24hr="true" data-timeFormat="H:i" name="datetimeconnect" id="datetimepicker">
                                     </div>
                                 </div>
                                 <div class="form-group basic-info mb-3">
@@ -114,7 +123,7 @@ Sales Referral
                                     </div>
                                     <div class="form-group col">
                                         <label>Expected Commission(%/INR)</label>
-                                        <input type="datetime" name="expected_commission" class="form-control" value="" required />
+                                        <input type="text" name="expected_commission" class="form-control" value="" required />
                                     </div>
                                 </div>
                                 <div class="form-group mt-5">
@@ -133,4 +142,22 @@ Sales Referral
     </div>
     <!-- End Row -->
 </div>
+@stop
+
+{{-- footer scripts --}}
+@section('footer_scripts')
+<!--global js starts-->
+<script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+
+    flatpickr('#datetimepicker', {
+        enableTime: true,
+        dateFormat: 'Y-m-d H:i K',
+        minDate: "today",
+    });
+
+});
+</script>
+<!--global js end-->
 @stop

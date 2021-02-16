@@ -1466,3 +1466,9 @@ span.select2-selection.select2-selection--single {
     position: relative;
     top: 20px;
 }
+.profile-setting .my-alldata table {
+    margin-bottom: unset;
+}
+.login-body .flatpickr {
+    background-color: white !important;
+}

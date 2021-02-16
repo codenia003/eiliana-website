@@ -92,7 +92,8 @@
                 <div class="form-row">
                     <div class="form-group col">
                         <label>DOB</label>
-                        <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control" value="{{ $user->dob }}" />
+                        {{-- <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control"  /> --}}
+                        <input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="{{ $user->dob }}">
                     </div>
                     <div class="form-group col anonymousShow {{ ($user->anonymous=='0')? 'd-none' : '' }}">
                         <label>Alias</label>

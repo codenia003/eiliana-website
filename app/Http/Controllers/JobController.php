@@ -53,8 +53,9 @@ class JobController extends Controller
         return view('job/post-job', compact('educationtype','qualifications','universities','technologies','locations','customerindustries'));
     }
 
-    public function hireTalent()
+    public function hireTalent(Request $request)
     {
+
         $pagename = [
         	'page_title' => 'Hire Talent',
         	'lookingfor' => '1'

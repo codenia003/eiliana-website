@@ -409,6 +409,7 @@ Route::group(
         Route::get('sales-referral', 'SalesController@salesReferral');
         Route::get('sales-referral-form', 'SalesController@salesReferralForm');
         Route::post('sales/post-referral-form', 'SalesController@postSalesReferralForm')->name('referralform');
+        Route::get('sales/identifyconsultant', 'SalesController@identifyconsultant');
     }
 );
 
@@ -434,8 +435,11 @@ Route::group(
     ['prefix' => 'client', 'middleware' => 'user'],
     function () {
         Route::get('my-lead', 'ClientController@myLead')->name('my-lead');
+        Route::get('my-lead/{id}', 'ClientController@myLeadView')->name('my-lead.view');
+
         Route::get('my-requirement', 'ClientController@myRequirement')->name('my-requirement');
         Route::get('my-requirement/{id}', 'ClientController@myRequirementView')->name('my-requirement.view');
+
         Route::get('my-proposal', 'ClientController@myProposal')->name('my-proposal');
         Route::get('my-project', 'ClientController@myProject')->name('my-project');
     }

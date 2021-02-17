@@ -40,7 +40,7 @@ class ProjectController extends JoshController
      *
      * @return View
      */
-
+    
     public function postProject()
     {
         $educationtype = EducationType::all();

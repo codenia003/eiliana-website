@@ -50,7 +50,7 @@ Project Post
                                     <a class="nav-link" href="#">Assign Other Project</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link start_chat btn-icon" data-touserid="" data-tousername="" data-chattype="4" title="Live Chat!">Live Chat</a>
+                                    <a class="nav-link start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" data-chattype="4" title="Live Chat!">Live Chat</a>
                                 </li>
                                 <li class="nav-item">
                                     <span class="spinner-border spinner-border-sm mr-1 d-none"></span>

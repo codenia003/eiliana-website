@@ -39,13 +39,20 @@ class SalesController extends JoshController
 
     public function identifyconsultant(Request $request)
     {
+        $response['success'] = '0';
         $data = $request->all();
-        $salesreferral = $data;
-        $request->session()->forget('sales_referral');
-        $request->session()->put('sales_referral', $salesreferral);
+        $leads = SalesReferral::where('sales_referral_id', $data['referral_id'])->first();
 
-        $response['success'] = '1';
-        $response['msg'] = 'Now process the next phase';
+        if ($leads->lead_status == 1) {
+            $response['msg'] = 'Eilian review your sales referral lead';
+        } else {
+            $request->session()->forget('sales_referral');
+            $request->session()->put('sales_referral', $data);
+
+            $response['success'] = '1';
+            $response['msg'] = 'Sales referral process start to the next phase';
+        }
+
         return response()->json($response);
     }
 }

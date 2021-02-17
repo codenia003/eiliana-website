@@ -114,7 +114,7 @@ class ChatController extends JoshController
         }
         $details = [
             'greeting' => 'Hi '.$user->full_name,
-            'body' => 'You have new opportunity',
+            'body' => 'You have new message',
             'thanks' => 'Thank you for using eiliana.com!',
             'actionText' => 'View My Site',
             'actionURL' => $url,

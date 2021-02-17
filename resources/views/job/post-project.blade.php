@@ -32,10 +32,10 @@ Post Project
         <div class="container space-1 space-top-lg-0 mt-lg-n10">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <!-- <div class="mb-4 mt-3 text-right">
-                        <button class="btn btn-md btn-info eiliana-btn" type="button">Save Job <i class="far fa-edit"></i></button>
-                        <button type="button" class="btn btn-md btn-info ml-3 eiliana-btn">Modify Job <i class="far fa-edit"></i></button>
-                    </div> -->
+                    <div class="mb-4 mt-3 text-right">
+                        {{-- <button class="btn btn-md btn-info eiliana-btn" type="button">Save Job <i class="far fa-edit"></i></button>
+                        <button type="button" class="btn btn-md btn-info ml-3 eiliana-btn">Modify Job <i class="far fa-edit"></i></button> --}}
+                    </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
                     <div id="notific">
@@ -44,6 +44,12 @@ Post Project
                     <div class="advance-search singup-body login-body">
                         <form action="{{ url('/post-project-on') }}" method="POST" id="postJobForm" enctype="multipart/form-data">
                             @csrf
+                            @isset(Session::get('sales_referral')['referral_id'])
+                            <input type="hidden" name="referral_id" value="{{ Session::get('sales_referral')['referral_id'] }}">
+                            @endisset
+                            @empty(Session::get('sales_referral')['referral_id'])
+                            <input type="hidden" name="referral_id" value="0">
+                            @endempty
                             <div class="card">
                                 <div class="p-4">
                                     <div class="form-group">

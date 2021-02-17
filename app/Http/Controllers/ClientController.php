@@ -17,7 +17,7 @@ class ClientController extends JoshController
 {
     public function myLead()
     {
-        $leads = SalesReferral::where('user_id', Sentinel::getUser()->id)->get();
+        $leads = SalesReferral::where('user_id', Sentinel::getUser()->id)->latest()->get();
         return view('client/mylead', compact('leads'));
     }
 
@@ -30,7 +30,7 @@ class ClientController extends JoshController
 
     public function myRequirement()
     {
-        $leads = ContractStaffingLeads::with('touser')->where('from_user_id', Sentinel::getUser()->id)->get();
+        $leads = ContractStaffingLeads::with('touser')->where('from_user_id', Sentinel::getUser()->id)->latest()->get();
 
         return view('client/myrequirement', compact('leads'));
     }

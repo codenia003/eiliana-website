@@ -109,10 +109,25 @@
                         <input type="text" name="expected_commission" class="form-control" value="{{ $leads->expected_commission }}" disabled />
                     </div>
                 </div>
+                <div class="form-group">
+                    <label>Lead Status: </label>
+                    <b class="">
+                        @if ($leads->lead_status == 1)
+                        Pending: Eilian review your sales referral lead
+                        @elseif($leads->lead_status == 2)
+                        Process: Now you can Identify Consultant
+                        @elseif($leads->lead_status == 3)
+                        Complete
+                        @else
+                        Cancel: Eilian cancal your sales referral lead
+                        @endif
+                    </b>
+                </div>
                 <div class="form-group mt-5">
+
                     <div class="stafflead-basic">
-                        <button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->referral_code }}','1')">Identify Consultant</button>
-                        <button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->referral_code }}','2')">Contact Eiliana</button>
+                        <button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->sales_referral_id }}','{{ $leads->referral_code }}','1')">Identify Consultant</button>
+                        <button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->sales_referral_id }}','{{ $leads->referral_code }}','2')">Contact Eiliana</button>
                     </div>
                 </div>
             </div>
@@ -123,9 +138,10 @@
 
 @section('profile_script')
 <script>
-    function identify(referral_code,conatct_type){
+    function identify(referral_id,referral_code,conatct_type){
         if(conatct_type === '1'){
             var data= {
+                referral_id:referral_id,
                 referral_code:referral_code,
                 conatct_type:conatct_type
             };
@@ -136,14 +152,25 @@
                 contentType: 'application/json',
                 dataType: "json",
                 success: function(data) {
-                    Swal.fire({
-                        type: 'success',
-                        title: 'Success...',
-                        text: 'Process successfully',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    window.location.href = '/hire-talent';
+                    if(data.success === '1'){
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Success...',
+                            text: data.msg,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        window.location.href = '/hire-talent-sales';
+                    } else {
+                        Swal.fire({
+                            type: 'info',
+                            title: 'Oops...',
+                            text: data.msg,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+
                 },
                 error: function(xhr, status, error) {
                     console.log("error: ",error);

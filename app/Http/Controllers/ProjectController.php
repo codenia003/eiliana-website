@@ -40,7 +40,7 @@ class ProjectController extends JoshController
      *
      * @return View
      */
-    
+
     public function postProject()
     {
         $educationtype = EducationType::all();
@@ -59,7 +59,7 @@ class ProjectController extends JoshController
         $user = Sentinel::getUser();
 
         $input = $request->except('_token');
-        
+
 
         $input['user_id'] = $user->id;
 
@@ -115,6 +115,7 @@ class ProjectController extends JoshController
         $projects->language_id = 1;
         $projects->expiry_datetime = $projectExpires;
         $projects->indexing = $input['indexing'];
+        $projects->referral_id = $input['referral_id'];
         $projects->save();
 
         $insertedId = $projects->project_id;
@@ -146,11 +147,11 @@ class ProjectController extends JoshController
         }
 
         foreach ($input['question_type'] as $key => $value) {
-            
+
             if ($input['question_type'][$key] == '1') {
                 $question_option = $input['question_radio'.$key];
             } elseif($input['question_type'][$key] == '2') {
-        
+
                 $question_option = '1';
             } else {
                 $question_option = $input['question_option'][$key];
@@ -237,7 +238,7 @@ class ProjectController extends JoshController
     public function getProjectDeatils($id)
     {
         $project = Project::with('companydetails','locations')->where('project_id', $id)->first();
-        
+
         $selected_technologty_pre = explode(',', $project->technologty_pre);
         $selected_framework = explode(',', $project->framework);
         $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();

@@ -38,6 +38,7 @@
                         @endforeach
                     </select>
                 </div> --}}
+                <input type="hidden" name="job_category" value="{{ Session::get('contractsattfing')['project_category'] }}">
                 <div class="form-group">
                     <label>Any Keyword(Key Skills)</label>
                     <input type="text" name="keyword" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" />

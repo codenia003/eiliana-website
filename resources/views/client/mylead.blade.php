@@ -17,7 +17,8 @@
             <th>Referral Code</th>
             <th>Company Name</th>
             <th>Contact Person</th>
-            {{-- <th>Email</th> --}}
+            <th>Designation</th>
+            <th>Status</th>
             <th>Mobile No</th>
             <th>View</th>
          </tr>
@@ -28,7 +29,18 @@
                 <td>{{ $lead->referral_code }}</td>
                 <td>{{ $lead->company_name }}</td>
                 <td>{{ $lead->contact_person }}</td>
-                {{-- <td>{{ $lead->email }}</td> --}}
+                <td>{{ $lead->designation }}</td>
+                <td>
+                    @if ($lead->lead_status == 1)
+                    Pending
+                    @elseif($lead->lead_status == 2)
+                    Process
+                    @elseif($lead->lead_status == 3)
+                    Complete
+                    @else
+                    Cancel
+                    @endif
+                </td>
                 <td>{{ $lead->mobile_no }}</td>
                 <td><a href="{{ route('my-lead.view',$lead->sales_referral_id) }}"><i class="fas fa-info-circle"></i></a></td>
             </tr>

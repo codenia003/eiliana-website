@@ -313,6 +313,12 @@ Job Post
             <div class="modal-content">
                 <form action="{{ url('/post-staffing-lead') }}" method="POST" id="staffingflead">
                     @csrf
+                    @isset(Session::get('sales_referral')['referral_id'])
+                        <input type="hidden" name="referral_id" value="{{ Session::get('sales_referral')['referral_id'] }}">
+                    @endisset
+                    @empty(Session::get('sales_referral')['referral_id'])
+                        <input type="hidden" name="referral_id" value="0">
+                    @endempty
                     <div class="modal-header bg-blue text-white">
                         <h4 class="modal-title" id="modalLabelnews">Contact Freelancer</h4>
                     </div>

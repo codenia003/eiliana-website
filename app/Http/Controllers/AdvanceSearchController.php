@@ -88,9 +88,9 @@ class AdvanceSearchController extends JoshController
 
                 $users = User::join('professional_experience', 'users.id', '=', 'professional_experience.user_id')->join('locations', 'locations.location_id', '=', 'professional_experience.current_location')->where('indexing', 'LIKE', '%'.$sound.'%')->where('id', '!=', $user->id)->select('users.*', 'professional_experience.*', 'locations.name as locationname')->paginate(10);
 
-                $id = DB::table('search_keyword')->insertGetId(
-                    ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
-                );
+                // $id = DB::table('search_keyword')->insertGetId(
+                //     ['user_id' => $user->id, 'keyword' => $request->input('keyword')]
+                // );
                 // print_r($userlist);
                 // die();
                 return view('search/browse-contract-staffing', compact('users'));

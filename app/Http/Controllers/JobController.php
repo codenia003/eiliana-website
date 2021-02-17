@@ -63,10 +63,25 @@ class JobController extends Controller
         $projectcategorys = ProjectCategory::all();
         $locations = Location::all();
 
+        $request->session()->forget('sales_referral');
+
         return view('job/hire-talent', compact('pagename','projectcategorys','locations'));
     }
 
-    public function jobProject()
+    public function hireTalentSales(Request $request)
+    {
+
+        $pagename = [
+        	'page_title' => 'Hire Talent',
+        	'lookingfor' => '1'
+        ];
+        $projectcategorys = ProjectCategory::all();
+        $locations = Location::all();
+
+        return view('job/hire-talent', compact('pagename','projectcategorys','locations'));
+    }
+
+    public function jobProject(Request $request)
     {
 
         $pagename = [
@@ -75,6 +90,8 @@ class JobController extends Controller
     	];
         $projectcategorys = ProjectCategory::all();
         $locations = Location::all();
+
+        $request->session()->forget('sales_referral');
 
         return view('job/job-posting', compact('pagename','projectcategorys','locations'));
     }
@@ -181,6 +198,7 @@ class JobController extends Controller
         $jobs->budget_to = $input['budget_to'];
         $jobs->auto_match = $input['auto_match'];
         $jobs->indexing = $input['indexing'];
+        $jobs->referral_id = $input['referral_id'];
         $jobs->display_status = 1;
         $jobs->save();
 
@@ -321,6 +339,7 @@ class JobController extends Controller
             $staffingleads->notify = '0';
             $staffingleads->display_status = '1';
             $staffingleads->lead_status = '1';
+            $staffingleads->referral_id = $input['referral_id'];
             $staffingleads->save();
 
             $insertedId = $staffingleads->staffing_leads_id;

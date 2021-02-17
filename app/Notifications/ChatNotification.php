@@ -58,8 +58,9 @@ class ChatNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //'data' => 'this is my notification',
-            'data' => "You have new message:- ".$this->details['main_id'],
+            'greeting' => $this->details['greeting'],
+            'data' =>  $this->details['body'],
+            'datawith' => $this->details['body']. ":- ".$this->details['main_id'],
             'notify_type' => '2',
             'actionURL' => $this->details['actionURL'],
             'main_id' => $this->details['main_id']

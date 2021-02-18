@@ -13,7 +13,7 @@
             <div class="basic-list">
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action {!! (Request::is('home') ? 'active' : '' ) !!}" href="{{ url('home') }}">Dashboard</a>
-                    <a class="list-group-item list-group-item-action {!! (Request::is('my-project') ? 'active' : '' ) !!}" href="{{ url('my-project') }}">My Project</a>
+                    {{-- <a class="list-group-item list-group-item-action {!! (Request::is('my-project') ? 'active' : '' ) !!}" href="{{ url('my-project') }}">My Project</a> --}}
                     <!-- <a class="list-group-item list-group-item-action {!! (Request::is('portfolio') ? 'active' : '' ) !!}" href="{{ url('portfolio') }}">Portfolio</a> -->
                 </div>
             </div>

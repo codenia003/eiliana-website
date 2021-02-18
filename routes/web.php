@@ -398,9 +398,9 @@ Route::group(
         Route::get('post-project', 'ProjectController@postProject')->name('post-project');
         Route::post('post-project-on', 'ProjectController@postProjecton')->name('post-project-on');
 
-        Route::get('project/{id}', 'ProjectController@getProjectDeatils');
+        Route::get('project/{id}', 'ProjectController@getProjectDeatils')->name('project.view');
         Route::get('job/{id}', 'JobController@getJobDeatils')->name('jobdetails');
-        Route::get('profile/{id}', 'JobController@getProfileDeatils');
+        Route::get('profile/{id}', 'JobController@getProfileDeatils')->name('profile.view');
 
         Route::post('post-staffing-lead', 'JobController@postStaffingLead');
         Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');

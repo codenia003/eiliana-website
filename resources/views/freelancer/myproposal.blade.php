@@ -19,7 +19,7 @@
         <thead>
          <tr>
             <th>Opportunity Id</th>
-            <th>Client Name</th>
+            <th>Job Name</th>
             <th>Subject</th>
             <th>Status</th>
             <th>Status Date</th>
@@ -30,7 +30,7 @@
         @foreach($leads as $lead)
             <tr>
                 <td>{{ $lead->job_leads_id }}</td>
-                <td>{{ $lead->fromuser->full_name }}</td>
+                <td><a href="{{ route('jobdetails',$lead->job_id) }}">{{ $lead->jobdetail->job_title }}</a></td>
                 <td>{{ $lead->subject }}</td>
                 <td>
                     @if ($lead->lead_status == 1)

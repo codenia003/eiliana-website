@@ -46,12 +46,12 @@ Register
                                     @csrf
                                     <div class="form-group input-field mb-3 {{ $errors->first('mobile', 'has-error') }}">
                                         <input type="text" class="form-control" id="mobile" name="mobile" required/>
-                                        <label for="username">Mobile Number</label>
+                                        <label for="mobile">Mobile Number</label>
                                         {!! $errors->first('mobile', '<span class="help-block">:message</span>') !!}
                                     </div>
                                     <div class="form-group input-field {{ $errors->first('email', 'has-error') }}">
                                         <input type="text" class="form-control" id="email" name="email" required>
-                                        <label for="username">Email ID</label>
+                                        <label for="email">Email ID</label>
                                         {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                     </div>
                                     <div class="form-group form-check">

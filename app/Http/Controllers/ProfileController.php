@@ -214,7 +214,6 @@ class ProfileController extends JoshController
                 $education->degree = $input['degree'][$key];
                 $education->save();
             }
-
         }
         return redirect('profile/certification')->with('success', 'Education updated successfully');
     }

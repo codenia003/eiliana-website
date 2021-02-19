@@ -470,13 +470,12 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'my-project', 'middleware' => 'user'],
+    ['prefix' => 'company', 'middleware' => ['user', 'company']],
     function () {
-        Route::get('', 'ProjectController@myProject')->name('my-project');
-        Route::get('add', 'ProjectController@myProjectAdd')->name('add');
-        Route::get('edit/{id}', 'ProjectController@myProjectEdit')->name('edit');
+        Route::get('teams', 'CompanayController@index');
     }
 );
+
 
 // Email System
 Route::group(

@@ -69,6 +69,7 @@ class AuthController extends JoshController
                 ['email' => $request->get('email'), 'mobile' => $request->get('mobile'), 'otp' => $otp, 'mobile_otp' => $mobile_otp]
             );
             $data['otp'] = $otp;
+
             Mail::send('emails.emailTemplates.otp', $data, function ($m) use ($data) {
                 $m->from('info@eiliana.com', 'Eiliana OTP');
                 $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');

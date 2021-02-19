@@ -190,9 +190,9 @@ $(document).ready(function(){
     });
 });
 function jobleadConvert(lead_id,lead_status){
-    // alert(lead_id);
+    //alert(lead_id);
     $('.spinner-border').removeClass("d-none");
-    var url = '/job/job-lead-convert';
+    var url = '/project/project-lead-convert';
     var data= {
         _token: "{{ csrf_token() }}",
         lead_id: lead_id,

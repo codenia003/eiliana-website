@@ -54,6 +54,13 @@ class ProjectController extends JoshController
         return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys'));
     }
 
+    public function projectSchedule()
+    {
+        // Show the page
+        return view('project/project-schedule');
+    }
+
+
     public function postProjecton(Request $request)
     {
         $user = Sentinel::getUser();
@@ -326,7 +333,52 @@ class ProjectController extends JoshController
         $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $joblead->from_user_id)->get();
         $employers = Employers::where('user_id', $joblead->from_user_id)->get();
 
+
         return view('project/profile-project-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
+    }
+
+    public function projectLeadConvert(Request $request) {
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $projectleadcheck = ProjectLeads::where('project_leads_id', '=', $input['lead_id'])->where('lead_status', '!=', '1')->first();
+        if ($projectleadcheck === null) {
+
+            $projectleads = ProjectLeads::find($input['lead_id']);
+            $projectleads->lead_status = $input['lead_status'];
+            $projectleads->save();
+
+            if($input['lead_status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Accepted successfully';
+            } elseif($input['lead_status'] === '5') {
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Onhold successfully';
+            } else {
+                $response['success'] = '2';
+                $response['errors'] = 'Proposal Decline successfully';
+            }
+
+            $user = User::find($projectleads->from_user_id);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have response on your job proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/freelancer/my-proposal',
+                'main_id' => $input['lead_id']
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+        } else {
+            $response['success'] = '2';
+            $response['errors'] = 'You are already accept this proposal';
+        }
+        return response()->json($response);
+
     }
 
 }

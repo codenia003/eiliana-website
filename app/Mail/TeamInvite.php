@@ -29,7 +29,7 @@ class TeamInvite extends Mailable
     public function build()
     {
         return $this->from('info@eiliana.com')
-        ->subject($this->details['company_name'].' Yoinvited you to Eiliana Teams')
+        ->subject($this->data['company_name'].' Yoinvited you to Eiliana Teams')
         ->markdown('emails.emailTemplates.teaminvite');
     }
 }

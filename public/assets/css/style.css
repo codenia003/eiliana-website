@@ -123,7 +123,7 @@ a {
   .four-slider .slick-slide {
     margin: 0 15px;
   }
-  .modal-dialog {
+  .login-body .modal-dialog {
       max-width: 580px !important;
   }
   .btn-ghost-light {

@@ -3,14 +3,15 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Contact extends Mailable
+class TeamInvite extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
+
     /**
      * Create a new message instance.
      *
@@ -20,7 +21,6 @@ class Contact extends Mailable
     {
         $this->data = $data;
     }
-
     /**
      * Build the message.
      *
@@ -28,8 +28,8 @@ class Contact extends Mailable
      */
     public function build()
     {
-        return $this->from('example@example.com')
-            ->subject('New Contact from'.$this->data['contact-name'])
-            ->markdown('emails.emailTemplates.contact');
+        return $this->from('info@eiliana.com')
+        ->subject($this->details['company_name'].' Yoinvited you to Eiliana Teams')
+        ->markdown('emails.emailTemplates.teaminvite');
     }
 }

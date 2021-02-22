@@ -72,6 +72,7 @@ type="text/css"/>
         theme: 'bootstrap',
         placeholder: 'Select a value',
     });
+
    	function changeAnonymus(e) {
         var anonymous = e.target.value;
         if (anonymous == '0') {

@@ -142,6 +142,14 @@ class AuthController extends JoshController
         $activate = $this->user_activation;
         $data = $request->all();
 
+        $invitation = $request->session()->get('teaminvitation');
+
+        if($invitation === null){
+            $compnay_id = 0;
+        } else {
+            $compnay_id = $invitation['from_user_id'];
+        }
+
         try {
 
             // $address_image_parts = explode(";base64,", $data['fileData']);

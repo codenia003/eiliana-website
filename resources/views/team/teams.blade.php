@@ -4,49 +4,52 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">My Lead</span>
+            <span class="h5 text-white ml-2">Teams</span>
         </div>
     </div>
 </div>
 @stop
 @section('profile_content')
 <div class="card mb-3 mb-lg-5">
-    <div class="card-header">
-      <h5 class="card-title">Teams
-      <a class="btn btn-primary bg-orange float-right" data-toggle="modal" data-target="#modal-4">Add Team</a>
-      </h5>
+    <div class="card-header listofteam">
+        <h5 class="card-title"><span>Team List</span>
+            <a class="btn btn-primary bg-orange float-right" data-toggle="modal" data-target="#modal-4">Add Team</a>
+        </h5>
     </div>
     <!-- Body -->
-    {{-- <div class="card-body">
-      <div class="card-body" style="min-height: 15rem;">
-        <table class="table">
+    <div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md">
+        <table class="table table-striped">
             <thead>
-              <tr>
-                <th>Project Name</th>
-                <th>Project Description</th>
-                <th>Expiry Datetime</th>
-                <th></th>
-              </tr>
+                <tr>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let project of projects">
-                <td>{{project.project_name}}</td>
-                <td>{{project.project_description}}</td>
-                <td>{{project.expiry_datetime}}</td>
-                <td style="white-space: nowrap">
-                  <a routerLink="edit/{{project.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-                </td>
-              </tr>
-              <tr *ngIf="!projects">
-                <td colspan="4" class="text-center">
-                  <span  *ngIf="loading" class="spinner-border spinner-border-lg align-center"></span>
-                  <span  *ngIf="!loading">Project list is empty</span>
-                </td>
-              </tr>
+                @foreach($teaminvitations as $invitation)
+                <tr>
+                    <td>{{ $invitation->to_user }}</td>
+                    <td>{{ $invitation->subject }}</td>
+                    <td>{{ $invitation->message }}</td>
+                    <td style="white-space: nowrap">
+                        @if ($invitation->status == 1)
+                        Accept
+                        @elseif($invitation->status == 2)
+                        Reject
+                        @else
+                        Pending
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
-      </div>
-    </div> --}}
+        <div class="pager">
+            {{ $teaminvitations->withQueryString()->links() }}
+        </div>
+    </div>
     <!-- End Body -->
     <div class="modal fade pullDown login-long-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
         <div class="modal-dialog modal-lg" role="document">
@@ -86,7 +89,7 @@
                     </div>
                     <div class="modal-footer singup-body">
                         <div class="btn-group" role="group">
-                            <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Apply</button>
+                            <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Submit</button>
                             <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>

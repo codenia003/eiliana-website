@@ -357,10 +357,10 @@ class JobController extends Controller
 
             Notification::send($user, new UserNotification($details));
 
-            // Mail::send('emails.emailTemplates.staffingleads', $input, function ($m) use ($input) {
-            //     $m->from('info@eiliana.com', $input['fromname']);
-            //     $m->to($input['toemail'], $input['toname'])->subject('New Job Application From ');
-            // });
+            Mail::send('emails.emailTemplates.staffingleads', $input, function ($m) use ($input) {
+                $m->from('info@eiliana.com', $input['fromname']);
+                $m->to($input['toemail'], $input['toname'])->subject('New Job Application From ');
+            });
             $response['success'] = '1';
             $response['msg'] = 'Proposal Submitted Successfully';
         } else {

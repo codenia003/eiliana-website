@@ -50,7 +50,13 @@ Register
                                         {!! $errors->first('mobile', '<span class="help-block">:message</span>') !!}
                                     </div>
                                     <div class="form-group input-field {{ $errors->first('email', 'has-error') }}">
-                                        <input type="text" class="form-control" id="email" name="email" required>
+                                        @isset(Session::get('teaminvitation')['to_user'])
+                                            <input type="text" class="form-control" id="email" name="email" value="{{ Session::get('teaminvitation')['to_user'] }}" required>
+                                        @endisset
+                                        @empty(Session::get('teaminvitation')['to_user'])
+                                            <input type="text" class="form-control" id="email" name="email" required>
+                                        @endempty
+
                                         <label for="email">Email ID</label>
                                         {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                     </div>

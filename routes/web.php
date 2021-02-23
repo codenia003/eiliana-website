@@ -473,10 +473,11 @@ Route::group(
     ['prefix' => 'company', 'middleware' => ['user', 'company']],
     function () {
         Route::get('teams', 'CompanayController@index');
-        Route::get('acceptinvitation', 'CompanayController@acceptInvitation');
         Route::post('registerteams', 'CompanayController@registerTeams')->name('registerteams');
     }
 );
+
+Route::get('acceptinvitation', 'CompanayController@acceptInvitation')->name('acceptinvitation');
 
 
 // Email System

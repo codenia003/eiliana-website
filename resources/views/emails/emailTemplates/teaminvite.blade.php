@@ -22,15 +22,15 @@
                                 </tr>
                                 <tr height="50"></tr>
                                 <tr>
-                                    <td style="color:#141d23;font-family: 'Montserrat',Arial, sans-serif;font-size:26px;font-weight:600;letter-spacing:1px;line-height:30px;" data-bgcolor="Title" data-color="Title" data-size="Title" data-min="12" data-max="60" align="center">
-                                        Hello!! Welcome to Eiliana Teams.
+                                    <td style="color:#141d23;font-family: 'Montserrat',Arial, sans-serif;font-size:26px;font-weight:600;letter-spacing:1px;line-height:40px;" data-bgcolor="Title" data-color="Title" data-size="Title" data-min="12" data-max="60" align="center">
+                                        Hello!! Welcome to Eiliana.
                                     </td>
                                 </tr>
 
 
                                 <tr>
-                                    <td style="color:#141d23;font-family: 'Montserrat',Arial, sans-serif;font-size:22px;font-weight:600;letter-spacing:1px;line-height:30px;" data-bgcolor="Title" data-color="Title" data-size="Title" data-min="12" data-max="60" align="center">
-                                        {!! $data['company_name'] !!} wants you to join.
+                                    <td style="color:#141d23;font-family: 'Montserrat',Arial, sans-serif;font-size:22px;font-weight:500;letter-spacing:1px;line-height:35px;" data-bgcolor="Title" data-color="Title" data-size="Title" data-min="12" data-max="60" align="center">
+                                        {!! $company_name !!} wants you to join.
                                     </td>
                                 </tr>
                                 <tr>
@@ -39,7 +39,7 @@
 
                                 <tr>
                                     <td style="color:#141d23;font-family: 'Montserrat',Arial, sans-serif;font-size:18px;padding-right:30px;padding-left:30px;font-weight:500;letter-spacing:1px;line-height:30px;" data-bgcolor="Title" data-color="Title" data-size="Title" data-min="12" data-max="60" align="center">
-                                        Welcome to Eiliana! Please click on the Below button to login your Eiliana account
+                                        Please click on the Below button to accept the invitation
                                     </td>
                                 </tr>
                                 <tr>
@@ -64,7 +64,7 @@
                                                                     <tbody>
                                                                     <tr>
                                                                         <td align="center" width="200" valign="middle" style="border-collapse:collapse!important;border-radius:35px;padding:20px 25px" bgcolor="#6791de">
-                                                                            <a href="{{ url('acceptinvitation') }}?email={!! $data['to_user'] !!}&token={!! $data['token'] !!} " style="color:#fff!important;text-decoration:none;display:block;font-size:23px;font-style:italic" target="_blank" >Join {!! $data['company_name'] !!} Now</a>
+                                                                            <a href="{!! $url !!}" style="color:#fff!important;text-decoration:none;display:block;font-size:23px;font-style:italic" target="_blank" >Join Now</a>
                                                                         </td>
                                                                     </tr>
                                                                     </tbody>
@@ -134,4 +134,3 @@
     </table>
 
 @endsection
-

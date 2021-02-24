@@ -55,11 +55,11 @@ type="text/css"/>
 						<div class="card-body p-4">
 							<form action="" method="POST" id="educationForm">
 								@csrf
-								<div class="ug-qualification-1">
-									<div class="ug-qualification-3 remove-qual">
+								<div class="ug-qualification">
+									<div class="ug-qualification">
 										<!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span> -->
-										<input type="hidden" name="graduation_type[]" value="3">
-										<input type="hidden" name="education_id[]" id="education_id" value="">
+										<!-- <input type="hidden" name="graduation_type[]" value="3">
+										<input type="hidden" name="education_id[]" id="education_id" value=""> -->
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Project Name</label>
@@ -132,11 +132,11 @@ type="text/css"/>
 										</div>
 									</div>
 								</div>
-								<div class="ug-qualification">
-									<div class="ug-qualification">
-										<!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span> -->
-										<input type="hidden" name="graduation_type[]" value="3">
-										<input type="hidden" name="education_id[]" id="education_id" value="">
+								
+								<div class="module-1">
+									<div class="module-3 remove-qual-1">
+										<input type="hidden" name="module_type[]" value="3">
+										<input type="hidden" name="module_id[]" id="module_id" value="1">
 										<div class="form-row">
 											<div class="form-group col-12">
 												<label>1. Module Scope</label>
@@ -177,33 +177,41 @@ type="text/css"/>
 												</select>
 											</div>
 										</div>
+										
+										<div class="sub-module-1">
+										    <div class="sub-module-3 remove-qual-1">
+												<input type="hidden" name="sub_module_type[]" value="3">
+												<input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
+												<div class="form-row">
+													<div class="form-group col-12">
+														<label>1.1. Sub-module Scope</label>
+														<input type="text" class="form-control">
+													</div>
+												</div>
+												<div class="form-row">
+													<div class="form-group col-12">
+														<label>Sub-module Description</label>
+														<input type="text" class="form-control" style="height: 100px;">
+													</div>
+												</div>
+												<div class="form-row">
+													<div class="form-group col-6">
+														<label>Sub-module Status (Optional)</label>
+														<select name="" id="" class="form-control">
+															<option value=""></option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="mb-3 mt-3">
+											<button class="btn btn-md btn-info btn-copy-sm" type="button">Add Sub-Module <span class="fa fa-plus"></span></button>
+											<button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0">Erase Sub-Module <span class="fas fa-times"></span></button>
+										</div>
 									</div>
 								</div>
 								<div class="ug-qualification">
 									<div class="ug-qualification">
-										<!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span> -->
-										<input type="hidden" name="graduation_type[]" value="3">
-										<input type="hidden" name="education_id[]" id="education_id" value="">
-										<div class="form-row">
-											<div class="form-group col-12">
-												<label>1.1. Sub-module Scope</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-12">
-												<label>Sub-module Description</label>
-												<input type="text" class="form-control" style="height: 100px;">
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-6">
-												<label>Sub-module Status (Optional)</label>
-												<select name="" id="" class="form-control">
-												    <option value=""></option>
-												</select>
-											</div>
-										</div>
 										<div class="form-row">
 											<div class="form-group col-12">
 												<label>Remarks</label>
@@ -215,9 +223,7 @@ type="text/css"/>
 								<div class="mb-3 mt-3">
 									<button class="btn btn-md btn-info btn-copy-ps" type="button">Add Module <span class="fa fa-plus"></span></button>
 									<!-- <button class="btn btn-md btn-danger btn-copy-ug" type="button"></button> -->
-
-									<!-- <button type="button" class="remove-ps btn btn-md btn-info ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button> -->
-									<button class="btn btn-md btn-info btn-copy-ps" type="button">Add Sub-Module <span class="fa fa-plus"></span></button>
+									<button type="button" class="remove-ps btn btn-md btn-info ml-3 rounded-0">Erase Module <span class="fas fa-times"></span></button>
 								</div>
 								
 								<!-- <div class="form-group text-right mt-5">
@@ -230,6 +236,98 @@ type="text/css"/>
 									<!--</div>
 								</div> -->
 							</form>
+						</div>
+					</div>
+				</div>
+				<div class="module-2 d-none">
+				    <input type="hidden" name="module_type[]" value="3">
+					<input type="hidden" name="module_id[]" id="module_id" value="0">
+					<div class="form-row">
+						<div class="form-group col-12">
+							<label>1. Module Scope</label>
+							<input type="text" class="form-control">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-6">
+							<label>Module Start Date</label>
+							<input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="">
+						</div>
+						<div class="form-group col-6">
+							<label>Module End Date</label>
+							<input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-6">
+							<label>Hours Proposed</label>
+							<input class="form-control" type="text" id="" value="">
+						</div>
+						<div class="form-group col-6">
+							<label>Hours Approved</label>
+							<input class="form-control" type="text" id="" value="">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-6">
+							<label>Modify Hours</label>
+							<input class="form-control" type="text" id="" value="">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-6">
+							<label>Module Status (Mandatory)</label>
+							<select name="" id="" class="form-control">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-12">
+							<label>1.1. Sub-module Scope</label>
+							<input type="text" class="form-control">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-12">
+							<label>Sub-module Description</label>
+							<input type="text" class="form-control" style="height: 100px;">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-6">
+							<label>Sub-module Status (Optional)</label>
+							<select name="" id="" class="form-control">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="mb-3 mt-3">
+						<button class="btn btn-md btn-info btn-copy-sm1" type="button">Add Sub-Module <span class="fa fa-plus"></span></button>
+						<button type="button" class="remove-sm1 btn btn-md btn-info ml-3 rounded-0">Erase Sub-Module <span class="fas fa-times"></span></button>
+					</div>
+					<div class="sub-module-2 d-none">
+						<input type="hidden" name="sub_module_type[]" value="3">
+						<input type="hidden" name="sub_module_id[]" id="sub_module_id" value="0">
+						<div class="form-row">
+							<div class="form-group col-12">
+								<label>1.1. Sub-module Scope</label>
+								<input type="text" class="form-control">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-12">
+								<label>Sub-module Description</label>
+								<input type="text" class="form-control" style="height: 100px;">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-6">
+								<label>Sub-module Status (Optional)</label>
+								<select name="" id="" class="form-control">
+									<option value=""></option>
+								</select>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -295,49 +393,77 @@ type="text/css"/>
 
 	$(function(){
 		$(".btn-copy-ps").on('click', function(){
-	  		var str = $("#graduation_type").val();
-	  		var element = '<div class="ug-qualification-3">'+$('.ug-qualification-2').html()+'</div>';
-	  		$('.ug-qualification-1').append(element);
+	  		var str = $("#module_type").val();
+	  		var element = '<div class="module-3">'+$('.module-2').html()+'</div>';
+	  		$('.module-1').append(element);
+
+	  	});
+	}); 
+
+	$(function(){
+		$(".btn-copy-sm").on('click', function(){
+	  		var str = $("#sub_module_type").val();
+	  		var element = '<div class="sub-module-3">'+$('.sub-module-2').html()+'</div>';
+	  		$('.sub-module-1').append(element);
 
 	  	});
 	});  
 
+	$(function(){
+		$(".btn-copy-sm1").on('click', function(){
+	  		var str = $("#module_type").val();
+	  		var element = '<div class="module-2">'+$('.sub-module-2').html()+'</div>';
+	  		$('.module-2').append(element);
+
+	  	});
+	});
+
 	$(document).on('click','.remove-ps',function() {
-		var edu_id = $(".ug-qualification-3:last input#education_id").val();
-		if (edu_id != '0') {
-			ConfirmDelete(edu_id,'1');
+		var mod_id = $(".module-3:last input#module_id").val();
+		if (mod_id != '0') {
+			ConfirmDelete(mod_id,'1');
 		} else {
-			$(".ug-qualification-3:last").remove();
+			$(".module-3:last").remove();
 	 	}
 	 	// $(this).parent('.ug-qualification-3').remove();
 	});
 
-	function ConfirmDelete(edu_id,main_id)
+	$(document).on('click','.remove-sm',function() {
+		var sub_mod_id = $(".sub-module-3:last input#sub_module_id").val();
+		if (sub_mod_id != '0') {
+			ConfirmDelete(sub_mod_id,'1');
+		} else {
+			$(".sub-module-3:last").remove();
+	 	}
+	 	// $(this).parent('.ug-qualification-3').remove();
+	});
+
+	function ConfirmDelete(mod_id,main_id)
 	{
 	  	var x = confirm("Are you sure you want to delete?");
-	  	var edu_id = edu_id;
+	  	var mod_id = mod_id;
 	  	if (x) {
 	  		if (main_id == '1') {
 	  			var data= {
-		            edu_id:edu_id
+		            mod_id:mod_id
 		        };
 		        var url = '/profile/deleteducation';
 		        var message = 'Education Deleted successfully';
 	  		} else if (main_id == '2') {
 	  			var data= {
-		            cert_id:edu_id
+		            cert_id:mod_id
 		        };
 		        var url = '/profile/deletecertification';
 		        var message = 'Certificate Deleted successfully';
 	  		} else if (main_id == '3') {
 	  			var data= {
-		            project_id:edu_id
+		            project_id:mod_id
 		        };
 		        var url = '/profile/deleteprojects';
 		        var message = 'Project Deleted successfully';
 	  		} else if (main_id == '4') {
 	  			var data= {
-		            emp_id:edu_id
+		            emp_id:mod_id
 		        };
 		        var url = '/profile/deleteemployer';
 		        var message = 'Employer Deleted successfully';
@@ -350,7 +476,7 @@ type="text/css"/>
 	            contentType: 'application/json',
 	            dataType: "json",
 	            success: function(data) {
-	            	$(".remove-qual-"+edu_id).remove();
+	            	$(".remove-qual-"+mod_id).remove();
 	                Swal.fire({
 		              type: 'success',
 		              title: 'Success...',

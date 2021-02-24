@@ -28,7 +28,7 @@
 <body>
     <!-- Header Start -->
     <header>
-        <div class="section px-5 py-2">
+        <div class="section px-lg-5 px-3 py-lg-2 py-1">
             @if(Sentinel::guest())
             <nav class="navbar navbar-expand-lg navbar-light custom_header">
                 <a class="navbar-brand" href="/"><img src="/assets/img/logo.png"></a>
@@ -47,10 +47,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Our Products</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-none d-sm-block">
                             <button class="login_signup yellow-linear-gradient text-white" onclick="location.href='/account/login'">Login</button>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-none d-sm-block">
+                            <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/register'">Sign Up</button>
+                        </li>
+                        <li class="nav-item d-block d-sm-none mb-3">
+                            <button class="login_signup yellow-linear-gradient text-white" onclick="location.href='/account/login'">Login</button>
                             <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/register'">Sign Up</button>
                         </li>
                         {{-- <li class="nav-item dropdown language">

@@ -22,6 +22,7 @@ use View;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Country;
+use App\Models\TeamUser;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\ForgotRequest;
 use stdClass;
@@ -142,14 +143,6 @@ class AuthController extends JoshController
         $activate = $this->user_activation;
         $data = $request->all();
 
-        $invitation = $request->session()->get('teaminvitation');
-
-        if($invitation === null){
-            $compnay_id = 0;
-        } else {
-            $compnay_id = $invitation['from_user_id'];
-        }
-
         try {
 
             // $address_image_parts = explode(";base64,", $data['fileData']);
@@ -199,6 +192,21 @@ class AuthController extends JoshController
                 ->performedOn($user)
                 ->causedBy($user)
                 ->log('Registered');
+
+            $invitation = $request->session()->get('teaminvitation');
+            if($invitation === null){
+                $compnay_id = 0;
+            } else {
+                $compnay_id = $invitation['from_user_id'];
+
+                $teamuser = new TeamUser();
+                $teamuser->compnay_id = $compnay_id;
+                $teamuser->user_id = $user->id;
+                $teamuser->save();
+
+                $request->session()->forget('teaminvitation');
+
+            }
 
             // Redirect to the home page with success menu
             $response['success'] = '1';

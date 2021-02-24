@@ -44,147 +44,140 @@ type="text/css"/>
 					<div class="card">
 					<div class="bg-blue">
 						<div class="px-5 py-2">
-						
+
 							<!-- <span class="border-title"><i class="fa fa-bars"></i></span> -->
 							<span class="h5 text-white" style="margin-left: -25px;">Project Schedule</span>
 							<!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
-						
+
 						</div>
-					</div> 
+					</div>
 						<!-- <h4 class="card-header text-left">Education Details</h4> -->
 						<div class="card-body p-4">
 							<form action="" method="POST" id="educationForm">
 								@csrf
-								<div class="ug-qualification">
-									<div class="ug-qualification">
-										<!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">UG Qualification</span> -->
-										<!-- <input type="hidden" name="graduation_type[]" value="3">
-										<input type="hidden" name="education_id[]" id="education_id" value=""> -->
-										<div class="form-row">
-											<div class="form-group col-6">
-												<label>Project Name</label>
-												<input type="text" class="form-control">
-											</div>
-											<div class="form-group col-6">
-												<label>Project Id</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group basic-info mb-3">
-											<label>Type Of Project</label>
-											<br>
-											<div class="form-check form-check-inline">
-												<div class="custom-control custom-radio">
-													<input type="radio" id="support_project" class="custom-control-input" name="title" checked>
-													<label class="custom-control-label" for="support_project">Support Project</label>
-												</div>
-											</div>
-											<div class="form-check form-check-inline">
-												<div class="custom-control custom-radio">
-													<input type="radio" id="development_project" class="custom-control-input" name="title">
-													<label class="custom-control-label" for="development_project">Development Project</label>
-												</div>
-											</div>
-											<div class="form-check form-check-inline">
-												<div class="custom-control custom-radio">
-													<input type="radio" id="development_cum_support_project" class="custom-control-input" name="title">
-													<label class="custom-control-label" for="development_cum_support_project">Development cum Support Project</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-12">
-												<label>Customer Objective Of Project (Optional)</label>
-												<input type="text" class="form-control" style="height: 100px;">
-											</div>
-										</div>
-										<div class="form-group basic-info mb-3">
-											<label>Model Of Engagement</label>
-											<br>
-											<div class="form-check form-check-inline">
-												<div class="custom-control custom-radio">
-													<input type="radio" id="hourly" class="custom-control-input" name="title1" checked>
-													<label class="custom-control-label" for="hourly">Hourly</label>
-												</div>
-											</div>
-											<div class="form-check form-check-inline">
-												<div class="custom-control custom-radio">
-													<input type="radio" id="pt_rentainer" class="custom-control-input" name="title1">
-													<label class="custom-control-label" for="pt_rentainer">P.T.Rentainer</label>
-												</div>
-											</div>
-											<div class="form-check form-check-inline">
-												<div class="custom-control custom-radio">
-													<input type="radio" id="project_based" class="custom-control-input" name="title1">
-													<label class="custom-control-label" for="project_based"> Project-based</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-6">
-												<label>Project Start Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="">
-											</div>
-											<div class="form-group col-6">
-												<label>Project End Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="">
-											</div>
-										</div>
-									</div>
-								</div>
-								
+								<div class="main-moudle">
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label>Project Name</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>Project Id</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group basic-info mb-3">
+                                        <label>Type Of Project</label>
+                                        <br>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="support_project" class="custom-control-input" name="title" checked>
+                                                <label class="custom-control-label" for="support_project">Support Project</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="development_project" class="custom-control-input" name="title">
+                                                <label class="custom-control-label" for="development_project">Development Project</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="development_cum_support_project" class="custom-control-input" name="title">
+                                                <label class="custom-control-label" for="development_cum_support_project">Development cum Support Project</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label>Customer Objective Of Project (Optional)</label>
+                                            <input type="text" class="form-control" style="height: 100px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group basic-info mb-3">
+                                        <label>Model Of Engagement</label>
+                                        <br>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="hourly" class="custom-control-input" name="title1" checked>
+                                                <label class="custom-control-label" for="hourly">Hourly</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="pt_rentainer" class="custom-control-input" name="title1">
+                                                <label class="custom-control-label" for="pt_rentainer">P.T.Rentainer</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="project_based" class="custom-control-input" name="title1">
+                                                <label class="custom-control-label" for="project_based"> Project-based</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label>Project Start Date</label>
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>Project End Date</label>
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
 								<div class="module-1">
 									<div class="module-3 remove-qual-1">
-										<input type="hidden" name="module_type[]" value="3">
-										<input type="hidden" name="module_id[]" id="module_id" value="1">
+										<input type="hidden" name="module_id" id="module_id" value="1">
 										<div class="form-row">
 											<div class="form-group col-12">
-												<label>1. Module Scope</label>
+												<label><span class="module_num">1</span>. Module Scope</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Start Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="">
+												<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
 											</div>
 											<div class="form-group col-6">
 												<label>Module End Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="">
+												<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Hours Proposed</label>
-												<input class="form-control" type="text" id="" value="">
+												<input class="form-control" type="text" value="">
 											</div>
 											<div class="form-group col-6">
 												<label>Hours Approved</label>
-												<input class="form-control" type="text" id="" value="">
+												<input class="form-control" type="text" value="">
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Modify Hours</label>
-												<input class="form-control" type="text" id="" value="">
+												<input class="form-control" type="text" value="">
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Status (Mandatory)</label>
-												<select name="" id="" class="form-control">
+												<select name="" class="form-control">
 												    <option value=""></option>
 												</select>
 											</div>
 										</div>
-										
+
 										<div class="sub-module-1">
 										    <div class="sub-module-3 remove-qual-1">
-												<input type="hidden" name="sub_module_type[]" value="3">
-												<input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
+												<input type="hidden" name="sub_module_id" id="sub_module_id" value="1">
 												<div class="form-row">
 													<div class="form-group col-12">
-														<label>1.1. Sub-module Scope</label>
+														<label><span class="module_num">1</span>.<span class="sub_module_num">1</span>. Sub-module Scope</label>
 														<input type="text" class="form-control">
 													</div>
 												</div>
@@ -197,7 +190,7 @@ type="text/css"/>
 												<div class="form-row">
 													<div class="form-group col-6">
 														<label>Sub-module Status (Optional)</label>
-														<select name="" id="" class="form-control">
+														<select name="" class="form-control">
 															<option value=""></option>
 														</select>
 													</div>
@@ -210,81 +203,76 @@ type="text/css"/>
 										</div>
 									</div>
 								</div>
-								<div class="ug-qualification">
-									<div class="ug-qualification">
-										<div class="form-row">
-											<div class="form-group col-12">
-												<label>Remarks</label>
-												<input type="text" class="form-control" style="height: 100px;">
-											</div>
-										</div>
-									</div>
-								</div>
+
+								<div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label>Remarks</label>
+                                        <input type="text" class="form-control" style="height: 100px;">
+                                    </div>
+                                </div>
 								<div class="mb-3 mt-3">
 									<button class="btn btn-md btn-info btn-copy-ps" type="button">Add Module <span class="fa fa-plus"></span></button>
-									<!-- <button class="btn btn-md btn-danger btn-copy-ug" type="button"></button> -->
 									<button type="button" class="remove-ps btn btn-md btn-info ml-3 rounded-0">Erase Module <span class="fas fa-times"></span></button>
 								</div>
-								
-								<!-- <div class="form-group text-right mt-5">
+
+								 <div class="form-group text-right mt-5">
 									<div class="btn-group" role="group">
 										<button class="btn btn-primary" type="submit">
 											<span class="spinner-border spinner-border-sm mr-1 d-none"></span>
 											Next >>>
-										</button>-->
-										<!-- <button class="btn btn-primary" type="reset">Discard</button> -->
-									<!--</div>
-								</div> -->
+										</button>
+										 <button class="btn btn-primary" type="reset">Discard</button>
+									</div>
+								</div>
 							</form>
 						</div>
 					</div>
 				</div>
 				<div class="module-2 d-none">
-				    <input type="hidden" name="module_type[]" value="3">
 					<input type="hidden" name="module_id[]" id="module_id" value="0">
 					<div class="form-row">
 						<div class="form-group col-12">
-							<label>1. Module Scope</label>
+							<label><span class="module_num">1</span>. Module Scope</label>
 							<input type="text" class="form-control">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-6">
 							<label>Module Start Date</label>
-							<input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="">
+							<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
 						</div>
 						<div class="form-group col-6">
 							<label>Module End Date</label>
-							<input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="">
+							<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-6">
 							<label>Hours Proposed</label>
-							<input class="form-control" type="text" id="" value="">
+							<input class="form-control" type="text" value="">
 						</div>
 						<div class="form-group col-6">
 							<label>Hours Approved</label>
-							<input class="form-control" type="text" id="" value="">
+							<input class="form-control" type="text" value="">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-6">
 							<label>Modify Hours</label>
-							<input class="form-control" type="text" id="" value="">
+							<input class="form-control" type="text" value="">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-6">
 							<label>Module Status (Mandatory)</label>
-							<select name="" id="" class="form-control">
+							<select name="" class="form-control">
 								<option value=""></option>
 							</select>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-12">
-							<label>1.1. Sub-module Scope</label>
+							<label><span class="module_num">1</span>.<span class="sub_module_num">1</span>. Sub-module Scope</label>
 							<input type="text" class="form-control">
 						</div>
 					</div>
@@ -297,40 +285,39 @@ type="text/css"/>
 					<div class="form-row">
 						<div class="form-group col-6">
 							<label>Sub-module Status (Optional)</label>
-							<select name="" id="" class="form-control">
+							<select name="" class="form-control">
 								<option value=""></option>
 							</select>
 						</div>
 					</div>
 					<div class="mb-3 mt-3">
-						<button class="btn btn-md btn-info btn-copy-sm1" type="button">Add Sub-Module <span class="fa fa-plus"></span></button>
-						<button type="button" class="remove-sm1 btn btn-md btn-info ml-3 rounded-0">Erase Sub-Module <span class="fas fa-times"></span></button>
-					</div>
-					<div class="sub-module-2 d-none">
-						<input type="hidden" name="sub_module_type[]" value="3">
-						<input type="hidden" name="sub_module_id[]" id="sub_module_id" value="0">
-						<div class="form-row">
-							<div class="form-group col-12">
-								<label>1.1. Sub-module Scope</label>
-								<input type="text" class="form-control">
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-12">
-								<label>Sub-module Description</label>
-								<input type="text" class="form-control" style="height: 100px;">
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-6">
-								<label>Sub-module Status (Optional)</label>
-								<select name="" id="" class="form-control">
-									<option value=""></option>
-								</select>
-							</div>
-						</div>
+						<button class="btn btn-md btn-info btn-copy-sm" type="button">Add Sub-Module <span class="fa fa-plus"></span></button>
+						<button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0">Erase Sub-Module <span class="fas fa-times"></span></button>
 					</div>
 				</div>
+                <div class="sub-module-2 d-none">
+                    <input type="hidden" name="sub_module_id[]" id="sub_module_id" value="0">
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label>1.1. Sub-module Scope</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label>Sub-module Description</label>
+                            <input type="text" class="form-control" style="height: 100px;">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Sub-module Status (Optional)</label>
+                            <select name="" class="form-control">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 	        </div>
 			 @include('layouts.left')
 	    </div>
@@ -360,63 +347,45 @@ type="text/css"/>
         theme: 'bootstrap',
         placeholder: 'Select a value',
     });
-   	function changeAnonymus(e) {
-        var anonymous = e.target.value;
-        if (anonymous == '0') {
-            $('.anonymousShow').addClass("d-none");
-        } else {
-            $('.anonymousShow').removeClass("d-none");
-        }
-        var data= {
-            anonymous:anonymous
-        };
-        /*$.ajax({
-            type: 'GET',
-            url: '/profile/publicAnonymusUpdate',
-            data: data,
-            contentType: 'application/json',
-            dataType: "json",
-            success: function(data) {
-                Swal.fire({
-	              type: 'success',
-	              title: 'Success...',
-	              text: 'Updated successfully',
-	              showConfirmButton: false,
-	              timer: 1500
-	            })
-            },
-            error: function(xhr, status, error) {
-                console.log("error: ",error);
-            },
-        });*/
-    }
 
 	$(function(){
-		$(".btn-copy-ps").on('click', function(){
-	  		var str = $("#module_type").val();
+        $(document).on("click",".btn-copy-ps",function() {
+	  		var str = $(".module-3:last #module_id").val();
+            console.log(str);
 	  		var element = '<div class="module-3">'+$('.module-2').html()+'</div>';
 	  		$('.module-1').append(element);
 
+            var x = parseInt(str) + parseInt(1);
+            $('.module-3:last .module_num').text(x);
+            $('.module-3:last #module_id').val(x);
+            flatpickr('.flatpickr');
 	  	});
-	}); 
+	});
 
 	$(function(){
-		$(".btn-copy-sm").on('click', function(){
-	  		var str = $("#sub_module_type").val();
+        $(document).on("click",".btn-copy-sm",function() {
+            console.log('clikc ho raha haiu');
+            var str = $(".module-3:last #module_id").val();
+	  		var sub_str = $(".module-3:last .sub-module-3:last #sub_module_type").val();
+
 	  		var element = '<div class="sub-module-3">'+$('.sub-module-2').html()+'</div>';
 	  		$('.sub-module-1').append(element);
 
-	  	});
-	});  
-
-	$(function(){
-		$(".btn-copy-sm1").on('click', function(){
-	  		var str = $("#module_type").val();
-	  		var element = '<div class="module-2">'+$('.sub-module-2').html()+'</div>';
-	  		$('.module-2').append(element);
+            var x = parseInt(sub_str) + parseInt(1);
+            $('.module-3:last .sub-module-3:last .sub_module_num').text(x);
 
 	  	});
 	});
+
+	// $(function(){
+	// 	$(".btn-copy-sm1").on('click', function(){
+
+    //         var str = $("#module_type").val();
+	//   		var element = '<div class="module-2">'+$('.sub-module-2').html()+'</div>';
+	//   		$('.module-2').append(element);
+
+	//   	});
+	// });
 
 	$(document).on('click','.remove-ps',function() {
 		var mod_id = $(".module-3:last input#module_id").val();
@@ -443,31 +412,11 @@ type="text/css"/>
 	  	var x = confirm("Are you sure you want to delete?");
 	  	var mod_id = mod_id;
 	  	if (x) {
-	  		if (main_id == '1') {
-	  			var data= {
-		            mod_id:mod_id
-		        };
-		        var url = '/profile/deleteducation';
-		        var message = 'Education Deleted successfully';
-	  		} else if (main_id == '2') {
-	  			var data= {
-		            cert_id:mod_id
-		        };
-		        var url = '/profile/deletecertification';
-		        var message = 'Certificate Deleted successfully';
-	  		} else if (main_id == '3') {
-	  			var data= {
-		            project_id:mod_id
-		        };
-		        var url = '/profile/deleteprojects';
-		        var message = 'Project Deleted successfully';
-	  		} else if (main_id == '4') {
-	  			var data= {
-		            emp_id:mod_id
-		        };
-		        var url = '/profile/deleteemployer';
-		        var message = 'Employer Deleted successfully';
-	  		}
+            var data= {
+		        mod_id:mod_id
+            };
+            var url = '#';
+            var message = 'Education Deleted successfully';
 
 	  		$.ajax({
 	            type: 'GET',
@@ -495,41 +444,6 @@ type="text/css"/>
 	    	return false;
 		}
     }
-
-	function changeInterested(e) {
-		$("#exampleModal1").modal();
-    }
-
-    function change_framework()
-    {
-        var technologty_pre = $("#technologty_pre").val();
-        // console.log(technologty_pre);
-        $.ajax({
-            type:"GET",
-            url:"/getframework",
-            data:"technologty_pre="+technologty_pre,
-            success: function(data) {
-                console.log("data",data);
-                var options = '<option value=""></option>';
-                $.each( data, function( key, value ) {
-                    options += "<option value='"+value['technology_id']+"'>"+value['technology_name']+"</option>";
-                });
-                //console.log(options);
-                $('#framework').html(options);
-            },
-            error: function(xhr, status, error) {
-                console.log("error: ",error);
-            },
-        });
-    }
-    /*$(window).scroll(function(){
-	    if ($(window).scrollTop() >= 150) {
-	        $('#sidebarNav').addClass('fixed-topscroll');
-	    }
-	    else {
-	        $('#sidebarNav').removeClass('fixed-topscroll');
-	    }
-	});*/
 </script>
 
 <!--global js end-->

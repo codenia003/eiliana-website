@@ -1,5 +1,4 @@
-
-.@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 	.banner1_content h1 {
 	    font-size: 1.2em !important;
 	}
@@ -36,4 +35,13 @@
 	.singup-body .form-group.form-check label {
 	    font-size: 11px;
 	}
+}
+
+@media only screen and (max-width: 768px) {
+    .explore-more .border-right ul {
+        border-bottom: 1px solid #8e8e8e;
+    }
+    .w-lg-60 {
+        width: 100% !important;
+    }
 }

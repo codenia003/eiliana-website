@@ -291,6 +291,7 @@ Route::get(
 //         return view('index');
 //     }]
 // );
+// Route::get('/', 'HomeController@index')->name('/');
 
 // account
 Route::group(

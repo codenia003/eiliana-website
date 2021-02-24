@@ -364,7 +364,7 @@ Home
                     <div class="card1">
                         <h4 class="card-header text-left">Find Your Contract Job</h4>
                         <div class="card-body">
-                            <form action="#" method="POST" id="register_basic_form">
+                            <form action="{{ url('search-project') }}" method="GET" id="register_basic_form">
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-3 col-12 mr-5">
@@ -394,34 +394,22 @@ Home
                 </div>
             </div>
             <div class="row">
+                @foreach ($jobs as $job)
                 <div class="col-md-6">
                     <div class="job-details m-4 p-4">
-                        <h2>Java Developer</h2>
+                        <h2>{{ $job->job_title }}</h2>
                         <div class="company-info">
-                            <span>Eiliana India Pvt. Ltd.</span>
-                            <span>Delhi</span>
-                            <span>0-1 Year</span>
+                            <span>{{ $job->companydetails->full_name }}</span>
+                            <span>{{ $job->locations->name }}</span>
+                            <span>{{ $job->experience_year }} Year - {{ $job->experience_month }} Month</span>
                         </div>
-                        <p class="descx">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print.</p>
+                        <p class="descx">{{ $job->role_summary }}</p>
                         <div class="find_job_button">
                             <a class="btn_small yellow-linear-gradient" href="#">Apply</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="job-details m-4 p-4">
-                        <h2>PHP Developer</h2>
-                        <div class="company-info">
-                            <span>Eiliana India Pvt. Ltd.</span>
-                            <span>Delhi</span>
-                            <span>0-1 Year</span>
-                        </div>
-                        <p class="descx">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print.</p>
-                        <div class="find_job_button">
-                            <a class="btn_small yellow-linear-gradient" href="#">Apply</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
                 <div class="col-md-12 text-right">
                     <a class="view-alljobs" href="#">View All Jobs <span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span></a>
                 </div>
@@ -437,42 +425,9 @@ Home
   </div>
   <div class="space-1 explore-more shadow pl-4">
     <div class="row">
-      <div class="col col1 pb-5 mb-md-0 border-right pt-4">
+      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
         <ul class="list-unstyled list-article">
-            <li class="dropdown">
-                <a class="link-underline" data-toggle="dropdown" href="#">App Development</a>
-                <div class="dropdown-menu">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#">Active</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Link item</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Link item</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="">
-                                    <img src="https://dummyimage.com/200x100/ccc/000&amp;text=image+link" alt="" class="img-fluid">
-                                    <p class="text-white">Short image call to action</p>
-                                </a>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="">
-                                    <img src="https://dummyimage.com/200x100/ccc/000&amp;text=image+link" alt="" class="img-fluid">
-                                    <p class="text-white">Short image call to action</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
+          <li><a class="link-underline" href="#">App Development</a></li>
           <li><a class="link-underline" href="#">Designing & Architecture</a></li>
           <li><a class="link-underline" href="#">IT Infrastructure</a></li>
           <li><a class="link-underline" href="#">SAP Skills</a></li>
@@ -482,14 +437,9 @@ Home
         </ul>
       </div>
 
-      <div class="col col1 pb-5 mb-md-0 border-right pt-4">
+      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
         <ul class="list-unstyled list-article">
-          <li class="dropdown">
-            <a class="link-underline dropdown-toggle" data-toggle="dropdown" href="#">Sales & Marketing</a>
-            <div class="dropdown-menu">
-
-            </div>
-          </li>
+          <li><a class="link-underline" href="#">Sales & Marketing</a></li>
           <li><a class="link-underline" href="#">Legal</a></li>
           <li><a class="link-underline" href="#">CXO On Demand</a></li>
           <li><a class="link-underline" href="#">HTML</a></li>
@@ -499,7 +449,7 @@ Home
         </ul>
       </div>
 
-      <div class="col col1 pb-5 mb-md-0 border-right pt-4">
+      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
         <ul class="list-unstyled list-article">
           <li><a class="link-underline" href="#">Article Writing</a></li>
           <li><a class="link-underline" href="#">UX Writing</a></li>
@@ -512,7 +462,7 @@ Home
         </ul>
       </div>
 
-      <div class="col col1 pb-5 mb-md-0 border-right pt-4">
+      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
         <ul class="list-unstyled list-article">
           <li><a class="link-underline" href="#">Android Developer</a></li>
           <li><a class="link-underline" href="#">Bookkeeper</a></li>
@@ -525,7 +475,7 @@ Home
         </ul>
       </div>
 
-      <div class="col col1 pb-5 mb-md-0 pt-4">
+      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 pt-lg-4">
         <ul class="list-unstyled list-article">
           <li><a class="link-underline" href="#">Graphic Designer</a></li>
           <li><a class="link-underline" href="#">Information Security Analyst</a></li>

@@ -1481,3 +1481,6 @@ span.select2-selection.select2-selection--single {
     padding: 8px 35px;
     font-size: 18px !important;
 }
+.modal-body.login-body {
+    border: unset;
+}

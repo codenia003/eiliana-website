@@ -59,7 +59,7 @@
                     <div class="modal-header bg-blue text-white">
                         <h4 class="modal-title" id="modalLabelnews">Add Teams</h4>
                     </div>
-                    <div class="modal-body login-body">
+                    <div class="modal-body login-body singup-body">
                         <div class="teams-1">
                             <div class="teams">
                                 <div class="form-row">
@@ -78,6 +78,14 @@
                                     <div class="form-group col">
                                         <label for="message-text" class="col-form-label">Message:</label>
                                         <input type="text" class="form-control" name="messagetext[]" id="message-text">
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="user-bid" class="col-form-label">User Bid:</label>
+                                        <select class="form-control" required="" name="user_bid[]" id="user-bid">
+                                            <option value=""></option>
+                                            <option value="0">User can not bid</option>
+                                            <option value="1">User can bid</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

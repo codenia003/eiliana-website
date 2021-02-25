@@ -42,6 +42,7 @@ class CompanayController extends JoshController
             $teaminvitation->to_user = $input['to_user'][$key];
             $teaminvitation->subject = $input['subject'][$key];
             $teaminvitation->message = $input['messagetext'][$key];
+            $teaminvitation->user_bid = $input['user_bid'][$key];
             $teaminvitation->token = $token;
             $teaminvitation->status = 1;
             $teaminvitation->save();
@@ -66,8 +67,6 @@ class CompanayController extends JoshController
                 $m->from('info@eiliana.com', $data['company_name']);
                 $m->to($data['to_user'], '')->subject($data['company_name'].' invited you to join Eiliana');
             });
-
-
 
         }
 

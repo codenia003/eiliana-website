@@ -52,51 +52,48 @@ Search Project
                             <br>
                             <span class="day-left">Bidding Ends In {{ $project->expiry_days }} Days</span><br>
                             <div class="float-right font-weight-700 mt-1">
-                                    <a class="btn-icon bg-blue btn rounded-0 text-white" data-toggle="modal" data-target="#modal-4">Apply Now</a>
-                                </div>
+                                <a class="btn-icon bg-blue btn rounded-0 text-white" data-toggle="modal" data-target="#modal-4">Apply Now</a>
+                            </div>
                         </div>
-
                     </div>
                     <!-- <div class="card-body mb-3 mb-lg-5 p-4 text-center d-block" *ngIf="loading">
                         <div class="spinner-border spinner-border-lg"></div>
                     </div> -->
                     <div class="card-body">
                         <h5>{{ $project->project_title }}</h5>
-                              
-                            <div class="skills mt-4">
-                                    <span class="h5">Project Description</span>
-                                   <p>{{ $project->project_summary }}</p>
-                                </div>
-                                <div class="skills mt-4">
-                                    <span class="h5">Budget</span>
-                                    <p>{{ $project->budget_from }} to {{ $project->budget_to }}</p>
-                                </div>
-                                <div class="skills mt-4">
-                                    <span class="h5">Years of Experience</span>
-                                    <p>{{ $project->experience_year }} Years {{ $project->experience_month }} Month</p>
-                                </div>
-                                <div class="skills mt-4">
-                                    <span class="h5">Skills Required</span>
-                                    <p>{{ $project->key_skills }}</p>
-                                </div>
-                         <hr>
-                                <h3>Additional Information</h3>
-                                <div class="skills mt-4">
-                                    <span class="h5">Technology: </span>
-                                    @foreach ($technologies as $technology)
-                                        {{ $loop->first ? '' : ', ' }}
-                                        <span>{{ $technology->technology_name }}</span>
-                                    @endforeach
-                                    <br>
-                                    <span class="h5">Framework: </span>
-                                    @foreach ($childtechnologies as $technology)
-                                        {{ $loop->first ? '' : ', ' }}
-                                        <span>{{ $technology->technology_name }}</span>
-                                    @endforeach
-                                </div>
                         <div class="skills mt-4">
-                          <!--   <span class="h5">Skills Required</span> -->
-
+                            <span class="h5">Project Description</span>
+                            <p>{{ $project->project_summary }}</p>
+                        </div>
+                        <div class="skills mt-4">
+                            <span class="h5">Budget</span>
+                            <p>{{ $project->budget_from }} to {{ $project->budget_to }}</p>
+                        </div>
+                        <div class="skills mt-4">
+                            <span class="h5">Years of Experience</span>
+                            <p>{{ $project->experience_year }} Years {{ $project->experience_month }} Month</p>
+                        </div>
+                        <div class="skills mt-4">
+                            <span class="h5">Skills Required</span>
+                            <p>{{ $project->key_skills }}</p>
+                        </div>
+                        <hr>
+                        <h3>Additional Information</h3>
+                        <div class="skills mt-4">
+                            <span class="h5">Technology: </span>
+                            @foreach ($technologies as $technology)
+                                {{ $loop->first ? '' : ', ' }}
+                                <span>{{ $technology->technology_name }}</span>
+                            @endforeach
+                            <br>
+                            <span class="h5">Framework: </span>
+                            @foreach ($childtechnologies as $technology)
+                                {{ $loop->first ? '' : ', ' }}
+                                <span>{{ $technology->technology_name }}</span>
+                            @endforeach
+                        </div>
+                        <div class="skills mt-4">
+                            <!--<span class="h5">Skills Required</span>-->
                             <ul class="nav mt-4">
                                 <li class="nav-item">
                                     <a class="nav-link btn btn-light text-dark" href="#">Sales</a>
@@ -109,7 +106,6 @@ Search Project
                                 </li>
                             </ul>
                         </div>
-                      
                     </div>
                 </div>
             </div>

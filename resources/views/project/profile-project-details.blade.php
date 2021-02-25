@@ -82,11 +82,11 @@ Project Post
                             </div>
                             <div class="col-md-7">
                                <div class="mb-2">
-                                        <p class="h3">{{ $user->full_name }}</p>
-                                        <p class="key_skills">{{ $proexps->key_skills }}{{ $proexps->profile_headline }}</p>
-                                        <p class="user_exper">User Experience | User Experience</p>
-                                        <p class="experience_year">{{ $proexps->experience_year }} Years {{ $proexps->experience_month }} Month</p>
-                                    </div>
+                                    <p class="h3">{{ $user->full_name }}</p>
+                                    <p class="key_skills">{{ $proexps->key_skills }}{{ $proexps->profile_headline }}</p>
+                                    <p class="user_exper">User Experience | User Experience</p>
+                                    <p class="experience_year">{{ $proexps->experience_year }} Years {{ $proexps->experience_month }} Month</p>
+                                </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="contract-apply text-center">
@@ -128,12 +128,11 @@ Project Post
                                 </div>
                                 <div class="project-slid slider">
 
-                                 </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="card p-3 mb-4 pb-4">
+                    <div class="card p-3 mb-4 pb-4 d-none">
                         <div class="card-header">
                             <h5 class="card-title">Educations</h5>
                         </div>

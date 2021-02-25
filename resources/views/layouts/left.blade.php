@@ -51,8 +51,9 @@
                             </a>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
         <!-- End Device Mockup -->
+        </div>
     </div>
 </div>

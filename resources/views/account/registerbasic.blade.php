@@ -101,7 +101,7 @@ type="text/css"/>
                                 </div>
                             </div>
                         </div>
-
+                        @if(Session::get('teaminvitation')['user_bid']!='0')
                         <div class="form-group basic-info">
                             <label>Do you keep your profile anonymous?</label>
                             <br>
@@ -118,6 +118,7 @@ type="text/css"/>
                                 </div>
                             </div>
                         </div>
+                        @endif
 
                         <div class="form-row">
                             <div class="form-group col-6">

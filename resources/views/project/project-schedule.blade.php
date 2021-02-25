@@ -59,39 +59,28 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Project Name</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" value="{{ $projectleads->projectdetail->project_title }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Project Id</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" value="{{ $projectleads->project_id }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group basic-info mb-3">
-                                        <label>Type Of Project</label>
-                                        <br>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="support_project" class="custom-control-input" name="title" checked>
-                                                <label class="custom-control-label" for="support_project">Support Project</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="development_project" class="custom-control-input" name="title">
-                                                <label class="custom-control-label" for="development_project">Development Project</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="development_cum_support_project" class="custom-control-input" name="title">
-                                                <label class="custom-control-label" for="development_cum_support_project">Development cum Support Project</label>
-                                            </div>
-                                        </div>
+                                        <label>Type Of Project:
+                                                @if ($projectleads->projectdetail->type_of_project == '1')
+                                                <span>Support</span>
+                                                @elseif($projectleads->projectdetail->type_of_project == '2')
+                                                <span>Development</span>
+                                                @else
+                                                <span>Support Cum Development</span>
+                                                @endif
+                                        </label>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Customer Objective Of Project (Optional)</label>
-                                            <input type="text" class="form-control" style="height: 100px;">
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group basic-info mb-3">
@@ -106,7 +95,7 @@ type="text/css"/>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" id="pt_rentainer" class="custom-control-input" name="title1">
-                                                <label class="custom-control-label" for="pt_rentainer">P.T.Rentainer</label>
+                                                <label class="custom-control-label" for="pt_rentainer">Retainership</label>
                                             </div>
                                         </div>
                                         <div class="form-check form-check-inline">

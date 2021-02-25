@@ -54,10 +54,13 @@ class ProjectController extends JoshController
         return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys'));
     }
 
-    public function projectSchedule()
+    public function projectSchedule($id)
     {
-        // Show the page
-        return view('project/project-schedule');
+        $projectleads = ProjectLeads::with('projectdetail')->where('project_leads_id', $id)->first();
+        $user = User::where('id', $projectleads->from_user_id)->first();
+
+        // return $projectleads;
+        return view('project/project-schedule', compact('projectleads','user'));
     }
 
 
@@ -364,10 +367,10 @@ class ProjectController extends JoshController
 
             $details = [
                 'greeting' => 'Hi '. $user->full_name,
-                'body' => 'You have response on your job proposal',
+                'body' => 'You have response on your project proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/freelancer/my-proposal',
+                'actionURL' => '/project/project-schedule/'. $input['lead_id'],
                 'main_id' => $input['lead_id']
             ];
 

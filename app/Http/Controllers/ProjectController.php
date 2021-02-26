@@ -384,4 +384,9 @@ class ProjectController extends JoshController
 
     }
 
+    public function contractDetails()
+    {
+        return view('project/contract-details');
+    }
+
 }

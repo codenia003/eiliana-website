@@ -8,6 +8,7 @@ Route::group(
          Route::get('profile-projectbid/{id}', 'ProjectController@profileProjectbid')->name('project.profileProjectbid');
          Route::post('project-lead-convert', 'ProjectController@projectLeadConvert');
          Route::get('project-schedule/{id}', 'ProjectController@projectSchedule')->name('project-schedule');
+         Route::post('post-project-schedule', 'ProjectController@postProjectSchedule')->name('projectschedule.create');
          Route::get('contract-details', 'ProjectController@contractDetails')->name('contract-details');
     }
 );

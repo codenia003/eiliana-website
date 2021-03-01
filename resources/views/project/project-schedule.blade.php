@@ -53,17 +53,18 @@ type="text/css"/>
 					</div>
 						<!-- <h4 class="card-header text-left">Education Details</h4> -->
 						<div class="card-body p-4">
-							<form action="" method="POST" id="educationForm">
+							<form action="{{ route('projectschedule.create') }}" method="POST" id="educationForm">
 								@csrf
+                                <input type="hidden" name="project_leads_id" value="{{ $projectleads->project_leads_id }}">
 								<div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Project Name</label>
-                                            <input type="text" class="form-control" value="{{ $projectleads->projectdetail->project_title }}" readonly>
+                                            <input type="text" class="form-control" name="project_title" value="{{ $projectleads->projectdetail->project_title }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Project Id</label>
-                                            <input type="text" class="form-control" value="{{ $projectleads->project_id }}" readonly>
+                                            <input type="text" class="form-control" name="project_id" value="{{ $projectleads->project_id }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group basic-info mb-3">
@@ -83,7 +84,7 @@ type="text/css"/>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group basic-info mb-3">
+                                    {{-- <div class="form-group basic-info mb-3">
                                         <label>Model Of Engagement</label>
                                         <br>
                                         <div class="form-check form-check-inline">
@@ -104,91 +105,92 @@ type="text/css"/>
                                                 <label class="custom-control-label" for="project_based"> Project-based</label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Project Start Date</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_start_date" value="">
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Project End Date</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="">
                                         </div>
                                     </div>
                                 </div>
 
 								<div class="module-1">
-									<div class="module-3 remove-qual-1">
-										<input type="hidden" name="module_id" id="module_id" value="1">
+									<div class="module-3 remove-qual-1 submodule-1">
+										<input type="hidden" name="module_id[]" id="module_id" value="1">
 										<div class="form-row">
 											<div class="form-group col-12">
 												<label><span class="module_num">1</span>. Module Scope</label>
-												<input type="text" class="form-control">
+												<input type="text" name="module_scope[]" class="form-control">
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Start Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+												<input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="">
 											</div>
 											<div class="form-group col-6">
 												<label>Module End Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="">
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Hours Proposed</label>
-												<input class="form-control" type="text" value="">
+												<input class="form-control" type="text" name="hours_proposed[]">
 											</div>
 											<div class="form-group col-6">
 												<label>Hours Approved</label>
-												<input class="form-control" type="text" value="">
+												<input class="form-control" type="text" name="hours_approved[]">
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Modify Hours</label>
-												<input class="form-control" type="text" value="">
+												<input class="form-control" type="text" name="modify_hours[]">
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Status (Mandatory)</label>
-												<select name="" class="form-control">
-												    <option value=""></option>
+												<select name="module_status[]" class="form-control">
+												    <option value="1">Pending</option>
 												</select>
 											</div>
 										</div>
 
 										<div class="sub-module-1">
 										    <div class="sub-module-3 remove-qual-1">
-												<input type="hidden" name="sub_module_id" id="sub_module_id" value="1">
+												<input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
+                                                <input type="hidden" name="last_module_id[]" id="last_module_id" value="1">
 												<div class="form-row">
 													<div class="form-group col-12">
 														<label><span class="module_num">1</span>.<span class="sub_module_num">1</span>. Sub-module Scope</label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" name="sub_module_scope[]">
 													</div>
 												</div>
 												<div class="form-row">
 													<div class="form-group col-12">
 														<label>Sub-module Description</label>
-														<input type="text" class="form-control" style="height: 100px;">
+                                                        <textarea class="form-control" name="sub_module_description[]" rows="4"></textarea>
 													</div>
 												</div>
 												<div class="form-row">
 													<div class="form-group col-6">
 														<label>Sub-module Status (Optional)</label>
-														<select name="" class="form-control">
-															<option value=""></option>
+														<select name="sub_module_status[]" class="form-control">
+															<option value="1">Pending</option>
 														</select>
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="mb-3 mt-3">
-											<button class="btn btn-md btn-info btn-copy-sm" type="button">Add Sub-Module <span class="fa fa-plus"></span></button>
-											<button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0">Erase Sub-Module <span class="fas fa-times"></span></button>
+											<button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addSubModule('1')">Add Sub-Module <span class="fa fa-plus"></span></button>
+											<button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0" onclick="removeSubModule('1')">Erase Sub-Module <span class="fas fa-times"></span></button>
 										</div>
 									</div>
 								</div>
@@ -196,7 +198,7 @@ type="text/css"/>
 								<div class="form-row">
                                     <div class="form-group col-12">
                                         <label>Remarks</label>
-                                        <input type="text" class="form-control" style="height: 100px;">
+                                        <textarea class="form-control" name="remarks" rows="4"></textarea>
                                     </div>
                                 </div>
 								<div class="mb-3 mt-3">
@@ -220,89 +222,100 @@ type="text/css"/>
 				<div class="module-2 d-none">
 					<input type="hidden" name="module_id[]" id="module_id" value="0">
 					<div class="form-row">
-						<div class="form-group col-12">
-							<label><span class="module_num">1</span>. Module Scope</label>
-							<input type="text" class="form-control">
-						</div>
+                        <div class="form-group col-12">
+                            <label><span class="module_num">1</span>. Module Scope</label>
+                            <input type="text" name="module_scope[]" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Module Start Date</label>
+                            <input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Module End Date</label>
+                            <input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Hours Proposed</label>
+                            <input class="form-control" type="text" name="hours_proposed[]">
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Hours Approved</label>
+                            <input class="form-control" type="text" name="hours_approved[]">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Modify Hours</label>
+                            <input class="form-control" type="text" name="modify_hours[]">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Module Status (Mandatory)</label>
+                            <select name="module_status[]" class="form-control">
+                                <option value="1">Pending</option>
+                            </select>
+                        </div>
+                    </div>
+
+					<div class="sub-module-1">
+						<div class="sub-module-3 remove-qual-1">
+                            <input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
+                            <input type="hidden" name="last_module_id[]" id="last_module_id" value="1">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label><span class="module_num">1</span>.<span class="sub_module_num">1</span>. Sub-module Scope</label>
+                                    <input type="text" class="form-control" name="sub_module_scope[]">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Sub-module Description</label>
+                                    <textarea class="form-control" name="sub_module_description[]" rows="4"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Sub-module Status (Optional)</label>
+                                    <select name="sub_module_status[]" class="form-control">
+                                        <option value="1">Pending</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 					</div>
-					<div class="form-row">
-						<div class="form-group col-6">
-							<label>Module Start Date</label>
-							<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
-						</div>
-						<div class="form-group col-6">
-							<label>Module End Date</label>
-							<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-6">
-							<label>Hours Proposed</label>
-							<input class="form-control" type="text" value="">
-						</div>
-						<div class="form-group col-6">
-							<label>Hours Approved</label>
-							<input class="form-control" type="text" value="">
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-6">
-							<label>Modify Hours</label>
-							<input class="form-control" type="text" value="">
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-6">
-							<label>Module Status (Mandatory)</label>
-							<select name="" class="form-control">
-								<option value=""></option>
-							</select>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-12">
-							<label><span class="module_num">1</span>.<span class="sub_module_num">1</span>. Sub-module Scope</label>
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-12">
-							<label>Sub-module Description</label>
-							<input type="text" class="form-control" style="height: 100px;">
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-6">
-							<label>Sub-module Status (Optional)</label>
-							<select name="" class="form-control">
-								<option value=""></option>
-							</select>
-						</div>
-					</div>
-					<div class="mb-3 mt-3">
-						<button class="btn btn-md btn-info btn-copy-sm" type="button">Add Sub-Module <span class="fa fa-plus"></span></button>
-						<button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0">Erase Sub-Module <span class="fas fa-times"></span></button>
+					<div class="mb-3 mt-3" id="submodulebutton">
+						<button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addSubModule('1')">Add Sub-Module <span class="fa fa-plus"></span></button>
+						<button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0" onclick="removeSubModule('1')">Erase Sub-Module <span class="fas fa-times"></span></button>
 					</div>
 				</div>
+
                 <div class="sub-module-2 d-none">
-                    <input type="hidden" name="sub_module_id[]" id="sub_module_id" value="0">
+                    <input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
+                    <input type="hidden" name="last_module_id[]" id="last_module_id" value="1">
                     <div class="form-row">
                         <div class="form-group col-12">
-                            <label>1.1. Sub-module Scope</label>
-                            <input type="text" class="form-control">
+                            <label><span class="module_num">1</span>.<span class="sub_module_num">1</span>. Sub-module Scope</label>
+                            <input type="text" class="form-control" name="sub_module_scope[]">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-12">
                             <label>Sub-module Description</label>
-                            <input type="text" class="form-control" style="height: 100px;">
+                            <textarea class="form-control" name="sub_module_description[]" rows="4"></textarea>
+
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label>Sub-module Status (Optional)</label>
-                            <select name="" class="form-control">
-                                <option value=""></option>
+                            <select name="sub_module_status[]" class="form-control">
+                                <option value="1">Pending</option>
                             </select>
                         </div>
                     </div>
@@ -340,58 +353,56 @@ type="text/css"/>
 	$(function(){
         $(document).on("click",".btn-copy-ps",function() {
 	  		var str = $(".module-3:last #module_id").val();
-            console.log(str);
-	  		var element = '<div class="module-3">'+$('.module-2').html()+'</div>';
+            // console.log(str);
+            var x = parseInt(str) + parseInt(1);
+
+            var element = '<div class="module-3 submodule-'+x+'">'+$('.module-2').html()+'</div>';
 	  		$('.module-1').append(element);
 
-            var x = parseInt(str) + parseInt(1);
             $('.module-3:last .module_num').text(x);
             $('.module-3:last #module_id').val(x);
+            $('.module-3:last #sub_module_id').val(x);
             flatpickr('.flatpickr');
+
+
+
+			var subbutton = '<button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addSubModule('+x+')">Add Sub-Module <span class="fa fa-plus"></span></button><button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0" onclick="removeSubModule('+x+')">Erase Sub-Module <span class="fas fa-times"></span></button>';
+			$('.submodule-'+x+' #submodulebutton').html(subbutton);
 	  	});
 	});
 
-	$(function(){
-        $(document).on("click",".btn-copy-sm",function() {
-            console.log('clikc ho raha haiu');
-            var str = $(".module-3:last #module_id").val();
-	  		var sub_str = $(".module-3:last .sub-module-3:last #sub_module_type").val();
+	function addSubModule(id){
+		// console.log(id)
+        var str = $('.submodule-'+id+' .sub-module-3:last #last_module_id').val();
+        var x = parseInt(str) + parseInt(1);
 
-	  		var element = '<div class="sub-module-3">'+$('.sub-module-2').html()+'</div>';
-	  		$('.sub-module-1').append(element);
+		var element = '<div class="sub-module-3">'+$('.sub-module-2').html()+'</div>';
+	  	$('.submodule-'+id+' .sub-module-1').append(element);
 
-            var x = parseInt(sub_str) + parseInt(1);
-            $('.module-3:last .sub-module-3:last .sub_module_num').text(x);
+        $('.submodule-'+id+' .sub-module-3 .module_num').text(id);
+        $('.submodule-'+id+' .sub-module-3 #sub_module_id').val(id);
 
-	  	});
-	});
+        $('.submodule-'+id+' .sub-module-3:last .sub_module_num').text(x);
+        $('.submodule-'+id+' .sub-module-3:last #last_module_id').val(x);
+	}
 
-	// $(function(){
-	// 	$(".btn-copy-sm1").on('click', function(){
+    function removeSubModule(id){
+        var mod_id = $('.submodule-'+id+' .sub-module-3:last #last_module_id').val();
+        if(mod_id != '1'){
+            $('.submodule-'+id+' .sub-module-1 .sub-module-3:last').remove();
+        }
 
-    //         var str = $("#module_type").val();
-	//   		var element = '<div class="module-2">'+$('.sub-module-2').html()+'</div>';
-	//   		$('.module-2').append(element);
-
-	//   	});
-	// });
+    }
 
 	$(document).on('click','.remove-ps',function() {
 		var mod_id = $(".module-3:last input#module_id").val();
 		if (mod_id != '0') {
-			ConfirmDelete(mod_id,'1');
+            if(mod_id != '1'){
+                $(".module-3:last").remove();
+            }
+			// ConfirmDelete(mod_id,'1');
 		} else {
 			$(".module-3:last").remove();
-	 	}
-	 	// $(this).parent('.ug-qualification-3').remove();
-	});
-
-	$(document).on('click','.remove-sm',function() {
-		var sub_mod_id = $(".sub-module-3:last input#sub_module_id").val();
-		if (sub_mod_id != '0') {
-			ConfirmDelete(sub_mod_id,'1');
-		} else {
-			$(".sub-module-3:last").remove();
 	 	}
 	 	// $(this).parent('.ug-qualification-3').remove();
 	});

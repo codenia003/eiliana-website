@@ -29,6 +29,8 @@ use App\Models\CustomerIndustry;
 use App\Models\ProfessionalExperience;
 use App\Models\UserProject;
 use App\Models\Employers;
+use App\Models\ProjectSchedule;
+use App\Models\ProjectScheduleModule;
 use stdClass;
 use Carbon\Carbon;
 use App\Notifications\UserNotification;
@@ -69,8 +71,6 @@ class ProjectController extends JoshController
         $user = Sentinel::getUser();
 
         $input = $request->except('_token');
-
-
         $input['user_id'] = $user->id;
 
         $indexing = "";
@@ -178,6 +178,47 @@ class ProjectController extends JoshController
         }
 
         return redirect('post-project')->with('success', 'Project Posted successfully');
+    }
+
+    public function postProjectSchedule(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+
+        $input['user_id'] = $user->id;
+
+        $projectschedules = new ProjectSchedule;
+        $projectschedules->project_leads_id = $input['project_leads_id'];
+        $projectschedules->project_id = $input['project_id'];
+        $projectschedules->customer_objective = $input['customer_objective'];
+        $projectschedules->project_start_date = $input['project_start_date'];
+        $projectschedules->project_end_date = $input['project_end_date'];
+        $projectschedules->save();
+
+        $insertedId = $projectschedules->project_schedule_id;
+
+        foreach ($input['module_id'] as $key => $value) {
+
+            $schedulemodule = new ProjectScheduleModule;
+            $schedulemodule->project_schedule_id = $insertedId;
+            $schedulemodule->parent_module_id = 0;
+            $schedulemodule->module_scope = $input['module_scope'][$key];
+            $schedulemodule->module_start_date = $input['module_start_date'][$key];
+            $schedulemodule->module_end_date = $input['module_end_date'][$key];
+            $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
+            $schedulemodule->hours_approved = $input['hours_approved'][$key];
+            $schedulemodule->modify_hours = $input['modify_hours'][$key];
+            $schedulemodule->module_status = $input['module_status'][$key];
+            $schedulemodule->save();
+
+            // foreach ($input['sub_module_id'] as $key1 => $value1) {
+            //     if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
+
+            //     }
+            // }
+        }
+
+        return redirect('/home')->with('success', 'Project Schedule Posted successfully');
     }
 
     public function getSearchProject(Request $request)

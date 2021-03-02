@@ -122,7 +122,7 @@ type="text/css"/>
                                     </div>
 
                                     <div class="mb-3 mt-3">
-									<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-4">Advance Payment Details</button>
+									<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-4">Generate Invoice</button>
 										<!-- <button class="btn btn-md btn-info btn-copy-sm111" type="button">Advance Payment Details <span class="fa fa-plus"></span></button> -->
 									</div>
 
@@ -187,81 +187,100 @@ type="text/css"/>
 				</div>
 				<div class="modal-body">
 				    <div class="main-moudle">
-						<div class="form-row">
-							<div class="form-group col-5">
-								<label>First Installment </label><small>(Excluding GST)</small>
-								<input type="text" class="form-control" value="" >
-							</div>
-							<div class="form-group col-2">
-								<label>Payment Due Date</label>
-								<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
-							</div>
-							<div class="form-group col-5">
-								<label>Hrs/Milestones/Remarks </label>
-								<input type="text" class="form-control" value="" >
-							</div>
-						</div>
+					    <div class="schedule-1">
+						    <div class="schedule-3 remove-qual-1">
+							   <input type="hidden" name="schedule_id[]" id="schedule_id" value="1">
+							   <input type="hidden" name="last_schedule_id[]" id="last_schedule_id" value="1">
+								<div class="form-row">
+									<div class="form-group col-5">
+										<label>Advance Payment </label><small>(Excluding GST)</small>
+										<input type="text" class="form-control" value="" >
+									</div>
+									<div class="form-group col-2">
+										<label>Payment Due Date</label>
+										<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+									</div>
+									<div class="form-group col-5">
+										<label>Hrs/Milestones/Remarks </label>
+										<input type="text" class="form-control" value="" >
+									</div>
+								</div>
 
-						<div class="form-row">
-							<div class="form-group col-5">
-								<label>Payable Amount </label><small>(Excluding GST)</small>
-								<input type="text" class="form-control" value="" >
-							</div>
-							<div class="form-group col-2">
-								<label>Payment Due Date</label>
-								<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
-							</div>
-							<div class="form-group col-5">
-								<label>Hrs/Milestones </label>
-								<input type="text" class="form-control" value="" >
+								<!-- <div class="form-row">
+									<div class="form-group col-5">
+										<label>Payable Amount </label><small>(Excluding GST)</small>
+										<input type="text" class="form-control" value="" >
+									</div>
+									<div class="form-group col-2">
+										<label>Payment Due Date</label>
+										<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+									</div>
+									<div class="form-group col-5">
+										<label>Hrs/Milestones </label>
+										<input type="text" class="form-control" value="" >
+									</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="mb-3 mt-3">
-						<button style="color: #fff;width: 220px;height: 52px;text-transform: capitalize;line-height: 22px;font-weight: 600;font-size: 16px !important;border-color: #ffffff;background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);" class="btn btn-md btn-info btn-copy-sm111" type="button">Add More Schedules <span class="fa fa-plus"></span></button>
+							<!-- <button style="color: #fff;width: 220px;height: 52px;text-transform: capitalize;line-height: 22px;font-weight: 600;font-size: 16px !important;border-color: #ffffff;background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);" class="btn btn-md btn-info btn-copy-sm111" type="button">Add More Schedules <span class="fa fa-plus"></span></button> -->
+							<button style="color: #fff;width: 220px;height: 52px;text-transform: capitalize;line-height: 22px;font-weight: 600;font-size: 16px !important;border-color: #ffffff;background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);" class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addSchedule('1')">Add More Schedules <span class="fa fa-plus"></span></button>
+							<button style="color: #fff;width: 220px;height: 52px;text-transform: capitalize;line-height: 22px;font-weight: 600;font-size: 16px !important;border-color: #ffffff;background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);" type="button" class="btn btn-md btn-info ml-3 rounded-0" onclick="removeSchedule('1')">Erase Schedule <span class="fas fa-times"></span></button>
 						</div>
 				    </div>
                     
-					<h4 style="text-align:center;" class="modal-title" id="modalLabelnews">Customer Payment Schedules</h4><hr><br>
+					<!-- <h4 style="text-align:center;" class="modal-title" id="modalLabelnews">Customer Payment Schedules</h4><hr><br> -->
 				   
-					<div class="second-moudle">
-						<div class="form-group basic-info mb-3">
-							<div class="form-check form-check-inline">
-								<div class="custom-control custom-radio">
-									<input type="radio" id="on_time" class="custom-control-input" name="title12" checked>
-									<label class="custom-control-label" for="on_time">On Time</label>
+					<!-- <div class="second-moudle">
+					    <div class="sales_commission_schedule-1">
+						    <div class="sales_commission_schedule-3 remove-qual-1">
+							    <input type="hidden" name="commission_schedule_id[]" id="commission_schedule_id" value="1">
+							    <input type="hidden" name="last_commission_schedule_id[]" id="last_commission_schedule_id" value="1">
+								<div class="form-group basic-info mb-3">
+									<div class="form-check form-check-inline">
+										<div class="custom-control custom-radio">
+											<input type="radio" id="on_time" class="custom-control-input" name="title12" checked>
+											<label class="custom-control-label" for="on_time">On Time</label>
+										</div>
+									</div>
+									<div class="form-check form-check-inline">
+										<div class="custom-control custom-radio">
+											<input type="radio" id="recurring" class="custom-control-input" name="title12">
+											<label class="custom-control-label" for="recurring">Recurring</label>
+										</div>
+									</div>
+									<div class="form-check form-check-inline">
+										<div class="custom-control custom-radio">
+											<input type="radio" id="no_commission" class="custom-control-input" name="title12">
+											<label class="custom-control-label" for="no_commission"> No Commission</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-5">
+										<label>Commission Amount </label><small>(INR)(Excluding GST)</small>
+										<input type="text" class="form-control" value="" >
+									</div>
+									<div class="form-group col-2">
+										<label>Payment Due Date</label>
+										<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+									</div>
+									<div class="form-group col-5">
+										<label>Remarks/Milestones </label>
+										<input type="text" class="form-control" value="" >
+									</div>
 								</div>
 							</div>
-							<div class="form-check form-check-inline">
-								<div class="custom-control custom-radio">
-									<input type="radio" id="recurring" class="custom-control-input" name="title12">
-									<label class="custom-control-label" for="recurring">Recurring</label>
-								</div>
-							</div>
-							<div class="form-check form-check-inline">
-								<div class="custom-control custom-radio">
-									<input type="radio" id="no_commission" class="custom-control-input" name="title12">
-									<label class="custom-control-label" for="no_commission"> No Commission</label>
-								</div>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-5">
-								<label>Commission Amount </label><small>(INR)(Excluding GST)</small>
-								<input type="text" class="form-control" value="" >
-							</div>
-							<div class="form-group col-2">
-								<label>Payment Due Date</label>
-								<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
-							</div>
-							<div class="form-group col-5">
-								<label>Remarks/Milestones </label>
-								<input type="text" class="form-control" value="" >
-							</div>
-						</div>
+						</div>		
 						<div class="mb-3 mt-3">
-							<button style="color: #fff;width: 220px;height: 52px;text-transform: capitalize;line-height: 22px;font-weight: 600;font-size: 16px !important;border-color: #ffffff;background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);" class="btn btn-md btn-info btn-copy-sm111" type="button">Add Further Commission Payout Schedules <span class="fa fa-plus"></span></button>
+							 <button style="color: #fff;width: 220px;height: 52px;text-transform: capitalize;line-height: 22px;font-weight: 600;font-size: 16px !important;border-color: #ffffff;background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);" class="btn btn-md btn-info btn-copy-sm111" type="button">
+							Add Further Commission Payout Schedules <span class="fa fa-plus"></span></button> -->
+							<!--<button style="color: #fff;width: 220px;height: 52px;text-transform: capitalize;line-height: 22px;font-weight: 600;font-size: 16px !important;border-color: #ffffff;background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);" class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addCommissionPayoutSchedule('1')">
+							Add Further Commission Payout Schedules <span class="fa fa-plus"></span></button>
+							<button style="color: #fff;width: 220px;height: 52px;text-transform: capitalize;line-height: 22px;font-weight: 600;font-size: 16px !important;border-color: #ffffff;background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);" type="button" class="btn btn-md btn-info ml-3 rounded-0" onclick="removeCommissionPayoutSchedule('1')">
+							Erase Commission Payout Schedules <span class="fas fa-times"></span></button>
 						</div>
-				    </div>
+				    </div> -->
 				</div>
 				<div class="modal-footer singup-body">
 					<div class="btn-group" role="group">
@@ -270,6 +289,81 @@ type="text/css"/>
 					</div>
 				</div>
 			</form>
+		</div>
+	</div>
+</div>
+
+<div class="schedule-2 d-none">
+    <input type="hidden" name="schedule_id[]" id="schedule_id" value="1">
+	<input type="hidden" name="last_schedule_id[]" id="last_schedule_id" value="1">
+	<div class="form-row">
+		<div class="form-group col-5">
+			<!-- <label>First Installment </label><small>(Excluding GST)</small> -->
+			<label><span class="sub_module_num">1</span>. Installment </label><small>(Excluding GST)</small>
+			<input type="text" class="form-control" value="" >
+		</div>
+		<div class="form-group col-2">
+			<label>Payment Due Date</label>
+			<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+		</div>
+		<div class="form-group col-5">
+			<label>Hrs/Milestones/Remarks </label>
+			<input type="text" class="form-control" value="" >
+		</div>
+	</div>
+
+	<!-- <div class="form-row">
+		<div class="form-group col-5">
+			<label>Payable Amount </label><small>(Excluding GST)</small>
+			<input type="text" class="form-control" value="" >
+		</div>
+		<div class="form-group col-2">
+			<label>Payment Due Date</label>
+			<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+		</div>
+		<div class="form-group col-5">
+			<label>Hrs/Milestones </label>
+			<input type="text" class="form-control" value="" >
+		</div>
+	</div> -->
+</div>
+
+
+<div class="sales_commission_schedule-2 d-none">
+	<input type="hidden" name="commission_schedule_id[]" id="commission_schedule_id" value="1">
+	<input type="hidden" name="last_commission_schedule_id[]" id="last_commission_schedule_id" value="1">
+	<!-- <div class="form-group basic-info mb-3">
+		<div class="form-check form-check-inline">
+			<div class="custom-control custom-radio">
+				<input type="radio" id="on_time" class="custom-control-input" name="title12" checked>
+				<label class="custom-control-label" for="on_time">On Time</label>
+			</div>
+		</div>
+		<div class="form-check form-check-inline">
+			<div class="custom-control custom-radio">
+				<input type="radio" id="recurring" class="custom-control-input" name="title12">
+				<label class="custom-control-label" for="recurring">Recurring</label>
+			</div>
+		</div>
+		<div class="form-check form-check-inline">
+			<div class="custom-control custom-radio">
+				<input type="radio" id="no_commission" class="custom-control-input" name="title12">
+				<label class="custom-control-label" for="no_commission"> No Commission</label>
+			</div>
+		</div>
+	</div> -->
+	<div class="form-row">
+		<div class="form-group col-5">
+			<label>Commission Amount </label><small>(INR)(Excluding GST)</small>
+			<input type="text" class="form-control" value="" >
+		</div>
+		<div class="form-group col-2">
+			<label>Payment Due Date</label>
+			<input class="flatpickr flatpickr-input form-control" type="text" name="dob" value="">
+		</div>
+		<div class="form-group col-5">
+			<label>Remarks/Milestones </label>
+			<input type="text" class="form-control" value="" >
 		</div>
 	</div>
 </div>
@@ -299,64 +393,65 @@ type="text/css"/>
         placeholder: 'Select a value',
     });
 
-	$(function(){
-        $(document).on("click",".btn-copy-ps",function() {
-	  		var str = $(".module-3:last #module_id").val();
-            console.log(str);
-	  		var element = '<div class="module-3">'+$('.module-2').html()+'</div>';
-	  		$('.module-1').append(element);
+	function addSchedule(id){
+		// console.log(id)
+        var str = $('.schedule-3:last #last_schedule_id').val();
+        var x = parseInt(str) + parseInt(1);
+		var y = x - 1;
 
-            var x = parseInt(str) + parseInt(1);
-            $('.module-3:last .module_num').text(x);
-            $('.module-3:last #module_id').val(x);
-            flatpickr('.flatpickr');
-	  	});
-	});
+		var element = '<div class="schedule-3">'+$('.schedule-2').html()+'</div>';
+	  	$('.schedule-1').append(element);
+        $('.schedule-3 #schedule_id').val(id);
 
-	$(function(){
-        $(document).on("click",".btn-copy-sm",function() {
-            console.log('clikc ho raha haiu');
-            var str = $(".module-3:last #module_id").val();
-	  		var sub_str = $(".module-3:last .sub-module-3:last #sub_module_type").val();
+        $('.schedule-3:last .sub_module_num').text(y);
+        $('.schedule-3:last #last_schedule_id').val(x);
+	}
 
-	  		var element = '<div class="sub-module-3">'+$('.sub-module-2').html()+'</div>';
-	  		$('.sub-module-1').append(element);
 
-            var x = parseInt(sub_str) + parseInt(1);
-            $('.module-3:last .sub-module-3:last .sub_module_num').text(x);
+	function addCommissionPayoutSchedule(id){
+		// console.log(id)
+        var str = $('.sales_commission_schedule-3:last #last_commission_schedule_id').val();
+        var x = parseInt(str) + parseInt(1);
 
-	  	});
-	});
+		var element = '<div class="sales_commission_schedule-3">'+$('.sales_commission_schedule-2').html()+'</div>';
+	  	$('.sales_commission_schedule-1').append(element);
+        $('.sales_commission_schedule-3:last #last_commission_schedule_id').val(x);
+	}
 
-	// $(function(){
-	// 	$(".btn-copy-sm1").on('click', function(){
+    function removeSchedule(id){
+		var mod_id = $('.schedule-3:last #last_schedule_id').val();
+        if(mod_id != '1'){
+			$('.schedule-1 .schedule-3:last').remove();
+        }	
+    }
 
-    //         var str = $("#module_type").val();
-	//   		var element = '<div class="module-2">'+$('.sub-module-2').html()+'</div>';
-	//   		$('.module-2').append(element);
 
-	//   	});
+	function removeCommissionPayoutSchedule(id){
+		var mod_id = $('.sales_commission_schedule-3:last #last_commission_schedule_id').val();
+        if(mod_id != '1'){
+			$('.sales_commission_schedule-1 .sales_commission_schedule-3:last').remove();
+        }	
+    }
+
+	// $(document).on('click','.remove-ps',function() {
+	// 	var mod_id = $(".module-3:last input#module_id").val();
+	// 	if (mod_id != '0') {
+	// 		ConfirmDelete(mod_id,'1');
+	// 	} else {
+	// 		$(".module-3:last").remove();
+	//  	}
+	//  	// $(this).parent('.ug-qualification-3').remove();
 	// });
 
-	$(document).on('click','.remove-ps',function() {
-		var mod_id = $(".module-3:last input#module_id").val();
-		if (mod_id != '0') {
-			ConfirmDelete(mod_id,'1');
-		} else {
-			$(".module-3:last").remove();
-	 	}
-	 	// $(this).parent('.ug-qualification-3').remove();
-	});
-
-	$(document).on('click','.remove-sm',function() {
-		var sub_mod_id = $(".sub-module-3:last input#sub_module_id").val();
-		if (sub_mod_id != '0') {
-			ConfirmDelete(sub_mod_id,'1');
-		} else {
-			$(".sub-module-3:last").remove();
-	 	}
-	 	// $(this).parent('.ug-qualification-3').remove();
-	});
+	// $(document).on('click','.remove-sm',function() {
+	// 	var sub_mod_id = $(".sub-module-3:last input#sub_module_id").val();
+	// 	if (sub_mod_id != '0') {
+	// 		ConfirmDelete(sub_mod_id,'1');
+	// 	} else {
+	// 		$(".sub-module-3:last").remove();
+	//  	}
+	//  	// $(this).parent('.ug-qualification-3').remove();
+	// });
 
 	function ConfirmDelete(mod_id,main_id)
 	{

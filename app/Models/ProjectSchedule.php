@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProjectSchedule extends Model
 {
-    protected $table = 'project_leads';
+    protected $table = 'project_schedules';
 
-    protected $primaryKey = 'project_leads_id';
+    protected $primaryKey = 'project_schedule_id';
 }

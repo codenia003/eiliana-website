@@ -31,6 +31,7 @@ use App\Models\UserProject;
 use App\Models\Employers;
 use App\Models\ProjectSchedule;
 use App\Models\ProjectScheduleModule;
+use App\Models\ProjectSubScheduleModule;
 use stdClass;
 use Carbon\Carbon;
 use App\Notifications\UserNotification;
@@ -193,6 +194,8 @@ class ProjectController extends JoshController
         $projectschedules->customer_objective = $input['customer_objective'];
         $projectschedules->project_start_date = $input['project_start_date'];
         $projectschedules->project_end_date = $input['project_end_date'];
+        $projectschedules->remarks = $input['remarks'];
+        $projectschedules->satuts = '1';
         $projectschedules->save();
 
         $insertedId = $projectschedules->project_schedule_id;
@@ -201,24 +204,47 @@ class ProjectController extends JoshController
 
             $schedulemodule = new ProjectScheduleModule;
             $schedulemodule->project_schedule_id = $insertedId;
-            $schedulemodule->parent_module_id = 0;
             $schedulemodule->module_scope = $input['module_scope'][$key];
             $schedulemodule->module_start_date = $input['module_start_date'][$key];
             $schedulemodule->module_end_date = $input['module_end_date'][$key];
             $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
             $schedulemodule->hours_approved = $input['hours_approved'][$key];
-            $schedulemodule->modify_hours = $input['modify_hours'][$key];
+            // $schedulemodule->modify_hours = $input['modify_hours'][$key];
             $schedulemodule->module_status = $input['module_status'][$key];
             $schedulemodule->save();
 
-            // foreach ($input['sub_module_id'] as $key1 => $value1) {
-            //     if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
+            $insertedScheduleId = $schedulemodule->project_schedule_module_id;
 
-            //     }
-            // }
+            foreach ($input['sub_module_id'] as $key1 => $value1) {
+
+                if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
+
+                    $subschedulemodule = new ProjectSubScheduleModule;
+                    $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
+                    $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
+                    $subschedulemodule->module_description = $input['sub_module_description'][$key1];
+                    $subschedulemodule->module_status = $input['sub_module_status'][$key1];
+                    $subschedulemodule->save();
+                }
+            }
         }
 
-        return redirect('/home')->with('success', 'Project Schedule Posted successfully');
+        $project = Project::where('project_id', $input['project_id'])->first();
+
+        $user = User::find($project->posted_by_user_id);
+
+        $details = [
+            'greeting' => 'Hi '. $user->full_name,
+            'body' => 'You have project schedule response on your project',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => 'project/profile-projectbid/'. $input['project_id'],
+            'main_id' => $input['project_id']
+        ];
+
+        Notification::send($user, new UserNotification($details));
+
+        return redirect('/freelancer/my-project')->with('success', 'Project Schedule Posted successfully');
     }
 
     public function getSearchProject(Request $request)

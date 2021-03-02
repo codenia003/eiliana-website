@@ -81,7 +81,7 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Customer Objective Of Project (Optional)</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4" required></textarea>
                                         </div>
                                     </div>
                                     {{-- <div class="form-group basic-info mb-3">
@@ -109,11 +109,11 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Project Start Date</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_start_date" value="">
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_start_date" value="" required>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Project End Date</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="">
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="" required>
                                         </div>
                                     </div>
                                 </div>
@@ -124,40 +124,42 @@ type="text/css"/>
 										<div class="form-row">
 											<div class="form-group col-12">
 												<label><span class="module_num">1</span>. Module Scope</label>
-												<input type="text" name="module_scope[]" class="form-control">
+												<input type="text" name="module_scope[]" class="form-control" required>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Start Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="">
+												<input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="" required>
 											</div>
 											<div class="form-group col-6">
 												<label>Module End Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="">
+												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="" required>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Hours Proposed</label>
-												<input class="form-control" type="text" name="hours_proposed[]">
+												<input class="form-control" type="text" name="hours_proposed[]" required>
 											</div>
 											<div class="form-group col-6">
 												<label>Hours Approved</label>
-												<input class="form-control" type="text" name="hours_approved[]">
+												<input class="form-control" type="text" name="hours_approved[]" required>
 											</div>
 										</div>
-										<div class="form-row">
+										{{-- <div class="form-row">
 											<div class="form-group col-6">
 												<label>Modify Hours</label>
 												<input class="form-control" type="text" name="modify_hours[]">
 											</div>
-										</div>
+										</div> --}}
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Status (Mandatory)</label>
-												<select name="module_status[]" class="form-control">
-												    <option value="1">Pending</option>
+												<select name="module_status[]" class="form-control" required>
+												    <option value="1">To be Started</option>
+                                                    <option value="2">In Progress</option>
+                                                    <option value="3">Completed</option>
 												</select>
 											</div>
 										</div>
@@ -169,20 +171,22 @@ type="text/css"/>
 												<div class="form-row">
 													<div class="form-group col-12">
 														<label><span class="module_num">1</span>.<span class="sub_module_num">1</span>. Sub-module Scope</label>
-														<input type="text" class="form-control" name="sub_module_scope[]">
+														<input type="text" class="form-control" name="sub_module_scope[]" required>
 													</div>
 												</div>
 												<div class="form-row">
 													<div class="form-group col-12">
 														<label>Sub-module Description</label>
-                                                        <textarea class="form-control" name="sub_module_description[]" rows="4"></textarea>
+                                                        <textarea class="form-control" name="sub_module_description[]" rows="4" required></textarea>
 													</div>
 												</div>
 												<div class="form-row">
 													<div class="form-group col-6">
 														<label>Sub-module Status (Optional)</label>
-														<select name="sub_module_status[]" class="form-control">
-															<option value="1">Pending</option>
+														<select name="sub_module_status[]" class="form-control" required>
+															<option value="1">To be Started</option>
+                                                            <option value="2">In Progress</option>
+                                                            <option value="3">Completed</option>
 														</select>
 													</div>
 												</div>
@@ -198,7 +202,7 @@ type="text/css"/>
 								<div class="form-row">
                                     <div class="form-group col-12">
                                         <label>Remarks</label>
-                                        <textarea class="form-control" name="remarks" rows="4"></textarea>
+                                        <textarea class="form-control" name="remarks" rows="4" required></textarea>
                                     </div>
                                 </div>
 								<div class="mb-3 mt-3">
@@ -209,7 +213,6 @@ type="text/css"/>
 								 <div class="form-group text-right mt-5">
 									<div class="btn-group" role="group">
 										<button class="btn btn-primary" type="submit">
-											<span class="spinner-border spinner-border-sm mr-1 d-none"></span>
 											Next >>>
 										</button>
 										 <button class="btn btn-primary" type="reset">Discard</button>
@@ -247,17 +250,19 @@ type="text/css"/>
                             <input class="form-control" type="text" name="hours_approved[]">
                         </div>
                     </div>
-                    <div class="form-row">
+                    {{-- <div class="form-row">
                         <div class="form-group col-6">
                             <label>Modify Hours</label>
                             <input class="form-control" type="text" name="modify_hours[]">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label>Module Status (Mandatory)</label>
                             <select name="module_status[]" class="form-control">
-                                <option value="1">Pending</option>
+                                <option value="1">To be Started</option>
+                                <option value="2">In Progress</option>
+                                <option value="3">Completed</option>
                             </select>
                         </div>
                     </div>
@@ -283,7 +288,9 @@ type="text/css"/>
                                 <div class="form-group col-6">
                                     <label>Sub-module Status (Optional)</label>
                                     <select name="sub_module_status[]" class="form-control">
-                                        <option value="1">Pending</option>
+                                        <option value="1">To be Started</option>
+                                        <option value="2">In Progress</option>
+                                        <option value="3">Completed</option>
                                     </select>
                                 </div>
                             </div>
@@ -315,7 +322,9 @@ type="text/css"/>
                         <div class="form-group col-6">
                             <label>Sub-module Status (Optional)</label>
                             <select name="sub_module_status[]" class="form-control">
-                                <option value="1">Pending</option>
+                                <option value="1">To be Started</option>
+                                <option value="2">In Progress</option>
+                                <option value="3">Completed</option>
                             </select>
                         </div>
                     </div>
@@ -362,9 +371,8 @@ type="text/css"/>
             $('.module-3:last .module_num').text(x);
             $('.module-3:last #module_id').val(x);
             $('.module-3:last #sub_module_id').val(x);
-            flatpickr('.flatpickr');
 
-
+            $(".module-3:last .flatpickr").flatpickr();
 
 			var subbutton = '<button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addSubModule('+x+')">Add Sub-Module <span class="fa fa-plus"></span></button><button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0" onclick="removeSubModule('+x+')">Erase Sub-Module <span class="fas fa-times"></span></button>';
 			$('.submodule-'+x+' #submodulebutton').html(subbutton);

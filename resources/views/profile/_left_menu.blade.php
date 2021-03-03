@@ -3,24 +3,10 @@
     <div class="card mb-5 shadow d-none">
         <div class="card-body">
             <div class="basic-padding">
-                <!-- <div class="form-group basic-info mb-5 text-center">
-                    <div class="form-check form-check-inline">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="public" name="anonymous" class="custom-control-input" value="0" {{ (Sentinel::getUser()->anonymous=="0")? "checked" : "" }} onchange="changeAnonymus(event)">
-                            <label class="custom-control-label" for="public">Public</label>
-                        </div>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="anonymous" name="anonymous" class="custom-control-input" value="1" {{ (Sentinel::getUser()->anonymous=="1")? "checked" : "" }} onchange="changeAnonymus(event)">
-                            <label class="custom-control-label" for="anonymous">Anonymus</label>
-                        </div>
-                    </div>
-                </div> -->
                 <!-- Avatar -->
                 <div class="text-center mb-5">
                     <div class="avatar avatar-xxl avatar-circle mb-3">
-                        
+
                         <div>
                             @if(Sentinel::getUser()->pic)
                             <img class="image-preview avatar-img" src="#" class="avatar" alt="Avatar">
@@ -33,7 +19,7 @@
                 </div>
                 <div class="mb-2">
                     <h5 class="card-title text-secondary">{{ Sentinel::getUser()->full_name }}  <button class="btn btn-white float-right"><i class="fa fa-pencil" aria-hidden="true"></i></button></h5>
-                    
+
                     <p class="card-text font-size-1">{{ Sentinel::getUser()->city }} {{ Session::get('users')['country_name'] }} - {{ \Carbon\Carbon::parse(Sentinel::getUser()->created_at)->format('F d, Y, g:m a')}}</p>
                 </div>
             </div>
@@ -70,16 +56,16 @@
                             <button class="btn">{{ Sentinel::getUser()->full_name }}</button>
                             <p class="card-text font-size-1">
                                 @isset(Sentinel::getUser()->city)
-                                {{ Sentinel::getUser()->city }}, 
+                                {{ Sentinel::getUser()->city }},
                                 @endisset
                                 {{ Session::get('users')['country_name'] }}
                                 <br>
                                 {{ \Carbon\Carbon::parse(Sentinel::getUser()->created_at)->format('M d, Y')}}
                             </p>
-                        
+
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="bottom-menu">
                     <div class="list-group">
                         <a class="list-group-item list-group-item-action bg-white-b active" href="/profile">

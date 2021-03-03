@@ -19,4 +19,9 @@ class ProjectLeads extends Model
     {
         return $this->belongsTo('App\Models\User', 'from_user_id', 'id');
     }
+
+    public function projectschedulee()
+    {
+        return $this->hasOne('App\Models\ProjectSchedule', 'project_leads_id', 'project_leads_id');
+    }
 }

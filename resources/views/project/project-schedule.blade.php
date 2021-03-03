@@ -44,14 +44,9 @@ type="text/css"/>
 					<div class="card">
 					<div class="bg-blue">
 						<div class="px-5 py-2">
-
-							<!-- <span class="border-title"><i class="fa fa-bars"></i></span> -->
 							<span class="h5 text-white" style="margin-left: -25px;">Project Schedule</span>
-							<!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
-
 						</div>
 					</div>
-						<!-- <h4 class="card-header text-left">Education Details</h4> -->
 						<div class="card-body p-4">
 							<form action="{{ route('projectschedule.create') }}" method="POST" id="educationForm">
 								@csrf

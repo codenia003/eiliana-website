@@ -451,9 +451,10 @@ class ProjectController extends JoshController
 
     }
 
-    public function contractDetails()
+    public function contractDetails($id)
     {
-        return view('project/contract-details');
+        $projectlead = ProjectLeads::with('projectdetail','projectschedulee')->where('project_leads_id', $id)->first();
+        return view('project/contract-details', compact('projectlead'));
     }
 
 }

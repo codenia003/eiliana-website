@@ -59,7 +59,7 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-4">
                                             <label>Proposal Id</label>
-                                            <input type="text" class="form-control" name="proposal_id" value="" >
+                                            <input type="text" class="form-control" name="proposal_id" value="{{$projectlead->project_leads_id}}" readonly>
                                         </div>
                                         <div class="form-group col-8">
                                             <label>Order Closed Value</label><small>(including sales Commission & Excluding GST)</small>
@@ -76,7 +76,7 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="ord_company_name" value="" >
                                         </div>
                                     </div>
-							
+
 									<div class="form-row">
 										<div class="form-group col-6">
 											<div class="form-group basic-file">
@@ -92,7 +92,7 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="sales_comm_amount" value="" >
                                         </div>
                                     </div>
-                                    
+
                                     <!-- <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Customer Objective Of Project (Optional)</label>
@@ -185,7 +185,7 @@ type="text/css"/>
 					<h4 class="modal-title" id="modalLabelnews">Customer Payment Schedules</h4>
 				</div>
 				<div class="modal-body">
-				    <div class="main-moudle"> 
+				    <div class="main-moudle">
 						<h4 style="text-align:center;" class="modal-title" id="modalLabelnews1">Advance Invoice Details</h4>
 				        <br>
 						<form action="" method="POST" id="staffingflead">
@@ -216,13 +216,13 @@ type="text/css"/>
 							</div>
 							<div class="modal-footer singup-body" style="border-top: 1px solid #ffffff;">
 								<div class="btn-group" role="group">
-									<button class="btn btn-primary"> 
+									<button class="btn btn-primary">
 									<span class="spinner-border spinner-border-sm mr-1 d-none"></span>
 									Send To Customer >>></button>
 								</div>
 							</div>
 						</form>
-						
+
 						<h4 style="text-align:center;" class="modal-title" id="modalLabelnews1">Customer Payment Schedules</h4>
 				        <br>
 						<form action="" method="POST" id="staffingflead">
@@ -275,9 +275,9 @@ type="text/css"/>
 						    </div>
 					    </form>
 				    </div>
-                    
+
 					<!-- <h4 style="text-align:center;" class="modal-title" id="modalLabelnews">Customer Payment Schedules</h4><hr><br> -->
-				   
+
 					<!-- <div class="second-moudle">
 					    <div class="sales_commission_schedule-1">
 						    <div class="sales_commission_schedule-3 remove-qual-1">
@@ -318,7 +318,7 @@ type="text/css"/>
 									</div>
 								</div>
 							</div>
-						</div>		
+						</div>
 						<div class="mb-3 mt-3">
 							 <button style="color: #fff;width: 220px;height: 52px;text-transform: capitalize;line-height: 22px;font-weight: 600;font-size: 16px !important;border-color: #ffffff;background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);" class="btn btn-md btn-info btn-copy-sm111" type="button">
 							Add Further Commission Payout Schedules <span class="fa fa-plus"></span></button> -->
@@ -462,7 +462,7 @@ type="text/css"/>
 		var mod_id = $('.schedule-3:last #last_schedule_id').val();
         if(mod_id != '1'){
 			$('.schedule-1 .schedule-3:last').remove();
-        }	
+        }
     }
 
 
@@ -470,7 +470,7 @@ type="text/css"/>
 		var mod_id = $('.sales_commission_schedule-3:last #last_commission_schedule_id').val();
         if(mod_id != '1'){
 			$('.sales_commission_schedule-1 .sales_commission_schedule-3:last').remove();
-        }	
+        }
     }
 
 	// $(document).on('click','.remove-ps',function() {

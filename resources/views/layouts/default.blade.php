@@ -23,37 +23,6 @@
     @yield('header_styles')
     <!--end of page level css-->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <style>
-           .main-moudle button.btn-copy-sm1{
-            color: #fff;
-            width: 220px;
-            height: 52px;
-            text-transform: capitalize;
-            line-height: 22px;
-            font-weight: 600;
-            font-size: 16px !important;
-            border-color: #ffffff;
-            background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);
-           }
-
-           .main-moudle button.btn-btn-md1{
-            color: #fff;
-            width: 220px;
-            height: 52px;
-            text-transform: capitalize;
-            line-height: 22px;
-            font-weight: 600;
-            font-size: 16px !important;
-            border-color: #ffffff;
-            background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);
-           }
-
-           #modalLabelnews1
-           {
-            color: #003466;
-            border-bottom: #003466;
-           }
-    </style>
 </head>
 
 <body>

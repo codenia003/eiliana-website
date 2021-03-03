@@ -443,6 +443,9 @@ Route::group(
 
         Route::get('my-proposal', 'ClientController@myProposal')->name('my-proposal');
         Route::get('my-project', 'ClientController@myProject')->name('my-project');
+
+        Route::get('project-schedule/{id}', 'ClientController@projectSchedule')->name('project-schedule');
+        Route::post('project-lead-schedule', 'ClientController@projectLeadSchedule')->name('project-lead-schedule');
     }
 );
 

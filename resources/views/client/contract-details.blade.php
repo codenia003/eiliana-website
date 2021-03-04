@@ -92,7 +92,7 @@
                                     <span>Hourly</span>
                             </label>
                         </div>
-                        <div class="form-row">
+                        <!-- <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Advance Payment details</label>
                                 <input type="text" class="form-control" name="advance_payment_details" value="" readonly>
@@ -101,7 +101,7 @@
                                 <label>Remarks </label>
                                 <input type="text" class="form-control" name="remarks" value="" readonly>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- <div class="form-row">
                             <div class="form-group col-5">

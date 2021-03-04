@@ -446,6 +446,8 @@ Route::group(
 
         Route::get('project-schedule/{id}', 'ClientController@projectSchedule')->name('project-schedule');
         Route::post('project-lead-schedule', 'ClientController@projectLeadSchedule')->name('project-lead-schedule');
+
+        Route::get('contract-details', 'ClientController@contractDetails')->name('contract-details');
     }
 );
 

@@ -110,4 +110,9 @@ class ClientController extends JoshController
         return response()->json($response);
 
     }
+
+    public function contractDetails()
+    {
+        return view('client/contract-details');
+    }
 }

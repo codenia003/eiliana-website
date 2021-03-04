@@ -27,6 +27,7 @@
         "php": "^7.2.5",
         "ext-gd": "*",
         "arcanedev/log-viewer": "^7.0",
+        "barryvdh/laravel-dompdf": "^0.9.0",
         "cartalyst/sentinel": "^4.0.0",
         "consoletvs/charts": "^6.5",
         "cviebrock/eloquent-sluggable": "^7.0",

@@ -32,7 +32,7 @@ Home
                 <div class="banner1_content">
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
                   <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">< Find Projects</a>
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
                     <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                   </div>

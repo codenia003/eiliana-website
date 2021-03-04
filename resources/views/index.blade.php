@@ -33,7 +33,8 @@ Home
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
                   <div class="group_button">
                     <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">< Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                   </div>
                 </div>
               </div>
@@ -50,7 +51,8 @@ Home
                         <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
                         <div class="group_button">
                           <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
+                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                          {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                         </div>
                       </div>
                   </div>
@@ -69,7 +71,8 @@ Home
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
                   <div class="group_button">
                     <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                   </div>
                 </div>
               </div>
@@ -86,7 +89,8 @@ Home
                         <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
                         <div class="group_button">
                           <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
+                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                          {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                         </div>
                       </div>
                   </div>
@@ -105,7 +109,8 @@ Home
                   <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
                   <div class="group_button">
                     <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                   </div>
                 </div>
               </div>
@@ -122,7 +127,8 @@ Home
                         <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
                         <div class="group_button">
                           <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a>
+                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                          {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                         </div>
                       </div>
                   </div>
@@ -364,7 +370,8 @@ Home
                     <div class="card1">
                         <h4 class="card-header text-left">Find Your Contract Job</h4>
                         <div class="card-body">
-                            <form action="{{ url('search-project') }}" method="GET" id="register_basic_form">
+                            {{-- <form action="{{ url('search-project') }}" method="GET" id="register_basic_form"> --}}
+                            <form action="#" method="GET" id="register_basic_form">
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-3 col-12 mr-5">

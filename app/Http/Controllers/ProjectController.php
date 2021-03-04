@@ -32,6 +32,9 @@ use App\Models\Employers;
 use App\Models\ProjectSchedule;
 use App\Models\ProjectScheduleModule;
 use App\Models\ProjectSubScheduleModule;
+use App\Models\ProjectContractDetails;
+use App\Models\ProjectOrderInvoice;
+use App\Models\ProjectPaymentSchedule;
 use stdClass;
 use Carbon\Carbon;
 use App\Notifications\UserNotification;
@@ -235,16 +238,80 @@ class ProjectController extends JoshController
 
         $details = [
             'greeting' => 'Hi '. $user->full_name,
-            'body' => 'You have project schedule response on your project',
+            'body' => 'You have project schedule response on your proposal',
             'thanks' => 'Thank you for using eiliana.com!',
             'actionText' => 'View My Site',
-            'actionURL' => 'project/profile-projectbid/'. $input['project_id'],
+            'actionURL' => 'client/project-schedule/'. $input['project_id'],
             'main_id' => $input['project_id']
         ];
 
         Notification::send($user, new UserNotification($details));
 
         return redirect('/freelancer/my-project')->with('success', 'Project Schedule Posted successfully');
+    }
+
+    public function postProjectContract(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+
+        $input['user_id'] = $user->id;
+
+        $contractdetails = new ProjectContractDetails;
+        $contractdetails->project_leads_id = $input['proposal_id'];
+        $contractdetails->from_user_id = $input['user_id'];
+        $contractdetails->order_closed_value = $input['order_closed_value'];
+        $contractdetails->date_acceptance = $input['date_acceptance'];
+        $contractdetails->ordering_com_name = $input['ordering_com_name'];
+        $contractdetails->sales_comm_amount = $input['sales_comm_amount'];
+        $contractdetails->remarks = $input['remarks'];
+        $contractdetails->advance_payment_details = $input['advance_payment_details'];
+        $contractdetails->satuts = '1';
+        $contractdetails->save();
+
+        $insertedId = $contractdetails->contract_id;
+
+        $projectorderinvoice = new ProjectOrderInvoice;
+        $projectorderinvoice->project_leads_id = $input['proposal_id'];
+        $projectorderinvoice->contract_id = $insertedId;
+        $projectorderinvoice->invoice_no = $input['invoice_no'];
+        $projectorderinvoice->invoice_amount = $input['invoice_amount'];
+        $projectorderinvoice->invoice_due_date = $input['invoice_due_date'];
+        $projectorderinvoice->invoice_milestones = $input['invoice_milestones'];
+        $projectorderinvoice->satuts = '1';
+        $projectorderinvoice->save();
+
+        foreach ($input['payment_schedule_id'] as $key => $value) {
+
+            $paymentschedule = new ProjectPaymentSchedule;
+            $paymentschedule->project_leads_id = $input['proposal_id'];
+            $paymentschedule->contract_id = $insertedId;
+            $paymentschedule->advance_payment = $input['advance_payment'][$key];
+            $paymentschedule->installment_no = $input['payment_schedule_id'][$key];
+            $paymentschedule->installment_amount = $input['installment_amount'][$key];
+            $paymentschedule->paymwnt_due_date = $input['paymwnt_due_date'][$key];
+            $paymentschedule->milestones_name = $input['milestones_name'][$key];
+            $paymentschedule->status = '1';
+            $paymentschedule->save();
+
+        }
+
+        $project = Project::where('project_id', $input['project_id'])->first();
+
+        $user = User::find($project->posted_by_user_id);
+
+        $details = [
+            'greeting' => 'Hi '. $user->full_name,
+            'body' => 'You have contract contract response on your proposal',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => 'project/contract-details/'. $input['project_id'],
+            'main_id' => $input['project_id']
+        ];
+
+        Notification::send($user, new UserNotification($details));
+
+        return redirect('/freelancer/my-project')->with('success', 'Project Contract Posted successfully');
     }
 
     public function getSearchProject(Request $request)

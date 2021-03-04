@@ -23,6 +23,14 @@
     @yield('header_styles')
     <!--end of page level css-->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <style>
+    .login_signup {
+		display: none;
+	}
+	.language {
+	    display: none;
+	}
+    </style>
 </head>
 
 <body>

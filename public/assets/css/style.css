@@ -274,8 +274,15 @@ a {
     background-color: #e9ecef !important;
     opacity: 1;
 }
-  /* haeder */
-  .custom_header .nav-link {
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+/* haeder */
+.custom_header .nav-link {
       color: #000 !important;
       padding-right: 1rem !important;
       padding-left: 1rem !important;
@@ -843,9 +850,10 @@ a {
       padding: 5px 13px;
   }
   .basic-file .custom-file label {
-      padding: 6px 10px;
+      padding: 25px 16px 20px;
       border-radius: 0;
       font-size: 16px;
+      line-height: 0px;
       background-color: #ffffff;
       border: 1px solid #c7c7c7;
       box-shadow: 0 0 2px 2px #e4ecf7;
@@ -1049,6 +1057,8 @@ a {
       color: #ffffff;
       background-color: #003466;
       border-radius: 0px;
+      height: 100%;
+      line-height: 32px;
   }
   .fixed-topscroll .mobile-profile {
       position: fixed !important;
@@ -1484,32 +1494,20 @@ span.select2-selection.select2-selection--single {
 .modal-body.login-body {
     border: unset;
 }
-.main-moudle button.btn-copy-sm1{
-    color: #fff;
-    width: 220px;
-    height: 52px;
-    text-transform: capitalize;
-    line-height: 22px;
-    font-weight: 600;
-    font-size: 16px !important;
-    border-color: #ffffff;
-    background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);
+.project-contract .login-body .modal-dialog {
+    max-width: 950px !important;
 }
-
-.main-moudle button.btn-btn-md1{
-    color: #fff;
-    width: 220px;
-    height: 52px;
-    text-transform: capitalize;
-    line-height: 22px;
-    font-weight: 600;
-    font-size: 16px !important;
-    border-color: #ffffff;
-    background: linear-gradient(281deg, rgba(168,129,222,1) 0%, rgba(86,177,221,1) 70%);
-}
-
-#modalLabelnews1
-{
+.project-contract .modal-body .modal-title {
     color: #003466;
     border-bottom: #003466;
+    text-align: center;
+}
+.project-contract .modal-body .modal-title:after{
+    content: " ";
+    border-bottom-style: double;
+    border-bottom-width: 1px;
+    display: block;
+    width: 32%;
+    text-align: center;
+    margin: auto !important;
 }

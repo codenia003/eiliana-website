@@ -279,19 +279,19 @@ Route::group(
 // FrontEndController
 
 // frontend views
-Route::get(
-    '/',
-    ['as' => 'home', function () {
-        return view('comingsoon');
-    }]
-);
+// Route::get(
+//     '/',
+//     ['as' => 'home', function () {
+//         return view('comingsoon');
+//     }]
+// );
 // Route::get(
 //     '/',
 //     ['as' => 'home', function () {
 //         return view('index');
 //     }]
 // );
-// Route::get('/', 'HomeController@index')->name('/');
+Route::get('/', 'HomeController@index')->name('/');
 
 // account
 Route::group(

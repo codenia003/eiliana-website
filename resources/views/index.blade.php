@@ -450,9 +450,15 @@ Home
     <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
     <div class="dividerheading"></div>
   </div>
-  <div class="space-1 explore-more shadow pl-4">
+  <div class="space-1 explore-more pl-4">
     <div class="row">
-      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
+        <div class="col-12">
+            <figure class="mt-4">
+                <img class="img-fluid" src="/assets/img/photo/mobile.png" alt="SVG">
+            </figure>
+        </div>
+
+        {{-- <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
         <ul class="list-unstyled list-article">
           <li><a class="link-underline" href="#">App Development</a></li>
           <li><a class="link-underline" href="#">Designing & Architecture</a></li>
@@ -513,7 +519,7 @@ Home
           <li><a class="link-underline" href="#">Mobile App Developer</a></li>
           <li><a class="link-underline" href="#">PHP Developer</a></li>
         </ul>
-      </div>
+      </div> --}}
     </div>
   </div>
   <a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a>

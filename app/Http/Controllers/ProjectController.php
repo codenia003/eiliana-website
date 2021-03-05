@@ -266,7 +266,7 @@ class ProjectController extends JoshController
         $contractdetails->sales_comm_amount = $input['sales_comm_amount'];
         $contractdetails->remarks = $input['remarks'];
         $contractdetails->advance_payment_details = $input['advance_payment_details'];
-        $contractdetails->satuts = '1';
+        $contractdetails->status = '1';
         $contractdetails->save();
 
         $insertedId = $contractdetails->contract_id;
@@ -278,7 +278,7 @@ class ProjectController extends JoshController
         $projectorderinvoice->invoice_amount = $input['invoice_amount'];
         $projectorderinvoice->invoice_due_date = $input['invoice_due_date'];
         $projectorderinvoice->invoice_milestones = $input['invoice_milestones'];
-        $projectorderinvoice->satuts = '1';
+        $projectorderinvoice->status = '1';
         $projectorderinvoice->save();
 
         foreach ($input['payment_schedule_id'] as $key => $value) {
@@ -305,13 +305,13 @@ class ProjectController extends JoshController
             'body' => 'You have contract contract response on your proposal',
             'thanks' => 'Thank you for using eiliana.com!',
             'actionText' => 'View My Site',
-            'actionURL' => 'project/contract-details/'. $input['project_id'],
-            'main_id' => $input['project_id']
+            'actionURL' => 'client/project-contract-details/'. $input['proposal_id'],
+            'main_id' => $input['proposal_id']
         ];
 
         Notification::send($user, new UserNotification($details));
 
-        return redirect('/freelancer/my-project')->with('success', 'Project Contract Posted successfully');
+        return redirect('/freelancer/my-project')->with('success', 'Project Contract updated successfully');
     }
 
     public function getSearchProject(Request $request)

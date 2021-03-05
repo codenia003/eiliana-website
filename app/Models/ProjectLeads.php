@@ -22,6 +22,11 @@ class ProjectLeads extends Model
 
     public function projectschedulee()
     {
-        return $this->hasOne('App\Models\ProjectSchedule', 'project_leads_id', 'project_leads_id');
+        return $this->hasMany('App\Models\ProjectSchedule', 'project_leads_id', 'project_leads_id');
+    }
+
+    public function contractdetails()
+    {
+        return $this->hasOne('App\Models\ProjectContractDetails', 'project_leads_id', 'project_leads_id');
     }
 }

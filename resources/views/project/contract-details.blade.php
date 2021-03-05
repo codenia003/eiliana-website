@@ -53,22 +53,22 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-4">
                                             <label>Proposal Id</label>
-                                            <input type="text" class="form-control" name="proposal_id" value="{{$projectlead->project_leads_id}}" readonly>
-                                            <input type="hidden" name="project_id" value="{{ $projectleads->project_id }}">
+                                            <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
+                                            <input type="hidden" name="project_id" value="{{ $projectlead->project_id }}">
                                         </div>
                                         <div class="form-group col-8">
                                             <label>Order Closed Value</label><small>(including sales Commission & Excluding GST)</small>
-                                            <input type="number" class="form-control" name="ord_closed_value" required>
+                                            <input type="number" class="form-control" name="order_closed_value" required>
                                         </div>
                                     </div>
 									<div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Date of Acceptance</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="acceptance_date" required>
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="date_acceptance" required>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Ordering Company Name/Individual</label>
-                                            <input type="text" class="form-control" name="ord_company_name" required>
+                                            <input type="text" class="form-control" name="ordering_com_name" required>
                                         </div>
                                     </div>
 
@@ -141,8 +141,7 @@ type="text/css"/>
                                 </div>
 								<div class="form-group text-right mt-5">
 									<div class="btn-group" role="group">
-										<button class="btn btn-primary" type="submit">
-											<span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+										<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-4">
 											Next >>>
 										</button>
 									</div>

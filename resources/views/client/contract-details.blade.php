@@ -25,73 +25,36 @@
             </div>
         </div>
             <div class="card-body p-4">
-                <form action="" method="POST" id="educationForm">
+                <form action="{{ route('project-contract-payment') }}" method="POST" id="educationForm">
                     @csrf
-                    <input type="hidden" name="" value="">
+                    <input type="hidden" name="contract_id" value="{{ $projectlead->contractdetails->contract_id }}">
                     <div class="main-moudle">
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Proposal Id</label>
-                                <input type="text" class="form-control" name="proposal_id" value="" readonly>
+                                <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
                             </div>
                             <div class="form-group col-6">
                                 <label>Order Closed Value</label>
-                                <input type="text" class="form-control" name="ord_closed_value" value="" readonly>
+                                <input type="text" class="form-control" name="order_closed_value" value="{{ $projectlead->contractdetails->order_closed_value }}" readonly>
                             </div>
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Date of Acceptance</label>
-                                <input class="form-control" type="text" name="acceptance_date" value="" readonly>
+                                <input class="form-control" type="text" name="date_acceptance" value="{{ $projectlead->contractdetails->date_acceptance }}" readonly>
                             </div>
                             <div class="form-group col-6">
                                 <label>Ordering Company Name/Individual  </label>
-                                <input type="text" class="form-control" name="ord_company_name" value="" readonly>
+                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <div class="form-group basic-file">
-                                    <label>Upload Documents</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile" name="upload_file" readonly>
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-6">
-                                <label>Sales Commission Amount </label><small>(Excluding GST)</small>
-                                <input type="text" class="form-control" name="sales_comm_amount" value="" readonly>
-                            </div>
-                        </div>
-                        <!-- <div class="form-group basic-info mb-3">
-                            <label>Model Of Engagement</label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="hourly" class="custom-control-input" name="title1" checked>
-                                    <label class="custom-control-label" for="hourly">Hourly</label>
-                                </div>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="pt_rentainer" class="custom-control-input" name="title1">
-                                    <label class="custom-control-label" for="pt_rentainer">P.T.Rentainer</label>
-                                </div>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="project_based" class="custom-control-input" name="title1">
-                                    <label class="custom-control-label" for="project_based"> Project-based</label>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="form-group basic-info mb-3">
+                        {{-- <div class="form-group basic-info mb-3">
                             <label>Model Of Engagement:
-                                    <span>Hourly</span>
+                                <span>Hourly</span>
                             </label>
-                        </div>
+                        </div> --}}
                         <!-- <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Advance Payment details</label>
@@ -117,19 +80,27 @@
                                 <input type="text" class="form-control" name="invoice_amount" value="" readonly>
                             </div>
                         </div> -->
-                        <div class="form-row">
-                            <div class="form-group col-5">
-                                <label>Advance Payment </label><small>(Excluding GST)</small>
-                                <input type="text" class="form-control" name="advance_payment" value="" readonly>
+                        <h4 class="modal-title">Customer Payment Schedules</h4>
+                        @forelse ($projectlead->contractdetails->paymentschedule as $item)
+                            <div class="form-row">
+                                <div class="form-group col-5">
+                                    @if ($item->advance_payment == '1')
+                                        <label>Advance Payment </label><small>(Excluding GST)</small>
+                                    @else
+                                        <label>{{ $item->installment_no }} Installment</label><small>(Excluding GST)</small>
+                                    @endif
+                                    <input type="text" class="form-control" name="installment_amount" value="{{ $item->installment_amount }}" readonly>
+                                </div>
+                                <div class="form-group col-3">
+                                    <label>Payment Due Date</label>
+                                    <input class="form-control" type="text" name="payment_due_date" value="{{ $item->paymwnt_due_date }}" readonly>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label>Hrs/Milestones/Remarks </label>
+                                    <input type="text" class="form-control" name="milestones_name" value="{{ $item->milestones_name }}" readonly>
+                                </div>
                             </div>
-                            <div class="form-group col-3">
-                                <label>Payment Due Date</label>
-                                <input class="form-control" type="text" name="payment_due_date" value="" readonly>
-                            </div>
-                            <div class="form-group col-4">
-                                <label>Hrs/Milestones/Remarks </label>
-                                <input type="text" class="form-control" name="milestones_name" value="" readonly>
-                            </div>
+<<<<<<< Updated upstream
                         </div>
                         <div class="form-row">
                             <div class="form-group col-5">
@@ -145,21 +116,51 @@
                                 <input type="text" class="form-control" value="" readonly>
                             </div>
                         </div>
+=======
+                        @empty
+                            <p>No Data</p>
+                        @endforelse
+>>>>>>> Stashed changes
                     </div>
-                    <div class="modal-footer singup-body" id="payment_button" style="border-top: 1px solid #ffffff;">
-                        <div class="btn-group" role="group">
-                            <button class="btn btn-primary">
-                            <span class=" spinner-border-sm mr-1"></span>
-                            Payment </button>
+                    @forelse ($projectlead->contractdetails->advacne_amount as $item)
+                    <input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">
+                    <input type="hidden" name="payment_schedule_id" id="payment_schedule_id" value="{{ $item->payment_schedule_id }}">
+                    @empty
+                    <input type="hidden" name="amount" id="amount" value="0">
+                    @endforelse
+
+                    <input type="hidden" name="currency" id="currency" value="INR">
+                    <input type="hidden" name="status" id="status" value="1">
+                    <input type="hidden" name="payment_id" id="payment_id" value="">
+                    @if ($projectlead->contractdetails->status == '1')
+                        <div class="form-group text-right mt-5" id="status">
+                            <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-primary" type="button" onclick="contractDetails('{{ $projectlead->contractdetails->contract_id }}','2')">Accept</button>
+                                <button class="btn btn-primary" type="button" onclick="contractDetails('{{ $projectlead->contractdetails->contract_id }}''4')">Reject</button>
+                            </div>
                         </div>
-                    </div>
-                     <div class="form-group text-right mt-5" id="status">
-                        <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
-                        <div class="btn-group" role="group">
-                            <button class="btn btn-primary" type="button" onclick="contractDetails('')">Accept</button>
-                            <button class="btn btn-primary" type="button" onclick="contractDetails('')">Reject</button>
+                    @elseif ($projectlead->contractdetails->status == '4')
+                    <p>Status: Cancel</p>
+                    @else
+                        <div class="singup-body" id="payment_button" style="border-top: 1px solid #ffffff;">
+                            <div class="btn-group" role="group">
+                                <span>Please pay advance payment for further process</span>
+                                <button type="button" id="paybtn" class="btn btn-primary deliverinfo">Payment Link</button>
+                            </div>
                         </div>
-                    </div>
+                        {{-- <script src="https://checkout.razorpay.com/v1/checkout.js"
+                            data-key="{{ env('RAZOR_KEY') }}"
+                            data-amount="1000"
+                            data-buttontext="Pay 1 INR"
+                            data-name="NiceSnippets"
+                            data-description="Rozerpay"
+                            data-image="{{ asset('/image/nice.png') }}"
+                            data-prefill.name="name"
+                            data-prefill.email="email"
+                            data-theme.color="#ff7529">
+                            </script> --}}
+                    @endif
                 </form>
             </div>
         </div>
@@ -169,53 +170,90 @@
 
 @section('profile_script')
 {{-- <x-chat-message/> --}}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-$('#payment_button').hide();
-function contractDetails(schedule_id,lead_status){
+
+function contractDetails(contract_id,lead_status){
     $('.spinner-border').removeClass("d-none");
-    $('#payment_button').show();
-    $('#status').hide();
-    var url = '/client/contract-detail-schedule';
+    var url = '/client/project-contract-post';
     var data= {
         _token: "{{ csrf_token() }}",
-        schedule_id: schedule_id,
+        contract_id: contract_id,
         lead_status: lead_status
     };
-    // $.ajax({
-    //     type: 'POST',
-    //     url: url,
-    //     data: data,
-    //     success: function(data) {
-    //         var userCheck = data;
-    //         $('.spinner-border').addClass("d-none");
-    //         if (userCheck.success == '1') {
-    //             Swal.fire({
-    //                 type: 'success',
-    //                 title: 'Success...',
-    //                 text: userCheck.msg,
-    //                 showConfirmButton: false,
-    //                 timer: 2000
-    //             });
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: function(data) {
+            var userCheck = data;
+            $('.spinner-border').addClass("d-none");
+            if (userCheck.success == '1') {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Success...',
+                    text: userCheck.msg,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
 
-    //             // window.location.href = '/freelancer/my-opportunity';
-    //         } else {
-    //             Swal.fire({
-    //                 type: 'error',
-    //                 title: 'Oops...',
-    //                 text: userCheck.errors,
-    //                 showConfirmButton: false,
-    //                 timer: 3000
-    //             });
-    //             // if (userCheck.success == '2') {
-    //             //     window.location.href = '/freelancer/my-opportunity';
-    //             // }
-    //         }
+                $('#payment_button').show();
+                $('#status').hide();
 
-    //     },
-    //     error: function(xhr, status, error) {
-    //         console.log("error: ",error);
-    //     },
-    // });
+                // window.location.href = '/freelancer/my-opportunity';
+            } else {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: userCheck.errors,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                // if (userCheck.success == '2') {
+                //     window.location.href = '/freelancer/my-opportunity';
+                // }
+            }
+
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
 }
+
+function padStart(str) {
+    return ('0' + str).slice(-2)
+}
+
+function demoSuccessHandler(transaction) {
+
+    if (transaction.razorpay_payment_id) {
+        $('#payment_id').val(transaction.razorpay_payment_id);
+        $('#status').val('2');
+        $("#educationForm").submit();
+    }
+}
+
+$('body').on('click', '#paybtn', function(e){
+
+    var totalAmount = document.getElementById("amount").value;
+    var currency = document.getElementById("currency").value;
+    var name = 'Eilaian India';
+    var store_logo = "{{ asset('/assets/img/logo.png') }}";
+    var options = {
+        "key": "{{ env('RAZOR_KEY') }}",
+        "amount": (totalAmount*100), // 2000 paise = INR 20
+        "currency": currency,
+        "name": name,
+        "image": store_logo,
+        "handler": demoSuccessHandler,
+        "theme": {
+           "color": "#ff2424"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+    e.preventDefault();
+});
 </script>
 @stop

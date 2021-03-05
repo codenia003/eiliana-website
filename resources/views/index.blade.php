@@ -377,6 +377,22 @@ Home
     </div>
   </div>
 </section>
+<section class="section container my-2">
+  <!-- <div class="text-center mb-5">
+    <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
+    <div class="dividerheading"></div>
+  </div> -->
+  <div class="space-1 explore-more pl-4">
+    <div class="row">
+        <div class="col-12">
+            <figure class="mt-4">
+                <img class="img-fluid" src="/assets/img/photo/new_page.png" alt="SVG">
+            </figure>
+        </div>
+    </div>
+  </div>
+  <!-- a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> -->
+</section>
 <section class="section container py-4 mt-1">
     <div class="text-center">
         <h1 class="headingmain1">Looking For A Project</h1>

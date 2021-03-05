@@ -15,6 +15,26 @@ Home
 <link rel="stylesheet" type="text/css" href="{{ asset('vendors/slick-carousel/slick.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/index.css') }}">
 <!--end of page level css-->
+<style>
+.modal-dialog {
+      max-width: 800px;
+      margin: 30px auto;
+  }
+.modal-body {
+  position:relative;
+  padding:0px;
+}
+.close {
+  position:absolute;
+  right:-30px;
+  top:0;
+  z-index:999;
+  font-size:2rem;
+  font-weight: normal;
+  color:#fff;
+  opacity:1;
+}
+</style>
 @stop
 
 {{-- slider --}}
@@ -667,11 +687,30 @@ Home
   </div>
   <div class="our-slotuion slider mb-5 mt-5 text-center w-lg-60 mx-auto">
     <div class="video-player mx-md-auto">
-        <a class="js-inline-video-player video-player-btn video-player-centered" href="#">
-          <img class="img-fluid video-player-preview shadow" src="/assets/img/Eiliana-video-Screen.png" alt="Image">
-        </a>
+        <!-- <a class="js-inline-video-player video-player-btn video-player-centered" href="#" >
+          <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
+        </a> -->
+        <button type="button" class="video-btn" data-toggle="modal" data-src="/assets/video/eiliana_final.mp4" data-target="#myModal">
+            <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image">
+        </button>
     </div>
   </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+        <!-- 16:9 aspect ratio -->
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow=""></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
 </section>
 
 <section class="overflow-hidden newsletter d-none">
@@ -706,4 +745,25 @@ Home
 <script type="text/javascript" src="{{ asset('vendors/slick-carousel/slick.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/assets/js/index.js') }}"></script>
 <!--page level js ends-->
+<script>
+  $(document).ready(function() {
+    var $videoSrc;  
+    $('.video-btn').click(function() {
+        $videoSrc = $(this).data( "src" );
+    });
+    console.log($videoSrc);
+    // when the modal is opened autoplay it  
+    $('#myModal').on('shown.bs.modal', function (e) {
+        
+    $("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" ); 
+    })
+
+    // stop playing the youtube video when I close the modal
+    $('#myModal').on('hide.bs.modal', function (e) {
+        // a poor man's stop video
+        $("#video").attr('src',$videoSrc); 
+    }) 
+  });
+
+</script>
 @stop

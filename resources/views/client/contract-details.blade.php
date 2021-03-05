@@ -131,6 +131,20 @@
                                 <input type="text" class="form-control" name="milestones_name" value="" readonly>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group col-5">
+                                <label><span class="sub_module_num">2</span>. Installment </label><small>(Excluding GST)</small>
+                                <input type="text" class="form-control" value="" readonly>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Payment Due Date</label>
+                                <input class="form-control" type="text" name="dob" value="" readonly>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>Hrs/Milestones/Remarks </label>
+                                <input type="text" class="form-control" value="" readonly>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer singup-body" id="payment_button" style="border-top: 1px solid #ffffff;">
                         <div class="btn-group" role="group">

@@ -53,7 +53,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Our Products</a>
                         </li>
-                        <li class="nav-item d-none d-sm-block">
+                        {{-- <li class="nav-item d-none d-sm-block">
                             <button class="login_signup yellow-linear-gradient text-white" onclick="location.href='/account/login'">Login</button>
                         </li>
                         <li class="nav-item d-none d-sm-block">
@@ -62,7 +62,7 @@
                         <li class="nav-item d-block d-sm-none mb-3">
                             <button class="login_signup yellow-linear-gradient text-white" onclick="location.href='/account/login'">Login</button>
                             <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/register'">Sign Up</button>
-                        </li>
+                        </li> --}}
                         {{-- <li class="nav-item dropdown language">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="/assets/img/lnguage_icon.jpg">

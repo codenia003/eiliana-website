@@ -1511,3 +1511,6 @@ span.select2-selection.select2-selection--single {
     text-align: center;
     margin: auto !important;
 }
+.explore-more img {
+    padding: 0px 100px;
+}

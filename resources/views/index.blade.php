@@ -43,7 +43,7 @@ Home
       </div>
     </div>
 
-    <!-- <div class="slide slider1">
+    <div class="slide slider1">
       <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-2-1.png);">
           <div class="container space-2 space-lg-4">
             <div class="row">
@@ -62,7 +62,7 @@ Home
             </div>
           </div>
       </div>
-    </div> -->
+    </div>
 
     <div class="slide slider1">
       <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-5.png);">
@@ -84,7 +84,7 @@ Home
           </div>
       </div>
     </div>
-     <!-- <div class="slide slider2">
+    <div class="slide slider2">
         <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-2-1.png);">
           <div class="container space-2 space-lg-4">
               <div class="w-md-65 w-lg-35">
@@ -101,8 +101,8 @@ Home
               </div>
           </div>
         </div>
-    </div> -->
-   <!-- <div class="slide slider3">
+    </div>
+   <div class="slide slider3">
         <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-3.png);">
           <div class="container space-2 space-lg-4">
             <div class="row">
@@ -176,7 +176,7 @@ Home
                   </div>
               </div>
           </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </section>
@@ -185,53 +185,22 @@ Home
 
 {{-- content --}}
 @section('content')
-<section class="section container">
-  <div class="services mt-5 shadow border">
-    <div class="row">
-      <div class="col-md-4 mb-7 mb-md-0">
-          <!-- Contacts -->
-          <div class="media accordion modified-accordion">
-              <figure class="max-w-8rem mr-4 mt-4">
-                  <img class="img-fluid" src="/assets/img/icons/serviceimg1.jpg" alt="SVG">
+<section class="section container my-2">
+    <!-- <div class="text-center mb-5">
+      <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
+      <div class="dividerheading"></div>
+    </div> -->
+    <div class="space-1 explore-more pl-4">
+      <div class="row">
+          <div class="col-12">
+              <figure class="mt-4">
+                  <img class="img-fluid" src="/assets/img/photo/new_page.png" alt="SVG">
               </figure>
-              <div class="media-body card-header1" id="headingOne">
-                  <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">In-Demand Skills</h4>
-                  <p class="font-size-1 mb-0" id="collapseOne" class="collapse show" aria-labelledby="headingOne">From iOS Developers to Data Scientists, our ever-growing talent pool has the most trending skillset.</p>
-              </div>
           </div>
-          <!-- End Contacts -->
       </div>
-
-      <div class="col-md-4 mb-7 mb-md-0">
-          <!-- Contacts -->
-          <div class="media accordion modified-accordion">
-              <figure class="max-w-8rem mr-4 mt-4">
-                  <img class="img-fluid" src="/assets/img/icons/serviceimg2.jpg" alt="SVG">
-              </figure>
-              <div class="media-body card-header1" id="headingTwo">
-                  <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Transparent Pay</h4>
-                  <p class="font-size-1 mb-0" id="collapseTwo" class="collapse" aria-labelledby="headingTwo">As a client you will always know what you’re paying for, upfront. And as a talent you will always get your payments timely.</p>
-              </div>
-          </div>
-          <!-- End Contacts -->
-      </div>
-      <div class="col-md-4 mb-7 mb-md-0">
-          <!-- Contacts -->
-          <div class="media accordion modified-accordion">
-              <figure class="max-w-8rem mr-4 mt-4">
-                  <img class="img-fluid" src="/assets/img/icons/serviceimg3.jpg" alt="SVG">
-              </figure>
-              <div class="media-body card-header1" id="headingThree">
-                  <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">24X7 Support</h4>
-                  <p class="font-size-1 mb-0" id="collapseThree" class="collapse" aria-labelledby="headingThree">Got questions? Our round-the-clock support is always available to assist you, anytime anywhere.</p>
-              </div>
-          </div>
-          <!-- End Contacts -->
-      </div>
-      
     </div>
-  </div>
-</section>
+    <!-- a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> -->
+  </section>
 <section class="section container our-solution four-slider">
   <div class="text-center">
     <h1 class="headingmain1">Our Solutions</h1>
@@ -460,21 +429,53 @@ Home
     </div>
   </div>
 </section> -->
-<section class="section container my-2">
-  <!-- <div class="text-center mb-5">
-    <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
-    <div class="dividerheading"></div>
-  </div> -->
-  <div class="space-1 explore-more pl-4">
-    <div class="row">
-        <div class="col-12">
-            <figure class="mt-4">
-                <img class="img-fluid" src="/assets/img/photo/new_page.png" alt="SVG">
-            </figure>
+
+<section class="section container">
+    <div class="services mt-5 shadow border">
+      <div class="row">
+        <div class="col-md-4 mb-7 mb-md-0">
+            <!-- Contacts -->
+            <div class="media accordion modified-accordion">
+                <figure class="max-w-8rem mr-4 mt-4">
+                    <img class="img-fluid" src="/assets/img/icons/serviceimg1.jpg" alt="SVG">
+                </figure>
+                <div class="media-body card-header1" id="headingOne">
+                    <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">In-Demand Skills</h4>
+                    <p class="font-size-1 mb-0" id="collapseOne" class="collapse show" aria-labelledby="headingOne">From iOS Developers to Data Scientists, our ever-growing talent pool has the most trending skillset.</p>
+                </div>
+            </div>
+            <!-- End Contacts -->
         </div>
+
+        <div class="col-md-4 mb-7 mb-md-0">
+            <!-- Contacts -->
+            <div class="media accordion modified-accordion">
+                <figure class="max-w-8rem mr-4 mt-4">
+                    <img class="img-fluid" src="/assets/img/icons/serviceimg2.jpg" alt="SVG">
+                </figure>
+                <div class="media-body card-header1" id="headingTwo">
+                    <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Transparent Pay</h4>
+                    <p class="font-size-1 mb-0" id="collapseTwo" class="collapse" aria-labelledby="headingTwo">As a client you will always know what you’re paying for, upfront. And as a talent you will always get your payments timely.</p>
+                </div>
+            </div>
+            <!-- End Contacts -->
+        </div>
+        <div class="col-md-4 mb-7 mb-md-0">
+            <!-- Contacts -->
+            <div class="media accordion modified-accordion">
+                <figure class="max-w-8rem mr-4 mt-4">
+                    <img class="img-fluid" src="/assets/img/icons/serviceimg3.jpg" alt="SVG">
+                </figure>
+                <div class="media-body card-header1" id="headingThree">
+                    <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">24X7 Support</h4>
+                    <p class="font-size-1 mb-0" id="collapseThree" class="collapse" aria-labelledby="headingThree">Got questions? Our round-the-clock support is always available to assist you, anytime anywhere.</p>
+                </div>
+            </div>
+            <!-- End Contacts -->
+        </div>
+
+      </div>
     </div>
-  </div>
-  <!-- a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> -->
 </section>
 <section class="section container py-4 mt-1">
     <div class="text-center">
@@ -734,12 +735,9 @@ Home
   </div>
   <div class="our-slotuion slider mb-5 mt-5 text-center w-lg-60 mx-auto">
     <div class="video-player mx-md-auto">
-        <!-- <a class="js-inline-video-player video-player-btn video-player-centered" href="#" >
+        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-src="/assets/video/eiliana_final.mp4" data-target="#myModal">
           <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
-        </a> -->
-        <button type="button" class="video-btn" data-toggle="modal" data-src="/assets/video/eiliana_final.mp4" data-target="#myModal" style="border: none;">
-            <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image">
-        </button>
+        </a>
     </div>
   </div>
 
@@ -749,7 +747,7 @@ Home
       <div class="modal-body">
        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>        
+        </button>
         <!-- 16:9 aspect ratio -->
         <div class="embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow=""></iframe>
@@ -757,7 +755,7 @@ Home
       </div>
     </div>
   </div>
-</div> 
+</div>
 </section>
 
 <section class="overflow-hidden newsletter d-none">
@@ -794,22 +792,22 @@ Home
 <!--page level js ends-->
 <script>
   $(document).ready(function() {
-    var $videoSrc;  
-    $('.video-btn').click(function() {
+    var $videoSrc;
+    $('.video-player-btn').click(function() {
         $videoSrc = $(this).data( "src" );
     });
-    console.log($videoSrc);
-    // when the modal is opened autoplay it  
+    // console.log($videoSrc);
+    // when the modal is opened autoplay it
     $('#myModal').on('shown.bs.modal', function (e) {
-        
-    $("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" ); 
+
+    $("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" );
     })
 
     // stop playing the youtube video when I close the modal
     $('#myModal').on('hide.bs.modal', function (e) {
         // a poor man's stop video
-        $("#video").attr('src',$videoSrc); 
-    }) 
+        $("#video").attr('src',$videoSrc);
+    })
   });
 
 </script>

@@ -23,40 +23,6 @@
     @yield('header_styles')
     <!--end of page level css-->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <style>
-    .login_signup {
-		display: none;
-	}
-	.language {
-	    display: none;
-	}
-    .custom_header li{
-        list-style: none;
-    }
-
-    .custom_header li .login{
-        margin-left: 35rem;
-        color: #b8180c;
-        font-weight: 500;
-    }
-
-    .custom_header li .signup{
-        margin-left: 1rem;
-        color: #b8180c;
-        font-weight: 500;
-    }
-
-    @media only screen and (max-width: 768px) {
-      /* For mobile phones: */
-      .custom_header li .login {
-        margin-left: 1rem;
-      }
-      .custom_header li .signup {
-        margin-left: -1rem;
-      }
-    }
-
-    </style>
 </head>
 
 <body>
@@ -66,10 +32,10 @@
             @if(Sentinel::guest())
             <nav class="navbar navbar-expand-lg navbar-light custom_header">
                 <a class="navbar-brand" href="/"><img src="/assets/img/logo.png"></a>
-                <li>
+                <li class="log">
                     <a class="login" href="#">Login</a>
                 </li>
-                <li>
+                <li class="log">
                     <a class="signup" href="#">SignUp</a>
                 </li>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

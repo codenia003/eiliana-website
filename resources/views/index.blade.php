@@ -15,26 +15,6 @@ Home
 <link rel="stylesheet" type="text/css" href="{{ asset('vendors/slick-carousel/slick.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/index.css') }}">
 <!--end of page level css-->
-<style>
-.modal-dialog {
-      max-width: 800px;
-      margin: 30px auto;
-  }
-.modal-body {
-  position:relative;
-  padding:0px;
-}
-.close {
-  position:absolute;
-  right:-30px;
-  top:0;
-  z-index:999;
-  font-size:2rem;
-  font-weight: normal;
-  color:#fff;
-  opacity:1;
-}
-</style>
 @stop
 
 {{-- slider --}}
@@ -62,7 +42,49 @@ Home
           </div>
       </div>
     </div>
-    <div class="slide slider2">
+
+    <!-- <div class="slide slider1">
+      <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-2-1.png);">
+          <div class="container space-2 space-lg-4">
+            <div class="row">
+              <div class="col-md-5">
+              </div>
+              <div class="col-md-7">
+                <div class="banner1_content">
+                  <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                  <div class="group_button">
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div> -->
+
+    <div class="slide slider1">
+      <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-5.png);">
+          <div class="container space-2 space-lg-4">
+            <div class="row">
+              <div class="col-md-5">
+              </div>
+              <div class="col-md-7">
+                <div class="banner1_content">
+                  <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                  <div class="group_button">
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+     <!-- <div class="slide slider2">
         <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-2-1.png);">
           <div class="container space-2 space-lg-4">
               <div class="w-md-65 w-lg-35">
@@ -79,8 +101,8 @@ Home
               </div>
           </div>
         </div>
-    </div>
-    <div class="slide slider3">
+    </div> -->
+   <!-- <div class="slide slider3">
         <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-3.png);">
           <div class="container space-2 space-lg-4">
             <div class="row">
@@ -154,7 +176,7 @@ Home
                   </div>
               </div>
           </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
@@ -168,47 +190,108 @@ Home
     <div class="row">
       <div class="col-md-4 mb-7 mb-md-0">
           <!-- Contacts -->
-          <div class="media">
+          <div class="media accordion modified-accordion">
               <figure class="max-w-8rem mr-4 mt-4">
                   <img class="img-fluid" src="/assets/img/icons/serviceimg1.jpg" alt="SVG">
               </figure>
-              <div class="media-body">
-                  <h4 class="mb-1 text-orange">In-Demand Skills</h4>
-                  <p class="font-size-1 mb-0">From iOS Developers to Data Scientists, our ever-growing talent pool has the most trending skillset.</p>
+              <div class="media-body card-header1" id="headingOne">
+                  <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">In-Demand Skills</h4>
+                  <p class="font-size-1 mb-0" id="collapseOne" class="collapse show" aria-labelledby="headingOne">From iOS Developers to Data Scientists, our ever-growing talent pool has the most trending skillset.</p>
+              </div>
+          </div>
+          <!-- End Contacts -->
+      </div>
+
+      <div class="col-md-4 mb-7 mb-md-0">
+          <!-- Contacts -->
+          <div class="media accordion modified-accordion">
+              <figure class="max-w-8rem mr-4 mt-4">
+                  <img class="img-fluid" src="/assets/img/icons/serviceimg2.jpg" alt="SVG">
+              </figure>
+              <div class="media-body card-header1" id="headingTwo">
+                  <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Transparent Pay</h4>
+                  <p class="font-size-1 mb-0" id="collapseTwo" class="collapse" aria-labelledby="headingTwo">As a client you will always know what you’re paying for, upfront. And as a talent you will always get your payments timely.</p>
               </div>
           </div>
           <!-- End Contacts -->
       </div>
       <div class="col-md-4 mb-7 mb-md-0">
           <!-- Contacts -->
-          <div class="media slant-box">
-              <figure class="max-w-8rem mr-4 mt-4">
-                  <img class="img-fluid" src="/assets/img/icons/serviceimg2.jpg" alt="SVG">
-              </figure>
-              <div class="media-body">
-                  <h4 class="mb-1 text-orange">Transparent Pay</h4>
-                  <p class="font-size-1 mb-0">As a client you will always know what you’re paying for, upfront. And as a talent you will always get your payments timely.</p>
-              </div>
-          </div>
-          <!-- End Contacts -->
-      </div>
-      <div class="col-md-4">
-          <!-- Contacts -->
-          <div class="media slant-box">
+          <div class="media accordion modified-accordion">
               <figure class="max-w-8rem mr-4 mt-4">
                   <img class="img-fluid" src="/assets/img/icons/serviceimg3.jpg" alt="SVG">
               </figure>
-              <div class="media-body">
-                  <h4 class="mb-1 text-orange">24X7 Support</h4>
-                  <p class="font-size-1 mb-0">Got questions? Our round-the-clock support is always available to assist you, anytime anywhere.</p>
+              <div class="media-body card-header1" id="headingThree">
+                  <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">24X7 Support</h4>
+                  <p class="font-size-1 mb-0" id="collapseThree" class="collapse" aria-labelledby="headingThree">Got questions? Our round-the-clock support is always available to assist you, anytime anywhere.</p>
               </div>
           </div>
           <!-- End Contacts -->
       </div>
+      
     </div>
   </div>
 </section>
-<section class="section container mt-4 four-slider">
+<section class="section container our-solution four-slider">
+  <div class="text-center">
+    <h1 class="headingmain1">Our Solutions</h1>
+    <p class="d-block mb-2 subtitle1">Apart from our talent marketplace, we provide a variety of innovative solutions that help both talents and clients grow.</p>
+    <div class="dividerheading"></div>
+  </div>
+  <div class="our-slotuion slider mb-3 mt-3">
+    <div class="multiple-carousel">
+        <div class="slide">
+          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
+            <figure class="max-w-10rem mx-auto mb-4">
+              <img class="img-fluid" src="/assets/img/icons/solution-1.png" alt="SVG">
+            </figure>
+            <h3>01. JDJU XHSDHHD</h3>
+            <!-- <h3>01. Code Canyon</h3> -->
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+            <!-- <p>Code Canyon Connect with top-tier developers for pre-written programming modules and codes that can be integrated seamlessly.</p> -->
+            <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
+            <figure class="max-w-10rem mx-auto mb-4">
+              <img class="img-fluid" src="/assets/img/icons/solution-2.png" alt="SVG">
+            </figure>
+            <h3>02. HDHHD DHBDSBJ</h3>
+            <!-- <h3>02. Sales Referral</h3> -->
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+            <!-- <p>Utilize your contacts! Refer a friend or a colleague and get 10% on the successful completion of the project.</p> -->
+            <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
+            <figure class="max-w-10rem mx-auto mb-4">
+              <img class="img-fluid" src="/assets/img/icons/solution-3.png" alt="SVG">
+            </figure>
+            <h3>03. JVFKNLK</h3>
+            <!-- <h3>03. Project Analysis</h3> -->
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+            <!-- <p>Get a detailed road-map that will help you in identifying the nitty gritties of your project.</p> -->
+            <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
+            <figure class="max-w-10rem mx-auto mb-4">
+              <img class="img-fluid" src="/assets/img/icons/solution-4.png" alt="SVG">
+            </figure>
+            <h3>04. SYAGAHA WHWHW</h3>
+            <!-- <h3>04. Startup Workforce</h3> -->
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+            <!-- <p>Connect with bankable top-tier talents that have a proven professional experience to grow your business.</p> -->
+            <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- <section class="section container mt-4 four-slider">
   <div class="text-center">
     <h1 class="headingmain1">Crowd <span><img src="/assets/img/heart-icon.jpg"></span> Favourites</h1>
     <p class="subtitle1">Checkout some of the most popular services people pay for on Eiliana.</p>
@@ -376,7 +459,7 @@ Home
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <section class="section container my-2">
   <!-- <div class="text-center mb-5">
     <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
@@ -642,65 +725,7 @@ Home
     </div>
   </div>
 </section>
-<section class="section container our-solution four-slider">
-  <div class="text-center">
-    <h1 class="headingmain1">Our Solutions</h1>
-    <p class="d-block mb-2 subtitle1">Apart from our talent marketplace, we provide a variety of innovative solutions that help both talents and clients grow.</p>
-    <div class="dividerheading"></div>
-  </div>
-  <div class="our-slotuion slider mb-3 mt-3">
-    <div class="multiple-carousel">
-        <div class="slide">
-          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-            <figure class="max-w-10rem mx-auto mb-4">
-              <img class="img-fluid" src="/assets/img/icons/solution-1.png" alt="SVG">
-            </figure>
-            <h3>01. JDJU XHSDHHD</h3>
-            <!-- <h3>01. Code Canyon</h3> -->
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            <!-- <p>Code Canyon Connect with top-tier developers for pre-written programming modules and codes that can be integrated seamlessly.</p> -->
-            <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-            <figure class="max-w-10rem mx-auto mb-4">
-              <img class="img-fluid" src="/assets/img/icons/solution-2.png" alt="SVG">
-            </figure>
-            <h3>02. HDHHD DHBDSBJ</h3>
-            <!-- <h3>02. Sales Referral</h3> -->
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            <!-- <p>Utilize your contacts! Refer a friend or a colleague and get 10% on the successful completion of the project.</p> -->
-            <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-            <figure class="max-w-10rem mx-auto mb-4">
-              <img class="img-fluid" src="/assets/img/icons/solution-3.png" alt="SVG">
-            </figure>
-            <h3>03. JVFKNLK</h3>
-            <!-- <h3>03. Project Analysis</h3> -->
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            <!-- <p>Get a detailed road-map that will help you in identifying the nitty gritties of your project.</p> -->
-            <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-            <figure class="max-w-10rem mx-auto mb-4">
-              <img class="img-fluid" src="/assets/img/icons/solution-4.png" alt="SVG">
-            </figure>
-            <h3>04. SYAGAHA WHWHW</h3>
-            <!-- <h3>04. Startup Workforce</h3> -->
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            <!-- <p>Connect with bankable top-tier talents that have a proven professional experience to grow your business.</p> -->
-            <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
+
 <section class="section container our-solution">
   <div class="text-center w-lg-60 mx-auto">
     <h1 class="headingmain1">How It Works?</h1>
@@ -712,7 +737,7 @@ Home
         <!-- <a class="js-inline-video-player video-player-btn video-player-centered" href="#" >
           <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
         </a> -->
-        <button type="button" class="video-btn" data-toggle="modal" data-src="/assets/video/eiliana_final.mp4" data-target="#myModal">
+        <button type="button" class="video-btn" data-toggle="modal" data-src="/assets/video/eiliana_final.mp4" data-target="#myModal" style="border: none;">
             <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image">
         </button>
     </div>
@@ -788,4 +813,21 @@ Home
   });
 
 </script>
+
+<!-- <script>
+  var coll = document.getElementsByClassName("demand_skills");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var demand_skills = this.nextElementSibling;
+      if (demand_skills.style.display === "block") {
+        demand_skills.style.display = "none";
+      } else {
+        demand_skills.style.display = "block";
+      }
+    });
+  }
+</script> -->
 @stop

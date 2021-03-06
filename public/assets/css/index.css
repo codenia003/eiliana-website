@@ -6,7 +6,7 @@
 .banner1_content h1 {
     font-weight: 400;
     color: #242021;
-    font-size: 1.6em;
+    font-size: 19px;
     line-height: 1.4;
     margin: 16px;
     text-transform: capitalize;
@@ -63,8 +63,8 @@
 
 .services {
     margin: 22px 0;
-    padding: 25px;
-    margin-top: 2.5rem !important;
+    padding: 14px;
+    margin-top: 1.5rem !important;
 }
 
 .services h4 {

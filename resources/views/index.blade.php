@@ -257,6 +257,54 @@ Home
             <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
           </div>
         </div>
+        <div class="slide">
+            <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
+              <figure class="max-w-10rem mx-auto mb-4">
+                <img class="img-fluid" src="/assets/img/icons/solution-1.png" alt="SVG">
+              </figure>
+              <h3>01. JDJU XHSDHHD</h3>
+              <!-- <h3>01. Code Canyon</h3> -->
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+              <!-- <p>Code Canyon Connect with top-tier developers for pre-written programming modules and codes that can be integrated seamlessly.</p> -->
+              <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
+              <figure class="max-w-10rem mx-auto mb-4">
+                <img class="img-fluid" src="/assets/img/icons/solution-2.png" alt="SVG">
+              </figure>
+              <h3>02. HDHHD DHBDSBJ</h3>
+              <!-- <h3>02. Sales Referral</h3> -->
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+              <!-- <p>Utilize your contacts! Refer a friend or a colleague and get 10% on the successful completion of the project.</p> -->
+              <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
+              <figure class="max-w-10rem mx-auto mb-4">
+                <img class="img-fluid" src="/assets/img/icons/solution-3.png" alt="SVG">
+              </figure>
+              <h3>03. JVFKNLK</h3>
+              <!-- <h3>03. Project Analysis</h3> -->
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+              <!-- <p>Get a detailed road-map that will help you in identifying the nitty gritties of your project.</p> -->
+              <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
+              <figure class="max-w-10rem mx-auto mb-4">
+                <img class="img-fluid" src="/assets/img/icons/solution-4.png" alt="SVG">
+              </figure>
+              <h3>04. SYAGAHA WHWHW</h3>
+              <!-- <h3>04. Startup Workforce</h3> -->
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+              <!-- <p>Connect with bankable top-tier talents that have a proven professional experience to grow your business.</p> -->
+              <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+            </div>
+          </div>
     </div>
   </div>
 </section>

@@ -63,8 +63,8 @@
 
 .services {
     margin: 22px 0;
-    padding: 25px;
-    margin-top: 2.5rem !important;
+    padding: 20px 22px;
+    margin-top: 2rem !important;
 }
 
 .services h4 {
@@ -412,6 +412,7 @@ section.section1 .slider3 .bg-img-hero {
 }
 .job-details h2 {
     font-size: 22px;
+    color: grey;
 }
 .job-details .company-info {
     padding: 3px 0px 10px;
@@ -438,6 +439,7 @@ section.section1 .slider3 .bg-img-hero {
     color: #7aadd9 !important;
     display: inherit;
     margin-bottom: 10px;
+    display: none;
 }
 .explore-more .dropdown-menu {
     margin: 0;
@@ -547,4 +549,15 @@ section.section1 .slider3 .bg-img-hero {
     -o-transition: 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
     transition: 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
     display: none;
+}
+section.contract-job .singup-body .card-body {
+    padding: 20px 30px;
+}
+h4.featured-jobs {
+    color: #003466;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+.login-body .modal-dialog {
+    max-width: 720px !important;
 }

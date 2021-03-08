@@ -81,7 +81,7 @@
                             </div>
                         </div> -->
                         <h4 class="modal-title">Customer Payment Schedules</h4>
-                        @forelse ($projectlead->contractdetails->paymentschedule as $item)
+                        @foreach ($projectlead->contractdetails->paymentschedule as $item)
                             <div class="form-row">
                                 <div class="form-group col-5">
                                     @if ($item->advance_payment == '1')
@@ -100,27 +100,7 @@
                                     <input type="text" class="form-control" name="milestones_name" value="{{ $item->milestones_name }}" readonly>
                                 </div>
                             </div>
-<<<<<<< Updated upstream
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-5">
-                                <label><span class="sub_module_num">2</span>. Installment </label><small>(Excluding GST)</small>
-                                <input type="text" class="form-control" value="" readonly>
-                            </div>
-                            <div class="form-group col-3">
-                                <label>Payment Due Date</label>
-                                <input class="form-control" type="text" name="dob" value="" readonly>
-                            </div>
-                            <div class="form-group col-4">
-                                <label>Hrs/Milestones/Remarks </label>
-                                <input type="text" class="form-control" value="" readonly>
-                            </div>
-                        </div>
-=======
-                        @empty
-                            <p>No Data</p>
-                        @endforelse
->>>>>>> Stashed changes
+                        @endforeach
                     </div>
                     @forelse ($projectlead->contractdetails->advacne_amount as $item)
                     <input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">
@@ -149,17 +129,6 @@
                                 <button type="button" id="paybtn" class="btn btn-primary deliverinfo">Payment Link</button>
                             </div>
                         </div>
-                        {{-- <script src="https://checkout.razorpay.com/v1/checkout.js"
-                            data-key="{{ env('RAZOR_KEY') }}"
-                            data-amount="1000"
-                            data-buttontext="Pay 1 INR"
-                            data-name="NiceSnippets"
-                            data-description="Rozerpay"
-                            data-image="{{ asset('/image/nice.png') }}"
-                            data-prefill.name="name"
-                            data-prefill.email="email"
-                            data-theme.color="#ff7529">
-                            </script> --}}
                     @endif
                 </form>
             </div>

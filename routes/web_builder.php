@@ -11,6 +11,9 @@ Route::group(
         Route::post('post-project-schedule', 'ProjectController@postProjectSchedule')->name('projectschedule.create');
         Route::get('contract-details/{id}', 'ProjectController@contractDetails')->name('contract-details');
         Route::post('post-project-contract', 'ProjectController@postProjectContract')->name('projectcontract.create');
+
+        Route::get('project/project-finance/{id}', 'ProjectController@projectFinance')->name('project-finance');
+        Route::post('project-send-finance', 'ProjectController@sendProjectFinance')->name('project-finance.send');
     }
 );
 

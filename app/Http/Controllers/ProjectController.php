@@ -524,4 +524,18 @@ class ProjectController extends JoshController
         return view('project/contract-details', compact('projectlead'));
     }
 
+    public function projectFinance($id)
+    {
+        $projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+
+        return view('project/project-finance', compact('projectlead'));
+    }
+
+    public function sendProjectFinance(Request $request)
+    {
+        $input = $request->except('_token');
+
+        return redirect('/freelancer/my-project')->with('success', 'Project send to eiliana finance successfully');
+    }
+
 }

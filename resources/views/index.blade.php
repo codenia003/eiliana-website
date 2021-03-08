@@ -21,170 +21,175 @@ Home
 @section('top')
 <!--Carousel Start -->
 <section class="section1">
-  <div class="slick-carousel">
-    <div class="slide slider1">
-      <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-1.png);">
-          <div class="container space-2 space-lg-4">
-            <div class="row">
-              <div class="col-md-5">
-              </div>
-              <div class="col-md-7">
-                <div class="banner1_content">
-                  <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
-                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+    <div class="slick-carousel">
+      <div class="slide slider1">
+        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-1.png);">
+            <div class="container space-2 space-lg-4">
+              <div class="row">
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-7">
+                  <div class="banner1_content">
+                    <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                    <div class="group_button">
+                      <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                      <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                      {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-      </div>
-    </div>
-
-    <div class="slide slider1">
-      <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-2-1.png);">
-          <div class="container space-2 space-lg-4">
-            <div class="row">
-              <div class="col-md-5">
-              </div>
-              <div class="col-md-7">
-                <div class="banner1_content">
-                  <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
-                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-
-    <div class="slide slider1">
-      <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-5.png);">
-          <div class="container space-2 space-lg-4">
-            <div class="row">
-              <div class="col-md-5">
-              </div>
-              <div class="col-md-7">
-                <div class="banner1_content">
-                  <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
-                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-    <div class="slide slider2">
-        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-2-1.png);">
-          <div class="container space-2 space-lg-4">
-              <div class="w-md-65 w-lg-35">
-                  <div class="mb-4">
-                      <div class="banner1_content">
-                        <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                        <div class="group_button">
-                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
-                          {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
-                        </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
         </div>
-    </div>
-   <div class="slide slider3">
-        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-3.png);">
-          <div class="container space-2 space-lg-4">
-            <div class="row">
-              <div class="col-md-6">
-              </div>
-              <div class="col-md-6">
-                <div class="banner1_content">
-                  <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
-                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
-                  </div>
+      </div>
+      <div class="slide slider2">
+          <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-2-1.png);">
+            <div class="container space-2 space-lg-4">
+                <div class="w-md-65 w-lg-35">
+                    <div class="mb-4">
+                        <div class="banner1_content">
+                          <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                          <div class="group_button">
+                            <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                            <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                            {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                          </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
           </div>
-        </div>
-    </div>
-    <div class="slide slider4">
-        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-4.png);">
-          <div class="container space-2 space-lg-4">
-              <div class="w-md-65 w-lg-35">
-                  <div class="mb-4">
-                      <div class="banner1_content">
-                        <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                        <div class="group_button">
-                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
-                          {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
-                        </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </div>
-    </div>
-    <div class="slide slider5">
-      <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-5.png);">
-          <div class="container space-2 space-lg-4">
-            <div class="row">
-              <div class="col-md-5">
-              </div>
-              <div class="col-md-7">
-                <div class="banner1_content">
-                  <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                  <div class="group_button">
-                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
-                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+      </div>
+      <div class="slide slider3">
+          <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-3.png);">
+            <div class="container space-2 space-lg-4">
+              <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                  <div class="banner1_content">
+                    <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                    <div class="group_button">
+                      <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                      <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                      {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
       </div>
-    </div>
-    <div class="slide slider6">
-        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-6-1.png);">
-          <div class="container space-2 space-lg-4">
-              <div class="w-md-65 w-lg-35">
-                  <div class="mb-4">
-                      <div class="banner1_content">
-                        <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
-                        <div class="group_button">
-                          <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
-                          <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
-                          {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+      <div class="slide slider4">
+          <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-4.png);">
+            <div class="container space-2 space-lg-4">
+                <div class="w-md-65 w-lg-35">
+                    <div class="mb-4">
+                        <div class="banner1_content">
+                          <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                          <div class="group_button">
+                            <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                            <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                            {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                          </div>
                         </div>
-                      </div>
-                  </div>
-              </div>
+                    </div>
+                </div>
+            </div>
           </div>
       </div>
+      <div class="slide slider5">
+        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-5.png);">
+            <div class="container space-2 space-lg-4">
+              <div class="row">
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-7">
+                  <div class="banner1_content">
+                    <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                    <div class="group_button">
+                      <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                      <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                      {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="slide slider6">
+          <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-6-1.png);">
+            <div class="container space-2 space-lg-4">
+                <div class="w-md-65 w-lg-35">
+                    <div class="mb-4">
+                        <div class="banner1_content">
+                          <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                          <div class="group_button">
+                            <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                            <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                            {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 <!-- //Carousel End -->
 @stop
 
 {{-- content --}}
 @section('content')
+<section class="section container">
+    <div class="services mt-5 border">
+      <div class="row">
+        <div class="col-md-4 mb-7 mb-md-0">
+            <!-- Contacts -->
+            <div class="media accordion modified-accordion">
+                <figure class="max-w-8rem mr-4 mt-4">
+                    <img class="img-fluid" src="/assets/img/icons/serviceimg1.jpg" alt="SVG">
+                </figure>
+                <div class="media-body card-header1" id="headingOne">
+                    <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">In-Demand Skills</h4>
+                    <p class="font-size-1 mb-0" id="collapseOne" class="collapse show" aria-labelledby="headingOne">From iOS Developers to Data Scientists, our ever-growing talent pool has the most trending skillset.</p>
+                </div>
+            </div>
+            <!-- End Contacts -->
+        </div>
+
+        <div class="col-md-4 mb-7 mb-md-0">
+            <!-- Contacts -->
+            <div class="media accordion modified-accordion">
+                <figure class="max-w-8rem mr-4 mt-4">
+                    <img class="img-fluid" src="/assets/img/icons/serviceimg2.jpg" alt="SVG">
+                </figure>
+                <div class="media-body card-header1" id="headingTwo">
+                    <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Transparent Pay</h4>
+                    <p class="font-size-1 mb-0" id="collapseTwo" class="collapse" aria-labelledby="headingTwo">As a client you will always know what you’re paying for, upfront. And as a talent you will always get your payments timely.</p>
+                </div>
+            </div>
+            <!-- End Contacts -->
+        </div>
+        <div class="col-md-4 mb-7 mb-md-0">
+            <!-- Contacts -->
+            <div class="media accordion modified-accordion">
+                <figure class="max-w-8rem mr-4 mt-4">
+                    <img class="img-fluid" src="/assets/img/icons/serviceimg3.jpg" alt="SVG">
+                </figure>
+                <div class="media-body card-header1" id="headingThree">
+                    <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">24X7 Support</h4>
+                    <p class="font-size-1 mb-0" id="collapseThree" class="collapse" aria-labelledby="headingThree">Got questions? Our round-the-clock support is always available to assist you, anytime anywhere.</p>
+                </div>
+            </div>
+            <!-- End Contacts -->
+        </div>
+
+      </div>
+    </div>
+</section>
 <section class="section container my-2">
     <!-- <div class="text-center mb-5">
       <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
@@ -202,11 +207,11 @@ Home
     <!-- a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> -->
   </section>
 <section class="section container our-solution four-slider">
-  <div class="text-center">
-    <h1 class="headingmain1">Our Solutions</h1>
-    <p class="d-block mb-2 subtitle1">Apart from our talent marketplace, we provide a variety of innovative solutions that help both talents and clients grow.</p>
-    <div class="dividerheading"></div>
-  </div>
+    <div class="text-center">
+        <h1 class="headingmain1">Crowd <span><img src="/assets/img/heart-icon.jpg"></span> Favourites</h1>
+        <p class="subtitle1">Checkout some of the most popular services people pay for on Eiliana.</p>
+        <div class="dividerheading"></div>
+    </div>
   <div class="our-slotuion slider mb-3 mt-3">
     <div class="multiple-carousel">
         <div class="slide">
@@ -215,10 +220,8 @@ Home
               <img class="img-fluid" src="/assets/img/icons/solution-1.png" alt="SVG">
             </figure>
             <h3>01. JDJU XHSDHHD</h3>
-            <!-- <h3>01. Code Canyon</h3> -->
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            <!-- <p>Code Canyon Connect with top-tier developers for pre-written programming modules and codes that can be integrated seamlessly.</p> -->
-            <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+            <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now</a>
           </div>
         </div>
         <div class="slide">
@@ -268,8 +271,8 @@ Home
               <!-- <p>Code Canyon Connect with top-tier developers for pre-written programming modules and codes that can be integrated seamlessly.</p> -->
               <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
             </div>
-          </div>
-          <div class="slide">
+        </div>
+        <div class="slide">
             <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
               <figure class="max-w-10rem mx-auto mb-4">
                 <img class="img-fluid" src="/assets/img/icons/solution-2.png" alt="SVG">
@@ -280,8 +283,8 @@ Home
               <!-- <p>Utilize your contacts! Refer a friend or a colleague and get 10% on the successful completion of the project.</p> -->
               <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
             </div>
-          </div>
-          <div class="slide">
+        </div>
+        <div class="slide">
             <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
               <figure class="max-w-10rem mx-auto mb-4">
                 <img class="img-fluid" src="/assets/img/icons/solution-3.png" alt="SVG">
@@ -292,8 +295,8 @@ Home
               <!-- <p>Get a detailed road-map that will help you in identifying the nitty gritties of your project.</p> -->
               <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
             </div>
-          </div>
-          <div class="slide">
+        </div>
+        <div class="slide">
             <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
               <figure class="max-w-10rem mx-auto mb-4">
                 <img class="img-fluid" src="/assets/img/icons/solution-4.png" alt="SVG">
@@ -304,7 +307,7 @@ Home
               <!-- <p>Connect with bankable top-tier talents that have a proven professional experience to grow your business.</p> -->
               <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
             </div>
-          </div>
+        </div>
     </div>
   </div>
 </section>
@@ -478,54 +481,7 @@ Home
   </div>
 </section> -->
 
-<section class="section container">
-    <div class="services mt-5 shadow border">
-      <div class="row">
-        <div class="col-md-4 mb-7 mb-md-0">
-            <!-- Contacts -->
-            <div class="media accordion modified-accordion">
-                <figure class="max-w-8rem mr-4 mt-4">
-                    <img class="img-fluid" src="/assets/img/icons/serviceimg1.jpg" alt="SVG">
-                </figure>
-                <div class="media-body card-header1" id="headingOne">
-                    <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">In-Demand Skills</h4>
-                    <p class="font-size-1 mb-0" id="collapseOne" class="collapse show" aria-labelledby="headingOne">From iOS Developers to Data Scientists, our ever-growing talent pool has the most trending skillset.</p>
-                </div>
-            </div>
-            <!-- End Contacts -->
-        </div>
-
-        <div class="col-md-4 mb-7 mb-md-0">
-            <!-- Contacts -->
-            <div class="media accordion modified-accordion">
-                <figure class="max-w-8rem mr-4 mt-4">
-                    <img class="img-fluid" src="/assets/img/icons/serviceimg2.jpg" alt="SVG">
-                </figure>
-                <div class="media-body card-header1" id="headingTwo">
-                    <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Transparent Pay</h4>
-                    <p class="font-size-1 mb-0" id="collapseTwo" class="collapse" aria-labelledby="headingTwo">As a client you will always know what you’re paying for, upfront. And as a talent you will always get your payments timely.</p>
-                </div>
-            </div>
-            <!-- End Contacts -->
-        </div>
-        <div class="col-md-4 mb-7 mb-md-0">
-            <!-- Contacts -->
-            <div class="media accordion modified-accordion">
-                <figure class="max-w-8rem mr-4 mt-4">
-                    <img class="img-fluid" src="/assets/img/icons/serviceimg3.jpg" alt="SVG">
-                </figure>
-                <div class="media-body card-header1" id="headingThree">
-                    <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">24X7 Support</h4>
-                    <p class="font-size-1 mb-0" id="collapseThree" class="collapse" aria-labelledby="headingThree">Got questions? Our round-the-clock support is always available to assist you, anytime anywhere.</p>
-                </div>
-            </div>
-            <!-- End Contacts -->
-        </div>
-
-      </div>
-    </div>
-</section>
-<section class="section container py-4 mt-1">
+<section class="section container py-4 mt-1 contract-job">
     <div class="text-center">
         <h1 class="headingmain1">Looking For A Project</h1>
         <p class="subtitle1">Tell us your preference and we’ll help you choose the right one.</p>
@@ -569,9 +525,12 @@ Home
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-12">
+                    <h4 class="featured-jobs mx-4">Featured Jobs</h4>
+                </div>
                 @foreach ($jobs as $job)
                 <div class="col-md-6">
-                    <div class="job-details m-4 p-4">
+                    <div class="job-details mx-4 my-2 p-4">
                         <h2>{{ $job->job_title }}</h2>
                         <div class="company-info">
                             <span>{{ $job->companydetails->full_name }}</span>
@@ -585,19 +544,19 @@ Home
                     </div>
                 </div>
                 @endforeach
-                <div class="col-md-12 text-right">
+                {{-- <div class="col-md-12 text-right">
                     <a class="view-alljobs" href="#">View All Jobs <span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span></a>
-                </div>
+                </div> --}}
             </div>
         </div>
 
     </div>
 </section>
 <section class="section container my-2">
-  <div class="text-center mb-5">
+  {{-- <div class="text-center mb-5">
     <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
     <div class="dividerheading"></div>
-  </div>
+  </div> --}}
   <div class="space-1 explore-more pl-4">
     <div class="row">
         <div class="col-12">
@@ -670,7 +629,7 @@ Home
       </div> --}}
     </div>
   </div>
-  <a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a>
+  {{-- <a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> --}}
 </section>
 <section class="section container why-choose-us space-1 four-slider mt-4">
   <div class="text-center">
@@ -783,26 +742,31 @@ Home
   </div>
   <div class="our-slotuion slider mb-5 mt-5 text-center w-lg-60 mx-auto">
     <div class="video-player mx-md-auto">
-        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-src="/assets/video/eiliana_final.mp4" data-target="#myModal">
+        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
           <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
         </a>
     </div>
   </div>
+  <div class="modal fade pullDown login-body border-0" id="myModal" role="dialog" aria-labelledby="modalLabelnews">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue text-white">
+                <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="main-moudle">
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <!-- 16:9 aspect ratio -->
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow=""></iframe>
+                    <video width="690" height="340" controls autoplay>
+                        <source src="{{URL::asset("/assets/video/eiliana_final.mp4")}}" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 </section>
 
@@ -839,24 +803,17 @@ Home
 <script type="text/javascript" src="{{ asset('/assets/js/index.js') }}"></script>
 <!--page level js ends-->
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     var $videoSrc;
-    $('.video-player-btn').click(function() {
-        $videoSrc = $(this).data( "src" );
-    });
-    // console.log($videoSrc);
     // when the modal is opened autoplay it
     $('#myModal').on('shown.bs.modal', function (e) {
-
-    $("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" );
+        $('video').trigger('play');
     })
 
-    // stop playing the youtube video when I close the modal
     $('#myModal').on('hide.bs.modal', function (e) {
-        // a poor man's stop video
-        $("#video").attr('src',$videoSrc);
+        $('video').trigger('pause');
     })
-  });
+});
 
 </script>
 

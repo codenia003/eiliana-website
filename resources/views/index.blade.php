@@ -759,7 +759,7 @@ Home
             <div class="modal-body">
                 <div class="main-moudle">
 
-                    <video width="690" height="340" controls autoplay>
+                    <video width="690" height="340" controls>
                         <source src="{{URL::asset("/assets/video/eiliana_final.mp4")}}" type="video/mp4">
                       Your browser does not support the video tag.
                   </video>

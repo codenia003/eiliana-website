@@ -12,7 +12,7 @@ Route::group(
         Route::get('contract-details/{id}', 'ProjectController@contractDetails')->name('contract-details');
         Route::post('post-project-contract', 'ProjectController@postProjectContract')->name('projectcontract.create');
 
-        Route::get('project/project-finance/{id}', 'ProjectController@projectFinance')->name('project-finance');
+        Route::get('project-finance/{id}', 'ProjectController@projectFinance')->name('project-finance');
         Route::post('project-send-finance', 'ProjectController@sendProjectFinance')->name('project-finance.send');
     }
 );
@@ -210,4 +210,11 @@ Route::get('candidateRoles/{id}/confirm-delete', array('as' => 'candidateRoles.c
 Route::get('candidateRoles/{candidateRoles}', ['as'=> 'candidateRoles.show', 'uses' => 'CandidateRoleController@show']);
 Route::get('candidateRoles/{candidateRoles}/edit', ['as'=> 'candidateRoles.edit', 'uses' => 'CandidateRoleController@edit']);
 
+});
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+    Route::get('finances', ['as'=> 'finances.index', 'uses' => 'FinanceController@index']);
+    Route::get('finances/edit/{id}', ['as'=> 'finances.edit', 'uses' => 'FinanceController@edit']);
+    Route::put('finances/{id}', ['as'=> 'finances.update', 'uses' => 'FinanceController@update']);
+    //Route::post('finances', ['as'=> 'finances.store', 'uses' => 'FinanceController@store']);
 });

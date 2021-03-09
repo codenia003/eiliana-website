@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -63,6 +64,20 @@
         }
         .btn-file > input{
             width: auto;
+        }
+        #modalLabelnews1 {
+            color: #003466;
+            border-bottom: #003466;
+            text-align: center;
+       }
+       #modalLabelnews1:after {
+            content: " ";
+            border-bottom-style: double;
+            border-bottom-width: 1px;
+            display: block;
+            width: 32%;
+            text-align: center;
+            margin: auto !important;
         }
     </style>
 <body class="skin-josh">

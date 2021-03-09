@@ -35,6 +35,7 @@ use App\Models\ProjectSubScheduleModule;
 use App\Models\ProjectContractDetails;
 use App\Models\ProjectOrderInvoice;
 use App\Models\ProjectPaymentSchedule;
+use App\Models\ProjectOrderFinance;
 use stdClass;
 use Carbon\Carbon;
 use App\Notifications\UserNotification;
@@ -535,7 +536,40 @@ class ProjectController extends JoshController
     {
         $input = $request->except('_token');
 
-        return redirect('/freelancer/my-project')->with('success', 'Project send to eiliana finance successfully');
+        $orderfinancecehck = ProjectOrderFinance::where('project_leads_id', '=', $input['proposal_id'])->where('status', '=', '1')->first();
+        if ($orderfinancecehck === null) {
+
+            $orderfinmace = new ProjectOrderFinance;
+            $orderfinmace->project_leads_id = $input['proposal_id'];
+            $orderfinmace->contract_id = $input['contract_id'];
+            $orderfinmace->invoice_id = $input['invoice_id'];
+            $orderfinmace->status = '1';
+            $orderfinmace->save();
+
+            $insertedId = $orderfinmace->order_finance_id;
+
+            $user = User::find(1);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have one project for finance',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/admin/finance/edit/'. $insertedId,
+                'main_id' => $insertedId
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+            $success = 'success';
+            $msg = 'Proposal successfully send to eiliana finance';
+
+        } else {
+            $success = 'error';
+            $msg = 'You are already finance this proposal';
+        }
+
+        return redirect('/freelancer/my-project')->with($success ,  $msg);
     }
 
 }

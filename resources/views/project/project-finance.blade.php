@@ -50,6 +50,7 @@ type="text/css"/>
                             <form action="{{ route('project-finance.send') }}" method="POST" id="educationForm">
                                 @csrf
                                 <input type="hidden" name="contract_id" value="{{ $projectlead->contractdetails->contract_id }}">
+                                <input type="hidden" name="invoice_id" value="{{ $projectlead->contractdetails->orderinvoice->order_invoice_id }}">
                                 <div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">

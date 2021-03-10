@@ -2,7 +2,7 @@
 <div class="form-row">
 	<div class="form-group col-sm-6">
 	    <label>Order ID</label>
-        <input type="text" class="form-control" name="order_id" required>
+        <input type="text" class="form-control" name="order_id" value="{{ $finance->contractdetails->orderinvoice->order_invoice_id }}" readonly="">
 	</div>
 </div>
 
@@ -10,11 +10,11 @@
 <div class="form-row">
 	<div class="form-group col-6">
         <label>Name of Lead Generator</label>
-        <input type="text" class="form-control" name="name_of_lead_generator" required>
+        <input type="text" class="form-control" name="name_of_lead_generator" readonly="">
 	</div>
 	<div class="form-group col-6">
         <label>Name of Delivery Resource</label>
-        <select class="form-control" name="name_of_delivery_resource">
+        <select class="form-control" name="name_of_delivery_resource" readonly>
         	<option>Select Delivery Resource</option>
         </select>
 	</div>
@@ -23,22 +23,22 @@
 <div class="form-row">
 	<div class="form-group col-6">
         <label>Total Order Value</label><small>(including sales Commission & Excluding GST)</small>
-        <input type="text" class="form-control" name="total_order_value" required>
+        <input type="text" class="form-control" name="total_order_value" value="{{ $finance->contractdetails->order_closed_value }}" readonly>
     </div>
 	<div class="form-group col-6">
         <label>Sales Commission Amount</label><small>(Excluding GST)</small>
-        <input type="text" class="form-control" name="sales_commission_amount" required>
+        <input type="text" class="form-control" name="sales_commission_amount" value="{{ $finance->contractdetails->sales_comm_amount }}" readonly>
     </div>
 </div>
 
 <div class="form-row">
 	<div class="form-group col-6">
         <label>Resource Charge</label><small>(Excluding GST)</small>
-        <input type="text" class="form-control" name="resource_charge" required>
+        <input type="text" class="form-control" name="resource_charge" readonly="">
     </div>
 	<div class="form-group col-6">
         <label>Ordering Company Name/Individual</label>
-        <input type="text" class="form-control" name="ordering_company_name" required>
+        <input type="text" class="form-control" name="ordering_company_name" value="{{ $finance->contractdetails->ordering_com_name }}" readonly>
     </div>
 </div>
 
@@ -75,38 +75,59 @@
 <div class="form-row">
 	<div class="form-group col-6">
         <label>Invoice Number</label>
-        <input type="text" class="form-control" name="invoice_number" required>
+        <input type="text" class="form-control" name="invoice_number" value="{{ $finance->contractdetails->orderinvoice->invoice_no }}" readonly>
     </div>
 	<div class="form-group col-6">
         <label>Advance payment Details</label>
-        <input type="text" class="form-control" name="advance_payment_details" required>
+        <input type="text" class="form-control" name="advance_payment_details" value="{{ $finance->contractdetails->advance_payment_details }}" readonly="">
     </div>
 </div>
 
 <div class="form-row">
 	<div class="form-group col-6">
         <label>Invoice Date </label>
-        <input class="flatpickr flatpickr-input form-control" type="text" name="invoice_date" value="" required>
+        <input class="flatpickr flatpickr-input form-control" type="text" name="invoice_date" value="{{ $finance->contractdetails->orderinvoice->invoice_due_date }}" readonly="">
     </div>
 	<div class="form-group col-6">
         <label>Invoice Amount</label><small>(Including GST)</small>
-        <input type="text" class="form-control" name="invoice_amount" required>
+        <input type="text" class="form-control" name="invoice_amount" value="{{ $finance->contractdetails->orderinvoice->invoice_amount }}" readonly="">
     </div>
 </div>
 <div class="form-row">
 	<div class="form-group col-6">
         <label>Remarks </label>
-        <textarea class="form-control" name="remarks"></textarea>
+        <textarea class="form-control" name="remarks" readonly>{!! $finance->contractdetails->remarks !!}</textarea>
     </div>
 </div>
 
 <br>
 <h4 class="modal-title" id="modalLabelnews1">Customer Payment Schedule</h4><br>
 
-<div class="form-row">
+@foreach ($finance->contractdetails->paymentschedule as $item)
+    <div class="form-row">
+        <div class="form-group col-5">
+            @if ($item->advance_payment == '1')
+                <label>Advance Payment </label><small>(Excluding GST)</small>
+            @else
+                <label>{{ $item->installment_no }} Installment</label><small>(Excluding GST)</small>
+            @endif
+            <input type="text" class="form-control" name="installment_amount" value="{{ $item->installment_amount }}" readonly>
+        </div>
+        <div class="form-group col-3">
+            <label> Due Date</label>
+            <input class="form-control" type="text" name="payment_due_date" value="{{ $item->paymwnt_due_date }}" readonly>
+        </div>
+        <div class="form-group col-4">
+            <label>Hrs/Milestones/Remarks </label>
+            <input type="text" class="form-control" name="milestones_name" value="{{ $item->milestones_name }}" readonly>
+        </div>
+    </div>
+@endforeach
+
+{{--<div class="form-row">
 	<div class="form-group col-5">
 	    <label>First Installment Details </label>
-	    <input type="text" class="form-control" name="installment_amount" value="" >
+	    <input type="text" class="form-control" name="installment_amount" value="{{ $finance->paymentschedule->advance_payment_details }}" readonly="">
 	</div>
 	<div class="form-group col-2">
 	    <label>Due Date</label>
@@ -145,7 +166,7 @@
 	    <label>Remarks </label>
 	    <input type="text" class="form-control" name="milestones_name" value="" >
 	</div>
-</div>
+</div>--}}
 
 <br>
 <h4 class="modal-title" id="modalLabelnews1">Commission Payment Schedule</h4><br>
@@ -174,33 +195,33 @@
 <div class="form-row">
 	<div class="form-group col-5">
 	    <label>Commission Amount </label><small>(INR)(Excluding GST)</small>
-	    <input type="text" class="form-control" name="commission_amount" value="" >
+	    <input type="text" class="form-control" name="commission_amount" value="" readonly="">
 	</div>
 	<div class="form-group col-2">
 	    <label>Due Date</label>
-	    <input class="flatpickr flatpickr-input form-control" type="text" name="due_date" value="">
+	    <input class="flatpickr flatpickr-input form-control" type="text" name="due_date" value="" readonly="">
 	</div>
 	<div class="form-group col-5">
 	    <label>Hrs/Milestones </label>
-	    <input type="text" class="form-control" name="milestones_name" value="" >
+	    <input type="text" class="form-control" name="milestones_name" value="" readonly="">
 	</div>
 </div>
 
 <div class="form-row">
 	<div class="form-group col-5">
 	    <label>Commission Amount </label><small>(INR)</small>
-	    <input type="text" class="form-control" name="commission_amount1" value="" >
+	    <input type="text" class="form-control" name="commission_amount1" value="" readonly="">
 	</div>
 	<div class="form-group col-2">
 	    <label>Due Date</label>
-	    <input class="flatpickr flatpickr-input form-control" type="text" name="due_date" value="">
+	    <input class="flatpickr flatpickr-input form-control" type="text" name="due_date" value="" readonly="">
 	</div>
 	<div class="form-group col-5">
 	    <label>Remarks </label>
-	    <input type="text" class="form-control" name="milestones_name" value="" >
+	    <input type="text" class="form-control" name="milestones_name" value="" readonly="">
 	</div>
 </div>
-<div class="form-row">
+<!-- <div class="form-row">
 	<div class="form-group col-5">
 	    <label>Commission Amount </label><small>(INR)</small>
 	    <input type="text" class="form-control" name="commission_amount2" value="" >
@@ -213,7 +234,7 @@
 	    <label>Remarks </label>
 	    <input type="text" class="form-control" name="milestones_name" value="" >
 	</div>
-</div>
+</div> -->
 
 <!-- Submit Field -->
 <div class="form-group text-right mt-5" style="text-align: left !important;">

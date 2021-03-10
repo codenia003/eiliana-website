@@ -3,24 +3,29 @@
     <thead>
      <tr>
         <th>Sr.No</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Display Status</th>
+        <th>Project Lead ID</th>
+        <th>Contract ID</th>
+        <th>Invoice ID.</th>
         <th >Action</th>
      </tr>
     </thead>
     <tbody>
+      @php
+            $a = 1;
+      @endphp
+     @foreach($finances as $finance)
         <tr>
-            <td>1</td>
-            <td>financename</td>
-            <td>financetype</td>
-            <td>status</td>
+            <td>{!! $a++ !!}</td>
+            <td>{!! $finance->project_leads_id !!}</td>
+            <td>{!! $finance->contract_id !!}</td>
+            <td>{!! $finance->invoice_id !!}</td>
             <td>
-                 <a href="{{ route('admin.finances.edit', 1) }}">
+                 <a href="{{ route('admin.finances.edit', $finance->project_leads_id) }}">
                     <i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="edit finance"></i>
                 </a>
             </td>
         </tr>
+    @endforeach
     </tbody>
 </table>
 </div>
@@ -52,26 +57,26 @@
 
     <script>
         $('#finances-table').DataTable({
-                      responsive: true,
-                      pageLength: 10
-                  });
-                  $('#finances-table').on( 'page.dt', function () {
-                     setTimeout(function(){
-                           $('.livicon').updateLivicon();
-                     },500);
-                  } );
-                  $('#finances-table').on( 'length.dt', function ( e, settings, len ) {
-                     setTimeout(function(){
-                            $('.livicon').updateLivicon();
-                     },500);
-                  } );
+              responsive: true,
+              pageLength: 10
+          });
+          $('#finances-table').on( 'page.dt', function () {
+             setTimeout(function(){
+                   $('.livicon').updateLivicon();
+             },500);
+          } );
+          $('#finances-table').on( 'length.dt', function ( e, settings, len ) {
+             setTimeout(function(){
+                    $('.livicon').updateLivicon();
+             },500);
+          } );
 
-                  $('#delete_confirm').on('show.bs.modal', function (event) {
-                      var button = $(event.relatedTarget)
-                       var $recipient = button.data('id');
-                      var modal = $(this);
-                      modal.find('.modal-footer a').prop("href",$recipient);
-                  })
+          $('#delete_confirm').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget)
+               var $recipient = button.data('id');
+              var modal = $(this);
+              modal.find('.modal-footer a').prop("href",$recipient);
+          })
 
        </script>
 

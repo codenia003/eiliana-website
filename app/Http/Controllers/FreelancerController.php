@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Sentinel;
 use View;
 use DB;
+use App\Models\User;
 use App\Models\ContractStaffingLeads;
 use App\Models\JobLeads;
 use App\Models\ProjectLeads;
@@ -47,8 +48,18 @@ class FreelancerController extends Controller
 
     public function myProject()
     {
-        $leads = ProjectLeads::with('projectdetail')->where('from_user_id', Sentinel::getUser()->id)->paginate(10);
+        $leads = ProjectLeads::with('projectdetail')->where('from_user_id', Sentinel::getUser()->id)->where('lead_status', '!=' ,'1')->paginate(10);
         // return $leads;
         return view('freelancer/myproject', compact('leads'));
     }
+
+    public function projectSchedule($id)
+    {
+        $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
+        // return $projectlead;
+        return view('freelancer/project-schedule', compact('projectlead'));
+
+    }
+
+
 }

@@ -71,7 +71,11 @@
                     <div class="module-1">
                         @forelse ($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
                             <div class="module-3 remove-qual-1 submodule-1">
+<<<<<<< HEAD
                                 <input type="hidden" name="module_id[]" id="module_id" value="{{ $modulee->project_schedule_module_id }}">
+=======
+                                <input type="hidden" name="module_id[]" id="module_id" value="{{ $modulee->module_id }}">
+>>>>>>> dfd436c (version-2.03.10)
                                 <div class="form-row">
                                     <div class="form-group col-12">
                                         <label><span class="module_num">{{ $key + 1 }}</span>. Module Scope</label>
@@ -117,7 +121,11 @@
                                     </div>
 
                                     <div class="mb-3 mt-3">
+<<<<<<< HEAD
                                         <button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="sendToClient('{{ $modulee->project_schedule_module_id }}')">Send to Client</button>
+=======
+                                        <button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="sendToClient('{{ $modulee->module_id }}')">Send to Client</button>
+>>>>>>> dfd436c (version-2.03.10)
                                     </div>
 
                                 </div>
@@ -182,9 +190,14 @@
 @section('profile_script')
 <script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
 <script>
+<<<<<<< HEAD
 function sendToClient(module_id){
     console.log(module_id);
     // $('.spinner-border').removeClass("d-none");
+=======
+function sendToClient(schedule_id){
+    $('.spinner-border').removeClass("d-none");
+>>>>>>> dfd436c (version-2.03.10)
     // var url = '/client/project-lead-schedule';
     // var data= {
     //     _token: "{{ csrf_token() }}",

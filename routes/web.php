@@ -462,6 +462,8 @@ Route::group(
         Route::get('my-proposal', 'FreelancerController@myProposal')->name('my-proposal');
         Route::get('my-proposal/{id}', 'FreelancerController@myProposalView')->name('my-proposal.view');
         Route::get('my-project', 'FreelancerController@myProject')->name('my-project');
+
+        Route::get('my-project-schedule/{id}', 'FreelancerController@projectSchedule')->name('project-schedule.my');
     }
 );
 

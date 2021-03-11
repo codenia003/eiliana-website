@@ -206,6 +206,12 @@ class ProjectController extends JoshController
 
         foreach ($input['module_id'] as $key => $value) {
 
+            if($input['module_id'] == '1'){
+                $current_pending = '1';
+            } else {
+                $current_pending = '0';
+            }
+
             $schedulemodule = new ProjectScheduleModule;
             $schedulemodule->project_schedule_id = $insertedId;
             $schedulemodule->module_scope = $input['module_scope'][$key];
@@ -215,6 +221,7 @@ class ProjectController extends JoshController
             $schedulemodule->hours_approved = $input['hours_approved'][$key];
             // $schedulemodule->modify_hours = $input['modify_hours'][$key];
             $schedulemodule->module_status = $input['module_status'][$key];
+            $schedulemodule->current = $current_pending;
             $schedulemodule->save();
 
             $insertedScheduleId = $schedulemodule->project_schedule_module_id;

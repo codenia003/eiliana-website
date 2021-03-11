@@ -464,6 +464,7 @@ Route::group(
         Route::get('my-project', 'FreelancerController@myProject')->name('my-project');
 
         Route::get('my-project-schedule/{id}', 'FreelancerController@projectSchedule')->name('project-schedule.my');
+        Route::post('project-schedule-update', 'FreelancerController@projectScheduleUpdate')->name('project-schedule-update');
     }
 );
 

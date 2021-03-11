@@ -26,9 +26,9 @@ class FinanceController extends Controller
 
     public function index(Request $request)
     {
-        $finances = $this->financeRepository->all();
-        return view('admin.finance.index')
-            ->with('finances', $finances);
+        $finances = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->get();
+        //return $finances;
+        return view('admin.finance.index', compact('finances'));
     }
 
     public function edit($id)
@@ -41,7 +41,18 @@ class FinanceController extends Controller
 
     public function update($id, Request $request)
     {
-       
+
+       $finance = $this->financeRepository->findWithoutFail($id);
+
+        if (empty($finance)) {
+            Flash::error('Finance not found');
+
+            return redirect(route('admin.finances.index'));
+        }
+
+        $finance = $this->financeRepository->update($request->all(), $id);
+
+        Flash::success('Finance updated successfully.');
         return redirect(route('admin.finances.index'));
     }
 

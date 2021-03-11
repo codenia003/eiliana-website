@@ -35,4 +35,10 @@ class Finance extends Model
         return $this->hasOne('App\Models\ProjectContractDetails', 'project_leads_id', 'project_leads_id');
     }
 
+    public function userprojects()
+    {
+         return $this->belongsTo('App\Models\ProjectLeads', 'project_leads_id', 'project_leads_id');
+    }
+
+
 }

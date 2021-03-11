@@ -3,9 +3,9 @@
     <thead>
      <tr>
         <th>Sr.No</th>
-        <th>Project Lead ID</th>
-        <th>Contract ID</th>
-        <th>Invoice ID.</th>
+        <th>Project Title</th>
+        <th>Freelancer Name</th>
+        <th>Post By</th>
         <th >Action</th>
      </tr>
     </thead>
@@ -16,9 +16,9 @@
      @foreach($finances as $finance)
         <tr>
             <td>{!! $a++ !!}</td>
-            <td>{!! $finance->project_leads_id !!}</td>
-            <td>{!! $finance->contract_id !!}</td>
-            <td>{!! $finance->invoice_id !!}</td>
+            <td>{!! $finance->userprojects->projectdetail->project_title !!} </td>
+            <td>{!! $finance->userprojects->fromuser->full_name !!}</td>
+            <td>{!! $finance->userprojects->projectdetail->companydetails->full_name !!} </td>
             <td>
                  <a href="{{ route('admin.finances.edit', $finance->project_leads_id) }}">
                     <i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="edit finance"></i>
@@ -30,7 +30,6 @@
 </table>
 </div>
 @section('footer_scripts')
-
     <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

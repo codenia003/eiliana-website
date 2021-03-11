@@ -29,7 +29,7 @@ Finances
                         </h4></div>
                     <br />
                 <div class="card-body">
-                {!! Form::model(1, ['route' => ['admin.finances.update', collect(1)->first() ], 'method' => 'patch']) !!}
+                {!! Form::model($finance, ['route' => ['admin.finances.update', collect($finance)->first() ], 'method' => 'patch']) !!}
 
                 @include('admin.finance.fields')
 

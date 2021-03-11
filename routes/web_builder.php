@@ -216,5 +216,4 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
     Route::get('finances', ['as'=> 'finances.index', 'uses' => 'FinanceController@index']);
     Route::get('finances/edit/{id}', ['as'=> 'finances.edit', 'uses' => 'FinanceController@edit']);
     Route::put('finances/{id}', ['as'=> 'finances.update', 'uses' => 'FinanceController@update']);
-    //Route::post('finances', ['as'=> 'finances.store', 'uses' => 'FinanceController@store']);
 });

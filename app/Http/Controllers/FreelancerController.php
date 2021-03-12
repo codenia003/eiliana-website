@@ -59,12 +59,18 @@ class FreelancerController extends Controller
     public function projectSchedule($id)
     {
         $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
-        // return $projectlead;
-        return view('freelancer/project-schedule', compact('projectlead'));
+        // return $projectlead->projectschedulee->project_schedule_id;
+
+        $update_status = ProjectScheduleModule::where('project_schedule_id',$projectlead->projectschedulee->project_schedule_id)->where('module_status', '!=','3')->first();
+        if(!empty($update_status)){
+            $update_status = $update_status->project_schedule_module_id;
+        }
+        return view('freelancer/project-schedule', compact('projectlead','update_status'));
 
     }
 
-    public function projectScheduleUpdate(Request $request){
+    public function projectScheduleUpdate(Request $request)
+    {
 
         $input = $request->except('_token');
         $response['success'] = '0';
@@ -79,16 +85,22 @@ class FreelancerController extends Controller
             $projectschedule->save();
 
             $response['success'] = '1';
-            $response['errors'] = 'Schedule Process successfully';
+            $response['errors'] = 'Schedule Status changed successfully';
 
             $user = User::find($input['to_user_id']);
 
+            if($input['modulestatus'] == '3') {
+                $messsage = 'You have status on your project moduel completed';
+            } else {
+                $messsage = 'You have status on your project schedule';
+            }
+
             $details = [
                 'greeting' => 'Hi '. $user->full_name,
-                'body' => 'You have response on your project SCEDULE',
+                'body' => $messsage,
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/client/project-schedule/'. $input['lead_id'],
+                'actionURL' => '/client/project-payment/'. $input['lead_id'],
                 'main_id' => $input['lead_id']
             ];
 

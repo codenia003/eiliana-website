@@ -98,7 +98,7 @@
                                         <input class="form-control" type="text" name="hours_approved" value="{{ $modulee->hours_approved }}" readonly>
                                     </div>
                                 </div>
-                                @if ($modulee->current == '1')
+                                @if ($modulee->project_schedule_module_id == $update_status)
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Module Status</label>
@@ -108,13 +108,15 @@
                                                 <option value="3" {{ ($modulee->module_status=='3')? "selected" : "" }}>Completed</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-6" id="start_picker">
                                             <label>Start Date</label>
                                             <input class="flatpickr flatpickr-input form-control" type="text" name="actual_module_start_date" id="actual_module_start_date" value="">
+                                            <small class="help-block d-none">Start Date is required</small>
                                         </div>
-                                        <div class="form-group col-12">
+                                        <div class="form-group col-12" id="remark_id">
                                             <label>Remark</label>
                                             <textarea class="form-control" name="module_remark" id="module_remark" rows="4" required></textarea>
+                                            <small class="help-block d-none">The Remark is required</small>
                                         </div>
 
                                         <div class="mb-3 mt-3">
@@ -167,15 +169,14 @@
                             <textarea class="form-control" name="remarks" rows="4" readonly>{{ $projectlead->projectschedulee->remarks }}</textarea>
                         </div>
                     </div>
-
-                    {{-- <div class="form-group text-right mt-5">
-                        <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
-                        <div class="btn-group" role="group">
-                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','2')">Accept</button>
-                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','3')">Modify</button>
-                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','4')">Reject</button>
+                    @empty($update_status)
+                        <div class="form-group text-right mt-5">
+                            <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-primary" type="button" onclick="">Final Submission</button>
+                            </div>
                         </div>
-                    </div> --}}
+                    @endempty
                 </form>
             </div>
         </div>
@@ -195,6 +196,22 @@ function sendToClient(module_id){
     var module_remark = $('#module_remark').val();
     var to_user_id = {{ $projectlead->projectdetail->posted_by_user_id }};
     var lead_id = {{ $projectlead->project_leads_id }};
+    var project_schedule_id = {{ $projectlead->projectschedulee->project_schedule_id }};
+
+    if(actual_module_start_date.trim() == ''){
+        $("#start_picker").addClass("has-error");
+        $("#start_picker .help-block").removeClass("d-none");
+        $('.spinner-border').addClass("d-none");
+        return false;
+    }
+
+    if(module_remark.trim() == ''){
+        $("#remark_id").addClass("has-error");
+        $("#remark_id .help-block").removeClass("d-none");
+        $('.spinner-border').addClass("d-none");
+        return false;
+    }
+
     var data= {
         _token: "{{ csrf_token() }}",
         module_id: module_id,
@@ -202,9 +219,10 @@ function sendToClient(module_id){
         actual_module_start_date: actual_module_start_date,
         module_remark: module_remark,
         to_user_id: to_user_id,
-        lead_id: lead_id
+        lead_id: lead_id,
+        project_schedule_id: project_schedule_id
     };
-    console.log(data);
+    // console.log(data);
     $.ajax({
         type: 'POST',
         url: url,
@@ -220,7 +238,7 @@ function sendToClient(module_id){
                     showConfirmButton: false,
                     timer: 2000
                 });
-                // window.location.href = '/freelancer/my-opportunity';
+                window.location.href = '/freelancer/my-project';
             } else {
                 Swal.fire({
                     type: 'error',

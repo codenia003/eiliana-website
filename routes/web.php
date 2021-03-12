@@ -450,6 +450,8 @@ Route::group(
         Route::get('project-contract-details/{id}', 'ClientController@projectContractDetails')->name('projectcontractdetails');
         Route::post('project-contract-post', 'ClientController@postProjectContractDetails')->name('project-contract-post');
         Route::post('project-contract-payment', 'ClientController@postProjectContractPayment')->name('project-contract-payment');
+
+        Route::get('project-payment/{id}', 'ClientController@projectPayments')->name('projectpayment');
     }
 );
 

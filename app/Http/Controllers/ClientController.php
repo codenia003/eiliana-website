@@ -206,4 +206,12 @@ class ClientController extends JoshController
             }
         }
     }
+
+    public function projectPayments($id)
+    {
+        $projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+
+        // return $projectlead;
+        return view('client/project-pyament', compact('projectlead'));
+    }
 }

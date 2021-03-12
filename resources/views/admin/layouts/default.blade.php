@@ -17,6 +17,7 @@
     <!-- global css -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}"  rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/iCheck/css/all.css') }}"  rel="stylesheet" type="text/css" />
     <!-- end of global css -->
 
@@ -239,6 +240,7 @@
 <!-- global js -->
 
 <script src="{{ asset('js/admin.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <!-- end of global js -->
 <!-- begin page level js -->
 @yield('footer_scripts')

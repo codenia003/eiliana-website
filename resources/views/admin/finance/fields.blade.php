@@ -2,7 +2,7 @@
 <div class="form-row">
 	<div class="form-group col-sm-6">
 	    <label>Order ID</label>
-        <input type="text" class="form-control" name="order_id" value="{{ $finance->contractdetails->orderinvoice->order_invoice_id }}" readonly="">
+        <input type="text" class="form-control" name="order_id" value="{{ $order_finances_id->order_finance_id }}" readonly="">
 	</div>
 </div>
 
@@ -239,7 +239,7 @@
 <!-- Submit Field -->
 <div class="form-group text-right mt-5" style="text-align: left !important;">
 	<div class="btn-group" role="group">
-		<button class="btn btn-primary" type="button">
+		<button class="btn btn-primary" type="button" onclick="assignToResource('{{ $order_finances_id->order_finance_id }}','2')">
 			Assign To Resource(s) 
 		</button>
 	</div>

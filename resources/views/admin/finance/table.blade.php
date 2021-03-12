@@ -6,6 +6,7 @@
         <th>Project Title</th>
         <th>Freelancer Name</th>
         <th>Post By</th>
+        <th>Status</th>
         <th >Action</th>
      </tr>
     </thead>
@@ -19,6 +20,12 @@
             <td>{!! $finance->userprojects->projectdetail->project_title !!} </td>
             <td>{!! $finance->userprojects->fromuser->full_name !!}</td>
             <td>{!! $finance->userprojects->projectdetail->companydetails->full_name !!} </td>
+            <td>@if($finance->status == 1)
+               Pending
+              @else
+              Complete
+              @endif
+            </td>
             <td>
                  <a href="{{ route('admin.finances.edit', $finance->project_leads_id) }}">
                     <i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="edit finance"></i>

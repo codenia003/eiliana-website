@@ -80,12 +80,12 @@
                             </div>
                         @endforeach
                     </div>
-                    @forelse ($projectlead->contractdetails->advacne_amount as $item)
-                    <input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">
-                    <input type="hidden" name="payment_schedule_id" id="payment_schedule_id" value="{{ $item->payment_schedule_id }}">
-                    @empty
-                    <input type="hidden" name="amount" id="amount" value="0">
-                    @endforelse
+                    @isset($next_installment->installment_amount)
+
+                        <input type="hidden" name="amount" id="amount" value="{{ $next_installment->installment_amount }}">
+                        <input type="hidden" name="payment_schedule_id" id="payment_schedule_id" value="{{ $next_installment->payment_schedule_id }}">
+                    @endisset
+
 
                     <input type="hidden" name="currency" id="currency" value="INR">
                     <input type="hidden" name="status" id="status" value="1">
@@ -101,12 +101,14 @@
                     @elseif ($projectlead->contractdetails->status == '4')
                     <p>Status: Cancel</p>
                     @else
+                        @isset($next_installment->installment_amount)
                         <div class="singup-body" id="payment_button" style="border-top: 1px solid #ffffff;">
                             <div class="btn-group" role="group">
                                 <span>Please pay payment for further process</span>
                                 <button type="button" id="paybtn" class="btn btn-primary deliverinfo">Payment Link</button>
                             </div>
                         </div>
+                        @endisset
                     @endif
                 </form>
             </div>

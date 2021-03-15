@@ -468,6 +468,7 @@ Route::group(
 
         Route::get('my-project-schedule/{id}', 'FreelancerController@projectSchedule')->name('project-schedule.my');
         Route::post('project-schedule-update', 'FreelancerController@projectScheduleUpdate')->name('project-schedule-update');
+        Route::post('post-project-schedule', 'FreelancerController@postProjectSchedule')->name('projectschedule.update');
         Route::get('recommend', ['as'=> 'recommend.index', 'uses' => 'RecommendController@index']);
         Route::post('recommandStore', 'RecommendController@store')->name('recommandStore');
     }

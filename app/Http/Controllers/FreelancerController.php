@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\ContractStaffingLeads;
 use App\Models\JobLeads;
 use App\Models\ProjectLeads;
+use App\Models\ProjectSchedule;
 use App\Models\ProjectScheduleModule;
 use App\Notifications\UserNotification;
 
@@ -62,9 +63,10 @@ class FreelancerController extends Controller
         // return $projectlead->projectschedulee->project_schedule_id;
 
         $update_status = ProjectScheduleModule::where('project_schedule_id',$projectlead->projectschedulee->project_schedule_id)->where('module_status', '!=','3')->first();
-        if(!empty($update_status)){
+        if(!empty($update_status)) {
             $update_status = $update_status->project_schedule_module_id;
         }
+
         return view('freelancer/project-schedule', compact('projectlead','update_status'));
 
     }
@@ -113,4 +115,12 @@ class FreelancerController extends Controller
         return response()->json($response);
     }
 
+    public function postProjectSchedule(Request $request)
+    {
+        $input = $request->except('_token');
+
+        $projectschedules = ProjectSchedule::find($input['schedule_id']);
+        $projectschedules->satuts = $input['lead_status'];
+        $projectschedules->save();
+    }
 }

@@ -25,9 +25,10 @@
             </div>
         </div>
             <div class="card-body p-4">
-                <form action="{{ route('projectschedule.create') }}" method="POST" id="educationForm">
+                <form action="{{ route('projectschedule.update') }}" method="POST" id="educationForm">
                     @csrf
                     <input type="hidden" name="project_leads_id" value="{{ $projectlead->project_leads_id }}">
+                    <input type="hidden" name="project_schedule_id" value="{{  $projectlead->projectschedulee->project_schedule_id }}">
                     <div class="main-moudle">
                         <div class="form-row">
                             <div class="form-group col-6">
@@ -173,7 +174,7 @@
                         <div class="form-group text-right mt-5">
                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                             <div class="btn-group" role="group">
-                                <button class="btn btn-primary" type="button" onclick="">Final Submission</button>
+                                <button class="btn btn-primary" type="submit">Final Submission</button>
                             </div>
                         </div>
                     @endempty

@@ -561,7 +561,7 @@ Home
     <div class="row">
         <div class="col-12">
             <figure class="mt-4">
-                <img class="img-fluid" src="/assets/img/photo/mobile.png" alt="SVG">
+                <img class="img-fluid" src="/assets/img/photo/mobile.jpg" alt="SVG">
             </figure>
         </div>
 

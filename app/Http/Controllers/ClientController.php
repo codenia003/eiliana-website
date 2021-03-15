@@ -122,8 +122,8 @@ class ClientController extends JoshController
         return view('client/contract-details', compact('projectlead'));
     }
 
-    public function postProjectContractDetails(Request $request) {
-
+    public function postProjectContractDetails(Request $request)
+    {
         $input = $request->except('_token');
         $response['success'] = '0';
 
@@ -182,16 +182,28 @@ class ClientController extends JoshController
                 $paymentschedule->payment_id = $input['payment_id'];
                 $paymentschedule->save();
 
+
                 $projectleads = ProjectLeads::where('project_leads_id', $input['proposal_id'])->first();
 
                 $user = User::find($projectleads->from_user_id);
 
+
+                if($paymentschedule->advance_payment == '1'){
+                    $advance_body = 'Advacne Payemnt process by Client';
+                    $advance_url =  '/project/project-finance/'. $input['proposal_id'];
+                    $msg = 'Advance Payment Process successfully';
+                } else {
+                    $advance_body = 'Payemnt process by Client';
+                    $advance_url =  '/freelancer/my-project-schedule/'. $input['proposal_id'];
+                    $msg = 'Payment Process successfully';
+                }
+
                 $details = [
                     'greeting' => 'Hi '. $user->full_name,
-                    'body' => 'Advacne Payemnt process by Client',
+                    'body' => $advance_body,
                     'thanks' => 'Thank you for using eiliana.com!',
                     'actionText' => 'View My Site',
-                    'actionURL' => '/project/project-finance/'. $input['proposal_id'],
+                    'actionURL' => $advance_url,
                     'main_id' => $input['proposal_id']
                 ];
 
@@ -211,7 +223,9 @@ class ClientController extends JoshController
     {
         $projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
 
+        $next_installment = ProjectPaymentSchedule::where('project_leads_id',$id)->where('status', '!=','2')->first();
+
         // return $projectlead;
-        return view('client/project-pyament', compact('projectlead'));
+        return view('client/project-pyament', compact('projectlead', 'next_installment'));
     }
 }

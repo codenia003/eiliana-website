@@ -119,8 +119,10 @@ class FreelancerController extends Controller
     {
         $input = $request->except('_token');
 
-        $projectschedules = ProjectSchedule::find($input['schedule_id']);
-        $projectschedules->satuts = $input['lead_status'];
+        $projectschedules = ProjectSchedule::find($input['project_schedule_id']);
+        $projectschedules->satuts = '2';
         $projectschedules->save();
+
+        return redirect('/freelancer/my-project')->with('success', 'Project Schedule Completed');
     }
 }

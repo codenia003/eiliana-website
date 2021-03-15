@@ -195,7 +195,7 @@ Home
       <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
       <div class="dividerheading"></div>
     </div> -->
-    <div class="space-1 explore-more pl-4">
+    <div class="space-1 explore-more">
       <div class="row">
           <div class="col-12">
               <figure class="mt-4">
@@ -552,84 +552,86 @@ Home
 
     </div>
 </section>
-<section class="section container my-2">
-  {{-- <div class="text-center mb-5">
-    <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
-    <div class="dividerheading"></div>
-  </div> --}}
-  <div class="space-1 explore-more pl-4">
-    <div class="row">
-        <div class="col-12">
-            <figure class="mt-4">
-                <img class="img-fluid" src="/assets/img/photo/mobile.jpg" alt="SVG">
-            </figure>
+<section class="section my-2 mobile-bg">
+    <div class="container">
+        {{-- <div class="text-center mb-5">
+            <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
+            <div class="dividerheading"></div>
+        </div> --}}
+        <div class="space-1 explore-more">
+            <div class="row">
+                <div class="col-12">
+                    <figure class="mt-4">
+                        <img class="img-fluid" src="/assets/img/photo/mobile.png" alt="SVG">
+                    </figure>
+                </div>
+
+                {{-- <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
+                <ul class="list-unstyled list-article">
+                <li><a class="link-underline" href="#">App Development</a></li>
+                <li><a class="link-underline" href="#">Designing & Architecture</a></li>
+                <li><a class="link-underline" href="#">IT Infrastructure</a></li>
+                <li><a class="link-underline" href="#">SAP Skills</a></li>
+                <li><a class="link-underline" href="#">Oracle</a></li>
+                <li><a class="link-underline" href="#">Talent Management</a></li>
+                <li><a class="link-underline" href="#">Finance</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
+                <ul class="list-unstyled list-article">
+                <li><a class="link-underline" href="#">Sales & Marketing</a></li>
+                <li><a class="link-underline" href="#">Legal</a></li>
+                <li><a class="link-underline" href="#">CXO On Demand</a></li>
+                <li><a class="link-underline" href="#">HTML</a></li>
+                <li><a class="link-underline" href="#">Translation</a></li>
+                <li><a class="link-underline" href="#">Python</a></li>
+                <li><a class="link-underline" href="#">MySQL</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
+                <ul class="list-unstyled list-article">
+                <li><a class="link-underline" href="#">Article Writing</a></li>
+                <li><a class="link-underline" href="#">UX Writing</a></li>
+                <li><a class="link-underline" href="#">Creative Writing</a></li>
+                <li><a class="link-underline" href="#">Banner Design</a></li>
+                <li><a class="link-underline" href="#">Illustration</a></li>
+                <li><a class="link-underline" href="#">Ghostwriting</a></li>
+                <li><a class="link-underline" href="#">Data Entry</a></li>
+                <li><a class="link-underline" href="#">3D Animation</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
+                <ul class="list-unstyled list-article">
+                <li><a class="link-underline" href="#">Android Developer</a></li>
+                <li><a class="link-underline" href="#">Bookkeeper</a></li>
+                <li><a class="link-underline" href="#">Content Writer</a></li>
+                <li><a class="link-underline" href="#">Copywriter</a></li>
+                <li><a class="link-underline" href="#">Customer Service</a></li>
+                <li><a class="link-underline" href="#">Database Administrator</a></li>
+                <li><a class="link-underline" href="#">Data Scientist</a></li>
+                <li><a class="link-underline" href="#">Facebook Developer</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 pt-lg-4">
+                <ul class="list-unstyled list-article">
+                <li><a class="link-underline" href="#">Graphic Designer</a></li>
+                <li><a class="link-underline" href="#">Information Security Analyst</a></li>
+                <li><a class="link-underline" href="#">iOS Developer</a></li>
+                <li><a class="link-underline" href="#">Java Developer</a></li>
+                <li><a class="link-underline" href="#">JavaScript Developer</a></li>
+                <li><a class="link-underline" href="#">Logo Designer</a></li>
+                <li><a class="link-underline" href="#">Mobile App Developer</a></li>
+                <li><a class="link-underline" href="#">PHP Developer</a></li>
+                </ul>
+            </div> --}}
+            </div>
         </div>
-
-        {{-- <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
-        <ul class="list-unstyled list-article">
-          <li><a class="link-underline" href="#">App Development</a></li>
-          <li><a class="link-underline" href="#">Designing & Architecture</a></li>
-          <li><a class="link-underline" href="#">IT Infrastructure</a></li>
-          <li><a class="link-underline" href="#">SAP Skills</a></li>
-          <li><a class="link-underline" href="#">Oracle</a></li>
-          <li><a class="link-underline" href="#">Talent Management</a></li>
-          <li><a class="link-underline" href="#">Finance</a></li>
-        </ul>
-      </div>
-
-      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
-        <ul class="list-unstyled list-article">
-          <li><a class="link-underline" href="#">Sales & Marketing</a></li>
-          <li><a class="link-underline" href="#">Legal</a></li>
-          <li><a class="link-underline" href="#">CXO On Demand</a></li>
-          <li><a class="link-underline" href="#">HTML</a></li>
-          <li><a class="link-underline" href="#">Translation</a></li>
-          <li><a class="link-underline" href="#">Python</a></li>
-          <li><a class="link-underline" href="#">MySQL</a></li>
-        </ul>
-      </div>
-
-      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
-        <ul class="list-unstyled list-article">
-          <li><a class="link-underline" href="#">Article Writing</a></li>
-          <li><a class="link-underline" href="#">UX Writing</a></li>
-          <li><a class="link-underline" href="#">Creative Writing</a></li>
-          <li><a class="link-underline" href="#">Banner Design</a></li>
-          <li><a class="link-underline" href="#">Illustration</a></li>
-          <li><a class="link-underline" href="#">Ghostwriting</a></li>
-          <li><a class="link-underline" href="#">Data Entry</a></li>
-          <li><a class="link-underline" href="#">3D Animation</a></li>
-        </ul>
-      </div>
-
-      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
-        <ul class="list-unstyled list-article">
-          <li><a class="link-underline" href="#">Android Developer</a></li>
-          <li><a class="link-underline" href="#">Bookkeeper</a></li>
-          <li><a class="link-underline" href="#">Content Writer</a></li>
-          <li><a class="link-underline" href="#">Copywriter</a></li>
-          <li><a class="link-underline" href="#">Customer Service</a></li>
-          <li><a class="link-underline" href="#">Database Administrator</a></li>
-          <li><a class="link-underline" href="#">Data Scientist</a></li>
-          <li><a class="link-underline" href="#">Facebook Developer</a></li>
-        </ul>
-      </div>
-
-      <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 pt-lg-4">
-        <ul class="list-unstyled list-article">
-          <li><a class="link-underline" href="#">Graphic Designer</a></li>
-          <li><a class="link-underline" href="#">Information Security Analyst</a></li>
-          <li><a class="link-underline" href="#">iOS Developer</a></li>
-          <li><a class="link-underline" href="#">Java Developer</a></li>
-          <li><a class="link-underline" href="#">JavaScript Developer</a></li>
-          <li><a class="link-underline" href="#">Logo Designer</a></li>
-          <li><a class="link-underline" href="#">Mobile App Developer</a></li>
-          <li><a class="link-underline" href="#">PHP Developer</a></li>
-        </ul>
-      </div> --}}
+        {{-- <a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> --}}
     </div>
-  </div>
-  {{-- <a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> --}}
 </section>
 <section class="section container why-choose-us space-1 four-slider mt-4">
   <div class="text-center">

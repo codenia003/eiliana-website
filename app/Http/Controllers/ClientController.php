@@ -226,6 +226,6 @@ class ClientController extends JoshController
         $next_installment = ProjectPaymentSchedule::where('project_leads_id',$id)->where('status', '!=','2')->first();
 
         // return $projectlead;
-        return view('client/project-pyament', compact('projectlead', 'next_installment'));
+        return view('client/recommend', compact('projectlead', 'next_installment'));
     }
 }

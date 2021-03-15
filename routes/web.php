@@ -452,6 +452,7 @@ Route::group(
         Route::post('project-contract-payment', 'ClientController@postProjectContractPayment')->name('project-contract-payment');
 
         Route::get('project-payment/{id}', 'ClientController@projectPayments')->name('projectpayment');
+
     }
 );
 
@@ -467,6 +468,8 @@ Route::group(
 
         Route::get('my-project-schedule/{id}', 'FreelancerController@projectSchedule')->name('project-schedule.my');
         Route::post('project-schedule-update', 'FreelancerController@projectScheduleUpdate')->name('project-schedule-update');
+        Route::get('recommend', ['as'=> 'recommend.index', 'uses' => 'RecommendController@index']);
+        Route::post('recommandStore', 'RecommendController@store')->name('recommandStore');
     }
 );
 

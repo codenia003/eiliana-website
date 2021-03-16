@@ -88,9 +88,9 @@ Post Project
                                             </div>
                                             <div class="col">
                                                 <select class="form-control" name="curreny">
-                                                    @for ($i = 1; $i < 5; $i++)
-                                                    <option value="{{ $i }}">{{ $i }}</option>
-                                                    @endfor
+                                                    @foreach ($currency as $currencies)
+                                                        <option value="{{ $currencies->id }}">{{ $currencies->code }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -153,9 +153,14 @@ Post Project
                                                     </select>
                                                 </div>
                                                 <div class="col">
-                                                    <select class="form-control" name="experience_month">
+                                                    <!-- <select class="form-control" name="experience_month">
                                                         @for ($i = 1; $i < 13; $i++)
                                                         <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_month']==$i)? "selected" : "" }}>{{ $i }} Months</option>
+                                                        @endfor
+                                                    </select> -->
+                                                    <select class="form-control" name="experience_month">
+                                                        @for ($i = 1; $i < 21; $i++)
+                                                        <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_month']==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                                         @endfor
                                                     </select>
                                                 </div>
@@ -234,9 +239,9 @@ Post Project
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="my-3">
+                                    <!-- <div class="my-3">
                                         <button class="btn eiliana-btn btn-additional" type="button">Additional Fields <span class="fa fa-plus"></span></button>
-                                    </div>
+                                    </div> -->
 
                                     {{-- additonal field --}}
                                     <div class="additional-filter d-none">

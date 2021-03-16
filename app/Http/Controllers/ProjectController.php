@@ -14,11 +14,13 @@ use App\Models\User;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\Location;
+use App\Models\Currency;
 use App\Models\Technology;
 use App\Models\Education;
 use App\Models\Certificate;
 use App\Models\Job;
 use App\Models\ProjectLeads;
+use App\Models\ProjectBudgetAmount;
 use App\Models\ProjectsEducation;
 use App\Models\ProjectsCertificate;
 use App\Models\ProjectsQuestion;
@@ -55,10 +57,11 @@ class ProjectController extends JoshController
         $universities = University::all();
         $technologies = Technology::where('parent_id', '0')->get();
         $locations = Location::all();
+        $currency = Currency::all();
         $customerindustries = CustomerIndustry::all();
         $projectcategorys = ProjectCategory::all();
 
-        return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys'));
+        return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys','currency'));
     }
 
     public function projectSchedule($id)
@@ -107,6 +110,7 @@ class ProjectController extends JoshController
         $projectExpires = $current->addDays(7);
 
         $projects = new Project;
+
         $projects->posted_by_user_id = $user->id;
         $projects->project_status_id = 1;
         $projects->about_company = $input['about_company'];
@@ -134,53 +138,60 @@ class ProjectController extends JoshController
         $projects->save();
 
         $insertedId = $projects->project_id;
+        $projectBudgetAmount = new ProjectBudgetAmount;
+        $projectBudgetAmount->  project_id = $insertedId;
+        $projectBudgetAmount->pricing_model = $input['model_engagement'];
+        $projectBudgetAmount->project_amount = $input['amount'];
+        $projectBudgetAmount->save();
+        
 
-        foreach ($input['education_id'] as $key => $value) {
-            $education = new ProjectsEducation;
-            $education->user_id = $user->id;
-            $education->project_id = $insertedId;
-            $education->education_type = $input['education_type'][$key];
-            $education->graduation_type = $input['graduation_type'][$key];
-            $education->name = $input['universityname'][$key];
-            $education->month = $input['month'][$key];
-            $education->year = $input['year'][$key];
-            $education->degree = $input['degree'][$key];
-            $education->save();
-        }
 
-        foreach ($input['certificate_id'] as $key => $value) {
-            $certificate = new ProjectsCertificate;
-            $certificate->user_id = $user->id;
-            $certificate->project_id = $insertedId;
-            $certificate->certificate_no = $input['certificate_no'][$key];
-            $certificate->name = $input['certificate_name'][$key];
-            $certificate->from_date = $input['from_date'][$key];
-            $certificate->till_date = $input['till_date'][$key];
-            $certificate->institutename = $input['institutename'][$key];
-            $certificate->display_status = 1;
-            $certificate->save();
-        }
+        // foreach ($input['education_id'] as $key => $value) {
+        //     $education = new ProjectsEducation;
+        //     $education->user_id = $user->id;
+        //     $education->project_id = $insertedId;
+        //     $education->education_type = $input['education_type'][$key];
+        //     $education->graduation_type = $input['graduation_type'][$key];
+        //     $education->name = $input['universityname'][$key];
+        //     $education->month = $input['month'][$key];
+        //     $education->year = $input['year'][$key];
+        //     $education->degree = $input['degree'][$key];
+        //     $education->save();
+        // }
 
-        foreach ($input['question_type'] as $key => $value) {
+        // foreach ($input['certificate_id'] as $key => $value) {
+        //     $certificate = new ProjectsCertificate;
+        //     $certificate->user_id = $user->id;
+        //     $certificate->project_id = $insertedId;
+        //     $certificate->certificate_no = $input['certificate_no'][$key];
+        //     $certificate->name = $input['certificate_name'][$key];
+        //     $certificate->from_date = $input['from_date'][$key];
+        //     $certificate->till_date = $input['till_date'][$key];
+        //     $certificate->institutename = $input['institutename'][$key];
+        //     $certificate->display_status = 1;
+        //     $certificate->save();
+        // }
 
-            if ($input['question_type'][$key] == '1') {
-                $question_option = $input['question_radio'.$key];
-            } elseif($input['question_type'][$key] == '2') {
+        // foreach ($input['question_type'] as $key => $value) {
 
-                $question_option = '1';
-            } else {
-                $question_option = $input['question_option'][$key];
-            }
+        //     if ($input['question_type'][$key] == '1') {
+        //         $question_option = $input['question_radio'.$key];
+        //     } elseif($input['question_type'][$key] == '2') {
 
-            $questions = new ProjectsQuestion;
-            $questions->user_id = $user->id;
-            $questions->project_id = $insertedId;
-            $questions->question_type = $input['question_type'][$key];
-            $questions->question_name = $input['question_name'][$key];
-            $questions->question_option = $question_option;
-            $questions->display_status = 1;
-            $questions->save();
-        }
+        //         $question_option = '1';
+        //     } else {
+        //         $question_option = $input['question_option'][$key];
+        //     }
+
+        //     $questions = new ProjectsQuestion;
+        //     $questions->user_id = $user->id;
+        //     $questions->project_id = $insertedId;
+        //     $questions->question_type = $input['question_type'][$key];
+        //     $questions->question_name = $input['question_name'][$key];
+        //     $questions->question_option = $question_option;
+        //     $questions->display_status = 1;
+        //     $questions->save();
+        // }
 
         return redirect('post-project')->with('success', 'Project Posted successfully');
     }

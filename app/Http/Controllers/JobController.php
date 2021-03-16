@@ -204,54 +204,54 @@ class JobController extends Controller
 
         $insertedId = $jobs->job_id;
 
-        foreach ($input['education_id'] as $key => $value) {
-            $education = new JobsEducation;
-            $education->user_id = $user->id;
-            $education->job_id = $insertedId;
-            $education->education_type = $input['education_type'][$key];
-            $education->graduation_type = $input['graduation_type'][$key];
-            $education->name = $input['universityname'][$key];
-            $education->month = $input['month'][$key];
-            $education->year = $input['year'][$key];
-            $education->degree = $input['degree'][$key];
-            $education->save();
-        }
+        // foreach ($input['education_id'] as $key => $value) {
+        //     $education = new JobsEducation;
+        //     $education->user_id = $user->id;
+        //     $education->job_id = $insertedId;
+        //     $education->education_type = $input['education_type'][$key];
+        //     $education->graduation_type = $input['graduation_type'][$key];
+        //     $education->name = $input['universityname'][$key];
+        //     $education->month = $input['month'][$key];
+        //     $education->year = $input['year'][$key];
+        //     $education->degree = $input['degree'][$key];
+        //     $education->save();
+        // }
 
-        foreach ($input['certificate_id'] as $key => $value) {
-            $certificate = new JobsCertificate;
-            $certificate->user_id = $user->id;
-            $certificate->job_id = $insertedId;
-            $certificate->certificate_no = $input['certificate_no'][$key];
-            $certificate->name = $input['certificate_name'][$key];
-            $certificate->from_date = $input['from_date'][$key];
-            $certificate->till_date = $input['till_date'][$key];
-            $certificate->institutename = $input['institutename'][$key];
-            $certificate->display_status = 1;
-            $certificate->save();
-        }
+        // foreach ($input['certificate_id'] as $key => $value) {
+        //     $certificate = new JobsCertificate;
+        //     $certificate->user_id = $user->id;
+        //     $certificate->job_id = $insertedId;
+        //     $certificate->certificate_no = $input['certificate_no'][$key];
+        //     $certificate->name = $input['certificate_name'][$key];
+        //     $certificate->from_date = $input['from_date'][$key];
+        //     $certificate->till_date = $input['till_date'][$key];
+        //     $certificate->institutename = $input['institutename'][$key];
+        //     $certificate->display_status = 1;
+        //     $certificate->save();
+        // }
 
-        foreach ($input['question_type'] as $key => $value) {
+        // foreach ($input['question_type'] as $key => $value) {
 
-            if ($input['question_type'][$key] == '1') {
-                $question_option = $input['question_radio'.$key];
-            } elseif($input['question_type'][$key] == '2') {
-                // $question_checkbox = $input['question_checkbox'.$key];
-                // $question_checkbox = implode(',', $question_checkbox);
-                // $question_option = $question_checkbox;
-                $question_option = '1';
-            } else {
-                $question_option = $input['question_option'][$key];
-            }
+        //     if ($input['question_type'][$key] == '1') {
+        //         $question_option = $input['question_radio'.$key];
+        //     } elseif($input['question_type'][$key] == '2') {
+        //         // $question_checkbox = $input['question_checkbox'.$key];
+        //         // $question_checkbox = implode(',', $question_checkbox);
+        //         // $question_option = $question_checkbox;
+        //         $question_option = '1';
+        //     } else {
+        //         $question_option = $input['question_option'][$key];
+        //     }
 
-            $questions = new JobsQuestion;
-            $questions->user_id = $user->id;
-            $questions->job_id = 5;
-            $questions->question_type = $input['question_type'][$key];
-            $questions->question_name = $input['question_name'][$key];
-            $questions->question_option = $question_option;
-            $questions->display_status = 1;
-            $questions->save();
-        }
+        //     $questions = new JobsQuestion;
+        //     $questions->user_id = $user->id;
+        //     $questions->job_id = 5;
+        //     $questions->question_type = $input['question_type'][$key];
+        //     $questions->question_name = $input['question_name'][$key];
+        //     $questions->question_option = $question_option;
+        //     $questions->display_status = 1;
+        //     $questions->save();
+        // }
 
         return redirect('post-job')->with('success', 'Job Posted successfully');
     }

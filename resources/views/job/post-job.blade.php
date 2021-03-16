@@ -150,9 +150,14 @@ Job Post
                                                     </select>
                                                 </div>
                                                 <div class="col">
-                                                    <select class="form-control" name="experience_month">
+                                                    <!-- <select class="form-control" name="experience_month">
                                                         @for ($i = 1; $i < 13; $i++)
                                                         <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_month']==$i)? "selected" : "" }}>{{ $i }} Months</option>
+                                                        @endfor
+                                                    </select> -->
+                                                    <select class="form-control" name="experience_month">
+                                                        @for ($i = 1; $i < 21; $i++)
+                                                        <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_month']==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                                         @endfor
                                                     </select>
                                                 </div>
@@ -231,13 +236,13 @@ Job Post
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group my-4">
+                                    <!-- <div class="form-group my-4">
                                         <label>Auto Match:&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <input type="checkbox" class="js-switch2" name="auto_match" value="1" checked />
-                                    </div>
-                                    <div class="my-3">
+                                    </div> -->
+                                    <!-- <div class="my-3">
                                         <button class="btn eiliana-btn btn-additional" type="button">Additional Fields <span class="fa fa-plus"></span></button>
-                                    </div>
+                                    </div> -->
                                     {{-- additonal field --}}
                                     <div class="additional-filter d-none">
                                         <!-- eduction start -->

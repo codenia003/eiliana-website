@@ -190,21 +190,23 @@ Home
       </div>
     </div>
 </section>
-<section class="section container my-2">
-    <!-- <div class="text-center mb-5">
-      <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
-      <div class="dividerheading"></div>
-    </div> -->
-    <div class="space-1 explore-more">
-      <div class="row">
-          <div class="col-12">
-              <figure class="mt-4">
-                  <img class="img-fluid" src="/assets/img/photo/new_page.png" alt="SVG">
-              </figure>
-          </div>
-      </div>
+<section class="section my-2 new-page-bg">
+    <div class="container">
+        <!-- <div class="text-center mb-5">
+        <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
+        <div class="dividerheading"></div>
+        </div> -->
+        <div class="space-1 explore-more">
+        <div class="row">
+            <div class="col-12">
+                <figure class="mt-4">
+                    <img class="img-fluid" src="/assets/img/photo/new_page.png" alt="SVG">
+                </figure>
+            </div>
+        </div>
+        </div>
+        <!-- a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> -->
     </div>
-    <!-- a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> -->
   </section>
 <section class="section container our-solution four-slider">
     <div class="text-center">
@@ -523,31 +525,68 @@ Home
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-12">
                     <h4 class="featured-jobs mx-4">Featured Jobs</h4>
-                </div>
-                @foreach ($jobs as $job)
-                <div class="col-md-6">
-                    <div class="job-details mx-4 my-2 p-4">
-                        <h2>{{ $job->job_title }}</h2>
-                        <div class="company-info">
-                            <span>{{ $job->companydetails->full_name }}</span>
-                            <span>{{ $job->locations->name }}</span>
-                            <span>{{ $job->experience_year }} Year - {{ $job->experience_month }} Month</span>
-                        </div>
-                        <p class="descx">{{ $job->role_summary }}</p>
-                        <div class="find_job_button">
-                            <a class="btn_small yellow-linear-gradient" href="#">Apply</a>
+                    <div class="browse-job-posting">
+                        <div class="mb-3 mb-lg-5">
+                            <ul class="list-unstyled">
+                                @foreach ($jobs as $job)
+                                <li class="card p-4 mb-4">
+                                    <div class="row no-gutters d-flex align-items-center">
+                                        <div class="col-md-9">
+                                            <div class="contract-body">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-2">
+                                                            <div class="display-5">Profile Title</div>
+                                                            <p>{{ $job->job_title }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="contract-profile mb-1">
+                                                            <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->about_company }}</a>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <div class="display-5">Job Description</div>
+                                                    <p class="description">{{ $job->role_summary }}</p>
+                                                </div>
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-2">
+                                                            <div class="display-5">Location</div>
+                                                            <p>Delhi</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-2">
+                                                            <div class="display-5">Experience</div>
+                                                            <p>{{ $job->experience_year }} Years {{ $job->experience_month }} Month</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="find_job_button text-center">
+                                                <a class="btn_small yellow-linear-gradient" href="{{ route('jobdetails', $job->job_id) }}">View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>
-                @endforeach
-                {{-- <div class="col-md-12 text-right">
-                    <a class="view-alljobs" href="#">View All Jobs <span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span></a>
-                </div> --}}
             </div>
+            {{-- <div class="col-md-12 text-right">
+                <a class="view-alljobs" href="#">View All Jobs <span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span><span class="fas fa-angle-right"></span></a>
+            </div> --}}
         </div>
 
     </div>

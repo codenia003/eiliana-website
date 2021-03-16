@@ -551,13 +551,23 @@ section.section1 .slider3 .bg-img-hero {
     display: none;
 }
 section.contract-job .singup-body .card-body {
-    padding: 20px 30px;
+    padding: 5px 30px;
 }
 h4.featured-jobs {
     color: #003466;
     font-size: 20px;
     margin-bottom: 0px;
+    padding-left: 8px;
 }
 .login-body .modal-dialog {
     max-width: 720px !important;
+}
+section.contract-job .singup-body .browse-job-posting {
+    padding: 5px 30px;
+}
+.find_job_button a.btn_small {
+    padding: 10px 45px;
+}
+.new-page-bg {
+    background: #eefafb;
 }

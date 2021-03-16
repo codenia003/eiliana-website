@@ -19,7 +19,7 @@ class HomeController extends JoshController
 {
     public function index()
     {
-        $jobs = Job::with('companydetails','locations')->latest()->limit(2)->get();
+        $jobs = Job::with('companydetails','locations')->latest()->limit(1)->get();
         // return $jobs;
         return view('index', compact('jobs'));
     }

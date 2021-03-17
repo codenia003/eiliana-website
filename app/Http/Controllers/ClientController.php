@@ -64,7 +64,7 @@ class ClientController extends JoshController
     {
 
         $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
-        // return $projectlead;
+        //return $projectlead;
         return view('client/project-schedule', compact('projectlead'));
     }
 

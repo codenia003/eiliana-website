@@ -46,6 +46,7 @@
     </div>
 </div>
 @stop
+
 @section('search_content')
 <div class="browse-contract-staffing">
     <div class="mb-3 mb-lg-5">
@@ -77,7 +78,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Industry</div>
-                                        <p>{{ $project->customer_industry }}</p>
+                                        <p>{{ $project->customerindustry1->name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -89,7 +90,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Location</div>
-                                        <p>{{ $project->location }}</p>
+                                        <p>{{ $project->locations->name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

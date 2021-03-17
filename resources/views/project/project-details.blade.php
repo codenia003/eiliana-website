@@ -48,7 +48,7 @@ Search Project
                     <div class="card-header">
                         <span class="h5 card-title text-secondary">Project Deatils</span>
                         <div class="float-right font-weight-700">
-                            <span class="bid">$15 - 25 USD /hr</span>
+                            <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} {{ $project->projectCurrency->code }}@endif /hr</span>
                             <br>
                             <span class="day-left">Bidding Ends In {{ $project->expiry_days }} Days</span><br>
                             <div class="float-right font-weight-700 mt-1">

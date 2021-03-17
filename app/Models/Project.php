@@ -22,6 +22,21 @@ class Project extends Model
         return $this->belongsTo('App\Models\Location', 'location', 'location_id');
     }
 
+    public function projectAmount()
+    {
+        return $this->belongsTo('App\Models\ProjectBudgetAmount', 'project_id', 'project_id');
+    }
+
+    public function projectCurrency()
+    {
+        return $this->belongsTo('App\Models\Currency', 'currency_id', 'currency_id');
+    }
+
+    public function customerindustry1()
+    {
+        return $this->belongsTo('App\Models\CustomerIndustry', 'customer_industry', 'customer_industry_id');
+    }
+
      public function projectseducation()
     {
         return $this->hasMany('App\Models\ProjectsEducation', 'project_id', 'project_id');

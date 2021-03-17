@@ -38,6 +38,7 @@ use App\Models\ProjectContractDetails;
 use App\Models\ProjectOrderInvoice;
 use App\Models\ProjectPaymentSchedule;
 use App\Models\ProjectOrderFinance;
+use App\Models\ProjectProposal;
 use stdClass;
 use Carbon\Carbon;
 use App\Notifications\UserNotification;
@@ -260,8 +261,8 @@ class ProjectController extends JoshController
             'body' => 'You have project schedule response on your proposal',
             'thanks' => 'Thank you for using eiliana.com!',
             'actionText' => 'View My Site',
-            'actionURL' => 'client/project-schedule/'. $input['project_id'],
-            'main_id' => $input['project_id']
+            'actionURL' => 'client/project-schedule/'. $input['project_leads_id'],
+            'main_id' => $input['project_leads_id']
         ];
 
         Notification::send($user, new UserNotification($details));
@@ -378,7 +379,7 @@ class ProjectController extends JoshController
                 //     $framework = [];
                 // }
 
-                $projects = Project::where('project_category', '=', $data['project_category'])->paginate(10);
+                $projects = Project::with('locations','customerindustry1')->where('project_category', '=', $data['project_category'])->paginate(10);
 
                 $count = count($projects);
 
@@ -400,7 +401,7 @@ class ProjectController extends JoshController
 
     public function getProjectDeatils($id)
     {
-        $project = Project::with('companydetails','locations')->where('project_id', $id)->first();
+        $project = Project::with('companydetails','locations','projectAmount','projectCurrency')->where('project_id', $id)->first();
 
         $selected_technologty_pre = explode(',', $project->technologty_pre);
         $selected_framework = explode(',', $project->framework);
@@ -506,6 +507,16 @@ class ProjectController extends JoshController
             $projectleads->save();
 
             if($input['lead_status'] === '2'){
+                $project_proposal = new ProjectProposal;
+                $projectlead = ProjectLeads::where('project_leads_id', '=', $input['lead_id'])->first();
+                $project_proposal->project_leads_id = $projectlead->project_leads_id;
+                $project_proposal->project_id = $projectlead->project_id;
+                $project_proposal->from_user_id = $projectlead->from_user_id;
+                $project_proposal->subject = $projectlead->subject;
+                $project_proposal->message = $projectlead->message;
+                $project_proposal->lead_status = $projectlead->lead_status;
+                $project_proposal->save();
+
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Accepted successfully';
             } elseif($input['lead_status'] === '5') {

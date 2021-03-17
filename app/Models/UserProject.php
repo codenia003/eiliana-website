@@ -39,4 +39,6 @@ class UserProject extends Model
     {
         return $this->belongsTo('App\Models\Employers', 'employer_id', 'employer_id');
     }
+
+    
 }

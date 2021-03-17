@@ -569,5 +569,25 @@ section.contract-job .singup-body .browse-job-posting {
     padding: 10px 45px;
 }
 .new-page-bg {
-    background: #eefafb;
+    background-color: #eefafb;
+    background-size: contain;
+    /* background-position: 55% 0%; */
+    background-position: 131px 24px;
+}
+.eiliana-agility {
+    position: relative;
+    top: 115px;
+}
+
+.eiliana-agility label {
+    padding: 0px;
+    margin-bottom: 2px;
+}
+
+.eiliana-agility .form-control {
+    background-color: #fff !important;
+    border-radius: 0px;
+}
+.new-page-bg .explore-more {
+    padding: 45px 0px;
 }

@@ -190,22 +190,89 @@ Home
       </div>
     </div>
 </section>
-<section class="section my-2 new-page-bg">
+<section class="section my-2 new-page-bg bg-img-hero" style="background-image: url(/assets/img/photo/new_page-only.png);">
     <div class="container">
         <!-- <div class="text-center mb-5">
         <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
         <div class="dividerheading"></div>
         </div> -->
-        <div class="space-1 explore-more">
-        <div class="row">
-            <div class="col-12">
-                <figure class="mt-4">
-                    <img class="img-fluid" src="/assets/img/photo/new_page.png" alt="SVG">
-                </figure>
+        <div class="explore-more">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-4">
+                    <h1 class="headingmain1">Agility @Eiliana</h1>
+                    <ul class="list-unstyled list-article">
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Choose experienced Professionals from Global Talent Pool.</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Experienced Professionals available helps manage Business Risk on Pay Per Use Model.</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Managed Delivery Model at Eiliana facilitates smooth project Delivery</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Faster project Roll out through Instant resource deployment.</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Choose from Global Resource Talent Pool</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Access to Super Niche Skills improves project performance.</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3 col-lg-3">
+                </div>
+                <div class="col-12 col-md-5 col-lg-5">
+                    <div class="card1">
+                        <div class="eiliana-agility">
+                            <form action="#" method="GET" id="register_basic_form">
+                                @csrf
+                                <div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label>Any Keyword(Key Skills)</label>
+                                        <input type="text" name="keyskills" placeholder="Chatbots, Machine learning, Deep learning, Computer vision, Cognitive Science" class="form-control" disabled/>
+                                    </div>
+                                    <div class="form-row col-12">
+                                        <div class="form-group col-6">
+                                            <label>Total Experience</label>
+                                            <div class="form-row">
+                                                <div class="col-5">
+                                                    <select class="form-control" required="" name="experience_year" disabled>
+                                                        @for ($i = 1; $i < 21; $i++)
+                                                        <option value="{{ $i }}">{{ $i }} Years</option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                                <div class="col-5">
+                                                    <select class="form-control" required="" name="experience_month" disabled>
+                                                        @for ($i = 1; $i < 13; $i++)
+                                                        <option value="{{ $i }}">{{ $i }} Months</option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>Salary Range</label>
+                                            <div class="form-row">
+                                                <div class="col-6">
+                                                    <select class="form-control" required="" name="from_salary_range" disabled>
+                                                        <option value="">From</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select class="form-control" required="" name="experience_month" disabled>
+                                                        <option value="">To</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col">
+                                        <label>Technology Preference</label>
+                                        <select name="technologty_pre" class="form-control" id="technologty_pre" disabled>
+                                            <option value="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {{-- <figure class="mt-4">
+                        <img class="img-fluid" src="/assets/img/photo/new_page.png" alt="SVG">
+                    </figure> --}}
+                </div>
             </div>
         </div>
-        </div>
-        <!-- a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> -->
     </div>
   </section>
 <section class="section container our-solution four-slider">
@@ -598,13 +665,24 @@ Home
             <div class="dividerheading"></div>
         </div> --}}
         <div class="space-1 explore-more">
-            <div class="row">
-                <div class="col-12">
+            <div class="row d-flex align-items-center">
+                <div class="col-12 col-md-5 col-lg-5 pb-lg-5 mb-md-0 pt-lg-4 p-5">
                     <figure class="mt-4">
-                        <img class="img-fluid" src="/assets/img/photo/mobile.png" alt="SVG">
+                        <img class="img-fluid" src="/assets/img/photo/mobile-only.png" alt="SVG">
                     </figure>
                 </div>
-
+                <div class="col-12 col-md-7 col-lg-7 pb-lg-5 mb-md-0 pt-lg-4 pl-5">
+                    <h1 class="headingmain1">Bringing the new age projects to your doorstep</h1>
+                    <ul class="list-unstyled list-article">
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Enhanced Exposure while working with Global Clients</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Anonymity for freelancers </li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Achieve Incremental Revenues & make life better!</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Manifest your creativity & Be Future Ready- Gig Strong!</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Fine tune your Financial Aspirations with Freedom & Flexibility</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Secured & Weekly Payments Schedule by Eiliana</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> No Minimum Account Balance</li>
+                    </ul>
+                </div>
                 {{-- <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
                 <ul class="list-unstyled list-article">
                 <li><a class="link-underline" href="#">App Development</a></li>
@@ -808,7 +886,7 @@ Home
             </div>
         </div>
     </div>
-</div>
+    </div>
 </section>
 
 <section class="overflow-hidden newsletter d-none">

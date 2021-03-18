@@ -196,13 +196,28 @@ class JobController extends Controller
         $jobs->location = $input['location'];
         $jobs->budget_from = $input['budget_from'];
         $jobs->budget_to = $input['budget_to'];
-        $jobs->auto_match = $input['auto_match'];
+        //$jobs->auto_match = $input['auto_match'];
         $jobs->indexing = $input['indexing'];
         $jobs->referral_id = $input['referral_id'];
         $jobs->display_status = 1;
         $jobs->save();
 
         $insertedId = $jobs->job_id;
+        $freelance_id = JobLeads::first();
+        
+        if($insertedId != 0) {
+            $users = User::find($freelance_id->from_user_id);
+            $details = [
+                'greeting' => 'Hi '. $users->full_name,
+                'body' => 'You have response on your contractual job proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/freelancer/contractual-job-inform',
+                'main_id' => $insertedId
+            ];
+
+            Notification::send($users, new UserNotification($details));
+         }
 
         // foreach ($input['education_id'] as $key => $value) {
         //     $education = new JobsEducation;

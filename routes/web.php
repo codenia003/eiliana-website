@@ -472,6 +472,10 @@ Route::group(
 
         Route::get('recommend', ['as'=> 'recommend.index', 'uses' => 'RecommendController@index']);
         Route::post('recommandStore', 'RecommendController@store')->name('recommandStore');
+
+        Route::get('contractual-job-inform', 'FreelancerController@ContractualJobInform')->name('contractual-job-inform.create');
+        Route::post('post-contractual-job-inform', 'FreelancerController@postContractualJobInform')->name('contractual-job-inform.store');
+
     }
 );
 

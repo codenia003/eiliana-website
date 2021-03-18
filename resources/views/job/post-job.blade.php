@@ -244,8 +244,8 @@ Job Post
                                         <button class="btn eiliana-btn btn-additional" type="button">Additional Fields <span class="fa fa-plus"></span></button>
                                     </div> -->
                                     {{-- additonal field --}}
-                                    <div class="additional-filter d-none">
-                                        <!-- eduction start -->
+                                    <!-- <div class="additional-filter d-none">
+                                        
                                         <h4 class="text-left">Education Details</h4>
                                         <div class="ug-qualification-1">
                                             <div class="ug-qualification mb-3">
@@ -344,7 +344,7 @@ Job Post
                                                             <option value="{{ $university->university_id }}">{{ $university->name }}</option>
                                                             @endforeach
                                                         </select>
-                                                        <!-- <input type="text" name="name[]" class="form-control" required/> -->
+                                                         {{-- <input type="text" name="name[]" class="form-control" required/>--}} 
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
@@ -388,7 +388,7 @@ Job Post
 
                                             <button type="button" class="remove-pg btn eiliana-btn ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
                                         </div>
-                                        <!-- certification start  -->
+                                        {{-- certification start  --}}
                                         <h4 class="text-left">Certification</h4>
                                         <div class="certification-1">
                                             <div class="certification">
@@ -399,7 +399,7 @@ Job Post
                                                         <label>Certification Number</label>
                                                         <input type="text" name="certificate_no" class="form-control"/>
                                                     </div>
-                                                    <!-- <div class="form-group col-1"></div> -->
+                                                     {{--<div class="form-group col-1"></div> --}}
                                                     <div class="form-group col-7">
                                                         <label>Certification Name</label>
                                                         <input type="text" name="certificate_name" class="form-control"/>
@@ -444,7 +444,7 @@ Job Post
                                             <button class="btn eiliana-btn btn-additional-ques" type="button">Additional Filters <span class="fa fa-plus"></span></button>
                                         </div>
                                         <div class="additional-filter-ques d-none">
-                                            <!-- question set -->
+                                             {{-- question set --}}
                                             <div class="border mt-5">
                                                 {{-- question 1 --}}
                                                 <div class="p-4 border-bottom">
@@ -588,7 +588,7 @@ Job Post
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
                                             <button class="btn btn-primary" type="submit">

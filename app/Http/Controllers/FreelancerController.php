@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\ContractStaffingLeads;
 use App\Models\JobLeads;
 use App\Models\ProjectLeads;
+use App\Models\ContractualJobInform;
 use App\Models\ProjectSchedule;
 use App\Models\ProjectScheduleModule;
 use App\Notifications\UserNotification;
@@ -124,5 +125,33 @@ class FreelancerController extends Controller
         $projectschedules->save();
 
         return redirect('/freelancer/my-project')->with('success', 'Project Schedule Completed');
+    }
+
+    public function ContractualJobInform()
+    {
+        return view('freelancer/contractual-job-inform');
+    }
+
+    public function postContractualJobInform(Request $request)
+    {
+        $input = $request->except('_token');
+
+        $contractualJobs = new ContractualJobInform;
+        $contractualJobs->candidate_name = $input['candidate_name'];
+        $contractualJobs->referral_id = $input['referral_id'];
+        $contractualJobs->referral_id = $input['referral_id'];
+        $contractualJobs->customer_name = $input['customer_name'];
+        $contractualJobs->billing_address = $input['billing_address'];
+        $contractualJobs->gst_details = $input['gst_details'];
+        $contractualJobs->start_date = $input['start_date'];
+        $contractualJobs->end_date = $input['end_date'];
+        $contractualJobs->contract_duration = $input['contract_duration'];
+        $contractualJobs->pricing_cycle = $input['pricing_cycle'];
+        $contractualJobs->client_period = $input['client_period'];
+        $contractualJobs->location = $input['location'];
+        $contractualJobs->remark = $input['remarks'];
+        $contractualJobs->save();
+
+        return redirect('/freelancer/contractual-job-inform')->with('success', 'Contractual Job Proposal Completed');
     }
 }

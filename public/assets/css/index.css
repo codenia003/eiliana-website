@@ -572,7 +572,7 @@ section.contract-job .singup-body .browse-job-posting {
     background-color: #eefafb;
     background-size: contain;
     /* background-position: 55% 0%; */
-    background-position: 131px 24px;
+    background-position: 70px 24px;
 }
 .eiliana-agility {
     position: relative;
@@ -582,12 +582,28 @@ section.contract-job .singup-body .browse-job-posting {
 .eiliana-agility label {
     padding: 0px;
     margin-bottom: 2px;
+    font-size: 12px;
 }
 
 .eiliana-agility .form-control {
     background-color: #eefafb !important;
     border-radius: 0px;
+    font-size: 10px;
 }
 .new-page-bg .explore-more {
     padding: 45px 0px;
+}
+.new-page-bg .explore-more li {
+    margin: 7px 0px;
+    text-align: inherit;
+    font-size: 13px;
+}
+
+.new-page-bg .explore-more li img {
+    margin-right: 8px;
+}
+
+.new-page-bg .explore-more h1.headingmain1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

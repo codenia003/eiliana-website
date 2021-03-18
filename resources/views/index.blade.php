@@ -218,7 +218,7 @@ Home
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-12">
-                                        <label>Any Keyword(Key Skills)</label>
+                                        <label>Key Skills</label>
                                         <input type="text" name="keyskills" placeholder="Chatbots, Machine learning, Deep learning, Computer vision, Cognitive Science" class="form-control" disabled/>
                                     </div>
                                     <div class="form-row col-12">
@@ -235,7 +235,7 @@ Home
                                                 <div class="col-5">
                                                     <select class="form-control" required="" name="experience_month" disabled>
                                                         @for ($i = 1; $i < 13; $i++)
-                                                        <option value="{{ $i }}">{{ $i }} Months</option>
+                                                        <option value="{{ $i }}">{{ $i }} Years</option>
                                                         @endfor
                                                     </select>
                                                 </div>
@@ -246,21 +246,21 @@ Home
                                             <div class="form-row">
                                                 <div class="col-6">
                                                     <select class="form-control" required="" name="from_salary_range" disabled>
-                                                        <option value="">From</option>
+                                                        <option value="">1 Lacs</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-6">
                                                     <select class="form-control" required="" name="experience_month" disabled>
-                                                        <option value="">To</option>
+                                                        <option value="">50 Lacs</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group col">
-                                        <label>Technology Preference</label>
+                                        <label>Location</label>
                                         <select name="technologty_pre" class="form-control" id="technologty_pre" disabled>
-                                            <option value="">Select</option>
+                                            <option value="">Delhi</option>
                                         </select>
                                     </div>
                                 </div>
@@ -380,177 +380,8 @@ Home
     </div>
   </div>
 </section>
-<!-- <section class="section container mt-4 four-slider">
-  <div class="text-center">
-    <h1 class="headingmain1">Crowd <span><img src="/assets/img/heart-icon.jpg"></span> Favourites</h1>
-    <p class="subtitle1">Checkout some of the most popular services people pay for on Eiliana.</p>
-    <div class="dividerheading"></div>
-  </div>
-  <div class="banner_custom">
-    <div class="banner_custom_services">
-       <div class="multiple-carousel">
-          <div class="slide">
-             <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/1-website development-378765202.jpg">
-                <div class="backgroundcontenddiv boderradius_bottom_left">
-                  <h5>Logo Design</h5>
-                  <p>
-                    Find your brand’s identity. <br> Starting at <b>₹ 2,500</b>
-                  </p>
-                </div>
-              </div>
-          </div>
-          </div>
-          <div class="slide">
-            <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/2-Social Media Marketing-1498591895.jpg">
-                <div style="background: #f45d4e;" class="backgroundcontenddiv boderradius_bottom_right">
-                  <h5>Website Development</h5>
-                  <p>
-                    Build your online destination. <br> Starting at <b>₹ 2,500</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/3-Data Science-1177306144.jpg">
-                <div class="backgroundcontenddiv boderradius_bottom_left">
-                  <h5>SEO</h5>
-                  <p>
-                    Grow your brand online. <br> Starting at <b>₹ 5,200</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/4-Public Cloud-360072635.jpg">
-                <div style="background: #ffaa01;" class="backgroundcontenddiv boderradius_bottom_right">
-                  <h5>Video Explainer</h5>
-                  <p>
-                    Tell your brand story. <br> Starting at <b>₹ 15,000</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-             <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/5-RPA-1669752424.jpg">
-                <div class="backgroundcontenddiv boderradius_bottom_left">
-                  <h5>Logo Design</h5>
-                  <p>
-                    Find your brand’s identity. <br> Starting at <b>₹ 2,500</b>
-                  </p>
-                </div>
-              </div>
-          </div>
-          </div>
-          <div class="slide">
-            <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/6-AR&VR-613702247.jpg">
-                <div style="background: #f45d4e;" class="backgroundcontenddiv boderradius_bottom_right">
-                  <h5>Website Development</h5>
-                  <p>
-                    Build your online destination. <br> Starting at <b>₹ 2,500</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/7-IOT-1682068621.jpg">
-                <div class="backgroundcontenddiv boderradius_bottom_left">
-                  <h5>SEO</h5>
-                  <p>
-                    Grow your brand online. <br> Starting at <b>₹ 5,200</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/8-Product Management-1101896657.jpg">
-                <div style="background: #ffaa01;" class="backgroundcontenddiv boderradius_bottom_right">
-                  <h5>Video Explainer</h5>
-                  <p>
-                    Tell your brand story. <br> Starting at <b>₹ 15,000</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-             <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/9-App Dev-335040302.jpg">
-                <div class="backgroundcontenddiv boderradius_bottom_left">
-                  <h5>Logo Design</h5>
-                  <p>
-                    Find your brand’s identity. <br> Starting at <b>₹ 2,500</b>
-                  </p>
-                </div>
-              </div>
-          </div>
-          </div>
-          <div class="slide">
-            <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/10-UI Design-253620970.jpg">
-                <div style="background: #f45d4e;" class="backgroundcontenddiv boderradius_bottom_right">
-                  <h5>Website Development</h5>
-                  <p>
-                    Build your online destination. <br> Starting at <b>₹ 2,500</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/11-3D Animation-1803523591.jpg">
-                <div class="backgroundcontenddiv boderradius_bottom_left">
-                  <h5>SEO</h5>
-                  <p>
-                    Grow your brand online. <br> Starting at <b>₹ 5,200</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="crowd_favrt">
-              <div class="servicesimg">
-                <img src="/assets/img/eiliana-favourites/12-Cyber Security-499702849.jpg">
-                <div style="background: #ffaa01;" class="backgroundcontenddiv boderradius_bottom_right">
-                  <h5>Video Explainer</h5>
-                  <p>
-                    Tell your brand story. <br> Starting at <b>₹ 15,000</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-</section> -->
 
-<section class="section container py-4 mt-1 contract-job">
+<section class="section container py-4 mt-1 contract-job d-none">
     <div class="text-center">
         <h1 class="headingmain1">Looking For A Project</h1>
         <p class="subtitle1">Tell us your preference and we’ll help you choose the right one.</p>
@@ -658,6 +489,32 @@ Home
 
     </div>
 </section>
+
+<div class="overflow-hidden">
+    <div class="container space-top-1 space-top-md-2 space-bottom-3">
+        <div class="row justify-content-lg-between align-items-md-center">
+            <div class="col-md-6 col-lg-5 mb-7 mb-md-0">
+                <div class="mb-5">
+                    <h1 class="h2 mb-3">Smart Sales Referral Program</h1>
+                    <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
+                </div>
+                <a class="js-go-to position-static btn btn-primary btn-wide transition-3d-hover" href="{{ url('sales-referral-form') }}">
+                    Sales Referral
+                </a>
+            </div>
+
+            <div class="col-md-6">
+                <div class="position-relative">
+                    <img class="img-fluid rounded" src="/assets/img/photo/sales-referral.png"
+                        alt="Image Description">
+                    <div
+                        class="position-absolute top-0 right-0 w-100 h-100 bg-soft-primary rounded z-index-n1 mt-5 mr-n5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="section my-2 mobile-bg">
     <div class="container">
         {{-- <div class="text-center mb-5">
@@ -886,28 +743,6 @@ Home
             </div>
         </div>
     </div>
-    </div>
-</section>
-
-<section class="overflow-hidden newsletter d-none">
-   <div class="bg-img-hero" style="background-image: url(/assets/img/eiliana-new-bg.png);background: #16226e;">
-      <div class="container space-2 position-relative z-index-2">
-        <div class="w-lg-70 text-center mx-md-auto">
-            <h2 class="h1 text-white text-uppercase font-weight-bold mb-3">Subscribe our Monthly Newsletter</h2>
-            <p class="text-white mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-            <!-- Form -->
-            <!-- <form class="js-validate"> -->
-                <label class="sr-only" for="signupSrEmail">Email</label>
-                <div class="input-group">
-                    <input type="email" class="form-control" name="email" id="signupSrEmail" placeholder="Enter your email ID" aria-label="Email" required="">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-block btn-primary red-linear-gradient">Subscribe</button>
-                    </div>
-                </div>
-            <!-- </form> -->
-            <!-- End Form -->
-        </div>
-      </div>
     </div>
 </section>
 

@@ -607,3 +607,26 @@ section.contract-job .singup-body .browse-job-posting {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+.contract-job h1.h2.mb-3 {
+    font-size: 43px;
+    font-weight: 700;
+}
+
+.contract-job p.lead {
+    font-size: 13px;
+}
+
+.contract-job a.btn {
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-image: linear-gradient(#ec201f 0%, #b6180d 74%) !important;
+    border-color: #e61f1d;
+}
+.contract-job a:hover {
+    color: #ffffff !important;
+}
+.video {
+    margin-top: 20px;
+}

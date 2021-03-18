@@ -35,6 +35,9 @@
 	.singup-body .form-group.form-check label {
 	    font-size: 11px;
 	}
+    .new-page-bg {
+        background-position: 24px 32px !important;
+    }
 }
 
 @media only screen and (max-width: 768px) {

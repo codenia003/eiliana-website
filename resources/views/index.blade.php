@@ -490,7 +490,7 @@ Home
     </div>
 </section>
 
-<div class="overflow-hidden">
+<div class="overflow-hidden shadow contract-job">
     <div class="container space-top-1 space-top-md-2 space-bottom-3">
         <div class="row justify-content-lg-between align-items-md-center">
             <div class="col-md-6 col-lg-5 mb-7 mb-md-0">
@@ -498,9 +498,16 @@ Home
                     <h1 class="h2 mb-3">Smart Sales Referral Program</h1>
                     <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
                 </div>
-                <a class="js-go-to position-static btn btn-primary btn-wide transition-3d-hover" href="{{ url('sales-referral-form') }}">
+                <a class="js-go-to position-static btn btn-primary btn-wide" href="{{ url('sales-referral-form') }}">
                     Sales Referral
                 </a>
+                <div class="video">
+                    <div class="video-player mx-md-auto">
+                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
+                          <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-6">

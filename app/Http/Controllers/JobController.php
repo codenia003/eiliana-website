@@ -212,8 +212,8 @@ class JobController extends Controller
                 'body' => 'You have response on your contractual job proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/freelancer/contractual-job-inform',
-                'main_id' => $insertedId
+                'actionURL' => '/freelancer/contractual-job-inform/'. $freelance_id->job_leads_id .'&'. 'job_id='. $insertedId,
+                'main_id' => $freelance_id->job_leads_id
             ];
 
             Notification::send($users, new UserNotification($details));

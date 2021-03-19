@@ -12,6 +12,7 @@ use Sentinel;
 use View;
 use DB;
 use App\Models\User;
+use App\Models\Job;
 use App\Models\ContractStaffingLeads;
 use App\Models\JobLeads;
 use App\Models\ProjectLeads;
@@ -127,9 +128,12 @@ class FreelancerController extends Controller
         return redirect('/freelancer/my-project')->with('success', 'Project Schedule Completed');
     }
 
-    public function ContractualJobInform()
+    public function ContractualJobInform($id)
     {
-        return view('freelancer/contractual-job-inform');
+        $joblead = Job::orderBy('job_id', 'desc')->first();
+        $joblead_id = JobLeads::where('job_leads_id', $id)->first();
+        $user = User::where('id', $joblead_id->from_user_id)->first();
+        return view('freelancer/contractual-job-inform', compact('joblead_id','joblead','user'));
     }
 
     public function postContractualJobInform(Request $request)
@@ -139,9 +143,10 @@ class FreelancerController extends Controller
         $contractualJobs = new ContractualJobInform;
         $contractualJobs->candidate_name = $input['candidate_name'];
         $contractualJobs->referral_id = $input['referral_id'];
-        $contractualJobs->referral_id = $input['referral_id'];
+        $contractualJobs->job_id = $input['job_id'];
         $contractualJobs->customer_name = $input['customer_name'];
         $contractualJobs->billing_address = $input['billing_address'];
+        $contractualJobs->price = $input['price'];
         $contractualJobs->gst_details = $input['gst_details'];
         $contractualJobs->start_date = $input['start_date'];
         $contractualJobs->end_date = $input['end_date'];
@@ -152,6 +157,23 @@ class FreelancerController extends Controller
         $contractualJobs->remark = $input['remarks'];
         $contractualJobs->save();
 
-        return redirect('/freelancer/contractual-job-inform')->with('success', 'Contractual Job Proposal Completed');
+        $insertedId = $contractualJobs->contractual_job_id;
+        $job = Job::where('job_id', $input['job_id'])->first();
+
+        if($insertedId != 0) {
+            $users = User::find($job->user_id);
+            $details = [
+                'greeting' => 'Hi '. $users->full_name,
+                'body' => 'You have response on your contractual job proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/client/contractual-job-inform/'. $input['job_leads_id'],
+                'main_id' => $input['job_leads_id']
+            ];
+
+            Notification::send($users, new UserNotification($details));
+         }
+
+        return redirect('/freelancer/contractual-job-inform/'. $input['job_leads_id'])->with('success', 'Contractual Job Proposal Completed');
     }
 }

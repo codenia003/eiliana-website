@@ -452,6 +452,8 @@ Route::group(
         Route::post('project-contract-payment', 'ClientController@postProjectContractPayment')->name('project-contract-payment');
 
         Route::get('project-payment/{id}', 'ClientController@projectPayments')->name('projectpayment');
+        Route::get('contractual-job-inform/{id}', 'ClientController@ContractualJobInform')->name('contractual-job-inform.create');
+        Route::post('contractual-job-payment', 'ClientController@postContractualJobPayment')->name('contractual-job-payment');
 
     }
 );
@@ -473,7 +475,7 @@ Route::group(
         Route::get('recommend', ['as'=> 'recommend.index', 'uses' => 'RecommendController@index']);
         Route::post('recommandStore', 'RecommendController@store')->name('recommandStore');
 
-        Route::get('contractual-job-inform', 'FreelancerController@ContractualJobInform')->name('contractual-job-inform.create');
+        Route::get('contractual-job-inform/{id}', 'FreelancerController@ContractualJobInform')->name('contractual-job-inform.create');
         Route::post('post-contractual-job-inform', 'FreelancerController@postContractualJobInform')->name('contractual-job-inform.store');
 
     }

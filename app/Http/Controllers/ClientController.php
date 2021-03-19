@@ -13,9 +13,12 @@ use DB;
 use Razorpay\Api\Api;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
+use App\Models\Job;
 use App\Models\ContractStaffingLeads;
+use App\Models\ContractualJobInform;
 use App\Models\SalesReferral;
 use App\Models\ProjectLeads;
+use App\Models\JobLeads;
 use App\Models\ProjectSchedule;
 use App\Models\ProjectContractDetails;
 use App\Models\ProjectPaymentSchedule;
@@ -227,5 +230,60 @@ class ClientController extends JoshController
 
         // return $projectlead;
         return view('client/recommend', compact('projectlead', 'next_installment'));
+    }
+
+    public function ContractualJobInform($id)
+    {
+        $contractual_job = ContractualJobInform::orderBy('contractual_job_id', 'desc')->first();
+        $joblead_id = JobLeads::where('job_leads_id', $id)->first();
+        //$user = User::where('id', $joblead_id->from_user_id)->first();
+        return view('client/contractual-job-inform', compact('joblead_id','contractual_job'));
+    }
+
+    public function postContractualJobPayment(Request $request)
+    {
+        $input = $request->except('_token');
+
+        $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+
+        $payment = $api->payment->fetch($input['payment_id']);
+
+        if(count($input)  && !empty($input['payment_id'])) {
+            try {
+                $response = $api->payment->fetch($input['payment_id'])->capture(array('amount'=>$payment['amount']));
+
+                $paymentContractualJob = ContractualJobInform::find($input['contractual_job_id']);
+                $paymentContractualJob->status = '2';
+                $paymentContractualJob->payment_id = $input['payment_id'];
+                $paymentContractualJob->save();
+
+
+                $joblead = JobLeads::where('job_leads_id', $input['referral_id'])->first();
+
+                $user = User::find($joblead->from_user_id);
+                $advance_body = 'Payemnt process by Client';
+                $advance_url =  '/freelancer/my-opportunity/'. $input['contractual_job_id'];
+                $msg = 'Payment Process successfully';
+            
+
+                $details = [
+                    'greeting' => 'Hi '. $user->full_name,
+                    'body' => $advance_body,
+                    'thanks' => 'Thank you for using eiliana.com!',
+                    'actionText' => 'View My Site',
+                    'actionURL' => $advance_url,
+                    'main_id' => $input['contractual_job_id']
+                ];
+
+                Notification::send($user, new UserNotification($details));
+
+                return redirect('/client/my-project')->with('success', 'Payment Process successfully');
+
+            } catch (\Exception $e) {
+                return  $e->getMessage();
+                return redirect()->back()->with('error', $e->getMessage());
+                return redirect()->back();
+            }
+        }
     }
 }

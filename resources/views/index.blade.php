@@ -494,14 +494,14 @@ Home
     <div class="container space-top-1 space-top-md-2 space-bottom-3">
         <div class="row justify-content-lg-between align-items-md-center">
             <div class="col-md-6 col-lg-5 mb-7 mb-md-0">
-                <div class="mb-5">
+                <div class="mb-4    ">
                     <h1 class="h2 mb-3">Smart Sales Referral Program</h1>
                     <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
                 </div>
                 <a class="js-go-to position-static btn btn-primary btn-wide" href="{{ url('sales-referral-form') }}">
                     Sales Referral
                 </a>
-                <div class="video">
+                <div class="video mt-4">
                     <div class="video-player mx-md-auto">
                         <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
                           <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
@@ -615,7 +615,239 @@ Home
     </div>
 </section>
 <section class="section container why-choose-us space-1 four-slider mt-4">
-  <div class="text-center">
+    <div class="hire-talent">
+        <div class="shadow1">
+            <div class="container space-2">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-0">
+                        <div class="advance-search singup-body login-body">
+                            <form action="{{ url('/search-project') }}" method="get" id="hireTalentForm" enctype="multipart/form-data">
+                                {{-- @csrf --}}
+                                <div class="card">
+                                    <div class="px-3 py-2">
+                                        <h4 class="card-header text-left">Looking For</h4>
+                                        <div class="form-group basic-info my-3">
+                                            <!-- <label><span>Looking For</span></label> -->
+                                            <!-- <br> -->
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="Freelance" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="2" checked>
+                                                    <label class="custom-control-label" for="Freelance">Freelance Projects</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="Contractual" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="1">
+                                                    <label class="custom-control-label" for="Contractual">Contractual Job</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="projects">
+                                            <div class="form-group">
+                                                <label>Project Category</label>
+                                                <select name="project_category" class="form-control">
+                                                    @foreach ($projectcategorys as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="basic-info mb-3 ">
+                                                <label>Browse Project By</label>
+                                                <br>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="budget" class="custom-control-input" name="browse_project" onchange="changeBrowseProject()" value="1" checked="">
+                                                        <label class="custom-control-label" for="budget">Budget</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="technology" class="custom-control-input" name="browse_project" onchange="changeBrowseProject()" value="2">
+                                                        <label class="custom-control-label" for="technology">Technology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="duration" class="custom-control-input" name="browse_project" onchange="changeBrowseProject()" value="3">
+                                                        <label class="custom-control-label" for="duration">Duration</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group project-budget d-none">
+                                                <label>Project Budget</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <select class="form-control" name="dur_minimum">
+                                                            <option value="">Minimum</option>
+                                                            @for ($i = 0; $i < 21; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Lakh</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <select class="form-control" name="dur_maximum">
+                                                            <option value="">Maximum</option>
+                                                            @for ($i = 1; $i < 21; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Lakh</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group project-technology d-none">
+                                                <label>Project Framework</label>
+                                                <div class="form-row">
+                                                    <div class="form-group col">
+                                                        {{-- <label>Technology Preference</label> --}}
+                                                        <select name="technologty_pre" class="form-control" id="technologty_pre" onchange="change_framework();">
+                                                            <option value="">Select Technology</option>
+                                                            @foreach ($technologies as $technology)
+                                                            <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        {{-- <label>Framework</label> --}}
+                                                        <select class="form-control" name="framework" id="framework">
+                                                            <option value="">Select Framework</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group project-duration d-none">
+                                                <label>Project Duration</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <select class="form-control" name="budget_from">
+                                                            <option value="">From</option>
+                                                            @for ($i = 0; $i < 21; $i++)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <select class="form-control" name="budget_to">
+                                                            <option value="">To</option>
+                                                            @for ($i = 1; $i < 13; $i++)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="contractual d-none">
+                                            <div class="form-group">
+                                                <label>Key Skills</label>
+                                                <input type="text" name="key_skills" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Experience</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <select class="form-control" name="experience_year">
+                                                            @for ($i = 0; $i < 21; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Years</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <select class="form-control" name="experience_month">
+                                                            @for ($i = 1; $i < 13; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Months</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group job-posting d-none">
+                                                <label>Job Location</label>
+                                                <select name="current_location" class="form-control">
+                                                    <option value=""></option>
+                                                    @foreach ($locations as $location)
+                                                    <option value="{{ $location->location_id }}" >{{ $location->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-right mt-5">
+                                            <div class="btn-group" role="group">
+                                                <button class="btn btn-primary" type="submit">
+                                                   Search >>>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-12">
+                        <h4 class="featured-jobs mx-4">Featured Jobs</h4>
+                        <div class="browse-job-posting">
+                            <div class="mb-3 mb-lg-5">
+                                <ul class="list-unstyled">
+                                    @foreach ($jobs as $job)
+                                    <li class="card p-4 mb-4">
+                                        <div class="row no-gutters d-flex align-items-center">
+                                            <div class="col-md-9">
+                                                <div class="contract-body">
+                                                    <div class="row no-gutters">
+                                                        <div class="col-md-6">
+                                                            <div class="mb-2">
+                                                                <div class="display-5">Profile Title</div>
+                                                                <p>{{ $job->job_title }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="contract-profile mb-1">
+                                                                <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->about_company }}</a>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <div class="display-5">Job Description</div>
+                                                        <p class="description">{{ $job->role_summary }}</p>
+                                                    </div>
+                                                    <div class="row no-gutters">
+                                                        <div class="col-md-6">
+                                                            <div class="mb-2">
+                                                                <div class="display-5">Location</div>
+                                                                <p>Delhi</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="mb-2">
+                                                                <div class="display-5">Experience</div>
+                                                                <p>{{ $job->experience_year }} Years {{ $job->experience_month }} Month</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="find_job_button text-center">
+                                                    <a class="btn_small yellow-linear-gradient" href="{{ route('jobdetails', $job->job_id) }}">View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Row -->
+        </div>
+    </div>
+    {{-- <div class="text-center">
     <h1 class="headingmain1">Why Choose Us?</h1>
     <p class="subtitle1">Firstly, for talents, we have tons of jobs that will help you utilize your skills and earn some (actually, more than some) extra bucks on the side. Secondly, for clients, we have thousands of talented individuals who are ready to take on all kinds of projects, right from app development to logo design.</p>
     <p class="subtitle2"><b>And lastly, there are a bunch of nifty reasons why you’ll Eiliana.</b></p>
@@ -714,7 +946,7 @@ Home
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 </section>
 
 <section class="section container our-solution">

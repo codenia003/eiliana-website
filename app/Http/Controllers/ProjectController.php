@@ -144,7 +144,7 @@ class ProjectController extends JoshController
         $projectBudgetAmount->pricing_model = $input['model_engagement'];
         $projectBudgetAmount->project_amount = $input['amount'];
         $projectBudgetAmount->save();
-        
+
 
 
         // foreach ($input['education_id'] as $key => $value) {
@@ -343,7 +343,7 @@ class ProjectController extends JoshController
         $user = Sentinel::getUser();
 
         if (empty($request->input('lookingfor'))) {
-                $technologies = Technology::where('parent_id', '0')->get();
+            $technologies = Technology::where('parent_id', '0')->get();
             $projectcategorys = ProjectCategory::all();
             $locations = Location::all();
 

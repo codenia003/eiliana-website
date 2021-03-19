@@ -630,3 +630,9 @@ section.contract-job .singup-body .browse-job-posting {
 .video {
     margin-top: 20px;
 }
+section.section.four-slider .hire-talent .advance-search.singup-body.login-body {
+    background: #f7ab30 !important;
+}
+h4.card-header.text-left {
+    background-color: transparent !important;
+}

@@ -614,7 +614,7 @@ Home
         {{-- <a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span></a> --}}
     </div>
 </section>
-<section class="section container why-choose-us space-1 four-slider mt-4">
+<section class="section four-slider mt-4 searv">
     <div class="hire-talent">
         <div class="shadow1">
             <div class="container space-2">
@@ -625,10 +625,8 @@ Home
                                 {{-- @csrf --}}
                                 <div class="card">
                                     <div class="px-3 py-2">
-                                        <h4 class="card-header text-left">Looking For</h4>
+                                        <h4 class="card-header text-left">Priority Posting</h4>
                                         <div class="form-group basic-info my-3">
-                                            <!-- <label><span>Looking For</span></label> -->
-                                            <!-- <br> -->
                                             <div class="form-check form-check-inline">
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="Freelance" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="2" checked>
@@ -784,8 +782,8 @@ Home
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-12">
-                        <h4 class="featured-jobs mx-4">Featured Jobs</h4>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-12">
+                        {{-- <h4 class="featured-jobs mx-4">Featured Jobs</h4> --}}
                         <div class="browse-job-posting">
                             <div class="mb-3 mb-lg-5">
                                 <ul class="list-unstyled">
@@ -950,18 +948,61 @@ Home
 </section>
 
 <section class="section container our-solution">
-  <div class="text-center w-lg-60 mx-auto">
-    <h1 class="headingmain1">How It Works?</h1>
-    <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right project and clients find the right talent for their job. Checkout our video to see how we go about doing that.</p>
-    <div class="dividerheading"></div>
-  </div>
-  <div class="our-slotuion slider mb-5 mt-5 text-center w-lg-60 mx-auto">
+        <div class="text-center w-lg-60 mx-auto">
+        <h1 class="headingmain1">How It Works?</h1>
+        <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right project and clients find the right talent for their job. Checkout our video to see how we go about doing that.</p>
+        <div class="dividerheading"></div>
+    </div>
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+
+          </div>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-12">
+                <div class="banner_custom">
+                    <div class="banner_custom_services">
+                        <div class="multiple-carousel">
+                            <div class="slide">
+                                <div class="crowd_favrt">
+                                    <div class="video-player mx-md-auto">
+                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
+                                        <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <div class="crowd_favrt">
+                                    <div class="video-player mx-md-auto">
+                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
+                                        <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <div class="crowd_favrt">
+                                    <div class="video-player mx-md-auto">
+                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
+                                            <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+    </div>
+
+  {{-- <div class="our-slotuion slider mb-5 mt-5 text-center w-lg-60 mx-auto">
     <div class="video-player mx-md-auto">
         <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
           <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
         </a>
     </div>
-  </div>
+  </div> --}}
   <div class="modal fade pullDown login-body border-0" id="myModal" role="dialog" aria-labelledby="modalLabelnews">
     <div class="modal-dialog " role="document">
         <div class="modal-content">

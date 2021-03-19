@@ -14,13 +14,19 @@ use View;
 use URL;
 use Mail;
 use App\Models\Job;
+use App\Models\Technology;
+use App\Models\ProjectCategory;
+use App\Models\Location;
 
 class HomeController extends JoshController
 {
     public function index()
     {
         $jobs = Job::with('companydetails','locations')->latest()->limit(1)->get();
+        $technologies = Technology::where('parent_id', '0')->get();
+        $projectcategorys = ProjectCategory::all();
+        $locations = Location::all();
         // return $jobs;
-        return view('index', compact('jobs'));
+        return view('index', compact('jobs','technologies','projectcategorys','locations'));
     }
 }

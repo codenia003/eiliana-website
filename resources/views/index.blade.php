@@ -783,61 +783,8 @@ Home
                         </div>
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-12">
-                        {{-- <h4 class="featured-jobs mx-4">Featured Jobs</h4> --}}
-                        <div class="browse-job-posting">
-                            <div class="mb-3 mb-lg-5">
-                                <ul class="list-unstyled">
-                                    @foreach ($jobs as $job)
-                                    <li class="card p-4 mb-4">
-                                        <div class="row no-gutters d-flex align-items-center">
-                                            <div class="col-md-9">
-                                                <div class="contract-body">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-md-6">
-                                                            <div class="mb-2">
-                                                                <div class="display-5">Profile Title</div>
-                                                                <p>{{ $job->job_title }}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="contract-profile mb-1">
-                                                                <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-2">
-                                                        <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->about_company }}</a>
-                                                    </div>
-                                                    <div class="mb-2">
-                                                        <div class="display-5">Job Description</div>
-                                                        <p class="description">{{ $job->role_summary }}</p>
-                                                    </div>
-                                                    <div class="row no-gutters">
-                                                        <div class="col-md-6">
-                                                            <div class="mb-2">
-                                                                <div class="display-5">Location</div>
-                                                                <p>Delhi</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="mb-2">
-                                                                <div class="display-5">Experience</div>
-                                                                <p>{{ $job->experience_year }} Years {{ $job->experience_month }} Month</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="find_job_button text-center">
-                                                    <a class="btn_small yellow-linear-gradient" href="{{ route('jobdetails', $job->job_id) }}">View</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                        <div class="projects">
+                            <img src="/assets/img/photo/new-photo.png" class="img-fluid" alt="">
                         </div>
                     </div>
                 </div>

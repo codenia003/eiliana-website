@@ -629,7 +629,7 @@ Home
                     <div class="dividerheading"></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-0">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-4">
                         <figure class="mt-0">
                             <img class="img-fluid" src="/assets/img/photo/refer-a-resource.png" alt="SVG">
                         </figure>
@@ -782,8 +782,8 @@ Home
     <div class="container">
       <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-            <figure class="mt-4">
-                <img class="img-fluid" src="/assets/img/photo/stock-howtes.jpg" alt="SVG">
+            <figure class="mt-5">
+                <img class="img-fluid" src="/assets/img/photo/stock-howtes.png" alt="SVG">
             </figure>
           </div>
           <div class="col-lg-8 col-md-8 col-sm-8 col-12">

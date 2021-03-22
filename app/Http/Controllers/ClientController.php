@@ -262,7 +262,7 @@ class ClientController extends JoshController
 
                 $user = User::find($joblead->from_user_id);
                 $advance_body = 'Payemnt process by Client';
-                $advance_url =  '/freelancer/my-opportunity/'. $input['contractual_job_id'];
+                $advance_url =  '/job/job-finance/'. $input['job_id'];
                 $msg = 'Payment Process successfully';
             
 
@@ -272,7 +272,7 @@ class ClientController extends JoshController
                     'thanks' => 'Thank you for using eiliana.com!',
                     'actionText' => 'View My Site',
                     'actionURL' => $advance_url,
-                    'main_id' => $input['contractual_job_id']
+                    'main_id' => $input['job_id']
                 ];
 
                 Notification::send($user, new UserNotification($details));

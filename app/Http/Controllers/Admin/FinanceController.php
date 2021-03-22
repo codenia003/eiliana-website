@@ -14,6 +14,7 @@ use App\Repositories\FinanceRepository;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Lang;
 use App\Models\Finance;
+use App\Models\JobOrderFinance;
 use App\Models\User;
 use App\Models\ProjectLeads;
 use App\Notifications\UserNotification;
@@ -35,6 +36,13 @@ class FinanceController extends Controller
         $finances = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->get();
         //return $finances;
         return view('admin.finance.index', compact('finances'));
+    }
+
+    public function jobFinance(Request $request)
+    {
+        $finances = JobOrderFinance::with('userjobs','userjobs.by_user_job','fromuser')->get();
+        //return $finances;
+        return view('admin.job_finance.index', compact('finances'));
     }
 
     public function edit($id)
@@ -83,6 +91,14 @@ class FinanceController extends Controller
             $response['errors'] = 'You are already assign finance resource';
         }
         return response()->json($response);
+    }
+
+    public function jobFinanceEdit($id)
+    {      
+
+        $order_finances_id = JobOrderFinance::with('userjobs','userjobs.by_user_job','fromuser','jobAmount')->where('job_order_id', $id)->first();
+        //return $order_finances_id;
+        return view('admin.job_finance.edit', compact('order_finances_id'));
     }
 
 }

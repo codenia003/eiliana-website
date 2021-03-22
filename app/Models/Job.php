@@ -41,4 +41,9 @@ class Job extends Model
     {
         return $this->hasMany('App\Models\JobLeads', 'job_id', 'job_id');
     }
+
+    public function by_user_job()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
 }

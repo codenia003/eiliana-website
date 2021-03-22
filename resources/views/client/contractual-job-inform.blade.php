@@ -107,7 +107,7 @@
                     
                     <div class="singup-body" id="payment_button" style="border-top: 1px solid #ffffff;">
                         <div class="btn-group" role="group">
-                            <span>Please pay advance payment for further process</span>
+                            <span>Please pay payment for further process</span>
                             <button type="button" id="paybtn" class="btn btn-primary deliverinfo">Payment Link</button>
                         </div>
                     </div>

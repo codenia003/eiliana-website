@@ -421,6 +421,8 @@ Route::group(
         Route::get('job-lead-response/{id}', 'JobController@jobLeadResponse');
         Route::get('profilejoblead/{id}', 'JobController@profileJobLead')->name('job.profilejoblead');
         Route::post('job-lead-convert', 'JobController@jobLeadConvert');
+        Route::get('job-finance/{id}', 'JobController@jobFinance')->name('job-finance');
+        Route::post('job-send-finance', 'JobController@sendJobFinance')->name('job-finance.send');
     }
 );
 

@@ -217,4 +217,6 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
     Route::get('finance/edit/{id}', ['as'=> 'finances.edit', 'uses' => 'FinanceController@edit']);
     //Route::put('finance/{id}', ['as'=> 'finances.update', 'uses' => 'FinanceController@update']);
     Route::post('finance/assign-to-resource', 'FinanceController@assignToResource')->name('assign-to-resource');
+    Route::get('job_finance', ['as'=> 'job_finance.index', 'uses' => 'FinanceController@jobFinance']);
+    Route::get('job_finance/edit/{id}', ['as'=> 'job_finance.edit', 'uses' => 'FinanceController@jobFinanceEdit']);
 });

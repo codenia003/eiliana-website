@@ -584,7 +584,7 @@ class ProjectController extends JoshController
                 'body' => 'You have one project for finance',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/admin/finances/edit/'. $insertedId,
+                'actionURL' => '/admin/finance/edit/'. $insertedId,
                 'main_id' => $insertedId
             ];
 

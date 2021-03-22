@@ -35,7 +35,9 @@ use App\Models\Employers;
 use App\Models\Location;
 use App\Models\CustomerIndustry;
 use App\Models\ContractStaffingLeads;
+use App\Models\ContractualJobInform;
 use App\Models\JobLeads;
+use App\Models\JobOrderFinance;
 use App\Notifications\UserNotification;
 
 class JobController extends Controller
@@ -519,5 +521,52 @@ class JobController extends Controller
         }
 
         return response()->json($response);
+    }
+
+
+    public function jobFinance($id)
+    {
+        $contractual_job = ContractualJobInform::where('job_id', $id)->orderBy('contractual_job_id', 'desc')->first();
+        return view('job/job-finance', compact('contractual_job'));
+    }
+
+    public function sendJobFinance(Request $request)
+    {
+        $input = $request->except('_token');
+
+        $orderfinancecehck = JobOrderFinance::where('contractual_job_id', '=', $input['contractual_job_id'])->where('status', '=', '1')->first();
+        if ($orderfinancecehck === null) {
+
+            $orderfinmace = new JobOrderFinance;
+            $orderfinmace->contractual_job_id = $input['contractual_job_id'];
+            $orderfinmace->job_id = $input['job_id'];
+            $orderfinmace->invoice_id = $input['referral_id'];
+            $orderfinmace->status = '1';
+            $orderfinmace->save();
+
+            $insertedId = $orderfinmace->job_order_id;
+
+            $user = User::find(1);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have one project for finance',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/admin/finance/edit/'. $insertedId,
+                'main_id' => $insertedId
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+            $success = 'success';
+            $msg = 'Job Proposal successfully send to eiliana finance';
+
+        } else {
+            $success = 'error';
+            $msg = 'You are already finance this job proposal';
+        }
+
+        return redirect('/freelancer/my-project')->with($success ,  $msg);
     }
 }

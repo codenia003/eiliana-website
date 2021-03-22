@@ -628,11 +628,42 @@ section.contract-job .singup-body .browse-job-posting {
     color: #ffffff !important;
 }
 .video {
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 section.section.four-slider .hire-talent .advance-search.singup-body.login-body {
     background: #f7ab30 !important;
 }
 h4.card-header.text-left {
     background-color: transparent !important;
+}
+.multiple-three-carousel .video-player {
+    padding: 15px;
+}
+.multiple-three-carousel .video-player img.img-fluid {
+    padding: 15px;
+    height: 210px;
+    object-fit: cover;
+}
+.contract-job img.img-fluid.rounded {
+    max-width: 80%;
+}
+
+.contract-job .position-relative {
+    text-align: right;
+}
+.hire .contract-body .display-5 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.hire .contract-body p {
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+.hire .contract-body .find_job_button {
+    display: block;
+    padding: 37px 0px;
+}
+.our-solution img.img-fluid {
+    padding: 15px;
 }

@@ -492,36 +492,37 @@ Home
 
 <div class="overflow-hidden contract-job">
     <div class="container space-2 space-top-md-2 space-bottom-3">
-        <div class="row justify-content-lg-between">
+        <div class="row justify-content-lg-between align-items-center">
             <div class="col-md-7 col-lg-7 mb-7 mb-md-0">
-                <div class="mb-4    ">
+                <div class="mb-4">
                     <h1 class="h2 mb-3">Smart Sales Referral Program</h1>
                     <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</p>
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-8 col-lg-8 col-12">
+                        <a class="js-go-to position-static btn btn-primary btn-wide" href="{{ url('sales-referral-form') }}">
+                            Sales Referral
+                        </a>
                         <div class="video">
                             <div class="video-player mx-md-auto">
                                 <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
+                                {{-- <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/1.png" alt="Image" data-target="#myModal"> --}}
                                 <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-12">
-                        <a class="js-go-to position-static btn btn-primary btn-wide" href="{{ url('sales-referral-form') }}">
-                            Sales Referral
-                        </a>
-                    </div>
+                    {{-- <div class="col-md-4 col-lg-4 col-12">
+
+                    </div> --}}
                 </div>
             </div>
 
             <div class="col-md-5">
                 <div class="position-relative">
-                    <img class="img-fluid rounded" src="/assets/img/photo/sales-referral.png"
+                    <img class="img-fluid rounded" src="/assets/img/photo/sales-referral.jpg"
                         alt="Image Description">
-                    <div
-                        class="position-absolute top-0 right-0 w-100 h-100 bg-soft-primary rounded z-index-n1 mt-5 mr-n5">
+                    <div class="position-absolute top-0 right-0 w-100 h-100 bg-soft-primary rounded z-index-n1 mt-5 mr-n5">
                     </div>
                 </div>
             </div>
@@ -624,15 +625,22 @@ Home
     <div class="hire">
         <div class="shadow1">
             <div class="container space-1">
-                <div class="text-center mb-5">
-                    <h1 class="headingmain1">Frequently asked questions</h1>
-                    <div class="dividerheading"></div>
-                </div>
                 <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        <h1 class="headingmain1">Frequently asked questions</h1>
+                    </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-4">
-                        <figure class="mt-0">
-                            <img class="img-fluid" src="/assets/img/photo/refer-a-resource.png" alt="SVG">
-                        </figure>
+                        <div class="refer-resource">
+                            <div class="card">
+                                <h4 class="card-header">Refer A Resource</h4>
+                                <div class="card-body">
+                                    <figure class="mt-0">
+                                        <img class="img-fluid" src="/assets/img/photo/refer-a-resource.png" alt="SVG">
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-12">
                         {{-- <h4 class="featured-jobs mx-4">Featured Jobs</h4> --}}
@@ -773,7 +781,7 @@ Home
   </div> --}}
 </section>
 
-<section class="section container our-solution">
+<section class="section our-solution">
         <div class="text-center w-lg-60 mx-auto">
         <h1 class="headingmain1">How It Works?</h1>
         <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right project and clients find the right talent for their job. Checkout our video to see how we go about doing that.</p>
@@ -794,7 +802,7 @@ Home
                                 <div class="crowd_favrt">
                                     <div class="video-player mx-md-auto">
                                         <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
-                                        <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
+                                            <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/2.png" alt="Image" data-target="#myModal">
                                         </a>
                                     </div>
                                 </div>
@@ -803,25 +811,7 @@ Home
                                 <div class="crowd_favrt">
                                     <div class="video-player mx-md-auto">
                                         <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
-                                        <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide">
-                                <div class="crowd_favrt">
-                                    <div class="video-player mx-md-auto">
-                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
-                                            <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide">
-                                <div class="crowd_favrt">
-                                    <div class="video-player mx-md-auto">
-                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
-                                            <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
+                                        <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/3.png" alt="Image" data-target="#myModal">
                                         </a>
                                     </div>
                                 </div>

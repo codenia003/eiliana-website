@@ -525,6 +525,9 @@ section.section1 .slider3 .bg-img-hero {
 .video-player a.js-inline-video-player img {
   border: 1px solid #b8180c;
   padding: 15px;
+  height: 222px;
+  object-fit: cover;
+  width: 100%;
 }
 .explore-more li a {
   -webkit-transition: all 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
@@ -628,7 +631,7 @@ section.contract-job .singup-body .browse-job-posting {
     color: #ffffff !important;
 }
 .video {
-    /* margin-top: 20px; */
+    margin-top: 30px;
 }
 section.section.four-slider .hire-talent .advance-search.singup-body.login-body {
     background: #f7ab30 !important;
@@ -645,11 +648,11 @@ h4.card-header.text-left {
     object-fit: cover;
 }
 .contract-job img.img-fluid.rounded {
-    max-width: 80%;
+    max-width: 90%;
 }
 
 .contract-job .position-relative {
-    text-align: right;
+    text-align: left;
 }
 .hire .contract-body .display-5 {
     font-size: 20px;
@@ -666,4 +669,34 @@ h4.card-header.text-left {
 }
 .our-solution img.img-fluid {
     /* padding: 15px; */
+}
+.refer-resource .card {
+    background: #f7ad2c;
+    text-align: center;
+}
+.refer-resource .card .card-header {
+    background-color: #f7ad2c;
+    border-bottom: unset;
+    padding: 10px 6px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0.5rem 1rem;
+    border-bottom: 1px solid #eee;
+}
+.refer-resource .card .card-body {
+    padding: 1rem;
+}
+.refer-resource .card .card-body img {
+    max-width: 60%;
+}
+.video-player .card-img-top:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.58);
+    z-index: 1;
 }

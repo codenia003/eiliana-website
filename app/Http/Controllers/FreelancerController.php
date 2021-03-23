@@ -130,10 +130,9 @@ class FreelancerController extends Controller
 
     public function ContractualJobInform($id)
     {
-        $joblead = Job::orderBy('job_id', 'desc')->first();
-        $joblead_id = JobLeads::where('job_leads_id', $id)->first();
-        $user = User::where('id', $joblead_id->from_user_id)->first();
-        return view('freelancer/contractual-job-inform', compact('joblead_id','joblead','user'));
+        $joblead = JobLeads::where('job_leads_id', $id)->first();
+        $user = User::where('id', $joblead->from_user_id)->first();
+        return view('freelancer/contractual-job-inform', compact('joblead','user'));
     }
 
     public function postContractualJobInform(Request $request)
@@ -142,7 +141,7 @@ class FreelancerController extends Controller
 
         $contractualJobs = new ContractualJobInform;
         $contractualJobs->candidate_name = $input['candidate_name'];
-        $contractualJobs->referral_id = $input['referral_id'];
+        $contractualJobs->job_leads_id = $input['job_leads_id'];
         $contractualJobs->job_id = $input['job_id'];
         $contractualJobs->customer_name = $input['customer_name'];
         $contractualJobs->billing_address = $input['billing_address'];

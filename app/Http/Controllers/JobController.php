@@ -37,6 +37,7 @@ use App\Models\CustomerIndustry;
 use App\Models\ContractStaffingLeads;
 use App\Models\ContractualJobInform;
 use App\Models\JobLeads;
+use App\Models\JobProposal;
 use App\Models\JobOrderFinance;
 use App\Notifications\UserNotification;
 
@@ -205,21 +206,21 @@ class JobController extends Controller
         $jobs->save();
 
         $insertedId = $jobs->job_id;
-        $freelance_id = JobLeads::first();
+        // $freelance_id = JobLeads::first();
         
-        if($insertedId != 0) {
-            $users = User::find($freelance_id->from_user_id);
-            $details = [
-                'greeting' => 'Hi '. $users->full_name,
-                'body' => 'You have response on your contractual job proposal',
-                'thanks' => 'Thank you for using eiliana.com!',
-                'actionText' => 'View My Site',
-                'actionURL' => '/freelancer/contractual-job-inform/'. $freelance_id->job_leads_id .'&'. 'job_id='. $insertedId,
-                'main_id' => $freelance_id->job_leads_id
-            ];
+        // if($insertedId != 0) {
+        //     $users = User::find($freelance_id->from_user_id);
+        //     $details = [
+        //         'greeting' => 'Hi '. $users->full_name,
+        //         'body' => 'You have response on your contractual job proposal',
+        //         'thanks' => 'Thank you for using eiliana.com!',
+        //         'actionText' => 'View My Site',
+        //         'actionURL' => '/freelancer/contractual-job-inform/'. $freelance_id->job_leads_id .'&'. 'job_id='. $insertedId,
+        //         'main_id' => $freelance_id->job_leads_id
+        //     ];
 
-            Notification::send($users, new UserNotification($details));
-         }
+        //     Notification::send($users, new UserNotification($details));
+        //  }
 
         // foreach ($input['education_id'] as $key => $value) {
         //     $education = new JobsEducation;
@@ -450,8 +451,20 @@ class JobController extends Controller
             $jobleads = JobLeads::find($input['lead_id']);
             $jobleads->lead_status = $input['lead_status'];
             $jobleads->save();
+            
 
             if($input['lead_status'] === '2'){
+
+                $job_proposal = new JobProposal;
+                $joblead = JobLeads::where('job_leads_id', '=', $input['lead_id'])->first();
+                $job_proposal->job_leads_id = $joblead->job_leads_id;
+                $job_proposal->job_id = $joblead->job_id;
+                $job_proposal->from_user_id = $joblead->from_user_id;
+                $job_proposal->subject = $joblead->subject;
+                $job_proposal->message = $joblead->message;
+                $job_proposal->lead_status = $joblead->lead_status;
+                $job_proposal->save();
+
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Accepted successfully';
             } elseif($input['lead_status'] === '5') {
@@ -462,18 +475,32 @@ class JobController extends Controller
                 $response['errors'] = 'Proposal Decline successfully';
             }
 
-            $user = User::find($jobleads->from_user_id);
-
+            
+            $users = User::find($jobleads->from_user_id);
             $details = [
-                'greeting' => 'Hi '. $user->full_name,
-                'body' => 'You have response on your job proposal',
+                'greeting' => 'Hi '. $users->full_name,
+                'body' => 'You have response on your contractual job proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/freelancer/my-proposal',
+                'actionURL' => '/freelancer/contractual-job-inform/'. $input['lead_id'],
                 'main_id' => $input['lead_id']
             ];
 
-            Notification::send($user, new UserNotification($details));
+            Notification::send($users, new UserNotification($details));
+             
+
+            // $user = User::find($jobleads->from_user_id);
+
+            // $details = [
+            //     'greeting' => 'Hi '. $user->full_name,
+            //     'body' => 'You have response on your job proposal',
+            //     'thanks' => 'Thank you for using eiliana.com!',
+            //     'actionText' => 'View My Site',
+            //     'actionURL' => '/freelancer/my-proposal',
+            //     'main_id' => $input['lead_id']
+            // ];
+
+            // Notification::send($user, new UserNotification($details));
 
         } else {
             $response['success'] = '2';
@@ -526,7 +553,7 @@ class JobController extends Controller
 
     public function jobFinance($id)
     {
-        $contractual_job = ContractualJobInform::where('job_id', $id)->orderBy('contractual_job_id', 'desc')->first();
+        $contractual_job = ContractualJobInform::where('job_leads_id', $id)->first();
         return view('job/job-finance', compact('contractual_job'));
     }
 
@@ -534,13 +561,14 @@ class JobController extends Controller
     {
         $input = $request->except('_token');
 
-        $orderfinancecehck = JobOrderFinance::where('contractual_job_id', '=', $input['contractual_job_id'])->where('status', '=', '1')->first();
+        $orderfinancecehck = JobOrderFinance::where('job_leads_id', '=', $input['job_leads_id'])->where('status', '=', '1')->first();
         if ($orderfinancecehck === null) {
 
             $orderfinmace = new JobOrderFinance;
             $orderfinmace->contractual_job_id = $input['contractual_job_id'];
             $orderfinmace->job_id = $input['job_id'];
-            $orderfinmace->invoice_id = $input['referral_id'];
+            $orderfinmace->job_leads_id = $input['job_leads_id'];
+            $orderfinmace->invoice_id = $input['job_leads_id'];
             $orderfinmace->status = '1';
             $orderfinmace->save();
 
@@ -550,10 +578,10 @@ class JobController extends Controller
 
             $details = [
                 'greeting' => 'Hi '. $user->full_name,
-                'body' => 'You have one project for finance',
+                'body' => 'You have one job for finance',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/admin/finance/edit/'. $insertedId,
+                'actionURL' => '/admin/job_finance/edit/'. $insertedId,
                 'main_id' => $insertedId
             ];
 

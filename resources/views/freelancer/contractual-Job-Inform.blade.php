@@ -27,7 +27,7 @@
             <div class="card-body p-4">
                 <form action="{{ route('contractual-job-inform.store') }}" method="POST" id="educationForm">
                     @csrf
-                    <input type="hidden" name="job_leads_id" value="{{ $joblead_id->job_leads_id }}">
+                    <!-- <input type="hidden" name="job_leads_id" value="{{ $joblead->job_leads_id }}"> -->
                     <input type="hidden" name="job_id" value="{{ $joblead->job_id }}">
                     <div class="main-moudle">
                         <div class="form-row">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group col-6">
                                 <label>Referral ID</label>
-                               <input type="text" class="form-control" name="referral_id" value="{{ $joblead_id->job_leads_id }}" readonly="">
+                               <input type="text" class="form-control" name="job_leads_id" value="{{ $joblead->job_leads_id }}" readonly="">
                             </div>
                         </div>
                         <div class="form-row">

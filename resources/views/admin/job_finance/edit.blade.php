@@ -29,7 +29,7 @@ Finances
                         </h4></div>
                     <br />
                 <div class="card-body">
-                {!! Form::model($order_finances_id, ['route' => ['admin.assign-to-resource', collect($order_finances_id)->first() ], 'method' => 'patch']) !!}
+                {!! Form::model($order_finances_id, ['route' => ['admin.job-assign-to-resource', collect($order_finances_id)->first() ], 'method' => 'patch']) !!}
 
                 @include('admin.job_finance.fields')
 
@@ -51,12 +51,12 @@ Finances
         });
     </script>
 <script>
-    function assignToResource(order_finance_id,finance_status){
+    function JobAssignToResource(job_order_id,finance_status){
         $('.spinner-border').removeClass("d-none");
-        var url = '/admin/finance/assign-to-resource';
+        var url = '/admin/job_finance/job-assign-to-resource';
         var data= {
             _token: "{{ csrf_token() }}",
-            order_finance_id: order_finance_id,
+            job_order_id: job_order_id,
             finance_status: finance_status
         };
         $.ajax({

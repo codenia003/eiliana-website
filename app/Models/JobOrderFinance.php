@@ -13,7 +13,7 @@ class JobOrderFinance extends Model
 
     public function userjobs()
     {
-         return $this->belongsTo('App\Models\Job', 'job_id', 'job_id');
+         return $this->belongsTo('App\Models\JobLeads', 'job_leads_id', 'job_leads_id');
     }
 
     public function fromuser()
@@ -24,6 +24,11 @@ class JobOrderFinance extends Model
     public function jobAmount()
     {
         return $this->belongsTo('App\Models\ContractualJobInform', 'job_id', 'job_id');
+    }
+
+    public function jobdetail()
+    {
+        return $this->belongsTo('App\Models\Job', 'job_id', 'job_id');
     }
 
 }

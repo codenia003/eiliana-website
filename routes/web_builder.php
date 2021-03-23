@@ -219,4 +219,5 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
     Route::post('finance/assign-to-resource', 'FinanceController@assignToResource')->name('assign-to-resource');
     Route::get('job_finance', ['as'=> 'job_finance.index', 'uses' => 'FinanceController@jobFinance']);
     Route::get('job_finance/edit/{id}', ['as'=> 'job_finance.edit', 'uses' => 'FinanceController@jobFinanceEdit']);
+    Route::post('job_finance/job-assign-to-resource', 'FinanceController@JobAssignToResource')->name('job-assign-to-resource');
 });

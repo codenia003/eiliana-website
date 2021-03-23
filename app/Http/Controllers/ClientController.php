@@ -235,9 +235,8 @@ class ClientController extends JoshController
     public function ContractualJobInform($id)
     {
         $contractual_job = ContractualJobInform::orderBy('contractual_job_id', 'desc')->first();
-        $joblead_id = JobLeads::where('job_leads_id', $id)->first();
-        //$user = User::where('id', $joblead_id->from_user_id)->first();
-        return view('client/contractual-job-inform', compact('joblead_id','contractual_job'));
+        //$joblead = JobLeads::where('job_leads_id', $id)->first();
+        return view('client/contractual-job-inform', compact('contractual_job'));
     }
 
     public function postContractualJobPayment(Request $request)
@@ -258,11 +257,11 @@ class ClientController extends JoshController
                 $paymentContractualJob->save();
 
 
-                $joblead = JobLeads::where('job_leads_id', $input['referral_id'])->first();
+                $joblead = JobLeads::where('job_leads_id', $input['job_leads_id'])->first();
 
                 $user = User::find($joblead->from_user_id);
                 $advance_body = 'Payemnt process by Client';
-                $advance_url =  '/job/job-finance/'. $input['job_id'];
+                $advance_url =  '/job/job-finance/'. $input['job_leads_id'];
                 $msg = 'Payment Process successfully';
             
 
@@ -272,7 +271,7 @@ class ClientController extends JoshController
                     'thanks' => 'Thank you for using eiliana.com!',
                     'actionText' => 'View My Site',
                     'actionURL' => $advance_url,
-                    'main_id' => $input['job_id']
+                    'main_id' => $input['job_leads_id']
                 ];
 
                 Notification::send($user, new UserNotification($details));

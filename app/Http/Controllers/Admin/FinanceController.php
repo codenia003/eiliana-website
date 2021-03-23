@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Lang;
 use App\Models\Finance;
 use App\Models\JobOrderFinance;
+use App\Models\Job;
+use App\Models\JobLeads;
 use App\Models\User;
 use App\Models\ProjectLeads;
 use App\Notifications\UserNotification;
@@ -40,7 +42,7 @@ class FinanceController extends Controller
 
     public function jobFinance(Request $request)
     {
-        $finances = JobOrderFinance::with('userjobs','userjobs.by_user_job','fromuser')->get();
+        $finances = JobOrderFinance::with('userjobs','jobdetail.by_user_job','userjobs.fromuser')->get();
         //return $finances;
         return view('admin.job_finance.index', compact('finances'));
     }
@@ -96,9 +98,49 @@ class FinanceController extends Controller
     public function jobFinanceEdit($id)
     {      
 
-        $order_finances_id = JobOrderFinance::with('userjobs','userjobs.by_user_job','fromuser','jobAmount')->where('job_order_id', $id)->first();
+        $order_finances_id = JobOrderFinance::with('userjobs','jobdetail.by_user_job','userjobs.fromuser','jobAmount')->where('job_order_id', $id)->first();
         //return $order_finances_id;
         return view('admin.job_finance.edit', compact('order_finances_id'));
+    }
+
+    public function JobAssignToResource(Request $request)
+    {
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $job_financestatuscheck = JobOrderFinance::where('job_order_id', '=', $input['job_order_id'])->where('status', '!=', '1')->first();
+        if ($job_financestatuscheck === null) {
+
+            $job_finance = JobOrderFinance::find($input['job_order_id']);
+            $job_finance->status = $input['finance_status'];
+            $job_finance->save();
+
+            if($input['finance_status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Job Assign Finance Resource successfully';
+            } 
+
+            $finance = JobLeads::where('job_leads_id', $job_finance->job_leads_id)->first();
+
+            $user = User::find($finance->from_user_id);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have response on your job assign finance resource',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/freelancer/my-project',
+                'main_id' => $job_finance->job_leads_id
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+        } else {
+            $response['success'] = '2';
+            $response['errors'] = 'You are already assign finance resource';
+        }
+        return response()->json($response);
     }
 
 }

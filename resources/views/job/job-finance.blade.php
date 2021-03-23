@@ -49,17 +49,16 @@ type="text/css"/>
 						<div class="card-body p-4">
                             <form action="{{ route('job-finance.send') }}" method="POST" id="educationForm">
                                 @csrf
-                                <input type="hidden" name="job_id" value="{{ $contractual_job->job_id }}">
-                                <!-- <input type="hidden" name="job_leads_id" value="{{ $contractual_job->referral_id }}"> -->
+                                <input type="hidden" name="contractual_job_id" value="{{ $contractual_job->contractual_job_id }}">
                                 <div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Order ID</label>
-                                            <input type="text" class="form-control" name="contractual_job_id" value="{{ $contractual_job->contractual_job_id }}" readonly="">
+                                            <input type="text" class="form-control" name="job_id" value="{{ $contractual_job->job_id }}" readonly="">
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Invoice ID</label>
-                                           <input type="text" class="form-control" name="referral_id" value="{{ $contractual_job->referral_id }}" readonly="">
+                                           <input type="text" class="form-control" name="job_leads_id" value="{{ $contractual_job->job_leads_id }}" readonly="">
                                         </div>
                                     </div>
 

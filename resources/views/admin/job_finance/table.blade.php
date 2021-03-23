@@ -17,9 +17,9 @@
      @foreach($finances as $finance)
         <tr>
             <td>{!! $a++ !!}</td>
-            <td>{!! $finance->userjobs->job_title !!} </td>
-            <td>{!! $finance->fromuser !!}</td>
-            <td>{!! $finance->userjobs->by_user_job->first_name !!} </td>
+            <td>{!! $finance->jobdetail->job_title !!} </td>
+            <td>{!! $finance->userjobs->fromuser->full_name !!}</td>
+            <td>{!! $finance->jobdetail->by_user_job->first_name !!} </td>
             <td>@if($finance->status == 1)
                Pending
               @else

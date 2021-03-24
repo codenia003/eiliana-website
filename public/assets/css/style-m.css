@@ -47,4 +47,51 @@
     .w-lg-60 {
         width: 100% !important;
     }
+    .eiliana-agility {
+        top: 0px !important;
+    }
+    .video {
+        margin-bottom: 25px;
+    }
+    .contract-job .position-relative {
+        text-align: center !important;
+    }
+
+    .section1 .slide {
+        height: 315px !important;
+    }
+
+    .space-lg-4 {
+        padding-top: 0rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .banner1_content{
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+   .slider1 .banner1_content .group_button{
+   	    top: 20px !important;
+        left: -144px !important;
+   }
+   .group_button{
+   	   padding-top: 30px !important;
+   }
+   .slider1 .banner1_content{
+       left: 147px !important;
+   }
+   .banner1_content h1 {
+        font-size: 18px !important;
+    }
+    section.section1 .slider3 .bg-img-hero {
+        height: unset !important;
+    }
+    .slider3 .banner1_content h1 {
+        position: relative;
+        left: 160px;
+        top: 40px;
+    }
+    .slider3 .banner1_content .group_button {
+        top: 50px;
+    }
 }

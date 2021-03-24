@@ -45,6 +45,29 @@ $(document).ready(function() {
             }
         }]
     });
+    // var slidemobile = Math.floor(Math.random() * 2) + 1
+    $('.mobile-slick-carousel').slick({
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "nextArrow": "<span class=\"fa fa-angle-right slick-arrow slick-arrow-soft-white slick-arrow-right slick-arrow-centered-y rounded-circle mr-sm-2 mr-xl-4\"></span>",
+        "prevArrow": "<span class=\"fa fa-angle-left slick-arrow slick-arrow-soft-white slick-arrow-left slick-arrow-centered-y rounded-circle ml-sm-2 ml-xl-4\"></span>",
+        "dots": false,
+        "draggable": true,
+        "autoplay": false,
+        "autoplaySpeed": 5000,
+        "arrows": true,
+        "speed": 500,
+        "fade": true,
+        "infinite": true,
+        "cssEase": 'ease-in-out',
+        "responsive": [{
+            "breakpoint": 768,
+            "settings": {
+                "slidesToShow": 1,
+                "arrows": false
+            }
+        }]
+    });
 
     $('.multiple-carousel').slick({
         "slidesToShow": 4,
@@ -79,10 +102,10 @@ $(document).ready(function() {
         }]
     });
 });
-var win = window,
-    doc = document,
-    docElem = doc.documentElement,
-    body = doc.getElementsByTagName('body')[0],
-    x = win.innerWidth || docElem.clientWidth || body.clientWidth,
-    y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
-console.log(x + ' × ' + y);
+// var win = window,
+//     doc = document,
+//     docElem = doc.documentElement,
+//     body = doc.getElementsByTagName('body')[0],
+//     x = win.innerWidth || docElem.clientWidth || body.clientWidth,
+//     y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
+// console.log(x + ' × ' + y);

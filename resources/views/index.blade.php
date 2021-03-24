@@ -20,7 +20,7 @@ Home
 {{-- slider --}}
 @section('top')
 <!--Carousel Start -->
-<section class="section1">
+<section class="section1 d-none d-sm-block">
     <div class="slick-carousel">
       <div class="slide slider1">
         <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-1.png);">
@@ -138,6 +138,50 @@ Home
       </div>
     </div>
   </section>
+  <section class="section1 d-block d-sm-none">
+    <div class="mobile-slick-carousel">
+      <div class="slide slider1">
+        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-1.png);">
+            <div class="container space-2 space-lg-4">
+              <div class="row">
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-7">
+                  <div class="banner1_content">
+                    <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                    <div class="group_button">
+                      <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                      <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                      {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="slide slider3">
+        <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-3.png);">
+          <div class="container space-2 space-lg-4">
+            <div class="row">
+              <div class="col-md-6">
+              </div>
+              <div class="col-md-6">
+                <div class="banner1_content">
+                  <h1>Transforming lives <br>Through next <br>Generation <span class="text-orange">Resources</span> <br>And <span class="text-orange">Projects</span></h1>
+                  <div class="group_button">
+                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find Projects</a>
+                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire Talent</a>
+                    {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </section>
 <!-- //Carousel End -->
 @stop
 
@@ -221,48 +265,48 @@ Home
                                         <label>Key Skills</label>
                                         <input type="text" name="keyskills" placeholder="Chatbots, Machine learning, Deep learning, Computer vision, Cognitive Science" class="form-control" disabled/>
                                     </div>
-                                    <div class="form-row col-12">
-                                        <div class="form-group col-6">
-                                            <label>Total Experience</label>
-                                            <div class="form-row">
-                                                <div class="col-5">
-                                                    <select class="form-control" required="" name="experience_year" disabled>
-                                                        @for ($i = 1; $i < 21; $i++)
-                                                        <option value="{{ $i }}">{{ $i }} Years</option>
-                                                        @endfor
-                                                    </select>
-                                                </div>
-                                                <div class="col-5">
-                                                    <select class="form-control" required="" name="experience_month" disabled>
-                                                        @for ($i = 1; $i < 13; $i++)
-                                                        <option value="{{ $i }}">{{ $i }} Years</option>
-                                                        @endfor
-                                                    </select>
-                                                </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-6">
+                                        <label>Total Experience</label>
+                                        <div class="form-row">
+                                            <div class="col-6">
+                                                <select class="form-control" required="" name="experience_year" disabled>
+                                                    @for ($i = 4; $i < 21; $i++)
+                                                    <option value="{{ $i }}">{{ $i }} Years</option>
+                                                    @endfor
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label>Salary Range</label>
-                                            <div class="form-row">
-                                                <div class="col-6">
-                                                    <select class="form-control" required="" name="from_salary_range" disabled>
-                                                        <option value="">1 Lacs</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-6">
-                                                    <select class="form-control" required="" name="experience_month" disabled>
-                                                        <option value="">50 Lacs</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-6">
+                                                <select class="form-control" required="" name="experience_month" disabled>
+                                                    @for ($i = 5; $i < 13; $i++)
+                                                    <option value="{{ $i }}">{{ $i }} Years</option>
+                                                    @endfor
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col">
-                                        <label>Location</label>
-                                        <select name="technologty_pre" class="form-control" id="technologty_pre" disabled>
-                                            <option value="">Delhi</option>
-                                        </select>
+                                    <div class="form-group col-6">
+                                        <label>Salary Range</label>
+                                        <div class="form-row">
+                                            <div class="col-6">
+                                                <select class="form-control" required="" name="from_salary_range" disabled>
+                                                    <option value="">10 Lacs</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <select class="form-control" required="" name="experience_month" disabled>
+                                                    <option value="">20 Lacs</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <select name="technologty_pre" class="form-control" id="technologty_pre" disabled>
+                                        <option value="">Delhi</option>
+                                    </select>
                                 </div>
                             </form>
                         </div>
@@ -506,8 +550,10 @@ Home
                         <div class="video">
                             <div class="video-player mx-md-auto">
                                 <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
-                                {{-- <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/1.png" alt="Image" data-target="#myModal"> --}}
-                                <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal">
+                                    <div class="card-img-top">
+                                        <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/3.png" alt="Image" data-target="#myModal">
+                                    </div>
+                                    {{-- <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png" alt="Image" data-target="#myModal"> --}}
                                 </a>
                             </div>
                         </div>
@@ -542,7 +588,7 @@ Home
                         <img class="img-fluid" src="/assets/img/photo/mobile-only.png" alt="SVG">
                     </figure>
                 </div>
-                <div class="col-12 col-md-7 col-lg-7 pb-lg-5 mb-md-0 pt-lg-4 pl-5">
+                <div class="col-12 col-md-7 col-lg-7 pb-lg-5 mb-md-0 pt-lg-4 pl-lg-5 pl-4">
                     <h1 class="headingmain1">Bringing the new age projects to your doorstep</h1>
                     <ul class="list-unstyled list-article">
                         <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Enhanced Exposure while working with Global Clients</li>
@@ -802,7 +848,9 @@ Home
                                 <div class="crowd_favrt">
                                     <div class="video-player mx-md-auto">
                                         <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
-                                            <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/2.png" alt="Image" data-target="#myModal">
+                                            <div class="card-img-top">
+                                                <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/2.png" alt="Image" data-target="#myModal">
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
@@ -811,7 +859,9 @@ Home
                                 <div class="crowd_favrt">
                                     <div class="video-player mx-md-auto">
                                         <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
-                                        <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/3.png" alt="Image" data-target="#myModal">
+                                            <div class="card-img-top">
+                                                <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/1.png" alt="Image" data-target="#myModal">
+                                            </div>
                                         </a>
                                     </div>
                                 </div>

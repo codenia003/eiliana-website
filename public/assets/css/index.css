@@ -690,17 +690,6 @@ h4.card-header.text-left {
 .refer-resource .card .card-body img {
     max-width: 60%;
 }
-.video-player .card-img-top:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgb(0 0 0 / 74%);
-    z-index: 1;
-    margin: 15px;
-}
 .card-img-top {
     position: relative;
 }
@@ -711,7 +700,7 @@ h4.card-header.text-left {
     right: 0;
     top: 0;
     bottom: 0;
-    background: rgba(0,0,0,.58);
+    /* background: rgba(0,0,0,.58); */
     z-index: 1;
     background-image: url(/assets/img/photo/video-icon.png);
     background-repeat: no-repeat;

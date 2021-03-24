@@ -121,20 +121,35 @@ class FinanceController extends Controller
                 $response['msg'] = 'Job Assign Finance Resource successfully';
             } 
 
-            $finance = JobLeads::where('job_leads_id', $job_finance->job_leads_id)->first();
+            // $finance = JobLeads::where('job_leads_id', $job_finance->job_leads_id)->first();
 
-            $user = User::find($finance->from_user_id);
+            // $user = User::find($finance->from_user_id);
 
+            // $details = [
+            //     'greeting' => 'Hi '. $user->full_name,
+            //     'body' => 'You have response on your job assign finance resource',
+            //     'thanks' => 'Thank you for using eiliana.com!',
+            //     'actionText' => 'View My Site',
+            //     'actionURL' => '/freelancer/my-proposal',
+            //     'main_id' => $job_finance->job_leads_id
+            // ];
+
+            // Notification::send($user, new UserNotification($details));
+
+            $job = Job::where('job_id', $job_finance->job_id)->first();
+
+            $users = User::find($job->user_id);
             $details = [
-                'greeting' => 'Hi '. $user->full_name,
-                'body' => 'You have response on your job assign finance resource',
+                'greeting' => 'Hi '. $users->full_name,
+                'body' => 'You have response on your contractual job proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/freelancer/my-project',
+                'actionURL' => '/client/my-proposal',
                 'main_id' => $job_finance->job_leads_id
             ];
 
-            Notification::send($user, new UserNotification($details));
+            Notification::send($users, new UserNotification($details));
+             
 
         } else {
             $response['success'] = '2';

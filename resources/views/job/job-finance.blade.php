@@ -50,6 +50,7 @@ type="text/css"/>
                             <form action="{{ route('job-finance.send') }}" method="POST" id="educationForm">
                                 @csrf
                                 <input type="hidden" name="contractual_job_id" value="{{ $contractual_job->contractual_job_id }}">
+                                <input type="hidden" name="job_proposal_id" value="{{ $contractual_job->job_proposal_id }}">
                                 <div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">
@@ -68,8 +69,8 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="price" value="{{ $contractual_job->price }}" readonly="">
                                         </div>
                                         <div class="form-group col-6">
-                                            <label>Date</label>
-                                            <input class="form-control" type="text" name="start_date" value="{{ $contractual_job->start_date }}" readonly="">
+                                            <label>Date Acceptance</label>
+                                            <input class="form-control" type="text" name="date_acceptance" value="{{ $contractual_job->date_acceptance }}" readonly="">
                                         </div>
                                     </div>
                                     <div class="form-row">

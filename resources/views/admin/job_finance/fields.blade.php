@@ -18,7 +18,7 @@
     </div>
     <div class="form-group col-6">
         <label>Invoice Date </label>
-        <input class="form-control" type="text" name="invoice_date"  value="{{ $order_finances_id->jobAmount->start_date }}"readonly="">
+        <input class="form-control" type="text" name="invoice_date"  value="{{ $order_finances_id->jobAmount->date_acceptance }}"readonly="">
     </div>
 </div>
 <div class="form-row">

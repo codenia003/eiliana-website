@@ -18,6 +18,7 @@ use App\Models\JobLeads;
 use App\Models\ProjectLeads;
 use App\Models\ContractualJobInform;
 use App\Models\ProjectSchedule;
+use App\Models\JobProposal;
 use App\Models\ProjectScheduleModule;
 use App\Notifications\UserNotification;
 
@@ -131,8 +132,9 @@ class FreelancerController extends Controller
     public function ContractualJobInform($id)
     {
         $joblead = JobLeads::where('job_leads_id', $id)->first();
+        $job_proposal_id = JobProposal::where('job_leads_id', $id)->first();
         $user = User::where('id', $joblead->from_user_id)->first();
-        return view('freelancer/contractual-job-inform', compact('joblead','user'));
+        return view('freelancer/contractual-job-inform', compact('joblead','user','job_proposal_id'));
     }
 
     public function postContractualJobInform(Request $request)
@@ -142,12 +144,13 @@ class FreelancerController extends Controller
         $contractualJobs = new ContractualJobInform;
         $contractualJobs->candidate_name = $input['candidate_name'];
         $contractualJobs->job_leads_id = $input['job_leads_id'];
+        $contractualJobs->job_proposal_id = $input['job_proposal_id'];
         $contractualJobs->job_id = $input['job_id'];
         $contractualJobs->customer_name = $input['customer_name'];
         $contractualJobs->billing_address = $input['billing_address'];
         $contractualJobs->price = $input['price'];
         $contractualJobs->gst_details = $input['gst_details'];
-        $contractualJobs->start_date = $input['start_date'];
+        $contractualJobs->date_acceptance = $input['date_acceptance'];
         $contractualJobs->end_date = $input['end_date'];
         $contractualJobs->contract_duration = $input['contract_duration'];
         $contractualJobs->pricing_cycle = $input['pricing_cycle'];

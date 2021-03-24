@@ -27,7 +27,7 @@
             <div class="card-body p-4">
                 <form action="{{ route('contractual-job-inform.store') }}" method="POST" id="educationForm">
                     @csrf
-                    <!-- <input type="hidden" name="job_leads_id" value="{{ $joblead->job_leads_id }}"> -->
+                    <input type="hidden" name="job_proposal_id" value="{{ $job_proposal_id->job_proposal_id }}">
                     <input type="hidden" name="job_id" value="{{ $joblead->job_id }}">
                     <div class="main-moudle">
                         <div class="form-row">
@@ -62,8 +62,8 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label>Start Date</label>
-                                <input class="flatpickr flatpickr-input form-control" type="text" name="start_date" value="" required>
+                                <label>Date Acceptance</label>
+                                <input class="flatpickr flatpickr-input form-control" type="text" name="date_acceptance" value="" required>
                             </div>
                             <div class="form-group col-6">
                                 <label>End Date</label>

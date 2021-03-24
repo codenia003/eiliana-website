@@ -566,6 +566,7 @@ class JobController extends Controller
 
             $orderfinmace = new JobOrderFinance;
             $orderfinmace->contractual_job_id = $input['contractual_job_id'];
+            $orderfinmace->job_proposal_id = $input['job_proposal_id'];
             $orderfinmace->job_id = $input['job_id'];
             $orderfinmace->job_leads_id = $input['job_leads_id'];
             $orderfinmace->invoice_id = $input['job_leads_id'];
@@ -595,6 +596,6 @@ class JobController extends Controller
             $msg = 'You are already finance this job proposal';
         }
 
-        return redirect('/freelancer/my-project')->with($success ,  $msg);
+        return redirect('/freelancer/my-proposal')->with($success ,  $msg);
     }
 }

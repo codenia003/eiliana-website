@@ -61,8 +61,8 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label>Start Date</label>
-                                <input class="form-control" type="text" name="start_date" value="{{ $contractual_job->start_date }}" readonly="">
+                                <label>Date Acceptance</label>
+                                <input class="form-control" type="text" name="date_acceptance" value="{{ $contractual_job->date_acceptance }}" readonly="">
                             </div>
                             <div class="form-group col-6">
                                 <label>End Date</label>

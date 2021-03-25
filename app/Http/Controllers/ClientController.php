@@ -232,7 +232,7 @@ class ClientController extends JoshController
 
     public function projectPayments($id)
     {
-        $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee1','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
 
         //$next_installment = ProjectPaymentSchedule::where('project_leads_id',$id)->where('status', '!=','2')->first();
 

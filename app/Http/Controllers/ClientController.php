@@ -232,12 +232,12 @@ class ClientController extends JoshController
 
     public function projectPayments($id)
     {
-        $projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee1','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
 
-        $next_installment = ProjectPaymentSchedule::where('project_leads_id',$id)->where('status', '!=','2')->first();
+        //$next_installment = ProjectPaymentSchedule::where('project_leads_id',$id)->where('status', '!=','2')->first();
 
-        // return $projectlead;
-        return view('client/recommend', compact('projectlead', 'next_installment'));
+        //return $projectlead;
+        return view('client/recommend', compact('projectlead'));
     }
 
     public function ContractualJobInform($id)

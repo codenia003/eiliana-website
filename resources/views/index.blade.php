@@ -246,10 +246,9 @@ Home
                     <h1 class="headingmain1">Agility @Eiliana</h1>
                     <ul class="list-unstyled list-article">
                         <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Choose experienced Professionals from Global Talent Pool.</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Experienced Professionals available helps manage Business Risk on Pay Per Use Model.</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Experienced Professionals availablity helps manage Business Risk on Pay Per Use Model.</li>
                         <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Managed Delivery Model at Eiliana facilitates smooth project Delivery</li>
                         <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Faster project Roll out through Instant resource deployment.</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Choose from Global Resource Talent Pool</li>
                         <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Access to Super Niche Skills improves project performance.</li>
                     </ul>
                 </div>
@@ -536,7 +535,7 @@ Home
 
 <div class="overflow-hidden contract-job">
     <div class="container space-2 space-top-md-2 space-bottom-3">
-        <div class="row justify-content-lg-between align-items-center">
+        <div class="row justify-content-lg-between align-items-end">
             <div class="col-md-7 col-lg-7 mb-7 mb-md-0">
                 <div class="mb-4">
                     <h1 class="h2 mb-3">Smart Sales Referral Program</h1>
@@ -564,7 +563,7 @@ Home
                 </div>
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-5 d-none d-sm-block">
                 <div class="position-relative">
                     <img class="img-fluid rounded" src="/assets/img/photo/sales-referral.jpg"
                         alt="Image Description">

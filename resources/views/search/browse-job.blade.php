@@ -101,7 +101,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Industry</div>
-                                        <p>{{ $job->profile_headline }}</p>
+                                        <p>{{ $job->customerindustry1->name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -113,7 +113,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Location</div>
-                                        <p>Delhi</p>
+                                        <p>@if($job->location != null){{ $job->locations->name }}@endif</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

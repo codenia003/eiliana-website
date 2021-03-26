@@ -46,4 +46,9 @@ class Job extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
+
+    public function customerindustry1()
+    {
+        return $this->belongsTo('App\Models\CustomerIndustry', 'customer_industry', 'customer_industry_id');
+    }
 }

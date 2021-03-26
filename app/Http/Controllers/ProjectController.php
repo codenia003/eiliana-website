@@ -355,7 +355,7 @@ class ProjectController extends JoshController
             $request->session()->put('contractsattfing', $contractsattfing);
 
             $sound = "";
-            $words = explode(" " , $request->input('keyword')) ;
+            $words = explode(" " , $request->input('key_skills')) ;
             foreach($words as $word) {
                 $sound .= metaphone($word);
                 if (next($words)==true) {
@@ -386,10 +386,12 @@ class ProjectController extends JoshController
                 return view('search/browse-project', compact('count', 'projects'));
             } else {
 
-                $jobs = Job::where('indexing', 'LIKE', '%'.$sound.'%')
-                    ->orWhere('experience_year', '=', $request->input('experience_year'))
-                    ->orWhere('experience_month', '=', $request->input('experience_month'))
-                    ->paginate(10);
+                // $jobs = Job::where('indexing', 'LIKE', '%'.$sound.'%')
+                //     ->where('experience_year', '=', $request->input('experience_year'))
+                //     ->where('experience_month', '=', $request->input('experience_month'))
+                //     ->paginate(10);
+                $jobs = Job::with('locations','customerindustry1')->where('indexing', 'LIKE', '%'.$sound.'%')->paginate(10);
+
 
                 return view('search/browse-job', compact('jobs'));
 

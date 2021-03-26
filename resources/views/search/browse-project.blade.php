@@ -90,7 +90,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Location</div>
-                                        <p>{{ $project->locations->name }}</p>
+                                        <p>@if($project->locations != null){{ $project->locations->name }}@endif</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

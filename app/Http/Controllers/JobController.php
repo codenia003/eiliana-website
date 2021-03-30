@@ -185,6 +185,7 @@ class JobController extends Controller
         $jobs->user_id = $user->id;
         $jobs->job_status_id = 1;
         $jobs->about_company = $input['about_company'];
+        $jobs->contract_duration = $input['contract_duration'];
         $jobs->job_title = $input['job_title'];
         $jobs->key_skills = $input['key_skills'];
         $jobs->role_summary = $input['role_summary'];

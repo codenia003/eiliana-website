@@ -65,7 +65,7 @@ Job Post
                                         <div class="form-group basic-info mb-3">
                                             <label>Contract Duration(Months)</label>
                                             <br />
-                                            <input type="number" name="model_engagement" class="form-control" value="" required />
+                                            <input type="number" name="contract_duration" class="form-control" value="" required />
                                             {{-- <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="1">
                                                 <label class="form-check-label" for="inlineCheckbox1">Monthly</label>

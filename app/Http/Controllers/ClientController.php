@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\Job;
 use App\Models\ContractStaffingLeads;
 use App\Models\ContractualJobInform;
+use App\Models\ContractualJobSchedule;
 use App\Models\SalesReferral;
 use App\Models\ProjectLeads;
 use App\Models\JobLeads;
@@ -242,9 +243,55 @@ class ClientController extends JoshController
 
     public function ContractualJobInform($id)
     {
-        $contractual_job = ContractualJobInform::orderBy('contractual_job_id', 'desc')->first();
+        $contractual_job = ContractualJobSchedule::with('locations')->where('job_leads_id', $id)->first();
         //$joblead = JobLeads::where('job_leads_id', $id)->first();
         return view('client/contractual-job-inform', compact('contractual_job'));
+    }
+
+    public function ContractualJobLeadSchedule(Request $request) {
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $contractualjobschedulecheck = ContractualJobSchedule::where('job_schedule_id', '=', $input['job_schedule_id'])->where('satuts', '!=', '1')->first();
+        if ($contractualjobschedulecheck === null) {
+
+            $contractualjob_schedules = ContractualJobSchedule::find($input['job_schedule_id']);
+            $contractualjob_schedules->satuts = $input['lead_status'];
+            $contractualjob_schedules->save();
+
+            if($input['lead_status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Schedule Accepted successfully';
+            } elseif($input['lead_status'] === '3') {
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Schedule Modify Request to freelancer successfully';
+            } else {
+                $response['success'] = '2';
+                $response['errors'] = 'Proposal Schedule Rejected successfully';
+            }
+
+            $contractualjob_leads = JobLeads::where('job_leads_id', $contractualjob_schedules->job_leads_id)->first();
+
+            $user = User::find($contractualjob_leads->from_user_id);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have response on your project schedule proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/job/contract-details/'. $contractualjob_schedules->job_leads_id,
+                'main_id' => $contractualjob_schedules->job_leads_id
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+        } else {
+            $response['success'] = '2';
+            $response['errors'] = 'You are already accept this proposal schedule';
+        }
+        return response()->json($response);
+
     }
 
     public function postContractualJobPayment(Request $request)

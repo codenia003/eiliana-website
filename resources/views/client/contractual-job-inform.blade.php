@@ -31,73 +31,76 @@
                     <div class="main-moudle">
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label>Candidate Name</label>
-                                <input type="text" class="form-control" name="candidate_name" value="{{ $contractual_job->candidate_name }}" readonly="">
-                            </div>
-                            <div class="form-group col-6">
                                 <label>Referral ID</label>
                                <input type="text" class="form-control" name="job_leads_id" value="{{ $contractual_job->job_leads_id }}" readonly="">
                             </div>
-                        </div>
-                        <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Customer Name</label>
                                 <input type="text" class="form-control" name="customer_name" value="{{ $contractual_job->customer_name }}" readonly="">
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group col-6">
-                                <label>Price </label>
+                                <label>Price </label><small> (Excluding GST)</small>
                                 <input type="text" class="form-control" name="price" value="{{ $contractual_job->price }}" readonly="">
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label>Billing Address</label>
-                                <input type="text" class="form-control" name="billing_address" value="{{ $contractual_job->billing_address }}" readonly="">
-                            </div>
-                            <div class="form-group col-6">
-                                <label>GST Details</label>
-                                <input type="text" class="form-control" name="gst_details" value="{{ $contractual_job->gst_details }}" readonly="">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label>Date Acceptance</label>
-                                <input class="form-control" type="text" name="date_acceptance" value="{{ $contractual_job->date_acceptance }}" readonly="">
-                            </div>
-                            <div class="form-group col-6">
-                                <label>End Date</label>
-                                <input class="form-control" type="text" name="end_date" value="{{ $contractual_job->end_date }}" readonly="">
-                            </div>
-                        </div>
-                        <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Contract Duration</label>
-                                <input type="text" class="form-control" name="contract_duration" value="{{ $contractual_job->contract_duration }}" readonly="">
-                            </div>
-                            <div class="form-group col-6">
-                                <label>Pricing Cycle</label>
-                                <input type="text" class="form-control" name="pricing_cycle" value="{{ $contractual_job->pricing_cycle }}" readonly="">
+                                <input type="text" class="form-control" name="contract_duration" value="{{$contractual_job->contract_duration}}" readonly="">
                             </div>
                         </div>
+                        
                         <div class="form-row">
-                            <div class="form-group col-6">
-                                <label>Client Period</label>
-                                <input type="text" class="form-control" name="client_period" value="{{ $contractual_job->client_period }}" readonly="">
+                            <div class="form-group col-12">
+                                <label>Pricing Cycle</label>
+                                <input type="text" class="form-control" name="pricing_cycle" value="{{$contractual_job->pricing_cycle}}" readonly="">
                             </div>
+                        </div>
+                        @if($contractual_job->pricing_cycle == 2)
+
+                        <div class="form-row" id="on_postpaid">
+                            <div class="form-group col-6">
+                                <label>Postpaid Amount </label>
+                                <input type="text" class="form-control" name="on_postpaid_amount" value="{{$contractual_job->on_postpaid_amount}}" readonly="">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Advance Amount</label>
+                                <input type="text" class="form-control" name="advance_amount" value="{{$contractual_job->advance_amount}}" readonly="">
+                            </div>
+                        </div>
+                        @endif
+
+                        <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Location</label>
-                                <input type="text" class="form-control" name="location" value="{{ $contractual_job->location }}" readonly="">
+                                <input type="text" class="form-control" name="location" value="{{$contractual_job->locations->name}}" readonly="">
                             </div>
                         </div>
-                        <div class="form-row">
+                        <!-- <div class="form-row">
+                            <div class="form-group">
+                                <input type="checkbox" id="candidate_support" class="form-check-input" required />
+                                <label for="candidate_support" > Support checkbox</label>
+                            </div>
+                        </div> -->
+                        
+                        <!-- <div class="form-row">
                             <div class="form-group col-12">
                                 <label>Remarks</label>
                                 <textarea class="form-control" name="remarks" rows="4" readonly="">{{ $contractual_job->remark }}</textarea>
                             </div>
+                        </div> -->
+                    </div>
+
+                    <div class="form-group text-right mt-5">
+                        <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary" type="button" onclick="ContractualJobLeadSchedule('{{ $contractual_job->job_schedule_id }}','2')">Accept</button>
+                            <button class="btn btn-primary" type="button" onclick="ContractualJobLeadSchedule('{{ $contractual_job->job_schedule_id }}','3')">Modify</button>
+                            <button class="btn btn-primary" type="button" onclick="ContractualJobLeadSchedule('{{ $contractual_job->job_schedule_id }}','4')">Reject</button>
                         </div>
                     </div>
 
-                    <input type="hidden" name="amount" id="amount" value="{{ $contractual_job->price }}">
+                    <!-- <input type="hidden" name="amount" id="amount" value="{{ $contractual_job->price }}">
                     <input type="hidden" name="contractual_job_id" id="contractual_job_id" value="{{ $contractual_job->contractual_job_id }}">
 
                     <input type="hidden" name="currency" id="currency" value="INR">
@@ -109,7 +112,7 @@
                             <span>Please pay payment for further process</span>
                             <button type="button" id="paybtn" class="btn btn-primary deliverinfo">Payment Link</button>
                         </div>
-                    </div>
+                    </div> -->
                     
                     <!-- <div class="form-group text-right mt-5">
                         <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
@@ -161,5 +164,50 @@ $('body').on('click', '#paybtn', function(e){
     rzp1.open();
     e.preventDefault();
 });
+</script>
+<script>
+function ContractualJobLeadSchedule(job_schedule_id,lead_status){
+    $('.spinner-border').removeClass("d-none");
+    var url = '/client/contractual-job-lead-schedule';
+    var data= {
+        _token: "{{ csrf_token() }}",
+        job_schedule_id: job_schedule_id,
+        lead_status: lead_status
+    };
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: function(data) {
+            var userCheck = data;
+            $('.spinner-border').addClass("d-none");
+            if (userCheck.success == '1') {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Success...',
+                    text: userCheck.msg,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                // window.location.href = '/freelancer/my-opportunity';
+            } else {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: userCheck.errors,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                // if (userCheck.success == '2') {
+                //     window.location.href = '/freelancer/my-opportunity';
+                // }
+            }
+
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
+}
 </script>
 @stop

@@ -12,11 +12,13 @@ use Sentinel;
 use View;
 use DB;
 use App\Models\User;
+use App\Models\Location;
 use App\Models\Job;
 use App\Models\ContractStaffingLeads;
 use App\Models\JobLeads;
 use App\Models\ProjectLeads;
 use App\Models\ContractualJobInform;
+use App\Models\ContractualJobSchedule;
 use App\Models\ProjectSchedule;
 use App\Models\JobProposal;
 use App\Models\ProjectScheduleModule;
@@ -131,35 +133,36 @@ class FreelancerController extends Controller
 
     public function ContractualJobInform($id)
     {
-        $joblead = JobLeads::where('job_leads_id', $id)->first();
-        $job_proposal_id = JobProposal::where('job_leads_id', $id)->first();
-        $user = User::where('id', $joblead->from_user_id)->first();
-        return view('freelancer/contractual-job-inform', compact('joblead','user','job_proposal_id'));
+        $joblead = JobLeads::with('jobdetail','jobdetail.by_user_job','jobProposal')->where('job_leads_id', $id)->first();
+        $locations = Location::all();
+        //return $joblead;
+        return view('freelancer/contractual-job-inform', compact('joblead','locations'));
     }
 
     public function postContractualJobInform(Request $request)
     {
         $input = $request->except('_token');
 
-        $contractualJobs = new ContractualJobInform;
-        $contractualJobs->candidate_name = $input['candidate_name'];
+        $contractualJobs = new ContractualJobSchedule;
         $contractualJobs->job_leads_id = $input['job_leads_id'];
         $contractualJobs->job_proposal_id = $input['job_proposal_id'];
         $contractualJobs->job_id = $input['job_id'];
         $contractualJobs->customer_name = $input['customer_name'];
-        $contractualJobs->billing_address = $input['billing_address'];
         $contractualJobs->price = $input['price'];
-        $contractualJobs->gst_details = $input['gst_details'];
-        $contractualJobs->date_acceptance = $input['date_acceptance'];
-        $contractualJobs->end_date = $input['end_date'];
+        
         $contractualJobs->contract_duration = $input['contract_duration'];
         $contractualJobs->pricing_cycle = $input['pricing_cycle'];
-        $contractualJobs->client_period = $input['client_period'];
+        if($contractualJobs->pricing_cycle == 2)
+        {
+            $contractualJobs->advance_amount = $input['advance_amount'];
+            $contractualJobs->on_postpaid_amount = $input['on_postpaid_amount'];
+        }
+
+        
         $contractualJobs->location = $input['location'];
-        $contractualJobs->remark = $input['remarks'];
         $contractualJobs->save();
 
-        $insertedId = $contractualJobs->contractual_job_id;
+        $insertedId = $contractualJobs->job_schedule_id;
         $job = Job::where('job_id', $input['job_id'])->first();
 
         if($insertedId != 0) {

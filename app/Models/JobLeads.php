@@ -19,4 +19,14 @@ class JobLeads extends Model
     {
         return $this->belongsTo('App\Models\User', 'from_user_id', 'id');
     }
+
+    public function jobProposal()
+    {
+        return $this->belongsTo('App\Models\JobProposal', 'job_leads_id', 'job_leads_id');
+    }
+
+    public function by_user_job()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
 }

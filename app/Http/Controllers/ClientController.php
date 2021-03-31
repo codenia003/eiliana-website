@@ -280,7 +280,7 @@ class ClientController extends JoshController
                 'body' => 'You have response on your project schedule proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/job/contract-details/'. $contractualjob_schedules->job_leads_id,
+                'actionURL' => '/job/job-contract-details/'. $contractualjob_schedules->job_leads_id,
                 'main_id' => $contractualjob_schedules->job_leads_id
             ];
 

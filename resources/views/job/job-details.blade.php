@@ -11,6 +11,8 @@ Job Post
 <!--page level css starts-->
 <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
 <link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
+type="text/css"/>
 <!--end of page level css-->
 <style>
     .eiliana-btn {
@@ -148,6 +150,26 @@ Job Post
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
+                                <label for="job_id" class="col-form-label">Job ID:</label>
+                                <input type="text" class="form-control" name="job_id" id="job_id" value="{{ $job->job_id }}" readonly="">
+                            </div>
+                            <div class="form-group">
+                                <label for="application_date" class="col-form-label">Application date:</label>
+                                <input class="flatpickr flatpickr-input form-control" type="text" name="application_date" id="application_date">
+                            </div>
+                            <div class="form-group">
+                                <label for="current_ctc" class="col-form-label">Current ctc:</label>
+                                <input type="text" class="form-control" name="current_ctc" id="current_ctc" value="{{ $job->companydetails->id }}" readonly="">
+                            </div>
+                            <div class="form-group">
+                                <label for="expected_ctc" class="col-form-label">Expected ctc:</label>
+                                <input type="text" class="form-control" name="expected_ctc" id="expected_ctc">
+                            </div>
+                            <div class="form-group">
+                                <label for="notice_period" class="col-form-label">Notice Period:</label>
+                                <input type="text" class="form-control" name="notice_period" id="notice_period">
+                            </div>
+                            <div class="form-group">
                                 <label for="subject" class="col-form-label">Subject:</label>
                                 <input type="text" class="form-control" name="subject" id="subject">
                             </div>
@@ -175,6 +197,12 @@ Job Post
 <!--global js starts-->
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
+<script>
+    $(document).ready(function() {
+        flatpickr('.flatpickr');
+    });
+</script>    
 <script>
 $('#staffingflead').bootstrapValidator({
     fields: {
@@ -192,6 +220,20 @@ $('#staffingflead').bootstrapValidator({
                 },
             },
         },
+        application_date: {
+            validators: {
+                notEmpty: {
+                    message: 'The application date is required',
+                },
+            },
+        },
+        notice_period: {
+            validators: {
+                notEmpty: {
+                    message: 'The notice period is required',
+                },
+            },
+        },
     },
 }).on('success.form.bv', function(e) {
     e.preventDefault();
@@ -204,6 +246,7 @@ $('#staffingflead').bootstrapValidator({
             $('#modal-4').modal('toggle');
             $('#subject').val('');
             $('#message-text').val('');
+            $('#notice_period').val('');
             $('.spinner-border').addClass("d-none");
             Swal.fire({
               type: 'success',
@@ -216,6 +259,7 @@ $('#staffingflead').bootstrapValidator({
             $('#modal-4').modal('toggle');
             $('#subject').val('');
             $('#message-text').val('');
+            $('#notice_period').val('');
             $('.spinner-border').addClass("d-none");
             Swal.fire({
               type: 'error',
@@ -227,5 +271,6 @@ $('#staffingflead').bootstrapValidator({
         }
     }, 'json');
 });</script>
+
 <!--global js end-->
 @stop

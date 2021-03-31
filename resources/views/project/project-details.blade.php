@@ -48,7 +48,14 @@ Search Project
                     <div class="card-header">
                         <span class="h5 card-title text-secondary">Project Deatils</span>
                         <div class="float-right font-weight-700">
-                            <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} {{ $project->projectCurrency->code }}@endif /hr</span>
+                            @if ($project->projectAmount->pricing_model == '1')
+                                <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} - {{ $project->projectAmount->project_amount_to }}@endif /Hr</span>
+
+                            @elseif ($project->projectAmount->pricing_model == '2')
+                                <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} - {{ $project->projectAmount->project_amount_to }}@endif /Month</span>
+                            @else
+                                <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} - {{ $project->projectAmount->project_amount_to }}@endif Fixed Price</span>
+                            @endif
                             <br>
                             <span class="day-left">Bidding Ends In {{ $project->expiry_days }} Days</span><br>
                             <div class="float-right font-weight-700 mt-1">

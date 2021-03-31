@@ -39,6 +39,7 @@ use App\Models\ProjectOrderInvoice;
 use App\Models\ProjectPaymentSchedule;
 use App\Models\ProjectOrderFinance;
 use App\Models\ProjectProposal;
+use App\Models\CandidateRole;
 use stdClass;
 use Carbon\Carbon;
 use App\Notifications\UserNotification;
@@ -61,8 +62,9 @@ class ProjectController extends JoshController
         $currency = Currency::all();
         $customerindustries = CustomerIndustry::all();
         $projectcategorys = ProjectCategory::all();
+        $candidateroles = CandidateRole::all();
 
-        return view('job/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys','currency'));
+        return view('project/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys','currency','candidateroles'));
     }
 
     public function projectSchedule($id)
@@ -128,8 +130,8 @@ class ProjectController extends JoshController
         $projects->candidate_role = $input['candidate_role'];
         $projects->product_industry_exprience = $input['product_industry_exprience'];
         $projects->location = $input['location'];
-        $projects->budget_from = $input['budget_from'];
-        $projects->budget_to = $input['budget_to'];
+        $projects->budget_from = $input['amount'];
+        $projects->budget_to = $input['amount_to'];
         $projects->payment_type_id = 1;
         $projects->currency_id = 1;
         $projects->language_id = 1;
@@ -143,6 +145,8 @@ class ProjectController extends JoshController
         $projectBudgetAmount->  project_id = $insertedId;
         $projectBudgetAmount->pricing_model = $input['model_engagement'];
         $projectBudgetAmount->project_amount = $input['amount'];
+        $projectBudgetAmount->project_amount_to = $input['amount_to'];
+        $projectBudgetAmount->currency_id = $input['currency_id'];
         $projectBudgetAmount->save();
 
 

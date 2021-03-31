@@ -71,7 +71,7 @@
                         @endif
 
                         <div class="form-row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label>Location</label>
                                 <input type="text" class="form-control" name="location" value="{{$contractual_job->locations->name}}" readonly="">
                             </div>

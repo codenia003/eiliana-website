@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12">
                                 <label>Location</label>
                                 <select class="form-control" name="location">
                                     <option>Select Location</option>

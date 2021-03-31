@@ -39,6 +39,9 @@ use App\Models\ContractualJobInform;
 use App\Models\JobLeads;
 use App\Models\JobProposal;
 use App\Models\JobOrderFinance;
+use App\Models\JobContractDetails;
+use App\Models\JobOrderInvoice;
+use App\Models\JobPaymentSchedule;
 use App\Notifications\UserNotification;
 
 class JobController extends Controller
@@ -283,7 +286,7 @@ class JobController extends Controller
         $selected_framework = explode(',', $job->framework);
         $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
         $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
-        // return $job;
+        //return $job;
         return view('job/job-details', compact('job','technologies','childtechnologies'));
     }
 
@@ -520,6 +523,9 @@ class JobController extends Controller
             $jobleads = new JobLeads;
             $jobleads->job_id = $input['job_id'];
             $jobleads->from_user_id = Sentinel::getUser()->id;
+            $jobleads->application_date = $input['application_date'];
+            $jobleads->expected_ctc = $input['expected_ctc'];
+            $jobleads->notice_period = $input['notice_period'];
             $jobleads->subject = $input['subject'];
             $jobleads->message = $input['messagetext'];
             $jobleads->notify = '0';
@@ -599,4 +605,75 @@ class JobController extends Controller
 
         return redirect('/freelancer/my-proposal')->with($success ,  $msg);
     }
+
+
+    public function JobContractDetails($id)
+    {
+        $joblead = JobLeads::with('jobdetail')->where('job_leads_id', $id)->first();
+        //return $joblead;
+        return view('job/job-contract-details', compact('joblead'));
+    }
+
+    // public function postJobContract(Request $request)
+    // {
+    //     $user = Sentinel::getUser();
+    //     $input = $request->except('_token');
+
+    //     $input['user_id'] = $user->id;
+
+    //     $contractdetails = new JobContractDetails;
+    //     $contractdetails->project_leads_id = $input['proposal_id'];
+    //     $contractdetails->from_user_id = $input['user_id'];
+    //     $contractdetails->order_closed_value = $input['order_closed_value'];
+    //     $contractdetails->date_acceptance = $input['date_acceptance'];
+    //     $contractdetails->ordering_com_name = $input['ordering_com_name'];
+    //     $contractdetails->remarks = $input['remarks'];
+    //     $contractdetails->advance_payment_details = $input['advance_payment_details'];
+    //     $contractdetails->status = '1';
+    //     $contractdetails->save();
+
+    //     $insertedId = $contractdetails->contract_id;
+
+    //     $projectorderinvoice = new JobOrderInvoice;
+    //     $projectorderinvoice->project_leads_id = $input['proposal_id'];
+    //     $projectorderinvoice->contract_id = $insertedId;
+    //     $projectorderinvoice->invoice_no = $input['invoice_no'];
+    //     $projectorderinvoice->invoice_amount = $input['invoice_amount'];
+    //     $projectorderinvoice->invoice_due_date = $input['invoice_due_date'];
+    //     $projectorderinvoice->invoice_milestones = $input['invoice_milestones'];
+    //     $projectorderinvoice->status = '1';
+    //     $projectorderinvoice->save();
+
+    //     foreach ($input['payment_schedule_id'] as $key => $value) {
+
+    //         $paymentschedule = new JobPaymentSchedule;
+    //         $paymentschedule->project_leads_id = $input['proposal_id'];
+    //         $paymentschedule->contract_id = $insertedId;
+    //         $paymentschedule->advance_payment = $input['advance_payment'][$key];
+    //         $paymentschedule->installment_no = $input['payment_schedule_id'][$key];
+    //         $paymentschedule->installment_amount = $input['installment_amount'][$key];
+    //         $paymentschedule->paymwnt_due_date = $input['paymwnt_due_date'][$key];
+    //         $paymentschedule->milestones_name = $input['milestones_name'][$key];
+    //         $paymentschedule->status = '1';
+    //         $paymentschedule->save();
+
+    //     }
+
+    //     $job = Job::where('job_id', $input['job_id'])->first();
+
+    //     $user = User::find($job->posted_by_user_id);
+
+    //     $details = [
+    //         'greeting' => 'Hi '. $user->full_name,
+    //         'body' => 'You have contract contract response on your proposal',
+    //         'thanks' => 'Thank you for using eiliana.com!',
+    //         'actionText' => 'View My Site',
+    //         'actionURL' => 'client/job-contract-details/'. $input['proposal_id'],
+    //         'main_id' => $input['proposal_id']
+    //     ];
+
+    //     Notification::send($user, new UserNotification($details));
+
+    //     return redirect('/freelancer/my-project')->with('success', 'Project Contract updated successfully');
+    // }
 }

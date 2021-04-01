@@ -53,8 +53,8 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-4">
                                             <label>Proposal Id</label>
-                                            <input type="text" class="form-control" name="proposal_id" value="{{ $joblead->job_leads_id }}" readonly>
-                                            <input type="hidden" name="project_id" value="{{ $joblead->job_id }}">
+                                            <input type="text" class="form-control" name="job_leads_id" value="{{ $joblead->job_leads_id }}" readonly>
+                                            <input type="hidden" name="job_id" value="{{ $joblead->job_id }}">
                                         </div>
                                         <div class="form-group col-8">
                                             <label>Order Closed Amount</label><small>(including sales Commission & Excluding GST)</small>

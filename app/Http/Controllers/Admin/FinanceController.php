@@ -42,7 +42,7 @@ class FinanceController extends Controller
 
     public function jobFinance(Request $request)
     {
-        $finances = JobOrderFinance::with('userjobs','jobdetail.by_user_job','userjobs.fromuser')->get();
+        $finances = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','userjobs.jobdetail.by_user_job')->get();
         //return $finances;
         return view('admin.job_finance.index', compact('finances'));
     }
@@ -51,7 +51,7 @@ class FinanceController extends Controller
     {      
         $finance =  ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
         $order_finances_id = Finance::where('project_leads_id', $id)->first();
-        // return $finances;
+        //return $finance;
         return view('admin.finance.edit', compact('finance'), compact('order_finances_id'));
     }
 
@@ -98,9 +98,10 @@ class FinanceController extends Controller
     public function jobFinanceEdit($id)
     {      
 
-        $order_finances_id = JobOrderFinance::with('userjobs','jobdetail.by_user_job','userjobs.fromuser','jobAmount')->where('job_order_id', $id)->first();
-        //return $order_finances_id;
-        return view('admin.job_finance.edit', compact('order_finances_id'));
+        $order_finances_id = JobOrderFinance::where('job_order_id', $id)->first();
+        $finance =  JobLeads::with('jobdetail','jobcontractdetails','jobcontractdetails.joborderinvoice','jobcontractdetails.jobpaymentschedule')->where('job_leads_id', $order_finances_id->job_leads_id)->first();
+        //return $finance;
+        return view('admin.job_finance.edit', compact('finance'), compact('order_finances_id'));
     }
 
     public function JobAssignToResource(Request $request)
@@ -136,8 +137,9 @@ class FinanceController extends Controller
 
             // Notification::send($user, new UserNotification($details));
 
-            $job = Job::where('job_id', $job_finance->job_id)->first();
-
+            $jobleads = JobLeads::where('job_leads_id', $job_finance->job_leads_id)->first();
+            $job = Job::where('job_id', $jobleads->job_id)->first();
+            
             $users = User::find($job->user_id);
             $details = [
                 'greeting' => 'Hi '. $users->full_name,

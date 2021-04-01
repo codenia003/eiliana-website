@@ -460,6 +460,9 @@ Route::group(
         Route::get('project-payment/{id}', 'ClientController@projectPayments')->name('projectpayment');
         Route::post('contractual-job-lead-schedule', 'ClientController@ContractualJobLeadSchedule')->name('contractual-job-lead-schedule');
         Route::get('contractual-job-inform/{id}', 'ClientController@ContractualJobInform')->name('contractual-job-inform.create');
+
+        Route::get('job-contract-details/{id}', 'ClientController@jobContractDetails')->name('jobcontractdetails');
+        Route::post('job-contract-post', 'ClientController@postJobContractDetails')->name('job-contract-post');
         Route::post('contractual-job-payment', 'ClientController@postContractualJobPayment')->name('contractual-job-payment');
 
     }

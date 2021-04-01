@@ -35,7 +35,7 @@ use App\Models\Employers;
 use App\Models\Location;
 use App\Models\CustomerIndustry;
 use App\Models\ContractStaffingLeads;
-use App\Models\ContractualJobInform;
+use App\Models\ContractualJobSchedule;
 use App\Models\JobLeads;
 use App\Models\JobProposal;
 use App\Models\JobOrderFinance;
@@ -560,8 +560,8 @@ class JobController extends Controller
 
     public function jobFinance($id)
     {
-        $contractual_job = ContractualJobInform::where('job_leads_id', $id)->first();
-        return view('job/job-finance', compact('contractual_job'));
+        $joblead = JobLeads::with('jobdetail','jobcontractdetails','jobcontractdetails.joborderinvoice','jobcontractdetails.jobpaymentschedule','jobcontractdetails.jobadvacne_amount')->where('job_leads_id', $id)->first();
+        return view('job/job-finance', compact('joblead'));
     }
 
     public function sendJobFinance(Request $request)
@@ -572,11 +572,9 @@ class JobController extends Controller
         if ($orderfinancecehck === null) {
 
             $orderfinmace = new JobOrderFinance;
-            $orderfinmace->contractual_job_id = $input['contractual_job_id'];
-            $orderfinmace->job_proposal_id = $input['job_proposal_id'];
-            $orderfinmace->job_id = $input['job_id'];
             $orderfinmace->job_leads_id = $input['job_leads_id'];
-            $orderfinmace->invoice_id = $input['job_leads_id'];
+            $orderfinmace->contract_id = $input['contract_id'];
+            $orderfinmace->invoice_id = $input['invoice_id'];
             $orderfinmace->status = '1';
             $orderfinmace->save();
 
@@ -614,66 +612,66 @@ class JobController extends Controller
         return view('job/job-contract-details', compact('joblead'));
     }
 
-    // public function postJobContract(Request $request)
-    // {
-    //     $user = Sentinel::getUser();
-    //     $input = $request->except('_token');
+    public function postJobContract(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
 
-    //     $input['user_id'] = $user->id;
+        $input['user_id'] = $user->id;
 
-    //     $contractdetails = new JobContractDetails;
-    //     $contractdetails->project_leads_id = $input['proposal_id'];
-    //     $contractdetails->from_user_id = $input['user_id'];
-    //     $contractdetails->order_closed_value = $input['order_closed_value'];
-    //     $contractdetails->date_acceptance = $input['date_acceptance'];
-    //     $contractdetails->ordering_com_name = $input['ordering_com_name'];
-    //     $contractdetails->remarks = $input['remarks'];
-    //     $contractdetails->advance_payment_details = $input['advance_payment_details'];
-    //     $contractdetails->status = '1';
-    //     $contractdetails->save();
+        $contractdetails = new JobContractDetails;
+        $contractdetails->job_leads_id = $input['job_leads_id'];
+        $contractdetails->from_user_id = $input['user_id'];
+        $contractdetails->order_closed_value = $input['order_closed_value'];
+        $contractdetails->date_acceptance = $input['date_acceptance'];
+        $contractdetails->ordering_com_name = $input['ordering_com_name'];
+        $contractdetails->remarks = $input['remarks'];
+        $contractdetails->advance_payment_details = $input['advance_payment_details'];
+        $contractdetails->status = '1';
+        $contractdetails->save();
 
-    //     $insertedId = $contractdetails->contract_id;
+        $insertedId = $contractdetails->contract_id;
 
-    //     $projectorderinvoice = new JobOrderInvoice;
-    //     $projectorderinvoice->project_leads_id = $input['proposal_id'];
-    //     $projectorderinvoice->contract_id = $insertedId;
-    //     $projectorderinvoice->invoice_no = $input['invoice_no'];
-    //     $projectorderinvoice->invoice_amount = $input['invoice_amount'];
-    //     $projectorderinvoice->invoice_due_date = $input['invoice_due_date'];
-    //     $projectorderinvoice->invoice_milestones = $input['invoice_milestones'];
-    //     $projectorderinvoice->status = '1';
-    //     $projectorderinvoice->save();
+        $projectorderinvoice = new JobOrderInvoice;
+        $projectorderinvoice->job_leads_id = $input['job_leads_id'];
+        $projectorderinvoice->contract_id = $insertedId;
+        $projectorderinvoice->invoice_no = $input['invoice_no'];
+        $projectorderinvoice->invoice_amount = $input['invoice_amount'];
+        $projectorderinvoice->invoice_due_date = $input['invoice_due_date'];
+        $projectorderinvoice->invoice_milestones = $input['invoice_milestones'];
+        $projectorderinvoice->status = '1';
+        $projectorderinvoice->save();
 
-    //     foreach ($input['payment_schedule_id'] as $key => $value) {
+        foreach ($input['payment_schedule_id'] as $key => $value) {
 
-    //         $paymentschedule = new JobPaymentSchedule;
-    //         $paymentschedule->project_leads_id = $input['proposal_id'];
-    //         $paymentschedule->contract_id = $insertedId;
-    //         $paymentschedule->advance_payment = $input['advance_payment'][$key];
-    //         $paymentschedule->installment_no = $input['payment_schedule_id'][$key];
-    //         $paymentschedule->installment_amount = $input['installment_amount'][$key];
-    //         $paymentschedule->paymwnt_due_date = $input['paymwnt_due_date'][$key];
-    //         $paymentschedule->milestones_name = $input['milestones_name'][$key];
-    //         $paymentschedule->status = '1';
-    //         $paymentschedule->save();
+            $paymentschedule = new JobPaymentSchedule;
+            $paymentschedule->job_leads_id = $input['job_leads_id'];
+            $paymentschedule->contract_id = $insertedId;
+            $paymentschedule->advance_payment = $input['advance_payment'][$key];
+            $paymentschedule->installment_no = $input['payment_schedule_id'][$key];
+            $paymentschedule->installment_amount = $input['installment_amount'][$key];
+            $paymentschedule->paymwnt_due_date = $input['paymwnt_due_date'][$key];
+            $paymentschedule->milestones_name = $input['milestones_name'][$key];
+            $paymentschedule->status = '1';
+            $paymentschedule->save();
 
-    //     }
+        }
 
-    //     $job = Job::where('job_id', $input['job_id'])->first();
+        $job = Job::where('job_id', $input['job_id'])->first();
 
-    //     $user = User::find($job->posted_by_user_id);
+        $user = User::find($job->user_id);
 
-    //     $details = [
-    //         'greeting' => 'Hi '. $user->full_name,
-    //         'body' => 'You have contract contract response on your proposal',
-    //         'thanks' => 'Thank you for using eiliana.com!',
-    //         'actionText' => 'View My Site',
-    //         'actionURL' => 'client/job-contract-details/'. $input['proposal_id'],
-    //         'main_id' => $input['proposal_id']
-    //     ];
+        $details = [
+            'greeting' => 'Hi '. $user->full_name,
+            'body' => 'You have job contract response on your proposal',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => 'client/job-contract-details/'. $input['job_leads_id'],
+            'main_id' => $input['job_leads_id']
+        ];
 
-    //     Notification::send($user, new UserNotification($details));
+        Notification::send($user, new UserNotification($details));
 
-    //     return redirect('/freelancer/my-project')->with('success', 'Project Contract updated successfully');
-    // }
+        return redirect('/freelancer/my-project')->with('success', 'Job Contract updated successfully');
+    }
 }

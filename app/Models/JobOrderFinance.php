@@ -31,4 +31,23 @@ class JobOrderFinance extends Model
         return $this->belongsTo('App\Models\Job', 'job_id', 'job_id');
     }
 
+    public function jobcontractdetails()
+    {
+        return $this->hasOne('App\Models\JobContractDetails', 'job_leads_id', 'job_leads_id');
+    }
+
+    public function joborderinvoice()
+    {
+        return $this->hasOne('App\Models\JobOrderInvoice', 'contract_id', 'contract_id');
+    }
+
+    public function jobpaymentschedule()
+    {
+        return $this->hasMany('App\Models\JobPaymentSchedule', 'job_leads_id', 'job_leads_id');
+    }
+
+    public function advacne_amount() {
+        return $this->jobpaymentschedule()->where('advance_payment','=', '1');
+    }
+
 }

@@ -20,6 +20,8 @@ use App\Models\ContractualJobSchedule;
 use App\Models\SalesReferral;
 use App\Models\ProjectLeads;
 use App\Models\JobLeads;
+use App\Models\JobContractDetails;
+use App\Models\JobPaymentSchedule;
 use App\Models\ProjectSchedule;
 use App\Models\ProjectContractDetails;
 use App\Models\ProjectPaymentSchedule;
@@ -294,6 +296,56 @@ class ClientController extends JoshController
 
     }
 
+    public function jobContractDetails($id)
+    {
+        $joblead = JobLeads::with('jobdetail','jobcontractdetails','jobcontractdetails.joborderinvoice','jobcontractdetails.jobpaymentschedule','jobcontractdetails.jobadvacne_amount')->where('job_leads_id', $id)->first();
+        //return $joblead;
+        return view('client/job-contract-details', compact('joblead'));
+    }
+
+    public function postJobContractDetails(Request $request)
+    {
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $contractdetailscheck = JobContractDetails::where('contract_id', '=', $input['contract_id'])->where('status', '!=', '1')->first();
+        if ($contractdetailscheck === null) {
+
+            $jobcontractdetail = JobContractDetails::find($input['contract_id']);
+            $jobcontractdetail->status = $input['lead_status'];
+            $jobcontractdetail->save();
+
+            if($input['lead_status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Contract Accepted successfully';
+            } else {
+                $response['success'] = '2';
+                $response['errors'] = 'Proposal Contract Rejected successfully';
+            }
+
+            $jobleads = JobLeads::where('job_leads_id', $jobcontractdetail->job_leads_id)->first();
+
+            $user = User::find($jobleads->from_user_id);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have response on your job schedule proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/job/job-finance/'. $jobcontractdetail->job_leads_id,
+                'main_id' => $jobcontractdetail->job_leads_id
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+        } else {
+            $response['success'] = '2';
+            $response['errors'] = 'You are already accept this proposal';
+        }
+        return response()->json($response);
+
+    }
+
     public function postContractualJobPayment(Request $request)
     {
         $input = $request->except('_token');
@@ -306,7 +358,7 @@ class ClientController extends JoshController
             try {
                 $response = $api->payment->fetch($input['payment_id'])->capture(array('amount'=>$payment['amount']));
 
-                $paymentContractualJob = ContractualJobInform::find($input['contractual_job_id']);
+                $paymentContractualJob = JobPaymentSchedule::find($input['payment_schedule_id']);
                 $paymentContractualJob->status = '2';
                 $paymentContractualJob->payment_id = $input['payment_id'];
                 $paymentContractualJob->save();

@@ -37,20 +37,25 @@ Project Post
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-5">
                         <div class="bs-advanced">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','2')">Accept</a>
+                                @if ($joblead->lead_status == '1')
+                                    <li class="nav-item beforeaccept">
+                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','2')">Accept</a>
+                                    </li>
+                                    <li class="nav-item beforeaccept">
+                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','4')">Reject</a>
+                                    </li>
+                                    <li class="nav-item beforeaccept">
+                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','5')">On Hold</a>
+                                    </li>
+                                @endif
+                                <li class="nav-item afteraccept d-none">
+                                    <a class="nav-link" data-toggle="modal" data-target="#modal-5">Assign Other Project</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','4')">Reject</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','5')">On Hold</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Assign Other Project</a>
-                                </li>
-                                <li class="nav-item">
+                                <li class="nav-item afteraccept d-none">
                                     <a class="nav-link start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" data-chattype="4" title="Live Chat!">Live Chat</a>
+                                </li>
+                                <li class="nav-item afteraccept d-none">
+                                    <a class="nav-link" data-toggle="modal" data-target="#modal-4">Contact Info</a>
                                 </li>
                                 <li class="nav-item">
                                     <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
@@ -152,6 +157,34 @@ Project Post
                     </div>
                 </div>
             </div>
+            <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-blue text-white">
+                            <h4 class="modal-title" id="modalLabelnews">Contact Info</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="contact-info">
+                                <div class="a p-1">
+                                    <span class="b">Email: </span>
+                                    <span><b>{{ $user->email }}</b></span>
+                                </div>
+                                <div class="a p-1">
+                                    <span class="b">Mobile Number: </span>
+                                    <span><b>{{ $user->mobile }}</b></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade pullDown login-body border-0" id="modal-5" role="dialog" aria-labelledby="modalLabelnews">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    </div>
+                </div>
+            </div>
             @include('layouts.left')
         </div>
     </div>
@@ -188,6 +221,15 @@ $(document).ready(function(){
         }]
     });
 });
+acceptshow({{ $joblead->lead_status }});
+function acceptshow(lead_status){
+    if(lead_status === 1) {
+        $('.afteraccept').addClass("d-none");
+    } else {
+        $('.beforeaccept').addClass("d-none");
+        $('.afteraccept').removeClass("d-none");
+    }
+}
 function jobleadConvert(lead_id,lead_status){
     //alert(lead_id);
     $('.spinner-border').removeClass("d-none");
@@ -225,7 +267,8 @@ function jobleadConvert(lead_id,lead_status){
                 //     window.location.href = '/freelancer/my-opportunity';
                 // }
             }
-
+            $('.beforeaccept').addClass("d-none");
+            $('.afteraccept').removeClass("d-none");
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);

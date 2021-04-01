@@ -54,7 +54,7 @@ Post Project
                                 <div class="p-4">
                                     <div class="form-group">
                                         <label>About Company</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="about_company" rows="3"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="about_company" rows="3" required></textarea>
                                     </div>
                                     <div class="form-group basic-info mb-3">
                                         <label>Pricing Model</label>
@@ -108,12 +108,12 @@ Post Project
                                     </div>
                                     <div class="form-group">
                                         <label>Project Summary</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="project_summary" rows="3"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="project_summary" rows="3" required></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Project Category</label>
-                                        <select name="project_category" class="form-control">
+                                        <select name="project_category" class="form-control" required>
                                             @foreach ($projectcategorys as $category)
                                             <option value="{{ $category->id }}" {{ (Session::get('contractsattfing')['project_category']==$category->id )? "selected" : "" }}>{{ $category->name }}</option>
                                             @endforeach
@@ -149,14 +149,14 @@ Post Project
                                             <label>Total Experience</label>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <select class="form-control" name="experience_year">
+                                                    <select class="form-control" name="experience_year" required>
                                                         @for ($i = 0; $i < 21; $i++)
                                                         <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_year']==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                                         @endfor
                                                     </select>
                                                 </div>
                                                 <div class="col">
-                                                    <select class="form-control" name="experience_month">
+                                                    <select class="form-control" name="experience_month" required>
                                                         @for ($i = 1; $i < 21; $i++)
                                                         <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_month']==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                                         @endfor
@@ -178,7 +178,7 @@ Post Project
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Technology Preference</label>
-                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple>
+                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
                                                 <option value=""></option>
                                                 @foreach ($technologies as $technology)
                                                 <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
@@ -187,7 +187,7 @@ Post Project
                                         </div>
                                         <div class="form-group col-12">
                                             <label>Framework</label>
-                                            <select class="form-control select2" name="framework[]" id="framework" multiple>
+                                            <select class="form-control select2" name="framework[]" id="framework" multiple required>
                                                 <option value=""></option>
                                             </select>
                                         </div>
@@ -202,7 +202,7 @@ Post Project
                                         </div>
                                         <div class="form-group col">
                                             <label>Product Industry Exprience</label>
-                                            <select name="product_industry_exprience" class="form-control">
+                                            <select name="product_industry_exprience" class="form-control" required>
                                                 <option value=""></option>
                                                 @foreach ($customerindustries as $industry)
                                                 <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
@@ -213,7 +213,7 @@ Post Project
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <label>Location</label>
-                                            <select name="location" class="form-control">
+                                            <select name="location" class="form-control" required>
                                                 <option value=""></option>
                                                 @foreach ($locations as $location)
                                                 <option value="{{ $location->location_id }}" {{ (Session::get('contractsattfing')['current_location']==$location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
@@ -592,6 +592,7 @@ Post Project
 <script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/switchery/js/switchery.js') }}"></script>
 <script>
+$('#postJobForm').bootstrapValidator({});
 $(window).bind("load", function() {
     changePricingModel();
 });

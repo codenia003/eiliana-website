@@ -166,6 +166,14 @@ Search Project
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
+                                <label for="project_id" class="col-form-label">Job ID:</label>
+                                <input type="text" class="form-control" name="project_id" id="project_id" value="{{ $project->project_id }}" readonly="">
+                            </div>
+                            <div class="form-group">
+                                <label for="bid_amount" class="col-form-label">Bid Amount:</label>
+                                <input type="number" class="form-control" name="bid_amount" id="bid_amount" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="subject" class="col-form-label">Subject:</label>
                                 <input type="text" class="form-control" name="subject" id="subject">
                             </div>

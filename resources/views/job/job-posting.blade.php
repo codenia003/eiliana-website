@@ -73,7 +73,7 @@
 	                                                <select class="form-control" name="dur_minimum">
 	                                                    <option value="">Minimum</option>
 	                                                    @for ($i = 0; $i < 21; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }}</option>
+	                                                    <option value="{{ $i }}">{{ $i }} Months</option>
 	                                                    @endfor
 	                                                </select>
 	                                            </div>
@@ -81,7 +81,7 @@
 	                                                <select class="form-control" name="dur_maximum">
 	                                                    <option value="">Maximum</option>
 	                                                    @for ($i = 1; $i < 21; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }}</option>
+	                                                    <option value="{{ $i }}">{{ $i }} Months</option>
 	                                                    @endfor
 	                                                </select>
 	                                            </div>

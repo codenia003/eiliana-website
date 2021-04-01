@@ -441,6 +441,7 @@ class ProjectController extends JoshController
             $projectleads->from_user_id = Sentinel::getUser()->id;
             $projectleads->subject = $input['subject'];
             $projectleads->message = $input['messagetext'];
+            $projectleads->bid_amount = $input['bid_amount'];
             $projectleads->notify = '0';
             $projectleads->display_status = '1';
             $projectleads->lead_status = '1';
@@ -496,6 +497,8 @@ class ProjectController extends JoshController
         $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $joblead->from_user_id)->get();
         $employers = Employers::where('user_id', $joblead->from_user_id)->get();
 
+        $projects = Project::where('posted_by_user_id', $joblead->projectdetail->posted_by_user_id)->get();
+        return $projects;
 
         return view('project/profile-project-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
     }

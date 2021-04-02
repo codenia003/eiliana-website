@@ -498,7 +498,7 @@ class ProjectController extends JoshController
         $employers = Employers::where('user_id', $joblead->from_user_id)->get();
 
         $projects = Project::where('posted_by_user_id', $joblead->projectdetail->posted_by_user_id)->get();
-        return $projects;
+        // return $projects;
 
         return view('project/profile-project-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
     }

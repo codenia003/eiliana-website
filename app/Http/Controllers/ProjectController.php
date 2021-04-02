@@ -69,11 +69,20 @@ class ProjectController extends JoshController
 
     public function projectSchedule($id)
     {
-        $projectleads = ProjectLeads::with('projectdetail')->where('project_leads_id', $id)->first();
+        $projectleads = ProjectLeads::with('projectdetail','projectdetail.projectAmount')->where('project_leads_id', $id)->first();
         $user = User::where('id', $projectleads->from_user_id)->first();
 
         // return $projectleads;
         return view('project/project-schedule', compact('projectleads','user'));
+    }
+
+    public function projectScheduleModify($id)
+    {
+        $projectleads = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
+        $user = User::where('id', $projectleads->from_user_id)->first();
+
+        // return $projectleads;
+        return view('project/project-schedule-modify', compact('projectleads','user'));
     }
 
 
@@ -272,6 +281,79 @@ class ProjectController extends JoshController
         Notification::send($user, new UserNotification($details));
 
         return redirect('/freelancer/my-project')->with('success', 'Project Schedule Posted successfully');
+    }
+
+    public function updateProjectSchedule(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+
+        $input['user_id'] = $user->id;
+
+        // $projectschedules = new ProjectSchedule;
+        // $projectschedules->project_leads_id = $input['project_leads_id'];
+        // $projectschedules->project_id = $input['project_id'];
+        // $projectschedules->customer_objective = $input['customer_objective'];
+        // $projectschedules->project_start_date = $input['project_start_date'];
+        // $projectschedules->project_end_date = $input['project_end_date'];
+        // $projectschedules->remarks = $input['remarks'];
+        // $projectschedules->satuts = '1';
+        // $projectschedules->save();
+
+        // $insertedId = $projectschedules->project_schedule_id;
+
+        // foreach ($input['module_id'] as $key => $value) {
+
+        //     if($input['module_id'] == '1'){
+        //         $current_pending = '1';
+        //     } else {
+        //         $current_pending = '0';
+        //     }
+
+        //     $schedulemodule = new ProjectScheduleModule;
+        //     $schedulemodule->project_schedule_id = $insertedId;
+        //     $schedulemodule->module_scope = $input['module_scope'][$key];
+        //     $schedulemodule->module_start_date = $input['module_start_date'][$key];
+        //     $schedulemodule->module_end_date = $input['module_end_date'][$key];
+        //     $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
+        //     $schedulemodule->hours_approved = $input['hours_approved'][$key];
+        //     // $schedulemodule->modify_hours = $input['modify_hours'][$key];
+        //     $schedulemodule->module_status = $input['module_status'][$key];
+        //     $schedulemodule->current = $current_pending;
+        //     $schedulemodule->save();
+
+        //     $insertedScheduleId = $schedulemodule->project_schedule_module_id;
+
+        //     foreach ($input['sub_module_id'] as $key1 => $value1) {
+
+        //         if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
+
+        //             $subschedulemodule = new ProjectSubScheduleModule;
+        //             $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
+        //             $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
+        //             $subschedulemodule->module_description = $input['sub_module_description'][$key1];
+        //             $subschedulemodule->module_status = $input['sub_module_status'][$key1];
+        //             $subschedulemodule->save();
+        //         }
+        //     }
+        // }
+
+        // $project = Project::where('project_id', $input['project_id'])->first();
+
+        // $user = User::find($project->posted_by_user_id);
+
+        // $details = [
+        //     'greeting' => 'Hi '. $user->full_name,
+        //     'body' => 'You have project schedule response on your proposal',
+        //     'thanks' => 'Thank you for using eiliana.com!',
+        //     'actionText' => 'View My Site',
+        //     'actionURL' => 'client/project-schedule/'. $input['project_leads_id'],
+        //     'main_id' => $input['project_leads_id']
+        // ];
+
+        // Notification::send($user, new UserNotification($details));
+
+        return redirect('/freelancer/my-project')->with('success', 'Project Schedule Updated successfully');
     }
 
     public function postProjectContract(Request $request)
@@ -497,10 +579,10 @@ class ProjectController extends JoshController
         $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $joblead->from_user_id)->get();
         $employers = Employers::where('user_id', $joblead->from_user_id)->get();
 
-        $projects = Project::where('posted_by_user_id', $joblead->projectdetail->posted_by_user_id)->get();
+        $other_projects = Project::where('posted_by_user_id', $joblead->projectdetail->posted_by_user_id)->where('project_id', '!=', $joblead->projectdetail->project_id)->get();
         // return $projects;
 
-        return view('project/profile-project-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
+        return view('project/profile-project-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers','other_projects'));
     }
 
     public function projectLeadConvert(Request $request) {
@@ -608,6 +690,33 @@ class ProjectController extends JoshController
         }
 
         return redirect('/freelancer/my-project')->with($success ,  $msg);
+    }
+
+    public function assignProject(Request $request){
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $insertedId = $input['project_id'];
+
+        $user = User::find($input['from_user_id']);
+
+        $details = [
+            'greeting' => 'Hi '. $user->full_name,
+            'body' => 'You have assign project',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => 'project/'. $insertedId,
+            'main_id' => $insertedId
+        ];
+
+
+        Notification::send($user, new UserNotification($details));
+        $response['success'] = '1';
+        $response['msg'] = 'Project Assign Successfully';
+
+        return response()->json($response);
+
     }
 
 }

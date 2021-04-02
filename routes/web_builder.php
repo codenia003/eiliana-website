@@ -6,14 +6,20 @@ Route::group(
         Route::post('post-project-lead', 'ProjectController@postProjectLead')->name('ProjectLead.new');
         Route::get('project-bid-response/{id}', 'ProjectController@projectBidResponse');
         Route::get('profile-projectbid/{id}', 'ProjectController@profileProjectbid')->name('project.profileProjectbid');
+
         Route::post('project-lead-convert', 'ProjectController@projectLeadConvert');
         Route::get('project-schedule/{id}', 'ProjectController@projectSchedule')->name('project-schedule');
+        Route::get('project-schedule-modify/{id}', 'ProjectController@projectScheduleModify')->name('project-schedule-modify');
+
         Route::post('post-project-schedule', 'ProjectController@postProjectSchedule')->name('projectschedule.create');
+        Route::post('update-project-schedule', 'ProjectController@updateProjectSchedule')->name('projectschedule.update');
         Route::get('contract-details/{id}', 'ProjectController@contractDetails')->name('contract-details');
         Route::post('post-project-contract', 'ProjectController@postProjectContract')->name('projectcontract.create');
 
         Route::get('project-finance/{id}', 'ProjectController@projectFinance')->name('project-finance');
         Route::post('project-send-finance', 'ProjectController@sendProjectFinance')->name('project-finance.send');
+
+        Route::post('assign-project', 'ProjectController@assignProject')->name('assignProject');
     }
 );
 

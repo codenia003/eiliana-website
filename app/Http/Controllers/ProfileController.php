@@ -30,6 +30,7 @@ use App\Models\EmployerDetails;
 use App\Models\EmployerType;
 use App\Models\Technology;
 use App\Models\Location;
+use App\Models\CustomerIndustry;
 use stdClass;
 
 class ProfileController extends JoshController
@@ -125,8 +126,9 @@ class ProfileController extends JoshController
         $employers = Employers::where('user_id', Sentinel::getUser()->id)->get();
         $technologies = Technology::where('parent_id', '0')->get();
         $projecttypes = ProjectType::all();
+        $customerindustries = CustomerIndustry::all();
 
-        return view('profile/projects', compact('projects','employers','technologies','projecttypes'));
+        return view('profile/projects', compact('projects','employers','technologies','projecttypes','customerindustries'));
     }
 
     public function employer()

@@ -91,7 +91,11 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
+                        @if(!Sentinel::inRole('user'))
+                        <label>Date of incorporation</label>
+                        @else
                         <label>DOB</label>
+                        @endif
                         {{-- <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control"  /> --}}
                         <input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="{{ $user->dob }}">
                     </div>

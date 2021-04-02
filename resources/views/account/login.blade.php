@@ -53,7 +53,7 @@ Login
                                             <label for="remenber" class="form-check-label">Remember</label>
                                         </div>
                                         <div class="form-group col-8">
-                                           <!-- <p class="text-right"><a href="{{ route('forgot-password') }}" class="bt">Forgot Username/Password</a></p> -->
+                                           {{-- <p class="text-right"><a href="{{ route('forgot-password') }}" class="bt">Forgot Password</a></p> --}}
                                            <p class="text-right"><a href="#" class="bt">Forgot Password</a></p>
                                         </div>
                                     </div>

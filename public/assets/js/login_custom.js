@@ -77,15 +77,15 @@ $(document).ready(function() {
             password: {
                 validators: {
                     notEmpty: {
-                        message: 'The password is required and cannot be empty',
+                        message: 'The password is required and cannot be empty, ',
                     },
                     stringLength: {
                         min: 8,
-                        message: 'The password must be more than 8 characters long'
+                        message: 'The password must be more than 8 characters long, '
                     },
                     regexp: {
                         regexp: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,50}$/,
-                        message: 'The password can only consist of alphabetical, number and speical'
+                        message: 'The password can only consist of alphabetical, number and speical '
                     },
                 },
             },

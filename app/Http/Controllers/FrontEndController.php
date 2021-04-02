@@ -250,7 +250,7 @@ class FrontEndController extends JoshController
     public function getForgotPassword()
     {
         // Show the page
-        return view('forgotpwd');
+        return view('account.forgotpwd');
     }
 
     /**

@@ -15,9 +15,11 @@
                             <tr>
                                 <td height="60" style="background-color:#403e3e;font-family: 'Montserrat',Arial, sans-serif;font-size:26px;font-weight:500;letter-spacing:1px;line-height:30px;" align="center">
                                     <center>
-                                        <img data-crop="false" style="display:block;"
-                                             src="{{ asset('images/logo.png') }}" alt="img"/>
+                                        <!-- <img data-crop="false" style="display:block;"
+                                             src="{{ asset('images/logo.png') }}" alt="img"/> -->
+                                        <p style="color: #fff;">Eiliana</p>
                                     </center>
+
                                 </td>
                             </tr>
                             <tr height="50"></tr>
@@ -121,7 +123,7 @@
                             <tr>
                                 <td align="center" data-link-style="text-decoration:none; color:#a2a9af;" data-link-color="Content" data-size="Content" data-color="Content" style="font-family: 'Open Sans', Arial, sans-serif; font-size:15px; color:#a2a9af; line-height:30px;">
                                     <singleline>
-                                        © 2018. Designed by <a href="https://themeforest.net/user/jyostna" style="font-family: 'Open Sans', Arial, sans-serif; font-size:15px; color:#fec400 ;" data-color="copy right color">Jyostna</a>
+                                        © 2018. Designed by Eiliana
                                     </singleline>
                                 </td>
                             </tr>

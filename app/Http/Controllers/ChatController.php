@@ -30,9 +30,11 @@ class ChatController extends JoshController
 
         $user = Sentinel::getUser();
         $input['user_id'] = $user->id;
+        $date = Carbon::today()->subDays(60);
+
         $output = '';
 
-        $chat_message = ChatMessage::where('from_user_id', $user->id)->where('to_user_id', $input['to_user_id'])->orWhere(function($query) use ($input) {
+        $chat_message = ChatMessage::where('from_user_id', $user->id)->where('created_at','>=',$date)->where('to_user_id', $input['to_user_id'])->orWhere(function($query) use ($input) {
                             $query->where('from_user_id', $input['to_user_id'])
                                 ->where('to_user_id', $input['user_id']);
                         })->latest()->get();

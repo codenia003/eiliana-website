@@ -182,6 +182,30 @@ Project Post
             <div class="modal fade pullDown login-body border-0" id="modal-5" role="dialog" aria-labelledby="modalLabelnews">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
+                        <div class="modal-header bg-blue text-white">
+                            <h4 class="modal-title" id="modalLabelnews">Assign Other Projects</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                        <form action="{{ route('assignProject') }}" method="POST" id="projectAssign">
+                            @csrf
+                            <div class="modal-body">
+                                <input type="hidden" name="from_user_id" value="{{ $joblead->from_user_id }}">
+                                <div class="form-group">
+                                    <label>Projects</label>
+                                    <select name="project_id" class="form-control" required>
+                                        @foreach ($other_projects as $project)
+                                        <option value="{{ $project->project_id }}">{{ $project->project_title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer singup-body">
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Assign</button>
+                                    <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -275,6 +299,37 @@ function jobleadConvert(lead_id,lead_status){
         },
     });
 }
+$('#projectAssign').bootstrapValidator({
+}).on('success.form.bv', function(e) {
+    e.preventDefault();
+    var $form = $(e.target);
+    var bv = $form.data('bootstrapValidator');
+    $('.spinner-border').removeClass("d-none");
+    $.post($form.attr('action'), $form.serialize(), function(result) {
+        var userCheck = result;
+        if (userCheck.success == '1') {
+            $('#modal-5').modal('toggle');
+            $('.spinner-border').addClass("d-none");
+            Swal.fire({
+              type: 'success',
+              title: 'Success...',
+              text: userCheck.msg,
+              showConfirmButton: false,
+              timer: 2000
+            });
+        } else {
+            $('#modal-4').modal('toggle');
+            $('.spinner-border').addClass("d-none");
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: userCheck.errors,
+              showConfirmButton: false,
+              timer: 2000
+            });
+        }
+    }, 'json');
+});
 </script>
 <x-chat-message/>
 <!--global js end-->

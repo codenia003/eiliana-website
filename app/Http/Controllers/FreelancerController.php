@@ -156,7 +156,7 @@ class FreelancerController extends Controller
         $contractualJobs->job_id = $input['job_id'];
         $contractualJobs->customer_name = $input['customer_name'];
         $contractualJobs->price = $input['price'];
-        
+
         $contractualJobs->contract_duration = $input['contract_duration'];
         $contractualJobs->pricing_cycle = $input['pricing_cycle'];
         if($contractualJobs->pricing_cycle == 2)
@@ -165,7 +165,7 @@ class FreelancerController extends Controller
             $contractualJobs->on_postpaid_amount = $input['on_postpaid_amount'];
         }
 
-        
+
         $contractualJobs->location = $input['location'];
         $contractualJobs->save();
 

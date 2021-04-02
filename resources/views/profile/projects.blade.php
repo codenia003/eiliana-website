@@ -54,7 +54,7 @@
                             </div> -->
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <label>Duration</label>
+                                    <label>Duration (Months)</label>
                                     <input type="text" name="duration[]" class="form-control" value="{{ $project->duration }}" />
                                 </div>
 
@@ -80,9 +80,9 @@
                                     <label>Industry that Product was designed for</label>
                                     <select name="industry[]" class="form-control">
                                         <option value=""></option>
-                                        <option value="1" selected>1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        @foreach ($customerindustries as $industry)
+                                        <option value="{{ $industry->customer_industry_id }}" {{ ($project->industry==$industry->customer_industry_id)? "selected" : "" }}>{{ $industry->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
                             </div>-->
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <label>Duration</label>
+                                    <label>Duration (Months)</label>
                                     <input type="text" name="duration[]" class="form-control" />
                                 </div>
 
@@ -175,9 +175,9 @@
                                     <label>Industry that Product was designed for</label>
                                     <select name="industry[]" class="form-control">
                                         <option value=""></option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        @foreach ($customerindustries as $industry)
+                                        <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -259,7 +259,7 @@
     </div> -->
     <div class="form-row">
         <div class="form-group col">
-            <label>Duration</label>
+            <label>Duration (Months)</label>
             <input type="text" name="duration[]" class="form-control" />
         </div>
 
@@ -285,9 +285,9 @@
             <label>Industry that Product was designed for</label>
             <select name="industry[]" class="form-control">
                 <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                @foreach ($customerindustries as $industry)
+                <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
+                @endforeach
             </select>
         </div>
     </div>

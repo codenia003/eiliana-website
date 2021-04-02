@@ -94,27 +94,30 @@ class ClientController extends JoshController
             $projectschedules->satuts = $input['lead_status'];
             $projectschedules->save();
 
-            if($input['lead_status'] === '2'){
-                $response['success'] = '1';
-                $response['msg'] = 'Proposal Schedule Accepted successfully';
-            } elseif($input['lead_status'] === '3') {
-                $response['success'] = '1';
-                $response['msg'] = 'Proposal Schedule Modify Request to freelancer successfully';
-            } else {
-                $response['success'] = '2';
-                $response['errors'] = 'Proposal Schedule Rejected successfully';
-            }
-
             $projectleads = ProjectLeads::where('project_leads_id', $projectschedules->project_leads_id)->first();
 
             $user = User::find($projectleads->from_user_id);
+
+            if($input['lead_status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Schedule Accepted successfully';
+                $url = '/project/contract-details/'. $projectschedules->project_leads_id;
+            } elseif($input['lead_status'] === '3') {
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Schedule Modify Request to freelancer successfully';
+                $url = '/project/project-schedule-modify/'. $projectschedules->project_leads_id;
+            } else {
+                $response['success'] = '2';
+                $response['errors'] = 'Proposal Schedule Rejected successfully';
+                $url = '#';
+            }
 
             $details = [
                 'greeting' => 'Hi '. $user->full_name,
                 'body' => 'You have response on your project schedule proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/project/contract-details/'. $projectschedules->project_leads_id,
+                'actionURL' => $url,
                 'main_id' => $projectschedules->project_leads_id
             ];
 
@@ -370,7 +373,7 @@ class ClientController extends JoshController
                 $advance_body = 'Payemnt process by Client';
                 $advance_url =  '/job/job-finance/'. $input['job_leads_id'];
                 $msg = 'Payment Process successfully';
-            
+
 
                 $details = [
                     'greeting' => 'Hi '. $user->full_name,
@@ -398,7 +401,7 @@ class ClientController extends JoshController
         $input = $request->except('_token');
         $response['success'] = '0';
         $proposaljobleadcheck = ContractualJobInform::where('job_leads_id', '=', $input['job_leads_id'])->where('status', '!=', '2')->first();
-        if ($proposaljobleadcheck === null) { 
+        if ($proposaljobleadcheck === null) {
 
             $job_proposal_leads = ContractualJobInform::where('job_leads_id', '=', $input['job_leads_id'])->first();
             $job_proposal_leads->actual_date = $input['actual_date'];

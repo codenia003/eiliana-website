@@ -48,7 +48,7 @@ type="text/css"/>
 						</div>
 					</div>
 						<div class="card-body p-4">
-							<form action="{{ route('projectschedule.create') }}" method="POST" id="educationForm">
+							<form action="{{ route('projectschedule.update') }}" method="POST" id="educationForm">
 								@csrf
                                 <input type="hidden" name="project_leads_id" value="{{ $projectleads->project_leads_id }}">
 								<div class="main-moudle">
@@ -76,7 +76,7 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Customer Objective Of Project (Optional)</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4" required></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4" required>{{ $projectleads->projectschedulee->customer_objective }}</textarea>
                                         </div>
                                     </div>
                                     {{-- <div class="form-group basic-info mb-3">
@@ -104,42 +104,43 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Project Start Date</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_start_date" value="" required>
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_start_date" value="{{ $projectleads->projectschedulee->project_start_date }}" required>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Project End Date</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="" required>
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="{{ $projectleads->projectschedulee->project_end_date }}" required>
                                         </div>
                                     </div>
                                 </div>
 
 								<div class="module-1">
+                                    @forelse ($projectleads->projectschedulee->schedulemodulee as $key => $modulee)
 									<div class="module-3 remove-qual-1 submodule-1">
 										<input type="hidden" name="module_id[]" id="module_id" value="1">
 										<div class="form-row">
 											<div class="form-group col-12">
-												<label><span class="module_num">1</span>. Module Scope</label>
-												<input type="text" name="module_scope[]" class="form-control" required>
+                                                <label><span class="module_num">{{ $key + 1 }}</span>. Module Scope</label>
+                                                <input type="text" name="module_scope[]" class="form-control" value="{{ $modulee->module_scope }}" required>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Start Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="" required>
+												<input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="{{ $modulee->module_start_date }}" required>
 											</div>
 											<div class="form-group col-6">
 												<label>Module End Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="" required>
+												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="{{ $modulee->module_end_date }}" required>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Hours Proposed</label>
-												<input class="form-control" type="text" name="hours_proposed[]" required>
+												<input class="form-control" type="text" name="hours_proposed[]" value="{{ $modulee->hours_proposed }}" required>
 											</div>
 											<div class="form-group col-6">
 												<label>Hours Approved</label>
-												<input class="form-control" type="text" name="hours_approved[]" required>
+												<input class="form-control" type="text" name="hours_approved[]" value="{{ $modulee->hours_approved }}" required>
 											</div>
 										</div>
 										{{-- <div class="form-row">
@@ -160,44 +161,47 @@ type="text/css"/>
 										</div>
 
 										<div class="sub-module-1">
-										    <div class="sub-module-3 remove-qual-1">
-												<input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
-                                                <input type="hidden" name="last_module_id[]" id="last_module_id" value="1">
-												<div class="form-row">
-													<div class="form-group col-12">
-														<label><span class="module_num">1</span>.<span class="sub_module_num">1</span>. Sub-module Scope</label>
-														<input type="text" class="form-control" name="sub_module_scope[]" required>
-													</div>
-												</div>
-												<div class="form-row">
-													<div class="form-group col-12">
-														<label>Sub-module Description</label>
-                                                        <textarea class="form-control" name="sub_module_description[]" rows="4" required></textarea>
-													</div>
-												</div>
-												<div class="form-row d-none">
-													<div class="form-group col-6">
-														<label>Sub-module Status (Optional)</label>
-														<select name="sub_module_status[]" class="form-control" readonly>
-															<option value="1">To be Started</option>
-                                                            <option value="2">In Progress</option>
-                                                            <option value="3">Completed</option>
-														</select>
-													</div>
-												</div>
-											</div>
+                                            @foreach ($modulee->subschedulemodulee as  $key1 => $submodulee)
+                                                <div class="sub-module-3 remove-qual-1">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-12">
+                                                            <label><span class="module_num">{{ $key + 1 }}</span>.<span class="sub_module_num">{{ $key1 + 1 }}</span>. Sub-module Scope</label>
+                                                            <input type="text" class="form-control" name="sub_module_scope[]" value="{{ $submodulee->module_scope }}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-12">
+                                                            <label>Sub-module Description</label>
+                                                            <textarea class="form-control" name="sub_module_description[]" rows="4" required>{{ $submodulee->module_description }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row d-none">
+                                                        <div class="form-group col-6">
+                                                            <label>Sub-module Status (Optional)</label>
+                                                            <select name="sub_module_status[]" class="form-control" disabled>
+                                                                <option value="1" {{ ($submodulee->sub_module_status=='1')? "selected" : "" }}>To be Started</option>
+                                                                <option value="2" {{ ($submodulee->sub_module_status=='2')? "selected" : "" }}>In Progress</option>
+                                                                <option value="3" {{ ($submodulee->sub_module_status=='3')? "selected" : "" }}>Completed</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
 										</div>
 										<div class="mb-3 mt-3">
 											<button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addSubModule('1')">Add Sub-Module <span class="fa fa-plus"></span></button>
 											<button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0" onclick="removeSubModule('1')">Erase Sub-Module <span class="fas fa-times"></span></button>
 										</div>
 									</div>
+                                    @empty
+                                        <p>No data</p>
+                                    @endforelse
 								</div>
 
 								<div class="form-row">
                                     <div class="form-group col-12">
                                         <label>Remarks</label>
-                                        <textarea class="form-control" name="remarks" rows="4" required></textarea>
+                                        <textarea class="form-control" name="remarks" rows="4" required>{{ $projectleads->projectschedulee->remarks }}</textarea>
                                     </div>
                                 </div>
 								<div class="mb-3 mt-3">

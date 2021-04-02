@@ -42,7 +42,8 @@ Job Post
                         <button type="button" class="btn btn-md btn-info ml-3 eiliana-btn">Modify Job <i class="far fa-edit"></i></button> --}}
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
+                <div class="col-lg-1 col-md-1 col-sm-2 col-12"></div>
+                <div class="col-lg-10 col-md-10 col-sm-8 col-12 pr-0">
                     <div id="notific">
                         @include('notifications')
                     </div>
@@ -602,7 +603,8 @@ Job Post
                         </form>
                     </div>
                 </div>
-                @include('layouts.left')
+                <div class="col-lg-1 col-md-1 col-sm-2 col-12"></div>
+               {{-- @include('layouts.left') --}}
             </div>
         </div>
         <!-- End Row -->

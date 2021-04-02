@@ -425,6 +425,8 @@ Route::group(
         Route::post('job-lead-convert', 'JobController@jobLeadConvert');
         Route::get('job-finance/{id}', 'JobController@jobFinance')->name('job-finance');
         Route::post('job-send-finance', 'JobController@sendJobFinance')->name('job-finance.send');
+
+        Route::post('save-job', 'JobController@SaveJob')->name('save-job');
     }
 );
 
@@ -487,6 +489,7 @@ Route::group(
 
         Route::get('contractual-job-inform/{id}', 'FreelancerController@ContractualJobInform')->name('contractual-job-inform.create');
         Route::post('post-contractual-job-inform', 'FreelancerController@postContractualJobInform')->name('contractual-job-inform.store');
+        Route::get('my-save-job', 'FreelancerController@mySaveJob')->name('my-save-job');
 
     }
 );

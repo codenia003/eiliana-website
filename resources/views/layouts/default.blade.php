@@ -97,6 +97,9 @@
                                 <a class="nav-link" href="{{ url('/freelancer/my-opportunity') }}">My Opportunity</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/freelancer/my-save-job') }}">My Save Job</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-proposal') }}">My Proposal</a>
                             </li>
                             <li class="nav-item">

@@ -14,10 +14,10 @@ use DB;
 use App\Models\User;
 use App\Models\Location;
 use App\Models\Job;
+use App\Models\SaveJob;
 use App\Models\ContractStaffingLeads;
 use App\Models\JobLeads;
 use App\Models\ProjectLeads;
-use App\Models\ContractualJobInform;
 use App\Models\ContractualJobSchedule;
 use App\Models\ProjectSchedule;
 use App\Models\JobProposal;
@@ -53,6 +53,13 @@ class FreelancerController extends Controller
     {
         $leads = JobLeads::with('fromuser')->where('job_leads_id', $id)->first();
         return view('freelancer/myproposalview', compact('leads'));
+    }
+
+    public function mySaveJob()
+    {
+        $savejobs = SaveJob::with('jobdetail')->where('user_id', Sentinel::getUser()->id)->paginate(10);
+        //return $savejobs;
+        return view('freelancer/mysavejob', compact('savejobs'));
     }
 
     public function myProject()

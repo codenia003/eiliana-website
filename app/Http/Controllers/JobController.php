@@ -37,6 +37,7 @@ use App\Models\CustomerIndustry;
 use App\Models\ContractStaffingLeads;
 use App\Models\ContractualJobSchedule;
 use App\Models\JobLeads;
+use App\Models\SaveJob;
 use App\Models\JobProposal;
 use App\Models\JobOrderFinance;
 use App\Models\JobContractDetails;
@@ -286,8 +287,9 @@ class JobController extends Controller
         $selected_framework = explode(',', $job->framework);
         $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
         $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
+        $savejob = SaveJob::where('job_id', '=', $id)->where('user_id', '=', Sentinel::getUser()->id)->first();
         //return $job;
-        return view('job/job-details', compact('job','technologies','childtechnologies'));
+        return view('job/job-details', compact('job','technologies','childtechnologies','savejob'));
     }
 
     public function jobLeadResponse($id) {
@@ -673,5 +675,28 @@ class JobController extends Controller
         Notification::send($user, new UserNotification($details));
 
         return redirect('/freelancer/my-project')->with('success', 'Job Contract updated successfully');
+    }
+
+    public function SaveJob(Request $request) {
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $savejobcheck = SaveJob::where('job_id', '=', $input['job_id'])->where('user_id', '=', Sentinel::getUser()->id)->first();
+        if ($savejobcheck === null) {
+            $savejob = new SaveJob;
+            $savejob->job_id = $input['job_id'];
+            $savejob->user_id = Sentinel::getUser()->id;
+            $savejob->save();
+            
+            $response['success'] = '1';
+            $response['msg'] = 'Save Job successfully';
+            
+        } else {
+            //$response['success'] = '1';
+            $response['errors'] = 'You are already save this job';
+        }
+        return response()->json($response);
+
     }
 }

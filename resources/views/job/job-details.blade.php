@@ -43,7 +43,12 @@ type="text/css"/>
                             <div class="card-header">
                                 <span class="h5 card-title text-secondary">Job Deatils</span>
                                 <div class="float-right font-weight-700">
-                                    <a class="btn-icon bg-blue btn rounded-0 text-white" data-toggle="modal" data-target="#modal-4">Apply Now</a>
+                                    <a class="btn-icon bg-blue btn rounded-0 text-white" data-toggle="modal" data-target="#modal-4">Apply Now</a>&nbsp;
+                                    @if(!empty($savejob))
+                                         <a class="btn-icon bg-blue btn rounded-0 text-white" onclick="SaveJob('{{ $job->job_id }}')"><i class="fas fa-star"></i></a>
+                                     @else
+                                         <a class="btn-icon bg-blue btn rounded-0 text-white" onclick="SaveJob('{{ $job->job_id }}')"><i class="far fa-star"></i></a>
+                                    @endif
                                 </div>
                             </div>
                             <!-- <div class="card-body mb-3 mb-lg-5 p-4 text-center d-block" *ngIf="loading">
@@ -139,7 +144,7 @@ type="text/css"/>
             </div>
         </div>
         <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog" role="document" style="max-width: 900px !important;">
                 <div class="modal-content">
                     <form action="{{ route('postJobLead.new') }}" method="POST" id="staffingflead">
                         @csrf
@@ -149,30 +154,39 @@ type="text/css"/>
                             <h4 class="modal-title" id="modalLabelnews">Apply JOB</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="job_id" class="col-form-label">Job ID:</label>
-                                <input type="text" class="form-control" name="job_id" id="job_id" value="{{ $job->job_id }}" readonly="">
+                            <div class="form-row">
+                               <div class="form-group col-6">
+                                    <label for="job_id" class="col-form-label">Job ID:</label>
+                                    <input type="text" class="form-control" name="job_id" id="job_id" value="{{ $job->job_id }}" readonly="">
+                               </div>
+                               <div class="form-group col-6">
+                                    <label for="application_date" class="col-form-label">Application date:</label>
+                                    <input class="flatpickr flatpickr-input form-control" type="text" name="application_date" id="application_date">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="application_date" class="col-form-label">Application date:</label>
-                                <input class="flatpickr flatpickr-input form-control" type="text" name="application_date" id="application_date">
+
+                            <div class="form-row">
+                               <div class="form-group col-6">
+                                    <label for="current_ctc" class="col-form-label">Current ctc:</label>
+                                    <input type="text" class="form-control" name="current_ctc" id="current_ctc" value="{{ $job->companydetails->id }}" readonly="">
+                               </div>
+                               <div class="form-group col-6">
+                                    <label for="expected_ctc" class="col-form-label">Expected ctc:</label>
+                                    <input type="text" class="form-control" name="expected_ctc" id="expected_ctc">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="current_ctc" class="col-form-label">Current ctc:</label>
-                                <input type="text" class="form-control" name="current_ctc" id="current_ctc" value="{{ $job->companydetails->id }}" readonly="">
+
+                            <div class="form-row">
+                               <div class="form-group col-6">
+                                    <label for="notice_period" class="col-form-label">Notice Period:</label>
+                                    <input type="text" class="form-control" name="notice_period" id="notice_period">
+                               </div>
+                               <div class="form-group col-6">
+                                    <label for="subject" class="col-form-label">Subject:</label>
+                                    <input type="text" class="form-control" name="subject" id="subject">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="expected_ctc" class="col-form-label">Expected ctc:</label>
-                                <input type="text" class="form-control" name="expected_ctc" id="expected_ctc">
-                            </div>
-                            <div class="form-group">
-                                <label for="notice_period" class="col-form-label">Notice Period:</label>
-                                <input type="text" class="form-control" name="notice_period" id="notice_period">
-                            </div>
-                            <div class="form-group">
-                                <label for="subject" class="col-form-label">Subject:</label>
-                                <input type="text" class="form-control" name="subject" id="subject">
-                            </div>
+                            
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">Message:</label>
                                 <textarea class="form-control" id="message-text" name="messagetext" rows="3"></textarea>
@@ -271,6 +285,57 @@ $('#staffingflead').bootstrapValidator({
         }
     }, 'json');
 });</script>
+
+<script>
+function SaveJob(job_id){
+    //$('.spinner-border').removeClass("d-none");
+    var url = '/job/save-job';
+    var data= {
+        _token: "{{ csrf_token() }}",
+        job_id: job_id
+    };
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: function(data) {
+            var userCheck = data;
+            //$('.spinner-border').addClass("d-none");
+            if (userCheck.success == '1') {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Success...',
+                    text: userCheck.msg,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+
+                // window.location.href = '/freelancer/my-opportunity';
+            } else {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: userCheck.errors,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                // if (userCheck.success == '2') {
+                //     window.location.href = '/freelancer/my-opportunity';
+                // }
+            }
+
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
+}
+
+function padStart(str) {
+    return ('0' + str).slice(-2)
+}
+
+</script>
 
 <!--global js end-->
 @stop

@@ -2,7 +2,7 @@
 <div class="form-row">
     <div class="form-group col-sm-6">
         <label>Order ID</label>
-        <input type="text" class="form-control" name="order_id" value="{{ $order_finances_id->order_finance_id }}" readonly="">
+        <input type="text" class="form-control" name="order_id" value="{{ $order_finances_id->job_order_id }}" readonly="">
     </div>
 </div>
 

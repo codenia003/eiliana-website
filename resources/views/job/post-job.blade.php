@@ -193,7 +193,12 @@ Job Post
                                         </div>
                                         <div class="form-group col">
                                             <label>Candidate Role</label>
-                                            {!! Form::selectRange('candidate_role', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
+                                            <select name="candidate_role" class="form-control">
+                                                <option value=""></option>
+                                                @foreach ($candidateroles as $candidaterole)
+                                                <option value="{{ $candidaterole->candidate_role_id }}">{{ $candidaterole->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group col">
                                             <label>Product Industry Exprience</label>
@@ -619,6 +624,10 @@ Job Post
 <script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/switchery/js/switchery.js') }}"></script>
 <script>
+$('#postJobForm').bootstrapValidator({});
+$(window).bind("load", function() {
+    
+});    
 $(document).ready(function() {
     $('#technologty_pre').select2({
         theme: 'bootstrap',

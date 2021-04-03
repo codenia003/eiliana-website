@@ -43,6 +43,7 @@ use App\Models\JobOrderFinance;
 use App\Models\JobContractDetails;
 use App\Models\JobOrderInvoice;
 use App\Models\JobPaymentSchedule;
+use App\Models\CandidateRole;
 use App\Notifications\UserNotification;
 
 class JobController extends Controller
@@ -56,8 +57,9 @@ class JobController extends Controller
         $technologies = Technology::where('parent_id', '0')->get();
         $locations = Location::all();
         $customerindustries = CustomerIndustry::all();
+        $candidateroles = CandidateRole::all();
 
-        return view('job/post-job', compact('educationtype','qualifications','universities','technologies','locations','customerindustries'));
+        return view('job/post-job', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','candidateroles'));
     }
 
     public function hireTalent(Request $request)
@@ -345,8 +347,11 @@ class JobController extends Controller
         $proexps = ProfessionalExperience::where('user_id', $joblead->from_user_id)->first();
         $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $joblead->from_user_id)->get();
         $employers = Employers::where('user_id', $joblead->from_user_id)->get();
+        $other_jobs = Job::where('user_id', $joblead->jobdetail->user_id)->where('job_id', '!=', $joblead->jobdetail->job_id)->get();
 
-        return view('job/profile-job-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
+        //return  $joblead;
+
+        return view('job/profile-job-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers','other_jobs'));
     }
 
     public function postStaffingLead(Request $request){
@@ -696,6 +701,33 @@ class JobController extends Controller
             //$response['success'] = '1';
             $response['errors'] = 'You are already save this job';
         }
+        return response()->json($response);
+
+    }
+
+    public function assignJob(Request $request){
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $insertedId = $input['job_id'];
+
+        $user = User::find($input['from_user_id']);
+
+        $details = [
+            'greeting' => 'Hi '. $user->full_name,
+            'body' => 'You have assign job',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => 'job/'. $insertedId,
+            'main_id' => $insertedId
+        ];
+
+
+        Notification::send($user, new UserNotification($details));
+        $response['success'] = '1';
+        $response['msg'] = 'Job Assign Successfully';
+
         return response()->json($response);
 
     }

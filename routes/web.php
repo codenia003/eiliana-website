@@ -427,6 +427,7 @@ Route::group(
         Route::post('job-send-finance', 'JobController@sendJobFinance')->name('job-finance.send');
 
         Route::post('save-job', 'JobController@SaveJob')->name('save-job');
+        Route::post('assign-job', 'JobController@assignJob')->name('assignJob');
     }
 );
 

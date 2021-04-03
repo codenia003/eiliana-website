@@ -18,7 +18,7 @@
     <table class="table table-striped" id="myopportunity-table">
         <thead>
          <tr>
-            <th>Opportunity Id</th>
+            <th>Id</th>
             <th>Job Name</th>
             <th>Status</th>
             <th>Status Date</th>
@@ -34,16 +34,16 @@
                     @if ($lead->status == 1)
                     Pending
                     @elseif($lead->status == 2)
-                    Process
+                    Accept
                     @elseif($lead->status == 3)
-                    Complete
-                    @else
+                    Modify
+                    @elseif($lead->status == 4)
                     Cancel
                     @endif
                 </td>
                 <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('F d, Y') }}</td>
                 <td>
-                    <a onclick="proposalDetails('{{ $lead->job_leads_id }}', '{{ $lead->date_acceptance }}')"><i class="fas fa-info-circle"></i></a>
+                    <a onclick="proposalDetails('{{ $lead->job_proposal_id }}', '{{ $lead->job_schedule_id }}')"><i class="fas fa-info-circle"></i></a>
                 </td>
             </tr>
         @endforeach
@@ -59,20 +59,20 @@
         <div class="modal-content">
             <form action="{{ url('/client/post-proposal-job-lead') }}" method="POST" id="">
                 @csrf
-                  
+                <input type="hidden" name="job_schedule_id" id="job_schedule_id">
                 <div class="modal-header bg-blue text-white">
                     <h4 class="modal-title" id="modalLabelnews">Proposal For Freelancer </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-row">
-                        <div class="form-group col">
-                            <label for="job_leads_id" class="col-form-label">Proposal Id:</label>
-                    		<input type="text" class="form-control" id="job_leads_id" name="job_leads_id" readonly>
+                        <div class="form-group col-12">
+                            <label for="job_proposal_id" class="col-form-label">Proposal Id:</label>
+                    		<input type="text" class="form-control" id="job_proposal_id" name="job_proposal_id" readonly>
                         </div>
-                        <div class="form-group col">
+                        <!-- <div class="form-group col">
                             <label for="date_acceptance" class="col-form-label">Acceptance Date:</label>
                             <input type="text" class="form-control" name="date_acceptance" id="date_acceptance" readonly>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="form-group">
                         <label for="actual_date" class="col-form-label">Date :</label>
@@ -99,20 +99,20 @@
     });
 
 
-    function proposalDetails(job_leads_id,date_acceptance){
+    function proposalDetails(job_proposal_id,job_schedule_id){
     $('.spinner-border').removeClass("d-none");
     var url = '/client/project-contract-post';
 
     var data= {
         _token: "{{ csrf_token() }}",
-        job_leads_id: job_leads_id,
-        date_acceptance: date_acceptance
+        job_proposal_id: job_proposal_id,
+        job_schedule_id: job_schedule_id
     };
-    //console.log(data);
+    console.log(data);
     
     $('#modal-4').modal('show');
-    $('#job_leads_id').val(job_leads_id);
-    $('#date_acceptance').val(date_acceptance);
+    $('#job_proposal_id').val(job_proposal_id);
+    $('#job_schedule_id').val(job_schedule_id);
     // $.ajax({
     //     type: 'POST',
     //     url: url,

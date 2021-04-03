@@ -12,7 +12,7 @@ Route::group(
         Route::get('project-schedule-modify/{id}', 'ProjectController@projectScheduleModify')->name('project-schedule-modify');
 
         Route::post('post-project-schedule', 'ProjectController@postProjectSchedule')->name('projectschedule.create');
-        Route::post('update-project-schedule', 'ProjectController@updateProjectSchedule')->name('projectschedule.update');
+        Route::post('update-project-schedule', 'ProjectController@updateProjectSchedule')->name('projectschedule.update-modify');
         Route::get('contract-details/{id}', 'ProjectController@contractDetails')->name('contract-details');
         Route::post('post-project-contract', 'ProjectController@postProjectContract')->name('projectcontract.create');
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $table = 'projects';
-    
+
     protected $primaryKey = 'project_id';
 
     const CREATED_AT = 'post_datetime';
@@ -16,13 +16,13 @@ class Project extends Model
     {
         return $this->belongsTo('App\Models\User', 'posted_by_user_id', 'id');
     }
-    
+
     public function locations()
     {
         return $this->belongsTo('App\Models\Location', 'location', 'location_id');
     }
 
-    public function projectAmount()
+    public function projectamount()
     {
         return $this->belongsTo('App\Models\ProjectBudgetAmount', 'project_id', 'project_id');
     }

@@ -48,9 +48,10 @@ type="text/css"/>
 						</div>
 					</div>
 						<div class="card-body p-4">
-							<form action="{{ route('projectschedule.update') }}" method="POST" id="educationForm">
+							<form action="{{ route('projectschedule.update-modify') }}" method="POST" id="educationForm">
 								@csrf
                                 <input type="hidden" name="project_leads_id" value="{{ $projectleads->project_leads_id }}">
+                                <input type="hidden" name="project_schedule_id" value="{{ $projectleads->projectschedulee->project_schedule_id }}">
 								<div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">

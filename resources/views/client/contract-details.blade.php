@@ -66,20 +66,20 @@
                             </div>
                         </div> -->
 
-                        <!-- <div class="form-row">
+                        <div class="form-row">
                             <div class="form-group col-5">
                                 <label>Invoice Number </label><small>(Against Advance)</small>
-                                <input type="text" class="form-control" name="invoive_no" value="" readonly>
+                                <input type="text" class="form-control" name="invoive_no" value="{{ $projectlead->contractdetails->orderinvoice->invoice_no }}" readonly>
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-3">
                                 <label>Invoice Date</label>
-                                <input class="form-control" type="text" name="invoice_date" value="" readonly>
+                                <input class="form-control" type="text" name="invoice_date" value="{{ $projectlead->contractdetails->orderinvoice->invoice_due_date }}" readonly>
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-4">
                                 <label>Invoice Amount</label><small>(Including GST)</small>
-                                <input type="text" class="form-control" name="invoice_amount" value="" readonly>
+                                <input type="text" class="form-control" name="invoice_amount" value="{{ $projectlead->contractdetails->orderinvoice->invoice_amount }}" readonly>
                             </div>
-                        </div> -->
+                        </div>
                         <h4 class="modal-title">Customer Payment Schedules</h4>
                         @foreach ($projectlead->contractdetails->paymentschedule as $item)
                             <div class="form-row">
@@ -182,7 +182,7 @@ function contractDetails(contract_id,lead_status){
                 //     window.location.href = '/freelancer/my-opportunity';
                 // }
             }
-
+            location.reload();
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);

@@ -58,7 +58,7 @@ type="text/css"/>
                                         </div>
                                         <div class="form-group col-8">
                                             <label>Order Closed Value</label><small>(including sales Commission & Excluding GST)</small>
-                                            <input type="number" class="form-control" name="order_closed_value" required>
+                                            <input type="number" class="form-control" name="order_closed_value" value="{{ $projectlead->bid_amount }}" required>
                                         </div>
                                     </div>
 									<div class="form-row">
@@ -71,6 +71,18 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="ordering_com_name" required>
                                         </div>
                                     </div>
+                                    @if ($projectlead->projectdetail->referral_id == 0)
+                                        <div class="form-row">
+                                            <div class="form-group basic-file col-12">
+                                                <label>Upload Documents</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="customFile" name="contract_upload_file">
+                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="sales_comm_amount" value="0">
+                                    @else
 
 									<div class="form-row">
 										<div class="form-group basic-file col-6">
@@ -82,31 +94,23 @@ type="text/css"/>
 										</div>
 										<div class="form-group col-6">
                                             <label>Sales Commission Amount </label><small>(Excluding GST)</small>
-                                            <input type="number" class="form-control" name="sales_comm_amount" value="" >
+                                            <input type="number" class="form-control" name="sales_comm_amount" value="">
                                         </div>
                                     </div>
+                                    @endif
 
                                     <div class="form-group basic-info mb-3">
-                                        <label>Model Of Engagement</label>
-                                        <br>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="hourly" class="custom-control-input" name="title1" checked>
-                                                <label class="custom-control-label" for="hourly">Hourly</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="pt_rentainer" class="custom-control-input" name="title1">
-                                                <label class="custom-control-label" for="pt_rentainer">P.T.Rentainer</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="project_based" class="custom-control-input" name="title1">
-                                                <label class="custom-control-label" for="project_based"> Project-based</label>
-                                            </div>
-                                        </div>
+                                        <label>Model Of Engagement:
+                                        @if ($project_amounts->pricing_model == '1')
+                                            <b>Hourly</b>
+                                        @elseif($project_amounts->pricing_model == '2')
+                                            <b>Retainership</b>
+                                        @else
+                                            <b>Project Based</b>
+                                        @endif
+                                    </label>
+                                        {{-- {{ $project_amounts->project_budget_id }} --}}
+
                                     </div>
 
                                     <div class="mb-3 mt-3">
@@ -135,7 +139,7 @@ type="text/css"/>
                                         </div>
                                         <div class="form-group col-5">
                                             <label>Invoice Amount</label><small>(Excluding GST)</small>
-                                            <input type="number" class="form-control" name="invoice_amount" >
+                                            <input type="number" class="form-control" name="invoice_amount_1" >
                                         </div>
                                     </div>
                                 </div>
@@ -168,15 +172,21 @@ type="text/css"/>
                                                             </div>
                                                             <div class="form-group col-4">
                                                                 <label>Invoice Amount </label><small>(Excluding GST)</small>
-                                                                <input type="number" class="form-control" name="invoice_amount" required>
+                                                                <input type="number" class="form-control" name="invoice_amount" value="" required>
                                                             </div>
                                                             <div class="form-group col-2">
                                                                 <label>Invoice Due Date</label>
                                                                 <input class="flatpickr flatpickr-input form-control" type="text" name="invoice_due_date" required>
                                                             </div>
                                                             <div class="form-group col-3">
-                                                                <label>Hrs/Milestones </label>
-                                                                <input type="text" class="form-control" name="invoice_milestones" value="" >
+                                                                <label>
+                                                                @if ($project_amounts->pricing_model == '1')
+                                                                    <span>Hourly</span>
+                                                                @else
+                                                                    <span>Milestones</span>
+                                                                @endif
+                                                                </label>
+                                                                <input type="text" class="form-control" name="invoice_milestones" value="" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -190,15 +200,21 @@ type="text/css"/>
                                                             <div class="form-row">
                                                                 <div class="form-group col-5">
                                                                     <label>Advance Payment </label><small>(Excluding GST)</small>
-                                                                    <input type="number" class="form-control" name="installment_amount[]" value="" >
+                                                                    <input type="number" class="form-control" name="installment_amount[]" value="" required>
                                                                 </div>
                                                                 <div class="form-group col-2">
                                                                     <label>Payment Due Date</label>
-                                                                    <input class="flatpickr flatpickr-input form-control" type="text" name="paymwnt_due_date[]" value="">
+                                                                    <input class="flatpickr flatpickr-input form-control" type="text" name="paymwnt_due_date[]" value="" required>
                                                                 </div>
                                                                 <div class="form-group col-5">
-                                                                    <label>Hrs/Milestones/Remarks </label>
-                                                                    <input type="text" class="form-control" name="milestones_name[]" value="" >
+                                                                    <label>
+                                                                    @if ($project_amounts->pricing_model == '1')
+                                                                        <span>Hourly</span>
+                                                                    @else
+                                                                        <span>Milestones</span>
+                                                                    @endif
+                                                                    </label>
+                                                                    <input type="text" class="form-control" name="milestones_name[]" value="" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -236,15 +252,21 @@ type="text/css"/>
 		<div class="form-group col-5">
 			<!-- <label>First Installment </label><small>(Excluding GST)</small> -->
 			<label><span class="sub_module_num">1</span>. Installment </label><small>(Excluding GST)</small>
-			<input type="number" class="form-control" name="installment_amount[]" value="" >
+			<input type="number" class="form-control" name="installment_amount[]" value="">
 		</div>
 		<div class="form-group col-2">
 			<label>Payment Due Date</label>
 			<input class="flatpickr flatpickr-input form-control" type="text" name="paymwnt_due_date[]" value="">
 		</div>
 		<div class="form-group col-5">
-			<label>Hrs/Milestones/Remarks </label>
-			<input type="text" class="form-control" name="milestones_name[]" value="" >
+			<label>
+                @if ($project_amounts->pricing_model == '1')
+                    <span>Hourly</span>
+                @else
+                    <span>Milestones</span>
+                @endif
+            </label>
+			<input type="text" class="form-control" name="milestones_name[]" value="">
 		</div>
 	</div>
 </div>
@@ -282,6 +304,7 @@ type="text/css"/>
 <script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
 @yield('profile_script')
 <script>
+    // $('#educationForm').bootstrapValidator({});
     $(document).ready(function() {
         flatpickr('.flatpickr');
     });
@@ -315,6 +338,7 @@ type="text/css"/>
 
         $('.schedule-3:last .sub_module_num').text(x);
         $('.schedule-3:last #payment_schedule_id').val(x);
+
 	}
 
 

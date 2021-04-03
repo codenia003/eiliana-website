@@ -87,8 +87,8 @@ class ClientController extends JoshController
         $input = $request->except('_token');
         $response['success'] = '0';
 
-        $projectschedulecheck = ProjectSchedule::where('project_schedule_id', '=', $input['schedule_id'])->where('satuts', '!=', '1')->first();
-        if ($projectschedulecheck === null) {
+        // $projectschedulecheck = ProjectSchedule::where('project_schedule_id', '=', $input['schedule_id'])->where('satuts', '!=', '1')->first();
+        // if ($projectschedulecheck === null) {
 
             $projectschedules = ProjectSchedule::find($input['schedule_id']);
             $projectschedules->satuts = $input['lead_status'];
@@ -98,7 +98,7 @@ class ClientController extends JoshController
 
             $user = User::find($projectleads->from_user_id);
 
-            if($input['lead_status'] === '2'){
+            if($input['lead_status'] === '2') {
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Schedule Accepted successfully';
                 $url = '/project/contract-details/'. $projectschedules->project_leads_id;
@@ -123,10 +123,10 @@ class ClientController extends JoshController
 
             Notification::send($user, new UserNotification($details));
 
-        } else {
-            $response['success'] = '2';
-            $response['errors'] = 'You are already accept this proposal schedule';
-        }
+        // } else {
+        //     $response['success'] = '2';
+        //     $response['errors'] = 'You are already accept this proposal schedule';
+        // }
         return response()->json($response);
 
     }

@@ -300,7 +300,7 @@ class ProjectController extends JoshController
         // $projectschedules->satuts = '1';
         // $projectschedules->save();
 
-        // $insertedId = $projectschedules->project_schedule_id;
+        $insertedId = $input['project_schedule_id'];
 
         // foreach ($input['module_id'] as $key => $value) {
 
@@ -338,20 +338,20 @@ class ProjectController extends JoshController
         //     }
         // }
 
-        // $project = Project::where('project_id', $input['project_id'])->first();
+        $project = Project::where('project_id', $input['project_id'])->first();
 
-        // $user = User::find($project->posted_by_user_id);
+        $user = User::find($project->posted_by_user_id);
 
-        // $details = [
-        //     'greeting' => 'Hi '. $user->full_name,
-        //     'body' => 'You have project schedule response on your proposal',
-        //     'thanks' => 'Thank you for using eiliana.com!',
-        //     'actionText' => 'View My Site',
-        //     'actionURL' => 'client/project-schedule/'. $input['project_leads_id'],
-        //     'main_id' => $input['project_leads_id']
-        // ];
+        $details = [
+            'greeting' => 'Hi '. $user->full_name,
+            'body' => 'You have project schedule response on your proposal modify',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => 'client/project-schedule/'. $input['project_leads_id'],
+            'main_id' => $input['project_leads_id']
+        ];
 
-        // Notification::send($user, new UserNotification($details));
+        Notification::send($user, new UserNotification($details));
 
         return redirect('/freelancer/my-project')->with('success', 'Project Schedule Updated successfully');
     }
@@ -387,6 +387,11 @@ class ProjectController extends JoshController
         $projectorderinvoice->status = '1';
         $projectorderinvoice->save();
 
+        // Mail::send('emails.emailTemplates.invoice', $data, function ($m) use ($data) {
+        //     $m->from('info@eiliana.com', 'Eiliana OTP');
+        //     $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');
+        // });
+
         foreach ($input['payment_schedule_id'] as $key => $value) {
 
             $paymentschedule = new ProjectPaymentSchedule;
@@ -408,7 +413,7 @@ class ProjectController extends JoshController
 
         $details = [
             'greeting' => 'Hi '. $user->full_name,
-            'body' => 'You have contract contract response on your proposal',
+            'body' => 'You have contract contract response on your proposal and invoice',
             'thanks' => 'Thank you for using eiliana.com!',
             'actionText' => 'View My Site',
             'actionURL' => 'client/project-contract-details/'. $input['proposal_id'],
@@ -642,7 +647,9 @@ class ProjectController extends JoshController
     public function contractDetails($id)
     {
         $projectlead = ProjectLeads::with('projectdetail','projectschedulee')->where('project_leads_id', $id)->first();
-        return view('project/contract-details', compact('projectlead'));
+
+        $project_amounts = ProjectBudgetAmount::where('project_id', $projectlead->project_id)->first();
+        return view('project/contract-details', compact('projectlead','project_amounts'));
     }
 
     public function projectFinance($id)

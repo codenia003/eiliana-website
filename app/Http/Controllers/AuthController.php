@@ -76,7 +76,7 @@ class AuthController extends JoshController
             curl_setopt($ch, CURLOPT_URL, 'https://api.kaleyra.io/v1/HXAP1693485091IN/messages');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=KLRHXA&body=Your OTP is '.$mobile_otp.'.');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=EILANA&body=Your OTP is '.$mobile_otp.'.');
 
             $headers = array();
             $headers[] = 'Api-Key: A1ffb94833d64ffd5d5a68e99318b0b25';

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Sentinel;
 use View;
 use DB;
+use PDF;
 use Razorpay\Api\Api;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
@@ -19,6 +20,7 @@ use App\Models\ContractualJobInform;
 use App\Models\ContractualJobSchedule;
 use App\Models\SalesReferral;
 use App\Models\ProjectLeads;
+use App\Models\JobOrderInvoice;
 use App\Models\JobLeads;
 use App\Models\JobContractDetails;
 use App\Models\JobPaymentSchedule;
@@ -253,6 +255,86 @@ class ClientController extends JoshController
         return view('client/contractual-job-inform', compact('contractual_job'));
     }
 
+    public function ContractualJobInformModify($id)
+    {
+        $contractual_job = ContractualJobSchedule::with('locations')->where('job_leads_id', $id)->first();
+        //$joblead = JobLeads::where('job_leads_id', $id)->first();
+        return view('job/job-schedule-modify', compact('contractual_job'));
+    }
+
+    public function updateJobSchedule(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+
+        $input['user_id'] = $user->id;
+
+        // $projectschedules = new ProjectSchedule;
+        // $projectschedules->project_leads_id = $input['project_leads_id'];
+        // $projectschedules->project_id = $input['project_id'];
+        // $projectschedules->customer_objective = $input['customer_objective'];
+        // $projectschedules->project_start_date = $input['project_start_date'];
+        // $projectschedules->project_end_date = $input['project_end_date'];
+        // $projectschedules->remarks = $input['remarks'];
+        // $projectschedules->satuts = '1';
+        // $projectschedules->save();
+
+        $insertedId = $input['job_schedule_id'];
+
+        // foreach ($input['module_id'] as $key => $value) {
+
+        //     if($input['module_id'] == '1'){
+        //         $current_pending = '1';
+        //     } else {
+        //         $current_pending = '0';
+        //     }
+
+        //     $schedulemodule = new ProjectScheduleModule;
+        //     $schedulemodule->project_schedule_id = $insertedId;
+        //     $schedulemodule->module_scope = $input['module_scope'][$key];
+        //     $schedulemodule->module_start_date = $input['module_start_date'][$key];
+        //     $schedulemodule->module_end_date = $input['module_end_date'][$key];
+        //     $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
+        //     $schedulemodule->hours_approved = $input['hours_approved'][$key];
+        //     // $schedulemodule->modify_hours = $input['modify_hours'][$key];
+        //     $schedulemodule->module_status = $input['module_status'][$key];
+        //     $schedulemodule->current = $current_pending;
+        //     $schedulemodule->save();
+
+        //     $insertedScheduleId = $schedulemodule->project_schedule_module_id;
+
+        //     foreach ($input['sub_module_id'] as $key1 => $value1) {
+
+        //         if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
+
+        //             $subschedulemodule = new ProjectSubScheduleModule;
+        //             $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
+        //             $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
+        //             $subschedulemodule->module_description = $input['sub_module_description'][$key1];
+        //             $subschedulemodule->module_status = $input['sub_module_status'][$key1];
+        //             $subschedulemodule->save();
+        //         }
+        //     }
+        // }
+
+        $job = Job::where('job_id', $input['job_id'])->first();
+
+        $user = User::find($job->user_id);
+
+        $details = [
+            'greeting' => 'Hi '. $user->full_name,
+            'body' => 'You have job schedule response on your proposal modify',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => 'client/contractual-job-inform/'. $input['job_leads_id'],
+            'main_id' => $input['job_leads_id']
+        ];
+
+        Notification::send($user, new UserNotification($details));
+
+        return redirect('/freelancer/my-project')->with('success', 'Job Schedule Updated successfully');
+    }
+
     public function ContractualJobLeadSchedule(Request $request) {
 
         $input = $request->except('_token');
@@ -415,5 +497,14 @@ class ClientController extends JoshController
         }
 
         return redirect('/client/my-proposal')->with($success ,  $msg);
+    }
+
+    public function GenerateInvoice()
+    {
+        $campaigns = JobOrderInvoice::where('order_invoice_id', '=', '2')->first();
+        //return $campaigns;
+
+        $pdf = PDF::loadView('pdf.invoice', compact('campaigns'));
+        return $pdf->download('receipt.pdf');
     }
 }

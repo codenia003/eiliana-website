@@ -44,6 +44,7 @@ use App\Models\JobContractDetails;
 use App\Models\JobOrderInvoice;
 use App\Models\JobPaymentSchedule;
 use App\Models\CandidateRole;
+use PDF;
 use App\Notifications\UserNotification;
 
 class JobController extends Controller

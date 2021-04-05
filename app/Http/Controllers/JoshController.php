@@ -80,8 +80,6 @@ class JoshController extends Controller
             ->make(true);
     }
 
-
-
     public function showHome()
     {
         // analytics related functionality
@@ -237,5 +235,71 @@ class JoshController extends Controller
             return false;
         }
         return true;
+    }
+
+    public function getCurl() {
+
+        print_r('aa raha hai');
+
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020") // <---
+        );
+
+        $postRequest = array(
+            'email' => 'abhishe.singh@codenia.in',
+            'firstname' => 'Abhishek',
+            'lastname' => 'Singh',
+            'role' => '30'
+        );
+
+        $url = 'https://www.webwork-tracker.com/rest-api/projects';
+
+        $postData = '';
+        //create name value pairs seperated by &
+        foreach($postRequest as $k => $v)
+        {
+            $postData .= $k . '='.$v.'&';
+        }
+        $postData = rtrim($postData, '&');
+
+        $ch = curl_init();
+
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
+        $output=curl_exec($ch);
+
+        if($output === false)
+        {
+            echo "Error Number:".curl_errno($ch)."<br>";
+            echo "Error String:".curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        return $output;
+    }
+
+    public function postCurl($url,$postdata) {
+
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020") // <---
+        );
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    }
+
+
+
+    public function putCurlPost($url,$postdata) {
+
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020") // <---
+        );
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     }
 }

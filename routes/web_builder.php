@@ -1,5 +1,6 @@
 <?php
 // user site
+Route::get('getCurl', 'JoshController@getCurl')->name('getCurl');
 Route::group(
     ['prefix' => 'project', 'middleware' => 'user'],
     function () {

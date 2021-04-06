@@ -23,6 +23,15 @@
     @yield('header_styles')
     <!--end of page level css-->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B98SSYP9VQ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-B98SSYP9VQ');
+    </script>
 </head>
 
 <body>

@@ -237,13 +237,37 @@ class JoshController extends Controller
         return true;
     }
 
-    public function getCurl() {
-
-        print_r('aa raha hai');
+    public function getCurl($url) {
 
         $headers = array(
             'Content-Type:application/json',
-            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020") // <---
+            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020")
+        );
+
+        $ch = curl_init();
+
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $output=curl_exec($ch);
+
+        if($output === false)
+        {
+            echo "Error Number:".curl_errno($ch)."<br>";
+            echo "Error String:".curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        return $output;
+    }
+
+    public function getCurlId($url,$postRequest) {
+
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020")
         );
 
         $postRequest = array(
@@ -253,16 +277,53 @@ class JoshController extends Controller
             'role' => '30'
         );
 
-        $url = 'https://www.webwork-tracker.com/rest-api/projects';
 
         $postData = '';
-        //create name value pairs seperated by &
         foreach($postRequest as $k => $v)
         {
             $postData .= $k . '='.$v.'&';
         }
         $postData = rtrim($postData, '&');
 
+
+        $payload = json_encode($postRequest);
+        print_r($payload);
+        $ch = curl_init();
+
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+
+        $output=curl_exec($ch);
+
+        if($output === false)
+        {
+            echo "Error Number:".curl_errno($ch)."<br>";
+            echo "Error String:".curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        return $output;
+    }
+
+    public function postCurl($url,$postRequest) {
+
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020")
+        );
+
+        $postData = '';
+        foreach($postRequest as $k => $v)
+        {
+            $postData .= $k . '='.$v.'&';
+        }
+        $postData = rtrim($postData, '&');
+
+        // $postData = json_encode($postRequest);
+        // print_r($postData);
         $ch = curl_init();
 
         curl_setopt($ch,CURLOPT_URL,$url);
@@ -283,22 +344,11 @@ class JoshController extends Controller
         return $output;
     }
 
-    public function postCurl($url,$postdata) {
+    public function putCurlPost($url,$postRequest) {
 
         $headers = array(
             'Content-Type:application/json',
-            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020") // <---
-        );
-        // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    }
-
-
-
-    public function putCurlPost($url,$postdata) {
-
-        $headers = array(
-            'Content-Type:application/json',
-            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020") // <---
+            'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020")
         );
         // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     }

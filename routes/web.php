@@ -469,7 +469,7 @@ Route::group(
         Route::post('job-contract-post', 'ClientController@postJobContractDetails')->name('job-contract-post');
         Route::post('contractual-job-payment', 'ClientController@postContractualJobPayment')->name('contractual-job-payment');
 
-        Route::get('invoice', 'ClientController@GenerateInvoice')->name('invoice');
+        Route::get('invoice',array('as'=>'invoice','uses'=>'ClientController@GenerateInvoice'));
 
     }
 );

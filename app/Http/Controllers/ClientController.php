@@ -499,12 +499,27 @@ class ClientController extends JoshController
         return redirect('/client/my-proposal')->with($success ,  $msg);
     }
 
-    public function GenerateInvoice()
+    public function GenerateInvoice(Request $request)
     {
-        $campaigns = JobOrderInvoice::where('order_invoice_id', '=', '2')->first();
-        //return $campaigns;
+        // $response['success'] = '0';
+        // $campaigns = JobOrderInvoice::where('order_invoice_id', '=', $id)->first();
+        // //return $campaigns;
+        // if($campaigns != null)
+        // {
+        //     $pdf = PDF::loadView('pdf.invoice', compact('campaigns'));
+        //     $pdf->download('receipt.pdf');
+        //     $response['success'] = '1';
+        //     $response['msg'] = 'Download invoice pdf successfully';
+        // }
+        // return response()->json($response);
 
-        $pdf = PDF::loadView('pdf.invoice', compact('campaigns'));
-        return $pdf->download('receipt.pdf');
+        $campaigns = JobOrderInvoice::where('order_invoice_id', '=', '2')->first();
+        view()->share('campaigns',$campaigns);
+
+        if($request->has('download')){
+            $pdf = PDF::loadView('pdf.invoice');
+            return $pdf->download('receipt.pdf');
+        }
+        return view('pdf.invoice');
     }
 }

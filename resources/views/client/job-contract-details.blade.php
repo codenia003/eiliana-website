@@ -100,6 +100,11 @@
                                 <button type="button" id="paybtn" class="btn btn-primary deliverinfo">Payment Link</button>
                             </div>
                         </div>
+                        <div class="singup-body" style="border-top: 1px solid #ffffff;">
+                            <div class="btn-group" role="group">
+                                <button type="button" style="border: none;background: white;" ><a class="btn btn-primary deliverinfo" href="{{ route('invoice',['download'=>'pdf']) }}">Download PDF</a> </button>
+                            </div>
+                        </div>
                     @endif
                 </form>
             </div>
@@ -195,5 +200,34 @@ $('body').on('click', '#paybtn', function(e){
     rzp1.open();
     e.preventDefault();
 });
+
+
+function GeneratePdf(order_invoice_id,job_leads_id){
+    var get_url = "{{URL('client/invoice')}}";
+    var url = get_url+"/"+order_invoice_id;
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function(response) {
+            var userCheck = response;
+            console.log(userCheck);
+            if (userCheck.success == '1') {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Success...',
+                    text: userCheck.msg,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                response.download('receipt.pdf');
+                window.location.href = '/client/job-contract-details'+"/"+job_leads_id;
+            } 
+
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
+}
 </script>
 @stop

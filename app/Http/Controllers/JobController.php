@@ -215,7 +215,7 @@ class JobController extends Controller
 
         $insertedId = $jobs->job_id;
         // $freelance_id = JobLeads::first();
-        
+
         // if($insertedId != 0) {
         //     $users = User::find($freelance_id->from_user_id);
         //     $details = [
@@ -463,7 +463,7 @@ class JobController extends Controller
             $jobleads = JobLeads::find($input['lead_id']);
             $jobleads->lead_status = $input['lead_status'];
             $jobleads->save();
-            
+
 
             if($input['lead_status'] === '2'){
 
@@ -487,7 +487,7 @@ class JobController extends Controller
                 $response['errors'] = 'Proposal Decline successfully';
             }
 
-            
+
             $users = User::find($jobleads->from_user_id);
             $details = [
                 'greeting' => 'Hi '. $users->full_name,
@@ -499,7 +499,7 @@ class JobController extends Controller
             ];
 
             Notification::send($users, new UserNotification($details));
-             
+
 
             // $user = User::find($jobleads->from_user_id);
 
@@ -694,10 +694,10 @@ class JobController extends Controller
             $savejob->job_id = $input['job_id'];
             $savejob->user_id = Sentinel::getUser()->id;
             $savejob->save();
-            
+
             $response['success'] = '1';
             $response['msg'] = 'Save Job successfully';
-            
+
         } else {
             //$response['success'] = '1';
             $response['errors'] = 'You are already save this job';

@@ -146,13 +146,18 @@ Job Lead Response
                                                         <span class="badge badge-success float-right h4">New</span>
                                                         @endif
                                                     </div>
+
+
+
                                                     <div class="row no-gutters">
+                                                        @isset($joblead->fromuser->userprofessionalexp)
                                                         <div class="col-md-6">
                                                             <div class="mb-2">
                                                                 <div class="display-5">Key Skills</div>
                                                                 <p>{{ $joblead->fromuser->userprofessionalexp->key_skills }} {{ $joblead->fromuser->userprofessionalexp->profile_headline }}</p>
                                                             </div>
                                                         </div>
+                                                        @endisset
                                                         <div class="col-md-6 d-none">
                                                             <div class="contract-profile mb-1">
                                                                 <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
@@ -167,16 +172,20 @@ Job Lead Response
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
+                                                            @isset($joblead->fromuser->userprofessionalexp)
                                                             <div class="mb-2">
                                                                 <div class="display-5">Experience</div>
                                                                 <p>{{ $joblead->fromuser->userprofessionalexp->experience_year }} Years {{ $joblead->fromuser->userprofessionalexp->experience_month }} Month</p>
                                                             </div>
+                                                            @endisset
                                                         </div>
                                                         <div class="col-md-6">
+                                                            @isset($joblead->fromuser->userprofessionalexp)
                                                             <div class="mb-2">
                                                                 <div class="display-5">Location</div>
                                                                 <p>{{ $joblead->fromuser->userprofessionalexp->currentlocation->name }}</p>
                                                             </div>
+                                                            @endisset
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="mb-3 duration">

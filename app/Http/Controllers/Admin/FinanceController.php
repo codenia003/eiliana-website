@@ -36,7 +36,7 @@ class FinanceController extends Controller
     public function index(Request $request)
     {
         $finances = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->get();
-        //return $finances;
+        // return $finances;
         return view('admin.finance.index', compact('finances'));
     }
 
@@ -48,7 +48,7 @@ class FinanceController extends Controller
     }
 
     public function edit($id)
-    {      
+    {
         $finance =  ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
         $order_finances_id = Finance::where('project_leads_id', $id)->first();
         //return $finance;
@@ -71,9 +71,9 @@ class FinanceController extends Controller
             if($input['finance_status'] === '2'){
                 $response['success'] = '1';
                 $response['msg'] = 'Assign Finance Resource successfully';
-            } 
+            }
 
-            $finance = ProjectLeads::where('project_leads_id', $financeschedules->project_leads_id)->first();
+            $finance = ProjectLeads::with('projectdetail')->where('project_leads_id', $financeschedules->project_leads_id)->first();
 
             $user = User::find($finance->from_user_id);
 
@@ -88,6 +88,46 @@ class FinanceController extends Controller
 
             Notification::send($user, new UserNotification($details));
 
+            $headers = array(
+                'Content-Type:application/json',
+                'Authorization: Basic '. base64_encode("Ankur.Gupta@futuremakers.in:Eiliana@2020")
+            );
+
+            $postRequest = array(
+                'name' =>  $finance->projectdetail->project_title .'_'.$financeschedules->project_leads_id,
+                'start_date' => 'NA',
+                'deadline' => 'NA',
+                'notes' => 'NA'
+            );
+
+            $url = 'https://www.webwork-tracker.com/rest-api/projects';
+
+            $postData = '';
+            foreach($postRequest as $k => $v)
+            {
+                $postData .= $k . '='.$v.'&';
+            }
+            $postData = rtrim($postData, '&');
+
+            // $payload = json_encode($postRequest);
+            // print_r($payload);
+            $ch = curl_init();
+
+            curl_setopt($ch,CURLOPT_URL,$url);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
+            $output=curl_exec($ch);
+
+            if($output === false)
+            {
+                echo "Error Number:".curl_errno($ch)."<br>";
+                echo "Error String:".curl_error($ch);
+            }
+
+            curl_close($ch);
+
         } else {
             $response['success'] = '2';
             $response['errors'] = 'You are already assign finance resource';
@@ -96,7 +136,7 @@ class FinanceController extends Controller
     }
 
     public function jobFinanceEdit($id)
-    {      
+    {
 
         $order_finances_id = JobOrderFinance::where('job_order_id', $id)->first();
         $finance =  JobLeads::with('jobdetail','jobcontractdetails','jobcontractdetails.joborderinvoice','jobcontractdetails.jobpaymentschedule')->where('job_leads_id', $order_finances_id->job_leads_id)->first();
@@ -120,7 +160,7 @@ class FinanceController extends Controller
             if($input['finance_status'] === '2'){
                 $response['success'] = '1';
                 $response['msg'] = 'Job Assign Finance Resource successfully';
-            } 
+            }
 
             // $finance = JobLeads::where('job_leads_id', $job_finance->job_leads_id)->first();
 
@@ -139,7 +179,7 @@ class FinanceController extends Controller
 
             $jobleads = JobLeads::where('job_leads_id', $job_finance->job_leads_id)->first();
             $job = Job::where('job_id', $jobleads->job_id)->first();
-            
+
             $users = User::find($job->user_id);
             $details = [
                 'greeting' => 'Hi '. $users->full_name,
@@ -151,7 +191,7 @@ class FinanceController extends Controller
             ];
 
             Notification::send($users, new UserNotification($details));
-             
+
 
         } else {
             $response['success'] = '2';

@@ -119,7 +119,7 @@ class ProjectController extends JoshController
         $input['framework'] = $framework;
 
         $current = Carbon::now();
-        $projectExpires = $current->addDays(7);
+        $projectExpires = $current->addDays(60);
 
         $projects = new Project;
 

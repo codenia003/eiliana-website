@@ -188,6 +188,9 @@ class JobController extends JoshController
         $framework = implode(',', $framework);
         $input['framework'] = $framework;
 
+        $current = Carbon::now();
+        $jobExpires = $current->addDays(60);
+
         $jobs = new Job;
         $jobs->user_id = $user->id;
         $jobs->job_status_id = 1;
@@ -211,6 +214,7 @@ class JobController extends JoshController
         $jobs->indexing = $input['indexing'];
         $jobs->referral_id = $input['referral_id'];
         $jobs->display_status = 1;
+        $jobs->expiry_datetime = $jobExpires;
         $jobs->save();
 
         $insertedId = $jobs->job_id;

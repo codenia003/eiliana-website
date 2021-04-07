@@ -47,7 +47,7 @@ use App\Models\CandidateRole;
 use PDF;
 use App\Notifications\UserNotification;
 
-class JobController extends Controller
+class JobController extends JoshController
 {
 
     public function index()

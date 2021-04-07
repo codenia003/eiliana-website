@@ -40,11 +40,11 @@ Login
                                 <form action="{{ url('/account/login') }}" method="POST" id="omb_loginForm">
                                     @csrf
                                     <div class="form-group input-field">
-                                        <input type="text" name="email" class="form-control" required/>
-                                        <label for="username">Email ID</label>
+                                        <input type="text" name="email" id="email" class="form-control" required/>
+                                        <label for="email">Email ID</label>
                                     </div>
                                     <div class="form-group input-field">
-                                        <input type="password" name="password" class="form-control" required />
+                                        <input type="password" name="password" id="password" class="form-control" required />
                                         <label for="password">Password</label>
                                     </div>
                                     <div class="form-row">

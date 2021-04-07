@@ -68,7 +68,7 @@
                                 <tr>
                                     <td align="center" data-link-style="text-decoration:none; color:#a2a9af;" data-link-color="Content" data-size="Content" data-color="Content" style="font-family: 'Open Sans', Arial, sans-serif; font-size:15px; color:#a2a9af; line-height:30px;">
                                         <singleline>
-                                            © 2020. Designed by <a href="#" style="font-family: 'Open Sans', Arial, sans-serif; font-size:15px; color:#fec400 ;" data-color="copy right color">Eiliana</a>
+                                            © {{ date('Y') }}. Designed by <a href="#" style="font-family: 'Open Sans', Arial, sans-serif; font-size:15px; color:#fec400 ;" data-color="copy right color">Eiliana</a>
                                         </singleline>
                                     </td>
                                 </tr>

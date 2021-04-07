@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>A simple, clean, and responsive HTML invoice template</title>
+		<title>Eiliana invoice</title>
         <!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}"> -->
         <style>
 			.invoice-box {
@@ -112,7 +112,7 @@
 
 								<td>
 									Invoice #: {{ $campaigns->invoice_no }}<br />
-									Created: January 1, 2015<br />
+									Created: {{ \Carbon\Carbon::parse($campaigns->created_at)->format('j F Y') }}<br />
 									Due: {{ \Carbon\Carbon::parse($campaigns->invoice_due_date)->format('d/m/Y') }}
 								</td>
 							</tr>
@@ -153,7 +153,7 @@
 				</tr>
 
 				<tr class="heading">
-					<td>Item</td>
+					<td>Total</td>
 
 					<td>Price</td>
 				</tr>

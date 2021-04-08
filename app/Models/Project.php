@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Project extends Model
 {
@@ -55,5 +56,15 @@ class Project extends Model
     public function projectbidresponse()
     {
         return $this->hasMany('App\Models\ProjectLeads', 'project_id', 'project_id');
+    }
+
+    public function scopeExpire($query)
+    {
+        return $query->where('expiry_datetime', '>', Carbon::now());
+    }
+
+    public function scopeActive($query, $value)
+    {
+        return $query->where('project_status_id', '=', $value);
     }
 }

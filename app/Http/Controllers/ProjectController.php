@@ -726,4 +726,12 @@ class ProjectController extends JoshController
 
     }
 
+    public function getProjectCategory(Request $request)
+    {
+        $alldata = $request->input('category_id');
+        // $selected_technologies = explode(",", $alldata);
+        $categoires = ProjectCategory::where('parent_id', $alldata)->get();
+        return response()->json($categoires);
+    }
+
 }

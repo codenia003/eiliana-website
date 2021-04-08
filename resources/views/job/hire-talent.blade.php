@@ -59,11 +59,18 @@
 
 					                <div class="projects">
 					                	<div class="form-group">
-                                            <label>Category</label>
-                                            <select name="project_category" class="form-control">
+                                            <label>Project Category</label>
+                                            <select name="project_category" class="form-control" id="project_category" onchange="change_category();">
                                                 @foreach ($projectcategorys as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group d-none" id="project_sub">
+                                            <label>Project Sub Category</label>
+                                            <select name="project_sub_category" class="form-control" id="project_sub_category">
+                                                <option value=""></option>
                                             </select>
                                         </div>
 					                	<div class="form-group job-posting d-none">
@@ -265,6 +272,7 @@
     $(window).bind("load", function() {
         changeLookingFor();
         changeSearchMethod();
+        change_category();
     });
     function changeSearchMethod() {
         var method = $('input[name="search_method"]:checked').attr('value');

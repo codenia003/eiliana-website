@@ -60,10 +60,17 @@
 					                <div class="projects">
 					                	<div class="form-group">
                                             <label>Project Category</label>
-                                            <select name="project_category" class="form-control">
+                                            <select name="project_category" class="form-control" id="project_category" onchange="change_category();">
                                                 @foreach ($projectcategorys as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group d-none" id="project_sub">
+                                            <label>Project Sub Category</label>
+                                            <select name="project_sub_category" class="form-control" id="project_sub_category">
+                                                <option value=""></option>
                                             </select>
                                         </div>
 
@@ -222,6 +229,7 @@
     $(window).bind("load", function() {
         changeLookingFor();
         changeBrowseProject();
+        change_category();
     });
     function changeBrowseProject() {
         var method = $('input[name="browse_project"]:checked').attr('value');

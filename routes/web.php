@@ -548,6 +548,7 @@ Route::post('job-posting-search', 'JobController@jobPostingSearch')->name('job-p
 Route::get('search-project', 'ProjectController@getSearchProject')->name('search-project');
 
 Route::get('/getframework', 'ProfileController@getframework');
+Route::get('/getprojectcategory', 'ProjectController@getProjectCategory');
 
 // contact form
 Route::post('contact', 'FrontEndController@postContact')->name('contact');

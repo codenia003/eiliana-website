@@ -43,7 +43,7 @@
                 </td>
                 <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('F d, Y') }}</td>
                 <td>
-                    <a onclick="proposalDetails('{{ $lead->job_proposal_id }}', '{{ $lead->job_schedule_id }}')"><i class="fas fa-info-circle"></i></a>
+                    <a onclick="proposalDetails('{{ $lead->job_schedule_id }}')"><i class="fas fa-info-circle"></i></a>
                 </td>
             </tr>
         @endforeach
@@ -59,15 +59,15 @@
         <div class="modal-content">
             <form action="{{ url('/client/post-proposal-job-lead') }}" method="POST" id="">
                 @csrf
-                <input type="hidden" name="job_schedule_id" id="job_schedule_id">
+                
                 <div class="modal-header bg-blue text-white">
                     <h4 class="modal-title" id="modalLabelnews">Proposal For Freelancer </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="form-group col-12">
-                            <label for="job_proposal_id" class="col-form-label">Proposal Id:</label>
-                    		<input type="text" class="form-control" id="job_proposal_id" name="job_proposal_id" readonly>
+                            <label for="job_schedule_id" class="col-form-label">Proposal Id:</label>
+                    		<input type="text" class="form-control" id="job_schedule_id" name="job_schedule_id" readonly>
                         </div>
                         <!-- <div class="form-group col">
                             <label for="date_acceptance" class="col-form-label">Acceptance Date:</label>
@@ -99,19 +99,18 @@
     });
 
 
-    function proposalDetails(job_proposal_id,job_schedule_id){
+    function proposalDetails(job_schedule_id){
     $('.spinner-border').removeClass("d-none");
     var url = '/client/project-contract-post';
 
     var data= {
         _token: "{{ csrf_token() }}",
-        job_proposal_id: job_proposal_id,
         job_schedule_id: job_schedule_id
     };
     console.log(data);
     
     $('#modal-4').modal('show');
-    $('#job_proposal_id').val(job_proposal_id);
+    //$('#job_proposal_id').val(job_proposal_id);
     $('#job_schedule_id').val(job_schedule_id);
     // $.ajax({
     //     type: 'POST',

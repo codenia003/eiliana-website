@@ -483,17 +483,24 @@ class ClientController extends JoshController
         $input = $request->except('_token');
         $response['success'] = '0';
         $proposaljobleadcheck = ContractualJobSchedule::where('job_schedule_id', '=', $input['job_schedule_id'])->where('satuts', '=', '2')->first();
-        if ($proposaljobleadcheck === null) {
+        if (!empty($proposaljobleadcheck)) {
 
-            $job_proposal_leads = ContractualJobSchedule::where('job_proposal_id', '=', $input['job_proposal_id'])->where('satuts', '=', '2')->first();
-            $job_proposal_leads->actual_start_date = $input['actual_date'];
-            $job_proposal_leads->save();
+            $job_proposal_leads = ContractualJobSchedule::where('job_schedule_id', '=', $input['job_schedule_id'])->where('satuts', '=', '2')->first();
+            if(!empty($job_proposal_leads))
+            {
+                $job_proposal_leads->actual_start_date = $input['actual_date'];
+                $job_proposal_leads->save();
 
-            $success = 'success';
-            $msg = 'Proposal date update successfully';
+                $success = 'success';
+                $msg = 'Proposal date update successfully';
+            }
+            else {
+                $success = 'error';
+                $msg = 'You are already updated date this proposal';
+            }
         } else {
             $success = 'error';
-            $msg = 'You are already updated date this proposal';
+            $msg = 'First accept contractual job schedule';
         }
 
         return redirect('/client/my-proposal')->with($success ,  $msg);

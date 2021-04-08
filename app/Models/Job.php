@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Job extends Model
 {
@@ -50,5 +51,15 @@ class Job extends Model
     public function customerindustry1()
     {
         return $this->belongsTo('App\Models\CustomerIndustry', 'customer_industry', 'customer_industry_id');
+    }
+
+    public function scopeExpire($query)
+    {
+        return $query->where('expiry_datetime', '>', Carbon::now());
+    }
+
+    public function scopeActive($query, $value)
+    {
+        return $query->where('job_status_id', '=', $value);
     }
 }

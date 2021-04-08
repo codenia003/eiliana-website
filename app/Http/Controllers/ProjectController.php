@@ -481,7 +481,7 @@ class ProjectController extends JoshController
                 //     ->where('experience_year', '=', $request->input('experience_year'))
                 //     ->where('experience_month', '=', $request->input('experience_month'))
                 //     ->paginate(10);
-                $jobs = Job::with('locations','customerindustry1')->where('indexing', 'LIKE', '%'.$sound.'%')->paginate(10);
+                $jobs = Job::with('locations','customerindustry1')->expire()->active('1')->where('indexing', 'LIKE', '%'.$sound.'%')->paginate(10);
 
 
                 return view('search/browse-job', compact('jobs'));

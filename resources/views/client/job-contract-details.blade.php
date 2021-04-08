@@ -12,6 +12,11 @@
     </div>
 </div>
 @stop
+<style type="text/css">
+     .invoice a:hover { 
+       color: #3b5999 !important;
+     }
+</style>
 @section('profile_content')
 <div class="profile-information">
     <div id="notific">
@@ -102,7 +107,7 @@
                         </div>
                         <div class="singup-body" style="border-top: 1px solid #ffffff;">
                             <div class="btn-group" role="group">
-                                <button type="button" style="border: none;background: white;" ><a class="btn btn-primary deliverinfo" href="{{ route('invoice',['download'=>'pdf']) }}">Download PDF</a> </button>
+                                <button type="button" class="invoice" style="border: none;background: white;" ><a class="btn btn-primary deliverinfo1" href="{{ route('invoice',['download'=>'pdf']) }}">Invoice Download</a> </button>
                             </div>
                         </div>
                     @endif

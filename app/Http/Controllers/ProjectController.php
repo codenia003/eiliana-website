@@ -61,7 +61,7 @@ class ProjectController extends JoshController
         $locations = Location::all();
         $currency = Currency::all();
         $customerindustries = CustomerIndustry::all();
-        $projectcategorys = ProjectCategory::all();
+        $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
         $candidateroles = CandidateRole::all();
 
         return view('project/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys','currency','candidateroles'));
@@ -435,7 +435,7 @@ class ProjectController extends JoshController
 
         if (empty($request->input('lookingfor'))) {
             $technologies = Technology::where('parent_id', '0')->get();
-            $projectcategorys = ProjectCategory::all();
+            $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
             $locations = Location::all();
 
             return view('project/search-project', compact('pagename','projectcategorys','locations','technologies'));

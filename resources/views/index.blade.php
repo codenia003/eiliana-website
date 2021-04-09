@@ -245,11 +245,46 @@ Home
                 <div class="col-12 col-md-4 col-lg-4">
                     <h1 class="headingmain1">Agility @Eiliana</h1>
                     <ul class="list-unstyled list-article">
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Choose experienced Professionals from Global Talent Pool.</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Experienced Professionals availablity helps manage Business Risk on Pay Per Use Model.</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Managed Delivery Model at Eiliana facilitates smooth project Delivery</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Faster project Roll out through Instant resource deployment.</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Access to Super Niche Skills improves project performance.</li>
+                        <li>
+                            <div class="d-flex">
+                                <div class="media align-items-center align-items-sm-start mb-3">
+                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png" alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span>Choose experienced Professionals from Global Talent Pool.</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <div class="media align-items-center align-items-sm-start mb-3">
+                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png" alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span>Experienced Professionals availablity helps manage Business Risk on Pay Per Use Model.</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <div class="media align-items-center align-items-sm-start mb-3">
+                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png" alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span>Managed Delivery Model at Eiliana facilitates smooth project Delivery.</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <div class="media align-items-center align-items-sm-start mb-3">
+                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png" alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span>Access to Super Niche Skills improves project performance.</span>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-12 col-md-3 col-lg-3">
@@ -318,7 +353,7 @@ Home
         </div>
     </div>
   </section>
-<section class="section container our-solution four-slider">
+<section class="section container our-solution four-slider space-2">
     <div class="text-center">
         <h1 class="headingmain1">Crowd <span><img src="/assets/img/heart-icon.jpg"></span> Favourites</h1>
         <p class="subtitle1">Checkout some of the most popular services people pay for on Eiliana.</p>
@@ -326,100 +361,28 @@ Home
     </div>
   <div class="our-slotuion slider mb-3 mt-3">
     <div class="multiple-carousel">
-        <div class="slide">
-          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-            <figure class="max-w-10rem mx-auto mb-4">
-              <img class="img-fluid" src="/assets/img/icons/solution-1.png" alt="SVG">
-            </figure>
-            <h3>01. JDJU XHSDHHD</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now</a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-            <figure class="max-w-10rem mx-auto mb-4">
-              <img class="img-fluid" src="/assets/img/icons/solution-2.png" alt="SVG">
-            </figure>
-            <h3>02. HDHHD DHBDSBJ</h3>
-            <!-- <h3>02. Sales Referral</h3> -->
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            <!-- <p>Utilize your contacts! Refer a friend or a colleague and get 10% on the successful completion of the project.</p> -->
-            <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-            <figure class="max-w-10rem mx-auto mb-4">
-              <img class="img-fluid" src="/assets/img/icons/solution-3.png" alt="SVG">
-            </figure>
-            <h3>03. JVFKNLK</h3>
-            <!-- <h3>03. Project Analysis</h3> -->
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            <!-- <p>Get a detailed road-map that will help you in identifying the nitty gritties of your project.</p> -->
-            <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-            <figure class="max-w-10rem mx-auto mb-4">
-              <img class="img-fluid" src="/assets/img/icons/solution-4.png" alt="SVG">
-            </figure>
-            <h3>04. SYAGAHA WHWHW</h3>
-            <!-- <h3>04. Startup Workforce</h3> -->
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            <!-- <p>Connect with bankable top-tier talents that have a proven professional experience to grow your business.</p> -->
-            <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-          </div>
-        </div>
-        <div class="slide">
-            <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-              <figure class="max-w-10rem mx-auto mb-4">
-                <img class="img-fluid" src="/assets/img/icons/solution-1.png" alt="SVG">
-              </figure>
-              <h3>01. JDJU XHSDHHD</h3>
-              <!-- <h3>01. Code Canyon</h3> -->
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-              <!-- <p>Code Canyon Connect with top-tier developers for pre-written programming modules and codes that can be integrated seamlessly.</p> -->
-              <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
+        @foreach ($projectcategories as $item)
+            <div class="slide">
+                <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
+                    <figure class="max-w-10rem mx-auto mb-2">
+                        <img class="img-fluid" src="/assets/img/icons/{{ $item->image }}" alt="png">
+                    </figure>
+                    <h3>{{ $item->name }}</h3>
+                    @if ($loop->even)
+                    <h6 class="yellow">{{ $item->heading }}</h6>
+                    @else
+                    <h6 class="red">{{ $item->heading }}</h6>
+                    @endif
+                    <p>{{ $item->descriptor }}</p>
+                    @if ($loop->even)
+                    <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now</a>
+                    @else
+                    <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now</a>
+                    @endif
+                </div>
             </div>
-        </div>
-        <div class="slide">
-            <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-              <figure class="max-w-10rem mx-auto mb-4">
-                <img class="img-fluid" src="/assets/img/icons/solution-2.png" alt="SVG">
-              </figure>
-              <h3>02. HDHHD DHBDSBJ</h3>
-              <!-- <h3>02. Sales Referral</h3> -->
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-              <!-- <p>Utilize your contacts! Refer a friend or a colleague and get 10% on the successful completion of the project.</p> -->
-              <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-            </div>
-        </div>
-        <div class="slide">
-            <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-              <figure class="max-w-10rem mx-auto mb-4">
-                <img class="img-fluid" src="/assets/img/icons/solution-3.png" alt="SVG">
-              </figure>
-              <h3>03. JVFKNLK</h3>
-              <!-- <h3>03. Project Analysis</h3> -->
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-              <!-- <p>Get a detailed road-map that will help you in identifying the nitty gritties of your project.</p> -->
-              <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-            </div>
-        </div>
-        <div class="slide">
-            <div class="text-center px-lg-3 shadow p-4 mb-3 mt-3 border">
-              <figure class="max-w-10rem mx-auto mb-4">
-                <img class="img-fluid" src="/assets/img/icons/solution-4.png" alt="SVG">
-              </figure>
-              <h3>04. SYAGAHA WHWHW</h3>
-              <!-- <h3>04. Startup Workforce</h3> -->
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-              <!-- <p>Connect with bankable top-tier talents that have a proven professional experience to grow your business.</p> -->
-              <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now <!-- <i class="fa fa-arrow-right fa-sm ml-1"></i> --></a>
-            </div>
-        </div>
+        @endforeach
+
     </div>
   </div>
 </section>

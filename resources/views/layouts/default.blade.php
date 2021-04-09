@@ -116,13 +116,13 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/client/my-lead') }}">My Lead</a>
-                            </li>
+                                <a class="nav-link" href="{{ url('/client/my-lead') }}">My Sales Referral</a>
+                            {{-- </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-requirement') }}">My Requirement</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/client/my-proposal') }}">My Proposal</a>
+                                <a class="nav-link" href="{{ url('/client/my-proposal') }}">My Opportunity</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-project') }}">My Project</a>

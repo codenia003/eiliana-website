@@ -575,7 +575,7 @@ section.contract-job .singup-body .browse-job-posting {
     background-color: #eefafb;
     background-size: contain;
     /* background-position: 55% 0%; */
-    background-position: 90px 24px;
+    background-position: 50% 14px;
 }
 .eiliana-agility {
     position: relative;
@@ -685,10 +685,12 @@ h4.card-header.text-left {
     border-bottom: 1px solid #eee;
 }
 .refer-resource .card .card-body {
-    padding: 1rem;
+    padding: 0rem;
 }
 .refer-resource .card .card-body img {
     max-width: 60%;
+    position: relative;
+    top: 16px;
 }
 .card-img-top {
     position: relative;

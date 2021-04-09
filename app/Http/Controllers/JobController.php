@@ -70,7 +70,7 @@ class JobController extends JoshController
         	'page_title' => 'Hire Talent',
         	'lookingfor' => '1'
         ];
-        $projectcategorys = ProjectCategory::all();
+        $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
         $locations = Location::all();
 
         $request->session()->forget('sales_referral');
@@ -85,7 +85,7 @@ class JobController extends JoshController
         	'page_title' => 'Hire Talent',
         	'lookingfor' => '1'
         ];
-        $projectcategorys = ProjectCategory::all();
+        $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
         $locations = Location::all();
 
         return view('job/hire-talent', compact('pagename','projectcategorys','locations'));
@@ -98,7 +98,7 @@ class JobController extends JoshController
         	'page_title' => 'Job Posting',
         	'lookingfor' => '2'
     	];
-        $projectcategorys = ProjectCategory::all();
+        $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
         $locations = Location::all();
 
         $request->session()->forget('sales_referral');

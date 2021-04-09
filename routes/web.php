@@ -428,6 +428,9 @@ Route::group(
 
         Route::post('save-job', 'JobController@SaveJob')->name('save-job');
         Route::post('assign-job', 'JobController@assignJob')->name('assignJob');
+
+        Route::get('job-schedule-modify/{id}', 'JobController@ContractualJobInformModify')->name('job-schedule-modify');
+        Route::post('update-job-schedule', 'JobController@updateJobSchedule')->name('jobschedule.update-modify');
     }
 );
 
@@ -463,7 +466,6 @@ Route::group(
         Route::get('project-payment/{id}', 'ClientController@projectPayments')->name('projectpayment');
         Route::post('contractual-job-lead-schedule', 'ClientController@ContractualJobLeadSchedule')->name('contractual-job-lead-schedule');
         Route::get('contractual-job-inform/{id}', 'ClientController@ContractualJobInform')->name('contractual-job-inform.create');
-        Route::post('update-job-schedule', 'ClientController@updateJobSchedule')->name('jobschedule.update-modify');
 
         Route::get('job-contract-details/{id}', 'ClientController@jobContractDetails')->name('jobcontractdetails');
         Route::post('job-contract-post', 'ClientController@postJobContractDetails')->name('job-contract-post');

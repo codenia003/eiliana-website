@@ -736,4 +736,51 @@ class JobController extends JoshController
         return response()->json($response);
 
     }
+
+    public function ContractualJobInformModify($id)
+    {
+        $contractual_job = ContractualJobSchedule::where('job_leads_id', $id)->first();
+        $locations = Location::all();
+        return view('job/job-schedule-modify', compact('contractual_job','locations'));
+    }
+
+    public function updateJobSchedule(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+
+        $input['user_id'] = $user->id;
+
+        $jobschedules = ContractualJobSchedule::where('job_leads_id', $input['job_leads_id'])->first();
+        $jobschedules->price = $input['price'];
+        $jobschedules->contract_duration = $input['contract_duration'];
+        $jobschedules->pricing_cycle = $input['pricing_cycle'];
+
+        if($input['pricing_cycle'] == '2')
+        {
+             $jobschedules->on_postpaid_amount = $input['on_postpaid_amount'];
+             $jobschedules->advance_amount = $input['advance_amount'];
+        }
+        
+        $jobschedules->location = $input['location'];
+        $jobschedules->satuts = '1';
+        $jobschedules->save();
+
+        $job = Job::where('job_id', $input['job_id'])->first();
+
+        $user = User::find($job->user_id);
+
+        $details = [
+            'greeting' => 'Hi '. $user->full_name,
+            'body' => 'You have job schedule response on your proposal modify',
+            'thanks' => 'Thank you for using eiliana.com!',
+            'actionText' => 'View My Site',
+            'actionURL' => 'client/contractual-job-inform/'. $input['job_leads_id'],
+            'main_id' => $input['job_leads_id']
+        ];
+
+        Notification::send($user, new UserNotification($details));
+
+        return redirect('/freelancer/my-proposal')->with('success', 'Job Schedule Updated successfully');
+    }
 }

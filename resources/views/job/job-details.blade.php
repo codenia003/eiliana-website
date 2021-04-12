@@ -309,7 +309,7 @@ function SaveJob(job_id){
                     showConfirmButton: false,
                     timer: 2000
                 });
-
+                  window.location.href = '/job'+"/"+job_id;
                 // window.location.href = '/freelancer/my-opportunity';
             } else {
                 Swal.fire({
@@ -319,6 +319,7 @@ function SaveJob(job_id){
                     showConfirmButton: false,
                     timer: 3000
                 });
+                   window.location.href = '/job'+"/"+job_id;
                 // if (userCheck.success == '2') {
                 //     window.location.href = '/freelancer/my-opportunity';
                 // }

@@ -497,6 +497,9 @@ Route::group(
         Route::post('post-contractual-job-inform', 'FreelancerController@postContractualJobInform')->name('contractual-job-inform.store');
         Route::get('my-save-job', 'FreelancerController@mySaveJob')->name('my-save-job');
 
+        Route::get('my-contract_job', 'FreelancerController@myJobProposal')->name('my-contract_job');
+        Route::post('post-proposal-job-lead', 'FreelancerController@postProposalJobLead');
+
     }
 );
 

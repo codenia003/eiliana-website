@@ -69,6 +69,13 @@ class FreelancerController extends Controller
         return view('freelancer/myproject', compact('leads'));
     }
 
+    public function myJobProposal()
+    {
+        $leads = JobLeads::with('jobdetail','jobProposal')->where('from_user_id', Sentinel::getUser()->id)->paginate(10);
+        //return $leads;
+        return view('freelancer/myproposal', compact('leads'));
+    }
+
     public function projectSchedule($id)
     {
         $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
@@ -188,4 +195,34 @@ class FreelancerController extends Controller
 
         return redirect('/freelancer/contractual-job-inform/'. $input['job_leads_id'])->with('success', 'Contractual Job Proposal Completed');
     }
+
+    public function postProposalJobLead(Request $request){
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+        $proposaljobleadcheck = ContractualJobSchedule::where('job_schedule_id', '=', $input['job_schedule_id'])->where('satuts', '=', '2')->first();
+        if (!empty($proposaljobleadcheck)) {
+
+            $job_proposal_leads = ContractualJobSchedule::where('job_schedule_id', '=', $input['job_schedule_id'])->where('satuts', '=', '2')->first();
+            if(!empty($job_proposal_leads))
+            {
+                $job_proposal_leads->actual_start_date = $input['actual_date'];
+                $job_proposal_leads->save();
+
+                $success = 'success';
+                $msg = 'Proposal date update successfully';
+            }
+            else {
+                $success = 'error';
+                $msg = 'You are already updated date this proposal';
+            }
+        } else {
+            $success = 'error';
+            $msg = 'First accept contractual job schedule';
+        }
+
+        return redirect('/freelancer/my-contract_job')->with($success ,  $msg);
+    }
+
+
 }

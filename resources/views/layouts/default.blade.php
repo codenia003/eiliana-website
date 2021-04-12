@@ -32,6 +32,43 @@
 
     gtag('config', 'G-B98SSYP9VQ');
     </script>
+    <style type="text/css">
+        /* ============ desktop view ============ */
+        @media all and (min-width: 992px) {
+            .dropdown-menu li{ 
+                position: relative; 
+             }
+            .nav-item .submenu{ 
+                display: none;
+                position: absolute;
+                left:100%; top:-7px;
+            }
+            .nav-item .submenu-left{ 
+                right:100%; left:auto;
+            }
+            .dropdown-menu > li:hover{ 
+                background-color: #f1f1f1 
+            }
+            .dropdown-menu > li:hover > .submenu{ 
+                display: block; 
+            }
+
+            .dropdown-menu li .submenu_down{ 
+                font-size: 14px;
+                font-weight: 500;
+                color: #000 !important;
+             }
+        }   
+
+        /* ============ small devices ============ */
+        @media (max-width: 991px) {
+          .dropdown-menu .dropdown-menu{
+              margin-left:0.7rem; 
+              margin-right:0.7rem; 
+              margin-bottom: .5rem;
+          }
+        }
+    </style>
 </head>
 
 <body>
@@ -102,14 +139,31 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Lead</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/freelancer/my-opportunity') }}">My Opportunity</a>
-                            </li>
+                            <div class="nav-item dropdown">
+                                <li class="nav-item dropdown" id="myDropdown">
+                                    <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#" style="font-size: 14px;">My Opportunity
+                                    <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                       <li class="nav-item"><a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                           <ul class="submenu dropdown-menu">
+                                                <li><a class="dropdown-item submenu_down" href="/freelancer/my-contract_job">Contract Job</a>
+                                                </li>
+                                                <li><a class="dropdown-item submenu_down" href="/freelancer/my-project">Project</a>
+                                                </li>
+                                            </ul>
+                                       </li>
+                                    </ul>
+                                </li>
+                            </div>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-save-job') }}">My Save Job</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-proposal') }}">My Proposal</a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">My Proposal</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-project') }}">My Project</a>
@@ -279,6 +333,40 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip().css('font-size', '14px');
     })
+
+    document.addEventListener("DOMContentLoaded", function(){
+// make it as accordion for smaller screens
+if (window.innerWidth < 992) {
+
+  // close all inner dropdowns when parent is closed
+  document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+    everydropdown.addEventListener('hidden.bs.dropdown', function () {
+      // after dropdown is hidden, then find all submenus
+        this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+          // hide every submenu as well
+          everysubmenu.style.display = 'none';
+        });
+    })
+  });
+
+  document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+    element.addEventListener('click', function (e) {
+        let nextEl = this.nextElementSibling;
+        if(nextEl && nextEl.classList.contains('submenu')) {    
+          // prevent opening link if link needs to open dropdown
+          e.preventDefault();
+          if(nextEl.style.display == 'block'){
+            nextEl.style.display = 'none';
+          } else {
+            nextEl.style.display = 'block';
+          }
+
+        }
+    });
+  })
+}
+// end if innerWidth
+}); 
     </script>
 </body>
 

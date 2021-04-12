@@ -76,6 +76,7 @@ $(document).ready(function() {
         "prevArrow": "<span class=\"fa fa-angle-left slick-arrow slick-arrow-soft-white slick-arrow-left slick-arrow-centered-y rounded-circle ml-sm-2 ml-xl-4\"></span>",
         "dots": false,
         "infinite": true,
+        "rows": 0,
         "responsive": [{
             "breakpoint": 768,
             "settings": {

@@ -12,6 +12,25 @@
         </div>
     </div>
 </div>
+<style type="text/css">
+    @media (min-width: 992px){
+        .col-lg-8 {
+            flex: 0 0 66.6666666667%;
+            max-width: 69.666667%;
+        }
+        .col-lg-4 {
+            flex: 0 0 33.333333%;
+            max-width: 30.333333%;
+        }
+        .device-iphone-x-screen {
+            position: absolute;
+            top: 14%;
+            left: 12%;
+            width: 69%;
+            height: 100%;
+        }
+   } 
+</style>
 @stop
 @section('profile_content')
 <div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md">
@@ -22,8 +41,10 @@
             <th>Job Name</th>
             <th>Subject</th>
             <th>Status</th>
+            <!-- <th>Schedule Status</th>
+            <th>Update Schedule Date</th> -->
             <th>Status Date</th>
-            <th>View</th>
+            <!-- <th>View</th> -->
          </tr>
         </thead>
         <tbody>
@@ -43,13 +64,28 @@
                     Cancel
                     @endif
                 </td>
+                {{--<td>
+                    @if(!empty($lead->jobcontractschedule))
+                        @if($lead->jobcontractschedule->satuts == 1)
+                        Pending
+                        @elseif($lead->jobcontractschedule->satuts == 2)
+                        Accept
+                        @elseif($lead->jobcontractschedule->satuts == 3)
+                        Modify
+                        @else
+                        Cancel
+                        @endif
+                    @endif
+                </td>--}}
                 <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('F d, Y') }}</td>
                 <!-- <td>
                     <a href="{{ route('my-proposal.view',$lead->job_leads_id) }}"><i class="fas fa-info-circle"></i></a>
                 </td> -->
-                <td>
-                    <a onclick="proposalDetails('{{ $lead->job_leads_id }}')"><i class="fas fa-info-circle"></i></a>
-                </td>
+                {{--<td>
+                    @if(!empty($lead->jobcontractschedule))
+                    <a onclick="proposalDetails('{{ $lead->jobcontractschedule->job_schedule_id}}')"><i class="fas fa-info-circle"></i></a>
+                    @endif
+                </td>--}}
             </tr>
         @endforeach
         </tbody>
@@ -65,7 +101,7 @@
                 @csrf
                 
                 <div class="modal-header bg-blue text-white">
-                    <h4 class="modal-title" id="modalLabelnews">Proposal For Freelancer </h4>
+                    <h4 class="modal-title" id="modalLabelnews">Proposal For Client </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-row">

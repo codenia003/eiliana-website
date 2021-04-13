@@ -38,26 +38,53 @@
             .dropdown-menu li{ 
                 position: relative; 
              }
-            .nav-item .submenu{ 
+            .nav-item .submenu1{ 
                 display: none;
                 position: absolute;
-                left:100%; top:-7px;
+                left:100%; 
+                top:-7px;
             }
-            .nav-item .submenu-left{ 
-                right:100%; left:auto;
+            .nav-item .submenu1-left{ 
+                right:100%; 
+                left:auto;
             }
             .dropdown-menu > li:hover{ 
                 background-color: #f1f1f1 
             }
-            .dropdown-menu > li:hover > .submenu{ 
+            /*.dropdown-menu > li:hover > .submenu{ 
                 display: block; 
-            }
+            }*/
 
             .dropdown-menu li .submenu_down{ 
                 font-size: 14px;
                 font-weight: 500;
                 color: #000 !important;
              }
+
+             .submenu_item {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1000;
+                display: none;
+                float: left;
+                min-width: 10rem;
+                padding: 0.5rem 0;
+                margin: 0.125rem 0 0;
+                font-size: 1rem;
+                color: #212529;
+                text-align: left;
+                list-style: none;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                border-radius: 0.25rem;
+            }
+
+            .custom_header ul li a {
+                padding: 6px 16px;
+            }
+
         }   
 
         /* ============ small devices ============ */
@@ -144,9 +171,10 @@
                                     <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#" style="font-size: 14px;">My Opportunity
                                     <b class="caret"></b>
                                     </a>
-                                    <ul class="dropdown-menu">
-                                       <li class="nav-item"><a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
-                                           <ul class="submenu dropdown-menu">
+                                    <ul class="dropdown-menu sub_navbar">
+                                       <li class="nav-item">
+                                        <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                           <ul class="submenu1 submenu_item">
                                                 <li><a class="dropdown-item submenu_down" href="/freelancer/my-contract_job">Contract Job</a>
                                                 </li>
                                                 <li><a class="dropdown-item submenu_down" href="/freelancer/my-project">Project</a>
@@ -326,47 +354,19 @@
     @yield('footer_scripts')
     <!-- end page level js -->
     <script>
-        $(".navbar-toggler-icon").click(function () {
-        $(this).closest('.navbar').find('.collapse').toggleClass('collapse1')
-    })
+        $(document).ready(function(){
+                $('ul.submenu1').hide();
+                $('ul.sub_navbar > li, ul.submenu1 > li').hover(function () {
+                if ($('> ul.submenu1',this).length > 0) {
+                    $('> ul.submenu1',this).stop().slideDown('slow');
+                }
+                },function () {
+                    if ($('> ul.submenu1',this).length > 0) {
+                        $('> ul.submenu1',this).stop().slideUp('slow');
+                    }
+                });
+            });
 
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip().css('font-size', '14px');
-    })
-
-    document.addEventListener("DOMContentLoaded", function(){
-// make it as accordion for smaller screens
-if (window.innerWidth < 992) {
-
-  // close all inner dropdowns when parent is closed
-  document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
-    everydropdown.addEventListener('hidden.bs.dropdown', function () {
-      // after dropdown is hidden, then find all submenus
-        this.querySelectorAll('.submenu').forEach(function(everysubmenu){
-          // hide every submenu as well
-          everysubmenu.style.display = 'none';
-        });
-    })
-  });
-
-  document.querySelectorAll('.dropdown-menu a').forEach(function(element){
-    element.addEventListener('click', function (e) {
-        let nextEl = this.nextElementSibling;
-        if(nextEl && nextEl.classList.contains('submenu')) {    
-          // prevent opening link if link needs to open dropdown
-          e.preventDefault();
-          if(nextEl.style.display == 'block'){
-            nextEl.style.display = 'none';
-          } else {
-            nextEl.style.display = 'block';
-          }
-
-        }
-    });
-  })
-}
-// end if innerWidth
-}); 
     </script>
 </body>
 

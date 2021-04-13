@@ -71,7 +71,7 @@ class FreelancerController extends Controller
 
     public function myJobProposal()
     {
-        $leads = JobLeads::with('jobdetail','jobProposal')->where('from_user_id', Sentinel::getUser()->id)->paginate(10);
+        $leads = JobLeads::with('jobdetail','jobcontractschedule')->where('from_user_id', Sentinel::getUser()->id)->paginate(10);
         //return $leads;
         return view('freelancer/myproposal', compact('leads'));
     }

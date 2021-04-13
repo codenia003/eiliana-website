@@ -48,4 +48,9 @@ class JobLeads extends Model
     public function advacne_amount() {
         return $this->jobpaymentschedule()->where('advance_payment','=', '1');
     }
+
+    public function jobcontractschedule()
+    {
+        return $this->hasOne('App\Models\ContractualJobSchedule', 'job_leads_id', 'job_leads_id');
+    }
 }

@@ -62,4 +62,5 @@ class Job extends Model
     {
         return $query->where('job_status_id', '=', $value);
     }
+
 }

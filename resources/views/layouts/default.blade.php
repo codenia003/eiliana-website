@@ -178,9 +178,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-proposal') }}">My Opportunity</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-project') }}">My Project</a>
-                            </li>
+                            </li> --}}
                             <a href="{{ url('/job-posting') }}" class="nav-item nav-link login_signup">Post Project</a>
                         @endif
                         {{-- <a href="#" class="nav-item nav-link messages"><i class="fa fa-comments"></i><span class="badge">10</span></a> --}}

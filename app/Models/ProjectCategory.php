@@ -13,9 +13,8 @@ class ProjectCategory extends Model
      protected $primaryKey = 'id';
     
 
-
     public $fillable = [
-        'name'
+        'name', 'parent_id', 'heading', 'descriptor', 'slug', 'keywords'
     ];
 
     /**

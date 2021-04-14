@@ -4,6 +4,7 @@
      <tr>
         <th>Sr.No</th>
         <th>Name</th>
+        <th>Parent Category Name</th>
         <th >Action</th>
      </tr>
     </thead>
@@ -15,6 +16,15 @@
         <tr>
             <td>{!! $a++ !!}</td>      
             <td>{!! $projectCategory->name !!}</td>
+            
+            <td>@foreach($parentProjectCategories as $parent)
+                @if( $projectCategory->parent_id == $parent->id )
+                {{ $parent->name }}
+                
+                @endif
+              @endforeach
+            </td>
+           
             <td>
                 <!--  <a href="{{ route('admin.projectCategories.show', collect($projectCategory)->first() ) }}">
                      <i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view projectCategory"></i>

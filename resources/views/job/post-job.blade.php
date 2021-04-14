@@ -178,7 +178,7 @@ Job Post
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Technology Preference</label>
-                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple>
+                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
                                                 <option value=""></option>
                                                 @foreach ($technologies as $technology)
                                                 <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
@@ -187,13 +187,13 @@ Job Post
                                         </div>
                                         <div class="form-group col-12">
                                             <label>Framework</label>
-                                            <select class="form-control select2" name="framework[]" id="framework" multiple>
+                                            <select class="form-control select2" name="framework[]" id="framework" multiple required>
                                                 <option value=""></option>
                                             </select>
                                         </div>
                                         <div class="form-group col">
                                             <label>Candidate Role</label>
-                                            <select name="candidate_role" class="form-control">
+                                            <select name="candidate_role" class="form-control" required>
                                                 <option value=""></option>
                                                 @foreach ($candidateroles as $candidaterole)
                                                 <option value="{{ $candidaterole->candidate_role_id }}">{{ $candidaterole->name }}</option>
@@ -202,7 +202,7 @@ Job Post
                                         </div>
                                         <div class="form-group col">
                                             <label>Product Industry Exprience</label>
-                                            <select name="product_industry_exprience" class="form-control">
+                                            <select name="product_industry_exprience" class="form-control" required>
                                                 <option value=""></option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -626,7 +626,7 @@ Job Post
 <script>
 $('#postJobForm').bootstrapValidator({});
 $(window).bind("load", function() {
-    
+  
 });    
 $(document).ready(function() {
     $('#technologty_pre').select2({

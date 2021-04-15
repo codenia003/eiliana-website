@@ -29,4 +29,11 @@ class HomeController extends JoshController
         // return $jobs;
         return view('index', compact('jobs','technologies','projectcategories','locations'));
     }
+
+    public function categoryDetails($slug)
+    {
+        $projectcategorie = ProjectCategory::where('slug' , $slug)->first();
+        return $projectcategorie;
+        return view('home.projectcategorie', compact('projectcategorie'));
+    }
 }

@@ -292,6 +292,7 @@ Route::group(
 //     }]
 // );
 Route::get('/', 'HomeController@index')->name('/');
+Route::get('category/{slug}', 'HomeController@categoryDetails')->name('category-slug');
 
 // account
 Route::group(
@@ -571,5 +572,5 @@ Route::get('news/{news}', 'NewsController@show')->name('news.show');
 //info
 Route::get('privacy-policy', 'InformationController@privacy')->name('privacypolicy');
 
-Route::get('{name?}', 'FrontEndController@showFrontEndView');
+// Route::get('{name?}', 'FrontEndController@showFrontEndView');
 // End of frontend views

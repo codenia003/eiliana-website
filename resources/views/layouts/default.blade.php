@@ -12,6 +12,10 @@
         | Welcome To Eiliana
         @show
     </title>
+    <meta name="description" content="@yield('meta_description','Hire Best Developers for your Projects')">
+    <meta name="keywords" content="@yield('meta_keywords','development-testing')">
+    <link rel="canonical" href="{{url()->current()}}"/>
+
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <!--global css starts-->
@@ -37,27 +41,27 @@
     <style type="text/css">
         /* ============ desktop view ============ */
         @media all and (min-width: 992px) {
-            .dropdown-menu li{ 
-                position: relative; 
+            .dropdown-menu li{
+                position: relative;
              }
-            .nav-item .submenu1{ 
+            .nav-item .submenu1{
                 display: none;
                 position: absolute;
-                left:100%; 
+                left:100%;
                 top:-7px;
             }
-            .nav-item .submenu1-left{ 
-                right:100%; 
+            .nav-item .submenu1-left{
+                right:100%;
                 left:auto;
             }
-            .dropdown-menu > li:hover{ 
-                background-color: #f1f1f1 
+            .dropdown-menu > li:hover{
+                background-color: #f1f1f1
             }
-            /*.dropdown-menu > li:hover > .submenu{ 
-                display: block; 
+            /*.dropdown-menu > li:hover > .submenu{
+                display: block;
             }*/
 
-            .dropdown-menu li .submenu_down{ 
+            .dropdown-menu li .submenu_down{
                 font-size: 14px;
                 font-weight: 500;
                 color: #000 !important;
@@ -87,13 +91,13 @@
                 padding: 6px 16px;
             }
 
-        }   
+        }
 
         /* ============ small devices ============ */
         @media (max-width: 991px) {
           .dropdown-menu .dropdown-menu{
-              margin-left:0.7rem; 
-              margin-right:0.7rem; 
+              margin-left:0.7rem;
+              margin-right:0.7rem;
               margin-bottom: .5rem;
           }
         }

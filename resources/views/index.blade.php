@@ -375,9 +375,9 @@ Home
                     @endif
                     <p>{{ $item->descriptor }}</p>
                     @if ($loop->even)
-                    <a href="#" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now</a>
+                    <a href="{{ url('category') . '/' .$item->slug }}" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now</a>
                     @else
-                    <a href="#" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now</a>
+                    <a href="{{ url('category') . '/' .$item->slug }}" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now</a>
                     @endif
                 </div>
             </div>

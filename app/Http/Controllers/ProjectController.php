@@ -488,8 +488,52 @@ class ProjectController extends JoshController
 
             }
         }
+    }
 
+    public function categoryDetails($slug, Request $request)
+    {
+        $pagename = [
+        	'page_title' => 'Project Search',
+        	'lookingfor' => '1'
+        ];
+        $user = Sentinel::getUser();
 
+        if (empty($request->input('lookingfor'))) {
+            $technologies = Technology::where('parent_id', '0')->get();
+            $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
+            $locations = Location::all();
+
+            $autocategorie = ProjectCategory::where('slug' , $slug)->first();
+
+            $request->session()->forget('projectcategory');
+            $request->session()->put('projectcategory', $autocategorie);
+
+            return view('project/search-project', compact('pagename','projectcategorys','locations','technologies'));
+        } else {
+            $data = $request->all();
+            $contractsattfing = $data;
+            $request->session()->forget('contractsattfing');
+            $request->session()->put('contractsattfing', $contractsattfing);
+
+            $sound = "";
+            $words = explode(" " , $request->input('key_skills')) ;
+            foreach($words as $word) {
+                $sound .= metaphone($word);
+                if (next($words)==true) {
+                    $sound .= " ";
+                };
+            }
+
+            if ($data['lookingfor'] == '2') {
+                $projects = Project::with('locations','customerindustry1')->expire()->active('1')->where('project_category', '=', $data['project_category'])->paginate(10);
+                $count = count($projects);
+                return view('search/browse-project', compact('count', 'projects'));
+            } else {
+                $jobs = Job::with('locations','customerindustry1')->expire()->active('1')->where('indexing', 'LIKE', '%'.$sound.'%')->paginate(10);
+                return view('search/browse-job', compact('jobs'));
+
+            }
+        }
     }
 
     public function getProjectDeatils($id)

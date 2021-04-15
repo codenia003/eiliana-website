@@ -292,7 +292,6 @@ Route::group(
 //     }]
 // );
 Route::get('/', 'HomeController@index')->name('/');
-Route::get('category/{slug}', 'HomeController@categoryDetails')->name('category-slug');
 
 // account
 Route::group(
@@ -545,6 +544,7 @@ Route::group(
 Route::resource('user_emails', 'UsersEmailController');
 // client seaech and post
 Route::get('hire-talent', 'JobController@hireTalent')->name('hire-talent');
+Route::get('hire-talent/{slug}', 'JobController@categoryDetails')->name('hire-talent-slug');
 Route::get('hire-talent-sales', 'JobController@hireTalentSales')->name('hire-talent-sales');
 Route::post('talent-search', 'JobController@talentSearch')->name('talent-search');
 Route::get('job-posting', 'JobController@jobProject')->name('job-posting');
@@ -552,6 +552,7 @@ Route::post('job-posting-search', 'JobController@jobPostingSearch')->name('job-p
 
 // feeelancer
 Route::get('search-project', 'ProjectController@getSearchProject')->name('search-project');
+Route::get('search-project/{slug}', 'ProjectController@categoryDetails')->name('search-project-slug');
 
 Route::get('/getframework', 'ProfileController@getframework');
 Route::get('/getprojectcategory', 'ProjectController@getProjectCategory');

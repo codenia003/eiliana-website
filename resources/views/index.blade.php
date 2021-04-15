@@ -375,9 +375,18 @@ Home
                     @endif
                     <p>{{ $item->descriptor }}</p>
                     @if ($loop->even)
-                    <a href="{{ url('category') . '/' .$item->slug }}" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now</a>
+                        @if (Session::get('users')['login_as'] == '1')
+                            <a href="{{ url('search-project') . '/' .$item->slug }}" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now</a>
+                        @else
+                            <a href="{{ url('hire-talent') . '/' .$item->slug }}" class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now</a>
+                        @endif
                     @else
-                    <a href="{{ url('category') . '/' .$item->slug }}" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now</a>
+                        @if (Session::get('users')['login_as'] == '1')
+                            <a href="{{ url('search-project') . '/' .$item->slug }}" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now</a>
+                        @else
+                            <a href="{{ url('hire-talent') . '/' .$item->slug }}" class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now</a>
+                        @endif
+
                     @endif
                 </div>
             </div>

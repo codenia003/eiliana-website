@@ -78,6 +78,25 @@ class JobController extends JoshController
         return view('job/hire-talent', compact('pagename','projectcategorys','locations'));
     }
 
+    public function categoryDetails($slug, Request $request)
+    {
+        $pagename = [
+        	'page_title' => 'Hire Talent',
+        	'lookingfor' => '1'
+        ];
+        $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
+        $locations = Location::all();
+
+        $autocategorie = ProjectCategory::where('slug' , $slug)->first();
+
+        $request->session()->forget('sales_referral');
+
+        $request->session()->forget('projectcategory');
+        $request->session()->put('projectcategory', $autocategorie);
+
+        return view('job/hire-talent', compact('pagename','projectcategorys','locations'));
+    }
+
     public function hireTalentSales(Request $request)
     {
 
@@ -761,7 +780,7 @@ class JobController extends JoshController
              $jobschedules->on_postpaid_amount = $input['on_postpaid_amount'];
              $jobschedules->advance_amount = $input['advance_amount'];
         }
-        
+
         $jobschedules->location = $input['location'];
         $jobschedules->satuts = '1';
         $jobschedules->save();

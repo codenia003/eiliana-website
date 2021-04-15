@@ -62,7 +62,7 @@
                                             <label>Project Category</label>
                                             <select name="project_category" class="form-control" id="project_category" onchange="change_category();">
                                                 @foreach ($projectcategorys as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}"  {{ (Session::get('projectcategory')['id']==$category->id)? "selected" : "" }}>{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

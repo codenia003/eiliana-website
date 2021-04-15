@@ -228,3 +228,16 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
     Route::get('job_finance/edit/{id}', ['as'=> 'job_finance.edit', 'uses' => 'FinanceController@jobFinanceEdit']);
     Route::post('job_finance/job-assign-to-resource', 'FinanceController@JobAssignToResource')->name('job-assign-to-resource');
 });
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+    
+    Route::get('homePage', ['as'=> 'homePage.index', 'uses' => 'HomeController@index']);
+    Route::post('homePage', ['as'=> 'homePage.store', 'uses' => 'HomeController@store']);
+    Route::get('homePage/create', ['as'=> 'homePage.create', 'uses' => 'HomeController@create']);
+    Route::put('homePage/{homePage}', ['as'=> 'homePage.update', 'uses' => 'HomeController@update']);
+    Route::patch('homePage/{homePage}', ['as'=> 'homePage.update', 'uses' => 'HomeController@update']);
+    Route::get('homePage/{id}/delete', array('as' => 'homePage.delete', 'uses' => 'HomeController@getDelete'));
+    Route::get('homePage/{id}/confirm-delete', array('as' => 'homePage.confirm-delete', 'uses' => 'HomeController@getModalDelete'));
+    Route::get('homePage/{homePage}', ['as'=> 'homePage.show', 'uses' => 'HomeController@show']);
+    Route::get('homePage/{homePage}/edit', ['as'=> 'homePage.edit', 'uses' => 'HomeController@edit']);
+});

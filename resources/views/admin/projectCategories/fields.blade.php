@@ -38,7 +38,7 @@
 <!-- Keywords Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('keywords', 'Keywords:') !!}
-    {!! Form::text('keywords', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('keywords', null, ['class' => 'form-control']) !!}
 </div>		
 
 <!-- Submit Field -->

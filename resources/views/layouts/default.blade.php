@@ -169,8 +169,11 @@
                     </div> -->
                     <div class="navbar-nav ml-auto">
                         @if (Session::get('users')['login_as'] == '1')
-                            <li class="nav-item">
+                           <!--  <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Lead</a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/client/my-lead') }}">My Sales Referral</a>
                             </li>
                             <div class="nav-item dropdown">
                                 <li class="nav-item dropdown" id="myDropdown">
@@ -179,7 +182,7 @@
                                     </a>
                                     <ul class="dropdown-menu sub_navbar">
                                        <li class="nav-item">
-                                        <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                        <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
                                            <ul class="submenu1 submenu_item">
                                                 <li><a class="dropdown-item submenu_down" href="/freelancer/my-contract_job">Contract Job</a>
                                                 </li>
@@ -196,22 +199,48 @@
                             <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-proposal') }}">My Proposal</a>
                             </li> -->
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="#">My Proposal</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-project') }}">My Project</a>
-                            </li>
+                            </li> -->
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-lead') }}">My Sales Referral</a>
-                            {{-- </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/client/my-requirement') }}">My Requirement</a>
-                            </li> --}}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/client/my-proposal') }}">My Opportunity</a>
                             </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/client/my-requirement') }}">My Requirement</a>
+                            </li>  -->
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/client/my-proposal') }}">My Opportunity</a>
+                            </li> -->
+                            
+                            <div class="nav-item dropdown">
+                                <li class="nav-item dropdown" id="myDropdown">
+                                    <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#" style="font-size: 14px;">My Opportunity
+                                    <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu sub_navbar">
+                                        <li class="nav-item">
+                                          <a class="dropdown-item" href="{{ url('/client/my-proposal') }}" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                           <ul class="submenu1 submenu_item">
+                                                <li><a class="dropdown-item submenu_down" href="#">Contract Job</a>
+                                                </li>
+                                                <li><a class="dropdown-item submenu_down" href="/client/my-project">Project</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item" href="{{ url('/client/my-requirement') }}" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Requirement </a>
+                                       </li>
+                                       <li class="nav-item">
+                                            <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Delivery </a>
+                                       </li>
+                                    </ul>
+                               </li>
+                            </div>
+                            
                             {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-project') }}">My Project</a>
                             </li> --}}

@@ -453,6 +453,7 @@ Route::group(
 
         Route::get('my-proposal', 'ClientController@myProposal')->name('my-proposal');
         Route::get('my-proposal/{id}', 'ClientController@myProposalView')->name('my-proposal.view');
+        Route::get('my-project-lead/{id}', 'ClientController@myProjectLeadView')->name('my-project-lead.view');
         Route::post('post-proposal-job-lead', 'ClientController@postProposalJobLead');
         Route::get('my-project', 'ClientController@myProject')->name('my-project');
 

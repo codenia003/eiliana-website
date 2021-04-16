@@ -20,6 +20,7 @@ use App\Models\ContractualJobInform;
 use App\Models\ContractualJobSchedule;
 use App\Models\SalesReferral;
 use App\Models\ProjectLeads;
+use App\Models\Project;
 use App\Models\JobOrderInvoice;
 use App\Models\JobLeads;
 use App\Models\JobContractDetails;
@@ -73,7 +74,16 @@ class ClientController extends JoshController
 
     public function myProject()
     {
-        return view('client/myproject');
+        $project_ids = Project::with('projectbidresponse')->where('posted_by_user_id', Sentinel::getUser()->id)->paginate(10);
+       //return $project_ids;
+        return view('client/myproject', compact('project_ids'));
+    }
+
+    public function myProjectLeadView($id)
+    {
+        $leads = ProjectLeads::with('projectdetail')->where('project_id', $id)->where('lead_status', '!=' ,'1')->paginate(10);
+        // return $leads;
+        return view('client/myprojectlead', compact('leads'));
     }
 
     public function projectSchedule($id)

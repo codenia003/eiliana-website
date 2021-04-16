@@ -572,7 +572,9 @@ Route::get('news', 'NewsController@index')->name('news');
 Route::get('news/{news}', 'NewsController@show')->name('news.show');
 
 //info
+Route::get('about', 'InformationController@about')->name('about');
 Route::get('privacy-policy', 'InformationController@privacy')->name('privacypolicy');
+Route::get('terms-and-conditions', 'InformationController@termsAndConditions')->name('termsandconditions');
 
 // Route::get('{name?}', 'FrontEndController@showFrontEndView');
 // End of frontend views

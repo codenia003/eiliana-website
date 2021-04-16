@@ -110,7 +110,7 @@
         <div class="section px-lg-5 px-3 py-lg-2 py-1">
             @if(Sentinel::guest())
             <nav class="navbar navbar-expand-lg navbar-light custom_header">
-                <a class="navbar-brand" href="/"><img src="/assets/img/logo.png"></a>
+                <a class="navbar-brand" href="/"><img src="https://eiliana.com/assets/img/logo.png"></a>
                 {{-- <li class="log">
                     <a class="login" href="#">Login</a>
                 </li>

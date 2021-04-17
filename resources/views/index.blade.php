@@ -506,12 +506,12 @@ Home
 </section>
 
 <div class="overflow-hidden contract-job">
-    <div class="container space-2 space-top-md-2 space-bottom-3">
+    <div class="container space-1 space-top-md-1 space-bottom-2">
         <div class="row justify-content-lg-between align-items-end">
             <div class="col-md-7 col-lg-7 mb-7 mb-md-0">
                 <div class="mb-4">
                     <h1 class="h2 mb-3">Smart Sales Referral Program</h1>
-                    <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</p>
+                    <p class="lead">Referrals are one of the most valuable forms of marketing. As per a study revealed that 74% of people see referrals as the most trusted and influential form of advertising. If someone you know tells you how great a freelancer is, you're likely to give it a try. Enjoy eiliana.com sales referral program where you can refer an IT project and decide your payout</p>
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-8 col-lg-8 col-12">
@@ -829,9 +829,9 @@ Home
                             <div class="slide">
                                 <div class="crowd_favrt">
                                     <div class="video-player mx-md-auto">
-                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
+                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal_1">
                                             <div class="card-img-top">
-                                                <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/1.png" alt="Image" data-target="#myModal">
+                                                <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/1.png" alt="Image" data-target="#myModal_1">
                                             </div>
                                         </a>
                                     </div>
@@ -865,7 +865,28 @@ Home
 
                     <video width="690" height="340" controls>
                         <source src="{{URL::asset("/assets/video/eiliana_final.mp4")}}" type="video/mp4">
-                      Your browser does not support the video tag.
+                        Your browser does not support the video tag.
+                  </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade pullDown login-body border-0" id="myModal_1" role="dialog" aria-labelledby="modalLabelnews">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue text-white">
+                <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="main-moudle">
+
+                    <video width="690" height="340" controls>
+                        <source src="{{URL::asset("/assets/video/eiliana_final_2.mp4")}}" type="video/mp4">
+                        Your browser does not support the video tag.
                   </video>
                 </div>
             </div>
@@ -888,11 +909,11 @@ Home
 $(document).ready(function() {
     var $videoSrc;
     // when the modal is opened autoplay it
-    $('#myModal').on('shown.bs.modal', function (e) {
+    $('#myModal, #myModal_1').on('shown.bs.modal', function (e) {
         $('video').trigger('play');
     })
 
-    $('#myModal').on('hide.bs.modal', function (e) {
+    $('#myModal, #myModal_1').on('hide.bs.modal', function (e) {
         $('video').trigger('pause');
     })
 });

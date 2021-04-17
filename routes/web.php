@@ -407,7 +407,7 @@ Route::group(
         Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');
         Route::post('staffing-lead-convert', 'JobController@staffingLeadConvert');
 
-        Route::get('sales-referral', 'SalesController@salesReferral');
+
         Route::get('sales-referral-form', 'SalesController@salesReferralForm');
         Route::post('sales/post-referral-form', 'SalesController@postSalesReferralForm')->name('referralform');
         Route::get('sales/identifyconsultant', 'SalesController@identifyconsultant');
@@ -572,9 +572,11 @@ Route::get('news', 'NewsController@index')->name('news');
 Route::get('news/{news}', 'NewsController@show')->name('news.show');
 
 //info
+Route::get('sales-referral', 'SalesController@salesReferral');
 Route::get('about', 'InformationController@about')->name('about');
 Route::get('privacy-policy', 'InformationController@privacy')->name('privacypolicy');
 Route::get('terms-and-conditions', 'InformationController@termsAndConditions')->name('termsandconditions');
+Route::get('how-its-work', 'InformationController@howItsWork')->name('howitswork');
 
 // Route::get('{name?}', 'FrontEndController@showFrontEndView');
 // End of frontend views

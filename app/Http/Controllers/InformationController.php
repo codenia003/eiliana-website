@@ -11,4 +11,8 @@ class InformationController extends JoshController
         return view('information.privacy-policy');
     }
 
+    public function howItsWork(){
+        return view('information.howitswork');
+    }
+
 }

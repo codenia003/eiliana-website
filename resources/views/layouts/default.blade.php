@@ -30,13 +30,13 @@
     <!--end of page level css-->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B98SSYP9VQ"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y58JLJ1H42"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-B98SSYP9VQ');
+    gtag('config', 'G-Y58JLJ1H42');
     </script>
     <style type="text/css">
         /* ============ desktop view ============ */
@@ -127,10 +127,10 @@
                             {{-- <a class="nav-link" href="{{ url('/job-posting') }}">Post a Project</a> --}}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">How It Works</a>
+                            <a class="nav-link" href="{{ route('howitswork') }}">How It Works</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Our Products</a>
+                            <a class="nav-link" href="{{ url('sales-referral') }}">Sales Referral</a>
                         </li>
                         {{-- <li class="nav-item d-none d-sm-block">
                             <button class="login_signup yellow-linear-gradient text-white" onclick="location.href='/account/login'">Login</button>
@@ -215,7 +215,7 @@
                             <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-proposal') }}">My Opportunity</a>
                             </li> -->
-                            
+
                             <div class="nav-item dropdown">
                                 <li class="nav-item dropdown" id="myDropdown">
                                     <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#" style="font-size: 14px;">My Opportunity
@@ -240,7 +240,7 @@
                                     </ul>
                                </li>
                             </div>
-                            
+
                             {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-project') }}">My Project</a>
                             </li> --}}

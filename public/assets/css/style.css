@@ -1518,3 +1518,29 @@ span.select2-selection.select2-selection--single {
 .mobile-bg {
     background-color: #effafc;
 }
+.search-project {
+    padding-left: 50px;
+}
+.search-project .content h3 {
+    font-size: 20px;
+    color: #de4b39;
+}
+.search-project .content p {
+    color: #1a73e9;
+    font-size: 16px;
+    line-height: 25px;
+}
+.search-project .search-image img.img-fluid {
+    margin-left: 10px;
+    height: 220px;
+    object-fit: contain;
+}
+.search-project .search-image .names {
+    float: right;
+}
+.search-project .search-image .names h4 {
+    color: #de4b39;
+}
+.search-project .search-image .names p {
+    color: #003464;
+}

@@ -63,4 +63,9 @@ class Job extends Model
         return $query->where('job_status_id', '=', $value);
     }
 
+    public function jobbidresponse()
+    {
+        return $this->hasMany('App\Models\JobLeads', 'job_id', 'job_id');
+    }
+
 }

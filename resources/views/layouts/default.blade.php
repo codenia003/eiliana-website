@@ -173,7 +173,7 @@
                                 <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Lead</a>
                             </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/client/my-lead') }}">My Sales Referral</a>
+                                <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Sales Referral</a>
                             </li>
                             <div class="nav-item dropdown">
                                 <li class="nav-item dropdown" id="myDropdown">
@@ -225,7 +225,7 @@
                                         <li class="nav-item">
                                           <a class="dropdown-item" href="{{ url('/client/my-proposal') }}" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
                                            <ul class="submenu1 submenu_item">
-                                                <li><a class="dropdown-item submenu_down" href="#">Contract Job</a>
+                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-contract-job') }}">Contract Job</a>
                                                 </li>
                                                 <li><a class="dropdown-item submenu_down" href="/client/my-project">Project</a>
                                                 </li>
@@ -233,9 +233,21 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="dropdown-item" href="{{ url('/client/my-requirement') }}" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Requirement </a>
+                                            <!-- <ul class="submenu1 submenu_item">
+                                                <li><a class="dropdown-item submenu_down" href="#">Contract Job</a>
+                                                </li>
+                                                <li><a class="dropdown-item submenu_down" href="/client/my-project">Project</a>
+                                                </li>
+                                            </ul> -->
                                        </li>
                                        <li class="nav-item">
-                                            <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Delivery </a>
+                                            <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Delivery &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                            <ul class="submenu1 submenu_item">
+                                                <li><a class="dropdown-item submenu_down" href="#">Contract Job</a>
+                                                </li>
+                                                <li><a class="dropdown-item submenu_down" href="#">Project</a>
+                                                </li>
+                                            </ul>
                                        </li>
                                     </ul>
                                </li>

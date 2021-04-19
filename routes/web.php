@@ -473,6 +473,7 @@ Route::group(
         Route::post('contractual-job-payment', 'ClientController@postContractualJobPayment')->name('contractual-job-payment');
 
         Route::get('invoice',array('as'=>'invoice','uses'=>'ClientController@GenerateInvoice'));
+        Route::get('my-contract-job', 'ClientController@myContractJob')->name('my-contract-job');
 
     }
 );

@@ -4,7 +4,7 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">My Project</span>
+            <span class="h5 text-white ml-2">My Contract Job</span>
         </div>
     </div>
 </div>
@@ -14,8 +14,8 @@
     <table class="table table-striped" id="myopportunity-table">
         <thead>
          <tr>
-            <th>Project Lead Id</th>
-            <th>Project Name</th>
+            <!-- <th>Job Lead Id</th> -->
+            <th>Job Name</th>
             <th>Subject</th>
             <th>Status</th>
             <th>Status Date</th>
@@ -23,34 +23,33 @@
          </tr>
         </thead>
         <tbody>
-        @foreach($leads as $lead)
+        @foreach($jobs as $jobes)
+           @foreach($jobes->jobbidresponse as $job)
             <tr>
-                <td>{{ $lead->project_leads_id }}</td>
+                <!-- <td>{{ $job->Job_id }}</td> -->
                 <td>
-                <a class="addAttr" data-toggle="modal" data-target="#modal-4" data-id="{{ $lead->project_leads_id }}" data-bidamount="{{ $lead->bid_amount }}" data-subject="{{ $lead->subject }}" data-message="{{ $lead->message }}" data-display_status="{{ $lead->display_status }}" > {{ $lead->projectdetail->project_title }}</a>
+                <a class="addAttr" data-toggle="modal" data-target="#modal-4" data-id="{{ $job->Job_leads_id }}" data-subject="{{ $job->subject }}" data-message="{{ $job->message }}" data-display_status="{{ $job->display_status }}" > {{ $jobes->job_title }}</a>
                 </td>
-                <td>{{ $lead->subject }}</td>
+                <td>{{ $job->subject }}</td>
                 <td>
-                    @if ($lead->lead_status == 1)
+                    @if ($job->lead_status == 1)
                     Pending
-                    @elseif($lead->lead_status == 2)
+                    @elseif($job->lead_status == 2)
                     Process
-                    @elseif($lead->lead_status == 3)
+                    @elseif($job->lead_status == 3)
                     Complete
                     @else
                     Cancel
                     @endif
                 </td>
-                <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('F d, Y') }}</td>
-                <!-- <td>
-                    <a href="{{ route('project-schedule.my',$lead->project_leads_id) }}"><i class="fas fa-info-circle"></i></a>
-                </td> -->
+                <td>{{ \Carbon\Carbon::parse($job->created_at)->format('F d, Y') }}</td>
             </tr>
+            @endforeach
         @endforeach
         </tbody>
     </table>
     <div class="pager">
-        {{ $leads->withQueryString()->links() }}
+        {{ $jobs->withQueryString()->links() }}
     </div>
 </div>
 <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
@@ -59,17 +58,13 @@
                 <form action="#" method="POST" id="staffingflead">
                     @csrf
                     <div class="modal-header bg-blue text-white">
-                        <h4 class="modal-title" id="modalLabelnews">Project Lead Detail</h4>
+                        <h4 class="modal-title" id="modalLabelnews">Job Lead Detail</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label for="id" class="col-form-label">Project Lead Id:</label>
+                                <label for="id" class="col-form-label">Job Lead Id:</label>
                                 <input type="text" class="form-control" name="id" id="id" value="" readonly="">
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="bidamount" class="col-form-label">Bid Amount:</label>
-                                <input class="form-control" type="text" name="bidamount" id="bidamount" readonly>
                             </div>
                         </div>
 
@@ -111,13 +106,11 @@ $(document).ready(function() {
   $('.addAttr').click(function() {
     var id = $(this).data('id');  
     console.log(id); 
-    var bidamount = $(this).data('bidamount'); 
     var subject = $(this).data('subject');   
     var message = $(this).data('message'); 
     var display_status = $(this).data('display_status');  
 
     $('#id').val(id); 
-    $('#bidamount').val(bidamount); 
     $('#subject').val(subject); 
     $('#message').val(message); 
     $('#display_status').val(display_status); 

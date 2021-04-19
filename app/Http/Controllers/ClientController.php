@@ -72,6 +72,13 @@ class ClientController extends JoshController
         return view('client/myproposalview', compact('leads'));
     }
 
+    public function myContractJob()
+    {
+        $jobs = Job::with('jobbidresponse')->where('user_id', Sentinel::getUser()->id)->paginate(10);
+       //return $jobs;
+        return view('client/mycontractjob', compact('jobs'));
+    }
+
     public function myProject()
     {
         $project_ids = Project::with('projectbidresponse')->where('posted_by_user_id', Sentinel::getUser()->id)->paginate(10);

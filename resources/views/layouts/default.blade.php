@@ -318,7 +318,7 @@
                     <h5 class="text-white font-weight-500">Features</h5>
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Press</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Press</a></li> --}}
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Release notes</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Integrations</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Pricing</a></li>
@@ -361,22 +361,22 @@
                     <ul class="list-inline mb-0">
                         <!-- Social Networks -->
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-ghost-light bg-facebook" href="#">
+                            <a class="btn btn-icon btn-ghost-light bg-facebook" href="https://www.facebook.com/eilianaglobal" target="_blank">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-ghost-light bg-twitter" href="#">
+                            <a class="btn btn-icon btn-ghost-light bg-twitter" href="https://twitter.com/ComEiliana" target="_blank">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-ghost-light bg-linkedin" href="#">
+                            <a class="btn btn-icon btn-ghost-light bg-linkedin" href="https://www.linkedin.com/company/76387030/admin/" target="_blank">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-ghost-light bg-instagram" href="#">
+                            <a class="btn btn-icon btn-ghost-light bg-instagram" href="https://www.instagram.com/eiliana_global/" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </li>

@@ -800,7 +800,7 @@ Home
 
 <section class="section our-solution">
         <div class="text-center w-lg-60 mx-auto">
-        <h1 class="headingmain1">How It Works?</h1>
+        <h1 class="headingmain1">Refer Videos</h1>
         <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right project and clients find the right talent for their job. Checkout our video to see how we go about doing that.</p>
         <div class="dividerheading"></div>
     </div>

@@ -206,12 +206,44 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-7 col-12">
-                	<div class="projects">
+                	{{-- <div class="projects">
                 		<img src="/assets/img/profile/hire-right.png" class="img-fluid" alt="">
+                	</div> --}}
+                    <div class="search-project">
+                		{{-- <img src="/assets/img/profile/hire-right.png" class="img-fluid" alt=""> --}}
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-12">
+                                <div class="content">
+                                    <h3>01 Digital Transformation</h3>
+                                    <p>Digital transformation is the process of using digital technologies to create new or modify existing business processes, culture, and customer experiences.</p>
+                                    <p>Join hand with Eiliana.com and reach to the next level of transformation.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-12">
+                                <div class="search-image">
+                                    <img src="/assets/img/profile/search-projectgirl.png" class="img-fluid" alt="">
+                                    <div class="names">
+                                        <h4>Jyotsana Punj</h4>
+                                        <p>3.5 Years, Content Writer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="content">
+                                    <h3>02 Artificial intelligence</h3>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <p>Artificial intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think like humans and mimic their actions.</p>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <p>From Google Assistant, Siri, Alexa to Uber and Ola, several AI-enabled services are available today that make our lives easier.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 	</div>
-                	<div class="contractual padding-c d-none">
-                		<img src="/assets/img/profile/hire-right-2.png" class="img-fluid" alt="">
-                	</div>
+
                 </div>
             </div>
         </div>

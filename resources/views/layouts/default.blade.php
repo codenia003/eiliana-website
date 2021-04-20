@@ -232,20 +232,20 @@
                                             </ul>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="dropdown-item" href="{{ url('/client/my-requirement') }}" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Requirement </a>
-                                            <!-- <ul class="submenu1 submenu_item">
-                                                <li><a class="dropdown-item submenu_down" href="#">Contract Job</a>
+                                            <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Requirement &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                            <ul class="submenu1 submenu_item">
+                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-requirement-job') }}">Contract Job</a>
                                                 </li>
-                                                <li><a class="dropdown-item submenu_down" href="/client/my-project">Project</a>
+                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-requirement-project') }}">Project</a>
                                                 </li>
-                                            </ul> -->
+                                            </ul>
                                        </li>
                                        <li class="nav-item">
                                             <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Delivery &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
                                             <ul class="submenu1 submenu_item">
-                                                <li><a class="dropdown-item submenu_down" href="#">Contract Job</a>
+                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-job') }}">Contract Job</a>
                                                 </li>
-                                                <li><a class="dropdown-item submenu_down" href="#">Project</a>
+                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-project') }}">Project</a>
                                                 </li>
                                             </ul>
                                        </li>

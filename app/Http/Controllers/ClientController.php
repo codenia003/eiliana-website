@@ -23,6 +23,8 @@ use App\Models\ProjectLeads;
 use App\Models\Project;
 use App\Models\JobOrderInvoice;
 use App\Models\JobLeads;
+use App\Models\Finance;
+use App\Models\JobOrderFinance;
 use App\Models\JobContractDetails;
 use App\Models\JobPaymentSchedule;
 use App\Models\ProjectSchedule;
@@ -45,11 +47,31 @@ class ClientController extends JoshController
         return view('client/myleadview', compact('leads'));
     }
 
-    public function myRequirement()
+    public function myRequirementJob()
     {
-        $leads = ContractStaffingLeads::with('touser')->where('from_user_id', Sentinel::getUser()->id)->latest()->get();
+        //$leads = ContractStaffingLeads::with('touser')->where('from_user_id', Sentinel::getUser()->id)->latest()->get();
+        $leads = Job::with('locations')->where('user_id', Sentinel::getUser()->id)->paginate(10);
+        return view('client/myrequirementjob', compact('leads'));
+    }
 
-        return view('client/myrequirement', compact('leads'));
+    public function myRequirementProject()
+    {
+        $leads = Project::with('locations')->where('posted_by_user_id', Sentinel::getUser()->id)->paginate(10);
+        return view('client/myrequirementproject', compact('leads'));
+    }
+
+    public function myDeliveryJob()
+    {
+        $delivery_job = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','userjobs.jobdetail.by_user_job')->where('status', '=', '2')->get();
+        return $delivery_job;
+        return view('client/mydeliveryjob', compact('delivery_job'));
+    }
+
+    public function myDeliveryProject()
+    {
+        $delivery_project = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('status', '=', '2')->get();
+        //return $delivery_project;
+        return view('client/mydeliveryproject', compact('delivery_project'));
     }
 
     public function myRequirementView($id) {

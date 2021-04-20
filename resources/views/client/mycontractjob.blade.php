@@ -77,7 +77,7 @@
                         
                         <div class="form-group">
                             <label for="message" class="col-form-label">Message:</label>
-                            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                            <textarea class="form-control" id="message" rows="3" readonly></textarea>
                         </div>
 
                     </div>

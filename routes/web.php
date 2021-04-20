@@ -448,8 +448,13 @@ Route::group(
         Route::get('my-lead', 'ClientController@myLead')->name('my-lead');
         Route::get('my-lead/{id}', 'ClientController@myLeadView')->name('my-lead.view');
 
-        Route::get('my-requirement', 'ClientController@myRequirement')->name('my-requirement');
+        Route::get('my-requirement-job', 'ClientController@myRequirementJob')->name('my-requirement-job');
+        Route::get('my-requirement-project', 'ClientController@myRequirementProject')->name('my-requirement-project');
+
         Route::get('my-requirement/{id}', 'ClientController@myRequirementView')->name('my-requirement.view');
+
+        Route::get('my-delivery-job', 'ClientController@myDeliveryJob')->name('my-delivery-job');
+        Route::get('my-delivery-project', 'ClientController@myDeliveryProject')->name('my-delivery-project');
 
         Route::get('my-proposal', 'ClientController@myProposal')->name('my-proposal');
         Route::get('my-proposal/{id}', 'ClientController@myProposalView')->name('my-proposal.view');

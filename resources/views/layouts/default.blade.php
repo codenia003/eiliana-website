@@ -304,12 +304,15 @@
                     <h5 class="text-white font-weight-500">Categories</h5>
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Graphics & Design</a></li>
+                       @foreach($categories as $category)
+                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ $category->slug}}">{{ $category->name}}</a></li>
+                       @endforeach
+                        <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Graphics & Design</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Digital Marketing</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Video & Animation</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Music & Audio</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Programming & Tech</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Business</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Business</a></li> -->
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Sitemap</a></li>
                     </ul>
                     <!-- End Nav Link -->

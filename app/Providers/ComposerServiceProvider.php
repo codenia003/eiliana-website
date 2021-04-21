@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Email;
+use App\Models\ProjectCategory;
 use App\Models\User;
 use Sentinel;
 use Illuminate\Support\Facades\View;
@@ -38,6 +39,11 @@ class ComposerServiceProvider extends ServiceProvider
                 }
             }
         );
+
+        View::composer('layouts.default', function($view) {
+            $projectcategory = ProjectCategory::all();
+            $view->with('categories', $projectcategory);
+         });
     }
 
     /**

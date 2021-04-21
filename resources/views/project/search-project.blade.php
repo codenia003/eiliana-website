@@ -28,9 +28,9 @@
 @section('content')
 <div class="hire-talent">
 	<div class="shadow1">
-        <div class="container space-2">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-0">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-0 space-2">
                     <div id="notific">
                         @include('notifications')
                     </div>
@@ -206,10 +206,7 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-7 col-12">
-                	{{-- <div class="projects">
-                		<img src="/assets/img/profile/hire-right.png" class="img-fluid" alt="">
-                	</div> --}}
-                    <div class="search-project">
+                    <div class="search-project projects space-2">
                 		{{-- <img src="/assets/img/profile/hire-right.png" class="img-fluid" alt=""> --}}
                         <div class="row">
                             <div class="col-lg-7 col-md-7 col-sm-7 col-12">
@@ -243,7 +240,9 @@
                             </div>
                         </div>
                 	</div>
-
+                    <div class="contractual">
+                		<img src="/assets/img/profile/search-contractstaffing.png" class="img-fluid" alt="">
+                	</div>
                 </div>
             </div>
         </div>
@@ -277,7 +276,6 @@
             $('.project-duration').removeClass("d-none");
             $('.project-budget').addClass("d-none");
             $('.project-technology').addClass("d-none");
-
         }
     }
 	function changeLookingFor() {
@@ -287,10 +285,8 @@
         if (anonymous == '1') {
             $('.contractual').removeClass("d-none");
             $('.projects').addClass("d-none");
-            $('.right-colume').addClass("d-none");
         } else {
         	$('.contractual').addClass("d-none");
-        	$('.right-colume').addClass("d-none");
             $('.projects').removeClass("d-none");
         }
     }

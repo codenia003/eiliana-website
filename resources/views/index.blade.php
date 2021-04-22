@@ -645,7 +645,7 @@ Home
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-8">
-                        <h1 class="headingmain1">Frequently asked questions</h1>
+                        {{-- <h1 class="headingmain1">Frequently asked questions</h1> --}}
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-4">
                         <div class="refer-resource">
@@ -671,15 +671,13 @@ Home
                                                     <div class="row no-gutters">
                                                         <div class="col-md-12">
                                                             <div class="mb-2">
-                                                                <div class="display-5">What is development and IT?</div>
-                                                                <p>Development refers to the creation and management of business technology, including computer applications, financial systems, and logistical solutions that help an organization run its operational processes.</p>
-                                                            </div>
-                                                            <div class="mb-2">
-                                                                <div class="display-5">What is development and IT?</div>
-                                                                <p>Development refers to the creation and management of business technology, including computer applications, financial systems, and logistical solutions that help an organization run its operational processes.</p>
+                                                                <div class="display-5">Freelancer Referral Program Content</div>
+                                                                <p>What do you do when you want to look for a product or service?? You reach out to your circle and ask them for recommendations. Recommendations or Referrals are our oldest and the most trusted source of information and exploration! Referring is known to be one of the finest and most trusted approaches connected by both small and huge businesses worldwide.
+                                                                <br>The results concluded that referred resources are  more beneficial and faithful than normal resources. Referred freelancers has a higher contribution margin, better commitment edge, a higher retention rate and are more valuable overall in both the short and long term
+                                                                <br>For every resource referred on Eiliana.com we transfer between 2% to 4% in your bank account depending upon the value of the first project delivered by your freelance referral. Check out the link below and refer Eiliana.com to your family and friends</p>
                                                             </div>
                                                             <div class="find_job_button text-right">
-                                                                <a class="btn_small yellow-linear-gradient" href="#">Sale</a>
+                                                                <a class="btn_small yellow-linear-gradient" href="{{ url('sales-referral') }}">Sale</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -851,48 +849,48 @@ Home
         </a>
     </div>
   </div> --}}
-  <div class="modal fade pullDown login-body border-0" id="myModal" role="dialog" aria-labelledby="modalLabelnews">
-    <div class="modal-dialog " role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-blue text-white">
-                <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="main-moudle">
+  {{-- <div class="modal fade pullDown login-body border-0" id="myModal" role="dialog" aria-labelledby="modalLabelnews">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-blue text-white">
+                    <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="main-moudle">
 
-                    <video width="690" height="340" controls>
-                        <source src="{{URL::asset("/assets/video/eiliana_final.mp4")}}" type="video/mp4">
-                        Your browser does not support the video tag.
-                  </video>
+                        <video width="690" height="340" controls>
+                            <source src="{{URL::asset("/assets/video/eiliana_final.mp4")}}" type="video/mp4">
+                            Your browser does not support the video tag.
+                    </video>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+    </div>
+    {{-- <div class="modal fade pullDown login-body border-0" id="myModal_1" role="dialog" aria-labelledby="modalLabelnews">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-blue text-white">
+                    <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="main-moudle">
+
+                        <video width="690" height="340" controls>
+                            <source src="{{URL::asset("/assets/video/eiliana_final_2.mp4")}}" type="video/mp4">
+                            Your browser does not support the video tag.
+                    </video>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    <div class="modal fade pullDown login-body border-0" id="myModal_1" role="dialog" aria-labelledby="modalLabelnews">
-    <div class="modal-dialog " role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-blue text-white">
-                <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="main-moudle">
-
-                    <video width="690" height="340" controls>
-                        <source src="{{URL::asset("/assets/video/eiliana_final_2.mp4")}}" type="video/mp4">
-                        Your browser does not support the video tag.
-                  </video>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+    </div> --}}
 </section>
 
 <!-- //Container End -->

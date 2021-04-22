@@ -211,7 +211,7 @@
                         <div class="row">
                             <div class="col-lg-7 col-md-7 col-sm-7 col-12">
                                 <div class="content">
-                                    <h3>01 Digital Transformation</h3>
+                                    <h3>Digital Transformation</h3>
                                     <p>Digital transformation is the process of using digital technologies to create new or modify existing business processes, culture, and customer experiences.</p>
                                     <p>Join hand with Eiliana.com and reach to the next level of transformation.</p>
                                 </div>
@@ -227,7 +227,7 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="content">
-                                    <h3>02 Artificial intelligence</h3>
+                                    <h3>Artificial intelligence</h3>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                             <p>Artificial intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think like humans and mimic their actions.</p>

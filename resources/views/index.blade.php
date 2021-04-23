@@ -520,7 +520,8 @@ Home
                         </a>
                         <div class="video">
                             <div class="video-player mx-md-auto">
-                                <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
+                                <!-- <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal"> -->
+                                <a class="js-inline-video-player video-player-btn video-player-centered" href="#">
                                     <div class="card-img-top">
                                         <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/3.png" alt="Image" data-target="#myModal">
                                     </div>
@@ -816,7 +817,8 @@ Home
                             <div class="slide">
                                 <div class="crowd_favrt">
                                     <div class="video-player mx-md-auto">
-                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal">
+                                        <!-- <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal"> -->
+                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#">
                                             <div class="card-img-top">
                                                 <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/2.png" alt="Image" data-target="#myModal">
                                             </div>
@@ -827,7 +829,8 @@ Home
                             <div class="slide">
                                 <div class="crowd_favrt">
                                     <div class="video-player mx-md-auto">
-                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal_1">
+                                        <!-- <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal_1"> -->
+                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#">
                                             <div class="card-img-top">
                                                 <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/photo/refer/1.png" alt="Image" data-target="#myModal_1">
                                             </div>

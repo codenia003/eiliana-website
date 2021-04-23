@@ -15,7 +15,7 @@
     <div class="card">
         <h4 class="card-header text-left">Primary Information</h4>
         <div class="card-body p-4">
-            <form action="{{ url('/profile/updateProfile') }}" method="POST" id="basic_form">
+            <form action="{{ url('/profile/updateProfile') }}" method="POST" id="basic_form" enctype="multipart/form-data">
                 @csrf
                 <!-- <div class="form-group">
                     <label for="applyas">Apply As</label>
@@ -124,6 +124,13 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group basic-file">
+                    <label>Attach Resume</label>
+                    <div class="custom-file" style="height: calc(1.5em + 0.75rem + 8px);">
+                        <input type="file" class="custom-file-input" id="customFile" name="resume_file">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
                 <div class="form-group basic-info">
                     <label>Interested In</label>
                     <div class="form-check form-check-inline ml-3">
@@ -145,6 +152,7 @@
                         </div>
                     </div> -->
                 </div>
+                
                 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog" role="document">
                        <div class="modal-content">

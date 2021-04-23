@@ -73,6 +73,15 @@ type="text/css"/>
         placeholder: 'Select a value',
     });
 
+	$('#duplicate_technologty_pre').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
+    $('#duplicate_framework').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
+
     $('.custom-file-input').on('change',function(){
         //get the file name
         var fileName = $(this).val();
@@ -256,6 +265,31 @@ type="text/css"/>
                 });
                 //console.log(options);
                 $('#framework').html(options);
+            },
+            error: function(xhr, status, error) {
+                console.log("error: ",error);
+            },
+        });
+    }
+
+
+	function change_duplicate_framework()
+    {
+        var technologty_pre = $("#duplicate_technologty_pre").val();
+        // console.log(technologty_pre);
+		alert(technologty_pre);
+        $.ajax({
+            type:"GET",
+            url:"/getframework",
+            data:"technologty_pre="+technologty_pre,
+            success: function(data) {
+                console.log("data",data);
+                var options = '<option value=""></option>';
+                $.each( data, function( key, value ) {
+                    options += "<option value='"+value['technology_id']+"'>"+value['technology_name']+"</option>";
+                });
+                //console.log(options);
+                $('#duplicate_framework').html(options);
             },
             error: function(xhr, status, error) {
                 console.log("error: ",error);

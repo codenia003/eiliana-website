@@ -162,13 +162,50 @@ class ProfileController extends JoshController
     public function updateProfile(Request $request)
     {
         $data = $request->all();
+        $input = $request->except('_token');
         $response['success'] = '0';
         $user = Sentinel::getUser();
-        //update values
-        $user->update($request->except('user_id'));
+        $id = $user->id;
+
+        $resume = User::find($id);
+        $resume->anonymous = $input['anonymous'];
+        if($resume->anonymous == 1)
+        {
+            $resume->pseudoName = $input['pseudoName'];
+        }
+        
+        $resume->first_name = $input['first_name'];
+        $resume->last_name = $input['last_name'];
+        $resume->dob = $input['dob'];
+        $resume->country = $input['country'];
+        $resume->interested = $input['interested'];
+
+        $safeName = "";
+
+        if ($request->hasFile('resume_file')) {
+            $file = $request->file('resume_file');
+            $extension = $file->extension()?: 'png';
+            $safeName = str_random(10) . '.' . $extension;
+            $destinationPath = public_path() . '/uploads/resumes/';
+            $file->move($destinationPath, $safeName);
+            $resume->resume_file = $safeName;
+        }
+
+        // if (isset($input['resume_file'])) {
+        //     $file = $input['resume_file'];
+        //     $extension = $file->extension();
+        //     $folderName = '/uploads/resumes';
+        //     $destinationPath = public_path() . $folderName;
+        //     $safeName = str_random(10) . '.' . $extension;
+        //     $file->move($destinationPath, $safeName);
+        //     $resume->resume_file = '/uploads/resumes/'.$safeName;
+        // }
+
+        //$resume_data = $resume->save();
+        //$user->update($request->except('user_id'));
 
         // Was the user updated?
-        if ($user->save()) {
+        if($resume->save()) {
             // Prepare the success message
             $success = trans('users/message.success.update');
             //Activity log for update account

@@ -99,4 +99,10 @@
     .slider3 .banner1_content .group_button {
         top: 50px;
     }
+    span.fa.fa-angle-right.slick-arrow {
+        right: 0;
+    }
+    span.fa.fa-angle-left.slick-arrow {
+        left: 0;
+    }
 }

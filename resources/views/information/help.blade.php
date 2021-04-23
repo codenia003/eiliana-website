@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-How Its Work
+Help
 @parent
 @stop
 
@@ -19,7 +19,7 @@ How Its Work
       <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">How Its Work</span>
+            <span class="h5 text-white ml-2">Help</span>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@ How Its Work
         <div class="container">
             <div class="row">
                 <div class="col p-0">
-
+                    <p>Help</p>
                 </div>
             </div>
         </div>

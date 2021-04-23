@@ -583,6 +583,7 @@ Route::get('about', 'InformationController@about')->name('about');
 Route::get('privacy-policy', 'InformationController@privacy')->name('privacypolicy');
 Route::get('terms-and-conditions', 'InformationController@termsAndConditions')->name('termsandconditions');
 Route::get('how-its-work', 'InformationController@howItsWork')->name('howitswork');
+Route::get('help', 'InformationController@help')->name('help');
 
 // Route::get('{name?}', 'FrontEndController@showFrontEndView');
 // End of frontend views

@@ -26,20 +26,21 @@ Sales Referral
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-0">
                     <div class="sales-referal-body">
-                        <h3>Welcome to Eiliana Sales Referral Wizard</h3>
+                        <h3>Great money @ Eiliana Project Referral program !!!</h3>
                         <p>Eiliana.com introduces a new referral marketing strategy known as “Smart Sales Referral Program” where in you can refer an IT project on Eiliana.com to us any earn commission decided by you there by creating a win win situation for yourself and your client.</p>
-                        <p>So what are you waiting for? Submit any IT project today and bag your chance on guaranteed payout chosen by you.</p>
+                        <h5>So what are you waiting for?</h5>
+                        <p>Submit any IT project today and bag your chance on guaranteed payout chosen by you.</p>
                         <div class="mb-3 mt-3 singup-body">
-                            <a class="btn btn-md btn-info bg-light-blue" href="{{ url('sales-referral-form') }}">New Lead <span class="fa fa-plus"></span></a>
-                            <a class="btn btn-md btn-info bg-light-blue"  href="#">Check Status <span class="fas fa-search"></span></a>
+                            <a class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill text-white" href="{{ url('sales-referral-form') }}">New Lead</a>
+                            <a class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill text-white ml-3"  href="#">Check Status</a>
                         </div>
-                        <img src="/assets/img/profile/sales-details.png" class="img-fluid" alt="">
+                        {{-- <img src="/assets/img/profile/sales-details.png" class="img-fluid" alt=""> --}}
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-12">
                     <div class="contractual">
-                        <h4>Make great money through Eiliana sales Referral program !!!</h4>
-                		<img src="/assets/img/profile/sales-referal.png" class="img-fluid" alt="">
+                        {{-- <h4>Make great money through Eiliana sales Referral program !!!</h4> --}}
+                		<img src="/assets/img/profile/sales-referal-new.png" class="img-fluid" alt="">
                 	</div>
                 </div>
             </div>

@@ -1406,8 +1406,8 @@ span.select2-selection.select2-selection--single {
     font-weight: 500;
 }
 .browse-job-posting li.card {
-    border: 1px solid #c7c7c7;
-    box-shadow: 0 0 2px 2px #e4ecf7;
+    border: 0px solid #c7c7c7;
+    box-shadow: unset;
     border-radius: unset;
 }
 .contract-apply a.btn-icon i {
@@ -1549,16 +1549,31 @@ span.select2-selection.select2-selection--single {
     color: #de4b39;
 }
 .sales-referal .sales-referal-body h3 {
-    font-size: 30px;
-    font-weight: 400;
+    font-size: 24px;
+    font-weight: 500;
     margin-bottom: 25px;
+    color: #de4b39;
+    font-style: oblique;
 }
 .sales-referal .sales-referal-body p {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 25px;
 }
 .sales-referal .sales-referal-body .singup-body a.btn {
-    padding: 9px 15px;
+    padding: 7px 15px;
     border-radius: 0px;
     color: #fff;
-    margin-right: 10px;
+    margin-right: 0px;
+    font-size: 16px !important;
+    font-weight: 600;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+.sales-referal .sales-referal-body h5 {
+    font-size: 18px;
+    color: #de4b39;
+    font-style: oblique;
+}
+.sales-referal .sales-referal-body .singup-body {
+    padding-top: 40px;
 }

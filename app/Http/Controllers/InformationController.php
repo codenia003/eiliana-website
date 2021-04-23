@@ -15,4 +15,8 @@ class InformationController extends JoshController
         return view('information.howitswork');
     }
 
+    public function help(){
+        return view('information.help');
+    }
+
 }

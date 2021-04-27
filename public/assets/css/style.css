@@ -1577,3 +1577,31 @@ span.select2-selection.select2-selection--single {
 .sales-referal .sales-referal-body .singup-body {
     padding-top: 40px;
 }
+.eiliana-logo img {
+    width: 170px;
+}
+.eiliana-logo h4 {
+    font-size: 21px;
+    text-transform: uppercase;
+    color: #e7a020;
+    font-weight: 600;
+}
+.modal-refer .btn.times {
+    position: absolute;
+    right: -18px;
+    top: -13px;
+    background: #ff2424;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 600;
+}
+.eiliana-refer {
+    text-align: right;
+}
+.eiliana-refer .btn {
+    background-color: #f7a302;
+    border-color: #f0a004;
+    border-radius: 25px;
+    text-transform: uppercase;
+    font-weight: 600;
+}

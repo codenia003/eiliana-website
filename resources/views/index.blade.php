@@ -20,7 +20,7 @@ Home
 {{-- slider --}}
 @section('top')
 <!--Carousel Start -->
-<section class="section1 d-none d-sm-block">
+<section class="section1 only-desktop">
     <div class="slick-carousel">
         <div class="slide slider1">
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-1.png);">
@@ -50,7 +50,7 @@ Home
         <div class="slide slider2">
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-2-1.png);">
                 <div class="container space-2 space-lg-4">
-                    <div class="w-md-65 w-lg-35">
+                    <div class="w-md-65 w-lg-35 w-sm-100">
                         <div class="mb-4">
                             <div class="banner1_content">
                                 <h1>Transforming lives <br>Through next <br>Generation <span
@@ -98,7 +98,7 @@ Home
         <div class="slide slider4">
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-4.png);">
                 <div class="container space-2 space-lg-4">
-                    <div class="w-md-65 w-lg-35">
+                    <div class="w-md-65 w-lg-35 w-sm-100">
                         <div class="mb-4">
                             <div class="banner1_content">
                                 <h1>Transforming lives <br>Through next <br>Generation <span
@@ -146,7 +146,7 @@ Home
         <div class="slide slider6">
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-6-1.png);">
                 <div class="container space-2 space-lg-4">
-                    <div class="w-md-65 w-lg-35">
+                    <div class="w-md-65 w-lg-35 w-sm-100">
                         <div class="mb-4">
                             <div class="banner1_content">
                                 <h1>Transforming lives <br>Through next <br>Generation <span
@@ -168,19 +168,19 @@ Home
         </div>
     </div>
 </section>
-<section class="section1 d-block d-sm-none">
+{{-- mobile wala slider --}}
+<section class="section1 d-none only-mobile">
     <div class="mobile-slick-carousel">
         <div class="slide slider1">
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-1.png);">
                 <div class="container space-2 space-lg-4">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-5 col-12">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 col-12">
                             <div class="banner1_content">
-                                <h1>Transforming lives <br>Through next <br>Generation <span
-                                        class="text-orange">Resources</span> <br>And <span
-                                        class="text-orange">Projects</span></h1>
+                                <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
+                                class="text-orange">Projects</span></h1>
                                 <div class="group_button">
                                     <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
                                         Projects</a>
@@ -198,12 +198,11 @@ Home
         <div class="slide slider2">
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-2-1.png);">
                 <div class="container space-2 space-lg-4">
-                    <div class="w-md-65 w-lg-35">
+                    <div class="w-md-65 w-lg-35 w-sm-100">
                         <div class="mb-4">
                             <div class="banner1_content">
-                                <h1>Transforming lives <br>Through next <br>Generation <span
-                                        class="text-orange">Resources</span> <br>And <span
-                                        class="text-orange">Projects</span></h1>
+                                <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
+                                class="text-orange">Projects</span></h1>
                                 <div class="group_button">
                                     <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
                                         Projects</a>
@@ -222,13 +221,12 @@ Home
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-3.png);">
                 <div class="container space-2 space-lg-4">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-12">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-12">
                             <div class="banner1_content">
-                                <h1>Transforming lives <br>Through next <br>Generation <span
-                                        class="text-orange">Resources</span> <br>And <span
-                                        class="text-orange">Projects</span></h1>
+                                <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
+                                class="text-orange">Projects</span></h1>
                                 <div class="group_button">
                                     <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
                                         Projects</a>
@@ -246,12 +244,11 @@ Home
         <div class="slide slider4">
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-4.png);">
                 <div class="container space-2 space-lg-4">
-                    <div class="w-md-65 w-lg-35">
+                    <div class="w-md-65 w-lg-35 w-sm-100">
                         <div class="mb-4">
                             <div class="banner1_content">
-                                <h1>Transforming lives <br>Through next <br>Generation <span
-                                        class="text-orange">Resources</span> <br>And <span
-                                        class="text-orange">Projects</span></h1>
+                                <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
+                                class="text-orange">Projects</span></h1>
                                 <div class="group_button">
                                     <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
                                         Projects</a>
@@ -270,13 +267,12 @@ Home
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-5.png);">
                 <div class="container space-2 space-lg-4">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-5 col-12">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 col-12">
                             <div class="banner1_content">
-                                <h1>Transforming lives <br>Through next <br>Generation <span
-                                        class="text-orange">Resources</span> <br>And <span
-                                        class="text-orange">Projects</span></h1>
+                                <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
+                                    class="text-orange">Projects</span></h1>
                                 <div class="group_button">
                                     <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
                                         Projects</a>
@@ -294,12 +290,11 @@ Home
         <div class="slide slider6">
             <div class="bg-img-hero" style="background-image: url(/assets/img/banner/Banner-6-1.png);">
                 <div class="container space-2 space-lg-4">
-                    <div class="w-md-65 w-lg-35">
+                    <div class="w-md-65 w-lg-35 w-sm-100">
                         <div class="mb-4">
                             <div class="banner1_content">
-                                <h1>Transforming lives <br>Through next <br>Generation <span
-                                        class="text-orange">Resources</span> <br>And <span
-                                        class="text-orange">Projects</span></h1>
+                                <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
+                                    class="text-orange">Projects</span></h1>
                                 <div class="group_button">
                                     <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
                                         Projects</a>
@@ -328,7 +323,7 @@ Home
                 <!-- Contacts -->
                 <div class="media accordion modified-accordion">
                     <figure class="max-w-8rem mr-4 mt-4">
-                        <img class="img-fluid" src="/assets/img/icons/serviceimg1.jpg" alt="SVG">
+                        <img class="img-fluid" src="{{ asset('assets/img/icons/serviceimg1.jpg') }}" alt="SVG">
                     </figure>
                     <div class="media-body card-header1" id="headingOne">
                         <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseOne"
@@ -345,14 +340,13 @@ Home
                 <!-- Contacts -->
                 <div class="media accordion modified-accordion">
                     <figure class="max-w-8rem mr-4 mt-4">
-                        <img class="img-fluid" src="/assets/img/icons/serviceimg2.jpg" alt="SVG">
+                        <img class="img-fluid" src="{{ asset('assets/img/icons/serviceimg2.jpg') }}" alt="SVG">
                     </figure>
                     <div class="media-body card-header1" id="headingTwo">
                         <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseTwo"
                             aria-expanded="false" aria-controls="collapseTwo">Transparent Pay</h4>
                         <p class="font-size-1 mb-0" id="collapseTwo" class="collapse" aria-labelledby="headingTwo">As a
-                            client you will always know what you’re paying for, upfront. And as a talent you will always
-                            get your payments timely.</p>
+                            client you will always know what you’re paying for, upfront. And as a talent you will always get your payments timely.</p>
                     </div>
                 </div>
                 <!-- End Contacts -->
@@ -364,11 +358,8 @@ Home
                         <img class="img-fluid" src="/assets/img/icons/serviceimg3.jpg" alt="SVG">
                     </figure>
                     <div class="media-body card-header1" id="headingThree">
-                        <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseThree"
-                            aria-expanded="false" aria-controls="collapseThree">24X7 Support</h4>
-                        <p class="font-size-1 mb-0" id="collapseThree" class="collapse" aria-labelledby="headingThree">
-                            Got questions? Our round-the-clock support is always available to assist you, anytime
-                            anywhere.</p>
+                        <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">24X7 Support</h4>
+                        <p class="font-size-1 mb-0" id="collapseThree" class="collapse" aria-labelledby="headingThree">Got questions? Our round-the-clock support is always available to assist you, anytime anywhere.</p>
                     </div>
                 </div>
                 <!-- End Contacts -->
@@ -447,6 +438,9 @@ Home
                     </ul>
                 </div>
                 <div class="col-12 col-md-3 col-lg-3">
+                    <figure class="mt-4 d-none only-mobile text-center">
+                        <img class="img-fluid" src="/assets/img/photo/new_page-mobile.png" alt="SVG">
+                    </figure>
                 </div>
                 <div class="col-12 col-md-5 col-lg-5">
                     <div class="card1">
@@ -632,8 +626,7 @@ Home
                                                     </div>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{
-                                                        $job->about_company }}</a>
+                                                    <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->about_company }}</a>
                                                 </div>
                                                 <div class="mb-2">
                                                     <div class="display-5">Job Description</div>
@@ -698,13 +691,8 @@ Home
                         </a>
                         <div class="video">
                             <div class="video-player mx-md-auto">
-<<<<<<< Updated upstream
-                                <!-- <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal"> -->
-                                <a class="js-inline-video-player video-player-btn video-player-centered" href="#">
-=======
                                 <a class="js-inline-video-player video-player-btn video-player-centered" href="#"
                                     data-toggle="modal" data-target="#myModal">
->>>>>>> Stashed changes
                                     <div class="card-img-top">
                                         <img class="img-fluid video-player-preview shadow video-btn"
                                             src="/assets/img/photo/refer/3.png" alt="Image" data-target="#myModal">
@@ -865,14 +853,14 @@ Home
                                                     <div class="row no-gutters">
                                                         <div class="col-md-12">
                                                             <div class="mb-2">
-                                                                <div class="display-5">REFER A Freelancer AND EARN 3% to 5% COMMISSION ON HIS FIRST PROJECT DELIVERED</div>
+                                                                <div class="display-5">REFER A Freelancer AND EARN COMMISSION ON HIS FIRST PROJECT DELIVERED</div>
                                                                 <figure class="mt-0">
                                                                     <img class="img-fluid" src="/assets/img/profile/refere-freelancer.png" alt="SVG">
                                                                 </figure>
                                                             </div>
                                                             <div class="find_job_button text-right">
-                                                                <a class="btn_small yellow-linear-gradient"
-                                                                    href="{{ url('sales-referral') }}">Refer</a>
+                                                                <a class="btn_small yellow-linear-gradient text-white"
+                                                                data-toggle="modal" data-target="#modal-refer">Refer</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1001,9 +989,7 @@ Home
 <section class="section our-solution">
     <div class="text-center w-lg-60 mx-auto">
         <h1 class="headingmain1">Refer Videos</h1>
-        <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right
-            project and clients find the right talent for their job. Checkout our video to see how we go about doing
-            that.</p>
+        <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right project and clients find the right talent for their job. Checkout our video to see how we go about doing that.</p>
         <div class="dividerheading"></div>
     </div>
     <div class="container">
@@ -1020,13 +1006,8 @@ Home
                             <div class="slide">
                                 <div class="crowd_favrt">
                                     <div class="video-player mx-md-auto">
-<<<<<<< Updated upstream
-                                        <!-- <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal"> -->
-                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#">
-=======
                                         <a class="js-inline-video-player video-player-btn video-player-centered"
                                             href="#" data-toggle="modal" data-target="#myModal">
->>>>>>> Stashed changes
                                             <div class="card-img-top">
                                                 <img class="img-fluid video-player-preview shadow video-btn"
                                                     src="/assets/img/photo/refer/2.png" alt="Image"
@@ -1039,13 +1020,8 @@ Home
                             <div class="slide">
                                 <div class="crowd_favrt">
                                     <div class="video-player mx-md-auto">
-<<<<<<< Updated upstream
-                                        <!-- <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal" data-target="#myModal_1"> -->
-                                        <a class="js-inline-video-player video-player-btn video-player-centered" href="#">
-=======
                                         <a class="js-inline-video-player video-player-btn video-player-centered"
                                             href="#" data-toggle="modal" data-target="#myModal_1">
->>>>>>> Stashed changes
                                             <div class="card-img-top">
                                                 <img class="img-fluid video-player-preview shadow video-btn"
                                                     src="/assets/img/photo/refer/1.png" alt="Image"
@@ -1061,62 +1037,99 @@ Home
             </div>
         </div>
     </div>
-
-    {{-- <div class="our-slotuion slider mb-5 mt-5 text-center w-lg-60 mx-auto">
-        <div class="video-player mx-md-auto">
-            <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal"
-                data-target="#myModal">
-                <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png"
-                    alt="Image" data-target="#myModal">
-            </a>
-        </div>
-    </div> --}}
-    {{-- <div class="modal fade pullDown login-body border-0" id="myModal" role="dialog"
-        aria-labelledby="modalLabelnews">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-blue text-white">
-                    <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="main-moudle">
-
-                        <video width="690" height="340" controls>
-                            <source src="{{URL::asset(" /assets/video/eiliana_final.mp4")}}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-    </div>
-    {{-- <div class="modal fade pullDown login-body border-0" id="myModal_1" role="dialog"
-        aria-labelledby="modalLabelnews">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-blue text-white">
-                    <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="main-moudle">
-
-                        <video width="690" height="340" controls>
-                            <source src="{{URL::asset(" /assets/video/eiliana_final_2.mp4")}}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 </section>
+{{-- <div class="our-slotuion slider mb-5 mt-5 text-center w-lg-60 mx-auto">
+    <div class="video-player mx-md-auto">
+        <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal"
+            data-target="#myModal">
+            <img class="img-fluid video-player-preview shadow video-btn" src="/assets/img/Eiliana-video-Screen.png"
+                alt="Image" data-target="#myModal">
+        </a>
+    </div>
+</div> --}}
+{{-- <div class="modal fade pullDown login-body border-0" id="myModal" role="dialog"
+    aria-labelledby="modalLabelnews">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue text-white">
+                <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="main-moudle">
 
+                    <video width="690" height="340" controls>
+                        <source src="{{URL::asset(" /assets/video/eiliana_final.mp4")}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>--}}
+{{-- <div class="modal fade pullDown login-body border-0" id="myModal_1" role="dialog"
+    aria-labelledby="modalLabelnews">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue text-white">
+                <h4 class="modal-title" id="modalLabelnews">How It Works?</h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="main-moudle">
+
+                    <video width="690" height="340" controls>
+                        <source src="{{URL::asset(" /assets/video/eiliana_final_2.mp4")}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+<div class="modal fade pullDown login-body border-0 modal-refer" id="modal-refer" role="dialog" aria-labelledby="modalLabelnews">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{ route('freelancerreferral.new') }}" method="POST" id="projectlead">
+                @csrf
+                <div class="modal-body">
+                    <button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    <div class="eiliana-logo">
+                        <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
+                        <h4>Fill The Referral Details</h4>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="first_name" class="col-form-label">First Name</label>
+                            <input type="text" class="form-control" name="first_name" id="first_name" required>
+                        </div>
+                        <div class="form-group col">
+                            <label for="last_name" class="col-form-label">Last Name</label>
+                            <input type="text" class="form-control" name="last_name" id="last_name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="email" class="col-form-label">Email Address</label>
+                            <input type="email" class="form-control" name="email" id="email" required>
+                        </div>
+                        <div class="form-group col">
+                            <label for="phone" class="col-form-label">Phone Number</label>
+                            <input type="number" class="form-control" name="phone" id="phone" required>
+                        </div>
+                    </div>
+                    <div class="eiliana-refer">
+                        <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Generate Link</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- //Container End -->
 @stop
 {{-- footer scripts --}}
@@ -1139,9 +1152,18 @@ Home
             $('video').trigger('pause');
         })
     });
+    $('#projectlead').bootstrapValidator({
+    }).on('success.form.bv', function(e) {
+        e.preventDefault();
+        var $form = $(e.target);
+        var bv = $form.data('bootstrapValidator');
+        $('.spinner-border').removeClass("d-none");
+        $.post($form.attr('action'), $form.serialize(), function(result) {
+            var userCheck = result;
 
+        }, 'json');
+    });
 </script>
-
 <!-- <script>
   var coll = document.getElementsByClassName("demand_skills");
   var i;

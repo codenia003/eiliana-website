@@ -55,4 +55,23 @@ class SalesController extends JoshController
 
         return response()->json($response);
     }
+
+    public function freelancerReferral(Request $request)
+    {
+        $response['success'] = '0';
+        $data = $request->all();
+        $leads = SalesReferral::where('sales_referral_id', $data['referral_id'])->first();
+
+        if ($leads->lead_status == 1) {
+            $response['msg'] = 'Eilian review your sales referral lead';
+        } else {
+            $request->session()->forget('sales_referral');
+            $request->session()->put('sales_referral', $data);
+
+            $response['success'] = '1';
+            $response['msg'] = 'Sales referral process start to the next phase';
+        }
+
+        return response()->json($response);
+    }
 }

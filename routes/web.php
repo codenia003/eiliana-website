@@ -579,6 +579,7 @@ Route::get('news/{news}', 'NewsController@show')->name('news.show');
 
 //info
 Route::get('sales-referral', 'SalesController@salesReferral');
+Route::post('freelancer-referral', 'SalesController@freelancerReferral')->name('freelancerreferral.new');
 Route::get('about', 'InformationController@about')->name('about');
 Route::get('privacy-policy', 'InformationController@privacy')->name('privacypolicy');
 Route::get('terms-and-conditions', 'InformationController@termsAndConditions')->name('termsandconditions');

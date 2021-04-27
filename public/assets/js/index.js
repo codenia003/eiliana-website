@@ -80,6 +80,14 @@ $(document).ready(function() {
         "responsive": [{
             "breakpoint": 768,
             "settings": {
+                "slidesToShow": 2,
+                "slidesToScroll": 2,
+                "arrows": false
+             }
+        },
+        {
+            "breakpoint": 450,
+            "settings": {
                 "slidesToShow": 1,
                 "slidesToScroll": 1,
                 "arrows": false
@@ -99,7 +107,7 @@ $(document).ready(function() {
                 "slidesToShow": 1,
                 "slidesToScroll": 1,
                 "arrows": true
-             }
+            }
         }]
     });
 });

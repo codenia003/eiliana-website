@@ -204,7 +204,8 @@ Search Project
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/frontend/login_custom.js') }}"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
-<script>$('#projectlead').bootstrapValidator({
+<script>
+$('#projectlead').bootstrapValidator({
     fields: {
         subject: {
             validators: {

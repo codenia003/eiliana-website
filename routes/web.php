@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::pattern('slug', '[a-z0-9- _]+');
 
 Route::group(

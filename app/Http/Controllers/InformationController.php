@@ -19,4 +19,8 @@ class InformationController extends JoshController
         return view('information.help');
     }
 
+    public function pricingPlan(){
+        return view('information.pricing');
+    }
+
 }

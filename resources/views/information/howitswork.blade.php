@@ -36,6 +36,12 @@ How Its Work
         height: 65px;
         font-size: 30px;
     }
+
+    @media (min-width: 768px){
+        .it_work {
+            width: 0px;
+        }
+    }
 </style>
 <!--end of page level css-->
 @stop

@@ -16,13 +16,6 @@ Pricing Plan
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/index.css') }}">
 
 <style>
-    @media (min-width: 768px){
-        .our-solution .title {
-            margin-left: 0px;
-        }
-    }
-
-
    .our-slotuion h6 {
         min-height: 20px;
     }
@@ -57,6 +50,12 @@ Pricing Plan
         padding: 19px;
         margin: -16px -16px 17px;
         margin-top: -24px;
+    }
+
+    @media (min-width: 768px){
+        .our-solution .title {
+            margin-left: 0px;
+        }
     }
 
 </style>

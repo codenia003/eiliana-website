@@ -70,10 +70,11 @@ class ProfileController extends JoshController
         $qualifications = Qualification::all();
         $universities = University::orderBy('name', 'asc')->get();
         $user = Sentinel::getUser();
-        $educations = Education::where('user_id', $user->id)->get();
+        $ug_educations = Education::where('user_id', $user->id)->where('graduation_type', '3')->get();
+        $pg_educations = Education::where('user_id', $user->id)->where('graduation_type', '4')->get();
         // Show the page
         // return view('profile/education');
-        return view('profile/education-add', compact('educations','educationtype','qualifications','universities'));
+        return view('profile/education-add', compact('ug_educations','pg_educations','educationtype','qualifications','universities'));
     }
 
 
@@ -173,7 +174,7 @@ class ProfileController extends JoshController
         {
             $resume->pseudoName = $input['pseudoName'];
         }
-        
+
         $resume->first_name = $input['first_name'];
         $resume->last_name = $input['last_name'];
         $resume->dob = $input['dob'];
@@ -232,26 +233,28 @@ class ProfileController extends JoshController
         $input = $request->except('_token');
 
         foreach ($input['education_id'] as $key => $value) {
-            if ($input['education_id'][$key] != 0) {
-                $education = Education::find($input['education_id'][$key]);
-                $education->user_id = $user->id;
-                $education->education_type = $input['education_type'][$key];
-                $education->graduation_type = $input['graduation_type'][$key];
-                $education->name = $input['name'][$key];
-                $education->month = $input['month'][$key];
-                $education->year = $input['year'][$key];
-                $education->degree = $input['degree'][$key];
-                $education->save();
-            } else {
-                $education = new Education;
-                $education->user_id = $user->id;
-                $education->education_type = $input['education_type'][$key];
-                $education->graduation_type = $input['graduation_type'][$key];
-                $education->name = $input['name'][$key];
-                $education->month = $input['month'][$key];
-                $education->year = $input['year'][$key];
-                $education->degree = $input['degree'][$key];
-                $education->save();
+            if(!empty($input['education_type'][$key])){
+                if ($input['education_id'][$key] != 0) {
+                    $education = Education::find($input['education_id'][$key]);
+                    $education->user_id = $user->id;
+                    $education->education_type = $input['education_type'][$key];
+                    $education->graduation_type = $input['graduation_type'][$key];
+                    $education->name = $input['name'][$key];
+                    $education->month = $input['month'][$key];
+                    $education->year = $input['year'][$key];
+                    $education->degree = $input['degree'][$key];
+                    $education->save();
+                } else {
+                    $education = new Education;
+                    $education->user_id = $user->id;
+                    $education->education_type = $input['education_type'][$key];
+                    $education->graduation_type = $input['graduation_type'][$key];
+                    $education->name = $input['name'][$key];
+                    $education->month = $input['month'][$key];
+                    $education->year = $input['year'][$key];
+                    $education->degree = $input['degree'][$key];
+                    $education->save();
+                }
             }
         }
         return redirect('profile/certification')->with('success', 'Education updated successfully');

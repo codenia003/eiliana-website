@@ -60,7 +60,7 @@
 
                                 <div class="form-group col">
                                     <label>Technology</label>
-                                    <select name="technologty_pre[]" class="form-control" id="technologty_pre" onchange="change_framework();" required>
+                                    <select name="technologty_pre[]" class="form-control" id="technologty_pre_multi" onchange="change_framework();" required>
                                         <option value=""></option>
                                         @foreach ($technologies as $technology)
                                         <option value="{{ $technology->technology_id }}" {{ ($project->project_type==$technology->technology_id)? "selected" : "" }} >{{ $technology->technology_name }}</option>
@@ -72,7 +72,7 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Framework</label>
-                                    <select class="form-control" required="" name="framework[]" id="framework">
+                                    <select class="form-control" required="" name="framework[]" id="framework_multi">
                                         <option value=""></option>
                                     </select>
                                 </div>

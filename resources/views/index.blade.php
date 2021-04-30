@@ -13,6 +13,7 @@ Home
 <link rel="stylesheet" type="text/css" href="{{ asset('vendors/animate/animate.min.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/jquery.circliful.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('vendors/slick-carousel/slick.css') }}">
+<link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/index.css') }}">
 <!--end of page level css-->
 @stop
@@ -859,8 +860,11 @@ Home
                                                                 </figure>
                                                             </div>
                                                             <div class="find_job_button text-right">
-                                                                <a class="btn_small yellow-linear-gradient text-white"
-                                                                data-toggle="modal" data-target="#modal-refer">Refer</a>
+                                                                @if(Sentinel::guest())
+                                                                <a class="btn_small yellow-linear-gradient text-white" href="{{ url('account/login') }}">Refer</a>
+                                                                @else
+                                                                <a class="btn_small yellow-linear-gradient text-white" data-toggle="modal" data-target="#modal-refer">Refer</a>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1093,7 +1097,7 @@ Home
 </div> --}}
 <div class="modal fade pullDown login-body border-0 modal-refer" id="modal-refer" role="dialog" aria-labelledby="modalLabelnews">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content before-referal">
             <form action="{{ route('freelancerreferral.new') }}" method="POST" id="projectlead">
                 @csrf
                 <div class="modal-body">
@@ -1128,6 +1132,21 @@ Home
                 </div>
             </form>
         </div>
+        <div class="modal-content d-none after-referal">   
+            <div class="modal-body">
+                <button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                <div class="eiliana-logo">
+                    <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
+                    <h4>Referral Link</h4>
+                    <div class="referral_link"></div>
+                </div>
+            </div>
+            <div class="modal-footer eiliana-refer">
+                <input type="hidden" name="referral_code" value="0" id="referral_code">
+                <button class="btn btn-primary yellow-linear-gradient"  onclick="copyToClipboard('#copy_url')">Copy Link</button>
+                <button class="btn btn-outline-primary red-linear-gradient" type="button" onclick="sendToUser()"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Email to Your Friend</button>
+            </div>
+        </div>
     </div>
 </div>
 <!-- //Container End -->
@@ -1138,6 +1157,7 @@ Home
 <script type="text/javascript" src="{{ asset('js/frontend/jquery.circliful.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/wow/js/wow.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/slick-carousel/slick.min.js') }}"></script>
+<script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('/assets/js/index.js') }}"></script>
 <!--page level js ends-->
 <script>
@@ -1160,9 +1180,37 @@ Home
         $('.spinner-border').removeClass("d-none");
         $.post($form.attr('action'), $form.serialize(), function(result) {
             var userCheck = result;
+            $('.before-referal').addClass("d-none");
+            $('.after-referal').removeClass("d-none");
+            $('.spinner-border').addClass("d-none");
+            $('.referral_link').html('<h5 id="copy_url">'+userCheck.referral_link+'</h5>');
+            $('#referral_code').val(userCheck.referral_code);
 
         }, 'json');
     });
+
+    function sendToUser() {
+        $('.spinner-border').removeClass("d-none");
+        var url = '/freelancer-referral-email';
+        var referral_code = $('#referral_code').val();
+        var data= {
+            _token: "{{ csrf_token() }}",
+            referral_code:referral_code,
+            status: '1'
+        };
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            success: function(data) {
+                var userCheck = data;
+                $('.spinner-border').addClass("d-none");
+            },
+            error: function(xhr, status, error) {
+                console.log("error: ",error);
+            },
+        });
+    }
 </script>
 <!-- <script>
   var coll = document.getElementsByClassName("demand_skills");

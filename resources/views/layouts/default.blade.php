@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keywords" content="">
+    <meta name="google-site-verification" content="-vzG1ZlYcexP65J-fgwdsJYu7YafFOJ5JNjIGZvfhj4">
     <title>
         @section('title')
         | Welcome To Eiliana
@@ -110,7 +111,7 @@
         <div class="section px-lg-5 px-3 py-lg-2 py-1">
             @if(Sentinel::guest())
             <nav class="navbar navbar-expand-lg navbar-light custom_header">
-                <a class="navbar-brand" href="/"><img src="https://eiliana.com/assets/img/logo.png"></a>
+                <a class="navbar-brand" href="/"><img src="/assets/img/logo.png"></a>
                 {{-- <li class="log">
                     <a class="login" href="#">Login</a>
                 </li>

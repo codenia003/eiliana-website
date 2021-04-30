@@ -580,6 +580,8 @@ Route::get('news/{news}', 'NewsController@show')->name('news.show');
 //info
 Route::get('sales-referral', 'SalesController@salesReferral');
 Route::post('freelancer-referral', 'SalesController@freelancerReferral')->name('freelancerreferral.new');
+Route::post('freelancer-referral-email', 'SalesController@freelancerReferralEmail');
+Route::post('freelancer-referral-accept/{referral_code}', 'SalesController@freelancerReferralAccept')->name('freelancerreferral.accept');
 Route::get('about', 'InformationController@about')->name('about');
 Route::get('privacy-policy', 'InformationController@privacy')->name('privacypolicy');
 Route::get('terms-and-conditions', 'InformationController@termsAndConditions')->name('termsandconditions');

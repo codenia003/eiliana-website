@@ -67,8 +67,10 @@ $(document).ready(function() {
                 // get return url from query parameters or default to home page
                 // localStorage.setItem('user', JSON.stringify(this.userCheck.user));
                 $('.spinner-border').addClass("d-none");
-                window.location.href = '/home';
+                // window.location.href = '/home';
+                window.location.href = userCheck.url;
             }
+            // }
         }, 'json');
     });
 

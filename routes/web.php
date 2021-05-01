@@ -295,7 +295,7 @@ Route::get('/', 'HomeController@index')->name('/');
 
 // account
 Route::group(
-    ['prefix' => 'account'],
+    ['prefix' => 'account', 'middleware' => 'throttle:10|60,5'],
     function () {
 
         Route::get('register', 'AuthController@getRegister')->name('register');

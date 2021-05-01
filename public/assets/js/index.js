@@ -36,7 +36,6 @@ $(document).ready(function() {
         "fade": true,
         "infinite": true,
         "cssEase": 'ease-in-out',
-        "initialSlide": slide,
         "responsive": [{
             "breakpoint": 768,
             "settings": {

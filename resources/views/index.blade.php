@@ -1051,7 +1051,7 @@ Home
         </a>
     </div>
 </div> --}}
-{{-- <div class="modal fade pullDown login-body border-0" id="myModal" role="dialog"
+<div class="modal fade pullDown login-body border-0" id="myModal" role="dialog"
     aria-labelledby="modalLabelnews">
     <div class="modal-dialog " role="document">
         <div class="modal-content">
@@ -1065,15 +1065,15 @@ Home
                 <div class="main-moudle">
 
                     <video width="690" height="340" controls>
-                        <source src="{{URL::asset(" /assets/video/eiliana_final.mp4")}}" type="video/mp4">
+                        <source src="{{URL::asset("assets/video/eiliana_final.mp4")}}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
             </div>
         </div>
     </div>
-</div>--}}
-{{-- <div class="modal fade pullDown login-body border-0" id="myModal_1" role="dialog"
+</div>
+<div class="modal fade pullDown login-body border-0" id="myModal_1" role="dialog"
     aria-labelledby="modalLabelnews">
     <div class="modal-dialog " role="document">
         <div class="modal-content">
@@ -1087,14 +1087,14 @@ Home
                 <div class="main-moudle">
 
                     <video width="690" height="340" controls>
-                        <source src="{{URL::asset(" /assets/video/eiliana_final_2.mp4")}}" type="video/mp4">
+                        <source src="{{URL::asset("assets/video/eiliana_final_2.mp4")}}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 <div class="modal fade pullDown login-body border-0 modal-refer" id="modal-refer" role="dialog" aria-labelledby="modalLabelnews">
     <div class="modal-dialog" role="document">
         <div class="modal-content before-referal">
@@ -1132,7 +1132,7 @@ Home
                 </div>
             </form>
         </div>
-        <div class="modal-content d-none after-referal">   
+        <div class="modal-content d-none after-referal">
             <div class="modal-body">
                 <button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
                 <div class="eiliana-logo">
@@ -1165,12 +1165,19 @@ Home
         var $videoSrc;
         // when the modal is opened autoplay it
         $('#myModal, #myModal_1').on('shown.bs.modal', function (e) {
-            $('video').trigger('play');
-        })
+            $('#myModal video').trigger('play');
+        });
 
         $('#myModal, #myModal_1').on('hide.bs.modal', function (e) {
-            $('video').trigger('pause');
-        })
+            $('#myModal video').trigger('pause');
+        });
+
+        $('#myModal_1').on('shown.bs.modal', function (e) {
+            $('#myModal_1 video').trigger('play');
+        });
+        $('#myModal_1').on('hide.bs.modal', function (e) {
+            $('#myModal_1 video').trigger('pause');
+        });
     });
     $('#projectlead').bootstrapValidator({
     }).on('success.form.bv', function(e) {

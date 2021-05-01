@@ -18,10 +18,11 @@
             <form action="{{ url('/profile/registerprojects') }}" method="POST" id="registerprojectsForm" enctype="multipart/form-data">
                 @csrf
                 <div class="project-1">
-                    @forelse ($projects as $project)
+                    @forelse ($projects as $key => $project)
                         <div class="project-3">
                             <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span> -->
                             <input type="hidden" name="user_project_id[]" id="user_project_id" value="{{ $project->user_project_id }}">
+                            <input type="hidden" name="tech_project_id" id="tech_project_id" value="{{ $key + 1 }}">
                             <div class="form-group">
                                 <label>Project Name</label>
                                 <input type="text" name="project_name[]" class="form-control" value="{{ $project->project_name }}" />
@@ -60,10 +61,10 @@
 
                                 <div class="form-group col">
                                     <label>Technology</label>
-                                    <select name="technologty_pre[]" class="form-control" id="technologty_pre_multi" onchange="change_framework();" required>
+                                    <select name="technologty_pre[]" class="form-control" id="technologty_pre_multi_{{ $key + 1 }}" onchange="change_framework_project({{ $key + 1 }});" required>
                                         <option value=""></option>
                                         @foreach ($technologies as $technology)
-                                        <option value="{{ $technology->technology_id }}" {{ ($project->project_type==$technology->technology_id)? "selected" : "" }} >{{ $technology->technology_name }}</option>
+                                        <option value="{{ $technology->technology_id }}" {{ ($project->technologty_pre==$technology->technology_id)? "selected" : "" }} >{{ $technology->technology_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -72,8 +73,13 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Framework</label>
-                                    <select class="form-control" required="" name="framework[]" id="framework_multi">
+                                    <select class="form-control" required="" name="framework[]" id="framework_multi_{{ $key + 1 }}">
                                         <option value=""></option>
+                                        @foreach ($frameworks as $technology)
+                                        @if ($project->technologty_pre == $technology->parent_id)
+                                            <option value="{{ $technology->technology_id }}" {{ ($project->framework==$technology->technology_id)? "selected" : "" }} >{{ $technology->technology_name }}</option>
+                                        @endif
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col">
@@ -119,6 +125,7 @@
                         <div class="project-3">
                             <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span> -->
                             <input type="hidden" name="user_project_id[]" id="user_project_id" value="0">
+                            <input type="hidden" name="tech_project_id" id="tech_project_id" value="0">
                             <div class="form-group">
                                 <label>Project Name</label>
                                 <input type="text" name="project_name[]" class="form-control" />
@@ -155,7 +162,7 @@
 
                                 <div class="form-group col">
                                     <label>Technology</label>
-                                    <select name="technologty_pre[]" class="form-control" id="technologty_pre" onchange="change_framework();" required>
+                                    <select name="technologty_pre[]" class="form-control" id="technologty_pre_multi_0" onchange="change_framework_project(0);" required>
                                         <option value=""></option>
                                         @foreach ($technologies as $technology)
                                         <option value="{{ $technology->technology_id }}" >{{ $technology->technology_name }}</option>
@@ -167,7 +174,7 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Framework</label>
-                                    <select class="form-control" required="" name="framework[]" id="framework">
+                                    <select class="form-control" required="" name="framework[]" id="framework_multi_0">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -229,6 +236,7 @@
 <div class="project-2 d-none">
     <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Project</span> -->
     <input type="hidden" name="user_project_id[]" id="user_project_id" value="0">
+    <input type="hidden" name="tech_project_id" id="tech_project_id" value="0">
     <div class="form-group">
         <label>Project Name</label>
         <input type="text" name="project_name[]" class="form-control" />
@@ -265,7 +273,7 @@
 
         <div class="form-group col">
             <label>Technology</label>
-            <select name="technologty_pre[]" class="form-control" id="technologty_pre" onchange="change_framework();" required>
+            <select name="technologty_pre[]" class="form-control" id="technologty_pre_multi" onchange="change_framework_project();" required>
                 <option value=""></option>
                 @foreach ($technologies as $technology)
                 <option value="{{ $technology->technology_id }}" >{{ $technology->technology_name }}</option>
@@ -277,7 +285,7 @@
     <div class="form-row">
         <div class="form-group col">
             <label>Framework</label>
-            <select class="form-control" required="" name="framework[]" id="framework">
+            <select class="form-control" required="" name="framework[]" id="framework_multi">
                 <option value=""></option>
             </select>
         </div>

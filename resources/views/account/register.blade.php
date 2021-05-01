@@ -45,13 +45,13 @@ Register
                                 <form action="{{ url('/account/register') }}" method="POST" id="reg_form">
                                     @csrf
                                     <div class="form-group input-field mb-3 {{ $errors->first('mobile', 'has-error') }}">
-                                        <input type="text" class="form-control" id="mobile" name="mobile" required/>
+                                        <input type="number" class="form-control" id="mobile" name="mobile" required/>
                                         <label for="mobile">Mobile Number</label>
                                         {!! $errors->first('mobile', '<span class="help-block">:message</span>') !!}
                                     </div>
                                     <div class="form-group input-field {{ $errors->first('email', 'has-error') }}">
                                         @isset(Session::get('teaminvitation')['to_user'])
-                                            <input type="text" class="form-control" id="email" name="email" value="{{ Session::get('teaminvitation')['to_user'] }}" required>
+                                            <input type="email" class="form-control" id="email" name="email" value="{{ Session::get('teaminvitation')['to_user'] }}" required>
                                         @endisset
                                         @empty(Session::get('teaminvitation')['to_user'])
                                             <input type="text" class="form-control" id="email" name="email" required>

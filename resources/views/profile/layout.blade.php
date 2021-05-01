@@ -136,8 +136,18 @@ type="text/css"/>
 	  		$('.certification-1').append(element);
 	  	});
 	  	$(".btn-copy-p").on('click', function(){
+
+            var str = $(".project-3:last #tech_project_id").val();
+            var x = parseInt(str) + parseInt(1);
+            console.log(x);
 	  		var element = '<div class="project-3">'+$('.project-2').html()+'</div>';
 	  		$('.project-1').append(element);
+
+            $('.project-3:last #tech_project_id').val(x);
+            $('.project-3:last #technologty_pre_multi').attr("onchange","change_framework_project("+x+");");
+            $('.project-3:last #technologty_pre_multi').attr("id","technologty_pre_multi_"+x);
+            $('.project-3:last #framework_multi').attr("id","framework_multi_"+x);
+
 	  	});
 	  	$(".btn-copy-e").on('click', function(){
 	  		var element = '<div class="employer-3">'+$('.employer-2').html()+'</div>';
@@ -172,7 +182,7 @@ type="text/css"/>
 	});
 	$(document).on('click','.remove-p',function() {
 		var cert_id = $(".project-3:last input#user_project_id").val();
-		console.log(cert_id);
+		// console.log(cert_id);
 		if (cert_id != '0') {
 			ConfirmDelete(cert_id,'3');
 		} else {
@@ -265,6 +275,29 @@ type="text/css"/>
                 });
                 //console.log(options);
                 $('#framework').html(options);
+            },
+            error: function(xhr, status, error) {
+                console.log("error: ",error);
+            },
+        });
+    }
+
+    function change_framework_project(id)
+    {
+        var technologty_pre = $("#technologty_pre_multi_"+id).val();
+        // console.log(technologty_pre);
+        $.ajax({
+            type:"GET",
+            url:"/getframework",
+            data:"technologty_pre="+technologty_pre,
+            success: function(data) {
+                console.log("data",data);
+                var options = '';
+                $.each( data, function( key, value ) {
+                    options += "<option value='"+value['technology_id']+"'>"+value['technology_name']+"</option>";
+                });
+                //console.log(options);
+                $('#framework_multi_'+id).html(options);
             },
             error: function(xhr, status, error) {
                 console.log("error: ",error);

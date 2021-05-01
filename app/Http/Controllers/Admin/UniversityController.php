@@ -61,7 +61,7 @@ class UniversityController extends InfyOmBaseController
         $input = $request->all();
         
         $fileName = "";
-        if ($input['logo']) {
+        if (!empty($input['logo'])) {
             $fileName = str_random(20).'.'.$request->logo->extension(); 
             $request->logo->move(public_path('uploads/university/'), $fileName);
             $input['logo'] = $fileName;

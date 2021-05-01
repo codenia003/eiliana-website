@@ -54,7 +54,7 @@ Login
                                         </div>
                                         <div class="form-group col-8">
                                            {{-- <p class="text-right"><a href="{{ route('forgot-password') }}" class="bt">Forgot Password</a></p> --}}
-                                           <p class="text-right"><a href="#" class="bt">Forgot Password</a></p>
+                                           <p class="text-right"><a href="#" class="bt">Forgot Password?</a></p>
                                         </div>
                                     </div>
                                     <div class="form-group row justify-content-center mt-3 mb-5">

@@ -61,7 +61,7 @@ How Its Work
         <div class="container">
             <div class="row">
                 <div class="col p-0">
-                    <section class="section container our-solution space-2" style="margin-right: -40px;">
+                    <section class="section container our-solution space-2" style="margin-right: -21px;padding-right: 50px;">
                         <div class="text-center" style="margin-bottom: 20px;">
                             <h1 class="headingmain1">How It Works</h1>
                             <p class="subtitle1">Checkout some of the most popular services people pay for on Eiliana.</p>

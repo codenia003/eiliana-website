@@ -34,7 +34,7 @@
                     <a class="list-group-item list-group-item-action {!! (Request::is('profile/financial') ? 'active' : '' ) !!}" href="/profile/financial">Financial Accounts</a>
                     <a class="list-group-item list-group-item-action" href="/profile">Membership & Credits</a>
                     <a class="list-group-item list-group-item-action" href="/profile">Members (Connections), Teams and Permissions</a> -->
-                    <a class="list-group-item list-group-item-action" href="/profile">Company Settings</a>
+                    <a class="list-group-item list-group-item-action" href="/profile">User Settings</a>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                         <div class="col-8">
                             <div class="img-upload">
                                 <img class="image-preview avatar-img" src="/assets/img/profile/m-photo-icon.png" class="avatar" alt="Avatar">
-                                <span>Upload Photo</span>
+                                <span><button class="btn" style="color: white;background: none;margin-left: -22px;font-weight: inherit;" onchange="imageUpload(event)">Upload Photo</button></span>
                             </div>
                             <button class="btn">{{ Sentinel::getUser()->full_name }}</button>
                             <p class="card-text font-size-1">
@@ -87,7 +87,7 @@
                         </a>
                         <a class="list-group-item list-group-item-action bg-white-b" href="/profile">
                             <img class="img-fluid" src="/assets/img/profile/icon-5.png" alt="Avatar">
-                            <span> Company Settings</span>
+                            <span> User Settings</span>
                         </a>
                     </div>
                 </div>
@@ -96,3 +96,34 @@
         <!-- End Device Mockup -->
     </div>
 </div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h4 class="modal-title" id="exampleModalLabel">Upload Image</h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group basic-info">
+                <!-- <label>Interested In</label> -->
+                    <div class="form-check form-check-inline">
+                        <div class="custom-control custom-radio">
+                            <input type="file"id="image"  class="form-control" name="image">
+                            <label class="custom-control-label" for="image">Image Upload</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit">
+                    <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                    Next >>>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

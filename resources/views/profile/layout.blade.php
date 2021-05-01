@@ -259,6 +259,10 @@ type="text/css"/>
 		$("#exampleModal1").modal();
     }
 
+	function imageUpload(e) {
+		$("#exampleModal1").modal();
+    }
+
     function change_framework()
     {
         var technologty_pre = $("#technologty_pre").val();

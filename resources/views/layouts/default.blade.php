@@ -325,7 +325,7 @@
                         {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Press</a></li> --}}
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Release notes</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Integrations</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('pricingplan') }}">Pricing</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>

@@ -397,6 +397,7 @@ class AuthController extends JoshController
             Sentinel::logout();
         }
 
+
         // Redirect to the users page
         return redirect('admin/signin')->with('success', 'You have successfully logged out!');
     }

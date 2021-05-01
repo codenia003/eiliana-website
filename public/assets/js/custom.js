@@ -55,6 +55,32 @@ function change_category()
     });
 }
 
+function change_category1()
+{
+    var category_id = $("#project_category").val();
+    // console.log(technologty_pre);
+    $.ajax({
+        type:"GET",
+        url:"/getprojectcategory",
+        data:"category_id="+category_id,
+        success: function(data) {
+            var category_text = [];
+            // console.log("data",data);
+
+                var options = '';
+                $.each( data, function( key, value ) {
+                    options += "<option value='"+value['id']+"'>"+value['name']+"</option>";
+                });
+                //console.log(options);
+                $('#project_sub_category').html(options);
+
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
+}
+
 function copyToClipboard(element) {
     var $temp = $("<input>");
     $("body").append($temp);

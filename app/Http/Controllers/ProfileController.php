@@ -90,26 +90,30 @@ class ProfileController extends JoshController
     public function professionalExperience()
     {
         $user = Sentinel::getUser();
-        $projectcategorys = ProjectCategory::all();
+        //$projectcategorys = ProjectCategory::all();
         $proexps = ProfessionalExperience::where('user_id', $user->id)->get();
         $technologies = Technology::where('parent_id', '0')->get();
         $locations = Location::all();
+        $projectcategorys = ProjectCategory::where('parent_id', '0')->get();
 
         if (count($proexps) > 0) {
             $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
             $selected_technologies = explode(",", $proexps[0]['technologty_pre']);
             $selected_framework = explode(",", $proexps[0]['framework']);
+            //$selected_project_category = $proexps[0]['project_category'];
             //$dd =
             $childtechnologies = Technology::whereIn('parent_id', $selected_technologies)->get();
+            //$childproject_sub_category = ProjectCategory::whereIn('parent_id', $selected_project_category)->get();
         } else {
             $model_engagement_new = [];
             $selected_technologies = [];
             $selected_framework = [];
             $childtechnologies = [];
+            //$childproject_sub_category = [];
         }
-        $designations = Designation::all();
+        //$designations = Designation::all();
         // print_r($childtechnologies);
-        return view('profile/prof-exp', compact('proexps','designations','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework','locations'));
+        return view('profile/prof-exp', compact('proexps','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework','locations'));
     }
 
     public function getframework(Request $request)
@@ -356,7 +360,8 @@ class ProfileController extends JoshController
             $professionalExperience->experience_year = $input['experience_year'];
             $professionalExperience->experience_month = $input['experience_month'];
             $professionalExperience->support_project = $input['support_project'];
-            $professionalExperience->designation = $input['designation'];
+            //$professionalExperience->designation = $input['designation'];
+            $professionalExperience->project_sub_category = $input['project_sub_category'];
             $professionalExperience->current_location = $input['current_location'];
             $professionalExperience->preferred_location = $input['preferred_location'];
             $professionalExperience->development_project = $input['development_project'];

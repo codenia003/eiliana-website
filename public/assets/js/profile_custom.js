@@ -81,20 +81,28 @@ $(document).ready(function() {
             } else {
                 localStorage.removeItem('reg_id');
                 $('.spinner-border').addClass("d-none");
+                var interested = $("input[name='interested']:checked").val();
                 var radioValue = $("input[name='wanttofill']:checked").val();
-                if (radioValue == 1 || radioValue == 3) {
-                    var msg = 'Redirecting To Education';
-                    var redirect = '/profile/education';
-                } else if(radioValue == 2) {
-                    var msg = 'Redirecting To Certification';
-                    var redirect = '/profile/certification';
-                } else if(radioValue == 4) {
-                    var msg = 'Redirecting To Professional Experience';
-                    var redirect = '/profile/professional-experience';
-                } else {
-                    // var redirect = '/profile/professional-experience';
-                    var msg = 'Redirecting To Education';
-                    var redirect = '/profile/education';
+                if(interested == '2') 
+                {
+                        var msg = 'Redirecting To Education';
+                        var redirect = '/profile/education';
+                }
+                else if(interested == '1') {
+                    if (radioValue == 1 || radioValue == 3) {
+                        var msg = 'Redirecting To Education';
+                        var redirect = '/profile/education';
+                    } else if(radioValue == 2) {
+                        var msg = 'Redirecting To Certification';
+                        var redirect = '/profile/certification';
+                    } else if(radioValue == 4) {
+                        var msg = 'Redirecting To Professional Experience';
+                        var redirect = '/profile/professional-experience';
+                    } else {
+                        // var redirect = '/profile/professional-experience';
+                        var msg = 'Redirecting To Education';
+                        var redirect = '/profile/education';
+                    }
                 }
                 Swal.fire({
                     type: 'success',

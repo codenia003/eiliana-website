@@ -369,150 +369,175 @@ Home
         </div>
     </div>
 </section>
-<section class="section my-2 new-page-bg bg-img-hero"
-    style="background-image: url(/assets/img/photo/new_page-only.png);">
-    <div class="container">
-        <!-- <div class="text-center mb-5">
-        <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
-        <div class="dividerheading"></div>
-        </div> -->
-        <div class="explore-more">
-            <div class="row">
-                <div class="col-12 col-md-4 col-lg-4">
-                    <h1 class="headingmain1">Agility @Eiliana</h1>
-                    <ul class="list-unstyled list-article">
-                        <li>
-                            <div class="d-flex">
-                                <div class="media align-items-center align-items-sm-start mb-3">
-                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
-                                        alt="Image Description">
-                                </div>
-                                <div class="media-body">
-                                    <span>Choose experienced Professionals from Global Talent Pool.</span>
+<section class="section four-slider mt-4 searv">
+    <div class="hire">
+        <div class="shadow1">
+            <div class="container space-1">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        {{-- <h1 class="headingmain1">Frequently asked questions</h1> --}}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-4">
+                        <div class="refer-resource">
+                            <div class="card">
+                                <h4 class="card-header">Refer A Freelancer</h4>
+                                <div class="card-body">
+                                    <figure class="mt-0">
+                                        <img class="img-fluid" src="/assets/img/photo/refer-a-resource.png" alt="SVG">
+                                    </figure>
                                 </div>
                             </div>
-                        </li>
-                        <li>
-                            <div class="d-flex">
-                                <div class="media align-items-center align-items-sm-start mb-3">
-                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
-                                        alt="Image Description">
-                                </div>
-                                <div class="media-body">
-                                    <span>Experienced Professionals availablity helps manage Business Risk on Pay Per Use Model.</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex">
-                                <div class="media align-items-center align-items-sm-start mb-3">
-                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
-                                        alt="Image Description">
-                                </div>
-                                <div class="media-body">
-                                    <span>Managed Delivery Model at Eiliana facilitates smooth project Delivery.</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex">
-                                <div class="media align-items-center align-items-sm-start mb-3">
-                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
-                                        alt="Image Description">
-                                </div>
-                                <div class="media-body">
-                                    <span>Faster project Roll out through Instant resource deployment.</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex">
-                                <div class="media align-items-center align-items-sm-start mb-3">
-                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
-                                        alt="Image Description">
-                                </div>
-                                <div class="media-body">
-                                    <span>Access to Super Niche Skills improves project performance.</span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-12 col-md-3 col-lg-3">
-                    <figure class="mt-4 d-none only-mobile text-center">
-                        <img class="img-fluid" src="/assets/img/photo/new_page-mobile.png" alt="SVG">
-                    </figure>
-                </div>
-                <div class="col-12 col-md-5 col-lg-5">
-                    <div class="card1">
-                        <div class="eiliana-agility">
-                            <form action="#" method="GET" id="register_basic_form">
-                                @csrf
-                                <div class="form-row">
-                                    <div class="form-group col-12">
-                                        <label>Key Skills</label>
-                                        <input type="text" name="keyskills"
-                                            placeholder="Chatbots, Machine learning, Deep learning, Computer vision, Cognitive Science"
-                                            class="form-control" disabled />
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-6">
-                                        <label>Total Experience</label>
-                                        <div class="form-row">
-                                            <div class="col-6">
-                                                <select class="form-control" required="" name="experience_year"
-                                                    disabled>
-                                                    @for ($i = 4; $i < 21; $i++) <option value="{{ $i }}">{{ $i }} Years
-                                                        </option>
-                                                        @endfor
-                                                </select>
-                                            </div>
-                                            <div class="col-6">
-                                                <select class="form-control" required="" name="experience_month"
-                                                    disabled>
-                                                    @for ($i = 5; $i < 13; $i++) <option value="{{ $i }}">{{ $i }} Years
-                                                        </option>
-                                                        @endfor
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-6">
-                                        <label>Salary Range</label>
-                                        <div class="form-row">
-                                            <div class="col-6">
-                                                <select class="form-control" required="" name="from_salary_range"
-                                                    disabled>
-                                                    <option value="">10 Lacs</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-6">
-                                                <select class="form-control" required="" name="experience_month"
-                                                    disabled>
-                                                    <option value="">20 Lacs</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Location</label>
-                                    <select name="technologty_pre" class="form-control" id="technologty_pre" disabled>
-                                        <option value="">Delhi</option>
-                                    </select>
-                                </div>
-                            </form>
                         </div>
                     </div>
-                    {{-- <figure class="mt-4">
-                        <img class="img-fluid" src="/assets/img/photo/new_page.png" alt="SVG">
-                    </figure> --}}
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-12">
+                        {{-- <h4 class="featured-jobs mx-4">Featured Jobs</h4> --}}
+                        <div class="browse-job-posting">
+                            <div class="mb-3 mb-lg-5">
+                                <ul class="list-unstyled">
+                                    <li class="card mb-4">
+                                        <div class="row no-gutters d-flex align-items-center">
+                                            <div class="col-md-12">
+                                                <div class="contract-body position-reletive">
+                                                    <div class="row no-gutters">
+                                                        <div class="col-md-12">
+                                                            <div class="mb-2">
+                                                                <div class="display-5">REFER A Freelancer AND EARN COMMISSION ON HIS FIRST PROJECT DELIVERED</div>
+                                                                <figure class="mt-0">
+                                                                    <img class="img-fluid" src="/assets/img/profile/refere-freelancer.png" alt="SVG">
+                                                                </figure>
+                                                            </div>
+                                                            <div class="find_job_button text-right">
+                                                                @if(Sentinel::guest())
+                                                                <a class="btn_small yellow-linear-gradient text-white" href="{{ url('account/login') }}">Refer</a>
+                                                                @else
+                                                                <a class="btn_small yellow-linear-gradient text-white" data-toggle="modal" data-target="#modal-refer">Refer</a>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Row -->
+        </div>
+    </div>
+    {{-- <div class="text-center">
+        <h1 class="headingmain1">Why Choose Us?</h1>
+        <p class="subtitle1">Firstly, for talents, we have tons of jobs that will help you utilize your skills and earn
+            some (actually, more than some) extra bucks on the side. Secondly, for clients, we have thousands of
+            talented individuals who are ready to take on all kinds of projects, right from app development to logo
+            design.</p>
+        <p class="subtitle2"><b>And lastly, there are a bunch of nifty reasons why you’ll Eiliana.</b></p>
+        <div class="dividerheading"></div>
+    </div>
+    <div class="banner_custom">
+        <div class="banner_custom_services">
+            <div class="multiple-carousel">
+                <div class="slide">
+                    <div class="crowd_favrt">
+                        <div class="servicesimg">
+                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/1-Anonimity-1814278721.jpg">
+                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
+                                <!-- <h5 class="text-orange">Complete Anonymity</h5> -->
+                                <h5 class="text-orange">HDGH HBCHD</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="crowd_favrt">
+                        <div class="servicesimg">
+                            <img class="img-fluid"
+                                src="/assets/img/eiliana-why-choose-us/2-Business Generation-1534355573.jpg">
+                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
+                                <!-- <h5 class="text-orange">Start-up</h5> -->
+                                <h5 class="text-orange">4RSK SDKSL</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="crowd_favrt">
+                        <div class="servicesimg">
+                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/3-Online Bid-769403827.jpg">
+                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
+                                <!-- <h5 class="text-orange">Business Geneartion</h5> -->
+                                <h5 class="text-orange">NHAHGA HHSH</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="crowd_favrt">
+                        <div class="servicesimg">
+                            <img class="img-fluid"
+                                src="/assets/img/eiliana-why-choose-us/4-Faster roll out-1495084820.jpg">
+                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
+                                <!-- <h5 class="text-orange">Faster Rollout</h5> -->
+                                <h5 class="text-orange">GSHSH SHSHS</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="crowd_favrt">
+                        <div class="servicesimg">
+                            <img class="img-fluid"
+                                src="/assets/img/eiliana-why-choose-us/5-team building-1493445596.jpg">
+                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
+                                <!-- <h5 class="text-orange">Cost Optimization</h5> -->
+                                <h5 class="text-orange">HGDHG HJDHDHKD</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="crowd_favrt">
+                        <div class="servicesimg">
+                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/6-Learning-529026958.jpg">
+                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
+                                <h5 class="text-orange">247SURY JDBCJ</h5>
+                                <!-- <h5 class="text-orange">24X7 Support</h5> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="crowd_favrt">
+                        <div class="servicesimg">
+                            <img class="img-fluid"
+                                src="/assets/img/eiliana-why-choose-us/7-Project Analysis-250380139.jpg">
+                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
+                                <h5 class="text-orange">DHDH HDHD DHDH</h5>
+                                <!-- <h5 class="text-orange">Team Creation & Bidding</h5> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="crowd_favrt">
+                        <div class="servicesimg">
+                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/8-Talent-1208199004.jpg">
+                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
+                                <h5 class="text-orange">HGDHGDS DHDHD</h5>
+                                <!-- <h5 class="text-orange">Faster Rollout</h5> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </section>
+
 <section class="section container our-solution four-slider space-2">
     <div class="text-center">
         <h1 class="headingmain1">Crowd <span><img src="/assets/img/heart-icon.jpg"></span> Favourites</h1>
@@ -821,174 +846,6 @@ Home
                 class="fa fa-angle-right"></span></a> --}}
     </div>
 </section>
-<section class="section four-slider mt-4 searv">
-    <div class="hire">
-        <div class="shadow1">
-            <div class="container space-1">
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-8">
-                        {{-- <h1 class="headingmain1">Frequently asked questions</h1> --}}
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-4">
-                        <div class="refer-resource">
-                            <div class="card">
-                                <h4 class="card-header">Refer A Freelancer</h4>
-                                <div class="card-body">
-                                    <figure class="mt-0">
-                                        <img class="img-fluid" src="/assets/img/photo/refer-a-resource.png" alt="SVG">
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-12">
-                        {{-- <h4 class="featured-jobs mx-4">Featured Jobs</h4> --}}
-                        <div class="browse-job-posting">
-                            <div class="mb-3 mb-lg-5">
-                                <ul class="list-unstyled">
-                                    <li class="card mb-4">
-                                        <div class="row no-gutters d-flex align-items-center">
-                                            <div class="col-md-12">
-                                                <div class="contract-body position-reletive">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-2">
-                                                                <div class="display-5">REFER A Freelancer AND EARN COMMISSION ON HIS FIRST PROJECT DELIVERED</div>
-                                                                <figure class="mt-0">
-                                                                    <img class="img-fluid" src="/assets/img/profile/refere-freelancer.png" alt="SVG">
-                                                                </figure>
-                                                            </div>
-                                                            <div class="find_job_button text-right">
-                                                                @if(Sentinel::guest())
-                                                                <a class="btn_small yellow-linear-gradient text-white" href="{{ url('account/login') }}">Refer</a>
-                                                                @else
-                                                                <a class="btn_small yellow-linear-gradient text-white" data-toggle="modal" data-target="#modal-refer">Refer</a>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Row -->
-        </div>
-    </div>
-    {{-- <div class="text-center">
-        <h1 class="headingmain1">Why Choose Us?</h1>
-        <p class="subtitle1">Firstly, for talents, we have tons of jobs that will help you utilize your skills and earn
-            some (actually, more than some) extra bucks on the side. Secondly, for clients, we have thousands of
-            talented individuals who are ready to take on all kinds of projects, right from app development to logo
-            design.</p>
-        <p class="subtitle2"><b>And lastly, there are a bunch of nifty reasons why you’ll Eiliana.</b></p>
-        <div class="dividerheading"></div>
-    </div>
-    <div class="banner_custom">
-        <div class="banner_custom_services">
-            <div class="multiple-carousel">
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/1-Anonimity-1814278721.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Complete Anonymity</h5> -->
-                                <h5 class="text-orange">HDGH HBCHD</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid"
-                                src="/assets/img/eiliana-why-choose-us/2-Business Generation-1534355573.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Start-up</h5> -->
-                                <h5 class="text-orange">4RSK SDKSL</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/3-Online Bid-769403827.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Business Geneartion</h5> -->
-                                <h5 class="text-orange">NHAHGA HHSH</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid"
-                                src="/assets/img/eiliana-why-choose-us/4-Faster roll out-1495084820.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Faster Rollout</h5> -->
-                                <h5 class="text-orange">GSHSH SHSHS</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid"
-                                src="/assets/img/eiliana-why-choose-us/5-team building-1493445596.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Cost Optimization</h5> -->
-                                <h5 class="text-orange">HGDHG HJDHDHKD</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/6-Learning-529026958.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
-                                <h5 class="text-orange">247SURY JDBCJ</h5>
-                                <!-- <h5 class="text-orange">24X7 Support</h5> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid"
-                                src="/assets/img/eiliana-why-choose-us/7-Project Analysis-250380139.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
-                                <h5 class="text-orange">DHDH HDHD DHDH</h5>
-                                <!-- <h5 class="text-orange">Team Creation & Bidding</h5> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/8-Talent-1208199004.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
-                                <h5 class="text-orange">HGDHGDS DHDHD</h5>
-                                <!-- <h5 class="text-orange">Faster Rollout</h5> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-</section>
 
 <section class="section our-solution">
     <div class="text-center w-lg-60 mx-auto">
@@ -1037,6 +894,150 @@ Home
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section my-2 new-page-bg bg-img-hero"
+    style="background-image: url(/assets/img/photo/new_page-only.png);">
+    <div class="container">
+        <!-- <div class="text-center mb-5">
+        <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
+        <div class="dividerheading"></div>
+        </div> -->
+        <div class="explore-more">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-4">
+                    <h1 class="headingmain1">Agility @Eiliana</h1>
+                    <ul class="list-unstyled list-article">
+                        <li>
+                            <div class="d-flex">
+                                <div class="media align-items-center align-items-sm-start mb-3">
+                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
+                                        alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span>Choose experienced Professionals from Global Talent Pool.</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <div class="media align-items-center align-items-sm-start mb-3">
+                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
+                                        alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span>Experienced Professionals availablity helps manage Business Risk on Pay Per Use Model.</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <div class="media align-items-center align-items-sm-start mb-3">
+                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
+                                        alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span>Managed Delivery Model at Eiliana facilitates smooth project Delivery.</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <div class="media align-items-center align-items-sm-start mb-3">
+                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
+                                        alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span>Faster project Roll out through Instant resource deployment.</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex">
+                                <div class="media align-items-center align-items-sm-start mb-3">
+                                    <img class="avatar avatar-sm mr-2 mt-1" src="/assets/img/photo/icon.png"
+                                        alt="Image Description">
+                                </div>
+                                <div class="media-body">
+                                    <span>Access to Super Niche Skills improves project performance.</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3 col-lg-3">
+                    <figure class="mt-4 d-none only-mobile text-center">
+                        <img class="img-fluid" src="/assets/img/photo/new_page-mobile.png" alt="SVG">
+                    </figure>
+                </div>
+                <div class="col-12 col-md-5 col-lg-5">
+                    <div class="card1">
+                        <div class="eiliana-agility">
+                            <form action="#" method="GET" id="register_basic_form">
+                                @csrf
+                                <div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label>Key Skills</label>
+                                        <input type="text" name="keyskills"
+                                            placeholder="Chatbots, Machine learning, Deep learning, Computer vision, Cognitive Science"
+                                            class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-6">
+                                        <label>Total Experience</label>
+                                        <div class="form-row">
+                                            <div class="col-6">
+                                                <select class="form-control" required="" name="experience_year"
+                                                    disabled>
+                                                    @for ($i = 4; $i < 21; $i++) <option value="{{ $i }}">{{ $i }} Years
+                                                        </option>
+                                                        @endfor
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <select class="form-control" required="" name="experience_month"
+                                                    disabled>
+                                                    @for ($i = 5; $i < 13; $i++) <option value="{{ $i }}">{{ $i }} Years
+                                                        </option>
+                                                        @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label>Salary Range</label>
+                                        <div class="form-row">
+                                            <div class="col-6">
+                                                <select class="form-control" required="" name="from_salary_range"
+                                                    disabled>
+                                                    <option value="">10 Lacs</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <select class="form-control" required="" name="experience_month"
+                                                    disabled>
+                                                    <option value="">20 Lacs</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <select name="technologty_pre" class="form-control" id="technologty_pre" disabled>
+                                        <option value="">Delhi</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {{-- <figure class="mt-4">
+                        <img class="img-fluid" src="/assets/img/photo/new_page.png" alt="SVG">
+                    </figure> --}}
                 </div>
             </div>
         </div>

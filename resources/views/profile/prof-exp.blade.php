@@ -64,27 +64,35 @@
                         </div>
                     </div>
                     <input type="hidden" name="project_category">
-                    <input type="hidden" name="designation">
+                    <!-- <input type="hidden" name="designation"> -->
                     <input type="hidden" name="model_engagement">
                     @else
                     <input type="hidden" name="key_skills">
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label>Freelancing Project Category</label>
-                            <select name="project_category" class="form-control">
+                            <select name="project_category" class="form-control" id="project_category" onchange="change_category1();">
                                 <option value=""></option>
                                 @foreach ($projectcategorys as $category)
                                 <option value="{{ $category->id }}" {{ ($proexp->project_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-6">
+                        {{--<div class="form-group col-6">
                             <label>Designation</label>
                             <select name="designation" class="form-control" required>
                                 <option value=""></option>
                                 @foreach ($designations as $designation)
                                 <option value="{{ $designation->designation_id }}" {{ ($proexp->designation==$designation->designation_id)? "selected" : "" }}>{{ $designation->name }}</option>
                                 @endforeach
+                            </select>
+                        </div>--}}
+
+                        <div class="form-group col-6">
+                            <label>Project Sub Category</label>
+                            <select name="project_sub_category" id="project_sub_category" class="form-control" required>
+                                <option value=""></option>
+                                
                             </select>
                         </div>
                     </div>
@@ -196,14 +204,22 @@
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label>Freelancing Project Category</label>
-                            <select name="project_category" class="form-control">
+                            <select name="project_category" class="form-control" id="project_category" onchange="change_category1();">
                                 <option value=""></option>
                                 @foreach ($projectcategorys as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" {{ ($proexp->project_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="form-group col-6">
+                            <label>Project Sub Category</label>
+                            <select name="project_sub_category" id="project_sub_category" class="form-control" required>
+                                <option value=""></option>
+                                
+                            </select>
+                        </div>
+                        {{--<div class="form-group col-6">
                             <label>Designation</label>
                             <select name="designation" class="form-control" required>
                                 <option value=""></option>
@@ -211,7 +227,7 @@
                                 <option value="{{ $designation->designation_id }}">{{ $designation->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div>--}}
                     </div>
 
     	            <div class="form-group basic-info mb-3">

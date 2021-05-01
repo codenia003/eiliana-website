@@ -76,7 +76,7 @@ class AuthController extends JoshController
             curl_setopt($ch, CURLOPT_URL, 'https://api.kaleyra.io/v1/HXAP1693485091IN/messages');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=ILIANA&body='.$mobile_otp.' is your OTP form eiliana.com');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=EILANA&body=Your OTP is '.$mobile_otp.'.');
 
             $headers = array();
             $headers[] = 'Api-Key: A1ffb94833d64ffd5d5a68e99318b0b25';
@@ -294,15 +294,6 @@ class AuthController extends JoshController
         if (Sentinel::check()) {
             return Redirect::route('profile');
         }
-
-        $urlPrevious = url()->previous();
-        $urlBase = url()->to('/');
-
-        // Set the previous url that we came from to redirect to after successful login but only if is internal
-        if(($urlPrevious != $urlBase . '/account/login') && ($urlPrevious != $urlBase . '/logout') && (substr($urlPrevious, 0, strlen($urlBase)) === $urlBase)) {
-            session()->put('url.intended', $urlPrevious);
-        }
-        
         // Show the login page
         return view('account/login');
     }
@@ -338,13 +329,7 @@ class AuthController extends JoshController
                     $country_name = DB::table('countries')->where('id', $user->country)->first();
 
                     $user['country_name'] = $country_name->name;
-
-                    if(session()->has('url.intended')) {
-                        $response['url'] = $request->session()->get('url.intended');
-                    } else {
-                        $response['url'] = url()->to('/home');
-                    }
-                    
+                    $response['url'] = RouteServiceProvider::HOME;
                     $response['user'] = $user;
                     $response['errors'] = trans('auth/message.signin.success');
                     $request->session()->put('users', $user);
@@ -383,12 +368,12 @@ class AuthController extends JoshController
             Sentinel::logout();
         }
 
+
         // Redirect to the users page
         return redirect('admin/signin')->with('success', 'You have successfully logged out!');
     }
 
-    public function fetchCountry() 
-    {
+    public function fetchCountry() {
         $countries = Country::all();
         return response()->json($countries);
     }
@@ -403,14 +388,7 @@ class AuthController extends JoshController
         $user = $request->session()->get('users');
         $user['login_as'] = $request->input('login_as');
         $request->session()->put('users', $user);
-
-        if(session()->has('url.intended')) {
-            $url = $request->session()->get('url.intended');
-            return redirect($url)->with('success', 'Login successfully');
-        } else {
-            return redirect('home')->with('success', 'Login successfully');
-        }
-        
+        return redirect('home')->with('success', 'Login successfully');
     }
 
 }

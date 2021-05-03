@@ -17,6 +17,7 @@ use App\Models\Job;
 use App\Models\Technology;
 use App\Models\ProjectCategory;
 use App\Models\Location;
+use App\Models\HomePage;
 
 class HomeController extends JoshController
 {
@@ -26,6 +27,7 @@ class HomeController extends JoshController
         $technologies = Technology::where('parent_id', '0')->get();
         $projectcategories = ProjectCategory::where('parent_id' , '0')->get();
         $locations = Location::all();
+        // $homepage = HomePage::first();
         // return $jobs;
         return view('index', compact('jobs','technologies','projectcategories','locations'));
     }

@@ -88,3 +88,15 @@ function copyToClipboard(element) {
     document.execCommand("copy");
     $temp.remove();
 }
+$(document).ready(function(){
+    $('ul.submenu1').hide();
+    $('ul.sub_navbar > li, ul.submenu1 > li').hover(function () {
+    if ($('> ul.submenu1',this).length > 0) {
+        $('> ul.submenu1',this).stop().slideDown('slow');
+    }
+    },function () {
+        if ($('> ul.submenu1',this).length > 0) {
+            $('> ul.submenu1',this).stop().slideUp('slow');
+        }
+    });
+});

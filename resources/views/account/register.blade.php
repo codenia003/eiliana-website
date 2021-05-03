@@ -38,7 +38,7 @@ Register
         <div class="singup-body account-register">
             <div class="container">
                 <div class="row">
-                    <div class="col p-0">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0">
                         <div class="card">
                             <h4 class="card-header">Signup</h4>
                             <div class="card-body">
@@ -85,7 +85,7 @@ Register
                             </div>
                         </div>
                     </div>
-                    <div class="col p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="background-image: url(/assets/img/others/singup.png);">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="background-image: url(/assets/img/others/singup.png);">
                         <div class="account-second-side text-center">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Already have an account?</p>

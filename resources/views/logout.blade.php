@@ -51,11 +51,11 @@ Logout
 				border-right: 2px solid #3b5998;
 			}
 
-            .account-page {
+            /* .account-page {
 				width: 1643px;
-			}
+			} */
         }
-        
+
 </style>
 <!--end of page level css-->
 @stop
@@ -90,7 +90,7 @@ Logout
                             <a href="/account/login" class="btn btn-light bt btn-lg">Login</a>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

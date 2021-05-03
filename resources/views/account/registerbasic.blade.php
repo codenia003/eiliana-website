@@ -121,12 +121,12 @@ type="text/css"/>
                         @endif
 
                         <div class="form-row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 p-0">
                                 <label>First Name</label>
                                 <input type="text" name="first_name" class="form-control" />
                             </div>
 
-                            <div class="form-group col-6">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 p-0">
                                 <label>Last Name</label>
                                 <input type="text" name="last_name" class="form-control" />
                             </div>
@@ -137,12 +137,12 @@ type="text/css"/>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col anonymousShow">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 anonymousShow">
                                 <label>Alias</label>
                                 <input type="text" name="pseudoName" class="form-control" />
                             </div>
 
-                            <div class="form-group col anonymousShow-1">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 anonymousShow-1">
                                 <label>Date Of Birth</label>
                                 {{-- <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control" /> --}}
                                 <input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker">
@@ -176,6 +176,14 @@ type="text/css"/>
 
 {{-- footer scripts --}}
 @section('footer_scripts')
+<!--global js starts-->
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/register_custom.js') }}"></script>
+<script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
+<script src="https://kit.fontawesome.com/a8d4ee811a.js" crossorigin="anonymous"></script>
 <script>
     getDetails();
 
@@ -218,19 +226,10 @@ type="text/css"/>
         $('.register-as').removeClass("d-none");
     }
 
-</script>
-<!--global js starts-->
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/assets/js/register_custom.js') }}"></script>
-<script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
-<script src="https://kit.fontawesome.com/a8d4ee811a.js" crossorigin="anonymous"></script>
-<script>
-$(document).ready(function() {
-    flatpickr('.flatpickr');
-});
+    $(document).ready(function() {
+        flatpickr('.flatpickr');
+    });
+
 </script>
 <!--global js end-->
 @stop

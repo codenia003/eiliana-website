@@ -39,70 +39,6 @@
 
     gtag('config', 'G-Y58JLJ1H42');
     </script>
-    <style type="text/css">
-        /* ============ desktop view ============ */
-        @media all and (min-width: 992px) {
-            .dropdown-menu li{
-                position: relative;
-             }
-            .nav-item .submenu1{
-                display: none;
-                position: absolute;
-                left:100%;
-                top:-7px;
-            }
-            .nav-item .submenu1-left{
-                right:100%;
-                left:auto;
-            }
-            .dropdown-menu > li:hover{
-                background-color: #f1f1f1
-            }
-            /*.dropdown-menu > li:hover > .submenu{
-                display: block;
-            }*/
-
-            .dropdown-menu li .submenu_down{
-                font-size: 14px;
-                font-weight: 500;
-                color: #000 !important;
-             }
-
-             .submenu_item {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                z-index: 1000;
-                display: none;
-                float: left;
-                min-width: 10rem;
-                padding: 0.5rem 0;
-                margin: 0.125rem 0 0;
-                font-size: 1rem;
-                color: #212529;
-                text-align: left;
-                list-style: none;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid rgba(0, 0, 0, 0.15);
-                border-radius: 0.25rem;
-            }
-
-            .custom_header ul li a {
-                padding: 6px 16px;
-            }
-
-        }
-
-        /* ============ small devices ============ */
-        @media (max-width: 991px) {
-          .dropdown-menu .dropdown-menu{
-              margin-left:0.7rem;
-              margin-right:0.7rem;
-              margin-bottom: .5rem;
-          }
-        }
-    </style>
 </head>
 
 <body>
@@ -261,7 +197,7 @@
                         @endif
                         {{-- <a href="#" class="nav-item nav-link messages"><i class="fa fa-comments"></i><span class="badge">10</span></a> --}}
                         <x-database-notifications/>
-                        <div class="nav-item dropdown">
+                        <div class="nav-item user-avator">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
                                 @if(Sentinel::getUser()->pic)
                                 <img src="{{ asset('images/authors/no_avatar.jpg') }}" class="avatar" alt="Avatar">
@@ -404,21 +340,6 @@
     <!-- begin page level js -->
     @yield('footer_scripts')
     <!-- end page level js -->
-    <script>
-        $(document).ready(function(){
-                $('ul.submenu1').hide();
-                $('ul.sub_navbar > li, ul.submenu1 > li').hover(function () {
-                if ($('> ul.submenu1',this).length > 0) {
-                    $('> ul.submenu1',this).stop().slideDown('slow');
-                }
-                },function () {
-                    if ($('> ul.submenu1',this).length > 0) {
-                        $('> ul.submenu1',this).stop().slideUp('slow');
-                    }
-                });
-            });
-
-    </script>
 </body>
 
 </html>

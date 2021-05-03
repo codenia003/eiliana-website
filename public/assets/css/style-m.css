@@ -222,6 +222,15 @@
     .banner1_content h1 {
         margin: 10px;
     }
+    .account-second-side {
+        bottom: 23px;
+    }
+    .account-register .card {
+        box-shadow: unset;
+    }
+    .offset-md-20 {
+        margin-left: 0%;
+    }
 }
 @media only screen and (min-device-width: 480px) and (max-device-width: 640px) and (orientation: landscape) {
     .explore-more .only-mobile img.img-fluid {
@@ -247,4 +256,59 @@
         display: none !important;
     }
 
+}
+ /* ============ desktop view ============ */
+ @media all and (min-width: 992px) {
+    .custom_header .dropdown-menu li{
+        position: relative;
+     }
+    .custom_header .nav-item .submenu1{
+        display: none;
+        position: absolute;
+        left:100%;
+        top:-7px;
+    }
+    .custom_header .nav-item .submenu1-left{
+        right:100%;
+        left:auto;
+    }
+    .custom_header .dropdown-menu > li:hover{
+        background-color: #f1f1f1
+    }
+    .custom_header .dropdown-menu li .submenu_down{
+        font-size: 14px;
+        font-weight: 500;
+        color: #000 !important;
+     }
+
+    .custom_header .submenu_item {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 10rem;
+        padding: 0.5rem 0;
+        margin: 0.125rem 0 0;
+        font-size: 1rem;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0.25rem;
+    }
+
+    .custom_header .custom_header ul li a {
+        padding: 6px 16px;
+    }
+}
+@media (max-width: 991px) {
+    .custom_header .dropdown-menu .dropdown-menu{
+      margin-left:0.7rem;
+      margin-right:0.7rem;
+      margin-bottom: .5rem;
+  }
 }

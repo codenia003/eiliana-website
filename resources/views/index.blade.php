@@ -1165,11 +1165,11 @@ Home
     $(document).ready(function () {
         var $videoSrc;
         // when the modal is opened autoplay it
-        $('#myModal, #myModal_1').on('shown.bs.modal', function (e) {
+        $('#myModal').on('shown.bs.modal', function (e) {
             $('#myModal video').trigger('play');
         });
 
-        $('#myModal, #myModal_1').on('hide.bs.modal', function (e) {
+        $('#myModal').on('hide.bs.modal', function (e) {
             $('#myModal video').trigger('pause');
         });
 

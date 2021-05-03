@@ -3,8 +3,27 @@
 <div class="bg-red">
     <div class="px-5 py-2">
         <div class="align-items-center">
-            <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Certification</span>
+            <span class="border-title profile_text"><i class="fa fa-bars"></i></span>
+            <span class="h5 text-white ml-2 profile_text">Certification</span>
+            <nav class="navbar navbar-expand-xl navbar-light custom_header">
+				<!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
+				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse1" style="margin-right: -34px;">
+				<span class="border-title profile_text"><i class="fa fa-bars"></i></span>
+                <span class="h5 text-white ml-2 profile_text">Certification</span>
+				</button>
+				<!-- Collection of nav links, forms, and other content for toggling -->
+				<div id="navbarCollapse1" class="collapse navbar-collapse justify-content-start nav_sub">
+					<div class="navbar-nav ml-auto">
+						<div class="nav-item dropdown">
+							<a href="/profile" class="dropdown-item sub_nav_menu" style="color:white;"><i class="fa fa-user-o"></i> Primary Information</a>
+							<a href="/profile/education" class="dropdown-item sub_nav_menu" style="color:white;"><i class="fa fa-sliders"></i> Education</a>
+							<a href="/profile/certification" class="dropdown-item sub_nav_menu" style="color:white;"><i class="fa fa-sliders"></i> Certification</a>
+							<a href="/profile/professional-experience" class="dropdown-item sub_nav_menu" style="color:white;"><i class="fa fa-sliders"></i> Professional Experience</a>
+							<a href="/profile" class="dropdown-item sub_nav_menu" style="color:white;"><i class="fa fa-sliders"></i> User Settings</a>
+						</div>
+					</div>
+				</div>
+			</nav>
             <!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
         </div>
     </div>

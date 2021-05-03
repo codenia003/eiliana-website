@@ -42,6 +42,16 @@ How Its Work
             width: 0px;
         }
     }
+
+    @media only screen and (max-width: 768px) {
+        .client{
+            margin-left: -44px;
+        }
+
+        .red{
+            margin-right: 37px;
+        }
+    }
 </style>
 <!--end of page level css-->
 @stop
@@ -61,7 +71,7 @@ How Its Work
         <div class="container">
             <div class="row">
                 <div class="col p-0">
-                    <section class="section container our-solution space-2" style="margin-right: -21px;padding-right: 50px;">
+                    <section class="section container our-solution space-2" style="margin-right: -44px;padding-right: 50px;">
                         <div class="text-center" style="margin-bottom: 20px;">
                             <h1 class="headingmain1">How It Works</h1>
                             <p class="subtitle1">Checkout some of the most popular services people pay for on Eiliana.</p>
@@ -137,7 +147,7 @@ How Its Work
                         <div class="title col-md-4 md-2 mt-6" style="margin-top: 2rem!important;float:left;">    
                             <h1 class="red">Client</h1>
                         </div>
-                        <div class="col-md-8 md-2 mt-6" style="max-width:515px;float: left;margin-top: 2rem!important;">    
+                        <div class="col-md-8 md-2 mt-6 client" style="max-width:515px;float: left;margin-top: 2rem!important;">    
                              <p>Get all the technical gadgetry haselfree! Eiliana makes it easy for quality projects and resources to connect, 
                                         collaborate, and get work done flexibly and securely</p>
                         </div>

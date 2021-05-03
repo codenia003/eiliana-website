@@ -1,4 +1,4 @@
-<div id="sidebarNav" class="navbar-collapse navbar-vertical " style="">
+<div id="sidebarNav" class="navbar-collapse navbar-vertical ">
     <!-- Card -->
     <div class="card mb-5 shadow d-none">
         <div class="card-body">

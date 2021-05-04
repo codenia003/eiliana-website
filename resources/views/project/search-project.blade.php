@@ -30,7 +30,7 @@
 	<div class="shadow1">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-0 space-2">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-lg-0 space-2">
                     <div id="notific">
                         @include('notifications')
                     </div>
@@ -168,16 +168,16 @@
 	                                        <label>Experience</label>
 	                                        <div class="form-row">
 				                                <div class="col">
-				                                    <select class="form-control" name="experience_year">
+				                                    <select class="form-control" name="experience_year" id="experience_year" onchange="toExperience();">
 				                                        @for ($i = 0; $i < 21; $i++)
 				                                        <option value="{{ $i }}">{{ $i }} Years</option>
 				                                        @endfor
 				                                    </select>
 				                                </div>
 				                                <div class="col">
-				                                    <select class="form-control" name="experience_month">
-				                                        @for ($i = 1; $i < 13; $i++)
-				                                        <option value="{{ $i }}">{{ $i }} Months</option>
+				                                    <select class="form-control" name="experience_month" id="experience_to_year">
+				                                        @for ($i = 1; $i < 21; $i++)
+				                                        <option value="{{ $i }}">{{ $i }} Years</option>
 				                                        @endfor
 				                                    </select>
 				                                </div>

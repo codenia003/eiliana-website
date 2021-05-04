@@ -28,23 +28,23 @@ type="text/css"/>
 <div class="shadow1">
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-lg-0">
                 <div id="notific">
                     @include('notifications')
                 </div>
                 <div class="advance-search singup-body login-body">
-                    <form action="{{ route('referralform') }}" method="POST">
+                    <form action="{{ route('referralform') }}" method="POST" id="salesreferallead">
                         @csrf
                         <div class="card">
                             <div class="card-body p-4">
                                 <div class="form-row">
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Company Name</label>
                                         <input type="text" name="company_name" class="form-control" value="" required />
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Legal Status</label>
-                                        <select name="legal_status" class="form-control">
+                                        <select name="legal_status" class="form-control" required>
                                             <option value=""></option>
                                             <option value="1">Pending</option>
                                             <option value="2">Processing</option>
@@ -52,47 +52,46 @@ type="text/css"/>
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Contact Person</label>
                                         <input type="text" name="contact_person" class="form-control" value="" required />
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Designation</label>
                                         <input type="text" name="designation" class="form-control" value="" required />
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Email Address</label>
                                         <input type="text" name="email" class="form-control" value="" required />
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Mobile No</label>
                                         <input type="text" name="mobile_no" class="form-control" value="" required />
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Website Address</label>
                                         <input type="text" name="website_address" class="form-control" value="" required />
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Requirment Details</label>
                                         <input type="text" name="requirment_details" class="form-control" value="" required />
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Customer Industry</label>
-                                        <select name="customer_industry" class="form-control">
+                                        <select name="customer_industry" class="form-control" required>
                                             <option value=""></option>
                                             <option value="1">Pending</option>
                                             <option value="2">Processing</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Date/Time Connect</label>
-                                        {{-- <input type="datetime-local" name="datetimeconnect" class="form-control" value="" required /> --}}
                                         <input class="form-control flatpickr" data-enabletime=true data-time_24hr="true" data-timeFormat="H:i" name="datetimeconnect" id="datetimepicker">
                                     </div>
                                 </div>
@@ -113,15 +112,15 @@ type="text/css"/>
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Commission Type</label>
-                                        <select name="commission_type" class="form-control">
+                                        <select name="commission_type" class="form-control" required>
                                             <option value=""></option>
                                             <option value="1">Percentage</option>
                                             <option value="2">Processing</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Expected Commission(%/INR)</label>
                                         <input type="text" name="expected_commission" class="form-control" value="" required />
                                     </div>
@@ -149,14 +148,13 @@ type="text/css"/>
 <!--global js starts-->
 <script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
 <script>
+$('#salesreferallead').bootstrapValidator({});
 $(document).ready(function() {
-
     flatpickr('#datetimepicker', {
         enableTime: true,
         dateFormat: 'Y-m-d H:i K',
         minDate: "today",
     });
-
 });
 </script>
 <!--global js end-->

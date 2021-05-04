@@ -231,6 +231,35 @@
     .offset-md-20 {
         margin-left: 0%;
     }
+    .stafflead-basic button.btn-info {
+        width: 75%;
+    }
+    .search-project {
+        padding-left: 0px;
+    }
+    .search-project .search-image .names {
+        float: unset;
+        text-align: center;
+        margin: 17px 0px;
+    }
+    .hire-talent .form-check-inline {
+        display: block;
+    }
+    .howitswork  .client{
+        margin-left: 0px;
+    }
+    .howitswork  .red{
+        margin-right: 37px;
+    }
+    .howitswork  .it_work {
+        width: 285px;
+    }
+    .howitswork  .space-2{
+        padding-right: 0px;
+    }
+    .howitswork  .p-0{
+        margin-left: 0px;
+    }
 }
 @media only screen and (min-device-width: 480px) and (max-device-width: 640px) and (orientation: landscape) {
     .explore-more .only-mobile img.img-fluid {

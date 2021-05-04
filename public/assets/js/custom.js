@@ -20,6 +20,18 @@ function change_framework()
         },
     });
 }
+function toExperience()
+{
+    var experience_year = parseInt($("#experience_year").val());
+    var experience_year = parseInt(1) + experience_year;
+
+    var options = '';
+    for (i = experience_year; i < 50; i++) {
+        options += "<option value='"+i+"'>"+i+" Years</option>";
+    }
+    //console.log(options);
+    $('#experience_to_year').html(options);
+}
 
 function change_category()
 {

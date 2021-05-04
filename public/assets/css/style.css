@@ -3,3 +3,50 @@ body{font-family:Montserrat!important;font-size:1rem;font-weight:400;line-height
     right: 40px;
     left: unset;
 }
+.howitswork .our-slotuion h6 {
+    min-height: 20px;
+}
+.howitswork .our-slotuion p {
+    font-size: 13px;
+    padding: 5px 3px;
+    text-align: center;
+    min-height: 70px;
+}
+.howitswork .our-slotuion {
+    float: left;
+    margin: 6px;
+}
+.howitswork .title h1.red {
+    color: #b8180c;
+    border-right: 2px solid #f89a14;
+    height: 65px;
+    font-size: 30px;
+}
+.howitswork .it_work{
+    width: 202px;
+}
+.howitswork .text-center{
+    height: 329px;
+}
+.howitswork .space-2{
+    padding-right: 50px;
+}
+.howitswork .p-0{
+    margin-left: 25px;
+}
+.howitswork .client{
+    max-width:550px;
+    float: left;
+    margin-top: 2rem!important;
+    margin-left: 0px;
+}
+.howitswork .title{
+   margin-top: 2rem!important;
+   float:left;
+}
+.howitswork .freelancer{
+    max-width:515px;
+    float: left;
+    margin-top: 2rem!important;
+    margin-left: 0px;
+}

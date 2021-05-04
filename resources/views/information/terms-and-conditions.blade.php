@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Privacy Policy
+Terms And Conditions
 @parent
 @stop
 
@@ -29,7 +29,7 @@ Privacy Policy
       <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Privacy Policy</span>
+            <span class="h5 text-white ml-2">Terms And Conditions</span>
         </div>
       </div>
     </div>

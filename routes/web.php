@@ -583,6 +583,9 @@ Route::post('freelancer-referral', 'SalesController@freelancerReferral')->name('
 Route::post('freelancer-referral-email', 'SalesController@freelancerReferralEmail');
 Route::post('freelancer-referral-accept/{referral_code}', 'SalesController@freelancerReferralAccept')->name('freelancerreferral.accept');
 Route::get('about', 'InformationController@about')->name('about');
+Route::get('careers', 'InformationController@careers')->name('careers');
+Route::get('customers', 'InformationController@customers')->name('customers');
+Route::get('hire-us', 'InformationController@hireUs')->name('hire-us');
 Route::get('privacy-policy', 'InformationController@privacy')->name('privacypolicy');
 Route::get('terms-and-conditions', 'InformationController@termsAndConditions')->name('termsandconditions');
 Route::get('how-its-work', 'InformationController@howItsWork')->name('howitswork');

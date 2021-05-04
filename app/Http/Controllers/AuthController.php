@@ -57,7 +57,8 @@ class AuthController extends JoshController
 
         $validator = Validator::make($data, [
             'email' => 'required|email',
-            'mobile' => 'required|numeric|min:9'
+            'mobile' => 'required|numeric|min:9',
+            'g-recaptcha-response' => 'required|recaptcha'
         ]);
 
         //Send failed response if request is not valid

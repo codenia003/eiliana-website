@@ -60,6 +60,11 @@ Register
                                         <label for="email">Email ID</label>
                                         {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                     </div>
+                                    @if(config('services.recaptcha.key'))
+                                        <div class="g-recaptcha"
+                                            data-sitekey="{{config('services.recaptcha.key')}}">
+                                        </div>
+                                    @endif
                                     <div class="form-group form-check">
                                         <label for="acceptTerms" class="form-check-label">
                                             <input type="checkbox" name="acceptTerms" id="acceptTerms" class="custom_icheck custom-checkbox pos-rel p-l-30" />

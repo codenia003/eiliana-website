@@ -23,4 +23,24 @@ class InformationController extends JoshController
         return view('information.pricing');
     }
 
+    public function about (){
+        return view('information.about');
+    }
+
+    public function careers (){
+        return view('information.careers');
+    }
+
+    public function customers (){
+        return view('information.customers');
+    }
+
+    public function hireUs (){
+        return view('information.hire-us');
+    }
+
+    public function termsAndConditions (){
+        return view('information.terms-and-conditions');
+    }
+
 }

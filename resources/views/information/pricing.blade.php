@@ -52,12 +52,36 @@ Pricing Plan
         margin-top: -24px;
     }
 
-    @media (min-width: 768px){
+    .contract-staffing{
+        margin-top: 2rem!important;
+        float:left;
+        margin-left: -376px;
+    }
+
+    @media only screen and (max-width: 768px) {
         .our-solution .title {
             margin-left: 0px;
         }
-    }
+        .contract-staffing{
+            margin-left: 0px;
+        }
 
+        .pricing_plan h2.blue {
+            background-color: #0b316b;
+            color: white;
+            padding: 19px;
+            margin: -16px -24px 17px;
+            margin-top: -24px;
+        }
+
+        .pricing_plan h2.red {
+            background-color: #e8240c;
+            color: white;
+            padding: 19px;
+            margin: -16px -24px 17px;
+            margin-top: -24px;
+        }
+    }
 </style>
 <!--end of page level css-->
 @stop
@@ -129,7 +153,7 @@ Pricing Plan
 
                     <section class="section container our-solution space-2" style="margin-right: -5px;">
                         <div style="margin-bottom: 150px;">
-                            <div class="title col-md-4 md-2 mt-6" style="margin-top: 2rem!important;float:left;margin-left: -376px;">    
+                            <div class="title contract-staffing col-md-4 md-2 mt-6">    
                                 <h1 class="red">Contract Staffing</h1>
                             </div>
                             <div class="col-md-8 md-2 mt-6" style="max-width:515px;float: left;margin-top: 2rem!important;">    

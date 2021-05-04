@@ -274,6 +274,7 @@
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Blog</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Customers</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Hire us</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('privacypolicy') }}">Privacy Policy</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>

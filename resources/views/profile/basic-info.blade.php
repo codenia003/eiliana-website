@@ -84,18 +84,18 @@
                 </div>
                 @if(!Sentinel::inRole('user'))
                 <div class="form-row">
-                    <div class="form-group col">
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         <label>Company Name</label>
                         <input type="text" name="company_name" class="form-control" value="{{ $user->company_name }}" />
                     </div>
-                    <div class="form-group col">
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         <label>GST Number/PAN Number</label>
                         <input type="text" name="gst_number" class="form-control" value="{{ $user->gst_number }}" />
                     </div>
                 </div>
                 @endif
                 <div class="form-row">
-                    <div class="form-group col">
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         <label>First Name</label>
                         <input type="text" name="first_name" class="form-control" value="{{ $user->first_name }}" />
                     </div>
@@ -103,13 +103,13 @@
                         <label>Middle Name</label>
                         <input type="text" name="middle_name" class="form-control"/>
                     </div> -->
-                    <div class="form-group col">
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         <label>Last Name</label>
                         <input type="text" name="last_name" class="form-control" value="{{ $user->last_name }}" />
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col">
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         @if(!Sentinel::inRole('user'))
                         <label>Date of incorporation</label>
                         @else
@@ -171,7 +171,7 @@
                         </div>
                     </div> -->
                 </div>
-                
+
                 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog" role="document">
                        <div class="modal-content">

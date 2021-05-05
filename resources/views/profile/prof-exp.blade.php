@@ -49,7 +49,7 @@
                             </div>
                         </div> -->
 
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                             <label>Technology Preference</label>
                             <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
                                 <option value=""></option>
@@ -58,7 +58,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Framework</label>
                             <select class="form-control select2" required="" name="framework[]" id="framework" multiple>
                                 <option value=""></option>
@@ -69,14 +69,14 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                             <label>Profile Headline</label>
                             <input type="text" name="profile_headline" class="form-control" value="{{ $proexp->profile_headline }}" />
                         </div>
                     </div>
                     @if(Sentinel::getUser()->interested == "2")
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Key Skills (Ex. Core Java, Hibernate, Html, Css)</label>
                             <input type="text" name="key_skills" class="form-control" value="{{ $proexp->key_skills }}" />
                             <span style="color: red;font-size: 12px;">Note: Key skills mentioned above will be used for contractual staffing</span>
@@ -89,7 +89,7 @@
                     @else
                     <input type="hidden" name="key_skills">
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Freelancing Project Category</label>
                             <select name="project_category" class="form-control" id="project_category" onchange="change_category1();">
                                 <option value=""></option>
@@ -98,7 +98,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        {{--<div class="form-group col-6">
+                        {{--<div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Designation</label>
                             <select name="designation" class="form-control" required>
                                 <option value=""></option>
@@ -108,11 +108,11 @@
                             </select>
                         </div>--}}
 
-                        <div class="form-group col-6">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Project Sub Category</label>
                             <select name="project_sub_category" id="project_sub_category" class="form-control">
                                 <option value=""></option>
-                                
+
                             </select>
                         </div>
                     </div>
@@ -137,17 +137,17 @@
                     @endif
 
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Total <br>Experience</label>
                             <div class="form-row">
-                                <div class="col-5">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5">
                                     <select class="form-control" required="" name="experience_year">
                                         @for ($i = 0; $i < 21; $i++)
                                         <option value="{{ $i }}" {{ ($proexp->experience_year==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                         @endfor
                                     </select>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5">
                                     <select class="form-control" required="" name="experience_month">
                                         @for ($i = 1; $i < 13; $i++)
                                         <option value="{{ $i }}" {{ ($proexp->experience_month==$i)? "selected" : "" }}>{{ $i }} Months</option>
@@ -156,18 +156,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-12 col-sm-12 col-md-3 col-lg-3">
                             <label>No of Support <br>Projects(Optional)</label>
                             {!! Form::selectRange('support_project', 1, 20, $proexp->support_project, ['class' => 'form-control','required' =>'']) !!}
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-12 col-sm-12 col-md-3 col-lg-3">
                             <label>No of Development Projects(Optional)</label>
                             {!! Form::selectRange('development_project', 1, 20, $proexp->development_project, ['class' => 'form-control','required' =>'']) !!}
                         </div>
                         <!-- <span style="color: red;font-size: 12px;">Note: Candidates needs to mention overall projects executed by them in there professional journey</span> -->
                     </div>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Current Location</label>
                             <select name="current_location" class="form-control" required>
                                 <option value=""></option>
@@ -176,7 +176,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Preferred Location</label>
                             <select name="preferred_location" class="form-control" required>
                                 <option value=""></option>
@@ -188,7 +188,7 @@
                     </div>
                 @empty
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Technology Preference</label>
                             <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
                                 <option value=""></option>
@@ -197,7 +197,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Framework</label>
                             <select class="form-control select2" required="" name="framework[]" id="framework" multiple>
                                 <option value=""></option>
@@ -205,14 +205,14 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Profile Headline</label>
                             <input type="text" name="profile_headline" class="form-control" />
                         </div>
                     </div>
                     @if(Sentinel::getUser()->interested == "2")
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Key Skills (Ex. Core Java, Hibernate, Html, Css)</label>
                             <input type="text" name="key_skills" class="form-control" />
                             <span style="color: red;font-size: 12px;">Note: Key skills mentioned above will be used for contractual staffing</span>
@@ -223,7 +223,7 @@
                     @else
                     <input type="hidden" name="key_skills">
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Freelancing Project Category</label>
                             <select name="project_category" class="form-control" id="project_category" onchange="change_category1();">
                                 <option value=""></option>
@@ -233,14 +233,14 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-6">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Project Sub Category</label>
                             <select name="project_sub_category" id="project_sub_category" class="form-control">
                                 <option value=""></option>
-                                
+
                             </select>
                         </div>
-                        {{--<div class="form-group col-6">
+                        {{--<div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Designation</label>
                             <select name="designation" class="form-control" required>
                                 <option value=""></option>
@@ -270,17 +270,17 @@
                     @endif
 
     	            <div class="form-row">
-                		<div class="form-group col-4">
+                		<div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
     		                <label>Total Experience</label>
     		                <div class="form-row">
-    		                	<div class="col">
+    		                	<div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                     <select class="form-control" required="" name="experience_year">
                                         @for ($i = 1; $i < 21; $i++)
                                         <option value="{{ $i }}">{{ $i }} Years</option>
                                         @endfor
                                     </select>
     	                    	</div>
-    	                    	<div class="col">
+    	                    	<div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                     <select class="form-control" required="" name="experience_month">
                                         @for ($i = 1; $i < 13; $i++)
                                         <option value="{{ $i }}">{{ $i }} Months</option>
@@ -289,17 +289,17 @@
     		                    </div>
     		                </div>
     		            </div>
-    		            <div class="form-group col-4">
+    		            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
     		            	<label>No of Support Projects</label>
     		                {!! Form::selectRange('support_project', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
     		            </div>
-    		            <div class="form-group col-4">
+    		            <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
     		            	<label>No of Development Projects</label>
     		                {!! Form::selectRange('development_project', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
     		            </div>
     		        </div>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Current Location</label>
                             <select name="current_location" class="form-control" required>
                                 <option value=""></option>
@@ -308,7 +308,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Preferred Location</label>
                             <select name="preferred_location" class="form-control" required>
                                 <option value=""></option>

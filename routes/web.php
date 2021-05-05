@@ -579,6 +579,7 @@ Route::get('news/{news}', 'NewsController@show')->name('news.show');
 
 //info
 Route::get('sales-referral', 'SalesController@salesReferral');
+Route::get('freelancer-referral', 'SalesController@freelancerReferralView')->name('freelancerreferral');
 Route::post('freelancer-referral', 'SalesController@freelancerReferral')->name('freelancerreferral.new');
 Route::post('freelancer-referral-email', 'SalesController@freelancerReferralEmail');
 Route::post('freelancer-referral-accept/{referral_code}', 'SalesController@freelancerReferralAccept')->name('freelancerreferral.accept');

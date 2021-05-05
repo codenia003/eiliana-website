@@ -44,7 +44,7 @@
                             <input type="hidden" name="graduation_type[]" value="3">
                             <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
                             <div class="form-row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Under Graducation</label>
                                     <select name="degree[]" class="form-control">
                                         <option value=""></option>
@@ -55,9 +55,9 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-1">
+                                <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
-                                <div class="form-group col-7">
+                                <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>University Name</label>
                                     <select name="name[]" class="form-control">
                                         <option value=""></option>
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Year of Graduation</label>
                                     <div class="form-row">
                                         <div class="col">
@@ -90,9 +90,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-1">
+                                <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
-                                <div class="form-group col-7">
+                                <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>Education Type</label>
                                     <select name="education_type[]" class="form-control" required>
                                         <option value=""></option>
@@ -109,7 +109,7 @@
 		            	<input type="hidden" name="graduation_type[]" value="3">
 		            	<input type="hidden" name="education_id[]" value="0">
 		            	<div class="form-row">
-				            <div class="form-group col-4">
+				            <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
 				                <label>Under Graducation</label>
 				                <select name="degree[]" class="form-control" required>
 		                            <option value=""></option>
@@ -120,9 +120,9 @@
 			                        @endforeach
 		                        </select>
 				            </div>
-				            <div class="form-group col-1">
+				            <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
 				            </div>
-				            <div class="form-group col-7">
+				            <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
 				                <label>University Name</label>
 				                <select name="name[]" class="form-control">
 		                            <option value=""></option>
@@ -134,7 +134,7 @@
 				            </div>
 				        </div>
 		            	<div class="form-row">
-				            <div class="form-group col-4">
+				            <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
 				                <label>Year of Graduation</label>
 				                <div class="form-row">
 				                	<div class="col">
@@ -155,9 +155,9 @@
 				                    </div>
 				                </div>
 				            </div>
-				            <div class="form-group col-1">
+				            <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
 				            </div>
-				            <div class="form-group col-7">
+				            <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
 				            	<label>Education Type</label>
 				                <select name="education_type[]" class="form-control" required>
 		                            <option value=""></option>
@@ -185,7 +185,7 @@
                             <input type="hidden" name="graduation_type[]" value="4">
                             <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
                             <div class="form-row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Post Graducation</label>
                                     <select name="degree[]" class="form-control">
                                         <option value=""></option>
@@ -196,9 +196,9 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-1">
+                                <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
-                                <div class="form-group col-7">
+                                <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>University Name</label>
                                     <!-- <input type="text" name="name[]" class="form-control" value="{{ $education->name }}" /> -->
                                     <select name="name[]" class="form-control">
@@ -210,7 +210,7 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Year of Graduation</label>
                                     <div class="form-row">
                                         <div class="col">
@@ -231,9 +231,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-1">
+                                <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
-                                <div class="form-group col-7">
+                                <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>Education Type</label>
                                     <select name="education_type[]" class="form-control">
                                         <option value=""></option>
@@ -250,7 +250,7 @@
 		            	<input type="hidden" name="graduation_type[]" value="4">
 		            	<input type="hidden" name="education_id[]" value="0">
 		            	<div class="form-row">
-				            <div class="form-group col-4">
+				            <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
 				                <label>Post Graducation</label>
 				                <select name="degree[]" class="form-control">
 		                            <option value=""></option>
@@ -261,9 +261,9 @@
 			                        @endforeach
 		                        </select>
 				            </div>
-				            <div class="form-group col-1">
+				            <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
 				            </div>
-				            <div class="form-group col-7">
+				            <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
 				                <label>University Name</label>
 				                <select name="name[]" class="form-control">
 		                            <option value=""></option>
@@ -275,7 +275,7 @@
 				            </div>
 				        </div>
 		            	<div class="form-row">
-		            		<div class="form-group col-4">
+		            		<div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
 				                <label>Year of Graduation</label>
 				                <div class="form-row">
 				                	<div class="col">
@@ -298,7 +298,7 @@
 				            </div>
 				            <div class="form-group col-1">
 				            </div>
-				            <div class="form-group col-7">
+				            <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
 				            	<label>Education Type</label>
 				                <select name="education_type[]" class="form-control">
 		                            <option value=""></option>
@@ -336,7 +336,7 @@
 	<input type="hidden" name="graduation_type[]" value="3">
 	<input type="hidden" name="education_id[]" id="education_id" value="0">
 	<div class="form-row">
-        <div class="form-group col-4">
+        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
             <label>Under Graducation</label>
             <select name="degree[]" class="form-control" required>
                 <option value=""></option>
@@ -349,7 +349,7 @@
         </div>
         <div class="form-group col-1">
         </div>
-        <div class="form-group col-7">
+        <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
             <label>University Name</label>
             <select name="name[]" class="form-control">
 	            <option value=""></option>
@@ -360,7 +360,7 @@
         </div>
     </div>
 	<div class="form-row">
-		<div class="form-group col-4">
+		<div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
             <label>Year of Graduation</label>
             <div class="form-row">
             	<div class="col">
@@ -383,7 +383,7 @@
         </div>
         <div class="form-group col-1">
         </div>
-        <div class="form-group col-7">
+        <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
         	<label>Education Type</label>
             <select name="education_type[]" class="form-control" required>
                 <option value=""></option>
@@ -400,7 +400,7 @@
 	<input type="hidden" name="graduation_type[]" value="4">
 	<input type="hidden" name="education_id[]" id="education_id" value="0">
 	<div class="form-row">
-        <div class="form-group col-4">
+        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
             <label>Post Graducation</label>
             <select name="degree[]" class="form-control" required>
                 <option value=""></option>
@@ -413,7 +413,7 @@
         </div>
         <div class="form-group col-1">
         </div>
-        <div class="form-group col-7">
+        <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
             <label>University Name</label>
             <select name="name[]" class="form-control">
                 <option value=""></option>
@@ -425,7 +425,7 @@
         </div>
     </div>
 	<div class="form-row">
-		<div class="form-group col-4">
+		<div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
             <label>Year of Graduation</label>
             <div class="form-row">
             	<div class="col">
@@ -448,7 +448,7 @@
         </div>
         <div class="form-group col-1">
         </div>
-        <div class="form-group col-7">
+        <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
         	<label>Education Type</label>
             <select name="education_type[]" class="form-control" required>
                 <option value=""></option>

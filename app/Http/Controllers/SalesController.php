@@ -58,6 +58,11 @@ class SalesController extends JoshController
         return response()->json($response);
     }
 
+    public function freelancerReferralView()
+    {
+        return view('sales/freelancer-referral');
+    }
+
     public function freelancerReferral(Request $request)
     {
         $user = Sentinel::getUser();
@@ -68,7 +73,7 @@ class SalesController extends JoshController
         $input['referral_link'] =  'freelancer-referral-accept/'. $referral_code;
 
         FreelanceReferral::create($input);
- 
+
         $response['success'] = '1';
         $response['referral_link'] = url()->to('/freelancer-referral-accept') .'/'. $referral_code;
         $response['referral_code'] = $referral_code;
@@ -95,6 +100,6 @@ class SalesController extends JoshController
         $response['msg'] = 'Email send to user';
 
         return response()->json($response);
-        
+
     }
 }

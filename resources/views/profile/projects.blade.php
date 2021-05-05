@@ -28,7 +28,7 @@
                                 <input type="text" name="project_name[]" class="form-control" value="{{ $project->project_name }}" />
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-8">
+                                <div class="form-group col-12 col-sm-12 col-md-8 col-lg-8">
                                     <label>Project Type</label>
                                     <select name="project_type[]" class="form-control" required>
                                         @foreach ($projecttypes as $type)
@@ -54,12 +54,12 @@
                                 </div>
                             </div> -->
                             <div class="form-row">
-                                <div class="form-group col">
+                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Duration (Months)</label>
                                     <input type="text" name="duration[]" class="form-control" value="{{ $project->duration }}" />
                                 </div>
 
-                                <div class="form-group col">
+                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Technology</label>
                                     <select name="technologty_pre[]" class="form-control" id="technologty_pre_multi_{{ $key + 1 }}" onchange="change_framework_project({{ $key + 1 }});" required>
                                         <option value=""></option>
@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col">
+                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Framework</label>
                                     <select class="form-control" required="" name="framework[]" id="framework_multi_{{ $key + 1 }}">
                                         <option value=""></option>
@@ -82,7 +82,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col">
+                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Industry that Product was designed for</label>
                                     <select name="industry[]" class="form-control">
                                         <option value=""></option>
@@ -131,7 +131,7 @@
                                 <input type="text" name="project_name[]" class="form-control" />
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-8">
+                                <div class="form-group col-12 col-sm-12 col-md-8 col-lg-8">
                                     <label>Project Type</label>
                                     <select name="project_type[]" class="form-control" required>
                                         <option value="1">Development</option>
@@ -155,12 +155,12 @@
                                 </div>
                             </div>-->
                             <div class="form-row">
-                                <div class="form-group col">
+                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Duration (Months)</label>
                                     <input type="text" name="duration[]" class="form-control" />
                                 </div>
 
-                                <div class="form-group col">
+                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Technology</label>
                                     <select name="technologty_pre[]" class="form-control" id="technologty_pre_multi_0" onchange="change_framework_project(0);" required>
                                         <option value=""></option>
@@ -172,13 +172,13 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col">
+                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Framework</label>
                                     <select class="form-control" required="" name="framework[]" id="framework_multi_0">
                                         <option value=""></option>
                                     </select>
                                 </div>
-                                <div class="form-group col">
+                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Industry that Product was designed for</label>
                                     <select name="industry[]" class="form-control">
                                         <option value=""></option>
@@ -242,7 +242,7 @@
         <input type="text" name="project_name[]" class="form-control" />
     </div>
     <div class="form-row">
-        <div class="form-group col-8">
+        <div class="form-group col-12 col-sm-12 col-md-8 col-lg-8">
             <label>Project Type</label>
             <select name="project_type[]" class="form-control" required>
                 <option value="1">Development</option>
@@ -266,12 +266,12 @@
         </div>
     </div> -->
     <div class="form-row">
-        <div class="form-group col">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Duration (Months)</label>
             <input type="text" name="duration[]" class="form-control" />
         </div>
 
-        <div class="form-group col">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Technology</label>
             <select name="technologty_pre[]" class="form-control" id="technologty_pre_multi" onchange="change_framework_project();" required>
                 <option value=""></option>
@@ -283,13 +283,13 @@
     </div>
 
     <div class="form-row">
-        <div class="form-group col">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Framework</label>
             <select class="form-control" required="" name="framework[]" id="framework_multi">
                 <option value=""></option>
             </select>
         </div>
-        <div class="form-group col">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Industry that Product was designed for</label>
             <select name="industry[]" class="form-control">
                 <option value=""></option>

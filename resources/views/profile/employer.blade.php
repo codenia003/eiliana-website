@@ -36,10 +36,10 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Current Salary</label>
                             <div class="form-row">
-                                <div class="col-5 pr-1">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 pr-1">
                                     <select class="form-control" required="" name="current_salary_lacs">
                                         <option value=""></option>
                                         @for ($i = 0; $i < 51; $i++)
@@ -47,7 +47,7 @@
                                         @endfor
                                     </select>
                                 </div>
-                                <div class="col-5 ml-3">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 ml-lg-3">
                                     <select class="form-control" required="" name="current_salary_thousand">
                                         <option value=""></option>
                                         @for ($i = 0; $i < 100; $i+=5)
@@ -57,17 +57,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Expected Salary</label>
                             <div class="form-row">
-                                <div class="col-5 pr-1">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 pr-1">
                                     <select class="form-control" required="" name="expected_salary_lacs">
                                         @for ($i = 0; $i < 51; $i++)
                                         <option value="{{ $i }}" {{ ($details->expected_salary_lacs==$i)? "selected" : "" }}>{{ $i }} Lakh</option>
                                         @endfor
                                     </select>
                                 </div>
-                                <div class="col-5 ml-3">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 ml-lg-3">
                                     <select class="form-control" required="" name="expected_salary_thousand">
                                         @for ($i = 0; $i < 100; $i+=5)
                                         <option value="{{ $i }}" {{ ($details->expected_salary_thousand==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-8">
+                        <div class="form-group col-12 col-sm-12 col-md-8 col-lg-8">
                             <label>Notice Period</label>
                             <select class="form-control" required="" name="notice_period">
                                 <option value=""></option>
@@ -106,17 +106,17 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Current Salary</label>
                             <div class="form-row">
-                                <div class="col-5 pr-1">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 pr-1">
                                     <select class="form-control" required="" name="current_salary_lacs">
                                         @for ($i = 0; $i < 51; $i++)
                                         <option value="{{ $i }}">{{ $i }} Lacs</option>
                                         @endfor
                                     </select>
                                 </div>
-                                <div class="col-5 ml-3">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 ml-lg-3">
                                     <select class="form-control" required="" name="current_salary_thousand">
                                         @for ($i = 0; $i < 100; $i+=5)
                                         <option value="{{ $i }}">{{ $i }} Thousand</option>
@@ -125,17 +125,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Expected Salary</label>
                             <div class="form-row">
-                                <div class="col-5 pr-1">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 pr-1">
                                     <select class="form-control" required="" name="expected_salary_lacs">
                                         @for ($i = 0; $i < 51; $i++)
                                         <option value="{{ $i }}">{{ $i }} Lacs</option>
                                         @endfor
                                     </select>
                                 </div>
-                                <div class="col-5 ml-3">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 ml-lg-3">
                                     <select class="form-control" required="" name="expected_salary_thousand">
                                         @for ($i = 0; $i < 100; $i+=5)
                                         <option value="{{ $i }}">{{ $i }} Thousand</option>
@@ -146,7 +146,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-7">
+                        <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                             <label>Notice Period</label>
                             <select class="form-control" required="" name="notice_period">
                                 <option value=""></option>
@@ -180,11 +180,11 @@
                         </div>
                         @endif --}}
                         <div class="form-row">
-                            <div class="form-group col-11">
+                            <div class="form-group col-12 col-sm-12 col-md-11 col-lg-11">
                                 <label>Employer Name</label>
                                 <input type="text" name="employer_name[]" class="form-control" value="{{ $employer->employer_name }}" required/>
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-12 col-sm-12 col-md-5 col-lg-5">
                                 <label>Designation</label>
                                 <select name="designation[]" class="form-control" required>
                                     <option value=""></option>
@@ -193,7 +193,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-5 ml-5" style="margin-left: 3.5rem !important;">
+                            <div class="form-group col-12 col-sm-12 col-md-5 col-lg-5 ml-lg-5">
                                 <label>Employment Type</label>
                                 <select name="employment_type[]" class="form-control" required>
                                     <option value=""></option>
@@ -204,10 +204,10 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label>Employment Duration</label>
                                 <div class="form-row">
-                                    <div class="col-5 pr-1">
+                                    <div class="col-6 col-sm-6 col-md-5 col-lg-5 pr-1">
                                         <select class="form-control" required="" name="duration_year[]">
                                             <option value=""></option>
                                             @for ($i = 0; $i < 21; $i++)
@@ -215,7 +215,7 @@
                                             @endfor
                                         </select>
                                     </div>
-                                    <div class="col-5 ml-3">
+                                    <div class="col-6 col-sm-6 col-md-5 col-lg-5 ml-lg-3">
                                         <select class="form-control" required="" name="duration_month[]">
                                             <option value=""></option>
                                             @for ($i = 1; $i < 13; $i++)
@@ -250,11 +250,11 @@
                             </div>
                         </div> --}}
                         <div class="form-row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label>Employer Name</label>
                                 <input type="text" name="employer_name[]" class="form-control" required/>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label>Designation</label>
                                 <select name="designation[]" class="form-control" required>
                                     <option value=""></option>
@@ -265,7 +265,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label>Employment Duration</label>
                                 <div class="form-row">
                                     <div class="col">
@@ -286,7 +286,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label>Employment Type</label>
                                 <select name="employment_type[]" class="form-control" required>
                                     <option value=""></option>
@@ -336,11 +336,11 @@
     <!-- <span class="h4 text-left mt-3 mb-4 d-inline-block">Employer</span> -->
     <input type="hidden" name="employer_id[]" id="employer_id" value="0">
     <div class="form-row">
-        <div class="form-group col-6">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Employer Name</label>
             <input type="text" name="employer_name[]" class="form-control" required/>
         </div>
-        <div class="form-group col-6">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Designation</label>
             <select name="designation[]" class="form-control" required>
                 <option value=""></option>
@@ -351,7 +351,7 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-6">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Employment Duration</label>
             <div class="form-row">
                 <div class="col">
@@ -372,7 +372,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group col-6">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Employment Type</label>
             <select name="employment_type[]" class="form-control" required>
                 <option value=""></option>

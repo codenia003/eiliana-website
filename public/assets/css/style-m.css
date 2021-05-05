@@ -268,8 +268,22 @@
     .bench-img{
         display: none;
     }
+    .basic-info .form-check {
+        display: block;
+        margin-left: 0 !important;
+    }
+    .profile-basic button.btn-info {
+        width: 129px;
+        height: 55px;
+        line-height: 20px;
+        font-size: 13px!important;
+    }
+    .profile-basic button.btn-info span {
+        position: relative;
+        top: -10px;
+    }
 }
-@media only screen and (min-device-width: 480px) and (max-device-width: 640px) and (orientation: landscape) {
+@media only screen and (min-device-width: 480px) and (max-device-width: 768px) and (orientation: landscape) {
     .explore-more .only-mobile img.img-fluid {
         width: 85%;
     }

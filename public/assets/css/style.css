@@ -132,3 +132,9 @@ body{font-family:Montserrat!important;font-size:1rem;font-weight:400;line-height
     background: #a881de;
     background: linear-gradient(281deg,#a881de 0,#56b1dd 70%);
 }
+.employer-3 {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #c7c7c7;
+    margin-bottom: 30px;
+}
+.employer-3:last-child{border-bottom:0 solid #c7c7c7}

@@ -43,19 +43,19 @@
                             <!-- <button type="button" onclick="ConfirmDelete('{{ $certificate->certificate_id }}','2')" class="btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
                             <input type="hidden" name="certificate_id[]" id="certificate_id" value="{{ $certificate-> certificate_id }}">
                             <div class="form-row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Certification Number</label>
                                     <input type="text" name="certificate_no[]" class="form-control" value="{{ $certificate->certificate_no }}" required />
                                 </div>
-                                <div class="form-group col-1">
+                                <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
-                                <div class="form-group col-7">
+                                <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>Certification Name</label>
                                     <input type="text" name="name[]" class="form-control" value="{{ $certificate->name }}" required/>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Year of Certification</label>
                                     <div class="form-row">
                                         <div class="col">
@@ -76,9 +76,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-1">
+                                <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
-                                <div class="form-group col-7">
+                                <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>Institute Name</label>
                                     <input type="text" name="institutename[]" class="form-control" value="{{ $certificate->institutename }}" required />
                                 </div>
@@ -89,19 +89,19 @@
                             <span class="h4 text-left mt-3 mb-4 d-inline-block">Certification</span>
                             <input type="hidden" name="certificate_id[]" value="0">
                             <div class="form-row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Certification Number</label>
                                     <input type="text" name="certificate_no[]" class="form-control" required/>
                                 </div>
-                                <div class="form-group col-1">
+                                <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
-                                <div class="form-group col-7">
+                                <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>Certification Name</label>
                                     <input type="text" name="name[]" class="form-control" required/>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Year of Certification</label>
                                     <div class="form-row">
                                         <div class="col">
@@ -122,9 +122,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-1">
+                                <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
-                                <div class="form-group col-7">
+                                <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>Institute Name</label>
                                     <input type="text" name="institutename[]" class="form-control" required />
                                 </div>
@@ -155,19 +155,19 @@
    <!--  <button type="button" class="remove-c btn btn-outline-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
     <input type="hidden" name="certificate_id[]" id="certificate_id" value="0">
     <div class="form-row">
-        <div class="form-group col-4">
+        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
             <label>Certification Number</label>
             <input type="text" name="certificate_no[]" class="form-control" required/>
         </div>
-        <div class="form-group col-1">
+        <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
         </div>
-        <div class="form-group col-7">
+        <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
             <label>Certification Name</label>
             <input type="text" name="name[]" class="form-control" required/>
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-4">
+        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
             <label>Year of Certification</label>
             <div class="form-row">
                 <div class="col">
@@ -188,9 +188,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-group col-1">
+        <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
         </div>
-        <div class="form-group col-7">
+        <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
             <label>Institute Name</label>
             <input type="text" name="institutename[]" class="form-control" required />
         </div>

@@ -27,9 +27,9 @@ class HomeController extends JoshController
         $technologies = Technology::where('parent_id', '0')->get();
         $projectcategories = ProjectCategory::where('parent_id' , '0')->get();
         $locations = Location::all();
-        // $homepage = HomePage::first();
+        $homepage = HomePage::first();
         // return $jobs;
-        return view('index', compact('jobs','technologies','projectcategories','locations'));
+        return view('index', compact('jobs','technologies','projectcategories','locations','homepage'));
     }
 
     public function categoryDetails($slug)

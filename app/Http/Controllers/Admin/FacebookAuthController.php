@@ -72,8 +72,12 @@ class FacebookAuthController extends Controller
                 'last_name' => $last_name,
                 'email' => $providerUser->email,
                 'pic' => $providerUser->avatar,
-                'gender' => $providerUser->user['gender'],
+                //'gender' => $providerUser->user['gender'],
                 'provider' => $provider,
+                'password' => '',
+                'mobile' => '',
+                'username' => $first_name.$last_name,
+                'registration_id' => 0,
                 'provider_id' => $providerUser->id
                 ]
             );
@@ -97,7 +101,7 @@ class FacebookAuthController extends Controller
             ->log('Logged In');
         try {
             if (Sentinel::authenticate($user)) {
-                return Redirect::route("my-account")->with('success', 'Please update Password');
+                return Redirect::route("/")->with('success', 'Please update Password');
             }
             $this->messageBag->add('email', trans('auth/message.account_not_found'));
         } catch (NotActivatedException $e) {

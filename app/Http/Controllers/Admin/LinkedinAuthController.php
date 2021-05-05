@@ -74,6 +74,10 @@ class LinkedinAuthController extends Controller
                 'email' => $providerUser->email,
                 'pic' => $providerUser->avatar,
                 'provider' => $provider,
+                'password' => '',
+                'mobile' => '',
+                'username' => $first_name.$last_name,
+                'registration_id' => 0,
                 'provider_id' => $providerUser->id
                 ]
             );
@@ -97,7 +101,7 @@ class LinkedinAuthController extends Controller
             ->log('Logged In');
         try {
             if (Sentinel::authenticate($user)) {
-                return Redirect::route("my-account")->with('success', 'Please update Password');
+                return Redirect::route("/")->with('success', 'Please update Password');
             }
         } catch (NotActivatedException $e) {
             $this->messageBag->add('email', trans('auth/message.account_not_activated'));

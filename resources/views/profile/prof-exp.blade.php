@@ -83,6 +83,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="project_category">
+                    <input type="hidden" name="project_sub_category">
                     <!-- <input type="hidden" name="designation"> -->
                     <input type="hidden" name="model_engagement">
                     @else
@@ -109,7 +110,7 @@
 
                         <div class="form-group col-6">
                             <label>Project Sub Category</label>
-                            <select name="project_sub_category" id="project_sub_category" class="form-control" required>
+                            <select name="project_sub_category" id="project_sub_category" class="form-control">
                                 <option value=""></option>
                                 
                             </select>
@@ -218,6 +219,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="project_category">
+                    <input type="hidden" name="project_sub_category">
                     @else
                     <input type="hidden" name="key_skills">
                     <div class="form-row">
@@ -233,7 +235,7 @@
 
                         <div class="form-group col-6">
                             <label>Project Sub Category</label>
-                            <select name="project_sub_category" id="project_sub_category" class="form-control" required>
+                            <select name="project_sub_category" id="project_sub_category" class="form-control">
                                 <option value=""></option>
                                 
                             </select>

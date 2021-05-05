@@ -260,6 +260,14 @@
     .howitswork  .p-0{
         margin-left: 0px;
     }
+
+    .teams h2 {
+        font-size: 20px;
+        margin-top: 0px;
+    }
+    .bench-img{
+        display: none;
+    }
 }
 @media only screen and (min-device-width: 480px) and (max-device-width: 640px) and (orientation: landscape) {
     .explore-more .only-mobile img.img-fluid {
@@ -332,6 +340,22 @@
 
     .custom_header .custom_header ul li a {
         padding: 6px 16px;
+    }
+
+    .teams .col-lg-8 {
+        flex: 0 0 66.6666666667%;
+        max-width: 69.666667%;
+    }
+    .teams .col-lg-4 {
+        flex: 0 0 33.333333%;
+        max-width: 30.333333%;
+    }
+    .device-iphone-x-screen {
+        position: absolute;
+        top: 14%;
+        left: 12%;
+        width: 69%;
+        height: 100%;
     }
 }
 @media (max-width: 991px) {

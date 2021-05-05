@@ -65,12 +65,13 @@ Register
                                             data-sitekey="{{config('services.recaptcha.key')}}">
                                         </div>
                                     @endif
+                                    <br>
                                     <div class="form-group form-check">
                                         <label for="acceptTerms" class="form-check-label">
-                                            <input type="checkbox" name="acceptTerms" id="acceptTerms" class="custom_icheck custom-checkbox pos-rel p-l-30" />
-                                            I agree to the Eiliana User agreement and privacy policy
+                                            <input type="checkbox" name="acceptTerms" id="acceptTerms" onclick="myFunction()" class="custom_icheck custom-checkbox pos-rel p-l-30" />
+                                            I agree to the Eiliana User agreement and privacy policy 
                                         </label>
-                                    </div>
+                                    </div> 
                                     <div class="form-group input-field row justify-content-center mt-4 mb-5">
                                         <button class="btn btn-primary">
                                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
@@ -113,5 +114,17 @@ Register
 <script type="text/javascript" src="{{ asset('/assets/js/register_custom.js') }}"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <script src="https://kit.fontawesome.com/a8d4ee811a.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <!--global js end-->
+<script>
+    function myFunction() {
+        if(document.getElementById("acceptTerms").checked == true){
+            //document.getElementById("reg_form").submit();
+            window.location.href = "http://127.0.0.1:8000/privacy-policy";
+        }
+        else{
+            alert("You have to agree on terms and conditions");
+        }
+    }
+</script>
 @stop

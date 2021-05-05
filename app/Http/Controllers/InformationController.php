@@ -43,4 +43,8 @@ class InformationController extends JoshController
         return view('information.terms-and-conditions');
     }
 
+    public function teams (){
+        return view('information.teams');
+    }
+
 }

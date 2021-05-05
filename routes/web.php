@@ -591,6 +591,7 @@ Route::get('terms-and-conditions', 'InformationController@termsAndConditions')->
 Route::get('how-its-work', 'InformationController@howItsWork')->name('howitswork');
 Route::get('help', 'InformationController@help')->name('help');
 Route::get('pricing-plan', 'InformationController@pricingPlan')->name('pricingplan');
+Route::get('teams', 'InformationController@teams')->name('teams');
 
 // Route::get('{name?}', 'FrontEndController@showFrontEndView');
 // End of frontend views

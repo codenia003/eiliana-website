@@ -412,6 +412,9 @@ Route::group(
         Route::post('sales/post-referral-form', 'SalesController@postSalesReferralForm')->name('referralform');
         Route::get('sales/identifyconsultant', 'SalesController@identifyconsultant');
 
+        //Route::get('user-type', 'ProjectController@userType')->name('user-type');
+        Route::get('user-type/{slug}', 'ProjectController@categoryDetails')->name('user-type-slug');
+
         Route::get('freelancer-referral', 'SalesController@freelancerReferralView')->name('freelancerreferral');
         Route::post('freelancer-referral', 'SalesController@freelancerReferral')->name('freelancerreferral.new');
         Route::post('freelancer-referral-email', 'SalesController@freelancerReferralEmail');

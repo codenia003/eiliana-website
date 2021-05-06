@@ -361,7 +361,10 @@ class ProfileController extends JoshController
             $professionalExperience->experience_month = $input['experience_month'];
             $professionalExperience->support_project = $input['support_project'];
             //$professionalExperience->designation = $input['designation'];
-            $professionalExperience->project_sub_category = $input['project_sub_category'];
+            if(!empty($input['project_sub_category']))
+            {
+                $professionalExperience->project_sub_category = $input['project_sub_category'];
+            }
             $professionalExperience->current_location = $input['current_location'];
             $professionalExperience->preferred_location = $input['preferred_location'];
             $professionalExperience->development_project = $input['development_project'];
@@ -463,7 +466,7 @@ class ProfileController extends JoshController
         if ($input['employer_details_id'] != 0) {
             $employerdetails = EmployerDetails::find($input['employer_details_id']);
             $employerdetails->user_id = $user->id;
-            $employerdetails->current = $input['current'];
+            //$employerdetails->current = $input['current'];
             $employerdetails->current_salary_lacs = $input['current_salary_lacs'];
             $employerdetails->current_salary_thousand = $input['current_salary_thousand'];
             $employerdetails->expected_salary_lacs = $input['expected_salary_lacs'];
@@ -475,7 +478,7 @@ class ProfileController extends JoshController
         } else {
             $employerdetails = new EmployerDetails;
             $employerdetails->user_id = $user->id;
-            $employerdetails->current = $input['current'];
+            //$employerdetails->current = $input['current'];
             $employerdetails->current_salary_lacs = $input['current_salary_lacs'];
             $employerdetails->current_salary_thousand = $input['current_salary_thousand'];
             $employerdetails->expected_salary_lacs = $input['expected_salary_lacs'];
@@ -490,7 +493,7 @@ class ProfileController extends JoshController
             if ($input['employer_id'][$key] != 0) {
                 $employer = Employers::find($input['employer_id'][$key]);
                 $employer->user_id = $user->id;
-                // $employer->current = $input['current'][$key];
+                $employer->current = $input['current'][$key];
                 $employer->employer_name = $input['employer_name'][$key];
                 $employer->designation = $input['designation'][$key];
                 $employer->duration_year = $input['duration_year'][$key];
@@ -503,7 +506,7 @@ class ProfileController extends JoshController
             } else {
                 $employer = new Employers;
                 $employer->user_id = $user->id;
-                // $employer->current = $input['current'][$key];
+                $employer->current = $input['current'][$key];
                 $employer->employer_name = $input['employer_name'][$key];
                 $employer->designation = $input['designation'][$key];
                 $employer->duration_year = $input['duration_year'][$key];

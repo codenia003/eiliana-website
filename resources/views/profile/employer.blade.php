@@ -9,6 +9,13 @@
         </div>
     </div>
 </div>
+<style>
+    @media (min-width: 992px){
+        .ml-lg-5, .mx-lg-5 {
+            margin-left: 0rem !important;
+        }
+    }
+</style>
 @stop
 @section('profile_content')
 <div class="singup-body login-body profile-basic">
@@ -20,7 +27,7 @@
                 <div class="employer">
                     @forelse ($employerdetails as $details)
                     <input type="hidden" name="employer_details_id" id="employer_details_id " value="{{ $details->employer_details_id }}">
-                    <div class="form-group basic-info mb-3">
+                    {{--<div class="form-group basic-info mb-3">
                         <label>Last Employer</label>
                         <div class="form-check form-check-inline ml-4">
                             <div class="custom-control custom-radio">
@@ -34,7 +41,7 @@
                                 <label class="custom-control-label" for="Previous">Previous Employer</label>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                     <div class="form-row">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Current Salary</label>
@@ -78,7 +85,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="form-group col-12 col-sm-12 col-md-8 col-lg-12">
                             <label>Notice Period</label>
                             <select class="form-control" required="" name="notice_period">
                                 <option value=""></option>
@@ -90,7 +97,7 @@
                     </div>
                     @empty
                     <input type="hidden" name="employer_details_id" id="employer_details_id " value="0">
-                    <div class="form-group basic-info mb-3">
+                    {{--<div class="form-group basic-info mb-3">
                         <label>Last Employer</label>
                         <div class="form-check form-check-inline ml-4">
                             <div class="custom-control custom-radio">
@@ -104,7 +111,7 @@
                                 <label class="custom-control-label" for="Previous">Previous Employer</label>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                     <div class="form-row">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Current Salary</label>
@@ -146,7 +153,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
+                        <div class="form-group col-12 col-sm-12 col-md-7 col-lg-12">
                             <label>Notice Period</label>
                             <select class="form-control" required="" name="notice_period">
                                 <option value=""></option>
@@ -180,11 +187,11 @@
                         </div>
                         @endif --}}
                         <div class="form-row">
-                            <div class="form-group col-12 col-sm-12 col-md-11 col-lg-11">
+                            <div class="form-group col-12 col-sm-12 col-md-11 col-lg-12">
                                 <label>Employer Name</label>
                                 <input type="text" name="employer_name[]" class="form-control" value="{{ $employer->employer_name }}" required/>
                             </div>
-                            <div class="form-group col-12 col-sm-12 col-md-5 col-lg-5">
+                            <div class="form-group col-12 col-sm-12 col-md-5 col-lg-6">
                                 <label>Designation</label>
                                 <select name="designation[]" class="form-control" required>
                                     <option value=""></option>
@@ -193,7 +200,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-12 col-sm-12 col-md-5 col-lg-5 ml-lg-5">
+                            <div class="form-group col-12 col-sm-12 col-md-5 col-lg-6 ml-lg-5">
                                 <label>Employment Type</label>
                                 <select name="employment_type[]" class="form-control" required>
                                     <option value=""></option>
@@ -203,6 +210,7 @@
                                 </select>
                             </div>
                         </div>
+                        
                         <div class="form-row">
                             <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label>Employment Duration</label>
@@ -224,6 +232,14 @@
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-group col-12 col-sm-12 col-md-5 col-lg-6 ml-lg-5">
+                                <label>Last Employer</label>
+                                <select name="current[]" class="form-control" required>
+                                    <option value=""></option>
+                                    <option value="1" {{ ($employer->current=="1")? "selected" : "" }}>Current Employer</option>
+                                    <option value="0" {{ ($employer->current=="0")? "selected" : "" }}>Previous Employer</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -347,6 +363,16 @@
                 @foreach ($designations as $designation)
                 <option value="{{ $designation->designation_id }}" >{{ $designation->name }}</option>
                 @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-12 ml-lg-6">
+            <label>Last Employer</label>
+            <select name="current[]" class="form-control" required>
+                <option value=""></option>
+                <option value="1">Current Employer</option>
+                <option value="0">Previous Employer</option>
             </select>
         </div>
     </div>

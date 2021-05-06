@@ -9,6 +9,7 @@ use Mail;
 use Sentinel;
 use View;
 use DB;
+use Session;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 use App\Models\Project;
@@ -776,6 +777,19 @@ class ProjectController extends JoshController
         // $selected_technologies = explode(",", $alldata);
         $categoires = ProjectCategory::where('parent_id', $alldata)->get();
         return response()->json($categoires);
+    }
+
+    public function userType($slug, Request $request)
+    {
+        $user = Sentinel::getUser();
+
+        if(Session::get('users')['login_as'] == '1')
+        {
+            return redirect('/search-project . '/' .$slug');
+        }
+        elseif(Session::get('users')['login_as'] == '2'){
+            return redirect('/hire-talent . '/' .$slug');
+        }
     }
 
 }

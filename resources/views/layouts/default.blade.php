@@ -56,6 +56,7 @@
     src="https://www.facebook.com/tr?id=150843163659487&ev=PageView&noscript=1"
     /></noscript>
 <!-- End Facebook Pixel Code -->
+<script data-ad-client="ca-pub-9845401906196049" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 
 <body>
@@ -77,8 +78,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto topnav">
                         <li class="nav-item">
-                            {{-- <a class="nav-link" href="#">Post a Project</a> --}}
-                            <a class="nav-link" href="{{ url('/job-posting') }}">Post a Project</a>
+                            <a class="nav-link" href="#">Post a Project</a>
+                            {{-- <a class="nav-link" href="{{ url('/job-posting') }}">Post a Project</a> --}}
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('howitswork') }}">How It Works</a>
@@ -86,7 +87,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('sales-referral') }}">Sales Referral</a>
                         </li>
-                        <li class="nav-item d-none d-sm-block">
+                        {{-- <li class="nav-item d-none d-sm-block">
                             <button class="login_signup yellow-linear-gradient text-white" onclick="location.href='/account/login'">Login</button>
                         </li>
                         <li class="nav-item d-none d-sm-block">
@@ -95,7 +96,7 @@
                         <li class="nav-item d-block d-sm-none mb-3">
                             <button class="login_signup yellow-linear-gradient text-white" onclick="location.href='/account/login'">Login</button>
                             <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/register'">Sign Up</button>
-                        </li>
+                        </li> --}}
                         {{-- <li class="nav-item dropdown language">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="/assets/img/lnguage_icon.jpg">
@@ -138,9 +139,9 @@
                                        <li class="nav-item">
                                         <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
                                            <ul class="submenu1 submenu_item">
-                                                <li><a class="dropdown-item submenu_down" href="{{ url('/freelancer/my-contract_job') }}">Contract Job</a>
+                                                <li><a class="dropdown-item submenu_down" href="/freelancer/my-contract_job">Contract Job</a>
                                                 </li>
-                                                <li><a class="dropdown-item submenu_down" href="{{ url('/freelancer/my-project') }}">Project</a>
+                                                <li><a class="dropdown-item submenu_down" href="/freelancer/my-project">Project</a>
                                                 </li>
                                             </ul>
                                        </li>
@@ -150,25 +151,25 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-save-job') }}">My Save Job</a>
                             </li>
-                            {{-- <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-proposal') }}">My Proposal</a>
-                            </li> 
-                            <li class="nav-item">
+                            </li> -->
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="#">My Proposal</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/freelancer/my-project') }}">My Project</a>
-                            </li> --}}
+                            </li> -->
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-lead') }}">My Sales Referral</a>
                             </li>
-                           {{-- <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-requirement') }}">My Requirement</a>
-                            </li> 
-                           <li class="nav-item">
+                            </li>  -->
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/client/my-proposal') }}">My Opportunity</a>
-                            </li> --}}
+                            </li> -->
 
                             <div class="nav-item dropdown">
                                 <li class="nav-item dropdown" id="myDropdown">
@@ -181,7 +182,7 @@
                                            <ul class="submenu1 submenu_item">
                                                 <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-contract-job') }}">Contract Job</a>
                                                 </li>
-                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-project') }}">Project</a>
+                                                <li><a class="dropdown-item submenu_down" href="/client/my-project">Project</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -261,25 +262,36 @@
                        @foreach($categories as $category)
                           @if (Session::get('users')['login_as'] == '1')
                             <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('search-project') . '/' .$category->slug}}">{{ $category->name}}</a></li>
+                            @elseif (Session::get('users')['login_as'] == '2')
+                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('search-project') . '/' .$category->slug}}">{{ $category->name}}</a></li>
                             @else
-                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('hire-talent') . '/' .$category->slug}}">{{ $category->name}}</a></li>
+                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('user-type') . '/' .$category->slug}}">{{ $category->name}}</a></li>
                           @endif
                        @endforeach
+                        <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Graphics & Design</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Digital Marketing</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Video & Animation</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Music & Audio</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Programming & Tech</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Business</a></li> -->
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Sitemap</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-5 mb-lg-0">
                     <h5 class="text-white font-weight-500">Features</h5>
+                    <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
                         {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Press</a></li> --}}
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Release notes</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Integrations</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('pricingplan') }}">Pricing</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Sitemap</a></li>
                     </ul>
+                    <!-- End Nav Link -->
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-5 mb-lg-0">
                     <h5 class="text-white font-weight-500">Company</h5>
+                    <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('about') }}">About</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('careers') }}">Careers</a></li>
@@ -289,6 +301,7 @@
                         <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('privacypolicy') }}">Privacy Policy</a></li> -->
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('termsandconditions') }}">Terms & Privacy Policy</a></li>
                     </ul>
+                    <!-- End Nav Link -->
                 </div>
                 <div class="col-md-6 col-lg-5">
                     <!-- Form -->
@@ -353,11 +366,6 @@
     <!-- begin page level js -->
     @yield('footer_scripts')
     <!-- end page level js -->
-    <script>
-        function userInterested(e) {
-            $("#exampleModal1").modal();
-        }
-    </script>
 </body>
 
 </html>

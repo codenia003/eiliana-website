@@ -227,7 +227,7 @@
         margin: 10px;
     }
     .account-second-side {
-        bottom: 23px;
+        top: -110px;
     }
     .account-register .card {
         box-shadow: unset;

@@ -87,6 +87,7 @@ Logout
                     <div class="col p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="margin: 50px;height: 238px;">
                         <div class="account-second-side text-center">
                             <img src="/assets/img/logout1.png" class="img-fluid" alt="" style="width: 370px;margin-top: 228px;">
+                            <a href="#" class="btn btn-light bt btn-lg" style="float: none;margin-left: 32px;">Refer of frelancer</a>
                             <a href="/account/login" class="btn btn-light bt btn-lg">Login</a>
                         </div>
                     </div>

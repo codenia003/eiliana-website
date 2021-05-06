@@ -70,8 +70,12 @@
         background: none;
     }
 
-    .align-items-center .profile_text{
+    /* .align-items-center .profile_text{
         display: none;
+    } */
+    .navbar-light .profile_nav{
+        margin-left: 296px;
+        margin-top: -30px;
     }
     .btn-advanced {
         display: none;
@@ -364,13 +368,13 @@
         flex: 0 0 33.333333%;
         max-width: 30.333333%;
     }
-    .device-iphone-x-screen {
+    /* .device-iphone-x-screen {
         position: absolute;
         top: 14%;
         left: 12%;
         width: 69%;
         height: 100%;
-    }
+    } */
 }
 @media (max-width: 991px) {
     .custom_header .dropdown-menu .dropdown-menu{

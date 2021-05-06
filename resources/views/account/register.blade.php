@@ -120,7 +120,7 @@ Register
     function myFunction() {
         if(document.getElementById("acceptTerms").checked == true){
             //document.getElementById("reg_form").submit();
-            window.location.href = "http://127.0.0.1:8000/privacy-policy";
+            window.location.href = "http://127.0.0.1:8000/terms-and-conditions";
         }
         else{
             alert("You have to agree on terms and conditions");

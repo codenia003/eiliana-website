@@ -259,7 +259,11 @@
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
                        @foreach($categories as $category)
-                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ $category->slug}}">{{ $category->name}}</a></li>
+                          @if (Session::get('users')['login_as'] == '1')
+                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('search-project') . '/' .$category->slug}}">{{ $category->name}}</a></li>
+                            @else
+                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('hire-talent') . '/' .$category->slug}}">{{ $category->name}}</a></li>
+                          @endif
                        @endforeach
                         <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Graphics & Design</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Digital Marketing</a></li>
@@ -291,8 +295,8 @@
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Blog</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('customers') }}">Customers</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('hire-us') }}">Hire us</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('privacypolicy') }}">Privacy Policy</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('termsandconditions') }}">Terms & Conditions</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('privacypolicy') }}">Privacy Policy</a></li> -->
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('termsandconditions') }}">Terms & Privacy Policy</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>
@@ -359,6 +363,11 @@
     <!-- begin page level js -->
     @yield('footer_scripts')
     <!-- end page level js -->
+    <script>
+        function userInterested(e) {
+            $("#exampleModal1").modal();
+        }
+    </script>
 </body>
 
 </html>

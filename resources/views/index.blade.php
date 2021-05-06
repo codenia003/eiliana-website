@@ -314,6 +314,41 @@ Home
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning text-white">
+                        <h4 class="modal-title" id="exampleModalLabel">Do you want to fill it?</h4>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="form-group basic-info">
+                            <!-- <label>Interested In</label> -->
+                            <div class="form-check form-check-inline ml-3">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="Education" class="custom-control-input" name="wanttofill" value="1">
+                                    <label class="custom-control-label" for="Education">Freelancer</label>
+                                </div>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="Certification" class="custom-control-input" name="wanttofill" value="2">
+                                    <label class="custom-control-label" for="Certification">Client</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">
+                                <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                                Next >>>
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <!-- //Carousel End -->

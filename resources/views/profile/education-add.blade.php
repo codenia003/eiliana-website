@@ -7,9 +7,8 @@
             <span class="h5 text-white ml-2 profile_text">Education Details</span>
             <nav class="navbar navbar-expand-xl navbar-light custom_header">
 				<!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
-				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse1" style="margin-right: -34px;">
+				<button type="button" class="navbar-toggler profile_nav" data-toggle="collapse" data-target="#navbarCollapse1" style="margin-right: -34px;">
 				<span class="border-title profile_text"><i class="fa fa-bars"></i></span>
-                <span class="h5 text-white ml-2 profile_text">Education Details</span>
 				</button>
 				<!-- Collection of nav links, forms, and other content for toggling -->
 				<div id="navbarCollapse1" class="collapse navbar-collapse justify-content-start nav_sub">

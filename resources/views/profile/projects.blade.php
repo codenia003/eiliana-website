@@ -215,7 +215,7 @@
                         </div>
                     @endforelse
                 </div>
-                <div class="mt-3">
+                <div class="btn-group mt-3" role="group">
                     <button class="btn btn-md btn-info btn-copy-p" type="button">Add Project <span class="fa fa-plus"></span></button>
                     <!-- <button class="btn btn-md btn-danger btn-copy-p" type="button"></button> -->
                     <button type="button" class="remove-p btn btn-md btn-info ml-3 rounded-0">Erase Project <span class="fas fa-times"></span></button>

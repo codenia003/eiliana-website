@@ -53,7 +53,11 @@
         display: none !important;
     }
 }
-
+@media only screen and (max-width: 410px) {
+    .profile-basic button.btn-info span {
+        display: none;
+    }
+}
 @media only screen and (max-width: 768px) {
     .only-desktop {
         display: none !important;
@@ -61,15 +65,12 @@
     .only-mobile {
         display: block !important;
     }
-
     .navbar-vertical {
         display: none !important;
     }
-
     .navbar-expand-xl .nav_sub .sub_nav_menu{
         background: none;
     }
-
     /* .align-items-center .profile_text{
         display: none;
     } */
@@ -80,8 +81,6 @@
     .btn-advanced {
         display: none;
     }
-}
-@media only screen and (max-width: 768px) {
     .w-sm-100 {
         width: 100% !important;
     }
@@ -277,14 +276,31 @@
         margin-left: 0 !important;
     }
     .profile-basic button.btn-info {
-        width: 129px;
+        width: 46%;
         height: 55px;
         line-height: 20px;
-        font-size: 13px!important;
+        font-size: 14px!important;
+        text-align: center;
     }
     .profile-basic button.btn-info span {
         position: relative;
         top: -10px;
+    }
+    .freee-secons-side {
+        margin-top: 35px;
+    }
+    .freee-secons-side h4 {
+        font-size: 25px;
+        padding: 35px 0px 28px;
+    }
+    .bg-red .px-5.py-2 {
+        padding-left: 1rem !important;
+    }
+    .singup-body .btn-group .btn {
+        padding: 0 26px!important;
+        height: 50px!important;
+        margin-left: 0px!important;
+        width: auto;
     }
 }
 @media only screen and (min-device-width: 480px) and (max-device-width: 768px) and (orientation: landscape) {
@@ -375,11 +391,15 @@
         width: 69%;
         height: 100%;
     } */
+    
 }
 @media (max-width: 991px) {
     .custom_header .dropdown-menu .dropdown-menu{
-      margin-left:0.7rem;
-      margin-right:0.7rem;
-      margin-bottom: .5rem;
-  }
+        margin-left:0.7rem;
+        margin-right:0.7rem;
+        margin-bottom: .5rem;
+    }
+    .navbar-vertical {
+        display: none !important;
+    }
 }

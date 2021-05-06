@@ -24,7 +24,7 @@ Freelancer Referral
                 @include('notifications')
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-12 pr-0">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 pr-lg-0">
                     <div class="freee-referal-body card shadow login-body">
                         <form action="{{ route('freelancerreferral.new') }}" method="POST" id="projectlead">
                             @csrf
@@ -102,11 +102,12 @@ Freelancer Referral
         $('.spinner-border').removeClass("d-none");
         $.post($form.attr('action'), $form.serialize(), function(result) {
             var userCheck = result;
-            $('.before-referal').addClass("d-none");
             $('.after-referal').removeClass("d-none");
+            $('#projectlead').bootstrapValidator('resetForm', true);
             $('.spinner-border').addClass("d-none");
             $('.referral_link').html('<h5 id="copy_url">'+userCheck.referral_link+'</h5>');
             $('#referral_code').val(userCheck.referral_code);
+            $('#modal-refer').modal('show');
 
         }, 'json');
     });

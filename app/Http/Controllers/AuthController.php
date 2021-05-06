@@ -310,13 +310,13 @@ class AuthController extends JoshController
             return Redirect::route('profile');
         }
 
-        $urlPrevious = url()->previous();
-        $urlBase = url()->to('/');
+        // $urlPrevious = url()->previous();
+        // $urlBase = url()->to('/');
 
-        // Set the previous url that we came from to redirect to after successful login but only if is internal
-        if(($urlPrevious != $urlBase . '/account/login') && ($urlPrevious != $urlBase . '/logout') && (substr($urlPrevious, 0, strlen($urlBase)) === $urlBase)) {
-            session()->put('url.intended', $urlPrevious);
-        }
+        // // Set the previous url that we came from to redirect to after successful login but only if is internal
+        // if(($urlPrevious != $urlBase . '/account/login') && ($urlPrevious != $urlBase . '/logout') && (substr($urlPrevious, 0, strlen($urlBase)) === $urlBase)) {
+        //     session()->put('url.intended', $urlPrevious);
+        // }
 
         // Show the login page
         return view('account/login');
@@ -426,6 +426,8 @@ class AuthController extends JoshController
         } else {
             return redirect('home')->with('success', 'Login successfully');
         }
+
+        return redirect('home')->with('success', 'Login successfully');
 
     }
 

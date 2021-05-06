@@ -25,46 +25,46 @@ Freelancer Referral
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 pr-0">
-                    <div class="freee-referal-body">
+                    <div class="freee-referal-body card shadow login-body">
                         <form action="{{ route('freelancerreferral.new') }}" method="POST" id="projectlead">
                             @csrf
-                            <div class="modal-body">
-                                <div class="eiliana-logo">
-                                    <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
+                            <div class="card-body">
+                                <div class="card-header">
+                                    {{-- <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG"> --}}
                                     <h4>Fill The Referral Details</h4>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col">
+                                    <div class="form-group col-12">
                                         <label for="first_name" class="col-form-label">First Name</label>
                                         <input type="text" class="form-control" name="first_name" id="first_name" required>
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-12">
                                         <label for="last_name" class="col-form-label">Last Name</label>
                                         <input type="text" class="form-control" name="last_name" id="last_name" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col">
+                                    <div class="form-group col-12">
                                         <label for="email" class="col-form-label">Email Address</label>
                                         <input type="email" class="form-control" name="email" id="email" required>
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-12">
                                         <label for="phone" class="col-form-label">Phone Number</label>
                                         <input type="number" class="form-control" name="phone" id="phone" required>
                                     </div>
                                 </div>
                                 <div class="eiliana-refer">
-                                    <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Generate Link</button>
+                                    <button class="btn btn-primary red-linear-gradient"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Generate Link</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="freee-secons-side">
-                		<img src="/assets/img/photo/refer/free-referal-t.png" class="img-fluid" alt="">
+                    <div class="freee-secons-side text-center">
+                		<img src="/assets/img/photo/refer/free-referal-t.png" class="img-fluid img1" alt="">
                 		<h4>Refer your friend to us</h4>
-                        <img src="/assets/img/photo/refer/free-referal-b.png" class="img-fluid" alt="">
+                        <img src="/assets/img/photo/refer/free-referal-b.png" class="img-fluid img2" alt="">
                 	</div>
                 </div>
             </div>

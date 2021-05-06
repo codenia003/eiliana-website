@@ -295,7 +295,8 @@ Route::get('/', 'HomeController@index')->name('/');
 
 // account
 Route::group(
-    ['prefix' => 'account', 'middleware' => 'throttle:10|60,5'],
+    // ['prefix' => 'account', 'middleware' => 'throttle:10|60,5'],
+    ['prefix' => 'account'],
     function () {
 
         Route::get('register', 'AuthController@getRegister')->name('register');
@@ -407,10 +408,14 @@ Route::group(
         Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');
         Route::post('staffing-lead-convert', 'JobController@staffingLeadConvert');
 
-
         Route::get('sales-referral-form', 'SalesController@salesReferralForm');
         Route::post('sales/post-referral-form', 'SalesController@postSalesReferralForm')->name('referralform');
         Route::get('sales/identifyconsultant', 'SalesController@identifyconsultant');
+
+        Route::get('freelancer-referral', 'SalesController@freelancerReferralView')->name('freelancerreferral');
+        Route::post('freelancer-referral', 'SalesController@freelancerReferral')->name('freelancerreferral.new');
+        Route::post('freelancer-referral-email', 'SalesController@freelancerReferralEmail');
+        Route::post('freelancer-referral-accept/{referral_code}', 'SalesController@freelancerReferralAccept')->name('freelancerreferral.accept');
     }
 );
 
@@ -579,10 +584,6 @@ Route::get('news/{news}', 'NewsController@show')->name('news.show');
 
 //info
 Route::get('sales-referral', 'SalesController@salesReferral');
-Route::get('freelancer-referral', 'SalesController@freelancerReferralView')->name('freelancerreferral');
-Route::post('freelancer-referral', 'SalesController@freelancerReferral')->name('freelancerreferral.new');
-Route::post('freelancer-referral-email', 'SalesController@freelancerReferralEmail');
-Route::post('freelancer-referral-accept/{referral_code}', 'SalesController@freelancerReferralAccept')->name('freelancerreferral.accept');
 Route::get('about', 'InformationController@about')->name('about');
 Route::get('careers', 'InformationController@careers')->name('careers');
 Route::get('customers', 'InformationController@customers')->name('customers');

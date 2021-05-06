@@ -17,6 +17,13 @@ class SentinelUser
      */
     public function handle($request, Closure $next)
     {
+        $urlPrevious = url()->current();
+        $urlBase = url()->to('/');
+
+        // Set the previous url that we came from to redirect to after successful login but only if is internal
+        if(($urlPrevious != $urlBase . '/account/login') && ($urlPrevious != $urlBase . '/logout') && (substr($urlPrevious, 0, strlen($urlBase)) === $urlBase)) {
+            session()->put('url.intended', $urlPrevious);
+        }
 
         if (!Sentinel::check()) {
             if ($request->ajax()) {

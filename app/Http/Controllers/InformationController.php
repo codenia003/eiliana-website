@@ -47,4 +47,8 @@ class InformationController extends JoshController
         return view('information.teams');
     }
 
+    public function welcome (){
+        return view('information.welcome');
+    }
+
 }

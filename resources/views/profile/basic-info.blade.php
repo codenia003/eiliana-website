@@ -64,7 +64,7 @@
                 </div>
                 <div class="form-group d-none">
                     <label>User Id</label>
-                    <input type="text" name="username" class="form-control" value="{{ $user->username }}" />
+                    <input type="text" name="username" class="form-control" value="{{ $user->username }}" readonly />
                 </div>
                 <div class="form-group basic-info d-none">
                     <label>Title</label>
@@ -85,18 +85,18 @@
                 <div class="form-row">
                     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         <label>Company Name</label>
-                        <input type="text" name="company_name" class="form-control" value="{{ $user->company_name }}" />
+                        <input type="text" name="company_name" class="form-control" value="{{ $user->company_name }}" readonly />
                     </div>
                     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         <label>GST Number/PAN Number</label>
-                        <input type="text" name="gst_number" class="form-control" value="{{ $user->gst_number }}" />
+                        <input type="text" name="gst_number" class="form-control" value="{{ $user->gst_number }}" readonly />
                     </div>
                 </div>
                 @endif
                 <div class="form-row">
                     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         <label>First Name</label>
-                        <input type="text" name="first_name" class="form-control" value="{{ $user->first_name }}" />
+                        <input type="text" name="first_name" class="form-control" value="{{ $user->first_name }}"  readonly/>
                     </div>
                     <!-- <div class="form-group">
                         <label>Middle Name</label>
@@ -104,7 +104,7 @@
                     </div> -->
                     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         <label>Last Name</label>
-                        <input type="text" name="last_name" class="form-control" value="{{ $user->last_name }}" />
+                        <input type="text" name="last_name" class="form-control" value="{{ $user->last_name }}" readonly />
                     </div>
                 </div>
                 <div class="form-row">
@@ -115,11 +115,12 @@
                         <label>DOB</label>
                         @endif
                         {{-- <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control"  /> --}}
-                        <input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="{{ $user->dob }}">
+                        {{-- <input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="{{ $user->dob }}">--}}
+                        <input class="form-control" type="text" name="dob" id="datetimepicker" value="{{ $user->dob }}" readonly>
                     </div>
                     <div class="form-group col anonymousShow {{ ($user->anonymous=='0')? 'd-none' : '' }}">
                         <label>Alias</label>
-                        <input type="text" name="pseudoName" class="form-control" value="{{ $user->pseudoName }}" />
+                        <input type="text" name="pseudoName" class="form-control" value="{{ $user->pseudoName }}"  readonly/>
                     </div>
                 </div>
                 <!-- <div class="form-group">
@@ -135,7 +136,7 @@
                 </div> -->
                 <div class="form-group">
                     <label for="country">Country</label>
-                    <select name="country" class="form-control">
+                    <select name="country" class="form-control" readonly>
                         <option value="">--Select--</option>
                         @foreach ($countries as $country)
                         <option value="{{ $country->id }}" {{ ($user->country==$country->id)? "selected" : "" }} >{{ $country->name }}</option>

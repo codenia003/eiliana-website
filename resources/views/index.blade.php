@@ -39,10 +39,21 @@ Home
                                         class="text-orange">Resources</span> <br>And <span
                                         class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                    {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -62,10 +73,21 @@ Home
                                         class="text-orange">Resources</span> <br>And <span
                                         class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -87,10 +109,21 @@ Home
                                         class="text-orange">Resources</span> <br>And <span
                                         class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -110,10 +143,21 @@ Home
                                         class="text-orange">Resources</span> <br>And <span
                                         class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -135,10 +179,21 @@ Home
                                         class="text-orange">Resources</span> <br>And <span
                                         class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -158,10 +213,21 @@ Home
                                         class="text-orange">Resources</span> <br>And <span
                                         class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -187,10 +253,21 @@ Home
                                 <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
                                 class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -209,10 +286,21 @@ Home
                                 <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
                                 class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -233,10 +321,21 @@ Home
                                 <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
                                 class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -255,10 +354,21 @@ Home
                                 <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
                                 class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -279,10 +389,21 @@ Home
                                 <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
                                     class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -301,10 +422,21 @@ Home
                                 <h1>Transforming lives Through next Generation <span class="text-orange">Resources</span> And <span
                                     class="text-orange">Projects</span></h1>
                                 <div class="group_button">
-                                    <a class="big_btn_shadow yellow-linear-gradient text-white" href="#">Find
+                                {{--<a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
                                         Projects</a>
-                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="#">Hire
-                                        Talent</a>
+                                    <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire
+                                        Talent</a>--}}
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('search-project') }}">Find
+                                        Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        @else
+                                        <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
                                 </div>
@@ -571,7 +703,7 @@ Home
                     <a href="{{ url('hire-talent') . '/' .$item->slug }}"
                         class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now</a>
                     @else
-                    <a href="{{ url('user-type') }}"
+                    <a href="{{ url('user-type') . '/' .$item->slug }}"
                         class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill">Explore Now</a>
                     @endif
                     @else
@@ -1135,6 +1267,25 @@ Home
         });
         $('#myModal_1').on('hide.bs.modal', function (e) {
             $('#myModal_1 video').trigger('pause');
+        });
+
+        $('.client').on('click', function(event) {
+            event.preventDefault(); 
+            var url = $(this).data('target');
+            var r = confirm("Login first by client");
+            if (r == true) {
+                location.replace(url);
+            }
+        });
+
+        $('.freelancer').on('click', function(event) {
+            event.preventDefault(); 
+            var url = $(this).data('target');
+
+            var r = confirm("Login first by freelancer");
+            if (r == true) {
+                location.replace(url);
+            }
         });
     });
 </script>

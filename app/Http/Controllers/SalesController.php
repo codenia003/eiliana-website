@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Sentinel;
 use View;
 use Mail;
+use Session;
 use App\Models\SalesReferral;
 use App\Models\FreelanceReferral;
 
@@ -22,7 +23,15 @@ class SalesController extends JoshController
 
     public function salesReferralForm()
     {
+        if (Session::get('users')['login_as'] == '1'){
+            return view('sales/sales-referral-form');
+        }
+        else{
+            return redirect('logout');
+        }
+
         return view('sales/sales-referral-form');
+        
     }
 
     public function postSalesReferralForm(Request $request)

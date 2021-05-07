@@ -356,6 +356,7 @@ Route::group(
         // profile update
         Route::get('/publicAnonymusUpdate', 'ProfileController@publicAnonymusUpdate');
         Route::post('/updateProfile', 'ProfileController@updateProfile')->name('updateProfile');
+        Route::post('/updateProfileResume', 'ProfileController@updateProfileResume')->name('updateProfileResume');
         Route::post('/uploadProfilePic', 'ProfileController@uploadProfilePic');
 
         Route::get('addtional-info', 'ProfileController@addtionalInfo')->name('addtional-info');
@@ -412,7 +413,7 @@ Route::group(
         Route::post('sales/post-referral-form', 'SalesController@postSalesReferralForm')->name('referralform');
         Route::get('sales/identifyconsultant', 'SalesController@identifyconsultant');
 
-        //Route::get('user-type', 'ProjectController@userType')->name('user-type');
+        Route::get('user-type', 'ProjectController@userSliderType')->name('user-type');
         Route::get('user-type/{slug}', 'ProjectController@categoryDetails')->name('user-type-slug');
 
         Route::get('freelancer-referral', 'SalesController@freelancerReferralView')->name('freelancerreferral');
@@ -597,6 +598,7 @@ Route::get('how-its-work', 'InformationController@howItsWork')->name('howitswork
 Route::get('help', 'InformationController@help')->name('help');
 Route::get('pricing-plan', 'InformationController@pricingPlan')->name('pricingplan');
 Route::get('teams', 'InformationController@teams')->name('teams');
+Route::get('welcome', 'InformationController@welcome')->name('welcome');
 
 // Route::get('{name?}', 'FrontEndController@showFrontEndView');
 // End of frontend views

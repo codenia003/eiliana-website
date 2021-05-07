@@ -156,7 +156,7 @@
                             </div>
                         </div>
                         <div class="form-group col-12 col-sm-12 col-md-3 col-lg-3">
-                            <label>No of Support <br>Projects(Optional)</label>
+                            <label>No of Maintenance <br>Projects(Optional)</label>
                             {!! Form::selectRange('support_project', 1, 20, $proexp->support_project, ['class' => 'form-control','required' =>'']) !!}
                         </div>
                         <div class="form-group col-12 col-sm-12 col-md-3 col-lg-3">
@@ -254,7 +254,7 @@
                         <label>Model Of Engagement</label>
                         <br>
                         <div class="form-check form-check-inline">
-    					  	<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1">
+    					  	<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1" checked>
     					  	<label class="form-check-label" for="inlineCheckbox1">Hourly</label>
     					</div>
     					<div class="form-check form-check-inline">
@@ -289,7 +289,7 @@
     		                </div>
     		            </div>
     		            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-    		            	<label>No of Support Projects</label>
+    		            	<label>No of Maintenance Projects</label>
     		                {!! Form::selectRange('support_project', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
     		            </div>
     		            <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">

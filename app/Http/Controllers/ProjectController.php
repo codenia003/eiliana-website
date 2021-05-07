@@ -783,12 +783,24 @@ class ProjectController extends JoshController
     {
         $user = Sentinel::getUser();
 
-        if(Session::get('users')['login_as'] == '1')
+        if(Session::get('users')['login_as'] == 1)
         {
             return redirect('/search-project . '/' .$slug');
         }
-        elseif(Session::get('users')['login_as'] == '2'){
+        elseif(Session::get('users')['login_as'] == 2){
             return redirect('/hire-talent . '/' .$slug');
+        }
+    }
+
+    public function userSliderType()
+    {
+        if(Session::get('users')['login_as'] == 1)
+        {
+            return redirect('/search-project');
+        }
+        elseif(Session::get('users')['login_as'] == 2)
+        {
+            return redirect('/hire-talent');
         }
     }
 

@@ -302,6 +302,47 @@
         margin-left: 0px!important;
         width: auto;
     }
+    .custome-footer a.nav-link {
+        font-size: 13px;
+    }
+
+    .welcome img{
+        width: 500px;
+        margin-left: 0px;
+        padding-top: 10px;
+    }
+    .welcome .content {
+        margin-top: 45px;
+    }
+    .content{
+        margin-bottom: 145px;
+    }
+    .welcome-content .welcome{
+        margin-bottom: 145px;
+    }
+    .welcome-page .account-second-side a.blue {
+        color: #ffffff;
+        font-size: 13px !important;
+        border-radius: 0px;
+        padding: 8px 12px;
+        font-weight: 400;
+        background-color: #0b17ab;
+        border-color: #0b17ab;
+        border-radius: 40px;
+        float: left;
+        margin-left: -2px;
+    }
+    .welcome-page .account-second-side a.red {
+        color: #ffffff;
+        font-size: 13px !important;
+        border-radius: 0px;
+        padding: 8px 12px;
+        font-weight: 400;
+        background-color: #dc210a;
+        border-color: #b72615;
+        border-radius: 40px;
+        float: right;
+    }
 }
 @media only screen and (min-device-width: 480px) and (max-device-width: 768px) and (orientation: landscape) {
     .explore-more .only-mobile img.img-fluid {

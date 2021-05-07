@@ -67,7 +67,7 @@ Logout
       <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Account Registration</span>
+            <span class="h5 text-white ml-2">Logout </span>
         </div>
       </div>
     </div>

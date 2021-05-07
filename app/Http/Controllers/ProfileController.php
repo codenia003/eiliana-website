@@ -573,4 +573,41 @@ class ProfileController extends JoshController
 
     }
 
+    public function updateProfileResume(Request $request)
+    {
+        $data = $request->all();
+        $input = $request->except('_token');
+        $response['success'] = '0';
+        $user = Sentinel::getUser();
+
+        $safeName = "";
+
+        if ($request->hasFile('resume_file')) {
+            $file = $request->file('resume_file');
+            $extension = $file->extension()?: 'png';
+            $safeName = str_random(10) . '.' . $extension;
+            $destinationPath = public_path() . '/uploads/resumes/';
+            $file->move($destinationPath, $safeName);
+            $user->resume_file = $safeName;
+        }
+
+        // Was the user updated?
+        if($user->save()) {
+            // Prepare the success message
+            $success = trans('users/message.success.update');
+            //Activity log for update account
+            activity($user->full_name)
+                ->performedOn($user)
+                ->causedBy($user)
+                ->log('User Updated successfully');
+            // Redirect to the user page
+            // $response['user'] = $user;
+            // $response['success'] = '1';
+            // $response['errors'] = $success;
+        }
+
+        // Prepare the error message
+        return redirect('/home')->with('success', 'Resume updated successfully');
+    }
+
 }

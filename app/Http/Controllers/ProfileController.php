@@ -319,6 +319,19 @@ class ProfileController extends JoshController
     public function resgiterProfessionalExperience(Request $request)
     {
         $user = Sentinel::getUser();
+        if($user->interested == "2"){
+            $request->validate([
+                'key_skills' => 'required',
+                'technologty_pre' => 'required',
+            ]);
+        } else {
+            $request->validate([
+                'model_engagement' => 'required',
+                'technologty_pre' => 'required',
+            ]);
+        }
+      
+ 
 
         $input = $request->except('_token');
         $input['user_id'] = $user->id;

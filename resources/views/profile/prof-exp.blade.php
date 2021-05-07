@@ -48,7 +48,7 @@
                             </div>
                         </div> -->
 
-                        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Technology Preference</label>
                             <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
                                 <option value=""></option>
@@ -68,16 +68,16 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Profile Headline</label>
-                            <input type="text" name="profile_headline" class="form-control" value="{{ $proexp->profile_headline }}" />
+                            <input type="text" name="profile_headline" class="form-control" value="{{ $proexp->profile_headline }}" required />
                         </div>
                     </div>
                     @if(Sentinel::getUser()->interested == "2")
                     <div class="form-row">
-                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Key Skills (Ex. Core Java, Hibernate, Html, Css)</label>
-                            <input type="text" name="key_skills" class="form-control" value="{{ $proexp->key_skills }}" />
+                            <input type="text" name="key_skills" class="form-control" value="{{ $proexp->key_skills }}" required />
                             <span style="color: red;font-size: 12px;">Note: Key skills mentioned above will be used for contractual staffing</span>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                     <div class="form-row">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Freelancing Project Category</label>
-                            <select name="project_category" class="form-control" id="project_category" onchange="change_category1();">
+                            <select name="project_category" class="form-control" id="project_category" onchange="change_category1();" required>
                                 <option value=""></option>
                                 @foreach ($projectcategorys as $category)
                                 <option value="{{ $category->id }}" {{ ($proexp->project_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
@@ -132,6 +132,10 @@
                             <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement[]" value="3" {{ in_array(3, $model_engagement_new) ? "checked" : "" }}>
                             <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
                         </div>
+                        <br>
+                        @if ($errors->has('model_engagement'))
+                            <span class="text-danger">{{ $errors->first('model_engagement') }}</span>
+                        @endif
                     </div>
                     @endif
 
@@ -206,14 +210,14 @@
                     <div class="form-row">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Profile Headline</label>
-                            <input type="text" name="profile_headline" class="form-control" />
+                            <input type="text" name="profile_headline" class="form-control" required/>
                         </div>
                     </div>
                     @if(Sentinel::getUser()->interested == "2")
                     <div class="form-row">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Key Skills (Ex. Core Java, Hibernate, Html, Css)</label>
-                            <input type="text" name="key_skills" class="form-control" />
+                            <input type="text" name="key_skills" class="form-control" required/>
                             <span style="color: red;font-size: 12px;">Note: Key skills mentioned above will be used for contractual staffing</span>
                         </div>
                     </div>
@@ -224,7 +228,7 @@
                     <div class="form-row">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Freelancing Project Category</label>
-                            <select name="project_category" class="form-control" id="project_category" onchange="change_category1();">
+                            <select name="project_category" class="form-control" id="project_category" onchange="change_category1();" required>
                                 <option value=""></option>
                                 @foreach ($projectcategorys as $category)
                                 <option value="{{ $category->id }}" {{ ($proexp->project_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
@@ -234,7 +238,7 @@
 
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Project Sub Category</label>
-                            <select name="project_sub_category" id="project_sub_category" class="form-control">
+                            <select name="project_sub_category" id="project_sub_category" class="form-control" required>
                                 <option value=""></option>
 
                             </select>
@@ -265,6 +269,9 @@
     					  	<input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement[]" value="3">
     					  	<label class="form-check-label" for="inlineCheckbox3">Project-based</label>
     					</div>
+                        @if ($errors->has('model_engagement'))
+                            <span class="text-danger">{{ $errors->first('model_engagement') }}</span>
+                        @endif
                     </div>
                     @endif
 

@@ -50,7 +50,7 @@ Freelancer Referral
                                     </div>
                                     <div class="form-group col-12">
                                         <label for="phone" class="col-form-label">Phone Number</label>
-                                        <input type="number" class="form-control" name="phone" id="phone" required>
+                                        <input type="number" class="form-control" name="phone" id="phone" min="0" oninput="validity.valid||(value='');" required>
                                     </div>
                                 </div>
                                 <div class="eiliana-refer">

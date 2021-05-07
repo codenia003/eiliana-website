@@ -49,10 +49,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -83,10 +83,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -119,10 +119,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -153,10 +153,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -189,10 +189,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -223,10 +223,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -263,10 +263,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -296,10 +296,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -331,10 +331,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -364,10 +364,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -399,10 +399,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -432,10 +432,10 @@ Home
                                         <a class="big_btn_shadow red-linear-gradient text-white ml-3 client" data-target="{{ url('logout') }}">Hire Talent</a>
                                         @elseif (Session::get('users')['login_as'] == '2')
                                         <a class="big_btn_shadow yellow-linear-gradient text-white freelancer" data-target="{{ url('logout') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>    
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('hire-talent') }}">Hire Talent</a>
                                         @else
                                         <a class="big_btn_shadow yellow-linear-gradient text-white" href="{{ url('user-type') }}">Find Projects</a>
-                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a> 
+                                        <a class="big_btn_shadow red-linear-gradient text-white ml-3" href="{{ url('user-type') }}">Hire Talent</a>
                                         @endif
                                     {{-- <a class="big_btn_shadow red-linear-gradient text-white ml-3"
                                         href="{{ url('/hire-talent') }}">Hire Talent</a> --}}
@@ -717,7 +717,7 @@ Home
                     <a href="{{ url('user-type') . '/' .$item->slug }}"
                         class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill">Explore Now</a>
                     @endif
-                
+
                     @endif
                 </div>
             </div>
@@ -854,7 +854,7 @@ Home
                 <div class="row mt-4">
                     <div class="col-md-8 col-lg-8 col-12">
                         <a class="js-go-to position-static btn btn-primary btn-wide"
-                            href="{{ url('sales-referral-form') }}">
+                            href="{{ url('sales-referral') }}">
                             Sales Referral
                         </a>
                         <div class="video">
@@ -1270,7 +1270,7 @@ Home
         });
 
         $('.client').on('click', function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
             var url = $(this).data('target');
             var r = confirm("Login first by client");
             if (r == true) {
@@ -1279,7 +1279,7 @@ Home
         });
 
         $('.freelancer').on('click', function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
             var url = $(this).data('target');
 
             var r = confirm("Login first by freelancer");

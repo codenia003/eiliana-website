@@ -14,39 +14,32 @@ Blog
 <!--end of page level css-->
 @stop
 
-{{-- breadcrumb --}}
-@section('top')
-<div class="breadcum">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="{{ route('home') }}"> <i class="livicon icon3 icon4" data-name="home" data-size="18"
-                                data-loop="true" data-c="#3d3d3d" data-hc="#3d3d3d"></i>Dashboard
-                        </a>
-                    </li>
-                    <li class="d-none d-sm-block">
-                        <i class="livicon icon3" data-name="angle-double-right" data-size="18" data-loop="true"
-                            data-c="#01bc8c" data-hc="#01bc8c"></i>
-                        <a href="{{ route('blog') }}">Blog</a>
-                    </li>
-                </ol>
-                <div class="float-right mt-1">
-                    <i class="livicon icon3" data-name="edit" data-size="20" data-loop="true" data-c="#3d3d3d"
-                        data-hc="#3d3d3d"></i> Blog
+
+{{-- Page content --}}
+@section('content')
+<div class="account-page">
+    <div class="bg-red">
+      <div class="px-5 py-2">
+        <div class="align-items-center">
+            <span class="border-title"><i class="fa fa-bars"></i></span>
+            <span class="h5 text-white ml-2">Blog</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 md-2 mt-6">
+        <div class="container">
+            <div class="row">
+                <div class="col p-0">
+                    <img src="/assets/img/photo/blog-page.png" class="img-fluid" alt="">
+                    <hr>
+                    <img src="/assets/img/photo/blog-page-list.png" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
     </div>
 </div>
-@stop
-
-
-{{-- Page content --}}
-@section('content')
 <!-- Container Section Strat -->
-<div class="container blogpage">
+{{-- <div class="container blogpage d-none">
     <h2 class="my-3">Blog</h2>
     <div class="row">
         <div class="col-md-8 col-lg-8 col-12 my-2">
@@ -272,7 +265,7 @@ Blog
         </div>
         <!-- /.col-md-4 -->
     </div>
-</div>
+</div> --}}
 
 @stop
 

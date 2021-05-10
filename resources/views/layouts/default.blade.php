@@ -294,7 +294,7 @@
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('about') }}">About</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('careers') }}">Careers</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('blog') }}">Blog</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('customers') }}">Customers</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('hire-us') }}">Hire us</a></li>
                         <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('privacypolicy') }}">Privacy Policy</a></li> -->

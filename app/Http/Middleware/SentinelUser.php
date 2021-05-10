@@ -25,6 +25,8 @@ class SentinelUser
             session()->put('url.intended', $urlPrevious);
         }
 
+        // print_r(session()->get('url.intended'));
+
         if (!Sentinel::check()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);

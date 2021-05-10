@@ -45,7 +45,11 @@
         <div class="device device-iphone-x w-100 mx-auto">
             <img class="device-iphone-x-frame" src="/assets/img/profile/mobile-bg.png" alt="Image Description">
             <div class="device-iphone-x-screen">
+                @if(Sentinel::getUser()->pic)
+                <div class="top-mobile bg-blue bg-img-hero" style="background-image: url({{ Sentinel::getUser()->pic }});">
+                @else
                 <div class="top-mobile bg-blue bg-img-hero" style="background-image: url(/assets/img/profile/mobile-profile.png);">
+                @endif
                     <div class="row">
                         <div class="col-4"></div>
                         <div class="col-8">

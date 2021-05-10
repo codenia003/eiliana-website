@@ -13,7 +13,8 @@
             <div class="basic-list">
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action {!! (Request::is('home') ? 'active' : '' ) !!}" href="{{ url('home') }}">Dashboard</a>
-                    <div class="singup-body login-body profile-basic">
+                    <a class="list-group-item list-group-item-action {!! (Request::is('profile') ? 'active' : '' ) !!}" href="{{ url('profile') }}">Upload Resume</a>
+                    {{--<div class="singup-body login-body profile-basic">
                         <div class="card-body p-4">
                             <form action="{{ url('/profile/updateProfileResume') }}" method="POST" id="basic_form" enctype="multipart/form-data">
                                 @csrf
@@ -30,7 +31,7 @@
                                 </button>
                             </form>
                         </div>
-                    </div> 
+                    </div> --}}
                     @if(!Sentinel::inRole('user'))
                     <a class="list-group-item list-group-item-action {!! (Request::is('team') ? 'active' : '' ) !!}" href="{{ url('company/teams') }}">Teams</a>
                     @endif

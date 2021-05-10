@@ -1,4 +1,9 @@
 @extends('profile/layout')
+<style>
+    .login-body input.form-control {
+        background: content-box;
+    }
+</style>
 @section('top')
 <div class="bg-red">
     <div class="px-5 py-2">
@@ -136,12 +141,13 @@
                 </div> -->
                 <div class="form-group">
                     <label for="country">Country</label>
-                    <select name="country" class="form-control" readonly>
+                    <input type="text" name="country" class="form-control" value="{{ $countries }}"  readonly/>
+                    {{--<select name="country" class="form-control" readonly>
                         <option value="">--Select--</option>
                         @foreach ($countries as $country)
                         <option value="{{ $country->id }}" {{ ($user->country==$country->id)? "selected" : "" }} >{{ $country->name }}</option>
                         @endforeach
-                    </select>
+                    </select>--}}
                 </div>
                 <div class="form-group basic-file">
                     <label>Attach Resume</label>

@@ -414,7 +414,7 @@ Route::group(
         Route::get('sales/identifyconsultant', 'SalesController@identifyconsultant');
 
         Route::get('user-type', 'ProjectController@userSliderType')->name('user-type');
-        Route::get('user-type/{slug}', 'ProjectController@categoryDetails')->name('user-type-slug');
+        Route::get('user-type/{slug}', 'ProjectController@userType')->name('user-type-slug');
 
         Route::get('freelancer-referral', 'SalesController@freelancerReferralView')->name('freelancerreferral');
         Route::post('freelancer-referral', 'SalesController@freelancerReferral')->name('freelancerreferral.new');
@@ -599,6 +599,8 @@ Route::get('help', 'InformationController@help')->name('help');
 Route::get('pricing-plan', 'InformationController@pricingPlan')->name('pricingplan');
 Route::get('teams', 'InformationController@teams')->name('teams');
 Route::get('welcome', 'InformationController@welcome')->name('welcome');
+Route::get('contact-us', 'InformationController@contactUs')->name('contact-us');
+Route::post('contact-us-post', 'InformationController@contactUsSave')->name('contact-us-post');
 
 // Route::get('{name?}', 'FrontEndController@showFrontEndView');
 // End of frontend views

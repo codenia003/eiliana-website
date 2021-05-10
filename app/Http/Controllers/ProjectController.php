@@ -779,16 +779,14 @@ class ProjectController extends JoshController
         return response()->json($categoires);
     }
 
-    public function userType($slug, Request $request)
+    public function userType($slug)
     {
-        $user = Sentinel::getUser();
-
-        if(Session::get('users')['login_as'] == 1)
+        if(Session::get('users')['login_as'] == '1')
         {
-            return redirect('/search-project . '/' .$slug');
+            return redirect('/search-project' . '/' .$slug);
         }
-        elseif(Session::get('users')['login_as'] == 2){
-            return redirect('/hire-talent . '/' .$slug');
+        elseif(Session::get('users')['login_as'] == '2'){
+            return redirect('/hire-talent' . '/' .$slug);
         }
     }
 

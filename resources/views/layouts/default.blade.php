@@ -274,7 +274,6 @@
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Music & Audio</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Programming & Tech</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Business</a></li> -->
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Sitemap</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>
@@ -300,6 +299,8 @@
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('hire-us') }}">Hire us</a></li>
                         <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('privacypolicy') }}">Privacy Policy</a></li> -->
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('termsandconditions') }}">Terms & Privacy Policy</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('contact-us') }}">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Sitemap</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>

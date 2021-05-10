@@ -545,7 +545,8 @@ Home
                                                             </div>
                                                             <div class="find_job_button text-right">
                                                                 {{-- @if(Sentinel::guest()) --}}
-                                                                <a class="btn_small yellow-linear-gradient text-white" href="{{ url('freelancer-referral') }}">Refer</a>
+                                                                {{--<a class="btn_small yellow-linear-gradient text-white" href="{{ url('freelancer-referral') }}">Refer</a>--}}
+                                                                <a class="btn_small yellow-linear-gradient text-white" href="#">Coming soon</a>
                                                                 {{-- @else
                                                                 <a class="btn_small yellow-linear-gradient text-white" data-toggle="modal" data-target="#modal-refer">Refer</a>
                                                                 @endif --}}

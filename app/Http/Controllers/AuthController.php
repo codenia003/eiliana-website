@@ -354,13 +354,11 @@ class AuthController extends JoshController
 
                     $user['country_name'] = $country_name->name;
 
-                    // if(session()->has('url.intended')) {
-                    //     $response['url'] = $request->session()->get('url.intended');
-                    // } else {
-                    //     $response['url'] = url()->to('/home');
-                    // }
-
-                    $response['url'] = url()->to('/home');
+                    if(session()->has('url.intended')) {
+                        $response['url'] = $request->session()->get('url.intended');
+                    } else {
+                        $response['url'] = url()->to('/home');
+                    }
 
                     $response['user'] = $user;
                     $response['errors'] = trans('auth/message.signin.success');

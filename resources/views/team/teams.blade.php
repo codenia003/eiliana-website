@@ -1,4 +1,21 @@
 @extends('profile/layout')
+<style>
+      .profile-basic button.btn-info span {
+            float: right;
+            font-size: 20px;
+            position: relative;
+            left: -10px;
+        }
+        .teams-1{
+            margin-top: 56px;
+        }
+        .singup-body .btn-group .btn {
+            padding: 0 40px!important;
+            height: 50px!important;
+            margin-left: 8px!important;
+            width: auto;
+        }
+</style>
 @section('top')
 <div class="bg-red">
     <div class="px-5 py-2">
@@ -21,7 +38,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Email</th>
+                    <th>Recipient’s Mail ID</th>
                     <th>Subject</th>
                     <th>Message</th>
                     <th>Status</th>
@@ -54,6 +71,14 @@
     <div class="modal fade pullDown login-long-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
+            <div class="row teams">
+                <div class="col-md-4 md-2 mt-6">
+                    <h2>CONTRACT STAFFING</h2>
+                    </div>
+                    <div class="col-md-8 md-2 mt-6 bench-img">
+                        <img src="/assets/img/instant-bench.png">
+                    </div>
+                </div>
                 <form action="{{ route('registerteams') }}" method="POST" id="registerteams">
                     @csrf
                     <div class="modal-header bg-blue text-white">
@@ -64,11 +89,11 @@
                             <div class="teams">
                                 <div class="form-row">
                                     <div class="form-group col">
-                                        <label for="from" class="col-form-label">From:</label>
+                                        <label for="from" class="col-form-label">Recipient’s Name:</label>
                                         <input type="email" class="form-control" name="from[]" id="from" value="{{ Sentinel::getUser()->email }}" readonly>
                                     </div>
                                     <div class="form-group col">
-                                        <label for="to" class="col-form-label">To:</label>
+                                        <label for="to" class="col-form-label">Recipient’s Mail ID:</label>
                                         <input type="email" class="form-control" name="to_user[]" id="to" required>
                                     </div>
                                     <div class="form-group col">
@@ -95,12 +120,27 @@
                             <button type="button" class="remove-t btn btn-md btn-info ml-3 rounded-0">Erase <span class="fas fa-times"></span></button>
                         </div>
                     </div>
-                    <div class="modal-footer singup-body">
+                    <div class="row">
+                        <div class="col-md-4 md-2 mt-6 teams_img">
+                        <img src="/assets/img/teams.png">
+                        </div>
+                        <div class="col-md-8 md-2 mt-6">
+                            <div class="form-group text-right mt-5">
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-primary" type="submit">
+                                        SUBMIT
+                                    </button>
+                                    <button class="btn btn-outline-primary" type="reset">CANCEL</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer singup-body">
                         <div class="btn-group" role="group">
                             <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Submit</button>
                             <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
                         </div>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>

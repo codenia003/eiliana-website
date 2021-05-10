@@ -23,14 +23,14 @@ class SalesController extends JoshController
 
     public function salesReferralForm()
     {
-        if (Session::get('users')['login_as'] == '1'){
+        if (Session::get('users')['login_as'] == '2'){
             return view('sales/sales-referral-form');
         }
         else{
             return redirect('logout');
         }
 
-        return view('sales/sales-referral-form');
+        //return view('sales/sales-referral-form');
         
     }
 
@@ -69,7 +69,13 @@ class SalesController extends JoshController
 
     public function freelancerReferralView()
     {
-        return view('sales/freelancer-referral');
+        if (Session::get('users')['login_as'] == '1'){
+            return view('sales/freelancer-referral');
+        }
+        else{
+                return redirect('logout');
+        }
+        
     }
 
     public function freelancerReferral(Request $request)

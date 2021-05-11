@@ -33,80 +33,76 @@ Contact Us
         </div>
       </div>
     </div>
-    <div class="row">
-        <div class="col-md-2 md-2 mt-6"></div>
-            <div class="col-md-8 md-2" style="margin-top: 2rem!important;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            @if(session()->has('success'))
-                                <div class="alert alert-success">
-                                    {{ session()->get('success') }}
-                                </div>
-                            @endif
-                            <div class="singup-body shadow login-body profile-basic" style="border: 1px solid #a3a3a3;">
-                                <div class="card">
-                                     <h4 class="card-header">Contact Us</h4>
-                                        <div class="card-body p-4">
-                                            <form action="{{ url('/contact-us-post') }}" method="POST" id="contact_form">
-                                                @csrf
-                                                <div class="form-row">
-                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-12">
-                                                        <label>Name</label>
-                                                        <input type="text" name="name" class="form-control" required=""/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    @if (Session::get('users')['login_as'] == '1')
-                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <label>Email id</label>
-                                                        <input type="email" name="email" class="form-control" value="{{ session()->get('users')->email }}" readonly>
-                                                    </div>
-                                                    @elseif (Session::get('users')['login_as'] == '2')
-                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <label>Email id</label>
-                                                        <input type="email" name="email" class="form-control" value="{{ session()->get('users')->email }}" readonly>
-                                                    </div>
-                                                    @else
-                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                                                        <label>Email id</label>
-                                                        <input type="email" name="email" class="form-control" required>
-                                                    </div>
-                                                    @endif
-                                                    <div class="form-group col-12 col-sm-12 col-md-12 col-lg-6">
-                                                        <label>Phone number</label>
-                                                        <input type="text" name="phone_no" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-12">
-                                                        <label>Subject</label>
-                                                        <input type="text" name="subject" class="form-control" required=""/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
-                                                        <label>Message</label>
-                                                        <textarea name="message" id="" cols="30" rows="6" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group text-right mt-5">
-                                                    <div class="btn-group" role="group">
-                                                        <button class="btn btn-primary" type="submit">
-                                                            <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
-                                                            Submit
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
+    <div class="col-md-12 md-2 mt-6">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2 p-0">
+                    @if(session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
+                    <div class="singup-body shadow login-body profile-basic" style="border: 1px solid #a3a3a3;">
+                        <div class="card">
+                            <h4 class="card-header">Contact Us</h4>
+                            <div class="card-body p-4">
+                                <form action="{{ url('/contact-us-post') }}" method="POST" id="contact_form">
+                                    @csrf
+                                    <div class="form-row">
+                                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-12">
+                                            <label>Name</label>
+                                            <input type="text" name="name" class="form-control" required=""/>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="form-row">
+                                        @if (Session::get('users')['login_as'] == '1')
+                                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                            <label>Email id</label>
+                                            <input type="email" name="email" class="form-control" value="{{ session()->get('users')->email }}" readonly>
+                                        </div>
+                                        @elseif (Session::get('users')['login_as'] == '2')
+                                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                            <label>Email id</label>
+                                            <input type="email" name="email" class="form-control" value="{{ session()->get('users')->email }}" readonly>
+                                        </div>
+                                        @else
+                                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                            <label>Email id</label>
+                                            <input type="email" name="email" class="form-control" required>
+                                        </div>
+                                        @endif
+                                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-6">
+                                            <label>Phone number</label>
+                                            <input type="text" name="phone_no" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-12">
+                                            <label>Subject</label>
+                                            <input type="text" name="subject" class="form-control" required=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
+                                            <label>Message</label>
+                                            <textarea name="message" id="" cols="30" rows="6" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-right mt-5">
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-primary" type="submit">
+                                                <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <div class="col-md-2 md-2 mt-6"></div>
+        </div>
     </div>
 </div>
 
@@ -119,4 +115,7 @@ Contact Us
 <script type="text/javascript" src="{{ asset('vendors/slick-carousel/slick.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/assets/js/index.js') }}"></script>
 <!--page level js ends-->
+<script>
+      $('#contact_form').bootstrapValidator({});
+</script>
 @stop

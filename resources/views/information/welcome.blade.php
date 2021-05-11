@@ -14,8 +14,8 @@ Welcome
 
 {{-- content --}}
 @section('content')
-<div class="welcome-page">
-    <div class="col-md-12" style="background-color: #fba602;">
+<div class="welcome-page" style="background-color: #fba602;">
+    <div class="col-md-12">
         <div class="container">
             <div class="row">
                     <div class="col-md-4">
@@ -30,11 +30,11 @@ Welcome
                             <div class="col-lg-8 content1">
                               @if (isset(Session::get('users')['login_as']))
                                 <h2 class="user-name">Hi {{ Sentinel::getUser()->full_name }}</h2>
-                              @endif  
+                              @endif
                                 <h2 class="user-text">Welcome to Eiliana Family !!!</h2>
                                 <p>We are building the largest community of Gig-<br>
                                 Resources globally who will transform the lives of billions of <br>
-                                people through their technology enabled solutions. Look for-<br>ward 
+                                people through their technology enabled solutions. Look for-<br>ward
                                 for your valuable and greater contrubtion.</p>
                             </div>
                         </div>

@@ -278,19 +278,7 @@ type="text/css"/>
     }
 
 	function imageUpload(input) {
-        var url = input.value;
-        var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
-        if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('.top-mobile').attr('style', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }else{
-            $('.top-mobile').attr('src', '/assets/no_preview.png');
-        }
+        $("#modalIimage").modal('show');
     }
 
     function change_framework()

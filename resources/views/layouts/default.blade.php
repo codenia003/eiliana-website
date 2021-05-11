@@ -218,7 +218,7 @@
                         <div class="nav-item user-avator">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
                                 @if(Sentinel::getUser()->pic)
-                                <img src="{{ asset('images/authors/no_avatar.jpg') }}" class="avatar" alt="Avatar">
+                                <img src="{{ url('/') }}{{ Sentinel::getUser()->pic }}" class="avatar" alt="Avatar">
                                 @else
                                 <img src="/assets/img/profile/avatar.svg" class="avatar" alt="Avatar">
                                 @endif
@@ -309,7 +309,7 @@
                         <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('privacypolicy') }}">Privacy Policy</a></li> -->
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('termsandconditions') }}">Terms & Privacy Policy</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('contact-us') }}">Contact Us</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Sitemap</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('sitemap') }}">Sitemap</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>

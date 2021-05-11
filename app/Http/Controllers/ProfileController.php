@@ -330,8 +330,8 @@ class ProfileController extends JoshController
                 'technologty_pre' => 'required',
             ]);
         }
-      
- 
+
+
 
         $input = $request->except('_token');
         $input['user_id'] = $user->id;
@@ -460,7 +460,8 @@ class ProfileController extends JoshController
             }
         }
 
-        return redirect('profile/professional-experience')->with('success', 'Project updated successfully');
+        // return redirect('profile/professional-experience')->with('success', 'Project updated successfully');
+        return redirect('welcome')->with('success', 'Project updated successfully');
     }
 
     public function deleteProjects(Request $request)
@@ -551,17 +552,16 @@ class ProfileController extends JoshController
         $response['success'] = '0';
         $user = Sentinel::getUser();
 
-        $address_image_parts = explode(";base64,", $data['fileData']);
-        $address_image_type_aux = explode("image/", $address_image_parts[0]);
-        $address_image_type = $address_image_type_aux[1];
-        $address_image_base64 = $address_image_parts[1];
-        $address_file = base64_decode($address_image_base64);
-        $address_filename = str_random(10).'.'.$address_image_type;
-        $address_path = $_SERVER['DOCUMENT_ROOT'].'/uploads/users/'.$address_filename;
-        file_put_contents($address_path, $address_file);
-        // $fileData = '/uploads/users/' . $address_filename;
+        if ($file = $request->file('pic')) {
+            $extension = $file->extension()?: 'png';
+            $folderName = '/uploads/users/';
+            $destinationPath = public_path() . $folderName;
+            $safeName = str_random(10) . '.' . $extension;
+            $file->move($destinationPath, $safeName);
 
-        $user->pic =url('/').'/uploads/users/'.$address_filename;
+            //save new file path into db
+            $user->pic = '/uploads/users/'.$safeName;
+        }
 
         // Was the user updated?
         if ($user->save()) {
@@ -578,11 +578,7 @@ class ProfileController extends JoshController
             $response['errors'] = $success;
         }
 
-        // Prepare the error message
-        $error = trans('users/message.error.update');
-        $response['errors'] = $error ;
-
-        return response()->json($response);
+        return redirect('profile')->with('success', 'Profile Pic Updated successfully');
 
     }
 

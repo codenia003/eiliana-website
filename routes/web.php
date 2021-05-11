@@ -601,6 +601,7 @@ Route::get('teams', 'InformationController@teams')->name('teams');
 Route::get('welcome', 'InformationController@welcome')->name('welcome');
 Route::get('contact-us', 'InformationController@contactUs')->name('contact-us');
 Route::post('contact-us-post', 'InformationController@contactUsSave')->name('contact-us-post');
+Route::get('sitemap', 'InformationController@siteMap')->name('sitemap');
 
 // Route::get('{name?}', 'FrontEndController@showFrontEndView');
 // End of frontend views

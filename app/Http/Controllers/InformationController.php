@@ -10,51 +10,63 @@ use Session;
 class InformationController extends JoshController
 {
 
-    public function privacy(){
+    public function privacy()
+    {
         return view('information.privacy-policy');
     }
 
-    public function howItsWork(){
+    public function howItsWork()
+    {
         return view('information.howitswork');
     }
 
-    public function help(){
+    public function help()
+    {
         return view('information.help');
     }
 
-    public function pricingPlan(){
+    public function pricingPlan()
+    {
         return view('information.pricing');
     }
 
-    public function about (){
+    public function about()
+    {
         return view('information.about');
     }
 
-    public function careers (){
+    public function careers()
+    {
         return view('information.careers');
     }
 
-    public function customers (){
+    public function customers()
+    {
         return view('information.customers');
     }
 
-    public function hireUs (){
+    public function hireUs()
+    {
         return view('information.hire-us');
     }
 
-    public function termsAndConditions (){
+    public function termsAndConditions()
+    {
         return view('information.terms-and-conditions');
     }
 
-    public function teams (){
+    public function teams()
+    {
         return view('information.teams');
     }
 
-    public function welcome (){
+    public function welcome()
+    {
         return view('information.welcome');
     }
 
-    public function contactUs (){
+    public function contactUs()
+    {
         return view('information.contact-us');
     }
 
@@ -69,6 +81,11 @@ class InformationController extends JoshController
         $contactus->message  = $input['message'];
         $contactus->save();
         return redirect('contact-us')->with('success', 'Thank you, Your details has been save and we will contact shortly!');
+    }
+
+    public function siteMap()
+    {
+        return view('information.sitemap');
     }
 
 }

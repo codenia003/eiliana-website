@@ -14,7 +14,6 @@ Blog
 <!--end of page level css-->
 @stop
 
-
 {{-- Page content --}}
 @section('content')
 <div class="account-page">
@@ -30,7 +29,7 @@ Blog
         <div class="container">
             <div class="row">
                 <div class="col p-0">
-                    <img src="/assets/img/photo/blog-page.png" class="img-fluid" alt="">
+                    <img src="/assets/img/photo/blog-page.png" class="img-fluid p-4" alt="">
                     <hr>
                     <img src="/assets/img/photo/blog-page-list.png" class="img-fluid" alt="">
                 </div>
@@ -39,15 +38,48 @@ Blog
     </div>
 </div>
 <!-- Container Section Strat -->
-{{-- <div class="container blogpage d-none">
+ <div class="container blogpage">
     <h2 class="my-3">Blog</h2>
-    <div class="row">
+    <!-- my style -->
+    @forelse ($blogs as $blog)
+    <br>
+    <div class="thumbnail m-0 p-0" style="border-style: hidden;">
+        <div class="row ">
+            <div class="col-lg-6 col-md-6 col-12 my-2">
+               <img src="/assets/img/photo/blog-page-list.png" class="img-fluid" alt="Image" style="height: 100%;width: 100%;">
+            </div>
+            <div class="col-lg-6 col-md-6 col-12 my-2 text-center align-middle" style="vertical-align: middle;align-items: center;text-align: center;">
+                <br>
+                <p class="text-left" style="font-size: 20px;text-align: left;opacity: 0.8;"><b>
+                    <?php 
+                        echo date_format($blog->created_at,"M d, Y");
+                    ?>
+                   </b></p>
+                <br>
+                <loren class="text-center p-1" style="text-align: left;font-weight: bold;font-size: 33px;">{{$blog->title}}</loren>
+                <p style="margin-top: 25px; font-size: 20px; text-align: left;">
+                    <i class="livicon" data-name="user" data-size="13" data-loop="true" data-c="#5bc0de"
+                                data-hc="#5bc0de"></i> by&nbsp;<a
+                                href="#">{{$blog->author->first_name . ' ' . $blog->author->last_name}}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    @empty
+            <h3>No Posts Exists!</h3>
+            @endforelse
+
+    <div class="row d-none">
         <div class="col-md-8 col-lg-8 col-12 my-2">
             @forelse ($blogs as $blog)
             <!-- BEGIN FEATURED POST -->
             <div class="thumbnail">
                 @if($blog->image)
-                <img src="{{ URL::to('/uploads/blog/'.$blog->image)  }}" class="img-fluid" alt="Image">
+                <div class="row bg-primary">
+                    <img src="{{ URL::to('/uploads/blog/'.$blog->image)  }}" class="img-fluid" alt="Image">
+                </div>
                 @endif
                 <div class="p-1 relative-left">
                     <h3 class="text-primary"><a href="{{ URL::to('blogitem/'.$blog->slug) }}">{{$blog->title}}</a>
@@ -96,7 +128,7 @@ Blog
             </ul>
         </div>
         <!-- /.col-md-8 -->
-        <div class="ml-auto col-md-4 col-lg-4 col-12">
+        <div class="ml-auto col-md-4 col-lg-4 col-12 d-none">
             <!-- END POPULAR POST -->
             <!-- Tabbable-Panel Start -->
             <h3>Tab Widget</h3>
@@ -265,7 +297,7 @@ Blog
         </div>
         <!-- /.col-md-4 -->
     </div>
-</div> --}}
+</div> 
 
 @stop
 

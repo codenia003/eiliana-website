@@ -48,7 +48,7 @@ Login As
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="register_as2" class="custom-control-input" name="login_as" value="2">
+                                                <input type="radio" id="register_as2" class="custom-control-input client" data-target="{{ url('logout') }}" name="login_as" value="2">
                                                 <label class="custom-control-label" for="register_as2">Client</label>
                                             </div>
                                         </div>
@@ -99,5 +99,16 @@ Login As
         var user_id = localStorage.getItem("user_id");
         $("#first_loginForm").append('<input type="hidden" name="user_id" id="user_id" value="'+user_id+'" />');
     }
+
+    $(document).ready(function () {
+        $('.client').on('click', function(event) {
+            event.preventDefault();
+            var url = $(this).data('target');
+            var r = confirm("Login first by freelancer");
+            if (r == true) {
+                location.replace(url);
+            }
+        });
+    });
 </script>
 @stop

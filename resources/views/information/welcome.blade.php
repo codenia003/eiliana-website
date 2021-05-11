@@ -27,8 +27,10 @@ Welcome
                     </div>
                     <div class="col-md-8 welcome-content">
                         <div class="welcome">
-                            <div class="col-lg-8 content">
-                                <h2 class="user-name">Hi Freelancer</h2>
+                            <div class="col-lg-8 content1">
+                              @if (isset(Session::get('users')['login_as']))
+                                <h2 class="user-name">Hi {{ Sentinel::getUser()->full_name }}</h2>
+                              @endif  
                                 <h2 class="user-text">Welcome to Eiliana Family !!!</h2>
                                 <p>We are building the largest community of Gig-<br>
                                 Resources globally who will transform the lives of billions of <br>
@@ -38,8 +40,8 @@ Welcome
                         </div>
                         <div class="col p-0 d-flex align-items-center">
                         <div class="account-second-side text-center">
-                            <a href="#" class="btn btn-light bt btn-lg blue">BROWSE PROJECTS</a>
-                            <a href="#" class="btn btn-light bt btn-lg red">SALES REFERRAL</a>
+                            <a onclick="togglePopup()" href="#" class="btn btn-light bt btn-lg blue">BROWSE PROJECTS</a>
+                            <a onclick="togglePopup()" href="#" class="btn btn-light bt btn-lg red">SALES REFERRAL</a>
                         </div>
                     </div>
                     </div>

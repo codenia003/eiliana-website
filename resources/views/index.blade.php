@@ -20,6 +20,7 @@ Home
 <link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/index.css') }}">
 <!--end of page level css-->
+
 @stop
 
 {{-- slider --}}
@@ -546,7 +547,7 @@ Home
                                                             <div class="find_job_button text-right">
                                                                 {{-- @if(Sentinel::guest()) --}}
                                                                 {{--<a class="btn_small yellow-linear-gradient text-white" href="{{ url('freelancer-referral') }}">Refer</a>--}}
-                                                                <a class="btn_small yellow-linear-gradient text-white" href="#">Coming soon</a>
+                                                                <a class="btn_small yellow-linear-gradient text-white" onclick="togglePopup()" href="#">Coming soon</a>
                                                                 {{-- @else
                                                                 <a class="btn_small yellow-linear-gradient text-white" data-toggle="modal" data-target="#modal-refer">Refer</a>
                                                                 @endif --}}
@@ -674,7 +675,15 @@ Home
         </div>
     </div> --}}
 </section>
-
+<div class="content">
+    <div onclick="togglePopup()" class="close-btn">
+        ×
+    </div>
+    <h3>Maintenance Page</h3><hr>
+    <p>
+        We are down for maintenance right now but soon we'll be up. Look forward to connect with you Shortly.
+    </p>
+</div>
 <section class="section container our-solution four-slider space-2">
     <div class="text-center">
         <h1 class="headingmain1">Crowd <span><img src="/assets/img/heart-icon.jpg"></span> Favourites</h1>
@@ -1250,6 +1259,7 @@ Home
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('vendors/slick-carousel/slick.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/assets/js/index.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/gh/vast-engineering/jquery-popup-overlay@2/jquery.popupoverlay.min.js"></script>
 <!--page level js ends-->
 <script>
     $(document).ready(function () {
@@ -1289,6 +1299,10 @@ Home
             }
         });
     });
+
+    function togglePopup() {
+        $(".content").toggle();
+    }
 </script>
 <!-- <script>
   var coll = document.getElementsByClassName("demand_skills");

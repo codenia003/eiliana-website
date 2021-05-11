@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactUs;
+use Sentinel;
+use Session;
 
 class InformationController extends JoshController
 {
@@ -63,9 +65,10 @@ class InformationController extends JoshController
         $contactus->name  = $input['name'];
         $contactus->email  = $input['email'];
         $contactus->phone_no  = $input['phone_no'];
+        $contactus->subject  = $input['subject'];
         $contactus->message  = $input['message'];
         $contactus->save();
-        return redirect('contact-us')->with('success', 'You have successfully save data!');
+        return redirect('contact-us')->with('success', 'Thank you, Your details has been save and we will contact shortly!');
     }
 
 }

@@ -48,7 +48,7 @@ class ProfileController extends JoshController
     public function basicInfo()
     {
         $user = Sentinel::getUser();
-        $countries = Country::where('id', $user->country)->first()->name;
+        $countries = Country::where('id', $user->country)->get();
 
         // print_r(Sentinel::getRoleRepository());
         // die();

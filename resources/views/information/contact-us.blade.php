@@ -51,25 +51,43 @@ Contact Us
                                             <form action="{{ url('/contact-us-post') }}" method="POST" id="contact_form">
                                                 @csrf
                                                 <div class="form-row">
-                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-12">
                                                         <label>Name</label>
                                                         <input type="text" name="name" class="form-control" required=""/>
                                                     </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    @if (Session::get('users')['login_as'] == '1')
+                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <label>Email id</label>
+                                                        <input type="email" name="email" class="form-control" value="{{ session()->get('users')->email }}" readonly>
+                                                    </div>
+                                                    @elseif (Session::get('users')['login_as'] == '2')
+                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                                        <label>Email id</label>
+                                                        <input type="email" name="email" class="form-control" value="{{ session()->get('users')->email }}" readonly>
+                                                    </div>
+                                                    @else
                                                     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                                         <label>Email id</label>
                                                         <input type="email" name="email" class="form-control" required>
                                                     </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
+                                                    @endif
+                                                    <div class="form-group col-12 col-sm-12 col-md-12 col-lg-6">
                                                         <label>Phone number</label>
                                                         <input type="text" name="phone_no" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
+                                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-12">
+                                                        <label>Subject</label>
+                                                        <input type="text" name="subject" class="form-control" required=""/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
                                                     <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                                                         <label>Message</label>
-                                                        <textarea name="message" id="" cols="30" rows="10" class="form-control"></textarea>
+                                                        <textarea name="message" id="" cols="30" rows="6" class="form-control"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group text-right mt-5">

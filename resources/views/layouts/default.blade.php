@@ -250,6 +250,15 @@
 
     <!-- Content -->
     @yield('content')
+    <div class="content">
+        <div onclick="togglePopup()" class="close-btn">
+            ×
+        </div>
+        <h3>Maintenance Page</h3><hr>
+        <p>
+            We are down for maintenance right now but soon we'll be up. Look forward to connect with you Shortly.
+        </p>
+    </div>
 
     <!-- Footer Section Start -->
     <footer class="custome-footer">
@@ -281,9 +290,9 @@
                     <h5 class="text-white font-weight-500">Features</h5>
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Press</a></li> --}}
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Release notes</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Integrations</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()" href="#">Press</a></li> --}}
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()" href="#">Release notes</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()" href="#">Integrations</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('pricingplan') }}">Pricing</a></li>
                     </ul>
                     <!-- End Nav Link -->
@@ -363,6 +372,11 @@
     <!--global js starts-->
     <script type="text/javascript" src="{{ asset('js/frontend/lib.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/assets/js/custom.js') }}"></script>
+    <script>
+        function togglePopup() {
+            $(".content").toggle();
+        }
+    </script>
     <!--global js end-->
     <!-- begin page level js -->
     @yield('footer_scripts')

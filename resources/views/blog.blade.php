@@ -12,6 +12,94 @@ Blog
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/tabbular.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/blog.css') }}">
 <!--end of page level css-->
+<style type="text/css">
+    #thumbnail
+    {
+        border-style: hidden;
+    }
+    #content
+    {
+       
+        vertical-align: middle;
+        align-items: center;
+        text-align: center;
+        /*vertical-align: bottom;*/
+    }
+    #date
+    {
+        font-size: 18px;
+        text-align: left;
+        opacity: 0.9;
+        margin-top: 20%;
+        font-family: sans-serif;
+    }
+    #image
+    {
+        height: 100%;
+        width: 100%;
+    }
+    #blog-title
+    {
+        text-align: left;
+        font-weight: bold;
+        font-size: 30px;
+        opacity: 0.9;
+
+    }
+    #blog-footer
+    {
+        margin-top: 10%;
+        font-size: 20px;
+        text-align: left;
+    }
+    #blog-footer i
+    {
+        font-size: 20px;
+    }
+    @media only screen and (max-width: 700px) {
+      #date
+      {
+        font-size: 11px;
+        text-align: left;
+        opacity: 0.9;
+        margin: 0px;
+        padding: 0px;
+        margin-top: 1%;
+        font-family: sans-serif;
+        
+
+      }
+      #blog-title
+      {
+        margin-top: 0px;
+        padding-top: 0px;
+        text-align: left;
+        font-weight: bold;
+        font-size: 15px;
+        opacity: 0.9;
+
+      }
+      #blog-footer
+      {
+        margin-top: 1%;
+        font-size: 12px;
+        text-align: left;
+      }
+      #blog-footer i
+      {
+        font-size: 14px;
+      }
+      #content
+      {
+        margin: 0px;
+        padding: 0px;
+        vertical-align: middle;
+        align-items: center;
+        text-align: center;
+        /*vertical-align: bottom;*/
+     }
+    }
+</style>
 @stop
 
 {{-- Page content --}}
@@ -40,28 +128,26 @@ Blog
 </div>
 <!-- Container Section Strat -->
  <div class="container blogpage">
-    <h2 class="my-3">Blog</h2>
+    <h2 class="my-3 d-none">Blog</h2>
     <!-- my style -->
     @forelse ($blogs as $blog)
     <br>
-    <div class="thumbnail m-0 p-0" style="border-style: hidden;">
+    <div class="thumbnail m-0 p-0" id="thumbnail">
         <div class="row ">
-            <div class="col-lg-6 col-md-6 col-12 my-2">
-               <img src="/assets/img/photo/blog-page-list.png" class="img-fluid" alt="Image" style="height: 100%;width: 100%;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2">
+               <img src="/assets/img/photo/back.jpg" id="image" class="img-fluid" alt="Image">
             </div>
-            <div class="col-lg-6 col-md-6 col-12 my-2 text-center align-middle" style="vertical-align: middle;align-items: center;text-align: center;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2 text-center align-middle" id="content">
                 <br>
-                <p class="text-left" style="font-size: 20px;text-align: left;opacity: 0.8;"><b>
+                <p class="text-left" id="date"><b>
                     <?php 
                         echo date_format($blog->created_at,"M d, Y");
                     ?>
                    </b></p>
                 <br>
-                <loren class="text-center p-1" style="text-align: left;font-weight: bold;font-size: 33px;">{{$blog->title}}</loren>
-                <p style="margin-top: 25px; font-size: 20px; text-align: left;">
-                    <i class="livicon" data-name="user" data-size="13" data-loop="true" data-c="#5bc0de"
-                                data-hc="#5bc0de"></i> by&nbsp;<a
-                                href="#">{{$blog->author->first_name . ' ' . $blog->author->last_name}}</a>
+                <p class="p-1 pl-0" id="blog-title" >{{$blog->title}}</p>
+                <p id="blog-footer">
+                    <i class="fas fa-user-circle"></i>&nbsp; By {{$blog->author->first_name . ' ' . $blog->author->last_name}}</a>
                 </p>
             </div>
         </div>
@@ -71,6 +157,7 @@ Blog
     @empty
             <h3>No Posts Exists!</h3>
             @endforelse
+
 
     <div class="row d-none">
         <div class="col-md-8 col-lg-8 col-12 my-2">

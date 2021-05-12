@@ -1606,7 +1606,8 @@ span.select2-selection.select2-selection--single {
     margin-top: 65px;
 }
 .teams_img img {
-    width: 335px;
+    width: 450px;
+    height: 411px;
 }
 .teams-basic .btn-group,
 .btn-group-vertical {
@@ -1814,4 +1815,9 @@ span.select2-selection.select2-selection--single {
 
 .teams_data .form-row .form-group .form-control {
     height: 40px;
+}
+
+.teams-basic a:hover {
+    color: #003466 !important;
+    text-decoration: none !important;
 }

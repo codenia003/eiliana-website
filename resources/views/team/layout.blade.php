@@ -33,7 +33,6 @@ type="text/css"/>
 			margin-top: 65px;
 		}
 		
-		
 </style>
 @stop
 

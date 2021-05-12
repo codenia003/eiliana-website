@@ -41,7 +41,7 @@
                     <div class="teams_data">
                         <div class="form-row">
                             <div class="form-group col">
-                                <input type="email" class="form-control" name="from[]" id="from" value="{{ Sentinel::getUser()->email }}" readonly>
+                                <input type="email" class="form-control" name="from[]" id="from">
                             </div>
                             <div class="form-group col">
                                 <input type="email" class="form-control" name="to_user[]" id="to" required>
@@ -70,13 +70,13 @@
                     <div class="col-md-4 md-2 mt-6 teams_img">
                     <img src="/assets/img/teams.png">
                     </div>
-                    <div class="col-md-8 md-2 mt-6">
+                    <div class="col-md-8 md-2 mt-6" style="margin-top: 15rem !important;">
                         <div class="form-group text-right mt-5">
                             <div class="btn-group" role="group">
                                 <button class="btn btn-primary" type="submit">
                                     SUBMIT
                                 </button>
-                                <button class="btn btn-outline-primary" type="reset">CANCEL</button>
+                                <a  href="{{ URL::to('/company/bench')  }}" class="btn btn-primary" type="reset">CANCEL</a>
                             </div>
                         </div>
                     </div>

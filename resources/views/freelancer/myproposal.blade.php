@@ -12,7 +12,7 @@
         </div>
     </div>
 </div>
-<style type="text/css">
+<!-- <style type="text/css">
     @media (min-width: 992px){
         .col-lg-8 {
             flex: 0 0 66.6666666667%;
@@ -30,7 +30,7 @@
             height: 100%;
         }
    } 
-</style>
+</style> -->
 @stop
 @section('profile_content')
 <div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md">

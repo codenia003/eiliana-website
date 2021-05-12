@@ -152,7 +152,7 @@ Blog
             </div>
         </div>
     </div>
-    <br>
+    
     <hr>
     @empty
             <h3>No Posts Exists!</h3>

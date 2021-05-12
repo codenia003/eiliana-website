@@ -1816,17 +1816,14 @@ span.select2-selection.select2-selection--single {
 .teams_data .form-row .form-group .form-control {
     height: 40px;
 }
-<<<<<<< HEAD
 
 .teams-basic a:hover {
     color: #003466 !important;
     text-decoration: none !important;
 }
-=======
 .opportunity ul.dropdown-menu {
     left: unset;
 }
 .profile-setting .card-body p {
     padding: 10px;
 }
->>>>>>> 54d705d06c2794178fa9218650da9e5d7bf83fe6

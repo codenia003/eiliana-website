@@ -49,13 +49,15 @@ Blog
     #blog-footer
     {
         margin-top: 10%;
-        font-size: 20px;
+        font-size: 18px;
         text-align: left;
+        font-weight: bold;
     }
     #blog-footer i
     {
         font-size: 20px;
     }
+
     @media only screen and (max-width: 650px) {
       #date
       {
@@ -83,6 +85,7 @@ Blog
       {
         margin-top: 1%;
         font-size: 10px;
+        font-weight: bold;
         text-align: left;
       }
       #blog-footer i

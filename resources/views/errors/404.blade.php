@@ -1,43 +1,38 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts/default')
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>404 page | Welcome to Eiliana</title>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <!-- global level css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-    <!-- end of globallevel css-->
-    <!-- page level styles-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/404.css') }}" />
-    <!-- end of page level styles-->
-</head>
+{{-- Page title --}}
+@section('title')
+@parent
+@stop
 
-<body>
+{{-- page level styles --}}
+@section('header_styles')
+<!--page level css starts-->
+<link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/tabbular.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/blog.css') }}">
+<!--end of page level css-->
+@stop
 
-    <div id="animate" class="row">
-        <div class="number">4</div>
-        <div class="icon"> <i class="livicon" data-name="pacman" data-size="105" data-c="#f6c500" data-hc="#f1b21d" data-eventtype="click" data-iteration="15"></i>
-        </div>
-        <div class="number">4</div>
+{{-- Page content --}}
+@section('content')
+
+<div class="container thumbnail shadow mt-5 mb-4" style="border-radius: 30px;width: 70%;">
+    <div class="row" style="align-content: flex-start; margin-top: 30px;margin-left: 30px;height: 150px;width: 150px;">
+        <img src="{{ URL::to('/uploads/blog/eiliana.png')  }}" class="img-fluid" alt="Image">
     </div>
-    <div class="hgroup">
-        <h1>Page Not Found</h1>
-        <h2>It seems that page you are looking for no longer exists.</h2>
-        <a href="{{ url('/') }}">
-            <button type="button" class="btn btn-primary button-alignment">Home</button>
-        </a>
-    </div>
-    <!-- global js -->
-    <script src="{{ asset('js/frontend/jquery.min.js') }}" type="text/javascript"></script>
-    <!-- Bootstrap -->
-    <script src="{{ asset('js/frontend/bootstrap.min.js') }}" type="text/javascript"></script>
-    <!--livicons-->
-    <script src="{{ asset('js/raphael.min.js') }}"></script>
-    <script src="{{ asset('js/livicons-1.4.min.js') }}"></script>
-    <script src="{{ asset('js/holder.js') }}"></script>
-    <!-- begining of page level js-->
-    <script src="{{ asset('js/frontend/404.js') }}"></script>
-    <!-- end of page level js-->
-</body>
-</html>
+    <h1 class="text-danger text-center mt-4 pt-5" style="font-size: 50px;font-weight: 400;">SORRY</h1>
+    <p class="text-center mt-3 pt-3" style="font-weight: bold;font-size: 30px;font-weight: 500;">We Coundn't Provide Suitable Solution</p>
+    <p class="text-center" style="font-size: 22px;opacity: 0.8;">Please go back and tya again</p>
+    <center>
+        <a href="#" class="btn btn-danger text-center mt-4 mb-5 mt-5 pl-2 pr-2" style="background-color: #b31717; color: white;border-radius: 20px;font-size: 13px;font-weight: bold;"> &nbsp;&nbsp; BACK TO EILIANA  &nbsp;&nbsp;</a>
+    </center>
+    <br>
+    <br>
+</div>
+
+@stop
+
+{{-- page level scripts --}}
+@section('footer_scripts')
+
+@stop

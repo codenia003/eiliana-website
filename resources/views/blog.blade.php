@@ -19,7 +19,7 @@ Blog
     }
     #content
     {
-       
+
         vertical-align: middle;
         align-items: center;
         text-align: center;
@@ -68,7 +68,7 @@ Blog
         padding: 0px;
         margin-top: 1%;
         font-family: sans-serif;
-        
+
 
       }
       #blog-title
@@ -123,7 +123,7 @@ Blog
                 <div class="col p-0">
                     <img src="/assets/img/photo/blog-page.png" class="img-fluid p-4" alt="">
                     <hr>
-                    <img src="/assets/img/photo/blog-page-list.png" class="img-fluid" alt="">
+                    {{-- <img src="/assets/img/photo/blog-page-list.png" class="img-fluid" alt=""> --}}
                 </div>
             </div>
         </div>
@@ -142,8 +142,8 @@ Blog
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2 text-center align-middle" id="content">
                 <br>
-                <p class="text-left" id="date"><b>
-                    <?php 
+                <p class="text-left" style="font-size: 20px;text-align: left;opacity: 0.8;"><b>
+                    <?php
                         echo date_format($blog->created_at,"M d, Y");
                     ?>
                    </b></p>
@@ -155,7 +155,7 @@ Blog
             </div>
         </div>
     </div>
-    
+
     <hr>
     @empty
             <h3>No Posts Exists!</h3>
@@ -388,7 +388,7 @@ Blog
         </div>
         <!-- /.col-md-4 -->
     </div>
-</div> 
+</div>
 
 @stop
 

@@ -1777,18 +1777,18 @@ span.select2-selection.select2-selection--single {
 }
 
 .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 200px;
-    text-align: center;
-    background-color: #e8eae6;
-    box-sizing: border-box;
-    padding: 10px;
-    z-index: 100;
-    display: none;
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    /* width: 500px; */
+    /* height: 200px; */
+    /* text-align: center; */
+    /* background-color: #e8eae6; */
+    /* box-sizing: border-box; */
+    /* padding: 10px; */
+    /* z-index: 100; */
+    /* display: none; */
     /*to hide popup initially*/
 }
 
@@ -1814,4 +1814,10 @@ span.select2-selection.select2-selection--single {
 
 .teams_data .form-row .form-group .form-control {
     height: 40px;
+}
+.opportunity ul.dropdown-menu {
+    left: unset;
+}
+.profile-setting .card-body p {
+    padding: 10px;
 }

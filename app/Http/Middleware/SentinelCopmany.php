@@ -20,11 +20,8 @@ class SentinelCopmany
         $user = Sentinel::getUser();
         $userlogin = $request->session()->get('users');
 
-        // if(!$user->hasAccess('company'))
-        // {
-        //     return Redirect::route('home');
-        // }
-        if($userlogin['login_as'] == '2'){
+        if ($request->session()->get('users')['login_as'] != '1')
+        {
             return Redirect::route('home');
         }
         return $next($request);

@@ -56,10 +56,10 @@ Blog
     {
         font-size: 20px;
     }
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 650px) {
       #date
       {
-        font-size: 11px;
+        font-size: 10px;
         text-align: left;
         opacity: 0.9;
         margin: 0px;
@@ -75,19 +75,19 @@ Blog
         padding-top: 0px;
         text-align: left;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 13px;
         opacity: 0.9;
 
       }
       #blog-footer
       {
         margin-top: 1%;
-        font-size: 12px;
+        font-size: 10px;
         text-align: left;
       }
       #blog-footer i
       {
-        font-size: 14px;
+        font-size: 12px;
       }
       #content
       {

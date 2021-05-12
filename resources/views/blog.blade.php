@@ -29,7 +29,7 @@ Blog
     {
         font-size: 18px;
         text-align: left;
-        opacity: 0.9;
+        opacity: 0.8;
         margin-top: 20%;
         font-family: sans-serif;
     }

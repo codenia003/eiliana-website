@@ -534,7 +534,8 @@ Route::group(
 Route::group(
     ['prefix' => 'company', 'middleware' => ['user', 'company']],
     function () {
-        Route::get('teams', 'CompanayController@index');
+        Route::get('bench', 'CompanayController@index');
+        Route::get('teams', 'CompanayController@teamsForm');
         Route::post('registerteams', 'CompanayController@registerTeams')->name('registerteams');
     }
 );

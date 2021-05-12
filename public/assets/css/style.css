@@ -282,7 +282,7 @@ footer .btn-ghost-light:hover {
 }
 .form-control:disabled,
 .form-control[readonly] {
-    background-color: #e9ecef !important;
+    background-color: #ffffff !important;
     opacity: 1;
 }
 input[type="number"]::-webkit-inner-spin-button,
@@ -1384,6 +1384,7 @@ span.select2-selection.select2-selection--single {
 .profile-setting .my-alldata thead tr th {
     font-weight: 400;
     border: unset !important;
+    width: 20%;
 }
 .profile-setting .my-alldata tr:nth-child(odd) {
     background-color: #fff;
@@ -1605,7 +1606,7 @@ span.select2-selection.select2-selection--single {
     margin-top: 65px;
 }
 .teams_img img {
-    width: 270px;
+    width: 335px;
 }
 .teams-basic .btn-group,
 .btn-group-vertical {
@@ -1664,12 +1665,12 @@ span.select2-selection.select2-selection--single {
     background: #003466;
     color: #fff;
     border-radius: unset;
-    width: 160px;
-    height: 42px;
+    width: 150px;
+    height: 45px;
     text-transform: capitalize;
     line-height: 22px;
     font-weight: 600;
-    font-size: 14px !important;
+    font-size: 13px !important;
     border-color: #fff;
     background: #a881de;
     background: linear-gradient(281deg, #a881de 0, #56b1dd 70%);
@@ -1799,4 +1800,18 @@ span.select2-selection.select2-selection--single {
     color: white;
     border-radius: 50%;
     padding: 4px;
+}
+
+.teams_data{
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.teams_data-3{
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.teams_data .form-row .form-group .form-control {
+    height: 40px;
 }

@@ -23,7 +23,12 @@ class CompanayController extends JoshController
 
         $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
 
-        return view('team/teams', compact('teaminvitations'));
+        return view('team/bench', compact('teaminvitations'));
+    }
+
+    public function teamsForm()
+    {
+        return view('team/teams');
     }
 
     public function registerTeams(Request $request)
@@ -51,6 +56,7 @@ class CompanayController extends JoshController
 
             $data['team_invitation_id'] = $teaminvitation->team_invitation_id;
             $data['token'] = $teaminvitation->token;
+            $data['user_bid'] = $teaminvitation->user_bid;
             $data['company_name'] = $user->company_name;
             $data['to_user'] = $teaminvitation->to_user;
             $data['subject'] = $teaminvitation->subject;
@@ -70,7 +76,7 @@ class CompanayController extends JoshController
 
         }
 
-        return redirect('company/teams')->with('success', 'The Invite has been sent successfully');
+        return redirect('company/bench')->with('success', 'The Invite has been sent successfully');
     }
 
     public function acceptInvitation(Request $request)

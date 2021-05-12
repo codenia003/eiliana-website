@@ -74,13 +74,12 @@
     .space-bottom-1 {
         padding-top: 1rem!important;
     }
-    .space-2,
     .space-top-2 {
         padding-top: 2rem!important;
     }
-    .space-2,
-    .space-bottom-2 {
-        padding-bottom: 2rem!important;
+
+    .space-2 {
+        padding-bottom: 4rem!important;
     }
     .navbar-vertical {
         display: none !important;
@@ -365,6 +364,20 @@
     .hire-talent img.img-fluid {
         margin-left: 0;
         margin-top: 20px;
+    }
+
+    .teams_data-1 .teams_data .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -114px;
+        margin-left: -5px;
+    }
+
+    .btn-copy-team{
+        margin-left: -5px;
+    }
+    .remove-team1{
+        float: right;
     }
 }
 

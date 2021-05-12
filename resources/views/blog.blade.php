@@ -16,6 +16,7 @@ Blog
 
 {{-- Page content --}}
 @section('content')
+
 <div class="account-page">
     <div class="bg-red">
       <div class="px-5 py-2">

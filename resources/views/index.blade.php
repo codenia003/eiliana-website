@@ -545,7 +545,6 @@ Home
                                                                 </figure>
                                                             </div>
                                                             <div class="find_job_button text-right">
-                                                                {{-- @if(Sentinel::guest()) --}}
                                                                 {{--<a class="btn_small yellow-linear-gradient text-white" href="{{ url('freelancer-referral') }}">Refer</a>--}}
                                                                 <a class="btn_small yellow-linear-gradient text-white" onclick="togglePopup()">Coming soon</a>
                                                                 {{-- @else
@@ -567,123 +566,7 @@ Home
             <!-- End Row -->
         </div>
     </div>
-    {{-- <div class="text-center">
-        <h1 class="headingmain1">Why Choose Us?</h1>
-        <p class="subtitle1">Firstly, for talents, we have tons of jobs that will help you utilize your skills and earn
-            some (actually, more than some) extra bucks on the side. Secondly, for clients, we have thousands of
-            talented individuals who are ready to take on all kinds of projects, right from app development to logo
-            design.</p>
-        <p class="subtitle2"><b>And lastly, there are a bunch of nifty reasons why you’ll Eiliana.</b></p>
-        <div class="dividerheading"></div>
-    </div>
-    <div class="banner_custom">
-        <div class="banner_custom_services">
-            <div class="multiple-carousel">
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/1-Anonimity-1814278721.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Complete Anonymity</h5> -->
-                                <h5 class="text-orange">HDGH HBCHD</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid"
-                                src="/assets/img/eiliana-why-choose-us/2-Business Generation-1534355573.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Start-up</h5> -->
-                                <h5 class="text-orange">4RSK SDKSL</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/3-Online Bid-769403827.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Business Geneartion</h5> -->
-                                <h5 class="text-orange">NHAHGA HHSH</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid"
-                                src="/assets/img/eiliana-why-choose-us/4-Faster roll out-1495084820.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Faster Rollout</h5> -->
-                                <h5 class="text-orange">GSHSH SHSHS</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid"
-                                src="/assets/img/eiliana-why-choose-us/5-team building-1493445596.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
-                                <!-- <h5 class="text-orange">Cost Optimization</h5> -->
-                                <h5 class="text-orange">HGDHG HJDHDHKD</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/6-Learning-529026958.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
-                                <h5 class="text-orange">247SURY JDBCJ</h5>
-                                <!-- <h5 class="text-orange">24X7 Support</h5> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid"
-                                src="/assets/img/eiliana-why-choose-us/7-Project Analysis-250380139.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_left shadow bg-white text-center mb-4">
-                                <h5 class="text-orange">DHDH HDHD DHDH</h5>
-                                <!-- <h5 class="text-orange">Team Creation & Bidding</h5> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="crowd_favrt">
-                        <div class="servicesimg">
-                            <img class="img-fluid" src="/assets/img/eiliana-why-choose-us/8-Talent-1208199004.jpg">
-                            <div class="backgroundcontenddiv boderradius_bottom_right shadow bg-white text-center mb-4">
-                                <h5 class="text-orange">HGDHGDS DHDHD</h5>
-                                <!-- <h5 class="text-orange">Faster Rollout</h5> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 </section>
-<div class="content">
-    <div onclick="togglePopup()" class="close-btn">
-        ×
-    </div>
-    <h3>Maintenance Page</h3><hr>
-    <p>
-        We are down for maintenance right now but soon we'll be up. Look forward to connect with you Shortly.
-    </p>
-</div>
 <section class="section container our-solution four-slider space-2">
     <div class="text-center">
         <h1 class="headingmain1">Crowd <span><img src="/assets/img/heart-icon.jpg"></span> Favourites</h1>
@@ -1248,7 +1131,6 @@ Home
         </div>
     </div>
 </div>
-
 <!-- //Container End -->
 @stop
 {{-- footer scripts --}}
@@ -1259,7 +1141,6 @@ Home
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('vendors/slick-carousel/slick.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/assets/js/index.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/gh/vast-engineering/jquery-popup-overlay@2/jquery.popupoverlay.min.js"></script>
 <!--page level js ends-->
 <script>
     $(document).ready(function () {
@@ -1298,11 +1179,8 @@ Home
                 location.replace(url);
             }
         });
+        togglePopup();
     });
-
-    function togglePopup() {
-        $(".content").toggle();
-    }
 </script>
 <!-- <script>
   var coll = document.getElementsByClassName("demand_skills");

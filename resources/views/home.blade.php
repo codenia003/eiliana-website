@@ -59,5 +59,8 @@ Home
 {{-- footer scripts --}}
 @section('footer_scripts')
 <!-- page level js starts-->
+<script>
+    togglePopup();
+</script>
 <!--page level js ends-->
 @stop

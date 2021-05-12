@@ -128,92 +128,85 @@
                                 <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Lead</a>
                             </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Sales Referral</a>
+                                {{-- <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Sales Referral</a> --}}
+                                <a class="nav-link" onclick="togglePopup()">My Sales Referral</a>
                             </li>
-                            <div class="nav-item dropdown">
-                                <li class="nav-item dropdown" id="myDropdown">
-                                    <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#" style="font-size: 14px;">My Opportunity
-                                    <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu sub_navbar">
-                                       <li class="nav-item">
-                                        <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
-                                           <ul class="submenu1 submenu_item">
-                                                <li><a class="dropdown-item submenu_down" href="/freelancer/my-contract_job">Contract Job</a>
-                                                </li>
-                                                <li><a class="dropdown-item submenu_down" href="/freelancer/my-project">Project</a>
-                                                </li>
-                                            </ul>
-                                       </li>
-                                    </ul>
-                                </li>
-                            </div>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/freelancer/my-save-job') }}">My Save Job</a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/freelancer/my-proposal') }}">My Proposal</a>
-                            </li> -->
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="#">My Proposal</a>
+                            <li class="nav-item opportunity" id="myDropdown">
+                                <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#" style="font-size: 14px;">My Opportunity
+                                <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu sub_navbar">
+                                   <li class="nav-item">
+                                    <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                       <ul class="submenu1 submenu_item">
+                                            <li>
+                                                {{-- <a class="dropdown-item submenu_down" href="url('/freelancer/my-contract_job')">Contract Job</a> --}}
+                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Contract Job</a>
+                                            </li>
+                                            <li>
+                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/freelancer/my-project') }}">Project</a> --}}
+                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Project</a>
+                                            </li>
+                                        </ul>
+                                   </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/freelancer/my-project') }}">My Project</a>
-                            </li> -->
+                                {{-- <a class="nav-link" href="{{ url('/freelancer/my-save-job') }}">My Save Job</a> --}}
+                                <a class="nav-link" onclick="togglePopup()">My Save Job</a>
+                            </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/client/my-lead') }}">My Sales Referral</a>
+                                {{-- <a class="nav-link" href="{{ url('/client/my-lead') }}">My Sales Referral</a> --}}
+                                <a class="nav-link" onclick="togglePopup()">My Sales Referral</a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/client/my-requirement') }}">My Requirement</a>
-                            </li>  -->
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/client/my-proposal') }}">My Opportunity</a>
-                            </li> -->
 
-                            <div class="nav-item dropdown">
-                                <li class="nav-item dropdown" id="myDropdown">
-                                    <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#" style="font-size: 14px;">My Opportunity
-                                    <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu sub_navbar">
-                                        <li class="nav-item">
-                                          <a class="dropdown-item" href="{{ url('/client/my-proposal') }}" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
-                                           <ul class="submenu1 submenu_item">
-                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-contract-job') }}">Contract Job</a>
-                                                </li>
-                                                <li><a class="dropdown-item submenu_down" href="/client/my-project">Project</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Requirement &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
-                                            <ul class="submenu1 submenu_item">
-                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-requirement-job') }}">Contract Job</a>
-                                                </li>
-                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-requirement-project') }}">Project</a>
-                                                </li>
-                                            </ul>
-                                       </li>
-                                       <li class="nav-item">
-                                            <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Delivery &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
-                                            <ul class="submenu1 submenu_item">
-                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-job') }}">Contract Job</a>
-                                                </li>
-                                                <li><a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-project') }}">Project</a>
-                                                </li>
-                                            </ul>
-                                       </li>
-                                    </ul>
-                               </li>
-                            </div>
-
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/client/my-project') }}">My Project</a>
-                            </li> --}}
+                            <li class="nav-item opportunity" id="myDropdown">
+                                <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#">My Opportunity <b class="caret"></b></a>
+                                <ul class="dropdown-menu sub_navbar">
+                                    <li class="nav-item">
+                                      <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                       <ul class="submenu1 submenu_item">
+                                            <li>
+                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-contract-job') }}">Contract Job</a> --}}
+                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Contract Job</a>
+                                            </li>
+                                            <li>
+                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-project') }}">Project</a> --}}
+                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Project</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Requirement &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                        <ul class="submenu1 submenu_item">
+                                            <li>
+                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-requirement-job') }}">Contract Job</a> --}}
+                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Contract Job</a>
+                                            </li>
+                                            <li>
+                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-requirement-project') }}">Project</a> --}}
+                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Project</a>
+                                            </li>
+                                        </ul>
+                                   </li>
+                                   <li class="nav-item">
+                                        <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Delivery &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                        <ul class="submenu1 submenu_item">
+                                            <li>
+                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-job') }}">Contract Job</a> --}}
+                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Contract Job</a>
+                                            </li>
+                                            <li>
+                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-project') }}">Project</a> --}}
+                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Project</a>
+                                            </li>
+                                        </ul>
+                                   </li>
+                                </ul>
+                           </li>
                             <a href="{{ url('/job-posting') }}" class="nav-item nav-link login_signup">Post Project</a>
                         @endif
-                        {{-- <a href="#" class="nav-item nav-link messages"><i class="fa fa-comments"></i><span class="badge">10</span></a> --}}
                         <x-database-notifications/>
                         <div class="nav-item user-avator">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
@@ -250,16 +243,27 @@
 
     <!-- Content -->
     @yield('content')
-    <div class="content">
-        <div onclick="togglePopup()" class="close-btn">
-            ×
-        </div>
-        <h3>Maintenance Page</h3><hr>
-        <p>
-            We are down for maintenance right now but soon we'll be up. Look forward to connect with you Shortly.
-        </p>
-    </div>
 
+    <div class="modal fade pullDown login-body border-0 modal-refer betaversion" id="modal-refer" role="dialog" aria-labelledby="modalLabelnews">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    <div class="eiliana-logo">
+                        <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
+                        <h4>Beta Version</h4>
+                        <div class="beta-parent">
+                        <p>We are still in beta version that's why some link is not working.
+                            <br> Right now we have only taken the registration on eiliana website.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer eiliana-refer">
+                    <button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer Section Start -->
     <footer class="custome-footer">
         <div class="container space-1">
@@ -268,21 +272,15 @@
                     <h5 class="text-white font-weight-500">Categories</h5>
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-                       @foreach($categories as $category)
-                          @if (Session::get('users')['login_as'] == '1')
-                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('search-project') . '/' .$category->slug}}">{{ $category->name}}</a></li>
-                            @elseif (Session::get('users')['login_as'] == '2')
-                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('search-project') . '/' .$category->slug}}">{{ $category->name}}</a></li>
-                            @else
-                            <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('user-type') . '/' .$category->slug}}">{{ $category->name}}</a></li>
-                          @endif
-                       @endforeach
-                        <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Graphics & Design</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Digital Marketing</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Video & Animation</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Music & Audio</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Programming & Tech</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="#">Business</a></li> -->
+                        @foreach($categories as $category)
+                            @if (Session::get('users')['login_as'] == '1')
+                                <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('search-project') . '/' .$category->slug}}">{{ $category->name}}</a></li>
+                                @elseif (Session::get('users')['login_as'] == '2')
+                                <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('search-project') . '/' .$category->slug}}">{{ $category->name}}</a></li>
+                                @else
+                                <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ url('user-type') . '/' .$category->slug}}">{{ $category->name}}</a></li>
+                            @endif
+                        @endforeach
                     </ul>
                     <!-- End Nav Link -->
                 </div>
@@ -291,9 +289,10 @@
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
                         {{-- <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()" href="#">Press</a></li> --}}
-                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()" href="#">Release notes</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()" href="#">Integrations</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('pricingplan') }}">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Release notes</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Integrations</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Pricing</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('pricingplan') }}">Pricing</a></li> --}}
                     </ul>
                     <!-- End Nav Link -->
                 </div>
@@ -301,15 +300,19 @@
                     <h5 class="text-white font-weight-500">Company</h5>
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('about') }}">About</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('careers') }}">Careers</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('about') }}">About</a></li> --}}
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">About</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('careers') }}">Careers</a></li> --}}
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Careers</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('blog') }}">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('customers') }}">Customers</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('hire-us') }}">Hire us</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('privacypolicy') }}">Privacy Policy</a></li> -->
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('customers') }}">Customers</a></li> --}}
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Customers</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('hire-us') }}">Hire us</a></li> --}}
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Hire us</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('termsandconditions') }}">Terms & Privacy Policy</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('contact-us') }}">Contact Us</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('sitemap') }}">Sitemap</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('sitemap') }}">Sitemap</a></li> --}}
+                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Sitemap</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>
@@ -367,20 +370,19 @@
         <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
     </a>
 
-
-
     <!--global js starts-->
     <script type="text/javascript" src="{{ asset('js/frontend/lib.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/assets/js/custom.js') }}"></script>
+    <!--global js end-->
     <script>
-        function togglePopup() {
-            $(".content").toggle();
+        function togglePopup(){
+            $('#modal-refer').modal('show');
         }
     </script>
-    <!--global js end-->
     <!-- begin page level js -->
     @yield('footer_scripts')
     <!-- end page level js -->
+
 </body>
 
 </html>

@@ -31,8 +31,9 @@ Sales Referral
                         <h5>So what are you waiting for?</h5>
                         <p>Submit any IT project today and bag your chance on guaranteed payout chosen by you.</p>
                         <div class="mb-3 mt-3 singup-body">
-                            <a class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill text-white" href="{{ url('sales-referral-form') }}">New Lead</a>
-                            <a class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill text-white ml-3"  href="#">Check Status</a>
+                            <a class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill text-white" onclick="togglePopup()">New Lead</a>
+                            {{-- <a class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill text-white" href="{{ url('sales-referral-form') }}">New Lead</a> --}}
+                            <a class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill text-white ml-3" onclick="togglePopup()">Check Status</a>
                         </div>
                         {{-- <img src="/assets/img/profile/sales-details.png" class="img-fluid" alt=""> --}}
                     </div>

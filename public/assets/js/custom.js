@@ -45,21 +45,19 @@ function change_category()
             var category_text = [];
             // console.log("data",data);
 
-                var options = '';
-                $.each( data, function( key, value ) {
-                    options += "<option value='"+value['id']+"'>"+value['name']+"</option>";
-                    category_text.push(options);
-                });
-                if (category_text.length === 0) {
-                    $('#project_sub').addClass("d-none");
-                } else {
-                    $('#project_sub').removeClass("d-none");
-                    $('#project_sub_category').html(options);
-                }
+            var options = '';
+            $.each( data, function( key, value ) {
+                options += "<option value='"+value['id']+"'>"+value['name']+"</option>";
+                category_text.push(options);
+            });
+            if (category_text.length === 0) {
+                // $('#project_sub').addClass("d-none");
+            } else {
+                // $('#project_sub').removeClass("d-none");
+                $('#project_sub_category').html(options);
+            }
 
-                //console.log(options);
-
-
+            //console.log(options);
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);

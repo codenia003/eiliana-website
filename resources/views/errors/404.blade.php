@@ -18,7 +18,7 @@
 
 <div class="container thumbnail shadow mt-5 mb-4" style="border-radius: 30px;width: 70%;">
     <div class="row" style="align-content: flex-start; margin-top: 20px;margin-left: 30px;height: 150px;width: 150px;">
-        <img src="{{ URL::to('/uploads/blog/eiliana.png')  }}" class="img-fluid" alt="Image">
+        <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid" alt="Image">
     </div>
     <h1 class="text-danger text-center mt-0 pt-3" style="font-size: 50px;font-weight: 400;">SORRY</h1>
     <p class="text-center mt-3 pt-3" style="font-weight: bold;font-size: 30px;font-weight: 500;">We Coundn't Provide Suitable Solution</p>

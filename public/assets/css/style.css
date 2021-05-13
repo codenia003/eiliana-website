@@ -532,7 +532,7 @@ span.border-title i {
 .singup-body .btn-group .btn {
     padding: 0 40px !important;
     height: 50px !important;
-    margin-left: 0px !important;
+    margin-left: 5px !important;
     width: auto;
 }
 .singup-body .btn-group button.btn.btn-outline-primary {

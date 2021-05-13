@@ -26,6 +26,7 @@
     <div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md teams-basic">         
         <form action="{{ route('registerteams') }}" method="POST" id="registerteams">
             @csrf
+            
                 <table class="table table-striped team-form" id="myopportunity-table">
                     <thead>
                     <tr>
@@ -41,7 +42,7 @@
                     <div class="teams_data">
                         <div class="form-row">
                             <div class="form-group col">
-                                <input type="email" class="form-control" name="from[]" id="from">
+                                <input type="text" class="form-control" name="uname[]" id="uname">
                             </div>
                             <div class="form-group col">
                                 <input type="email" class="form-control" name="to_user[]" id="to" required>
@@ -53,7 +54,7 @@
                                 <input type="text" class="form-control" name="messagetext[]" id="message-text">
                             </div>
                             <div class="form-group col">
-                                <select class="form-control" required="" name="user_bid[]" id="user-bid">
+                                <select class="form-control" name="user_bid[]" id="user-bid" required>
                                     <option value=""></option>
                                     <option value="0">Admin</option>
                                     <option value="1">User</option>

@@ -34,7 +34,7 @@
                     </div> --}}
                     {{-- @if(!Sentinel::inRole('user')) --}}
                     @if (Session::get('users')['login_as'] == '1')
-                    <a class="list-group-item list-group-item-action {!! (Request::is('team') ? 'active' : '' ) !!}" href="{{ url('company/teams') }}">Teams</a>
+                    <a class="list-group-item list-group-item-action {!! (Request::is('team') ? 'active' : '' ) !!}" href="{{ url('company/bench') }}">Teams</a>
                     @endif
                 </div>
             </div>

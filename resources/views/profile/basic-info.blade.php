@@ -107,6 +107,18 @@
                         <input type="text" name="last_name" class="form-control" value="{{ $user->last_name }}" readonly />
                     </div>
                 </div>
+                @isset(Session::get('teaminvitation')['to_user'])
+                <div class="form-row">
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                        <label>Experience</label>
+                        <input type="text" name="experience" class="form-control" value="{{ $user->experience }}">
+                    </div>
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                        <label>Key Skills</label>
+                        <input type="text" name="key_skills" class="form-control" value="{{ $user->key_skills }}">
+                    </div>
+                </div>
+                @endisset
                 <div class="form-row">
                     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                         @if(!Sentinel::inRole('user'))

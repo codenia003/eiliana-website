@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\SentinelAdmin::class,
         'user' => \App\Http\Middleware\SentinelUser::class,
         'company' => \App\Http\Middleware\SentinelCopmany::class,
+        'usertype' => \App\Http\Middleware\SentinelUserType::class,
     ];
 }

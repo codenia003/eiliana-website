@@ -29,7 +29,7 @@
         <table class="table table-striped" id="myopportunity-table">
             <thead>
             <tr>
-                <!-- <th>Name </th> -->
+                <th>Name </th>
                 <th>Email</th>
                 <th>Experience </th>
                 <th>Key Skills</th>
@@ -39,7 +39,7 @@
                 <tbody>
                     @foreach($teaminvitations as $invitation)
                     <tr>
-                        <!-- <td></td> -->
+                        <td>{{ $invitation->name }}</td>
                         <td>{{ $invitation->to_user }}</td>
                         <td></td>
                         <td></td>

@@ -532,6 +532,13 @@ Route::group(
 );
 
 Route::group(
+    ['prefix' => 'usertype', 'middleware' => 'usertype'],
+    function () {
+        
+    }
+);
+
+Route::group(
     ['prefix' => 'company', 'middleware' => ['user', 'company']],
     function () {
         Route::get('bench', 'CompanayController@index');

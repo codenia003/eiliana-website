@@ -27,11 +27,12 @@ Blog
     }
     #date
     {
-        font-size: 18px;
         text-align: left;
         opacity: 0.8;
-        margin-top: 20%;
+        margin-top: 40px;
         font-family: sans-serif;
+        font-size: 20px;
+        text-align: left;
     }
     #image
     {
@@ -70,7 +71,7 @@ Blog
         padding: 0px;
         margin-top: 1%;
         font-family: sans-serif;
-
+        color: red !important;
 
       }
 
@@ -137,6 +138,15 @@ Blog
         /*vertical-align: bottom;*/
      }
     }
+    /*@media only screen and (min-width: 320px) and (max-width: 640px) {
+    body {
+        max-height: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow-x: hidden !important;
+    }*/
+}
+
 </style>
 @stop
 
@@ -177,7 +187,7 @@ Blog
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2 text-center align-middle" id="content">
                 <br>
-                <p class="text-left" style="font-size: 20px;text-align: left;opacity: 0.8;"><b>
+                <p class="text-left" id="date"><b>
                     <?php
                         echo date_format($blog->created_at,"M d, Y");
                     ?>

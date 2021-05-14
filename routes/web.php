@@ -586,6 +586,7 @@ Route::post('contact', 'FrontEndController@postContact')->name('contact');
 
 // blog
 Route::get('blog', 'BlogController@index')->name('blog');
+Route::get('blogdetail', 'BlogController@blogdetail')->name('blogdetails');
 Route::get('blog/{slug}/tag', 'BlogController@getBlogTag');
 Route::get('blogitem/{slug?}', 'BlogController@getBlog');
 Route::post('blogitem/{blog}/comment', 'BlogController@storeComment');

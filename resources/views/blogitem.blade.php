@@ -2,215 +2,190 @@
 
 {{-- Page title --}}
 @section('title')
-{{$blog->title}}
+Blog
 @parent
 @stop
 
 {{-- page level styles --}}
 @section('header_styles')
 <!--page level css starts-->
+<link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/tabbular.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/blog.css') }}">
 <!--end of page level css-->
-@stop
+<style type="text/css">
+    #photo
+    {
+        height: 500px ;
+        width: 700px;
+        border-radius: 9px !important;
+    }
+    #info
+    {
+        font-family: serif;
+        font-size: 17px;
+    }
+    #footer
+    {
+        font-size: 17px;
+    }
+    /*now code for media query*/
+    @media (min-width: 750px)and (max-width: 1150px)
+    {
+        #title
+        {
+         font-size: 22px !important ;
+         margin-left: 20px !important;
+        }
+        #photo
+        {
+        height: 500px !important;
+        width: 700px !important;
+        border-radius: 9px !important;
+        margin-left: 20px !important;
+        }
+        #info
+        {
+            font-family: serif;
+            font-size: 17px;
+            margin-left: 20px !important;
+        }
+        #footer
+        {
+            font-size: 17px;
+            margin-left: 20px !important;
+            margin-right: 10px !important;
+        }
+    }
+    @media (min-width: 550px)and (max-width: 750px)
+    {
+        #title
+        {
+            
+         font-size: 20px !important ;
+         margin-left: 20px !important;
+        }
+        #photo
+        {
+        height: 500px !important;
+        width: 500px !important;
+        border-radius: 9px !important;
+        margin-left: 20px !important;
+        }
+        #info
+        {
+            font-family: serif;
+            font-size: 17px;
+            margin-left: 20px !important;
+        }
+        #footer
+        {
+            font-size: 17px;
+            margin-left: 20px !important;
+            margin-right: 20px !important;
+        }
+    }
+    @media (min-width: 400px)and (max-width: 550px)
+    {
+        #title
+        {
+            
+         font-size: 18px !important ;
+         margin-left: 15px !important;
+        }
+        #photo
+        {
+        height: 400px !important;
+        width: 370px !important;
+        border-radius: 9px !important;
+        margin-left: 10px !important;
+        }
+        #info
+        {
+            font-family: serif;
+            font-size: 15px;
+            margin-left: 10px !important;
+        }
+        #footer
+        {
+            font-size: 15px;
+            margin-left: 10px !important;
+            margin-right: 5px !important;
+        }
+    }
+    @media (min-width: 200px)and (max-width: 400px)
+    {
+        #title
+        {
+                /*color: red !important;*/
+             font-size: 16px !important ;
+             margin-left: 5px !important;
+        }
+        #photo
+        {
+            width: 252px !important;
+            height: 200px !important;
+        border-radius: 9px !important;
+        margin-left: 5px !important;
+        }
+        #info
+        {
+            font-family: serif;
+            font-size: 15px;
+            margin-left: 5px !important;
+        }
+        #footer
+        {
+            font-size: 15px;
+            margin: 0px !important;
+            padding: 0px !important;
+            margin-left: 1px !important;
+            margin-right: 0px !important;
+        }
+    }
 
-{{-- breadcrumb --}}
-@section('top')
-<div class="breadcum">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="{{ route('home') }}"> <i class="livicon icon3 icon4" data-name="home" data-size="18"
-                                data-loop="true" data-c="#3d3d3d" data-hc="#3d3d3d"></i>Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <i class="livicon icon3" data-name="angle-double-right" data-size="18" data-loop="true"
-                            data-c="#01bc8c" data-hc="#01bc8c"></i>
-                        <a href="#">Blog Item</a>
-                    </li>
-                </ol>
-                <div class="float-right mt-1">
-                    <i class="livicon icon3" data-name="doc-landscape" data-size="20" data-loop="true" data-c="#3d3d3d"
-                        data-hc="#3d3d3d"></i> Blog Item
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</style>
 @stop
-
 
 {{-- Page content --}}
 @section('content')
-<!-- Container Section Start -->
-<div class="container">
-    <h2 class="primary my-3">{{$blog->title}}</h2>
-    <div class="row content">
-        <!-- Business Deal Section Start -->
-        <div class="col-sm-8 col-md-8">
-            <div class=" thumbnail featured-post-wide img">
-                @if($blog->image)
-                <img src="{{ URL::to('/uploads/blog/'.$blog->image)  }}" class="img-fluid" alt="Image">
-                @endif
-                <!-- /.blog-detail-image -->
-                <div class="p-3 mb-3 blog-detail-content">
-                    <p class="additional-post-wrap">
-                        <span class="additional-post">
-                            <i class="livicon" data-name="user" data-size="13" data-loop="true" data-c="#5bc0de"
-                                data-hc="#5bc0de"></i> by&nbsp;<a
-                                href="#">{{$blog->author->first_name . ' ' . $blog->author->last_name}}</a>
-                        </span>
-                        <span class="additional-post">
-                            <i class="livicon" data-name="clock" data-size="13" data-loop="true" data-c="#5bc0de"
-                                data-hc="#5bc0de"></i><a href="#"> {{$blog->created_at->diffForHumans()}} </a>
-                        </span>
-                        <span class="additional-post">
-                            <i class="livicon" data-name="comment" data-size="13" data-loop="true" data-c="#5bc0de"
-                                data-hc="#5bc0de"></i><a href="#"> {{$blog->comments->count()}} comments</a>
-                        </span>
-                    </p>
-                    <p class="text-justify">
-                        {!! $blog->content !!}
-                    </p>
-                    <div class="blog-detail-image">
-                        @if(!empty($blog->summernote_image))
-                        <img src="{{URL::to('uploads/blog/'.$blog->summernote_image)}}"
-                            class="img-fluid summernote_image" alt="Image">
-                        @endif
-                    </div>
-                    <p>
-                        <strong>Tags: </strong>
-                        @forelse($blog->tags as $tag)
-                        <a href="{{ URL::to('blog/'.mb_strtolower($tag).'/tag') }}">{{ $tag }}</a>,
-                        @empty
-                        No Tags
-                        @endforelse
-                    </p>
-                </div>
-            </div>
-            <!-- /the.box .no-border -->
-            <!-- Media left section start -->
-            <h3 class="comments">{{$blog->comments->count()}} Comments</h3><br />
-            <ul class="media-list">
-                @foreach($blog->comments as $comment)
-                <li class="media">
-                    <div class="media-body">
-                        <h4 class="media-heading"><i>{{$comment->name}}</i></h4>
-                        <p>{{$comment->comment}}</p>
-                        <p class="text-danger">
-                            <small> {!! $comment->created_at!!}</small>
-                        </p>
-                    </div>
-                </li>
-                @endforeach
-            </ul>
-            <!-- //Media left section End -->
-            <!-- Comment Section Start -->
-            <h3>Leave a Comment</h3>
-            {!! Form::open(['url' => URL::to('blogitem/'.$blog->id.'/comment'), 'method' => 'post', 'class' => 'bf',
-            'files'=> true]) !!}
 
-            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                {!! Form::text('name', null, ['class' => 'form-control input-lg','required' => 'required',
-                'placeholder'=>'Your name']) !!}
-                <span class="help-block">{{ $errors->first('name', ':message') }}</span>
-            </div>
-            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                {!! Form::text('email', null, ['class' => 'form-control input-lg','required' => 'required',
-                'placeholder'=>'Your email']) !!}
-                <span class="help-block">{{ $errors->first('email', ':message') }}</span>
-            </div>
-            <div class="form-group {{ $errors->has('website') ? 'has-error' : '' }}">
-                {!! Form::text('website', null, ['class' => 'form-control input-lg', 'placeholder'=>'Your website']) !!}
-                <span class="help-block">{{ $errors->first('website', ':message') }}</span>
-            </div>
-            <div class="form-group {{ $errors->has('comment') ? 'has-error' : '' }}">
-                {!! Form::textarea('comment', null, ['class' => 'form-control input-lg','required' =>
-                'required', 'style'=>'height: 200px', 'placeholder'=>'Your comment']) !!}
-                <span class="help-block">{{ $errors->first('comment', ':message') }}</span>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success btn-md">
-                    <i class="livicon" data-name="comment" data-c="#FFFFFF" data-hc="#FFFFFF" data-size="18"
-                        data-loop="true"></i>
-                    Submit
-                </button>
-            </div>
-            {!! Form::close() !!}
-            <!-- //Comment Section End -->
+<div class="account-page">
+    <div class="bg-red">
+      <div class="px-5 py-2">
+        <div class="align-items-center">
+            <span class="border-title"><i class="fa fa-bars"></i></span>
+            <span class="h5 text-white ml-2">Blog</span>
         </div>
-        <!-- //Business Deal Section End -->
-        <!-- /.col-sm-9 -->
-        <!-- Recent Posts Section Start -->
-        <div class="col-sm-4 col-md-4 col-full-width-left">
-            <div class="border rounded p-3 the-box">
-                <h3 class="small-heading text-center">Recent Posts</h3>
-                <ul class="pl-0">
-                    <li class="media">
-                        <a class="float-left" href="#">
-                            <img src="{{ asset('images/authors/avatar1.jpg') }}"
-                                class="rounded-circle img-fluid float-left mr-3" alt="riot">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading primary">
-                                <a href="#">Elizabeth Owens at Duis autem vel eum iriure dolor in hendrerit in</a>
-                            </h4>
-                            <p class="date">
-                                <small class="text-danger">2hours ago</small>
-                            </p>
-                            <p class="small">
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                sollicitudin commodo
-                            </p>
-                        </div>
-                    </li>
-                    <hr>
-                    <li class="media">
-                        <a class="float-left" href="#">
-                            <img src="{{ asset('images/authors/avatar4.jpg') }}"
-                                class="rounded-circle img-fluid float-left mr-3" alt="riot">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading primary">
-                                <a href="#">Harold Chavez at Duis autem vel eum iriure dolor in hendrerit in</a>
-                            </h4>
-                            <p class="date">
-                                <small class="text-danger">5hours ago</small>
-                            </p>
-                            <p class="small">
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                sollicitudin commodo
-                            </p>
-                        </div>
-                    </li>
-                    <hr>
-                    <li class="media">
-                        <a class="float-left" href="#">
-                            <img src="{{ asset('images/authors/avatar5.jpg') }}"
-                                class="rounded-circle img-fluid float-left mr-3" alt="riot">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading primary">
-                                <a href="#">Mihaela Cihac at Duis autem vel eum iriure dolor in hendrerit in</a>
-                            </h4>
-                            <p class="date">
-                                <small class="text-danger">10hours ago</small>
-                            </p>
-                            <p class="small">
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                sollicitudin commodo
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.the-box .bg-primary .no-border .text-center .no-margin -->
-        </div>
-        <!-- //Recent Posts Section End -->
-        <!-- /.col-sm-3 -->
+      </div>
+    </div>
+    <div class="col-md-12 md-2 ">
+        
     </div>
 </div>
-<!-- //container Section End -->
+<hr>
+<!-- Container Section Strat -->
+ <div class="container blogpage">
+    <div class="container-fluid m-0 p-0 mt-1" >
+        <h2 class="text-primary" id="title">{{$blog->title}}</h2>
+    </div>
+    <div class="container-fluid m-0 p-0 mb-5 mt-1">
+        <p class=" mt-2 text-dark " id="info">{{$blog->author->first_name . ' ' . $blog->author->last_name}} &nbsp;&nbsp;&nbsp;<?php  echo date_format($blog->created_at,"M d, Y"); ?></p>
+    </div>
+    <div class="container-fluid m-0 p-0 mb-5 mt-1" >
+        <!-- <img id="photo" class="shadow-sm rounded-lg" src="/assets/img/photo/back.jpg" class="img-fluid p-4" alt=""> -->
+        @if($blog->image)
+                <img id="photo" class="shadow-sm rounded-lg" src="{{ URL::to('/uploads/blog/'.$blog->image)  }}" class="img-fluid" alt="Image">
+                @endif
+
+    </div>
+    <br>
+    <div class="container-fluid m-0 p-0 mb-5 mt-1">
+        <p id="footer">{!! $blog->content !!}</p>
+    </div>
+ </div>
+@stop
+
+{{-- page level scripts --}}
+@section('footer_scripts')
+
 @stop

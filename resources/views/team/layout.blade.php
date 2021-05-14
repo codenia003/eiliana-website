@@ -20,108 +20,19 @@ type="text/css"/>
 @yield('profile_css')
 <!--end of page level css-->
 <style>
-      .profile-basic button.btn-info span {
-            float: right;
-            font-size: 20px;
-            position: relative;
-            left: -10px;
-        }
-        .teams-1{
-            margin-top: 56px;
-        }
-        .singup-body .btn-group .btn {
-            padding: 0 40px!important;
-            height: 50px!important;
-            margin-left: 8px!important;
-            width: auto;
-        }
         .listofteam h5.card-title {
             font-size: 20px;
             color: #003466;
             margin-top: -35px;
         }
-		.teams-header {
-			margin-top: 0px;
-		}
-
 		.teams-header .mt-6, .my-6 {
 			margin-top: 1rem!important;
-		}
-		.bench-img img{
-			float: right;
-			width: 210px;
 		}
 		.teams-header h2 {
 			font-size: 20px;
 			margin-top: 65px;
 		}
-		.teams_img img{
-			width: 270px;
-		}
-		.teams-basic .btn-group, .btn-group-vertical {
-			position: relative;
-			display: inline-flex;
-			vertical-align: middle;
-		}
-		.teams-basic .btn-group .btn {
-			padding: 0 40px!important;
-			height: 45px!important;
-			margin-left: 18px!important;
-			width: auto;
-		}
-		.teams-basic .btn-group .btn.btn-primary {
-			border: 1px solid #003466;
-			border-radius: 0;
-			padding: 0;
-			height: 45px;
-			line-height: 42px;
-			background: #003466;
-			color: #fff;
-			font-weight: 400;
-			font-size: 16px;
-			display: block;
-			width: 55%;
-		}
-		.teams-basic .btn {
-			font-size: 14px!important;
-		}
-		.teams-basic .btn-group-vertical>.btn, .btn-group>.btn {
-			position: relative;
-			flex: 1 1 auto;
-		}
-		.teams-basic .btn-group .btn.btn-primary:hover {
-			background-color: #fff;
-			color: #3b5999;
-		}
-		.teams-basic .btn-group-vertical>.btn:hover, .btn-group>.btn:hover {
-			z-index: 1;
-		}
-		.teams-basic .btn-outline-primary:hover {
-			color: #fff;
-			background-color: #003466;
-			border-color: #003466;
-		}
-		.teams-basic .text-right {
-			text-align: right !important;
-			margin-right: 12px;
-		}
-		.duplicate-team{
-			margin-left: 12px;
-		}
-		.teams-basic button.btn-info {
-			background: #003466;
-			color: #fff;
-			border-radius: unset;
-			width: 160px;
-			height: 42px;
-			text-transform: capitalize;
-			line-height: 22px;
-			font-weight: 600;
-			font-size: 14px!important;
-			border-color: #fff;
-			background: #a881de;
-			background: linear-gradient(281deg,#a881de 0,#56b1dd 70%);
-		}
+		
 </style>
 @stop
 

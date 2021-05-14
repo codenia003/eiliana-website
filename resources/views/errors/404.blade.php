@@ -68,7 +68,7 @@
         
         #sorry
         {
-            margin-top: -80px !important;
+            margin-top: -117px !important;
             font-size: 27px !important;
         }
         #content
@@ -92,13 +92,16 @@
 
 {{-- Page content --}}
 @section('content')
-
 <div class="container thumbnail shadow mt-5 mb-4" id="main">
     <div class="row" id="photo">
         <img src="{{ URL::to('/uploads/blog/eiliana.png')  }}" class="img-fluid" alt="Image">
     </div>
+<!-- <div class="container thumbnail shadow mt-5 mb-4"  style="border-radius: 30px;width: 70%;">
+    <div class="row" id="photo">
+        <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid" alt="Image">
+    </div> -->
     <h1 class="text-danger text-center mt-0 " id="sorry">SORRY</h1>
-    <p class="text-center mt-3 pt-3" id="content">We Coundn't Provide Suitable Solution</p>
+    <p class="text-center mt-3 pt-3" id="content">We Couldn't Provide Suitable Solution</p>
     <p class="text-center" id="back">Please go back and try again</p>
     <center>
         <a href="{{ url('/') }}" class="btn btn-danger text-center mt-4 mb-5 mt-5 pl-2 pr-2" id="btn"> &nbsp;&nbsp; BACK TO EILIANA  &nbsp;&nbsp;</a>

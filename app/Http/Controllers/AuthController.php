@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Redirect;
 use Mail;
 use Reminder;
 use Sentinel;
+use Session;
 use URL;
 use Validator;
 use View;
@@ -58,7 +59,7 @@ class AuthController extends JoshController
         $validator = Validator::make($data, [
             'email' => 'required|email',
             'mobile' => 'required|numeric|min:9',
-            'g-recaptcha-response' => 'required|recaptcha'
+            'g-recaptcha-response' => 'required'
         ]);
 
         //Send failed response if request is not valid
@@ -74,6 +75,44 @@ class AuthController extends JoshController
             } elseif ($usersmobile) {
                 $response['usersexist'] = '2';
                 $response['error'] = 'Mobile Number already exists';
+            }elseif(Session::get('teaminvitation')['to_user']) {
+                $otp = rand(1000,9999);
+                $mobile_otp = rand(1000,9999);
+                // $mobile_otp = 1234;
+                $id = DB::table('user_registration')->insertGetId(
+                    ['email' => $request->get('email'), 'mobile' => $request->get('mobile'), 'otp' => $otp, 'mobile_otp' => $mobile_otp, 'user_type_parent_id' => Session::get('teaminvitation')['user_bid']]
+                );
+                $data['otp'] = $otp;
+
+                $to = "91".$request->get('mobile');
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, 'https://api.kaleyra.io/v1/HXAP1693485091IN/messages');
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=ILIANA&body='.$mobile_otp.' is your OTP form eiliana.com&template_id=1007161952340738755');
+
+                $headers = array();
+                $headers[] = 'Api-Key: A1ffb94833d64ffd5d5a68e99318b0b25';
+                $headers[] = 'Content-Type: application/x-www-form-urlencoded';
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                $json_response = curl_exec($ch);
+
+                $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                // if ( $status != 201 ) {
+                //     die("response $json_response, curl_error " . curl_error($ch) . ", curl_errno " . curl_errno($ch));
+                // }
+                curl_close($ch);
+
+                Mail::send('emails.emailTemplates.otp', $data, function ($m) use ($data) {
+                    $m->from('info@eiliana.com', 'Eiliana OTP');
+                    $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');
+                });
+
+                $response['email'] = $this->obfuscate_email($request->get('email'));
+                $response['mobile_number'] = str_repeat("X", (strlen($request->get('mobile')) - 4)).substr($request->get('mobile'),-4,4);
+                $response['reg_id'] = $id;
+                $response['usersexist'] = '0';
             } else {
                 $otp = rand(1000,9999);
                 $mobile_otp = rand(1000,9999);

@@ -32,7 +32,7 @@ Home
 	        	@include('_left_menu')
 	        </div>
 	        <div class="col-lg-9">
-	            <div class="card mb-3 mb-lg-5">
+	            <div class="card mb-3 mb-lg-5 shadow">
 				    <div class="card-header">
 				        <h5 class="card-title">Recent Projects</h5>
 				    </div>
@@ -59,5 +59,8 @@ Home
 {{-- footer scripts --}}
 @section('footer_scripts')
 <!-- page level js starts-->
+<script>
+    togglePopup();
+</script>
 <!--page level js ends-->
 @stop

@@ -20,7 +20,7 @@
                 <div class="mb-2">
                     <h5 class="card-title text-secondary">{{ Sentinel::getUser()->full_name }}  <button class="btn btn-white float-right"><i class="fa fa-pencil" aria-hidden="true"></i></button></h5>
 
-                    <p class="card-text font-size-1">{{ Sentinel::getUser()->city }} {{ Session::get('users')['country_name'] }} - {{ \Carbon\Carbon::parse(Sentinel::getUser()->created_at)->format('F d, Y, g:m a')}}</p>
+                    <p class="card-text font-size-1">{{ Sentinel::getUser()->city }} @isset(Session::get('users')['country_name']){{ Session::get('users')['country_name'] }} @endisset - {{ \Carbon\Carbon::parse(Sentinel::getUser()->created_at)->format('F d, Y, g:m a')}}</p>
                 </div>
             </div>
             <div class="basic-list">
@@ -62,7 +62,9 @@
                                 @isset(Sentinel::getUser()->city)
                                 {{ Sentinel::getUser()->city }},
                                 @endisset
+                                @isset(Session::get('users')['country_name'])
                                 {{ Session::get('users')['country_name'] }}
+                                @endisset
                                 <br>
                                 {{ \Carbon\Carbon::parse(Sentinel::getUser()->created_at)->format('M d, Y')}}
                             </p>

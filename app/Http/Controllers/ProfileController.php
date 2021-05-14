@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Mail;
 use Reminder;
 use Sentinel;
+use Session;
 use URL;
 use Validator;
 use View;
@@ -185,6 +186,11 @@ class ProfileController extends JoshController
         $resume->dob = $input['dob'];
         $resume->country = $input['country'];
         $resume->interested = $input['interested'];
+        
+        if(isset(Session::get('teaminvitation')['to_user'])){
+            $resume->experience = $input['experience'];
+            $resume->key_skills = $input['key_skills'];
+        }
 
         $safeName = "";
 

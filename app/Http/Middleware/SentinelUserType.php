@@ -6,7 +6,7 @@ use Closure;
 use Sentinel;
 use Redirect;
 
-class SentinelCopmany
+class SentinelUserType
 {
     /**
      * Handle an incoming request.
@@ -20,7 +20,7 @@ class SentinelCopmany
         $user = Sentinel::getUser();
         $userlogin = $request->session()->get('users');
 
-        if ($request->session()->get('users')['login_as'] != '1')
+        if($request->session()->get('users')['login_as'] != '1')
         {
             return Redirect::route('home');
         }

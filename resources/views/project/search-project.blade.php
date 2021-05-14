@@ -67,7 +67,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-group d-none" id="project_sub">
+                                        <div class="form-group" id="project_sub">
                                             <label>Project Sub Category</label>
                                             <select name="project_sub_category" class="form-control" id="project_sub_category">
                                                 <option value=""></option>
@@ -196,6 +196,7 @@
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
                                             <button class="btn btn-primary" type="submit">
+                                            {{-- <button class="btn btn-primary" type="button" onclick="togglePopup()"> --}}
                                                Search >>>
                                             </button>
                                         </div>
@@ -209,14 +210,14 @@
                     <div class="search-project projects space-2">
                 		{{-- <img src="/assets/img/profile/hire-right.png" class="img-fluid" alt=""> --}}
                         <div class="row">
-                            <div class="col-lg-7 col-md-7 col-sm-7 col-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="content">
                                     <h3>Digital Transformation</h3>
                                     <p>Digital transformation is the process of using digital technologies to create new or modify existing business processes, culture, and customer experiences.</p>
                                     <p>Join hand with Eiliana.com and reach to the next level of transformation.</p>
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="search-image">
                                     <img src="/assets/img/profile/search-projectgirl.png" class="img-fluid" alt="">
                                     <div class="names">
@@ -225,7 +226,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            {{-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="content">
                                     <h3>Artificial intelligence</h3>
                                     <div class="row">
@@ -237,10 +238,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                 	</div>
-                    <div class="contractual">
+                    <div class="contractual d-none">
                 		<img src="/assets/img/profile/search-contractstaffing.png" class="img-fluid" alt="">
                 	</div>
                 </div>

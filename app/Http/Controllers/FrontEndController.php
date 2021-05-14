@@ -381,6 +381,7 @@ class FrontEndController extends JoshController
         if (Sentinel::check()) {
             //Activity log
             $user = Sentinel::getuser();
+            $id = $user->id;
             activity($user->full_name)
                 ->performedOn($user)
                 ->causedBy($user)
@@ -389,8 +390,11 @@ class FrontEndController extends JoshController
             // Log the user out
             Sentinel::logout();
         }
+        $request->session()->put('id', $id);
+        $user = User::where('id', $id)->first();
         // Redirect to the users page
-        return view('logout');
+        //return view('logout');
+        return view('logout', compact('user'));
         // return redirect('account/login')->with('success', 'You have successfully logged out!');
     }
 }

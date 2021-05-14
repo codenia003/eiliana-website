@@ -70,6 +70,8 @@
         {
             margin-top: -117px !important;
             font-size: 27px !important;
+
+            
         }
         #content
         {

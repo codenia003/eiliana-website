@@ -23,10 +23,10 @@
             <img src="/assets/img/instant-bench.png">
         </div>
     </div>
-    <div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md teams-basic">         
+    <div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md teams-basic">
         <form action="{{ route('registerteams') }}" method="POST" id="registerteams">
             @csrf
-            
+
                 <table class="table table-striped team-form" id="myopportunity-table">
                     <thead>
                     <tr>
@@ -37,25 +37,24 @@
                         <th>User Type</th>
                     </tr>
                     </thead>
-                </table>     
+                </table>
                 <div class="teams_data-1" style="margin-top: 12px;">
                     <div class="teams_data">
                         <div class="form-row">
                             <div class="form-group col">
-                                <input type="text" class="form-control" name="uname[]" id="uname">
+                                <input type="text" class="form-control" name="uname[]" id="uname" required>
                             </div>
                             <div class="form-group col">
                                 <input type="email" class="form-control" name="to_user[]" id="to" required>
                             </div>
                             <div class="form-group col">
-                                <input type="text" class="form-control" name="subject[]" id="subject">
+                                <input type="text" class="form-control" name="subject[]" id="subject" required>
                             </div>
                             <div class="form-group col">
-                                <input type="text" class="form-control" name="messagetext[]" id="message-text">
+                                <input type="text" class="form-control" name="messagetext[]" id="message-text" required>
                             </div>
                             <div class="form-group col">
                                 <select class="form-control" name="user_bid[]" id="user-bid" required>
-                                    <option value=""></option>
                                     <option value="0">Admin</option>
                                     <option value="1">User</option>
                                 </select>

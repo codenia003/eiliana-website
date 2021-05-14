@@ -110,10 +110,11 @@ $(document).ready(function() {
         }]
     });
 });
-// var win = window,
-//     doc = document,
-//     docElem = doc.documentElement,
-//     body = doc.getElementsByTagName('body')[0],
-//     x = win.innerWidth || docElem.clientWidth || body.clientWidth,
-//     y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
-// console.log(x + ' × ' + y);
+
+var win = window,
+    doc = document,
+    docElem = doc.documentElement,
+    body = doc.getElementsByTagName('body')[0],
+    x = win.innerWidth || docElem.clientWidth || body.clientWidth,
+    y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
+console.log(x + ' × ' + y);

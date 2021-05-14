@@ -36,47 +36,44 @@ class CompanayController extends JoshController
         $user = Sentinel::getUser();
         $input = $request->except('_token');
 
-        foreach($input['to_user'] as $key => $value) {
-            if(!empty($input['to_user'][$key]))
-            {
-                do {
-                    $token = str_random(30);
-                } while (TeamInvitation::where('token', $token)->first());
+        foreach($input['uname'] as $key => $value) {
 
-                $teaminvitation = new TeamInvitation;
-                $teaminvitation->from_user_id = $user->id;
-                $teaminvitation->name = $input['uname'][$key];
-                $teaminvitation->to_user = $input['to_user'][$key];
-                $teaminvitation->subject = $input['subject'][$key];
-                $teaminvitation->message = $input['messagetext'][$key];
-                $teaminvitation->user_bid = $input['user_bid'][$key];
-                $teaminvitation->token = $token;
-                $teaminvitation->status = 1;
-                //return $teaminvitation;
-                $teaminvitation->save();
+            do {
+                $token = str_random(30);
+            } while (TeamInvitation::where('token', $token)->first());
 
-                // $data = [];
+            $teaminvitation = new TeamInvitation;
+            $teaminvitation->from_user_id = $user->id;
+            $teaminvitation->name = $input['uname'][$key];
+            $teaminvitation->to_user = $input['to_user'][$key];
+            $teaminvitation->subject = $input['subject'][$key];
+            $teaminvitation->message = $input['messagetext'][$key];
+            $teaminvitation->user_bid = $input['user_bid'][$key];
+            $teaminvitation->token = $token;
+            $teaminvitation->status = 1;
+            $teaminvitation->save();
 
-                $data['team_invitation_id'] = $teaminvitation->team_invitation_id;
-                $data['token'] = $teaminvitation->token;
-                $data['user_bid'] = $teaminvitation->user_bid;
-                $data['company_name'] = $user->company_name;
-                $data['to_user'] = $teaminvitation->to_user;
-                $data['subject'] = $teaminvitation->subject;
-                $data['message'] = $teaminvitation->message;
+            // $data = [];
 
-                $url = URL::temporarySignedRoute(
-                    'acceptinvitation', now()->addMinutes(300), ['email' => $teaminvitation->to_user,'token' => $teaminvitation->token,'user_type' => $teaminvitation->user_bid]
-                );
+            $data['team_invitation_id'] = $teaminvitation->team_invitation_id;
+            $data['token'] = $teaminvitation->token;
+            $data['user_bid'] = $teaminvitation->user_bid;
+            $data['company_name'] = $user->company_name;
+            $data['to_user'] = $teaminvitation->to_user;
+            $data['subject'] = $teaminvitation->subject;
+            $data['message'] = $teaminvitation->message;
 
-                $data['url'] = $url;
+            $url = URL::temporarySignedRoute(
+                'acceptinvitation', now()->addMinutes(300), ['email' => $teaminvitation->to_user,'token' => $teaminvitation->token,'user_type' => $teaminvitation->user_bid]
+            );
 
-                // Send the activation code through email
-                Mail::send('emails.emailTemplates.teaminvite', $data, function ($m) use ($data) {
-                    $m->from('info@eiliana.com', $data['company_name']);
-                    $m->to($data['to_user'], '')->subject($data['company_name'].' invited you to join Eiliana');
-                });
-            }
+            $data['url'] = $url;
+
+            // Send the activation code through email
+            Mail::send('emails.emailTemplates.teaminvite', $data, function ($m) use ($data) {
+                $m->from('info@eiliana.com', $data['company_name']);
+                $m->to($data['to_user'], '')->subject($data['company_name'].' invited you to join Eiliana');
+            });
         }
         return redirect('company/bench')->with('success', 'The Invite has been sent successfully');
     }

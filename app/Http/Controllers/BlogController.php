@@ -70,4 +70,8 @@ class BlogController extends JoshController
         $blogcooment->save();
         return redirect('blogitem/' . $blog->slug);
     }
+    public function blogdetail()
+    {
+        return view('blogdetail');
+    }
 }

@@ -13,6 +13,7 @@ Blog
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/blog.css') }}">
 <!--end of page level css-->
 <style type="text/css">
+    
     #thumbnail
     {
         border-style: hidden;
@@ -29,7 +30,7 @@ Blog
     {
         text-align: left;
         opacity: 0.8;
-        margin-top: 40px;
+        margin-top: 76px !important;
         font-family: sans-serif;
         font-size: 20px;
         text-align: left;
@@ -59,8 +60,23 @@ Blog
         font-size: 20px;
     }
 
+    @media (min-width: 700px)and (max-width: 800px)
+    {
+        #date
+        {
+        font-size: 13px;
+        text-align: left;
+        opacity: 0.9;
+        margin: 0px;
+        padding: 0px;
+        margin-top: 1%;
+        font-family: sans-serif;
+        /*color: red !important;*/
+
+      }
+    }
     /*@media only screen and (max-width: 650px)*/ 
-    @media (min-width: 600px)and (max-width: 700px)
+    @media (min-width: 600px) and (max-width: 800px)
     {
         #date
       {
@@ -69,9 +85,9 @@ Blog
         opacity: 0.9;
         margin: 0px;
         padding: 0px;
-        margin-top: 1%;
+        margin-top: 20px;
         font-family: sans-serif;
-        color: red !important;
+        /*color: red !important;*/
 
       }
 
@@ -93,15 +109,14 @@ Blog
         font-weight: bold;
         }
     }
-    @media (min-width: 200px) and (max-width: 600px)
+    @media (min-width: 200px) and (max-width: 400px)
     {
       #date
       {
         font-size: 10px;
         text-align: left;
         opacity: 0.9;
-        margin: 0px !important;
-        padding: 0px !important;
+            margin-top: 13px !important;
         margin-top: 1%;
         font-family: sans-serif;
         /*color: red !important;*/
@@ -109,8 +124,7 @@ Blog
       }
       #blog-title
       {
-        margin-top: 0px;
-        padding-top: 0px;
+            margin-top: -25px !important;
         text-align: left;
         font-weight: bold;
         font-size: 13px;
@@ -138,13 +152,44 @@ Blog
         /*vertical-align: bottom;*/
      }
     }
-    /*@media only screen and (min-width: 320px) and (max-width: 640px) {
-    body {
-        max-height: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-        overflow-x: hidden !important;
-    }*/
+    @media (min-width: 400px) and (max-width: 600px)
+    {
+
+        #blog-title
+      {
+        /*color: red !important;*/
+       margin-top: -24px !important;
+        text-align: left;
+        font-weight: bold;
+        font-size: 15px;
+        opacity: 0.9;
+        
+
+      }
+      #date
+      {
+        font-size: 12px;
+        text-align: left;
+        opacity: 0.9;
+        margin-top: 8% !important;
+    
+        font-family: sans-serif;
+        /*color: red !important;*/
+
+      }
+      #blog-footer
+      {
+        margin-top: 1%;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+      }
+       #blog-footer i
+      {
+        font-size: 14px;
+      }
+    }
+    
 }
 
 </style>
@@ -162,31 +207,27 @@ Blog
         </div>
       </div>
     </div>
-    <div class="col-md-12 md-2 mt-6">
+    <div class="col-md-12 md-2 ">
         <div class="container">
-            <div class="row">
-                <div class="col p-0">
-                    <img src="/assets/img/photo/blog-page.png" class="img-fluid p-4" alt="">
-                    <hr>
-                    {{-- <img src="/assets/img/photo/blog-page-list.png" class="img-fluid" alt=""> --}}
-                </div>
+            <div class="row" id="cover">
+                <img src="/assets/img/photo/banner.png" class="img-fluid p-4" alt="">
             </div>
         </div>
     </div>
 </div>
+<hr>
 <!-- Container Section Strat -->
- <div class="container blogpage">
-    <h2 class="my-3 d-none">Blog</h2>
+ <div class="container blogpage ">
     <!-- my style -->
     @forelse ($blogs as $blog)
-    <br>
+    
     <div class="thumbnail m-0 p-0" id="thumbnail">
         <div class="row ">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2">
-               <img src="/assets/img/photo/back.jpg" id="image" class="img-fluid" alt="Image">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2" id="image">
+               <img src="/assets/img/photo/back.jpg"  class="img-fluid" alt="Image">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2 text-center align-middle" id="content">
-                <br>
+                <!-- <br> -->
                 <p class="text-left" id="date"><b>
                     <?php
                         echo date_format($blog->created_at,"M d, Y");
@@ -197,6 +238,10 @@ Blog
                 <p id="blog-footer">
                     <i class="fas fa-user-circle"></i>&nbsp; By {{$blog->author->first_name . ' ' . $blog->author->last_name}}</a>
                 </p>
+                <p class="text-left">
+                        <a href="{{ URL::to('blogitem/'.$blog->slug) }}" class="btn btn-primary text-white">Read
+                            more</a>
+                    </p>
             </div>
         </div>
     </div>

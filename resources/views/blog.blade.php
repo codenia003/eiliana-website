@@ -58,10 +58,12 @@ Blog
         font-size: 20px;
     }
 
-    @media only screen and (max-width: 650px) {
-      #date
+    /*@media only screen and (max-width: 650px)*/ 
+    @media (min-width: 600px)and (max-width: 700px)
+    {
+        #date
       {
-        font-size: 10px;
+        font-size: 13px;
         text-align: left;
         opacity: 0.9;
         margin: 0px;
@@ -69,6 +71,39 @@ Blog
         margin-top: 1%;
         font-family: sans-serif;
         
+
+      }
+
+        #blog-title
+      {
+        margin-top: 0px;
+        padding-top: 0px;
+        text-align: left;
+        font-weight: bold;
+        font-size: 25px;
+        opacity: 0.9;
+
+      }
+      #blog-footer
+        {
+        margin-top: 10%;
+        font-size: 15px;
+        text-align: left;
+        font-weight: bold;
+        }
+    }
+    @media (min-width: 200px) and (max-width: 600px)
+    {
+      #date
+      {
+        font-size: 10px;
+        text-align: left;
+        opacity: 0.9;
+        margin: 0px !important;
+        padding: 0px !important;
+        margin-top: 1%;
+        font-family: sans-serif;
+        /*color: red !important;*/
 
       }
       #blog-title

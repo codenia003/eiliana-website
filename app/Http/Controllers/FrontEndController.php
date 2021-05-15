@@ -394,7 +394,8 @@ class FrontEndController extends JoshController
         $user = User::where('id', $id)->first();
         // Redirect to the users page
         //return view('logout');
-        return view('logout', compact('user'));
+        $user_country = Country::where('id', $user->country)->first();
+        return view('logout', compact('user','user_country'));
         // return redirect('account/login')->with('success', 'You have successfully logged out!');
     }
 }

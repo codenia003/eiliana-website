@@ -104,7 +104,7 @@
                                     <label>Year of Certification</label>
                                     <div class="form-row">
                                         <div class="col">
-                                            <select class="form-control" required="" name="from_date[]">
+                                            <select class="form-control" name="from_date[]" required="">
                                                 <option value="">From</option>
                                                 @for ($i = 2000; $i < 2021; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
@@ -112,7 +112,7 @@
                                             </select>
                                         </div>
                                         <div class="col">
-                                            <select class="form-control" required="" name="till_date[]">
+                                            <select class="form-control" name="till_date[]" required="">
                                                 <option value="">Till</option>
                                                 @for ($i = 2000; $i < 2021; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>

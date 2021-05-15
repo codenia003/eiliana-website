@@ -383,6 +383,9 @@
     <!--global js starts-->
     <script type="text/javascript" src="{{ asset('js/frontend/lib.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" ></script>
+    <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
+    <script src="{{ asset('js/pages/form_examples.js') }}"></script>
     <!--global js end-->
     <script>
         function togglePopup(){

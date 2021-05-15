@@ -69,7 +69,7 @@ Blog
         opacity: 0.9;
         margin: 0px;
         padding: 0px;
-        margin-top: 1%;
+        margin-top: 25px !important;
         font-family: sans-serif;
         /*color: red !important;*/
 
@@ -85,7 +85,7 @@ Blog
         opacity: 0.9;
         margin: 0px;
         padding: 0px;
-        margin-top: 20px;
+        margin-top: 0px !important;
         font-family: sans-serif;
         /*color: red !important;*/
 
@@ -116,15 +116,15 @@ Blog
         font-size: 10px;
         text-align: left;
         opacity: 0.9;
-            margin-top: 13px !important;
-        margin-top: 1%;
+        margin-top: 3px !important;
+        
         font-family: sans-serif;
         /*color: red !important;*/
 
       }
       #blog-title
       {
-            margin-top: -25px !important;
+       margin-top: -33px !important;
         text-align: left;
         font-weight: bold;
         font-size: 13px;
@@ -133,7 +133,7 @@ Blog
       }
       #blog-footer
       {
-        margin-top: 1%;
+        margin-top: -10px !important;
         font-size: 10px;
         font-weight: bold;
         text-align: left;
@@ -151,42 +151,52 @@ Blog
         text-align: center;
         /*vertical-align: bottom;*/
      }
+     #button
+      {
+            margin-top: -7px !important;
+      }
     }
     @media (min-width: 400px) and (max-width: 600px)
     {
-
-        #blog-title
-      {
-        /*color: red !important;*/
-       margin-top: -24px !important;
-        text-align: left;
-        font-weight: bold;
-        font-size: 15px;
-        opacity: 0.9;
-        
-
-      }
-      #date
+        #date
       {
         font-size: 12px;
         text-align: left;
         opacity: 0.9;
-        margin-top: 8% !important;
-    
+        margin-top: -3px !important;
         font-family: sans-serif;
         /*color: red !important;*/
 
       }
+
+        #blog-title
+      {
+        /*color: red !important;*/
+       margin-top: -32px !important;
+        text-align: left;
+        font-weight: bold;
+        font-size: 14px !important;
+        opacity: 0.9;
+        
+
+      }
+      
       #blog-footer
       {
-        margin-top: 1%;
+        
         font-size: 13px;
         font-weight: bold;
         text-align: left;
+        margin-top: 2px !important;
       }
        #blog-footer i
       {
         font-size: 14px;
+      }
+      #button
+      {
+        margin-top: -10px !important;
+
       }
     }
     
@@ -236,9 +246,9 @@ Blog
                 <br>
                 <p class="p-1 pl-0" id="blog-title" >{{$blog->title}}</p>
                 <p id="blog-footer">
-                    <i class="fas fa-user-circle"></i>&nbsp; By {{$blog->author->first_name . ' ' . $blog->author->last_name}}</a>
+                    <i class="fas fa-user-circle"></i>&nbsp; By Admin <!-- {{$blog->author->first_name . ' ' . $blog->author->last_name}} --></a>
                 </p>
-                <p class="text-left">
+                <p class="text-left" id="button">
                         <a href="{{ URL::to('blogitem/'.$blog->slug) }}" class="btn btn-primary text-white">Read
                             more</a>
                     </p>
@@ -292,10 +302,10 @@ Blog
                         </span>
                     </p>
                     <hr>
-                    <p class="text-right">
+                    <!-- <p class="text-right" id="button">
                         <a href="{{ URL::to('blogitem/'.$blog->slug) }}" class="btn btn-primary text-white">Read
                             more</a>
-                    </p>
+                    </p> -->
                 </div>
                 <!-- /.featured-text -->
             </div>

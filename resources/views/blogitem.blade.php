@@ -81,7 +81,12 @@ Blog
         {
             font-size: 17px;
             margin-left: 20px !important;
-            margin-right: 20px !important;
+            margin-right: 100px !important;
+            margin-right: 116px !important;
+        }
+        #footer p
+        {
+            margin-right: 126px !important;
         }
     }
     @media (min-width: 400px)and (max-width: 550px)
@@ -169,7 +174,7 @@ Blog
         <h2 class="text-primary" id="title">{{$blog->title}}</h2>
     </div>
     <div class="container-fluid m-0 p-0 mb-5 mt-1">
-        <p class=" mt-2 text-dark " id="info">{{$blog->author->first_name . ' ' . $blog->author->last_name}} &nbsp;&nbsp;&nbsp;<?php  echo date_format($blog->created_at,"M d, Y"); ?></p>
+        <p class=" mt-2 text-dark " id="info"> By Admin<!-- {{$blog->author->first_name . ' ' . $blog->author->last_name}} --> &nbsp;&nbsp;&nbsp;<?php  echo date_format($blog->created_at,"M d, Y"); ?></p>
     </div>
     <div class="container-fluid m-0 p-0 mb-5 mt-1" >
         <!-- <img id="photo" class="shadow-sm rounded-lg" src="/assets/img/photo/back.jpg" class="img-fluid p-4" alt=""> -->
@@ -179,10 +184,10 @@ Blog
 
     </div>
     <br>
-    <div class="container-fluid m-0 p-0 mb-5 mt-1">
+    <div class="container-fluid m-0 p-0 mb-5">
         <p id="footer">{!! $blog->content !!}</p>
     </div>
- </div>
+ </div >
 @stop
 
 {{-- page level scripts --}}

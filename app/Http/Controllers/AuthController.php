@@ -75,51 +75,19 @@ class AuthController extends JoshController
             } elseif ($usersmobile) {
                 $response['usersexist'] = '2';
                 $response['error'] = 'Mobile Number already exists';
-            }elseif(Session::get('teaminvitation')['to_user']) {
-                $otp = rand(1000,9999);
-                $mobile_otp = rand(1000,9999);
-                // $mobile_otp = 1234;
-                $id = DB::table('user_registration')->insertGetId(
-                    ['email' => $request->get('email'), 'mobile' => $request->get('mobile'), 'otp' => $otp, 'mobile_otp' => $mobile_otp, 'user_type_parent_id' => Session::get('teaminvitation')['user_bid']]
-                );
-                $data['otp'] = $otp;
-
-                $to = "91".$request->get('mobile');
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, 'https://api.kaleyra.io/v1/HXAP1693485091IN/messages');
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=ILIANA&body='.$mobile_otp.' is your OTP form eiliana.com&template_id=1007161952340738755');
-
-                $headers = array();
-                $headers[] = 'Api-Key: A1ffb94833d64ffd5d5a68e99318b0b25';
-                $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                $json_response = curl_exec($ch);
-
-                $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-                // if ( $status != 201 ) {
-                //     die("response $json_response, curl_error " . curl_error($ch) . ", curl_errno " . curl_errno($ch));
-                // }
-                curl_close($ch);
-
-                Mail::send('emails.emailTemplates.otp', $data, function ($m) use ($data) {
-                    $m->from('info@eiliana.com', 'Eiliana OTP');
-                    $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');
-                });
-
-                $response['email'] = $this->obfuscate_email($request->get('email'));
-                $response['mobile_number'] = str_repeat("X", (strlen($request->get('mobile')) - 4)).substr($request->get('mobile'),-4,4);
-                $response['reg_id'] = $id;
-                $response['usersexist'] = '0';
             } else {
                 $otp = rand(1000,9999);
                 $mobile_otp = rand(1000,9999);
                 // $mobile_otp = 1234;
-                $id = DB::table('user_registration')->insertGetId(
-                    ['email' => $request->get('email'), 'mobile' => $request->get('mobile'), 'otp' => $otp, 'mobile_otp' => $mobile_otp]
-                );
+                if(Session::get('teaminvitation')['to_user']) {
+                    $id = DB::table('user_registration')->insertGetId(
+                        ['email' => $request->get('email'), 'mobile' => $request->get('mobile'), 'otp' => $otp, 'mobile_otp' => $mobile_otp, 'user_type_parent_id' => Session::get('teaminvitation')['user_bid']]
+                    );
+                } else {
+                    $id = DB::table('user_registration')->insertGetId(
+                        ['email' => $request->get('email'), 'mobile' => $request->get('mobile'), 'otp' => $otp, 'mobile_otp' => $mobile_otp]
+                    );
+                }
                 $data['otp'] = $otp;
 
                 $to = "91".$request->get('mobile');
@@ -127,7 +95,7 @@ class AuthController extends JoshController
                 curl_setopt($ch, CURLOPT_URL, 'https://api.kaleyra.io/v1/HXAP1693485091IN/messages');
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=ILIANA&body='.$mobile_otp.' is your OTP form eiliana.com&template_id=1007161952340738755');
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=ILIANA&body='.$mobile_otp.' is your OTP from eiliana.com&template_id=1007162097562737258');
 
                 $headers = array();
                 $headers[] = 'Api-Key: A1ffb94833d64ffd5d5a68e99318b0b25';
@@ -152,6 +120,45 @@ class AuthController extends JoshController
                 $response['reg_id'] = $id;
                 $response['usersexist'] = '0';
             }
+            // } else {
+            //     $otp = rand(1000,9999);
+            //     $mobile_otp = rand(1000,9999);
+            //     // $mobile_otp = 1234;
+            //     $id = DB::table('user_registration')->insertGetId(
+            //         ['email' => $request->get('email'), 'mobile' => $request->get('mobile'), 'otp' => $otp, 'mobile_otp' => $mobile_otp]
+            //     );
+            //     $data['otp'] = $otp;
+
+            //     $to = "91".$request->get('mobile');
+            //     $ch = curl_init();
+            //     curl_setopt($ch, CURLOPT_URL, 'https://api.kaleyra.io/v1/HXAP1693485091IN/messages');
+            //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            //     curl_setopt($ch, CURLOPT_POST, 1);
+            //     curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=ILIANA&body='.$mobile_otp.' is your OTP from eiliana.com&template_id=1007162097562737258');
+
+            //     $headers = array();
+            //     $headers[] = 'Api-Key: A1ffb94833d64ffd5d5a68e99318b0b25';
+            //     $headers[] = 'Content-Type: application/x-www-form-urlencoded';
+            //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            //     $json_response = curl_exec($ch);
+
+            //     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            //     // if ( $status != 201 ) {
+            //     //     die("response $json_response, curl_error " . curl_error($ch) . ", curl_errno " . curl_errno($ch));
+            //     // }
+            //     curl_close($ch);
+
+            //     Mail::send('emails.emailTemplates.otp', $data, function ($m) use ($data) {
+            //         $m->from('info@eiliana.com', 'Eiliana OTP');
+            //         $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');
+            //     });
+
+            //     $response['email'] = $this->obfuscate_email($request->get('email'));
+            //     $response['mobile_number'] = str_repeat("X", (strlen($request->get('mobile')) - 4)).substr($request->get('mobile'),-4,4);
+            //     $response['reg_id'] = $id;
+            //     $response['usersexist'] = '0';
+            // }
         }
         return response()->json($response);
     }
@@ -163,6 +170,37 @@ class AuthController extends JoshController
         $len  = floor(strlen($name)/2);
 
         return substr($name,0, $len) . str_repeat('X', $len) . "@" . end($em);
+    }
+
+    public function postresendotp(Request $request)
+    {
+        $data = $request->all();
+
+        $otp_data = DB::table('user_registration')->where('id', '=', $data['reg_id'])->first();
+
+        $to = "91".$otp_data->mobile;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.kaleyra.io/v1/HXAP1693485091IN/messages');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=ILIANA&body='.$otp_data->mobile_otp.' is your OTP from eiliana.com&template_id=1007162097562737258');
+
+        $headers = array();
+        $headers[] = 'Api-Key: A1ffb94833d64ffd5d5a68e99318b0b25';
+        $headers[] = 'Content-Type: application/x-www-form-urlencoded';
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $json_response = curl_exec($ch);
+
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        // if ( $status != 201 ) {
+        //     die("response $json_response, curl_error " . curl_error($ch) . ", curl_errno " . curl_errno($ch));
+        // }
+        curl_close($ch);
+
+        $response['success'] = '1';
+        $response['errors'] = 'OTP Resend Successfully!';
+        return response()->json($response);
     }
 
     public function getregisterotp()
@@ -225,31 +263,58 @@ class AuthController extends JoshController
             // $address_path = $_SERVER['DOCUMENT_ROOT'].'/uploads/users/'.$address_filename;
             // file_put_contents($address_path, $address_file);
             // $fileData = '/uploads/users/' . $address_filename;
+            if($data['registration_social'] != '0'){
 
-            $registration_data = DB::table('user_registration')->where('id', '=', $data['registration_id'])->first();
-            // Register the user
-            $user = Sentinel::register(
-                ([
-                'title' => $request->get('title'),
-                'first_name' => $request->get('first_name'),
-                'middle_name' => $request->get('middle_name'),
-                'last_name' => $request->get('last_name'),
-                'username' => $request->get('username'),
-                'company_name' => $request->get('company_name'),
-                'register_as' => $request->get('register_as'),
-                'email' => $registration_data->email,
-                'mobile' => $registration_data->mobile,
-                'dob' => $request->get('dob'),
-                'password' => $request->get('password'),
-                'govtID' => $request->get('govtID'),
-                'idProofNo' => $request->get('idProofNo'),
-                'gst_number' => $request->get('gst_number'),
-                'registration_id' => $request->get('registration_id'),
-                'anonymous' => $request->get('anonymous'),
-                'pseudoName' => $request->get('pseudoName'),
-                'country' => $request->get('country'),
-                ]), $activate
-            );
+                $registration_data = DB::table('user_registration_social')->where('id', '=', $data['registration_social'])->first();
+                // Register the user
+                $user = Sentinel::register(
+                    ([
+                    'title' => $request->get('title'),
+                    'first_name' => $request->get('first_name'),
+                    'middle_name' => $request->get('middle_name'),
+                    'last_name' => $request->get('last_name'),
+                    'username' => $request->get('username'),
+                    'company_name' => $request->get('company_name'),
+                    'register_as' => $request->get('register_as'),
+                    'email' => $registration_data->email,
+                    'mobile' => $registration_data->mobile,
+                    'dob' => $request->get('dob'),
+                    'password' => $request->get('password'),
+                    'govtID' => $request->get('govtID'),
+                    'idProofNo' => $request->get('idProofNo'),
+                    'gst_number' => $request->get('gst_number'),
+                    'registration_id' => $request->get('registration_id'),
+                    'anonymous' => $request->get('anonymous'),
+                    'pseudoName' => $request->get('pseudoName'),
+                    'country' => $request->get('country'),
+                    ]), $activate
+                );
+            } else {
+                $registration_data = DB::table('user_registration')->where('id', '=', $data['registration_id'])->first();
+                // Register the user
+                $user = Sentinel::register(
+                    ([
+                    'title' => $request->get('title'),
+                    'first_name' => $request->get('first_name'),
+                    'middle_name' => $request->get('middle_name'),
+                    'last_name' => $request->get('last_name'),
+                    'username' => $request->get('username'),
+                    'company_name' => $request->get('company_name'),
+                    'register_as' => $request->get('register_as'),
+                    'email' => $registration_data->email,
+                    'mobile' => $registration_data->mobile,
+                    'dob' => $request->get('dob'),
+                    'password' => $request->get('password'),
+                    'govtID' => $request->get('govtID'),
+                    'idProofNo' => $request->get('idProofNo'),
+                    'gst_number' => $request->get('gst_number'),
+                    'registration_id' => $request->get('registration_id'),
+                    'anonymous' => $request->get('anonymous'),
+                    'pseudoName' => $request->get('pseudoName'),
+                    'country' => $request->get('country'),
+                    ]), $activate
+                );
+            }
             // login user automatically
             $role = Sentinel::findRoleById($data['applyas']);
             //add user to 'User' role

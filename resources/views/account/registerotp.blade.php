@@ -63,7 +63,7 @@ OTP Verification
                                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                                             Validate
                                         </button>
-                                        <a href="javascript;" onclick="resendOtp()" class="bt text-blue">Resend One-Time-Password</a>
+                                        <a onclick="resendOtp()" class="bt text-blue">Resend One-Time-Password</a>
                                     </div>
                                 </form>
                             </div>
@@ -109,7 +109,42 @@ OTP Verification
     }
 
     function resendOtp(){
-        console.log('otp send');
+        // console.log('otp send');
+        var url = '/account/resendotp';
+        var reg_id = localStorage.getItem("reg_id");
+        var data= {
+            _token: "{{ csrf_token() }}",
+            reg_id:reg_id
+        };
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            success: function(data) {
+                var userCheck = data;
+                if (userCheck.success == '1') {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Success...',
+                        text: userCheck.errors,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                } else {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: userCheck.errors,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+
+            },
+            error: function(xhr, status, error) {
+                console.log("error: ",error);
+            },
+        });
     }
 
 </script>

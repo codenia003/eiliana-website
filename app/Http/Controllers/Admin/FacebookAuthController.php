@@ -12,6 +12,8 @@ use Illuminate\Support\MessageBag;
 use Socialite;
 use Redirect;
 use Sentinel;
+use Illuminate\Support\Facades\DB;
+use Session;
 
 class FacebookAuthController extends Controller
 {
@@ -66,34 +68,49 @@ class FacebookAuthController extends Controller
 
         // if user already found
         if (!$user) {
-            $user = User::create(
-                [
-                'first_name' => $first_name,
-                'last_name' => $last_name,
-                'email' => $providerUser->email,
-                'pic' => $providerUser->avatar,
-                //'gender' => $providerUser->user['gender'],
-                'provider' => $provider,
-                'password' => '',
-                'mobile' => '',
-                'username' => $first_name.$last_name,
-                'registration_id' => 0,
-                'provider_id' => $providerUser->id
-                ]
-            );
-            $role = Sentinel::findRoleById(2);
 
-            if ($role) {
-                $role->users()->attach($user);
+            if(Session::get('teaminvitation')['to_user']) {
+                $id = DB::table('user_registration_social')->insertGetId(
+                    ['first_name' => $first_name, 'last_name' => $last_name, 'email' => $providerUser->email, 'pic' => $providerUser->avatar, 'provider' => $provider, 'provider_id' => $providerUser->id, 'provider_as' => $provider, 'user_type_parent_id' => Session::get('teaminvitation')['user_bid']]
+                );
+            } else {
+                $id = DB::table('user_registration_social')->insertGetId(
+                    ['first_name' => $first_name, 'last_name' => $last_name, 'email' => $providerUser->email, 'pic' => $providerUser->avatar, 'provider' => $provider, 'provider_id' => $providerUser->id, 'provider_as' => $provider]
+                );
             }
-            activity($user->full_name)
-                ->performedOn($user)
-                ->causedBy($user)
-                ->log('Registered');
-            if (Activation::completed($user) == false) {
-                $activation = Activation::create($user);
-                Activation::complete($user, $activation->code);
-            }
+
+            session()->forget('registration_social');
+            session()->put('registration_social', $id);
+
+            return Redirect::route("registerbasic")->with('success', 'Please Fill this form for registration');
+            // $user = User::create(
+            //     [
+            //     'first_name' => $first_name,
+            //     'last_name' => $last_name,
+            //     'email' => $providerUser->email,
+            //     'pic' => $providerUser->avatar,
+            //     //'gender' => $providerUser->user['gender'],
+            //     'provider' => $provider,
+            //     'password' => '',
+            //     'mobile' => '',
+            //     'username' => $first_name.$last_name,
+            //     'registration_id' => 0,
+            //     'provider_id' => $providerUser->id
+            //     ]
+            // );
+            // $role = Sentinel::findRoleById(2);
+
+            // if ($role) {
+            //     $role->users()->attach($user);
+            // }
+            // activity($user->full_name)
+            //     ->performedOn($user)
+            //     ->causedBy($user)
+            //     ->log('Registered');
+            // if (Activation::completed($user) == false) {
+            //     $activation = Activation::create($user);
+            //     Activation::complete($user, $activation->code);
+            // }
         }
         activity($user->full_name)
             ->performedOn($user)

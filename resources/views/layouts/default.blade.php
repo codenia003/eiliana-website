@@ -243,16 +243,34 @@
     </header>
 
     <!-- //Header End -->
+    <div id="wrapper">
+        <!-- slider / breadcrumbs section -->
+        @yield('top')
+        <div class="table-responsive">
+            <div id="user_details"></div>
+            <div id="user_model_details"></div>
+        </div>
 
-    <!-- slider / breadcrumbs section -->
-    @yield('top')
-    <div class="table-responsive">
-        <div id="user_details"></div>
-        <div id="user_model_details"></div>
+        <!-- Content -->
+        @yield('content')
     </div>
 
-    <!-- Content -->
-    @yield('content')
+    <div id="warning-message">
+        <div class="container thumbnail shadow mt-5 mb-4 sorry-page" id="main">
+            <div class="row" id="photo">
+                <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid" alt="Image">
+            </div>
+            <h1 class="text-danger text-center mt-0 " id="sorry">SORRY</h1>
+            <p class="text-center mt-3 pt-3" id="content">We Couldn't Provide Suitable Solution</p>
+            <p class="text-center" id="back">Please go back and try in desktop and portrait mode</p>
+            <center>
+                <a href="{{ url('/') }}" class="btn btn-danger text-center mt-4 mb-5 mt-5 pl-2 pr-2" id="btn"> &nbsp;&nbsp; BACK TO EILIANA  &nbsp;&nbsp;</a>
+            </center>
+            <br>
+            <br>
+        </div>
+    </div>
+
 
     <div class="modal fade pullDown login-body border-0 modal-refer betaversion" id="modal-refer" role="dialog" aria-labelledby="modalLabelnews">
         <div class="modal-dialog" role="document">

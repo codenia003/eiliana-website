@@ -12,7 +12,7 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://api.kaleyra.io/v1/HXAP1693485091IN/messages');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=ILIANA&body='.$mobile_otp.' is your OTP form eiliana.com&template_id=1007162097562737258');
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'to='.$to.'&type=OTP&sender=ILIANA&body='.$mobile_otp.' is your OTP from eiliana.com&template_id=1007162097562737258');
 
 $headers = array();
 $headers[] = 'Api-Key: A1ffb94833d64ffd5d5a68e99318b0b25';

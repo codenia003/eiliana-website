@@ -15,16 +15,15 @@
 
 {{-- Page content --}}
 @section('content')
-
-<div class="container thumbnail shadow mt-5 mb-4" style="border-radius: 30px;width: 70%;">
-    <div class="row" style="align-content: flex-start; margin-top: 30px;margin-left: 30px;height: 150px;width: 150px;">
+<div class="container thumbnail shadow mt-5 mb-4 sorry-page" id="main">
+    <div class="row" id="photo">
         <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid" alt="Image">
     </div>
-    <h1 class="text-danger text-center mt-2 pt-5" style="font-size: 50px;font-weight: 400;">SORRY</h1>
-    <p class="text-center mt-3 pt-3" style="font-weight: bold;font-size: 30px;font-weight: 500;">We Couldn't Provide Suitable Solution</p>
-    <p class="text-center" style="font-size: 22px;opacity: 0.8;">Please go back and try again</p>
+    <h1 class="text-danger text-center mt-0 " id="sorry">SORRY</h1>
+    <p class="text-center mt-3 pt-3" id="content">We Couldn't Provide Suitable Solution</p>
+    <p class="text-center" id="back">Please go back and try again</p>
     <center>
-        <a href="{{ url('/') }}" class="btn btn-danger text-center mt-4 mb-5 mt-5 pl-2 pr-2" style="background-color: #b31717; color: white;border-radius: 20px;font-size: 13px;font-weight: bold;"> &nbsp;&nbsp; BACK TO EILIANA  &nbsp;&nbsp;</a>
+        <a href="{{ url('/') }}" class="btn btn-danger text-center mt-4 mb-5 mt-5 pl-2 pr-2" id="btn"> &nbsp;&nbsp; BACK TO EILIANA  &nbsp;&nbsp;</a>
     </center>
     <br>
     <br>

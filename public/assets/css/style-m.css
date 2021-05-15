@@ -382,9 +382,41 @@
     .login-body .modal-dialog {
         padding: 25px;
     }
+    .sorry-page #main
+    {
+        border-radius: 12px !important;
+    }
+    .sorry-page #main img
+    {
+        height: 20px !important;
+        margin-left: -23px !important;
+        margin-top: -14px !important;
+        width: 70px !important;
+    }
+
+    .sorry-page #sorry
+    {
+        margin-top: -70px !important;
+        font-size: 27px !important;
+    }
+    .sorry-page #content
+    {
+        font-size: 13px !important;
+    }
+    .sorry-page #back
+    {
+        font-size: 14px !important;
+    }
+    .sorry-page #btn
+    {
+        margin: 0px !important;
+        padding: 0px !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
 }
 
-@media only screen and (min-device-width: 480px) and (max-device-width: 768px) and (orientation: landscape) {
+@media only screen and (max-width: 991px) and (orientation: landscape) {
     .explore-more .only-mobile img.img-fluid {
         width: 85%;
     }
@@ -405,6 +437,15 @@
     }
     .navbar-vertical {
         display: none !important;
+    }
+    #wrapper {
+        display:none;
+    }
+    #warning-message {
+        display: block;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

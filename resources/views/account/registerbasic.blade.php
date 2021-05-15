@@ -43,6 +43,11 @@ type="text/css"/>
                 <div class="card-body">
                     <form action="{{ url('/account/registerbasic') }}" method="POST" id="register_basic_form">
                         @csrf
+                        @if (Session::get('registration_social'))
+                        <input type="hidden" name="registration_social" id="registration_social" value="{{ Session::get('registration_social') }}" />
+                        @else
+                        <input type="hidden" name="registration_social" id="registration_social" value="0" />
+                        @endif
                         <div class="form-group">
                             <label for="applyas">Apply As</label>
                             <select name="applyas" class="form-control" onchange="changeCompnay(event)">
@@ -119,14 +124,13 @@ type="text/css"/>
                             </div>
                         </div>
                         @endif
-
                         <div class="form-row">
-                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 p-0">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label>First Name</label>
                                 <input type="text" name="first_name" class="form-control" />
                             </div>
 
-                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 p-0">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label>Last Name</label>
                                 <input type="text" name="last_name" class="form-control" />
                             </div>
@@ -203,13 +207,13 @@ type="text/css"/>
         var publicAnonymus = e.target.value;
         // console.log(publicAnonymus);
         if (publicAnonymus == '1') {
-            $('.anonymousShow-1').removeClass("col-12");
-            $('.anonymousShow-1').addClass("col")
+            $('.anonymousShow-1').removeClass("col-lg-12");
+            $('.anonymousShow-1').addClass("col-lg-6")
             $('.anonymousShow').removeClass("d-none");
         } else {
             $('.anonymousShow').addClass("d-none");
-            $('.anonymousShow-1').removeClass("col");
-            $('.anonymousShow-1').addClass("col-12");
+            $('.anonymousShow-1').removeClass("col-lg-6");
+            $('.anonymousShow-1').addClass("col-lg-12");
         }
     }
 

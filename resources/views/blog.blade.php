@@ -9,6 +9,7 @@ Blog
 {{-- page level styles --}}
 @section('header_styles')
 <!--page level css starts-->
+<meta name="description" content="We connect you with the world of freelancers providing solutions to all your problems and small business, discovering the foremost up to date content right here and right now.">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/tabbular.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/blog.css') }}">
 <!--end of page level css-->
@@ -234,7 +235,8 @@ Blog
     <div class="thumbnail m-0 p-0" id="thumbnail">
         <div class="row ">
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2" id="image">
-               <img src="/assets/img/photo/back.jpg"  class="img-fluid" alt="Image">
+               <img src="{{ URL::to('/uploads/blog/'.$blog->image) }}"  class="img-fluid" alt="Image">
+               <!-- <img class="shadow-sm rounded-lg" src="{{ URL::to('/uploads/blog/'.$blog->image) }}" class="img-fluid" alt="Image"> -->
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2 text-center align-middle" id="content">
                 <!-- <br> -->

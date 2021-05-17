@@ -16,7 +16,7 @@ Blog
     #photo
     {
         height: 500px ;
-        width: 700px;
+        width: 800px;
         border-radius: 9px !important;
     }
     #info
@@ -26,7 +26,12 @@ Blog
     }
     #footer
     {
-        font-size: 17px;
+        font-size: 18px;
+        margin-right: 300px !important;
+    }
+    #footer_div
+    {
+        margin-right: 300px !important;
     }
     /*now code for media query*/
     @media (min-width: 750px)and (max-width: 1150px)
@@ -54,6 +59,10 @@ Blog
             font-size: 17px;
             margin-left: 20px !important;
             margin-right: 10px !important;
+        }
+        #footer_div
+        {
+            padding-right: 200px;
         }
     }
     @media (min-width: 550px)and (max-width: 750px)
@@ -184,7 +193,7 @@ Blog
 
     </div>
     <br>
-    <div class="container-fluid m-0 p-0 mb-5">
+    <div class="container-fluid m-0 p-0 mb-5" id="footer_div">
         <p id="footer">{!! $blog->content !!}</p>
     </div>
  </div >

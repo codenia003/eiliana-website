@@ -85,6 +85,7 @@ $(document).ready(function() {
             }
         }, 'json');
     });
+
     $('#acceptTerms').on('ifChanged', function(event) {
         $('#reg_form').bootstrapValidator('revalidateField', $('#acceptTerms'));
     });
@@ -220,6 +221,14 @@ $(document).ready(function() {
                   timer: 2000
                 });
                 $('.spinner-border').addClass("d-none");
+            } else if(userDatas.success == '2') {
+                swalWithBootstrapButtons.fire({
+                  type: 'success',
+                  title: 'Success...',
+                  text: 'Account sucessfully created, Redirect to profile!',
+                }).then(function() {
+                    window.location.href = userCheck.url;
+                });
             } else {
                 localStorage.removeItem('reg_id');
                 $('.spinner-border').addClass("d-none");

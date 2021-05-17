@@ -222,7 +222,7 @@ type="text/css"/>
         // console.log(publicAnonymus);
         if (publicAnonymus == '1') {
             $('.anonymousShow-1').removeClass("col-lg-12");
-            $('.anonymousShow-1').addClass("col-lg-6")
+            $('.anonymousShow-1').addClass("col-lg-6");
             $('.anonymousShow').removeClass("d-none");
         } else {
             $('.anonymousShow').addClass("d-none");

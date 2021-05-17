@@ -22,7 +22,7 @@ $(document).ready(function() {
             interested: {
                 validators: {
                     notEmpty: {
-                        message: 'Title is required',
+                        message: 'Interested In is required',
                     }
                 },
             },
@@ -83,7 +83,7 @@ $(document).ready(function() {
                 $('.spinner-border').addClass("d-none");
                 var interested = $("input[name='interested']:checked").val();
                 var radioValue = $("input[name='wanttofill']:checked").val();
-                if(interested == '2') 
+                if(interested == '2')
                 {
                         var msg = 'Redirecting To Education';
                         var redirect = '/profile/education';

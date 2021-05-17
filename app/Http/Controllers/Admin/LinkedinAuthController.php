@@ -120,12 +120,6 @@ class LinkedinAuthController extends Controller
         try {
             if (Sentinel::authenticate($user)) {
 
-                if($user->register_as == '3') {
-                    return Redirect::route("loginas")->with('success', 'Please select login as');
-                } else {
-                    $user['login_as'] = $user->register_as;
-                }
-
                 $role_users = DB::table('role_users')->where('user_id', $user->id)->first();
 
                 $user['role'] = $role_users->role_id;
@@ -139,6 +133,13 @@ class LinkedinAuthController extends Controller
                     $response_url = url()->to('/home');
                 }
                 session()->put('users', $user);
+
+                if($user->register_as == '3') {
+                    return Redirect::route("loginas")->with('success', 'Please select login as');
+                } else {
+                    $user['login_as'] = $user->register_as;
+                }
+
                 return Redirect::to($response_url)->with('success', 'Login successfully');
             }
         } catch (NotActivatedException $e) {

@@ -208,14 +208,14 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Profile Headline</label>
                             <input type="text" name="profile_headline" class="form-control" required/>
                         </div>
                     </div>
                     @if(Sentinel::getUser()->interested == "2")
                     <div class="form-row">
-                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Key Skills (Ex. Core Java, Hibernate, Html, Css)</label>
                             <input type="text" name="key_skills" class="form-control" required/>
                             <span style="color: red;font-size: 12px;">Note: Key skills mentioned above will be used for contractual staffing</span>
@@ -295,7 +295,7 @@
     		                    </div>
     		                </div>
     		            </div>
-    		            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+    		            <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
     		            	<label>No of Maintenance Projects</label>
     		                {!! Form::selectRange('support_project', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
     		            </div>

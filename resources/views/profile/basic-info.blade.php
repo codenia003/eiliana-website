@@ -120,7 +120,7 @@
                 </div>
                 @endisset
                 <div class="form-row">
-                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 anonymousShow-1">
                         @if(!Sentinel::inRole('user'))
                         <label>Date of incorporation</label>
                         @else
@@ -130,7 +130,7 @@
                         {{-- <input class="flatpickr flatpickr-input form-control" type="text" name="dob" id="datetimepicker" value="{{ $user->dob }}">--}}
                         <input class="form-control" type="text" name="dob" id="datetimepicker" value="{{ $user->dob }}" readonly>
                     </div>
-                    <div class="form-group col anonymousShow {{ ($user->anonymous=='0')? 'd-none' : '' }}">
+                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 anonymousShow {{ ($user->anonymous=='0')? 'd-none' : '' }}">
                         <label>Alias</label>
                         <input type="text" name="pseudoName" class="form-control" value="{{ $user->pseudoName }}"  readonly/>
                     </div>

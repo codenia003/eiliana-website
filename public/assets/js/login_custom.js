@@ -142,7 +142,6 @@ $(document).ready(function() {
                 }).then(function() {
                     window.location.href = '/profile';
                 });
-
             }
         }, 'json');
     });

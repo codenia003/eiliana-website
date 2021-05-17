@@ -299,6 +299,50 @@ class AuthController extends JoshController
                     ]), $activate
                 );
                 $response['message'] = 'Account Created and now login to social media account';
+
+                // login user automatically
+                $role = Sentinel::findRoleById($data['applyas']);
+                //add user to 'User' role
+                $role->users()->attach($user);
+
+                Sentinel::login($user, false);
+
+                activity($user->full_name)
+                    ->performedOn($user)
+                    ->causedBy($user)
+                    ->log('New Account created');
+
+                $invitation = $request->session()->get('teaminvitation');
+                if($invitation === null){
+                    $compnay_id = 0;
+                } else {
+                    $compnay_id = $invitation['from_user_id'];
+
+                    $teamuser = new TeamUser();
+                    $teamuser->compnay_id = $compnay_id;
+                    $teamuser->user_id = $user->id;
+                    $teamuser->save();
+
+                    $request->session()->forget('teaminvitation');
+
+                }
+
+                $role_users = DB::table('role_users')->where('user_id', $user->id)->first();
+
+                $user['role'] = $role_users->role_id;
+                $country_name = DB::table('countries')->where('id', $user->country)->first();
+
+                $user['country_name'] = $country_name->name;
+
+                if($user->register_as == '3') {
+                    $response['url'] = url()->to('/account/loginas');;
+                } else {
+                    $user['login_as'] = $user->register_as;
+                    $response['url'] = url()->to('/profile');
+                }
+                session()->put('users', $user);
+                $response['success'] = '2';
+
             } else {
                 $registration_data = DB::table('user_registration')->where('id', '=', $data['registration_id'])->first();
                 // Register the user
@@ -325,39 +369,39 @@ class AuthController extends JoshController
                     ]), $activate
                 );
                 $response['message'] = trans('auth/message.signup.success');
+
+                // login user automatically
+                $role = Sentinel::findRoleById($data['applyas']);
+                //add user to 'User' role
+                $role->users()->attach($user);
+
+                // Send the activation code through email
+                Mail::to($user->email)
+                    ->send(new Register($data));
+
+                activity($user->full_name)
+                    ->performedOn($user)
+                    ->causedBy($user)
+                    ->log('Registered');
+
+                $invitation = $request->session()->get('teaminvitation');
+                if($invitation === null){
+                    $compnay_id = 0;
+                } else {
+                    $compnay_id = $invitation['from_user_id'];
+
+                    $teamuser = new TeamUser();
+                    $teamuser->compnay_id = $compnay_id;
+                    $teamuser->user_id = $user->id;
+                    $teamuser->save();
+
+                    $request->session()->forget('teaminvitation');
+
+                }
+
+                // Redirect to the home page with success menu
+                $response['success'] = '1';
             }
-            // login user automatically
-            $role = Sentinel::findRoleById($data['applyas']);
-            //add user to 'User' role
-            $role->users()->attach($user);
-
-            // Send the activation code through email
-            Mail::to($user->email)
-                ->send(new Register($data));
-
-            activity($user->full_name)
-                ->performedOn($user)
-                ->causedBy($user)
-                ->log('Registered');
-
-            $invitation = $request->session()->get('teaminvitation');
-            if($invitation === null){
-                $compnay_id = 0;
-            } else {
-                $compnay_id = $invitation['from_user_id'];
-
-                $teamuser = new TeamUser();
-                $teamuser->compnay_id = $compnay_id;
-                $teamuser->user_id = $user->id;
-                $teamuser->save();
-
-                $request->session()->forget('teaminvitation');
-
-            }
-
-            // Redirect to the home page with success menu
-            $response['success'] = '1';
-
 
         } catch (UserExistsException $e) {
             $response['success'] = '0';

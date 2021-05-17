@@ -135,8 +135,8 @@ Logout
                     <div class="col p-0 d-flex align-items-center justify-content-center bg-img-hero logout_sidebar">
                         <div class="account-second-side text-center">
                             <img src="/assets/img/logout_page.png" class="img-fluid logout_content" alt="">
-                            <a href="#" class="btn btn-light bt btn-lg" style="float: none;margin-left: 32px;">Refer of frelancer</a>
-                            <a href="/account/login" class="btn btn-light bt btn-lg">Login</a>
+                            <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/login'">Refer of frelancer</button>
+                            <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/login'">Login</button>
                         </div>
                     </div>
 

@@ -55,17 +55,22 @@ class ProjectController extends JoshController
 
     public function postProject()
     {
-        $educationtype = EducationType::all();
-        $qualifications = Qualification::all();
-        $universities = University::all();
-        $technologies = Technology::where('parent_id', '0')->get();
-        $locations = Location::all();
-        $currency = Currency::all();
-        $customerindustries = CustomerIndustry::all();
-        $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
-        $candidateroles = CandidateRole::all();
-
-        return view('project/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys','currency','candidateroles'));
+        if(Session::get('users')['login_as'] == '2'){
+            $educationtype = EducationType::all();
+            $qualifications = Qualification::all();
+            $universities = University::all();
+            $technologies = Technology::where('parent_id', '0')->get();
+            $locations = Location::all();
+            $currency = Currency::all();
+            $customerindustries = CustomerIndustry::all();
+            $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
+            $candidateroles = CandidateRole::all();
+    
+            return view('project/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys','currency','candidateroles'));
+        }
+        else{
+            return redirect('/home');
+        }
     }
 
     public function projectSchedule($id)
@@ -76,7 +81,6 @@ class ProjectController extends JoshController
         // return $projectleads;
         return view('project/project-schedule', compact('projectleads','user'));
     }
-
     public function projectScheduleModify($id)
     {
         $projectleads = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();

@@ -124,6 +124,19 @@ type="text/css"/>
                             </div>
                         </div>
                         @endif
+                        @if (Session::get('registration_social'))
+                        <div class="form-row">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                <label>First Name</label>
+                                <input type="text" name="first_name" class="form-control" value="{{ $registration_data->first_name }}" />
+                            </div>
+
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                <label>Last Name</label>
+                                <input type="text" name="last_name" class="form-control" value="{{ $registration_data->last_name }}" />
+                            </div>
+                        </div>
+                        @else
                         <div class="form-row">
                             <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                 <label>First Name</label>
@@ -135,6 +148,7 @@ type="text/css"/>
                                 <input type="text" name="last_name" class="form-control" />
                             </div>
                         </div>
+                        @endif
                         <div class="form-group d-none">
                             <label>Middle Name</label>
                             <input type="text" name="middle_name" class="form-control"/>

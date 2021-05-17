@@ -118,7 +118,29 @@ class FacebookAuthController extends Controller
             ->log('Logged In');
         try {
             if (Sentinel::authenticate($user)) {
-                return Redirect::route("/")->with('success', 'Please update Password');
+
+                if($user->register_as == '3') {
+                    return Redirect::route("loginas")->with('success', 'Please select login as');
+                } else {
+                    $user['login_as'] = $user->register_as;
+                }
+
+                $role_users = DB::table('role_users')->where('user_id', $user->id)->first();
+
+                $user['role'] = $role_users->role_id;
+                $country_name = DB::table('countries')->where('id', $user->country)->first();
+
+                $user['country_name'] = $country_name->name;
+
+                if(session()->has('url.intended')) {
+                    $response_url = session()->get('url.intended');
+                } else {
+                    $response_url = url()->to('/home');
+                }
+                session()->put('users', $user);
+                return Redirect::to($response_url)->with('success', 'Login successfully');
+
+                // return Redirect::route("/")->with('success', 'Please update Password');
             }
             $this->messageBag->add('email', trans('auth/message.account_not_found'));
         } catch (NotActivatedException $e) {

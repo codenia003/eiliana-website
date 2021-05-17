@@ -77,10 +77,14 @@ Logout
                 <div class="row">
 				    <div class="col p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero big-img">
                         <div class="account-second-side text-center">
+                          @if(!empty($user->pic))
                             <img src="{!! $user->pic !!}" class="img-fluid" alt="" style="width: 232px;border-radius: 50%;margin-top: 303px;margin-bottom: 5px;">
+                          @else
+                            <img src="/assets/img/default_user.png" class="img-fluid" alt="" style="width: 232px;border-radius: 50%;margin-top: 303px;margin-bottom: 5px;">
+                          @endif 
                             <h2 style="font-size: 25px;color: #41418a;">{!! $user->first_name !!} {!! $user->last_name !!}</h2>
                             <!-- <h2 style="font-size: 25px;color: #41418a;">{!! Session::get('users') !!}</h2> -->
-							<p>{!! $user->company_name !!} <br> {!! $user->city !!} {!! $user->country !!}</p>
+							<p>{!! $user->company_name !!} <br> {!! $user->city !!}, {!! $user_country->name !!}</p>
                             <!-- <a href="/account/register" class="btn btn-light bt btn-lg">Signup Now</a> -->
                         </div>
                     </div>

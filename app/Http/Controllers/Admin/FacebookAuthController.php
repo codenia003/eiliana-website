@@ -12,6 +12,8 @@ use Illuminate\Support\MessageBag;
 use Socialite;
 use Redirect;
 use Sentinel;
+use Illuminate\Support\Facades\DB;
+use Session;
 
 class FacebookAuthController extends Controller
 {
@@ -66,34 +68,49 @@ class FacebookAuthController extends Controller
 
         // if user already found
         if (!$user) {
-            $user = User::create(
-                [
-                'first_name' => $first_name,
-                'last_name' => $last_name,
-                'email' => $providerUser->email,
-                'pic' => $providerUser->avatar,
-                //'gender' => $providerUser->user['gender'],
-                'provider' => $provider,
-                'password' => '',
-                'mobile' => '',
-                'username' => $first_name.$last_name,
-                'registration_id' => 0,
-                'provider_id' => $providerUser->id
-                ]
-            );
-            $role = Sentinel::findRoleById(2);
 
-            if ($role) {
-                $role->users()->attach($user);
+            if(Session::get('teaminvitation')['to_user']) {
+                $id = DB::table('user_registration_social')->insertGetId(
+                    ['first_name' => $first_name, 'last_name' => $last_name, 'email' => $providerUser->email, 'pic' => $providerUser->avatar, 'provider' => $provider, 'provider_id' => $providerUser->id, 'provider_as' => $provider, 'user_type_parent_id' => Session::get('teaminvitation')['user_bid']]
+                );
+            } else {
+                $id = DB::table('user_registration_social')->insertGetId(
+                    ['first_name' => $first_name, 'last_name' => $last_name, 'email' => $providerUser->email, 'pic' => $providerUser->avatar, 'provider' => $provider, 'provider_id' => $providerUser->id, 'provider_as' => $provider]
+                );
             }
-            activity($user->full_name)
-                ->performedOn($user)
-                ->causedBy($user)
-                ->log('Registered');
-            if (Activation::completed($user) == false) {
-                $activation = Activation::create($user);
-                Activation::complete($user, $activation->code);
-            }
+
+            session()->forget('registration_social');
+            session()->put('registration_social', $id);
+
+            return Redirect::route("registerbasic")->with('success', 'Please Fill this form for registration');
+            // $user = User::create(
+            //     [
+            //     'first_name' => $first_name,
+            //     'last_name' => $last_name,
+            //     'email' => $providerUser->email,
+            //     'pic' => $providerUser->avatar,
+            //     //'gender' => $providerUser->user['gender'],
+            //     'provider' => $provider,
+            //     'password' => '',
+            //     'mobile' => '',
+            //     'username' => $first_name.$last_name,
+            //     'registration_id' => 0,
+            //     'provider_id' => $providerUser->id
+            //     ]
+            // );
+            // $role = Sentinel::findRoleById(2);
+
+            // if ($role) {
+            //     $role->users()->attach($user);
+            // }
+            // activity($user->full_name)
+            //     ->performedOn($user)
+            //     ->causedBy($user)
+            //     ->log('Registered');
+            // if (Activation::completed($user) == false) {
+            //     $activation = Activation::create($user);
+            //     Activation::complete($user, $activation->code);
+            // }
         }
         activity($user->full_name)
             ->performedOn($user)
@@ -101,7 +118,29 @@ class FacebookAuthController extends Controller
             ->log('Logged In');
         try {
             if (Sentinel::authenticate($user)) {
-                return Redirect::route("/")->with('success', 'Please update Password');
+
+                if($user->register_as == '3') {
+                    return Redirect::route("loginas")->with('success', 'Please select login as');
+                } else {
+                    $user['login_as'] = $user->register_as;
+                }
+
+                $role_users = DB::table('role_users')->where('user_id', $user->id)->first();
+
+                $user['role'] = $role_users->role_id;
+                $country_name = DB::table('countries')->where('id', $user->country)->first();
+
+                $user['country_name'] = $country_name->name;
+
+                if(session()->has('url.intended')) {
+                    $response_url = session()->get('url.intended');
+                } else {
+                    $response_url = url()->to('/home');
+                }
+                session()->put('users', $user);
+                return Redirect::to($response_url)->with('success', 'Login successfully');
+
+                // return Redirect::route("/")->with('success', 'Please update Password');
             }
             $this->messageBag->add('email', trans('auth/message.account_not_found'));
         } catch (NotActivatedException $e) {

@@ -1827,3 +1827,43 @@ span.select2-selection.select2-selection--single {
 .profile-setting .card-body p {
     padding: 10px;
 }
+#warning-message {
+    display: none;
+}
+.sorry-page #main
+{
+    border-radius: 30px;
+    width: 70%;
+}
+.sorry-page #sorry
+{
+    font-size: 50px;
+    font-weight: 400;
+}
+.sorry-page #content
+{
+    font-weight: bold;
+    font-size: 30px;
+    font-weight: 500;
+}
+.sorry-page #back
+{
+    font-size: 22px;
+    opacity: 0.8;
+}
+.sorry-page #btn
+{
+    background-color: #b31717;
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.sorry-page #photo
+{
+    align-content: flex-start;
+    margin-top: 20px;
+    margin-left: 30px;
+    height: 150px;
+    width: 150px;
+}

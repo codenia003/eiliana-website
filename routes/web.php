@@ -304,6 +304,7 @@ Route::group(
 
         Route::get('registerotp', 'AuthController@getregisterotp')->name('registerotp');
         Route::post('registerotp', 'AuthController@postregisterotp')->name('registerotp');
+        Route::post('resendotp', 'AuthController@postresendotp')->name('resendotp');
 
         Route::get('registerbasic', 'AuthController@getregisterbasic')->name('registerbasic');
         Route::post('registerbasic', 'AuthController@postregisterbasic')->name('registerbasic');
@@ -534,7 +535,7 @@ Route::group(
 Route::group(
     ['prefix' => 'usertype', 'middleware' => 'usertype'],
     function () {
-        
+
     }
 );
 

@@ -25,7 +25,7 @@ class HomeController extends JoshController
     {
         $jobs = Job::with('companydetails','locations')->latest()->limit(1)->get();
         $technologies = Technology::where('parent_id', '0')->get();
-        $projectcategories = ProjectCategory::where('parent_id' , '0')->get();
+        $projectcategories = ProjectCategory::where('parent_id' , '0')->where('display_status', '1')->get();
         $locations = Location::all();
         $homepage = HomePage::first();
         // return $jobs;

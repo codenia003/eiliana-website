@@ -109,7 +109,7 @@
 
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Project Sub Category</label>
-                            <select name="project_sub_category" id="project_sub_category" class="form-control">
+                            <select name="project_sub_category" id="project_sub_category" class="form-control" required>
                                 <option value=""></option>
 
                             </select>
@@ -231,7 +231,7 @@
                             <select name="project_category" class="form-control" id="project_category" onchange="change_category1();" required>
                                 <option value=""></option>
                                 @foreach ($projectcategorys as $category)
-                                <option value="{{ $category->id }}" {{ ($proexp->project_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>

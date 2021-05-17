@@ -555,7 +555,6 @@ class ProfileController extends JoshController
     public function uploadProfilePic(Request $request)
     {
         $data = $request->all();
-        $response['success'] = '0';
         $user = Sentinel::getUser();
 
         if ($file = $request->file('pic')) {
@@ -578,13 +577,9 @@ class ProfileController extends JoshController
                 ->performedOn($user)
                 ->causedBy($user)
                 ->log('Profile Pic Updated successfully');
-            // Redirect to the user page
-            $response['user'] = $user;
-            $response['success'] = '1';
-            $response['errors'] = $success;
         }
 
-        return redirect('profile')->with('success', 'Profile Pic Updated successfully');
+        return redirect('/profile')->with('success', 'Profile Pic Updated successfully');
 
     }
 

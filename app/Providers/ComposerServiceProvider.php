@@ -41,7 +41,7 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         View::composer('layouts.default', function($view) {
-            $projectcategory = ProjectCategory::all();
+            $projectcategory = ProjectCategory::where('parent_id' , '0')->where('display_status', '1')->get();
             $view->with('categories', $projectcategory);
          });
     }

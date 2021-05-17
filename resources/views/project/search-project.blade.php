@@ -195,8 +195,8 @@
 					                </div>
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
-                                            <button class="btn btn-primary" type="submit">
-                                            {{-- <button class="btn btn-primary" type="button" onclick="togglePopup()"> --}}
+                                            {{-- <button class="btn btn-primary" type="submit"> --}}
+                                            <button class="btn btn-primary" type="button" onclick="togglePopup()">
                                                Search >>>
                                             </button>
                                         </div>
@@ -226,7 +226,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="content">
                                     <h3>Artificial intelligence</h3>
                                     <div class="row">
@@ -238,7 +238,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                 	</div>
                     <div class="contractual d-none">

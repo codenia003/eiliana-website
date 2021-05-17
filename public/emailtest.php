@@ -29,6 +29,7 @@ include('PHPMailer/PHPMailerAutoload.php');
 
 
   $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
+  $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
   //$mail->addAttachment('/usr/labnol/file.doc');         // Add attachments
 

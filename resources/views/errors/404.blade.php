@@ -11,90 +11,11 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/tabbular.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/blog.css') }}">
 <!--end of page level css-->
-<style type="text/css">
-    #main
-    {
-        border-radius: 30px;
-        width: 70%;
-    }
-    #sorry
-    {
-        font-size: 50px;
-        font-weight: 400;
-    }
-    #content
-    {
-        font-weight: bold;
-        font-size: 30px;
-        font-weight: 500;
-    }
-    #back
-    {
-        font-size: 22px;
-        opacity: 0.8;"
-    }
-    #btn
-    {
-         background-color: #b31717;
-         color: white;
-         border-radius: 20px;
-         font-size: 13px;
-         font-weight: bold;
-    }
-    #photo
-    {
-        align-content: flex-start;
-         margin-top: 20px;
-         margin-left: 30px;
-         height: 150px;
-         width: 150px;
-    }
-     @media only screen and (max-width: 650px)
-     {
-        #main
-        {
-
-            border-radius: 12px !important;
-
-
-        }
-        #main img
-        {
-               height: 20px !important;
-            margin-left: -23px !important;
-                margin-top: -14px !important;
-            width: 70px !important;
-        }
-
-        #sorry
-        {
-            margin-top: -117px !important;
-            font-size: 27px !important;
-
-
-        }
-        #content
-        {
-            font-size: 13px !important;
-        }
-        #back
-        {
-            font-size: 14px !important;
-        }
-         #btn
-         {
-            margin: 0px !important;
-            padding: 0px !important;
-            padding-left: 4px !important;
-            padding-right: 4px !important;
-         }
-     }
-</style>
 @stop
 
 {{-- Page content --}}
 @section('content')
-<div class="container thumbnail shadow mt-5 mb-4" id="main">
+<div class="container thumbnail shadow mt-5 mb-4 sorry-page" id="main">
     <div class="row" id="photo">
         <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid" alt="Image">
     </div>

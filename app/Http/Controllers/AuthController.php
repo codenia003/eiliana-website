@@ -238,7 +238,13 @@ class AuthController extends JoshController
     {
         $roles = Sentinel::getRoleRepository()->all();
         $countries = Country::all();
-        // Show the page
+
+        $registrationId = session()->get('registration_social');
+        if(!empty($registrationId)){
+            $registration_data = DB::table('user_registration_social')->where('id', '=', $registrationId)->first();
+            // Show the page
+            return view('account/registerbasic', compact('roles', 'countries','registration_data'));
+        }
         return view('account/registerbasic', compact('roles', 'countries'));
     }
 
@@ -270,25 +276,29 @@ class AuthController extends JoshController
                 $user = Sentinel::register(
                     ([
                     'title' => $request->get('title'),
-                    'first_name' => $request->get('first_name'),
+                    'first_name' =>$registration_data->first_name,
                     'middle_name' => $request->get('middle_name'),
-                    'last_name' => $request->get('last_name'),
+                    'last_name' => $registration_data->last_name,
                     'username' => $request->get('username'),
                     'company_name' => $request->get('company_name'),
                     'register_as' => $request->get('register_as'),
                     'email' => $registration_data->email,
-                    'mobile' => $registration_data->mobile,
                     'dob' => $request->get('dob'),
                     'password' => $request->get('password'),
                     'govtID' => $request->get('govtID'),
                     'idProofNo' => $request->get('idProofNo'),
                     'gst_number' => $request->get('gst_number'),
-                    'registration_id' => $request->get('registration_id'),
+                    'registration_id' => $request->get('registration_social'),
                     'anonymous' => $request->get('anonymous'),
                     'pseudoName' => $request->get('pseudoName'),
                     'country' => $request->get('country'),
+                    'provider' => $registration_data->provider,
+                    'provider_id' => $registration_data->provider_id,
+                    'provider_as' => $registration_data->provider_as,
+                    'first_time' => '1',
                     ]), $activate
                 );
+                $response['message'] = 'Account Created and now login to social media account';
             } else {
                 $registration_data = DB::table('user_registration')->where('id', '=', $data['registration_id'])->first();
                 // Register the user
@@ -314,6 +324,7 @@ class AuthController extends JoshController
                     'country' => $request->get('country'),
                     ]), $activate
                 );
+                $response['message'] = trans('auth/message.signup.success');
             }
             // login user automatically
             $role = Sentinel::findRoleById($data['applyas']);
@@ -346,7 +357,7 @@ class AuthController extends JoshController
 
             // Redirect to the home page with success menu
             $response['success'] = '1';
-            $response['message'] = trans('auth/message.signup.success');
+
 
         } catch (UserExistsException $e) {
             $response['success'] = '0';

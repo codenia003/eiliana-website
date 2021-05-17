@@ -193,12 +193,13 @@
                             </div>
                             <div class="form-group col-12 col-sm-12 col-md-5 col-lg-6">
                                 <label>Designation</label>
-                                <select name="designation[]" class="form-control" required>
+                                <input type="text" name="designation[]" class="form-control" value="{{ $employer->designation }}" required/>
+                                {{--<select name="designation[]" class="form-control" required>
                                     <option value=""></option>
                                     @foreach ($designations as $designation)
                                     <option value="{{ $designation->designation_id }}" {{ ($employer->designation==$designation->designation_id)? "selected" : "" }}>{{ $designation->name }}</option>
                                     @endforeach
-                                </select>
+                                </select>--}}
                             </div>
                             <div class="form-group col-12 col-sm-12 col-md-5 col-lg-6 ml-lg-5">
                                 <label>Employment Type</label>
@@ -271,13 +272,14 @@
                                 <input type="text" name="employer_name[]" class="form-control" required/>
                             </div>
                             <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                                <label>Designation</label>
-                                <select name="designation[]" class="form-control" required>
+                                <label>Designation/Titile</label>
+                                <input type="text" name="designation[]" class="form-control" required/>
+                                {{--<select name="designation[]" class="form-control" required>
                                     <option value=""></option>
                                     @foreach ($designations as $designation)
                                     <option value="{{ $designation->designation_id }}">{{ $designation->name }}</option>
                                     @endforeach
-                                </select>
+                                </select>--}}
                             </div>
                         </div>
                         <div class="form-row">
@@ -358,12 +360,13 @@
         </div>
         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Designation</label>
-            <select name="designation[]" class="form-control" required>
+            <input type="text" name="designation[]" class="form-control" required/>
+            {{--<select name="designation[]" class="form-control" required>
                 <option value=""></option>
                 @foreach ($designations as $designation)
                 <option value="{{ $designation->designation_id }}" >{{ $designation->name }}</option>
                 @endforeach
-            </select>
+            </select>--}}
         </div>
     </div>
     <div class="form-row">

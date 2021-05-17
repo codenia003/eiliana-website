@@ -137,10 +137,10 @@
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-7 col-12">
                 	<div class="projects">
-                		<img src="/assets/img/profile/hire-right.png" class="img-fluid" alt="">
+                		<img src="/assets/img/profile/freelance.png" class="img-fluid" alt="">
                 	</div>
                 	<div class="contractual padding-c d-none">
-                		<img src="/assets/img/profile/hire-right-2.png" class="img-fluid" alt="">
+                		<img src="/assets/img/profile/staffing.png" class="img-fluid" alt="">
                 	</div>
                 </div>
             </div>

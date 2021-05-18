@@ -441,6 +441,10 @@
     #wrapper {
         display:none;
     }
+    #msg
+    {
+        display: block !important;
+    }
     #warning-message {
         display: block;
         width: 75%;

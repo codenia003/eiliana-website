@@ -11,6 +11,7 @@ use App\Mail\TeamInvite;
 use Sentinel;
 use View;
 use URL;
+use DB;
 use Mail;
 use App\Models\TeamInvitation;
 
@@ -20,15 +21,32 @@ class CompanayController extends JoshController
     public function index()
     {
         $user = Sentinel::getUser();
-
+        // echo $user->id;
+        $id=$user->id;
+        $role = DB::select('select * from role_users where user_id = '.$id. '');
+        // echo "<pre>";
+        // print_r($role);
+        // die;
         $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
 
-        return view('team/bench', compact('teaminvitations'));
+        return view('team/bench', compact('teaminvitations','role'));
     }
 
     public function teamsForm()
     {
-        return view('team/teams');
+        $user = Sentinel::getUser();
+        // echo $user->id;
+        $id=$user->id;
+        
+        $role = DB::select('select * from role_users where user_id = '.$id. '');
+        if ($role[0]->role_id==0) {
+           return view('errors/404');
+        }
+        else
+        {
+            return view('team/teams');
+        }
+        
     }
 
     public function registerTeams(Request $request)

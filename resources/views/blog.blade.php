@@ -202,11 +202,17 @@ Blog
     }
     
 }
+#msg
+{
+    display: none;
+}
 
 </style>
+
 @stop
 
 {{-- Page content --}}
+<h3 id="msg" class=" m-1 alert alert-warning d-none"><span>Currently we support only the portrait pages.</span></h3>
 @section('content')
 
 <div class="account-page">
@@ -227,6 +233,7 @@ Blog
     </div>
 </div>
 <hr>
+
 <!-- Container Section Strat -->
  <div class="container blogpage ">
     <!-- my style -->

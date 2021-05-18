@@ -10,8 +10,9 @@
 </div>
 @stop
 @section('profile_content')
-
-    <div class="card-header listofteam">
+    <div class="card-header listofteam" <?php if ($role[0]->role_id ==0 ) {
+       echo 'style="display:none;"';
+    } ?> >
         <h5 class="card-title">
             <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
         </h5>

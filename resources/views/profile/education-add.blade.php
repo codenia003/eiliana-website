@@ -245,16 +245,22 @@
                         </div>
 					@empty
                         <div class="pg-qualification">
-                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graducation</span>
+                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graducation </span>
                             <input type="hidden" name="graduation_type[]" value="4">
                             <input type="hidden" name="education_id[]" value="0">
                             <div class="form-row">
+                                <?php
+                                            // echo "<pre>";
+                                            // print_r($qualifications);
+                                            
+                                        ?>
                                 <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Post Graducation</label>
                                     <select name="degree[]" class="form-control">
                                         <option value=""></option>
+
                                         @foreach ($qualifications as $qualification)
-                                        @if ($qualification->type == 'UG')
+                                        @if ($qualification->type == 'PG')
                                         <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
                                         @endif
                                         @endforeach
@@ -394,7 +400,7 @@
     </div>
 </div>
 <div class="pg-qualification-2 d-none">
-	<span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graducation</span>
+	<span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graducation </span>
 	<!-- <button type="button" class="remove-pg btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
 	<input type="hidden" name="graduation_type[]" value="4">
 	<input type="hidden" name="education_id[]" id="education_id" value="0">

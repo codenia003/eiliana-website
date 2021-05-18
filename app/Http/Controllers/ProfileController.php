@@ -96,6 +96,7 @@ class ProfileController extends JoshController
         $technologies = Technology::where('parent_id', '0')->get();
         $locations = Location::all();
         $projectcategorys = ProjectCategory::where('parent_id', '0')->get();
+        $subprojectcategorys = ProjectCategory::where('parent_id', '!=', '0')->get();
 
         if (count($proexps) > 0) {
             $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
@@ -114,7 +115,7 @@ class ProfileController extends JoshController
         }
         //$designations = Designation::all();
         // print_r($childtechnologies);
-        return view('profile/prof-exp', compact('proexps','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework','locations'));
+        return view('profile/prof-exp', compact('proexps','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework','locations','subprojectcategorys'));
     }
 
     public function getframework(Request $request)
@@ -186,7 +187,7 @@ class ProfileController extends JoshController
         $resume->dob = $input['dob'];
         $resume->country = $input['country'];
         $resume->interested = $input['interested'];
-        
+
         // if(isset(Session::get('teaminvitation')['to_user'])){
         //     $resume->experience = $input['experience'];
         //     $resume->key_skills = $input['key_skills'];
@@ -361,9 +362,9 @@ class ProfileController extends JoshController
         $technologty_pre = implode(',', $technologty_pre);
         $input['technologty_pre'] = $technologty_pre;
 
-        $framework = $request->input('framework');
-        $framework = implode(',', $framework);
-        $input['framework'] = $framework;
+        // $framework = $request->input('framework');
+        // $framework = implode(',', $framework);
+        // $input['framework'] = $framework;
 
         if (!empty($input['professional_experience_id'])) {
 
@@ -374,7 +375,7 @@ class ProfileController extends JoshController
             $professionalExperience->profile_headline = $input['profile_headline'];
             $professionalExperience->project_category = $input['project_category'];
             $professionalExperience->technologty_pre = $input['technologty_pre'];
-            $professionalExperience->framework = $input['framework'];
+            // $professionalExperience->framework = $input['framework'];
             $professionalExperience->model_engagement = $input['model_engagement'];
             $professionalExperience->experience_year = $input['experience_year'];
             $professionalExperience->experience_month = $input['experience_month'];

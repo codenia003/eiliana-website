@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
     <meta name="google-site-verification" content="-vzG1ZlYcexP65J-fgwdsJYu7YafFOJ5JNjIGZvfhj4">
     <title>
         @section('title')
@@ -294,8 +292,7 @@
                         <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
                         <h4>Beta Version</h4>
                         <div class="beta-parent">
-                        <p>We are still in beta version that's why some link is not working.
-                            <br> Right now we have only taken the registration on eiliana website.</p>
+                            <p>This section is still in finalization phase , kindly bear with us</p>
                         </div>
                     </div>
                 </div>

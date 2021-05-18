@@ -48,16 +48,17 @@
                             </div>
                         </div> -->
 
-                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Technology Preference</label>
-                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
+                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple required>
+                            {{-- <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required> --}}
                                 <option value=""></option>
                                 @foreach ($technologies as $technology)
                                 <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_technologies)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                        {{-- <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Framework</label>
                             <select class="form-control select2" required="" name="framework[]" id="framework" multiple>
                                 <option value=""></option>
@@ -65,7 +66,7 @@
                                 <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_framework)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="form-row">
                         <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
@@ -110,7 +111,11 @@
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Project Sub Category</label>
                             <select name="project_sub_category" id="project_sub_category" class="form-control" required>
-                                <option value=""></option>
+                                @foreach ($subprojectcategorys as $category)
+                                @if ($category->parent_id == $proexp->project_category)
+                                    <option value="{{ $category->id }}" {{ ($proexp->project_sub_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
+                                @endif
+                                @endforeach
 
                             </select>
                         </div>
@@ -240,7 +245,6 @@
                             <label>Project Sub Category</label>
                             <select name="project_sub_category" id="project_sub_category" class="form-control" required>
                                 <option value=""></option>
-
                             </select>
                         </div>
                         {{--<div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">

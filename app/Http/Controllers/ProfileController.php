@@ -187,10 +187,10 @@ class ProfileController extends JoshController
         $resume->country = $input['country'];
         $resume->interested = $input['interested'];
         
-        if(isset(Session::get('teaminvitation')['to_user'])){
-            $resume->experience = $input['experience'];
-            $resume->key_skills = $input['key_skills'];
-        }
+        // if(isset(Session::get('teaminvitation')['to_user'])){
+        //     $resume->experience = $input['experience'];
+        //     $resume->key_skills = $input['key_skills'];
+        // }
 
         $safeName = "";
 
@@ -243,7 +243,7 @@ class ProfileController extends JoshController
         $user = Sentinel::getUser();
         $input = $request->except('_token');
 
-        foreach ($input['education_id'] as $key => $value) {
+        foreach ($input['education_type'] as $key => $value) {
             if(!empty($input['education_type'][$key])){
                 if ($input['education_id'][$key] != 0) {
                     $education = Education::find($input['education_id'][$key]);
@@ -285,7 +285,7 @@ class ProfileController extends JoshController
         $user = Sentinel::getUser();
         $input = $request->except('_token');
 
-        foreach ($input['certificate_id'] as $key => $value) {
+        foreach ($input['certificate_no'] as $key => $value) {
 
             if ($input['certificate_id'][$key] != 0) {
                 $certificate = Certificate::find($input['certificate_id'][$key]);

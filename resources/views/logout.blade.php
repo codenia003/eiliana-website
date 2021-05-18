@@ -23,6 +23,11 @@ Logout
 			color: #454d84 !important;
 		}
 
+        .account-register{
+            margin-left: -175px;
+            margin-top: 37px;
+        }
+
 		.account-second-side a.bt {
 			color: #ffffff;
 			font-size: 13px !important;
@@ -35,27 +40,68 @@ Logout
 			float: right;
 		}
 
-		.login-body {
+        .account-second-side .logout_img{
+            width: 232px;
+            border-radius: 50%;
+            margin-top: 303px;
+            margin-bottom: 5px;
+        }
+
+		.logout_page {
 			border: 1px solid #e4e0e0;
 			border-radius: 30px;
+            margin-left: 100px;
 		}
 
+        .logout_sidebar{
+            margin: 50px;
+            height: 238px;
+        }
+
 		.big-img {
-			border-right: 2px solid #ffffff;
+            border-right: 2px solid #3b5998;
 			margin: 50px;
 			height: 176px;
+            margin-left: -90px;
         }
 
-		@media (min-width: 768px){
+        .logout_content{
+            width: 470px;
+            margin-top: 215px;
+        }
+
+		@media only screen and (max-width: 768px){
 			.big-img {
-				border-right: 2px solid #3b5998;
+				border-right: 2px solid #ffffff;
+                margin-left: 45px;
+                margin-top: 90px;
 			}
 
-            /* .account-page {
-				width: 1643px;
-			} */
-        }
+            .logout_page .logout_img{
+                border-right: 2px solid #ffffff;
+                width: 232px;
+                border-radius: 50%;
+                margin-top: 303px;
+                margin-bottom: 5px;
+                margin: 50px;
+                height: 176px;
+            }
+            .logout_page .logout_content{
+                height: 120px;
+                margin-top: 0px;
+            }
+            .logout_page {
+                margin-left: 0px;
+            }
+            .account-register {
+                margin-left: 0px;
+            }
 
+            .logout_sidebar {
+                margin-left: 74px !important;;
+            }
+        
+        }
 </style>
 <!--end of page level css-->
 @stop
@@ -71,28 +117,27 @@ Logout
         </div>
       </div>
     </div>
-    <div class="col-md-8 offset-md-2 mt-6 shadow p-0 login-body">
+    <div class="col-lg-12 col-md-8 offset-md-2 mt-6 shadow p-0 logout_page">
         <div class="singup-body account-register">
             <div class="container">
                 <div class="row">
-				    <div class="col p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero big-img">
+				    <div class="col p-0 d-flex align-items-center justify-content-center bg-img-hero big-img">
                         <div class="account-second-side text-center">
-                          @if(!empty($user->pic))
-                            <img src="{!! $user->pic !!}" class="img-fluid" alt="" style="width: 232px;border-radius: 50%;margin-top: 303px;margin-bottom: 5px;">
+                        @if(!empty($user->pic))
+                            <img src="{!! $user->pic !!}" class="img-fluid logout_img" alt="">
                           @else
-                            <img src="/assets/img/default_user.png" class="img-fluid" alt="" style="width: 232px;border-radius: 50%;margin-top: 303px;margin-bottom: 5px;">
+                            <img src="/assets/img/user_img.jpg" class="img-fluid logout_img" alt="">
                           @endif 
                             <h2 style="font-size: 25px;color: #41418a;">{!! $user->first_name !!} {!! $user->last_name !!}</h2>
-                            <!-- <h2 style="font-size: 25px;color: #41418a;">{!! Session::get('users') !!}</h2> -->
-							<p>{!! $user->company_name !!} <br> {!! $user->city !!}, {!! $user_country->name !!}</p>
+                            <p>@if($user->company_name){!! $user->company_name !!}@endif <br> {!! $user_country->name !!}</p>
                             <!-- <a href="/account/register" class="btn btn-light bt btn-lg">Signup Now</a> -->
                         </div>
                     </div>
-                    <div class="col p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="margin: 50px;height: 238px;">
+                    <div class="col p-0 d-flex align-items-center justify-content-center bg-img-hero logout_sidebar">
                         <div class="account-second-side text-center">
-                            <img src="/assets/img/logout1.png" class="img-fluid" alt="" style="width: 370px;margin-top: 228px;">
-                            <a href="#" class="btn btn-light bt btn-lg" style="float: none;margin-left: 32px;">Refer of frelancer</a>
-                            <a href="/account/login" class="btn btn-light bt btn-lg">Login</a>
+                            <img src="/assets/img/logout_page.png" class="img-fluid logout_content" alt="">
+                            <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/login'">Refer of frelancer</button>
+                            <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/login'">Login</button>
                         </div>
                     </div>
 

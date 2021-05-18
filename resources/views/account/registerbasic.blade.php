@@ -68,7 +68,7 @@ type="text/css"/>
                                     <label class="custom-control-label" for="register_as1">Freelancer</label>
                                 </div>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <!-- <div class="form-check form-check-inline">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="register_as2" class="custom-control-input" name="register_as" value="2">
                                     <label class="custom-control-label" for="register_as2">Client</label>
@@ -79,7 +79,7 @@ type="text/css"/>
                                     <input type="radio" id="register_as3" class="custom-control-input" name="register_as" value="3">
                                     <label class="custom-control-label" for="register_as3">Both</label>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="form-row company_show d-none">
                             <div class="form-group col-12">
@@ -222,7 +222,7 @@ type="text/css"/>
         // console.log(publicAnonymus);
         if (publicAnonymus == '1') {
             $('.anonymousShow-1').removeClass("col-lg-12");
-            $('.anonymousShow-1').addClass("col-lg-6")
+            $('.anonymousShow-1').addClass("col-lg-6");
             $('.anonymousShow').removeClass("d-none");
         } else {
             $('.anonymousShow').addClass("d-none");

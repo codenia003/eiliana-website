@@ -60,10 +60,16 @@
 					                <div class="projects">
 					                	<div class="form-group">
                                             <label>Category</label>
-                                            <select name="project_category" class="form-control">
+                                            <select name="project_category" class="form-control" id="project_category" onchange="change_category();">
                                                 @foreach ($projectcategorys as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
+                                            </select>
+                                        </div>
+										<div class="form-group" id="project_sub">
+                                            <label>Project Sub Category</label>
+                                            <select name="project_sub_category" class="form-control" id="project_sub_category" required>
+                                                <option value=""></option>
                                             </select>
                                         </div>
 					                	<div class="form-group job-posting">
@@ -124,8 +130,8 @@
 					                </div>
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
-                                            {{-- <button class="btn btn-primary" type="submit"> --}}
-                                            <button class="btn btn-primary" type="button" onclick="togglePopup()">
+                                            <button class="btn btn-primary" type="submit"> 
+                                            {{-- <button class="btn btn-primary" type="button" onclick="togglePopup()">--}}
                                                Search >>>
                                             </button>
                                         </div>

@@ -110,7 +110,7 @@
 		            	<div class="form-row">
 				            <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
 				                <label>Under Graducation</label>
-				                <select name="degree[]" class="form-control" required>
+				                <select name="degree[]" required="" class="form-control" >
 		                            <option value=""></option>
 		                            @foreach ($qualifications as $qualification)
 			                        @if ($qualification->type == 'UG')
@@ -158,7 +158,7 @@
 				            </div>
 				            <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
 				            	<label>Education Type</label>
-				                <select name="education_type[]" class="form-control" required>
+				                <select name="education_type[]" required="" class="form-control">
 		                            <option value=""></option>
 		                            @foreach ($educationtype as $etype)
 			                        <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>
@@ -343,7 +343,7 @@
 	<div class="form-row">
         <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
             <label>Under Graducation</label>
-            <select name="degree[]" class="form-control" required>
+            <select name="degree[]" required="" class="form-control">
                 <option value=""></option>
                 @foreach ($qualifications as $qualification)
                 @if ($qualification->type == 'UG')
@@ -390,7 +390,7 @@
         </div>
         <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
         	<label>Education Type</label>
-            <select name="education_type[]" class="form-control" required>
+            <select name="education_type[]" class="form-control" required="">
                 <option value=""></option>
                 @foreach ($educationtype as $etype)
                 <option value="{{ $etype->education_type_id }}">{{ $etype->name }}</option>

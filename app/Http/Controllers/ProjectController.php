@@ -55,17 +55,23 @@ class ProjectController extends JoshController
 
     public function postProject()
     {
-        $educationtype = EducationType::all();
-        $qualifications = Qualification::all();
-        $universities = University::all();
-        $technologies = Technology::where('parent_id', '0')->get();
-        $locations = Location::all();
-        $currency = Currency::all();
-        $customerindustries = CustomerIndustry::all();
-        $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
-        $candidateroles = CandidateRole::all();
-
-        return view('project/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys','currency','candidateroles'));
+        if(Session::get('users')['login_as'] == '2'){
+            $educationtype = EducationType::all();
+            $qualifications = Qualification::all();
+            $universities = University::all();
+            $technologies = Technology::where('parent_id', '0')->get();
+            $locations = Location::all();
+            $currency = Currency::all();
+            $customerindustries = CustomerIndustry::all();
+            $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
+            $subprojectcategorys = ProjectCategory::all();
+            $candidateroles = CandidateRole::all();
+    
+            return view('project/post-project', compact('educationtype','qualifications','subprojectcategorys','universities','technologies','locations','customerindustries','projectcategorys','currency','candidateroles'));
+        }
+        else{
+            return redirect('/home');
+        }
     }
 
     public function projectSchedule($id)
@@ -76,7 +82,6 @@ class ProjectController extends JoshController
         // return $projectleads;
         return view('project/project-schedule', compact('projectleads','user'));
     }
-
     public function projectScheduleModify($id)
     {
         $projectleads = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
@@ -130,6 +135,7 @@ class ProjectController extends JoshController
         $projects->project_title = $input['project_title'];
         $projects->key_skills = $input['key_skills'];
         $projects->project_category = $input['project_category'];
+        $projects->project_sub_category = $input['project_sub_category'];
         $projects->project_summary = $input['project_summary'];
         $projects->type_of_project = $input['type_of_project'];
         $projects->experience_year = $input['experience_year'];

@@ -863,8 +863,9 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
     border: none;
     border-radius: 6px;
     color: #dd4c3b;
-    width: 96%;
+    width: 92%;
     font-weight: 700;
+    font-size: 12px!important;
 }
 .mobile-profile .top-mobile p {
     color: #fff;

@@ -113,9 +113,18 @@ Post Project
 
                                     <div class="form-group">
                                         <label>Project Category</label>
-                                        <select name="project_category" class="form-control" required>
+                                        <select name="project_category" class="form-control" id="project_category" onchange="change_category();" required>
                                             @foreach ($projectcategorys as $category)
                                             <option value="{{ $category->id }}" {{ (Session::get('contractsattfing')['project_category']==$category->id )? "selected" : "" }}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" id="project_sub">
+                                        <label>Project Sub Category</label>
+                                        <select name="project_sub_category" class="form-control" id="project_sub_category">
+                                           @foreach ($subprojectcategorys as $subcategory)
+                                            <option value="{{ $subcategory->id }}" {{ (Session::get('contractsattfing')['project_sub_category']==$subcategory->id )? "selected" : "" }}>{{ $subcategory->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

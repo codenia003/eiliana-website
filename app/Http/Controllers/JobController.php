@@ -12,6 +12,7 @@ use Reminder;
 use Sentinel;
 use URL;
 use Validator;
+use Session;
 use View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
@@ -155,19 +156,24 @@ class JobController extends JoshController
     }
 
     public function jobPostingSearch(Request $request){
-        $data = $request->all();
-        $contractsattfing = $data;
-        $request->session()->forget('contractsattfing');
-        $request->session()->put('contractsattfing', $contractsattfing);
-        if ($data['lookingfor'] == '1') {
-            // contract-sattfing
-            return redirect('/post-job');
-        } else {
-            // freelance-project
-            return redirect('/post-project');
+
+        if(Session::get('users')['login_as'] == '2'){
+            $data = $request->all();
+            $contractsattfing = $data;
+            $request->session()->forget('contractsattfing');
+            $request->session()->put('contractsattfing', $contractsattfing);
+            if ($data['lookingfor'] == '1') {
+                // contract-sattfing
+                return redirect('/post-job');
+            } else {
+                // freelance-project
+                return redirect('/post-project');
+            }
+        }
+        else{
+            return redirect('/account/login');
         }
     }
-
     public function postJobon(Request $request) {
 
         $user = Sentinel::getUser();

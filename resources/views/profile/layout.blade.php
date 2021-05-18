@@ -110,9 +110,13 @@ type="text/css"/>
    	function changeAnonymus(e) {
         var anonymous = e.target.value;
         if (anonymous == '0') {
+            $('.anonymousShow-1').removeClass("col-12 col-sm-12 col-md-6 col-lg-6");
+            $('.anonymousShow-1').addClass("col-12 col-sm-12 col-md-12 col-lg-12");
             $('.anonymousShow').addClass("d-none");
         } else {
             $('.anonymousShow').removeClass("d-none");
+            $('.anonymousShow-1').removeClass("col-12 col-sm-12 col-md-12 col-lg-12");
+            $('.anonymousShow-1').addClass("col-12 col-sm-12 col-md-6 col-lg-6");
         }
         var data= {
             anonymous:anonymous

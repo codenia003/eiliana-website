@@ -59,7 +59,7 @@ Change Password
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="background-image: url(/assets/img/others/change-password.png);">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0 d-flex align-items-center justify-content-center bg-white bg-img-hero" style="background-image: url(/assets/img/others/change-password.jpg);">
                         <!-- <div class="account-second-side text-center">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Not a member yet?</p>

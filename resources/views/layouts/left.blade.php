@@ -13,14 +13,18 @@
                                     <img class="image-preview avatar-img" src="/assets/img/profile/m-photo-icon.png" class="avatar" alt="Avatar">
                                     <span>Upload Photo</span>
                                 </div>
+                                @isset(Sentinel::getUser()->full_name)
                                 <button class="btn">{{ Sentinel::getUser()->full_name }}</button>
+                                @endisset
                                 <p class="card-text font-size-1">
                                     @isset(Sentinel::getUser()->city)
                                     {{ Sentinel::getUser()->city }},
                                     @endisset
                                     {{ Session::get('users')['country_name'] }}
                                     <br>
+                                    @isset(Sentinel::getUser()->created_at)
                                     {{ \Carbon\Carbon::parse(Sentinel::getUser()->created_at)->format('M d, Y')}}
+                                    @endisset
                                 </p>
 
                             </div>

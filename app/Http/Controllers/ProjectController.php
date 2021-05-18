@@ -64,9 +64,10 @@ class ProjectController extends JoshController
             $currency = Currency::all();
             $customerindustries = CustomerIndustry::all();
             $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
+            $subprojectcategorys = ProjectCategory::all();
             $candidateroles = CandidateRole::all();
     
-            return view('project/post-project', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','projectcategorys','currency','candidateroles'));
+            return view('project/post-project', compact('educationtype','qualifications','subprojectcategorys','universities','technologies','locations','customerindustries','projectcategorys','currency','candidateroles'));
         }
         else{
             return redirect('/home');
@@ -134,6 +135,7 @@ class ProjectController extends JoshController
         $projects->project_title = $input['project_title'];
         $projects->key_skills = $input['key_skills'];
         $projects->project_category = $input['project_category'];
+        $projects->project_sub_category = $input['project_sub_category'];
         $projects->project_summary = $input['project_summary'];
         $projects->type_of_project = $input['type_of_project'];
         $projects->experience_year = $input['experience_year'];

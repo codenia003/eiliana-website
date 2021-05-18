@@ -187,10 +187,10 @@ class ProfileController extends JoshController
         $resume->country = $input['country'];
         $resume->interested = $input['interested'];
         
-        if(isset(Session::get('teaminvitation')['to_user'])){
-            $resume->experience = $input['experience'];
-            $resume->key_skills = $input['key_skills'];
-        }
+        // if(isset(Session::get('teaminvitation')['to_user'])){
+        //     $resume->experience = $input['experience'];
+        //     $resume->key_skills = $input['key_skills'];
+        // }
 
         $safeName = "";
 

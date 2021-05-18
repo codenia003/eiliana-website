@@ -25,6 +25,7 @@ Logout
 
         .account-register{
             margin-left: -175px;
+            margin-top: 37px;
         }
 
 		.account-second-side a.bt {

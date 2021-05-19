@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\Mail\TeamInvite;
 use Sentinel;
+use Session;
 use View;
 use URL;
 use DB;
@@ -21,39 +22,44 @@ class CompanayController extends JoshController
     public function index()
     {
         $user = Sentinel::getUser();
-        $email=$user->email;
-        // echo $email;
-        $sql="select * from user_registration where email = '{$email}' ";
-        $role = DB::select($sql);
-        $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
+         // echo $user->id;
+        //$id=$user->id;
+        if(Session::get('teaminvitation')['to_user'])
+        {
+            $invite_user_email = Session::get('teaminvitation')['to_user'];
+            $role = DB::select("select * from user_registration where email = '.$invite_user_email. '");
+            $user_type_parent_id = $role->user_type_parent_id;
+            // echo "<pre>";
+            // print_r($role);
+            // die;
+            $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
 
-        return view('team/bench', compact('teaminvitations','role'));
+            return view('team/bench', compact('teaminvitations','user_type_parent_id'));
+        }
+        else{
+            $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
+            return view('team/bench', compact('teaminvitations'));
+        }
+        
     }
-
     public function teamsForm()
     {
         $user = Sentinel::getUser();
         // echo $user->id;
-        $email=$user->email;
-        // echo $email;
-        $sql="select * from user_registration where email = '{$email}' ";
-        $role = DB::select($sql);
-        if (isset($role[0]->user_type_parent_id)) {
-           if ($role[0]->user_type_parent_id==1)
-           {
-                
-                return view('errors/404');
-           }
-           else
-           {
-                return view('team/teams');
-           }
-        }
-        else
+        //$id=$user->id;
+        if(Session::get('teaminvitation')['to_user'])
         {
+            $invite_user_email = Session::get('teaminvitation')['to_user'];
+            $role = DB::select("select * from user_registration where email = '.$invite_user_email. '");
+            if ($role->user_type_parent_id==1) {
+            return view('errors/404');
+            }
+            else
+            {
+                return view('team/teams');
+            }
             return view('team/teams');
-        }
-        
+        }    
     }
 
     public function registerTeams(Request $request)
@@ -102,9 +108,15 @@ class CompanayController extends JoshController
                     $m->to($data['to_user'], '')->subject($data['company_name'].' invited you to join Eiliana');
                 });
             }
+<<<<<<< Updated upstream
             return redirect('company/bench')->with('success', 'The Invite has been sent successfully');
         } else {
             return redirect('company/bench')->with('error', 'This email-id already exits');
+=======
+        }else {
+            $response['success'] = '2';
+            $response['errors'] = 'This email already exits';
+>>>>>>> Stashed changes
         }
     }
 

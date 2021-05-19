@@ -51,24 +51,18 @@ $(document).ready(function() {
         $.post($form.attr('action'), $form.serialize(), function(result) {
             // console.log(result);
             var userExists = result;
-            if(userExists.usersexist == '0') {
+             if (userExists.success == '2') {
+                $('.spinner-border').addClass("d-none");
                 swalWithBootstrapButtons.fire({
                   type: 'warning',
                   title: 'Oops...',
-                  text: userExists.error,
+                  text: userExists.errors,
                   showConfirmButton: false,
                   timer: 2000
+                }).then(function() {
+                    window.location.href = '/company/teams';
                 });
-                $('.spinner-border').addClass("d-none");
-            }else if (userExists.usersexist == '2') {
-                swalWithBootstrapButtons.fire({
-                  type: 'warning',
-                  title: 'Oops...',
-                  text: userExists.error,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
-                $('.spinner-border').addClass("d-none");
+               
             }else {
                 $('.spinner-border').addClass("d-none");
                 swalWithBootstrapButtons.fire({

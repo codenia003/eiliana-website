@@ -17,7 +17,7 @@ OTP Verification
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/register.css') }}">
 <style>
        .align-items-center .login_side {
-            margin-top: 42px;
+            margin-top: 157px;
 		}
 
         .align-items-center .otp_img {
@@ -95,7 +95,7 @@ OTP Verification
                             <a href="/account/login" class="btn btn-light bt btn-lg">Login</a>
                         </div>
                     </div>--}}
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0 align-items-center justify-content-center">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0 align-items-center justify-content-center" style="margin-bottom: -115px;">
                         <div class="account-second-side text-center login_side">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Already have an account?</p>

@@ -215,7 +215,7 @@ Blog
 <h3 id="msg" class=" m-1 alert alert-warning d-none"><span>Currently we support only the portrait pages.</span></h3>
 @section('content')
 
-<div class="account-page">
+<div class="account-page mb-0 pb-0">
     <div class="bg-red">
       <div class="px-5 py-2">
         <div class="align-items-center">
@@ -235,12 +235,12 @@ Blog
 <hr>
 
 <!-- Container Section Strat -->
- <div class="container blogpage ">
+ <div class="container blogpage mt-0 pt-0">
     <!-- my style -->
     @forelse ($blogs as $blog)
     
     <div class="thumbnail m-0 p-0" id="thumbnail">
-        <div class="row ">
+        <div class="row mt-0 pt-0">
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2" id="image">
                <img src="{{ URL::to('/uploads/blog/'.$blog->image) }}"  class="img-fluid" alt="Image">
                <!-- <img class="shadow-sm rounded-lg" src="{{ URL::to('/uploads/blog/'.$blog->image) }}" class="img-fluid" alt="Image"> -->
@@ -255,7 +255,7 @@ Blog
                 <br>
                 <p class="p-1 pl-0" id="blog-title" >{{$blog->title}}</p>
                 <p id="blog-footer">
-                    <i class="fas fa-user-circle"></i>&nbsp; By Admin <!-- {{$blog->author->first_name . ' ' . $blog->author->last_name}} --></a>
+                    <i class="fas fa-user-circle"></i>&nbsp; By Jytsona <!-- {{$blog->author->first_name . ' ' . $blog->author->last_name}} --></a>
                 </p>
                 <p class="text-left" id="button">
                         <a href="{{ URL::to('blogitem/'.$blog->slug) }}" class="btn btn-primary text-white">Read

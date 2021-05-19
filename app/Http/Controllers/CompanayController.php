@@ -21,9 +21,9 @@ class CompanayController extends JoshController
     public function index()
     {
         $user = Sentinel::getUser();
-        // echo $user->id;
+         // echo $user->id;
         $id=$user->id;
-        $role = DB::select('select * from role_users where user_id = '.$id. '');
+        $role = DB::select('select * from user_registration where id = '.$id. '');
         // echo "<pre>";
         // print_r($role);
         // die;
@@ -38,8 +38,8 @@ class CompanayController extends JoshController
         // echo $user->id;
         $id=$user->id;
         
-        $role = DB::select('select * from role_users where user_id = '.$id. '');
-        if ($role[0]->role_id==0) {
+        $role = DB::select('select * from user_registration where id = '.$id. '');
+        if ($role[0]->user_type_parent_id==1) {
            return view('errors/404');
         }
         else

@@ -14,7 +14,7 @@ Blog
 <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/blog.css') }}">
 <!--end of page level css-->
 <style type="text/css">
-    
+
     #thumbnail
     {
         border-style: hidden;
@@ -76,7 +76,7 @@ Blog
 
       }
     }
-    /*@media only screen and (max-width: 650px)*/ 
+    /*@media only screen and (max-width: 650px)*/
     @media (min-width: 600px) and (max-width: 800px)
     {
         #date
@@ -118,7 +118,7 @@ Blog
         text-align: left;
         opacity: 0.9;
         margin-top: 3px !important;
-        
+
         font-family: sans-serif;
         /*color: red !important;*/
 
@@ -178,13 +178,13 @@ Blog
         font-weight: bold;
         font-size: 14px !important;
         opacity: 0.9;
-        
+
 
       }
-      
+
       #blog-footer
       {
-        
+
         font-size: 13px;
         font-weight: bold;
         text-align: left;
@@ -200,7 +200,7 @@ Blog
 
       }
     }
-    
+
 }
 #msg
 {
@@ -212,7 +212,6 @@ Blog
 @stop
 
 {{-- Page content --}}
-<h3 id="msg" class=" m-1 alert alert-warning d-none"><span>Currently we support only the portrait pages.</span></h3>
 @section('content')
 
 <div class="account-page mb-0 pb-0">
@@ -238,7 +237,7 @@ Blog
  <div class="container blogpage mt-0 pt-0">
     <!-- my style -->
     @forelse ($blogs as $blog)
-    
+
     <div class="thumbnail m-0 p-0" id="thumbnail">
         <div class="row mt-0 pt-0">
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2" id="image">

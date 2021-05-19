@@ -32,11 +32,10 @@ Welcome
                                 <h2 class="user-name">Hi {{ Sentinel::getUser()->full_name }}</h2>
                               @endif
                                 <h2 class="user-text">Welcome to Eiliana Family !!!</h2>
-                                {{-- <p>We are building the largest community of Gig-<br>
+                                <p>We are building the largest community of Gig-<br>
                                 Resources globally who will transform the lives of billions of <br>
                                 people through their technology enabled solutions. Look for-<br>ward
-                                for your valuable and greater contrubtion.</p> --}}
-                                <p>We are pleased to welcome you to the beta version of our portal with limited functionalities. Currently we are open for freelancers and agencies registration only.</p>
+                                for your valuable and greater contrubtion.</p>
                             </div>
                         </div>
                         <div class="col p-0 d-flex align-items-center">

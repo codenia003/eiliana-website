@@ -417,7 +417,7 @@ class ProfileController extends JoshController
                 $userproject->project_type = $input['project_type'][$key];
                 $userproject->duration = $input['duration'][$key];
                 $userproject->technologty_pre = $input['technologty_pre'][$key];
-                $userproject->framework = $input['framework'][$key];
+                // $userproject->framework = $input['framework'][$key];
                 $userproject->version = '1';
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];
@@ -444,7 +444,7 @@ class ProfileController extends JoshController
                 $userproject->project_type = $input['project_type'][$key];
                 $userproject->duration = $input['duration'][$key];
                 $userproject->technologty_pre = $input['technologty_pre'][$key];
-                $userproject->framework = $input['framework'][$key];
+                // $userproject->framework = $input['framework'][$key];
                 $userproject->version = '1';
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];

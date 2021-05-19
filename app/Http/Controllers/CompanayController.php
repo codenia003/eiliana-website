@@ -21,12 +21,9 @@ class CompanayController extends JoshController
     public function index()
     {
         $user = Sentinel::getUser();
-         // echo $user->id;
         $id=$user->id;
         $role = DB::select('select * from user_registration where id = '.$id. '');
-        // echo "<pre>";
-        // print_r($role);
-        // die;
+
         $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
 
         return view('team/bench', compact('teaminvitations','role'));
@@ -37,16 +34,16 @@ class CompanayController extends JoshController
         $user = Sentinel::getUser();
         // echo $user->id;
         $id=$user->id;
-        
-        $role = DB::select('select * from user_registration where id = '.$id. '');
-        if ($role[0]->user_type_parent_id==1) {
-           return view('errors/404');
-        }
-        else
-        {
+
+        // $role = DB::select('select * from user_registration where id = '.$id. '');
+        // if ($role[0]->user_type_parent_id==1) {
+        //    return view('errors/404');
+        // }
+        // else
+        // {
             return view('team/teams');
-        }
-        
+        // }
+
     }
 
     public function registerTeams(Request $request)

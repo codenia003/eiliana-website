@@ -26,8 +26,8 @@ Sales Referral
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 pr-0">
                     <div class="sales-referal-body">
-                        <h3>Great money @ Eiliana Project Referral program !!!</h3>
-                        <p>Eiliana.com introduces a new referral marketing strategy known as “Smart Sales Referral Program” where in you can refer an IT project on Eiliana.com to us any earn commission decided by you there by creating a win win situation for yourself and your client.</p>
+                        <h3>Great money @ Eiliana Sales Referral program !!!</h3>
+                        <p>Eiliana.com introduces a new referral marketing strategy known as “Smart Sales Referral Program” where in you can refer an IT project on Eiliana.com and any earn commission decided by you there by creating a win win situation for yourself and your client.</p>
                         <h5>So what are you waiting for?</h5>
                         <p>Submit any IT project today and bag your chance on guaranteed payout chosen by you.</p>
                         <div class="mb-3 mt-3 singup-body">

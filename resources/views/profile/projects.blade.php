@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                {{-- <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Framework</label>
                                     <select class="form-control" required="" name="framework[]" id="framework_multi_{{ $key + 1 }}">
                                         <option value=""></option>
@@ -81,8 +81,8 @@
                                         @endif
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                </div> --}}
+                                <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                                     <label>Industry that Product was designed for</label>
                                     <select name="industry[]" class="form-control">
                                         <option value=""></option>
@@ -172,13 +172,13 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                {{-- <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                     <label>Framework</label>
                                     <select class="form-control" required="" name="framework[]" id="framework_multi_0">
                                         <option value=""></option>
                                     </select>
-                                </div>
-                                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                </div> --}}
+                                <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                                     <label>Industry that Product was designed for</label>
                                     <select name="industry[]" class="form-control">
                                         <option value=""></option>
@@ -283,13 +283,13 @@
     </div>
 
     <div class="form-row">
-        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+        {{-- <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
             <label>Framework</label>
             <select class="form-control" required="" name="framework[]" id="framework_multi">
                 <option value=""></option>
             </select>
-        </div>
-        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+        </div> --}}
+        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
             <label>Industry that Product was designed for</label>
             <select name="industry[]" class="form-control">
                 <option value=""></option>

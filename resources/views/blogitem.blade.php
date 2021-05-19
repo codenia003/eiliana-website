@@ -183,7 +183,7 @@ Blog
         <h2 class="text-primary" id="title">{{$blog->title}}</h2>
     </div>
     <div class="container-fluid m-0 p-0 mb-5 mt-1">
-        <p class=" mt-2 text-dark " id="info"> By Admin<!-- {{$blog->author->first_name . ' ' . $blog->author->last_name}} --> &nbsp;&nbsp;&nbsp;<?php  echo date_format($blog->created_at,"M d, Y"); ?></p>
+        <p class=" mt-2 text-dark " id="info"> By Jytsona<!-- {{$blog->author->first_name . ' ' . $blog->author->last_name}} --> &nbsp;&nbsp;&nbsp;<?php  echo date_format($blog->created_at,"M d, Y"); ?></p>
     </div>
     <div class="container-fluid m-0 p-0 mb-5 mt-1" >
         <!-- <img id="photo" class="shadow-sm rounded-lg" src="/assets/img/photo/back.jpg" class="img-fluid p-4" alt=""> -->

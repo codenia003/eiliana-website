@@ -10,7 +10,7 @@
 </div>
 @stop
 @section('profile_content')
-    <div class="card-header listofteam" <?php if ($role[0]->role_id ==0 ) {
+    <div class="card-header listofteam" <?php if ($role[0]->user_type_parent_id ==1 ) {
        echo 'style="display:none;"';
     } ?> >
         <h5 class="card-title">

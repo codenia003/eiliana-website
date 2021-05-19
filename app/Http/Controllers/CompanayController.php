@@ -53,6 +53,7 @@ class CompanayController extends JoshController
     {
         $user = Sentinel::getUser();
         $input = $request->except('_token');
+        $response['success'] = '0';
 
         $teaminvitationcheck = TeamInvitation::where('to_user', '=', $input['to_user'])->first();
         if($teaminvitationcheck === null) {
@@ -73,6 +74,9 @@ class CompanayController extends JoshController
                 $teaminvitation->status = 1;
                 $teaminvitation->save();
 
+                $response['success'] = '1';
+                $response['msg'] = 'The Invite has been sent successfully';
+
                 // $data = [];
 
                 $data['team_invitation_id'] = $teaminvitation->team_invitation_id;
@@ -83,22 +87,24 @@ class CompanayController extends JoshController
                 $data['subject'] = $teaminvitation->subject;
                 $data['message'] = $teaminvitation->message;
 
-                $url = URL::temporarySignedRoute(
-                    'acceptinvitation', now()->addMinutes(300), ['email' => $teaminvitation->to_user,'token' => $teaminvitation->token,'user_type' => $teaminvitation->user_bid]
-                );
+                // $url = URL::temporarySignedRoute(
+                //     'acceptinvitation', now()->addMinutes(300), ['email' => $teaminvitation->to_user,'token' => $teaminvitation->token,'user_type' => $teaminvitation->user_bid]
+                // );
 
-                $data['url'] = $url;
+                // $data['url'] = $url;
 
-                // Send the activation code through email
-                Mail::send('emails.emailTemplates.teaminvite', $data, function ($m) use ($data) {
-                    $m->from('info@eiliana.com', $data['company_name']);
-                    $m->to($data['to_user'], '')->subject($data['company_name'].' invited you to join Eiliana');
-                });
+                // // Send the activation code through email
+                // Mail::send('emails.emailTemplates.teaminvite', $data, function ($m) use ($data) {
+                //     $m->from('info@eiliana.com', $data['company_name']);
+                //     $m->to($data['to_user'], '')->subject($data['company_name'].' invited you to join Eiliana');
+                // });
             }
-            return redirect('company/bench')->with('success', 'The Invite has been sent successfully');
-        } else {
-            return redirect('company/bench')->with('error', 'This email-id already exits');
+            //return redirect('company/bench')->with('success', 'The Invite has been sent successfully');
+        }else {
+            $response['success'] = '2';
+            $response['errors'] = 'You are already accept this email';
         }
+        return response()->json($response);
     }
 
     public function acceptInvitation(Request $request)

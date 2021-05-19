@@ -24,7 +24,7 @@ Logout
 		}
 
         .account-register{
-            margin-left: -175px;
+            /* margin-left: -90px; */
             margin-top: 37px;
         }
 
@@ -50,7 +50,7 @@ Logout
 		.logout_page {
 			border: 1px solid #e4e0e0;
 			border-radius: 30px;
-            margin-left: 100px;
+            margin-left: 115px;
 		}
 
         .logout_sidebar{
@@ -66,8 +66,8 @@ Logout
         }
 
         .logout_content{
-            width: 470px;
-            margin-top: 215px;
+            width: 400px;
+            margin-top: 191px;
         }
 
 		@media only screen and (max-width: 768px){
@@ -98,7 +98,7 @@ Logout
             }
 
             .logout_sidebar {
-                margin-left: 74px !important;;
+                margin-left: 74px !important;
             }
 
         }
@@ -117,7 +117,7 @@ Logout
         </div>
       </div>
     </div>
-    <div class="col-lg-12 col-md-8 offset-md-2 mt-6 shadow p-0 logout_page">
+    <div class="col-lg-10 col-md-8 offset-md-2 mt-6 shadow p-0 logout_page">
         <div class="singup-body account-register">
             <div class="container">
                 <div class="row">
@@ -126,17 +126,20 @@ Logout
                         @if(!empty($user->pic))
                             <img src="{!! $user->pic !!}" class="img-fluid logout_img" alt="">
                         @else
-                            <img src="/assets/img/user_img.jpg" class="img-fluid logout_img" alt="">
+                            <img src="/assets/img/logout_img.png" class="img-fluid logout_img" alt="">
                         @endif
                             <h2 style="font-size: 25px;color: #41418a;">{!! $user->first_name !!} {!! $user->last_name !!}</h2>
-                            <p>@if($user->company_name){!! $user->company_name !!}@endif <br> {!! $user_country->name !!}</p>
+                            @if($user->company_name)
+                            <p>{!! $user->company_name !!}</p><br>
+                            @endif
+                            <p>{!! $user_country->name !!}</p>
                             <!-- <a href="/account/register" class="btn btn-light bt btn-lg">Signup Now</a> -->
                         </div>
                     </div>
                     <div class="col p-0 d-flex align-items-center justify-content-center bg-img-hero logout_sidebar">
                         <div class="account-second-side text-center">
                             <img src="/assets/img/logout_page.png" class="img-fluid logout_content" alt="">
-                            <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/login'">Refer of frelancer</button>
+                            <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/login'">Refer a freelancer</button>
                             <button class="login_signup red-linear-gradient text-white ml-3" onclick="location.href='/account/login'">Login</button>
                         </div>
                     </div>

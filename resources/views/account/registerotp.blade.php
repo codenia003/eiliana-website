@@ -15,6 +15,25 @@ OTP Verification
 <link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/register.css') }}">
+<style>
+       .align-items-center .login_side {
+            margin-top: 42px;
+		}
+
+        .align-items-center .otp_img {
+            margin-top: 94px;
+		}
+
+        .register-otp{
+            margin-bottom: -30px !important;
+        }
+
+		@media only screen and (max-width: 768px){
+            .register-otp{
+                margin-bottom: 0px !important;
+            }
+        }
+</style>
 <!--end of page level css-->
 @stop
 
@@ -69,11 +88,21 @@ OTP Verification
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0 d-flex align-items-center justify-content-center bg-img-hero" style="background-image: url(/assets/img/others/OTP-verification.jpg);">
+                    {{--<div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0 d-flex align-items-center justify-content-center bg-img-hero" style="background-image: url(/assets/img/others/OTP-verification.jpg);">
                         <div class="account-second-side text-center">
                             <img src="/assets/img/singin.png" class="img-fluid" alt="">
                             <p class="text-white">Already have an account?</p>
                             <a href="/account/login" class="btn btn-light bt btn-lg">Login</a>
+                        </div>
+                    </div>--}}
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0 align-items-center justify-content-center">
+                        <div class="account-second-side text-center login_side">
+                            <img src="/assets/img/singin.png" class="img-fluid" alt="">
+                            <p class="text-white">Already have an account?</p>
+                            <a href="/account/login" class="btn btn-light bt btn-lg">Login</a>
+                        </div>
+                        <div class="account-second-side text-center otp_img">
+                            <img src="/assets/img/others/OTP-verification.jpg" class="img-fluid" alt="">
                         </div>
                     </div>
                 </div>

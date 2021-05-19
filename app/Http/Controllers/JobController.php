@@ -113,17 +113,21 @@ class JobController extends JoshController
 
     public function jobProject(Request $request)
     {
-
-        $pagename = [
-        	'page_title' => 'Job Posting',
-        	'lookingfor' => '2'
-    	];
-        $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
-        $locations = Location::all();
-
-        $request->session()->forget('sales_referral');
-
-        return view('job/job-posting', compact('pagename','projectcategorys','locations'));
+        if(Session::get('users')['login_as'] == '2'){
+            $pagename = [
+                'page_title' => 'Job Posting',
+                'lookingfor' => '2'
+            ];
+            $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
+            $locations = Location::all();
+    
+            $request->session()->forget('sales_referral');
+    
+            return view('job/job-posting', compact('pagename','projectcategorys','locations'));
+        }
+        else{
+            return redirect('/account/login');
+        }
     }
 
     public function talentSearch(Request $request) {

@@ -100,7 +100,7 @@ Logout
             .logout_sidebar {
                 margin-left: 74px !important;;
             }
-        
+
         }
 </style>
 <!--end of page level css-->
@@ -125,9 +125,9 @@ Logout
                         <div class="account-second-side text-center">
                         @if(!empty($user->pic))
                             <img src="{!! $user->pic !!}" class="img-fluid logout_img" alt="">
-                          @else
+                        @else
                             <img src="/assets/img/user_img.jpg" class="img-fluid logout_img" alt="">
-                          @endif 
+                        @endif
                             <h2 style="font-size: 25px;color: #41418a;">{!! $user->first_name !!} {!! $user->last_name !!}</h2>
                             <p>@if($user->company_name){!! $user->company_name !!}@endif <br> {!! $user_country->name !!}</p>
                             <!-- <a href="/account/register" class="btn btn-light bt btn-lg">Signup Now</a> -->

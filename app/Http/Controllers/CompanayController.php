@@ -22,6 +22,7 @@ class CompanayController extends JoshController
     {
         $user = Sentinel::getUser();
         $email=$user->email;
+        // echo $email;
         $sql="select * from user_registration where email = '{$email}' ";
         $role = DB::select($sql);
         $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
@@ -34,6 +35,7 @@ class CompanayController extends JoshController
         $user = Sentinel::getUser();
         // echo $user->id;
         $email=$user->email;
+        // echo $email;
         $sql="select * from user_registration where email = '{$email}' ";
         $role = DB::select($sql);
         if (isset($role[0]->user_type_parent_id)) {

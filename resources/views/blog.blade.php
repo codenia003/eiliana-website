@@ -45,7 +45,7 @@ Blog
     {
         text-align: left;
         font-weight: bold;
-        font-size: 30px;
+        font-size: 29px;
         opacity: 0.9;
 
     }
@@ -227,7 +227,7 @@ Blog
     <div class="col-md-12 md-2 ">
         <div class="container">
             <div class="row" id="cover">
-                <img src="/assets/img/photo/banner.png" class="img-fluid p-4" alt="">
+                <img src="/assets/img/photo/blog_header.jpg" class="img-fluid p-4" alt="">
             </div>
         </div>
     </div>
@@ -235,17 +235,17 @@ Blog
 <hr>
 
 <!-- Container Section Strat -->
- <div class="container blogpage mt-0 pt-0">
+ <div class="container blogpage mt-0 pt-0 ">
     <!-- my style -->
     @forelse ($blogs as $blog)
     
     <div class="thumbnail m-0 p-0" id="thumbnail">
-        <div class="row mt-0 pt-0">
+        <div class="row mt-0 pt-0 pr-0">
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2" id="image">
                <img src="{{ URL::to('/uploads/blog/'.$blog->image) }}"  class="img-fluid" alt="Image">
                <!-- <img class="shadow-sm rounded-lg" src="{{ URL::to('/uploads/blog/'.$blog->image) }}" class="img-fluid" alt="Image"> -->
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2 text-center align-middle" id="content">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6 my-2 text-center align-middle mr-0 pr-0" id="content">
                 <!-- <br> -->
                 <p class="text-left" id="date"><b>
                     <?php
@@ -253,9 +253,11 @@ Blog
                     ?>
                    </b></p>
                 <br>
-                <p class="p-1 pl-0" id="blog-title" >{{$blog->title}}</p>
+                <div class="row ">
+                    <p class="p-1  ml-2 " id="blog-title" >{{$blog->title}}</p>
+                </div>
                 <p id="blog-footer">
-                    <i class="fas fa-user-circle"></i>&nbsp; By Jytsona <!-- {{$blog->author->first_name . ' ' . $blog->author->last_name}} --></a>
+                    <i class="fas fa-user-circle"></i>&nbsp; By Jyotsana Punj <!-- {{$blog->author->first_name . ' ' . $blog->author->last_name}} --></a>
                 </p>
                 <p class="text-left" id="button">
                         <a href="{{ URL::to('blogitem/'.$blog->slug) }}" class="btn btn-primary text-white">Read

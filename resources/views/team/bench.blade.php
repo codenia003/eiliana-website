@@ -18,8 +18,8 @@
                     <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
                 </h5>
             @endif
+
         @endif
-     >
     </div>
     <!-- Body -->
     <div class="row teams-header">

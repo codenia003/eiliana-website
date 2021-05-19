@@ -10,12 +10,16 @@
 </div>
 @stop
 @section('profile_content')
-    <div class="card-header listofteam" <?php if ($role[0]->user_type_parent_id ==1 ) {
-       echo 'style="display:none;"';
-    } ?> >
-        <h5 class="card-title">
-            <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
-        </h5>
+    <div class="card-header listofteam">
+
+        @if(isset($role[0]->user_type_parent_id))
+            @if($role[0]->user_type_parent_id!=1)
+                <h5 class="card-title">
+                    <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
+                </h5>
+            @endif
+        @endif
+     >
     </div>
     <!-- Body -->
     <div class="row teams-header">

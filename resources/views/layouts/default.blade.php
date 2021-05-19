@@ -272,7 +272,7 @@
                 <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid" alt="Image">
             </div>
             <h1 class="text-danger text-center mt-0 " id="sorry">SORRY</h1>
-            <p class="text-center mt-3 pt-3" id="content">We Couldn't Provide Suitable Solution</p>
+            <p class="text-center mt-3 pt-3" id="content">Currently we are support only portrait page.</p>
             <p class="text-center" id="back">Please go back and try in desktop and portrait mode</p>
             <center>
                 <a href="{{ url('/') }}" class="btn btn-danger text-center mt-4 mb-5 mt-5 pl-2 pr-2" id="btn"> &nbsp;&nbsp; BACK TO EILIANA  &nbsp;&nbsp;</a>
@@ -292,7 +292,9 @@
                         <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
                         <h4>Beta Version</h4>
                         <div class="beta-parent">
-                            <p>This section is still in finalization phase , kindly bear with us</p>
+                            <p>We are pleased to welcome you to experience the beta version of our portal.<br> Currently we are open for freelancers and agencies registration only.</p>
+                            {{-- <p>We are pleased to welcome you to experience the beta version of our portal.
+                            <br> This section is still in the finalization phase , kindly bear with us.</p> --}}
                         </div>
                     </div>
                 </div>
@@ -342,7 +344,7 @@
                         <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">About</a></li>
                         {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('careers') }}">Careers</a></li> --}}
                         <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Careers</a></li>
-                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('blog') }}">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('blog') }}">Blogs</a></li>
                         {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('customers') }}">Customers</a></li> --}}
                         <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Customers</a></li>
                         {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('hire-us') }}">Hire us</a></li> --}}
@@ -416,8 +418,12 @@
     <script src="{{ asset('js/pages/form_examples.js') }}"></script>
     <!--global js end-->
     <script>
+        function togglePopupHome(){
+            $('#modal-refer').modal('show');
+        }
         function togglePopup(){
             $('#modal-refer').modal('show');
+            $('.beta-parent').html('<p>We are pleased to welcome you to experience the beta version of our portal.<br> This section is still in the finalization phase , kindly bear with us.</p>');
         }
     </script>
     <!-- begin page level js -->

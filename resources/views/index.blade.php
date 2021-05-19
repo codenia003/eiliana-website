@@ -506,6 +506,7 @@ Home
         </div>
     </div>
 </section>
+
 <section class="section four-slider mt-4 searv">
     <div class="hire">
         <div class="shadow1">
@@ -567,7 +568,46 @@ Home
         </div>
     </div>
 </section>
-<section class="section container our-solution four-slider space-2">
+
+<section class="section my-2 mobile-bg">
+    <div class="container">
+        {{-- <div class="text-center mb-5">
+            <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
+            <div class="dividerheading"></div>
+        </div> --}}
+        <div class="space-0 explore-more">
+            <div class="row d-flex align-items-center">
+                <div class="col-12 col-md-5 col-lg-5 pb-lg-5 mb-md-0 pt-lg-4 p-5">
+                    <figure class="mt-4">
+                        <img class="img-fluid" src="/assets/img/photo/mobile-only.png" alt="SVG">
+                    </figure>
+                </div>
+                <div class="col-12 col-md-7 col-lg-7 pb-lg-5 mb-md-0 pt-lg-4 pl-lg-5 pl-4">
+                    <h1 class="headingmain1">Bringing the new age projects to your doorstep</h1>
+                    <ul class="list-unstyled list-article">
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Enhanced Exposure while working
+                            with Global Clients</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Anonymity for freelancers </li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Achieve Incremental Revenues & make
+                            life better!</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Manifest your creativity & Be
+                            Future Ready- Gig Strong!</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Fine tune your Financial
+                            Aspirations with Freedom & Flexibility</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Secured & Weekly Payments Schedule
+                            by Eiliana</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> No Minimum Account Balance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{-- <a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span
+                class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span
+                class="fa fa-angle-right"></span></a> --}}
+    </div>
+</section>
+
+<section class="section container our-solution four-slider space-1">
     <div class="text-center">
         <h1 class="headingmain1">Crowd <span><img src="/assets/img/heart-icon.jpg"></span> Favourites</h1>
         <p class="subtitle1">Checkout some of the most popular services people pay for on Eiliana.</p>
@@ -782,158 +822,7 @@ Home
         </div>
     </div>
 </div>
-<section class="section my-2 mobile-bg">
-    <div class="container">
-        {{-- <div class="text-center mb-5">
-            <h1 class="headingmain1">Get Work Done In Over 2500 Categories</h1>
-            <div class="dividerheading"></div>
-        </div> --}}
-        <div class="space-0 explore-more">
-            <div class="row d-flex align-items-center">
-                <div class="col-12 col-md-5 col-lg-5 pb-lg-5 mb-md-0 pt-lg-4 p-5">
-                    <figure class="mt-4">
-                        <img class="img-fluid" src="/assets/img/photo/mobile-only.png" alt="SVG">
-                    </figure>
-                </div>
-                <div class="col-12 col-md-7 col-lg-7 pb-lg-5 mb-md-0 pt-lg-4 pl-lg-5 pl-4">
-                    <h1 class="headingmain1">Bringing the new age projects to your doorstep</h1>
-                    <ul class="list-unstyled list-article">
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Enhanced Exposure while working
-                            with Global Clients</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Anonymity for freelancers </li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Achieve Incremental Revenues & make
-                            life better!</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Manifest your creativity & Be
-                            Future Ready- Gig Strong!</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Fine tune your Financial
-                            Aspirations with Freedom & Flexibility</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Secured & Weekly Payments Schedule
-                            by Eiliana</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> No Minimum Account Balance</li>
-                    </ul>
-                </div>
-                {{-- <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
-                    <ul class="list-unstyled list-article">
-                        <li><a class="link-underline" href="#">App Development</a></li>
-                        <li><a class="link-underline" href="#">Designing & Architecture</a></li>
-                        <li><a class="link-underline" href="#">IT Infrastructure</a></li>
-                        <li><a class="link-underline" href="#">SAP Skills</a></li>
-                        <li><a class="link-underline" href="#">Oracle</a></li>
-                        <li><a class="link-underline" href="#">Talent Management</a></li>
-                        <li><a class="link-underline" href="#">Finance</a></li>
-                    </ul>
-                </div>
 
-                <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
-                    <ul class="list-unstyled list-article">
-                        <li><a class="link-underline" href="#">Sales & Marketing</a></li>
-                        <li><a class="link-underline" href="#">Legal</a></li>
-                        <li><a class="link-underline" href="#">CXO On Demand</a></li>
-                        <li><a class="link-underline" href="#">HTML</a></li>
-                        <li><a class="link-underline" href="#">Translation</a></li>
-                        <li><a class="link-underline" href="#">Python</a></li>
-                        <li><a class="link-underline" href="#">MySQL</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
-                    <ul class="list-unstyled list-article">
-                        <li><a class="link-underline" href="#">Article Writing</a></li>
-                        <li><a class="link-underline" href="#">UX Writing</a></li>
-                        <li><a class="link-underline" href="#">Creative Writing</a></li>
-                        <li><a class="link-underline" href="#">Banner Design</a></li>
-                        <li><a class="link-underline" href="#">Illustration</a></li>
-                        <li><a class="link-underline" href="#">Ghostwriting</a></li>
-                        <li><a class="link-underline" href="#">Data Entry</a></li>
-                        <li><a class="link-underline" href="#">3D Animation</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 border-right pt-lg-4">
-                    <ul class="list-unstyled list-article">
-                        <li><a class="link-underline" href="#">Android Developer</a></li>
-                        <li><a class="link-underline" href="#">Bookkeeper</a></li>
-                        <li><a class="link-underline" href="#">Content Writer</a></li>
-                        <li><a class="link-underline" href="#">Copywriter</a></li>
-                        <li><a class="link-underline" href="#">Customer Service</a></li>
-                        <li><a class="link-underline" href="#">Database Administrator</a></li>
-                        <li><a class="link-underline" href="#">Data Scientist</a></li>
-                        <li><a class="link-underline" href="#">Facebook Developer</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-12 col-md col-lg pb-lg-5 mb-md-0 pt-lg-4">
-                    <ul class="list-unstyled list-article">
-                        <li><a class="link-underline" href="#">Graphic Designer</a></li>
-                        <li><a class="link-underline" href="#">Information Security Analyst</a></li>
-                        <li><a class="link-underline" href="#">iOS Developer</a></li>
-                        <li><a class="link-underline" href="#">Java Developer</a></li>
-                        <li><a class="link-underline" href="#">JavaScript Developer</a></li>
-                        <li><a class="link-underline" href="#">Logo Designer</a></li>
-                        <li><a class="link-underline" href="#">Mobile App Developer</a></li>
-                        <li><a class="link-underline" href="#">PHP Developer</a></li>
-                    </ul>
-                </div> --}}
-            </div>
-        </div>
-        {{-- <a class="font-weight-700 mt-4 text-orange float-right" href="#">Explore More <span
-                class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span><span
-                class="fa fa-angle-right"></span></a> --}}
-    </div>
-</section>
-
-<section class="section our-solution">
-    <div class="text-center w-lg-60 mx-auto">
-        <h1 class="headingmain1">Refer Videos</h1>
-        <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right project and clients find the right talent for their job. Checkout our video to see how we go about doing that.</p>
-        <div class="dividerheading"></div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-                <figure class="mt-5">
-                    <img class="img-fluid" src="/assets/img/photo/stock-howtes.png" alt="SVG">
-                </figure>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-12">
-                <div class="banner_custom">
-                    <div class="banner_custom_services">
-                        <div class="multiple-three-carousel">
-                            <div class="slide">
-                                <div class="crowd_favrt">
-                                    <div class="video-player mx-md-auto">
-                                        <a class="js-inline-video-player video-player-btn video-player-centered"
-                                            href="#" data-toggle="modal" data-target="#myModal">
-                                            <div class="card-img-top">
-                                                <img class="img-fluid video-player-preview shadow video-btn"
-                                                    src="/assets/img/photo/refer/2.png" alt="Image"
-                                                    data-target="#myModal">
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide">
-                                <div class="crowd_favrt">
-                                    <div class="video-player mx-md-auto">
-                                        <a class="js-inline-video-player video-player-btn video-player-centered"
-                                            href="#" data-toggle="modal" data-target="#myModal_1">
-                                            <div class="card-img-top">
-                                                <img class="img-fluid video-player-preview shadow video-btn"
-                                                    src="/assets/img/photo/refer/1.png" alt="Image"
-                                                    data-target="#myModal_1">
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <section class="section my-2 new-page-bg bg-img-hero"
     style="background-image: url(/assets/img/photo/new_page-only.png);">
     <div class="container">
@@ -1078,6 +967,60 @@ Home
         </div>
     </div>
 </section>
+
+<section class="section our-solution py-2">
+    <div class="text-center w-lg-60 mx-auto">
+        <h1 class="headingmain1">Reference Video</h1>
+        <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right project and clients find the right talent for their job. Checkout our video to see how we go about doing that.</p>
+        <div class="dividerheading"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                <figure class="mt-5">
+                    <img class="img-fluid" src="/assets/img/photo/stock-howtes.png" alt="SVG">
+                </figure>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-12">
+                <div class="banner_custom">
+                    <div class="banner_custom_services">
+                        <div class="multiple-three-carousel">
+                            <div class="slide">
+                                <div class="crowd_favrt">
+                                    <div class="video-player mx-md-auto">
+                                        <a class="js-inline-video-player video-player-btn video-player-centered"
+                                            href="#" data-toggle="modal" data-target="#myModal">
+                                            <div class="card-img-top">
+                                                <img class="img-fluid video-player-preview shadow video-btn"
+                                                    src="/assets/img/photo/refer/2.png" alt="Image"
+                                                    data-target="#myModal">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <div class="crowd_favrt">
+                                    <div class="video-player mx-md-auto">
+                                        <a class="js-inline-video-player video-player-btn video-player-centered"
+                                            href="#" data-toggle="modal" data-target="#myModal_1">
+                                            <div class="card-img-top">
+                                                <img class="img-fluid video-player-preview shadow video-btn"
+                                                    src="/assets/img/photo/refer/1.png" alt="Image"
+                                                    data-target="#myModal_1">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {{-- <div class="our-slotuion slider mb-5 mt-5 text-center w-lg-60 mx-auto">
     <div class="video-player mx-md-auto">
         <a class="js-inline-video-player video-player-btn video-player-centered" href="#" data-toggle="modal"
@@ -1100,7 +1043,7 @@ Home
             <div class="modal-body">
                 <div class="main-moudle">
 
-                    <video width="690" height="340" controls>
+                    <video width="100%" controls>
                         <source src="{{URL::asset("assets/video/eiliana_final.mp4")}}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -1122,7 +1065,7 @@ Home
             <div class="modal-body">
                 <div class="main-moudle">
 
-                    <video width="690" height="340" controls>
+                    <video width="100%" controls>
                         <source src="{{URL::asset("assets/video/eiliana_final_2.mp4")}}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -1179,7 +1122,7 @@ Home
                 location.replace(url);
             }
         });
-        togglePopup();
+        togglePopupHome();
     });
 </script>
 <!-- <script>

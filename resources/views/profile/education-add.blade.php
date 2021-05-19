@@ -74,7 +74,7 @@
                                         <div class="col">
                                             <select class="form-control" required="" name="month[]">
                                                 <option value="">From</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -82,7 +82,7 @@
                                         <div class="col">
                                             <select class="form-control" required="" name="year[]">
                                                 <option value="">Till</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -139,7 +139,7 @@
 				                	<div class="col">
 						                <select class="form-control" required="" name="month[]">
 	                                        <option value="">From</option>
-	                                        @for ($i = 2000; $i < 2021; $i++)
+	                                        @for ($i = 1960; $i < 2021; $i++)
 	                                        <option value="{{ $i }}">{{ $i }}</option>
 	                                        @endfor
 	                                    </select>
@@ -147,7 +147,7 @@
 			                    	<div class="col">
 			                    		<select class="form-control" required="" name="year[]">
 	                                        <option value="">Till</option>
-	                                        @for ($i = 2000; $i < 2021; $i++)
+	                                        @for ($i = 1960; $i < 2021; $i++)
 	                                        <option value="{{ $i }}">{{ $i }}</option>
 	                                        @endfor
 	                                    </select>
@@ -215,7 +215,7 @@
                                         <div class="col">
                                             <select class="form-control" required="" name="month[]">
                                                 <option value="">From</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}" {{ ($education->month==$i)? "selected" : "" }}>{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -223,7 +223,7 @@
                                         <div class="col">
                                             <select class="form-control" required="" name="year[]">
                                                 <option value="">Till</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -252,7 +252,7 @@
                                 <?php
                                             // echo "<pre>";
                                             // print_r($qualifications);
-                                            
+
                                         ?>
                                 <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Post Graducation</label>
@@ -286,7 +286,7 @@
                                         <div class="col">
                                             <select class="form-control" name="month[]">
                                                 <option value="">From</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -294,7 +294,7 @@
                                         <div class="col">
                                             <select class="form-control" name="year[]">
                                                 <option value="">Till</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -371,7 +371,7 @@
             	<div class="col">
 	                <select class="form-control" required="" name="month[]">
                         <option value="">From</option>
-                        @for ($i = 2000; $i < 2021; $i++)
+                        @for ($i = 1960; $i < 2021; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>
@@ -379,7 +379,7 @@
             	<div class="col">
             		<select class="form-control" required="" name="year[]">
                         <option value="">Till</option>
-                        @for ($i = 2000; $i < 2021; $i++)
+                        @for ($i = 1960; $i < 2021; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>
@@ -436,7 +436,7 @@
             	<div class="col">
 	                <select class="form-control" required="" name="month[]">
                         <option value="">From</option>
-                        @for ($i = 2000; $i < 2021; $i++)
+                        @for ($i = 1960; $i < 2021; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>
@@ -444,7 +444,7 @@
             	<div class="col">
             		<select class="form-control" required="" name="year[]">
                         <option value="">Till</option>
-                        @for ($i = 2000; $i < 2021; $i++)
+                        @for ($i = 1960; $i < 2021; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>

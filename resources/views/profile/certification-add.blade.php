@@ -60,7 +60,7 @@
                                         <div class="col">
                                             <select class="form-control" required="" name="from_date[]">
                                                 <option value="">From</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}" {{ ($certificate->from_date==$i)? "selected" : "" }}>{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -68,7 +68,7 @@
                                         <div class="col">
                                             <select class="form-control" required="" name="till_date[]">
                                                 <option value="">Till</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}" {{ ($certificate->from_date==$i)? "selected" : "" }}>{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -106,7 +106,7 @@
                                         <div class="col">
                                             <select class="form-control" name="from_date[]" required="">
                                                 <option value="">From</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -114,7 +114,7 @@
                                         <div class="col">
                                             <select class="form-control" name="till_date[]" required="">
                                                 <option value="">Till</option>
-                                                @for ($i = 2000; $i < 2021; $i++)
+                                                @for ($i = 1960; $i < 2021; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
                                             </select>
@@ -172,7 +172,7 @@
                 <div class="col">
                     <select class="form-control" required="" name="from_date[]">
                         <option value="">From</option>
-                        @for ($i = 2000; $i < 2021; $i++)
+                        @for ($i = 1960; $i < 2021; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>
@@ -180,7 +180,7 @@
                 <div class="col">
                     <select class="form-control" required="" name="till_date[]">
                         <option value="">Till</option>
-                        @for ($i = 2000; $i < 2021; $i++)
+                        @for ($i = 1960; $i < 2021; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>

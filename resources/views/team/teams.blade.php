@@ -71,13 +71,13 @@
                     <div class="col-md-4 md-2 mt-6 teams_img">
                     <img src="/assets/img/teams.png">
                     </div>
-                        
+
                     <div class="col-md-8 md-2 mt-6" style="margin-top: 15rem !important;">
                     <div class="form-group text-right mt-5">
                             <div class="btn-group" role="group">
                                 <button class="btn btn-primary">
                                     <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
-                                    Submit
+                                    SUBMIT
                                 </button>
                                 <a  href="{{ URL::to('/company/bench')  }}" class="btn btn-primary" type="reset">CANCEL</a>
                             </div>

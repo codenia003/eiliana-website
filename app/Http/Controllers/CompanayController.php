@@ -87,19 +87,6 @@ class CompanayController extends JoshController
                 $teaminvitation->save();
 
                 // $data = [];
-                $insertedId = $projectschedules->project_schedule_id;
-                foreach ($input['sub_module_id'] as $key1 => $value1) {
-
-                    if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
-    
-                        $subschedulemodule = new ProjectSubScheduleModule;
-                        $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
-                        $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
-                        $subschedulemodule->module_description = $input['sub_module_description'][$key1];
-                        $subschedulemodule->module_status = $input['sub_module_status'][$key1];
-                        $subschedulemodule->save();
-                    }
-                }
 
                 $data['team_invitation_id'] = $teaminvitation->team_invitation_id;
                 $data['token'] = $teaminvitation->token;

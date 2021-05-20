@@ -40,52 +40,26 @@ class CompanayController extends JoshController
             $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
             return view('team/bench', compact('teaminvitations'));
         }
-
+        
     }
     public function teamsForm()
     {
         $user = Sentinel::getUser();
         // echo $user->id;
-<<<<<<< HEAD
-        $email=$user->email;
-        // echo $email;
-        $sql="select * from user_registration where email = '{$email}' ";
-        $role = DB::select($sql);
-        // print_r($role);
-
-        if (isset($role[0]->user_type_parent_id)) {
-           if ($role[0]->user_type_parent_id==1)
-           {
-                
-                return view('errors/404');
-           }
-           else
-           {
-                return view('team/teams');
-           }
-        }
-        else
-        {
-            return view('errors/404');
-        }
-        
-=======
         //$id=$user->id;
-        // if(Session::get('teaminvitation')['to_user'])
-        // {
-        //     $invite_user_email = Session::get('teaminvitation')['to_user'];
-        //     $role = DB::select("select * from user_registration where email = '.$invite_user_email. '");
-        //     if ($role->user_type_parent_id==1) {
-        //     return view('errors/404');
-        //     }
-        //     else
-        //     {
-        //         return view('team/teams');
-        //     }
-        //     return view('team/teams');
-        // }
-        return view('team/teams');
->>>>>>> 7ed1705869dc2e907f7e022cb2975bfaecc19b46
+        if(Session::get('teaminvitation')['to_user'])
+        {
+            $invite_user_email = Session::get('teaminvitation')['to_user'];
+            $role = DB::select("select * from user_registration where email = '.$invite_user_email. '");
+            if ($role->user_type_parent_id==1) {
+            return view('errors/404');
+            }
+            else
+            {
+                return view('team/teams');
+            }
+            return view('team/teams');
+        }    
     }
 
     public function registerTeams(Request $request)
@@ -93,51 +67,61 @@ class CompanayController extends JoshController
         $user = Sentinel::getUser();
         $input = $request->except('_token');
 
-
-        if(!empty($input['uname'])) {
+        $teaminvitationcheck = TeamInvitation::where('to_user', '=', $input['to_user'])->first();
+        if($teaminvitationcheck === null) {
             foreach($input['uname'] as $key => $value) {
-                $teaminvitationcheck = TeamInvitation::where('to_user', '=', $input['to_user'][$key])->first();
-                if($teaminvitationcheck === null) {
 
-                    do {
-                        $token = str_random(30);
-                    } while (TeamInvitation::where('token', $token)->first());
+                do {
+                    $token = str_random(30);
+                } while (TeamInvitation::where('token', $token)->first());
 
-                    $teaminvitation = new TeamInvitation;
-                    $teaminvitation->from_user_id = $user->id;
-                    $teaminvitation->name = $input['uname'][$key];
-                    $teaminvitation->to_user = $input['to_user'][$key];
-                    $teaminvitation->subject = $input['subject'][$key];
-                    $teaminvitation->message = $input['messagetext'][$key];
-                    $teaminvitation->user_bid = $input['user_bid'][$key];
-                    $teaminvitation->token = $token;
-                    $teaminvitation->status = 1;
-                    $teaminvitation->save();
+                $teaminvitation = new TeamInvitation;
+                $teaminvitation->from_user_id = $user->id;
+                $teaminvitation->name = $input['uname'][$key];
+                $teaminvitation->to_user = $input['to_user'][$key];
+                $teaminvitation->subject = $input['subject'][$key];
+                $teaminvitation->message = $input['messagetext'][$key];
+                $teaminvitation->user_bid = $input['user_bid'][$key];
+                $teaminvitation->token = $token;
+                $teaminvitation->status = 1;
+                $teaminvitation->save();
 
-                    // $data = [];
+                // $data = [];
+                $insertedId = $projectschedules->project_schedule_id;
+                foreach ($input['sub_module_id'] as $key1 => $value1) {
 
-                    $data['team_invitation_id'] = $teaminvitation->team_invitation_id;
-                    $data['token'] = $teaminvitation->token;
-                    $data['user_bid'] = $teaminvitation->user_bid;
-                    $data['company_name'] = $user->company_name;
-                    $data['to_user'] = $teaminvitation->to_user;
-                    $data['subject'] = $teaminvitation->subject;
-                    $data['message'] = $teaminvitation->message;
-
-                    $url = URL::temporarySignedRoute(
-                        'acceptinvitation', now()->addMinutes(300), ['email' => $teaminvitation->to_user,'token' => $teaminvitation->token,'user_type' => $teaminvitation->user_bid]
-                    );
-
-                    $data['url'] = $url;
-
-                    // Send the activation code through email
-                    Mail::send('emails.emailTemplates.teaminvite', $data, function ($m) use ($data) {
-                        $m->from('info@eiliana.com', $data['company_name']);
-                        $m->to($data['to_user'], '')->subject($data['company_name'].' invited you to join Eiliana');
-                    });
+                    if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
+    
+                        $subschedulemodule = new ProjectSubScheduleModule;
+                        $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
+                        $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
+                        $subschedulemodule->module_description = $input['sub_module_description'][$key1];
+                        $subschedulemodule->module_status = $input['sub_module_status'][$key1];
+                        $subschedulemodule->save();
+                    }
                 }
+
+                $data['team_invitation_id'] = $teaminvitation->team_invitation_id;
+                $data['token'] = $teaminvitation->token;
+                $data['user_bid'] = $teaminvitation->user_bid;
+                $data['company_name'] = $user->company_name;
+                $data['to_user'] = $teaminvitation->to_user;
+                $data['subject'] = $teaminvitation->subject;
+                $data['message'] = $teaminvitation->message;
+
+                $url = URL::temporarySignedRoute(
+                    'acceptinvitation', now()->addMinutes(300), ['email' => $teaminvitation->to_user,'token' => $teaminvitation->token,'user_type' => $teaminvitation->user_bid]
+                );
+
+                $data['url'] = $url;
+
+                // Send the activation code through email
+                Mail::send('emails.emailTemplates.teaminvite', $data, function ($m) use ($data) {
+                    $m->from('info@eiliana.com', $data['company_name']);
+                    $m->to($data['to_user'], '')->subject($data['company_name'].' invited you to join Eiliana');
+                });
             }
-        } else {
+        }else {
             $response['success'] = '2';
             $response['errors'] = 'This email already exits';
         }

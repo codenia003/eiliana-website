@@ -38,13 +38,13 @@
 	        	<div class="ug-qualification-1">
 	        		@forelse ($ug_educations as $education)
                         <div class="ug-qualification-3 remove-qual-{{ $education->education_id }}">
-                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Under Graducation</span>
+                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Under Graduation</span>
                             <!-- <button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
                             <input type="hidden" name="graduation_type[]" value="3">
                             <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
                             <div class="form-row">
                                 <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
-                                    <label>Under Graducation</label>
+                                    <label>Under Graduation</label>
                                     <select name="degree[]" class="form-control">
                                         <option value=""></option>
                                         @foreach ($qualifications as $qualification)
@@ -104,12 +104,12 @@
                         </div>
 					@empty
 	        		<div class="ug-qualification">
-			        	<span class="h4 text-left mt-3 mb-4 d-inline-block">Under Graducation</span>
+			        	<span class="h4 text-left mt-3 mb-4 d-inline-block">Under Graduation</span>
 		            	<input type="hidden" name="graduation_type[]" value="3">
 		            	<input type="hidden" name="education_id[]" value="0">
 		            	<div class="form-row">
 				            <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
-				                <label>Under Graducation</label>
+				                <label>Under Graduation</label>
 				                <select name="degree[]" required="" class="form-control" >
 		                            <option value=""></option>
 		                            @foreach ($qualifications as $qualification)
@@ -178,14 +178,14 @@
 		        <div class="pg-qualification-1">
 		        	@forelse ($pg_educations as $education)
                         <div class="pg-qualification-3 remove-qual-{{ $education->education_id }}">
-                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graducation</span>
+                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graduation</span>
                             <!-- <button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
 
                             <input type="hidden" name="graduation_type[]" value="4">
                             <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
                             <div class="form-row">
                                 <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
-                                    <label>Post Graducation</label>
+                                    <label>Post Graduation</label>
                                     <select name="degree[]" class="form-control">
                                         <option value=""></option>
                                         @foreach ($qualifications as $qualification)
@@ -208,7 +208,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="form-row" style="font-family: Montserrat;">
                                 <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Year of Graduation</label>
                                     <div class="form-row">
@@ -245,7 +245,7 @@
                         </div>
 					@empty
                         <div class="pg-qualification">
-                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graducation </span>
+                            <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graduation </span>
                             <input type="hidden" name="graduation_type[]" value="4">
                             <input type="hidden" name="education_id[]" value="0">
                             <div class="form-row">
@@ -255,7 +255,7 @@
 
                                         ?>
                                 <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
-                                    <label>Post Graducation</label>
+                                    <label>Post Graduation</label>
                                     <select name="degree[]" class="form-control">
                                         <option value=""></option>
 
@@ -335,14 +335,14 @@
     </div>
 </div>
 <div class="ug-qualification-2 d-none">
-	<span class="h4 text-left mt-3 mb-4 d-inline-block">Under Graducation</span>
+	<span class="h4 text-left mt-3 mb-4 d-inline-block">Under Graduation</span>
 	<!-- <button type="button" class="remove-ug btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
 
 	<input type="hidden" name="graduation_type[]" value="3">
 	<input type="hidden" name="education_id[]" id="education_id" value="0">
 	<div class="form-row">
         <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
-            <label>Under Graducation</label>
+            <label>Under Graduation</label>
             <select name="degree[]" required="" class="form-control">
                 <option value=""></option>
                 @foreach ($qualifications as $qualification)
@@ -400,13 +400,13 @@
     </div>
 </div>
 <div class="pg-qualification-2 d-none">
-	<span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graducation </span>
+	<span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graduation </span>
 	<!-- <button type="button" class="remove-pg btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
 	<input type="hidden" name="graduation_type[]" value="4">
 	<input type="hidden" name="education_id[]" id="education_id" value="0">
 	<div class="form-row">
         <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
-            <label>Post Graducation</label>
+            <label>Post Graduation</label>
             <select name="degree[]" class="form-control" required>
                 <option value=""></option>
                 @foreach ($qualifications as $qualification)

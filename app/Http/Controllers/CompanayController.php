@@ -38,6 +38,8 @@ class CompanayController extends JoshController
         // echo $email;
         $sql="select * from user_registration where email = '{$email}' ";
         $role = DB::select($sql);
+        // print_r($role);
+
         if (isset($role[0]->user_type_parent_id)) {
            if ($role[0]->user_type_parent_id==1)
            {
@@ -51,7 +53,7 @@ class CompanayController extends JoshController
         }
         else
         {
-            return view('team/teams');
+            return view('errors/404');
         }
         
     }

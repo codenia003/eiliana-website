@@ -22,6 +22,7 @@ Blog
     #content
     {
 
+        font-family: Montserrat !important;
         vertical-align: middle;
         align-items: center;
         text-align: center;

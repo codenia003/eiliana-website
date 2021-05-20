@@ -21,7 +21,7 @@ Blog
     }
     #info
     {
-        font-family: serif;
+         font-family: Montserrat !important;
         font-size: 17px;
     }
     #footer
@@ -38,6 +38,7 @@ Blog
     {
         #title
         {
+        font-family: Montserrat !important;
          font-size: 22px !important ;
          margin-left: 20px !important;
         }
@@ -50,7 +51,7 @@ Blog
         }
         #info
         {
-            font-family: serif;
+             font-family: Montserrat !important;
             font-size: 17px;
             margin-left: 20px !important;
         }
@@ -59,10 +60,12 @@ Blog
             font-size: 17px;
             margin-left: 20px !important;
             margin-right: 10px !important;
+             font-family: Montserrat !important;
         }
         #footer_div
         {
             padding-right: 200px;
+             font-family: Montserrat !important;
         }
     }
     @media (min-width: 550px)and (max-width: 750px)
@@ -156,6 +159,11 @@ Blog
             margin-right: 0px !important;
         }
     }
+    body,p,h1,h2,span,h3,a,h3,h4,h5
+    {
+        font-family: Montserrat !important;
+    }
+    
 
 </style>
 @stop

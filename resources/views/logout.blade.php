@@ -43,7 +43,7 @@ Logout
         .account-second-side .logout_img{
             width: 232px;
             border-radius: 50%;
-            margin-top: 303px;
+            margin-top: 236px;
             margin-bottom: 5px;
         }
 
@@ -66,7 +66,7 @@ Logout
         }
 
         .logout_content{
-            width: 400px;
+            width: 375px;
             margin-top: 191px;
         }
 

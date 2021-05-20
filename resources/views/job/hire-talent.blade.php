@@ -147,8 +147,8 @@
                                     </div>
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
-                                            {{-- <button class="btn btn-primary" type="submit"> --}}
-                                            <button class="btn btn-primary" type="button" onclick="togglePopup()">
+                                            <button class="btn btn-primary" type="submit"> 
+                                            {{-- <button class="btn btn-primary" type="button" onclick="togglePopup()">--}}
                                                Search >>>
                                             </button>
                                         </div>

@@ -120,9 +120,9 @@ class ProjectController extends JoshController
         $technologty_pre = implode(',', $technologty_pre);
         $input['technologty_pre'] = $technologty_pre;
 
-        $framework = $request->input('framework');
-        $framework = implode(',', $framework);
-        $input['framework'] = $framework;
+        // $framework = $request->input('framework');
+        // $framework = implode(',', $framework);
+        // $input['framework'] = $framework;
 
         $current = Carbon::now();
         $projectExpires = $current->addDays(60);
@@ -142,7 +142,7 @@ class ProjectController extends JoshController
         $projects->experience_month = $input['experience_month'];
         $projects->customer_industry = $input['customer_industry'];
         $projects->technologty_pre = $input['technologty_pre'];
-        $projects->framework = $input['framework'];
+        // $projects->framework = $input['framework'];
         $projects->candidate_role = $input['candidate_role'];
         $projects->product_industry_exprience = $input['product_industry_exprience'];
         $projects->location = $input['location'];

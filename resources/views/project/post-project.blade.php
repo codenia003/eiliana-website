@@ -187,19 +187,25 @@ Post Project
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Technology Preference</label>
-                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
+                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple required>
                                                 <option value=""></option>
                                                 @foreach ($technologies as $technology)
                                                 <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
                                                 @endforeach
                                             </select>
+                                            {{--<select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
+                                                <option value=""></option>
+                                                @foreach ($technologies as $technology)
+                                                <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                                                @endforeach
+                                            </select>--}}
                                         </div>
-                                        <div class="form-group col-12">
+                                        {{--<div class="form-group col-12">
                                             <label>Framework</label>
                                             <select class="form-control select2" name="framework[]" id="framework" multiple required>
                                                 <option value=""></option>
                                             </select>
-                                        </div>
+                                        </div>--}}
                                         <div class="form-group col">
                                             <label>Candidate Role</label>
                                             <select name="candidate_role" class="form-control" required>

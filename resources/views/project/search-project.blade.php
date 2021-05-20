@@ -11,6 +11,21 @@
 <!--page level css starts-->
 <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
 <link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
+<style>
+       .search-project1 .basic-info label.form-check-label {
+            padding-left: 4px;
+            padding-top: 2px;
+        }
+        .search-project1 .basic-info label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #595959;
+            padding: 2px;
+        }
+        .search-project1 .form-check-label {
+            margin-bottom: 0;
+        }
+</style>
 <!--end of page level css-->
 @stop
 {{-- breadcrumb --}}
@@ -34,7 +49,7 @@
                     <div id="notific">
                         @include('notifications')
                     </div>
-                    <div class="advance-search singup-body login-body">
+                    <div class="advance-search singup-body login-body search-project1">
                         <form action="{{ url('/search-project') }}" method="get" id="hireTalentForm" enctype="multipart/form-data">
                             {{-- @csrf --}}
                             <div class="card">
@@ -96,6 +111,55 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group basic-info mb-3">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="hourly" checked>
+                                                <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="retainership">
+                                                <label class="form-check-label" for="inlineCheckbox2">Retainer</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input model_engagement" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="project-based">
+                                                <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group hourly" id="hourly">
+                                            <label>Rate Per Hour</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <input type="text" name="amount" class="form-control">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" name="amount_to" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group retainership" id="retainership">
+                                            <label>Rate Per Month</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <input type="text" name="amount" class="form-control">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" name="amount_to" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group project-based" id="project-based">
+                                            <label>Total Project Amount</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <input type="text" name="amount" class="form-control">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" name="amount_to" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
 					                	<div class="form-group project-budget d-none">
 	                                        <label>Project Budget</label>
 	                                        <div class="form-row">
@@ -118,7 +182,7 @@
 	                                        </div>
                                         </div>
                                         <div class="form-group project-technology d-none">
-	                                        <label>Project Framework</label>
+	                                        <label>Technology Preference</label>
 	                                        <div class="form-row">
                                                 <div class="form-group col">
                                                     {{-- <label>Technology Preference</label> --}}
@@ -129,12 +193,12 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="form-group col">
-                                                    {{-- <label>Framework</label> --}}
+                                                {{--  <div class="form-group col">
+                                                    <label>Framework</label> 
                                                     <select class="form-control" name="framework" id="framework">
                                                         <option value="">Select Framework</option>
                                                     </select>
-                                                </div>
+                                                </div>--}}
 	                                        </div>
                                         </div>
                                         <div class="form-group project-duration d-none">
@@ -195,8 +259,8 @@
 					                </div>
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
-                                            {{-- <button class="btn btn-primary" type="submit"> --}}
-                                            <button class="btn btn-primary" type="button" onclick="togglePopup()">
+                                            <button class="btn btn-primary" type="submit">
+                                            <!-- <button class="btn btn-primary" type="button" onclick="togglePopup()"> -->
                                                Search >>>
                                             </button>
                                         </div>
@@ -257,10 +321,22 @@
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/frontend/jquery.circliful.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
+ $(document).ready(function() {
+    $('.retainership').hide();
+    $('.project-based').hide();
+    $('input[type="checkbox"]').click(function(){
+        var inputValue = $(this).attr("value");
+        $("." + inputValue).toggle();
+    });
+});
+
+
     $(window).bind("load", function() {
         changeLookingFor();
         changeBrowseProject();
+        //changeBrowseProjectType();
         change_category();
     });
     function changeBrowseProject() {
@@ -279,6 +355,19 @@
             $('.project-technology').addClass("d-none");
         }
     }
+
+    
+    // function changeBrowseProjectType() {
+    //     var method = $('input[name="model_engagement"]:checked').attr('value');
+    //     if (method == '1') {
+    //         $(".hourly" + method).toggle();
+    //     } else if(method == '2') {
+    //         $('.retainership').removeClass("d-none");
+    //     } else {
+    //         $('.project-based').removeClass("d-none");
+    //     }
+    // }
+
 	function changeLookingFor() {
         // var anonymous = e.target.value;
         var anonymous = $('input[name="lookingfor"]:checked').attr('value');

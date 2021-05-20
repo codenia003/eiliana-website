@@ -774,7 +774,7 @@ Home
 </section>
 
 <div class="overflow-hidden contract-job">
-    <div class="container space-1 space-top-md-1 space-bottom-2">
+    <div class="container space-0 space-top-md-1 space-bottom-2">
         <div class="row justify-content-lg-between align-items-end">
             <div class="col-md-7 col-lg-7 mb-7 mb-md-0">
                 <div class="mb-4">
@@ -968,7 +968,7 @@ Home
     </div>
 </section>
 
-<section class="section our-solution py-2">
+<section class="section our-solution py-5">
     <div class="text-center w-lg-60 mx-auto">
         <h1 class="headingmain1">Reference Video</h1>
         <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right project and clients find the right talent for their job. Checkout our video to see how we go about doing that.</p>

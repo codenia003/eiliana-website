@@ -10,15 +10,15 @@
 </div>
 @stop
 @section('profile_content')
-   @isset(Session::get('teaminvitation')['to_user'])
-     @if(user_type_parent_id == '0')
+   {{-- @isset(Session::get('teaminvitation')['to_user'])
+     @if(user_type_parent_id == '0') --}}
         <div class="card-header listofteam">
             <h5 class="card-title">
                 <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
             </h5>
         </div>
-     @endif
-    @endisset    
+     {{-- @endif
+    @endisset     --}}
     <!-- Body -->
     <div class="row teams-header">
         <div class="col-md-4 md-2 mt-6">
@@ -63,6 +63,6 @@
             {{ $teaminvitations->withQueryString()->links() }}
         </div>
     </div>
-    
+
     <!-- End Body -->
 @stop

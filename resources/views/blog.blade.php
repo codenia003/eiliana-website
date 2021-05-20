@@ -51,7 +51,7 @@ Blog
     }
     #blog-footer
     {
-        margin-top: 10%;
+        margin-top: 0%;
         font-size: 18px;
         text-align: left;
         font-weight: bold;
@@ -104,7 +104,7 @@ Blog
       }
       #blog-footer
         {
-        margin-top: 10%;
+        margin-top: 0%;
         font-size: 15px;
         text-align: left;
         font-weight: bold;
@@ -251,7 +251,7 @@ Blog
                         echo date_format($blog->created_at,"M d, Y");
                     ?>
                    </b></p>
-                <br>
+                {{-- <br> --}}
                 <div class="row ">
                     <p class="p-1  ml-2 " id="blog-title" >{{$blog->title}}</p>
                 </div>

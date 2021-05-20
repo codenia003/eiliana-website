@@ -402,6 +402,8 @@ Route::group(
         Route::get('post-project', 'ProjectController@postProject')->name('post-project');
         Route::post('post-project-on', 'ProjectController@postProjecton')->name('post-project-on');
 
+        Route::get('welcome', 'InformationController@welcome')->name('welcome');
+
         Route::get('project/{id}', 'ProjectController@getProjectDeatils')->name('project.view');
         Route::get('job/{id}', 'JobController@getJobDeatils')->name('jobdetails');
         Route::get('profile/{id}', 'JobController@getProfileDeatils')->name('profile.view');
@@ -609,7 +611,6 @@ Route::get('how-its-work', 'InformationController@howItsWork')->name('howitswork
 Route::get('help', 'InformationController@help')->name('help');
 Route::get('pricing-plan', 'InformationController@pricingPlan')->name('pricingplan');
 Route::get('teams', 'InformationController@teams')->name('teams');
-Route::get('welcome', 'InformationController@welcome')->name('welcome');
 Route::get('contact-us', 'InformationController@contactUs')->name('contact-us');
 Route::post('contact-us-post', 'InformationController@contactUsSave')->name('contact-us-post');
 Route::get('sitemap', 'InformationController@siteMap')->name('sitemap');

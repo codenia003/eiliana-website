@@ -14,6 +14,7 @@ Welcome
 
 {{-- content --}}
 @section('content')
+@if ($response['success'] == '0')
 <div class="welcome-page" style="background-color: #fba602;">
     <div class="col-md-12">
         <div class="container">
@@ -28,9 +29,9 @@ Welcome
                     <div class="col-md-8 welcome-content">
                         <div class="welcome">
                             <div class="col-lg-8 content1">
-                              @if (isset(Session::get('users')['login_as']))
-                                <h2 class="user-name">Hi {{ Sentinel::getUser()->full_name }}</h2>
-                              @endif
+                                @if (isset(Session::get('users')['login_as']))
+                                <h2 class="user-name">Hi {{ Sentinel::getUser()->full_name }},</h2>
+                                @endif
                                 <h2 class="user-text">Welcome to Eiliana Family !!!</h2>
                                 <p>We are building the largest community of Gig-<br>
                                 Resources globally who will transform the lives of billions of <br>
@@ -39,9 +40,42 @@ Welcome
                             </div>
                         </div>
                         <div class="col p-0 d-flex align-items-center">
+                            <div class="account-second-side text-center">
+                                <a onclick="togglePopup()" class="btn btn-light bt btn-lg blue">BROWSE PROJECTS</a>
+                                <a onclick="togglePopup()" class="btn btn-light bt btn-lg red">SALES REFERRAL</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+@else
+<div class="welcome-page welcom-update bg-img-hero" style="background-image: url(/assets/img/profile/welcome.png);">
+    <div class="col-md-12">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-5">
+                        {{-- <div class="welcome">
+                            <div class="wel-img">
+                                    <img class="img-fluid" src="/assets/img/profile/hire-1.png" alt="png">
+                            </div>
+                        </div> --}}
+                    </div>
+                    <div class="col-md-7 welcome-content">
+                        <div class="welcome">
+                            <div class="content1">
+                                @if (isset(Session::get('users')['login_as']))
+                                <h2 class="user-name">Hi {{ Sentinel::getUser()->full_name }},</h2>
+                                @endif
+                                <h2 class="user-text">Congratulations !!!</h2>
+                                <p>Your resume has been updated successfully. <br> we will keep informing you about the new assignments Basis the new criterion suggested by you.</p>
+                            </div>
+                        </div>
+                        <div class="p-0 d-flex align-items-center">
                         <div class="account-second-side text-center">
-                            <a onclick="togglePopup()" href="#" class="btn btn-light bt btn-lg blue">BROWSE PROJECTS</a>
-                            <a onclick="togglePopup()" href="#" class="btn btn-light bt btn-lg red">SALES REFERRAL</a>
+                            <a onclick="togglePopup()" class="btn btn-light bt btn-lg blue">BROWSE PROJECTS</a>
+                            <a onclick="togglePopup()" class="btn btn-light bt btn-lg red">SALES REFERRAL</a>
                         </div>
                     </div>
                     </div>
@@ -49,7 +83,7 @@ Welcome
         </div>
     </div>
 </div>
-
+@endif
 @stop
 
 {{-- footer scripts --}}

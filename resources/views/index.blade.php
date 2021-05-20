@@ -582,21 +582,16 @@ Home
                         <img class="img-fluid" src="/assets/img/photo/mobile-only.png" alt="SVG">
                     </figure>
                 </div>
-                <div class="col-12 col-md-7 col-lg-7 pb-lg-5 mb-md-0 pt-lg-4 pl-lg-5 pl-4">
-                    <h1 class="headingmain1">Bringing the new age projects to your doorstep</h1>
+                <div class="col-12 col-md-7 col-lg-7 pb-lg-5 mb-md-0 pt-lg-4 pl-lg-4 pl-4">
+                    <h1 class="headingmain1">New age projects coupled with unique features for Freelancers ...</h1>
                     <ul class="list-unstyled list-article">
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Enhanced Exposure while working
-                            with Global Clients</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Anonymity for freelancers </li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Achieve Incremental Revenues & make
-                            life better!</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Manifest your creativity & Be
-                            Future Ready- Gig Strong!</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Fine tune your Financial
-                            Aspirations with Freedom & Flexibility</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Secured & Weekly Payments Schedule
-                            by Eiliana</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> No Minimum Account Balance</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> No minimum account balance required</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Weekly payment reimbursements </li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> International projects, upcoming in 70 countries</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Visibility of offline recommendations and portfolio from other clients/companies worked for</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Online Project tracker for better visibility and hour tracking</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Success fees model</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Anonymity and privacy - earn parallel income, no need to disclose you credentials</li>
                     </ul>
                 </div>
             </div>
@@ -971,7 +966,7 @@ Home
 <section class="section our-solution py-5">
     <div class="text-center w-lg-60 mx-auto">
         <h1 class="headingmain1">Reference Video</h1>
-        <p class="d-block mb-2 subtitle1">At Eiliana, we believe that we’re matchmakers who help talents find the right project and clients find the right talent for their job. Checkout our video to see how we go about doing that.</p>
+        <p class="d-block mb-2 subtitle1">At Eiliana we strive continuously to enhance value for our freelancers and customers thereby sharing  new business models and sharing dynamic concepts for transforming there businesses. Checkout our videos to see how we go about doing that.</p>
         <div class="dividerheading"></div>
     </div>
     <div class="container">

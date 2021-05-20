@@ -1868,3 +1868,21 @@ span.select2-selection.select2-selection--single {
     height: 150px;
     width: 150px;
 }
+.welcome-page.welcom-update {
+    background-size: contain;
+    background-color: #f2bd71;
+    background-position: left;
+    padding-bottom: 60px;
+}
+.welcome-page.welcom-update .user-name {
+    color: black;
+    font-size: 40px;
+}
+.welcome-page.welcom-update .user-text {
+    color: black;
+    font-size: 40px;
+}
+.welcome-page.welcom-update p {
+    color: black;
+    font-size: 20px;
+}

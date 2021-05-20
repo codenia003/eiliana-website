@@ -34,7 +34,7 @@
                     <a class="list-group-item list-group-item-action {!! (Request::is('profile/financial') ? 'active' : '' ) !!}" href="/profile/financial">Financial Accounts</a>
                     <a class="list-group-item list-group-item-action" href="/profile">Membership & Credits</a>
                     <a class="list-group-item list-group-item-action" href="/profile">Members (Connections), Teams and Permissions</a> -->
-                    <a class="list-group-item list-group-item-action" href="/profile">User Settings</a>
+                    <a class="list-group-item list-group-item-action" href="/profile/projects">Projects</a>
                 </div>
             </div>
         </div>
@@ -91,9 +91,9 @@
                             <img class="img-fluid" src="/assets/img/profile/icon-4.png" alt="Avatar">
                             <span> Professional Experience</span>
                         </a>
-                        <a class="list-group-item list-group-item-action bg-white-b" href="/profile">
+                        <a class="list-group-item list-group-item-action bg-white-b {!! (Request::is('profile/projects') ? 'active' : '' ) !!}" href="/profile/projects">
                             <img class="img-fluid" src="/assets/img/profile/icon-5.png" alt="Avatar">
-                            <span> User Settings</span>
+                            <span> Projects</span>
                         </a>
                     </div>
                 </div>

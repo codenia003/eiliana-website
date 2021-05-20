@@ -62,7 +62,16 @@ class InformationController extends JoshController
 
     public function welcome()
     {
-        return view('information.welcome');
+        $user = Sentinel::getUser();
+
+        if ($user->welcome_msg == '0') {
+            $response['success'] = '0';
+            Sentinel::update($user, array('welcome_msg' =>'1'));
+        } else {
+            $response['success'] = '1';
+        }
+
+        return view('information.welcome', compact('response'));
     }
 
     public function contactUs()

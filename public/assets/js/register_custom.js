@@ -227,7 +227,7 @@ $(document).ready(function() {
                   title: 'Success...',
                   text: 'Account sucessfully created, Redirect to profile!',
                 }).then(function() {
-                    window.location.href = userCheck.url;
+                    window.location.href = userDatas.url;
                 });
             } else {
                 localStorage.removeItem('reg_id');

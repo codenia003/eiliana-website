@@ -51,7 +51,7 @@ $(document).ready(function() {
         $.post($form.attr('action'), $form.serialize(), function(result) {
             // console.log(result);
             var userExists = result;
-             if (userExists.success == '2') {
+            if (userExists.success == '0') {
                 $('.spinner-border').addClass("d-none");
                 swalWithBootstrapButtons.fire({
                   type: 'warning',
@@ -62,7 +62,17 @@ $(document).ready(function() {
                 }).then(function() {
                     window.location.href = '/company/teams';
                 });
-               
+            } else if (userExists.success == '2') {
+                $('.spinner-border').addClass("d-none");
+                swalWithBootstrapButtons.fire({
+                  type: 'warning',
+                  title: 'Oops...',
+                  text: userExists.errors,
+                  showConfirmButton: false,
+                  timer: 2000
+                }).then(function() {
+                    window.location.href = '/company/teams';
+                });
             }else {
                 $('.spinner-border').addClass("d-none");
                 swalWithBootstrapButtons.fire({

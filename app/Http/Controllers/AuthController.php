@@ -314,12 +314,12 @@ class AuthController extends JoshController
 
                 $invitation = $request->session()->get('teaminvitation');
                 if($invitation === null){
-                    $compnay_id = 0;
+                    $company_id = 0;
                 } else {
-                    $compnay_id = $invitation['from_user_id'];
+                    $company_id = $invitation['from_user_id'];
 
                     $teamuser = new TeamUser();
-                    $teamuser->compnay_id = $compnay_id;
+                    $teamuser->company_id = $company_id;
                     $teamuser->user_id = $user->id;
                     $teamuser->save();
 
@@ -386,12 +386,12 @@ class AuthController extends JoshController
 
                 $invitation = $request->session()->get('teaminvitation');
                 if($invitation === null){
-                    $compnay_id = 0;
+                    $company_id = 0;
                 } else {
-                    $compnay_id = $invitation['from_user_id'];
+                    $company_id = $invitation['from_user_id'];
 
                     $teamuser = new TeamUser();
-                    $teamuser->compnay_id = $compnay_id;
+                    $teamuser->company_id = $company_id;
                     $teamuser->user_id = $user->id;
                     $teamuser->save();
 

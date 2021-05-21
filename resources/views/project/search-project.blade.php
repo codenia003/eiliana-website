@@ -11,21 +11,6 @@
 <!--page level css starts-->
 <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
 <link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
-<style>
-       .search-project1 .basic-info label.form-check-label {
-            padding-left: 4px;
-            padding-top: 2px;
-        }
-        .search-project1 .basic-info label {
-            font-size: 14px;
-            font-weight: 500;
-            color: #595959;
-            padding: 2px;
-        }
-        .search-project1 .form-check-label {
-            margin-bottom: 0;
-        }
-</style>
 <!--end of page level css-->
 @stop
 {{-- breadcrumb --}}
@@ -111,75 +96,101 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group basic-info mb-3">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="hourly" checked>
-                                                <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="retainership">
-                                                <label class="form-check-label" for="inlineCheckbox2">Retainer</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input model_engagement" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="project-based">
-                                                <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group hourly" id="hourly">
-                                            <label>Rate Per Hour</label>
-                                            <div class="form-row">
-                                                <div class="col">
-                                                    <input type="text" name="amount" class="form-control">
-                                                </div>
-                                                <div class="col">
-                                                    <input type="text" name="amount_to" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group retainership" id="retainership">
-                                            <label>Rate Per Month</label>
-                                            <div class="form-row">
-                                                <div class="col">
-                                                    <input type="text" name="amount" class="form-control">
-                                                </div>
-                                                <div class="col">
-                                                    <input type="text" name="amount_to" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group project-based" id="project-based">
-                                            <label>Total Project Amount</label>
-                                            <div class="form-row">
-                                                <div class="col">
-                                                    <input type="text" name="amount" class="form-control">
-                                                </div>
-                                                <div class="col">
-                                                    <input type="text" name="amount_to" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
 					                	<div class="form-group project-budget d-none">
-	                                        <label>Project Budget</label>
-	                                        <div class="form-row">
-	                                            <div class="col">
-	                                                <select class="form-control" name="dur_minimum">
-	                                                    <option value="">Minimum</option>
-	                                                    @for ($i = 0; $i < 21; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }} Lakh</option>
-	                                                    @endfor
-	                                                </select>
+                                            <!-- <div class="form-group basic-info mb-3">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="hourly" checked>
+                                                    <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="retainership">
+                                                    <label class="form-check-label" for="inlineCheckbox2">Retainer</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input model_engagement" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="project-based">
+                                                    <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
+                                                </div>
+                                            </div> -->
+                                            <div class="basic-info mb-3 project-budget1">
+                                                <div class="form-check form-check-inline">
+                                                        <input type="checkbox" id="hourly1" class="form-check-input hourly" name="model_engagement" data-name="hourly" value="1">
+                                                        <label class="form-check-label" for="hourly1">Hourly</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                        <input type="checkbox" id="retainer1" class="form-check-input retainer" name="model_engagement" data-name="retainer" value="2">
+                                                        <label class="form-check-label" for="retainer1">Retainer</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                        <input type="checkbox" id="project_based1" class="form-check-input project_based" name="model_engagement" data-name="project_based" value="3">
+                                                        <label class="form-check-label" for="project_based1">Project-based</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group hourly" id="hourly">
+                                                <label>Rate Per Hour</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <select class="form-control" name="hourly_minimum">
+                                                            <option value="">Minimum</option>
+                                                            @for ($i = 0; $i < 2; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <select class="form-control" name="hourly_maximum">
+                                                            <option value="">Maximum</option>
+                                                            @for ($i = 1; $i < 11; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group retainership" id="retainer">
+                                                <label>Rate Per Month</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <select class="form-control" name="retainer_minimum">
+                                                            <option value="">Minimum</option>
+                                                            @for ($i = 0; $i < 21; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <select class="form-control" name="retainer_maximum">
+                                                            <option value="">Maximum</option>
+                                                            @for ($i = 1; $i < 51; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+	                                        
+	                                        <div class="form-group project-based" id="project_based">
+                                                <label>Project Budget</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <select class="form-control" name="project_based_minimum">
+                                                            <option value="">Minimum</option>
+                                                            @for ($i = 0; $i < 51; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <select class="form-control" name="project_based_maximum">
+                                                            <option value="">Maximum</option>
+                                                            @for ($i = 1; $i < 81; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} Thousand</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
 	                                            </div>
-	                                            <div class="col">
-	                                                <select class="form-control" name="dur_maximum">
-	                                                    <option value="">Maximum</option>
-	                                                    @for ($i = 1; $i < 21; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }} Lakh</option>
-	                                                    @endfor
-	                                                </select>
-	                                            </div>
-	                                        </div>
+                                            </div>
                                         </div>
                                         <div class="form-group project-technology d-none">
 	                                        <label>Technology Preference</label>
@@ -324,11 +335,34 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
  $(document).ready(function() {
-    $('.retainership').hide();
-    $('.project-based').hide();
-    $('input[type="checkbox"]').click(function(){
-        var inputValue = $(this).attr("value");
-        $("." + inputValue).toggle();
+     $('#hourly').hide();
+     $('#retainer').hide();
+     $('#project_based').hide();
+    $('.hourly').change(function() {
+        var checkbox = $(this);                 
+        if( checkbox.is(':checked') ) {                       
+            $( '#' + checkbox.attr('data-name') ).show();
+        } else {                      
+            $( '#' + checkbox.attr('data-name') ).hide();
+        }
+    });
+
+    $('.retainer').change(function() {
+        var checkbox = $(this);                 
+        if( checkbox.is(':checked') ) {                       
+            $( '#' + checkbox.attr('data-name') ).show();
+        } else {                      
+            $( '#' + checkbox.attr('data-name') ).hide();
+        }
+    });
+
+    $('.project_based').change(function() {
+        var checkbox = $(this);                 
+        if( checkbox.is(':checked') ) {                       
+            $( '#' + checkbox.attr('data-name') ).show();
+        } else {                      
+            $( '#' + checkbox.attr('data-name') ).hide();
+        }
     });
 });
 
@@ -360,11 +394,17 @@
     // function changeBrowseProjectType() {
     //     var method = $('input[name="model_engagement"]:checked').attr('value');
     //     if (method == '1') {
-    //         $(".hourly" + method).toggle();
+    //         $('.hourly').removeClass("d-none");
+    //         // $('.retainership').addClass("d-none");
+    //         // $('.project-based').addClass("d-none");
     //     } else if(method == '2') {
     //         $('.retainership').removeClass("d-none");
+    //         // $('.hourly').addClass("d-none");
+    //         // $('.project-based').addClass("d-none");
     //     } else {
     //         $('.project-based').removeClass("d-none");
+    //         // $('.retainership').addClass("d-none");
+    //         // $('.hourly').addClass("d-none");
     //     }
     // }
 

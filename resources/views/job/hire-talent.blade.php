@@ -67,7 +67,11 @@
                                             </select>
                                         </div>
 
+<<<<<<< Updated upstream
                                         <div class="form-group " id="project_sub">
+=======
+                                        <div class="form-group" id="project_sub">
+>>>>>>> Stashed changes
                                             <label>Project Sub Category</label>
                                             <select name="project_sub_category" class="form-control" id="project_sub_category">
                                                 <option value=""></option>

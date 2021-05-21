@@ -568,7 +568,6 @@ Route::group(
     }
 );
 
-
 Route::resource('user_emails', 'UsersEmailController');
 // client seaech and post
 Route::get('hire-talent', 'JobController@hireTalent')->name('hire-talent');

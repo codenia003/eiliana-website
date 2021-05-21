@@ -115,7 +115,7 @@ class AdvanceSearchController extends JoshController
         if (empty($request->input('keyword'))) {
 
             // Show the page
-            $projectcategorys = ProjectCategory::all();
+            $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
             $educationtype = EducationType::all();
             $qualifications = Qualification::all();
             $universities = University::all();

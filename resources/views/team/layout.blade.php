@@ -32,6 +32,9 @@ type="text/css"/>
 			font-size: 20px;
 			margin-top: 65px;
 		}
+		.profile-setting .my-alldata tr:nth-child(even) {
+			background-color: #ffffff;
+		}
 		
 </style>
 @stop

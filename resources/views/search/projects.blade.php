@@ -30,37 +30,48 @@
             </div>
             <div class="card-body p-4">
                 <div class="form-group">
-                    <label>Looking to develop</label>
-                    <select name="project_category" class="form-control">
+                   <label>Project Category</label>
+                    <!-- <label>Looking to develop</label> -->
+                    <select name="project_category" class="form-control" id="project_category" onchange="change_category();">
                         <option value=""></option>
                         @foreach ($projectcategorys as $category)
                         <option value="{{ $category->id }}" {{ (Session::get('contractsattfing')['project_category']==$category->id)? "selected" : "" }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group" id="project_sub">
+                    <label>Project Sub Category</label>
+                    <select name="project_sub_category" class="form-control" id="project_sub_category">
+                        <option value=""></option>
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <label>Any Keyword(Key Skills)</label>
                     <input type="text" name="keyword" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" required />
                 </div>
-                <div class="form-group basic-info mb-3">
-                    <label>Model Of Engagement</label>
-                    <br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="1">
-                        <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
+                @if(Session::get('contractsattfing')['browse_project']=='1')
+                    <div class="form-group basic-info mb-3">
+                        <label>Model Of Engagement</label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input hourly" type="checkbox" id="inlineCheckbox1" name="model_engagement" data-name="hourly" value="1" {{ (Session::get('contractsattfing')['model_engagement']=='1')? "checked" : "" }}>
+                            <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input retainer" type="checkbox" id="inlineCheckbox2" name="model_engagement" data-name="retainer" value="2" {{ (Session::get('contractsattfing')['model_engagement']=='2')? "checked" : "" }}>
+                            <label class="form-check-label" for="inlineCheckbox2">Retainership</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input project_based" type="checkbox" id="inlineCheckbox3" name="model_engagement" data-name="project_based" value="3" {{ (Session::get('contractsattfing')['model_engagement']=='3')? "checked" : "" }}>
+                            <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
+                        </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="2">
-                        <label class="form-check-label" for="inlineCheckbox2">Retainership</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="3">
-                        <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
-                    </div>
-                </div>
+                @endif
                 <div class="form-group">
                     <label>Technology Preference</label>
-                    <select name="technologty_pre" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple>
+                    <!-- <select name="technologty_pre" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple> -->
+                    <select name="technologty_pre" class="form-control select2" id="technologty_pre" multiple>
                         <option value=""></option>
                         @foreach ($technologies as $technology)
                         <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
@@ -68,12 +79,12 @@
                     </select>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col">
+                    <!-- <div class="form-group col">
                         <label>Framework</label>
                         <select class="form-control" name="framework select2" id="framework" multiple>
                             <option value=""></option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="form-group col">
                         <label>Industry that Product was designed for</label>
                         <select name="industry[]" class="form-control">
@@ -84,6 +95,7 @@
                         </select>
                     </div>
                 </div>
+                
                 <div class="form-row">
                     <div class="form-group col-6">
                         <label>Total Experience</label>
@@ -104,8 +116,52 @@
                             </div>
                         </div>
                     </div>
+                    @if(Session::get('contractsattfing')['browse_project']=='3')
                     <div class="form-group col-6">
-                        <label>Budget</label>
+                        <label>Project Duration</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <select class="form-control" name="budget_from">
+                                    <option value="">From</option>
+                                    @for ($i = 0; $i < 21; $i++)
+                                    <option value="{{ $i }}" {{ (Session::get('contractsattfing')['budget_from']==$i)? "selected" : "" }}>{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="col">
+                                <select class="form-control" name="budget_to">
+                                    <option value="">To</option>
+                                    @for ($i = 1; $i < 13; $i++)
+                                    <option value="{{ $i }}" {{ (Session::get('contractsattfing')['budget_to']==$i)? "selected" : "" }}>{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                   @endif
+                    <div class="form-group col-6">
+                        <div class="form-group hourly" id="hourly">
+                            <label>Rate Per Hour</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <select class="form-control" name="hourly_minimum">
+                                        <option value="">Minimum</option>
+                                        @for ($i = 0; $i < 2; $i++)
+                                        <option value="{{ $i }}" {{ (Session::get('contractsattfing')['hourly_minimum']==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" name="hourly_maximum">
+                                        <option value="">Maximum</option>
+                                        @for ($i = 1; $i < 11; $i++)
+                                        <option value="{{ $i }}" {{ (Session::get('contractsattfing')['hourly_maximum']==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        {{--<label>Budget</label>
                         <div class="form-row">
                             <div class="col">
                                 <select class="form-control" name="range_salary_from">
@@ -129,9 +185,57 @@
                                     @endfor
                                 </select> -->
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <div class="form-group retainership" id="retainer">
+                            <label>Rate Per Month</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <select class="form-control" name="retainer_minimum">
+                                        <option value="">Minimum</option>
+                                        @for ($i = 0; $i < 21; $i++)
+                                        <option value="{{ $i }}" {{ (Session::get('contractsattfing')['retainer_minimum']==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" name="retainer_maximum">
+                                        <option value="">Maximum</option>
+                                        @for ($i = 1; $i < 51; $i++)
+                                        <option value="{{ $i }}" {{ (Session::get('contractsattfing')['retainer_maximum']==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <div class="form-group project-based" id="project_based">
+                            <label>Project Budget</label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <select class="form-control" name="project_based_minimum">
+                                        <option value="">Minimum</option>
+                                        @for ($i = 0; $i < 51; $i++)
+                                        <option value="{{ $i }}" {{ (Session::get('contractsattfing')['project_based_minimum']==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" name="project_based_maximum">
+                                        <option value="">Maximum</option>
+                                        @for ($i = 1; $i < 81; $i++)
+                                        <option value="{{ $i }}" {{ (Session::get('contractsattfing')['project_based_maximum']==$i)? "selected" : "" }}>{{ $i }} Thousand</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
                 <div class="form-group basic-info mb-3">
                     <label>Sort By</label>
                     <div class="form-check form-check-inline ml-3">
@@ -167,3 +271,48 @@
     </form>
 </div>
 @stop
+{{-- footer scripts --}}
+@section('footer_scripts')
+<!--global js starts-->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+ $(window).bind("load", function() {
+    $('#hourly').hide();
+     $('#retainer').hide();
+     $('#project_based').hide();
+    $('.hourly').change(function() {
+        var checkbox = $(this);                 
+        if( checkbox.is(':checked') ) {                       
+            $( '#' + checkbox.attr('data-name') ).show();
+        } else {                      
+            $( '#' + checkbox.attr('data-name') ).hide();
+        }
+    });
+
+    $('.retainer').change(function() {
+        var checkbox = $(this);                 
+        if( checkbox.is(':checked') ) {                       
+            $( '#' + checkbox.attr('data-name') ).show();
+        } else {                      
+            $( '#' + checkbox.attr('data-name') ).hide();
+        }
+    });
+
+    $('.project_based').change(function() {
+        var checkbox = $(this);                 
+        if( checkbox.is(':checked') ) {                       
+            $( '#' + checkbox.attr('data-name') ).show();
+        } else {                      
+            $( '#' + checkbox.attr('data-name') ).hide();
+        }
+    });
+
+        change_category();
+});
+
+</script>
+<!--global js end-->
+@stop
+
+
+

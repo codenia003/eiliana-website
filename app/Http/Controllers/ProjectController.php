@@ -477,7 +477,7 @@ class ProjectController extends JoshController
                 //     $framework = [];
                 // }
 
-                $projects = Project::with('locations','customerindustry1')->expire()->active('1')->where('project_category', '=', $data['project_category'])->paginate(10);
+                $projects = Project::with('locations','customerindustry1')->expire()->active('1')->where('project_category', '=', $data['project_category'])->where('project_sub_category', '=', $data['project_sub_category'])->paginate(10);
 
                 $count = count($projects);
 

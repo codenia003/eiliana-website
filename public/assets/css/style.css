@@ -1886,3 +1886,25 @@ span.select2-selection.select2-selection--single {
     color: black;
     font-size: 20px;
 }
+
+.search-project1 .project-budget1 label.form-check-label {
+    padding-left: 4px;
+    padding-top: 2px;
+}
+.search-project1 .project-budget1 label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #595959;
+    padding: 2px;
+}
+.search-project1 ,.project-budget1 .form-check-label {
+    margin-bottom: 0;
+}
+
+.search-project1 .project-budget1 {
+    margin-left: 0px;
+}
+
+.project-budget1 .form-check-inline {
+    margin-right: 10px;
+}

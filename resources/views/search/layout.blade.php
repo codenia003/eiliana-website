@@ -77,6 +77,10 @@ Advance Search
 <script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script>
+     $(window).bind("load", function() {
+        change_category();
+    });
+	
     $('#technologty_pre').select2({
         theme: 'bootstrap',
         placeholder: 'Select a value',

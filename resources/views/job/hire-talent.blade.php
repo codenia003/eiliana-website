@@ -39,7 +39,7 @@
                             @csrf
                             <div class="card">
                                 <div class="px-3 py-2">
-                                	<h4 class="card-header text-left">Looking For</h4>
+                                	<h4 class="card-header text-left">Looking For 1</h4>
                                 	<div class="form-group basic-info my-3">
 					                    <!-- <label><span>Looking For</span></label> -->
 					                    <!-- <br> -->
@@ -59,7 +59,7 @@
 
 					                <div class="projects">
 					                	<div class="form-group">
-                                            <label>Project Category</label>
+                                            <label>Project Category </label>
                                             <select name="project_category" class="form-control" id="project_category" onchange="change_category();">
                                                 @foreach ($projectcategorys as $category)
                                                 <option value="{{ $category->id }}"  {{ (Session::get('projectcategory')['id']==$category->id)? "selected" : "" }}>{{ $category->name }}</option>
@@ -67,7 +67,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-group d-none" id="project_sub">
+                                        <div class="form-group " id="project_sub">
                                             <label>Project Sub Category</label>
                                             <select name="project_sub_category" class="form-control" id="project_sub_category">
                                                 <option value=""></option>
@@ -134,7 +134,7 @@
                                         <br>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="development" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="2" checked="">
+                                                <input type="radio" checked="false" id="development" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="2" >
                                                 <label class="custom-control-label" for="development">Database Search</label>
                                             </div>
                                         </div>
@@ -145,9 +145,48 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- for search method -->
+                                    <div class="basic-info1 mb-3 mr-3">
+                                        
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="budget" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="B" checked="false">
+                                                <label class="custom-control-label" for="budget">Budget</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="techanology" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="T">
+                                                <label class="custom-control-label" for="techanology">Technology</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- for r per rate -->
+                                    <div class="form-group " id="rate">
+                                            <label>Rate per Hour</label>
+                                            <select name="rate" class="form-control" id="rate_value">
+                                                <option value=""></option>
+                                                <option>1000</option>
+                                                <option>2000</option>
+                                                <option>3000</option>
+                                                <option>4000</option>
+                                                <option>5000</option>
+                                              
+                                            </select>
+                                    </div>
+                                    <div class="form-group d-none" id="tech">
+                                            <label>Technology</label>
+                                            <select name="technology" class="form-control" id="tech_">
+                                                <option value="">Select Technology</option>
+                                                        @foreach ($technologies as $technology)
+                                                        <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                                                        @endforeach
+                                            </select>
+                                    </div>
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
-                                            <button class="btn btn-primary" type="submit"> 
+                                           <button class="btn btn-primary" type="submit"> 
                                             {{-- <button class="btn btn-primary" type="button" onclick="togglePopup()">--}}
                                                Search >>>
                                             </button>
@@ -273,13 +312,42 @@
     $(window).bind("load", function() {
         changeLookingFor();
         changeSearchMethod();
+        changeSearchDBMethod();
         change_category();
     });
     function changeSearchMethod() {
         var method = $('input[name="search_method"]:checked').attr('value');
         if (method == '1') {
             $('.job-posting').removeClass("d-none");
-        } else {
+            $('.basic-info1').addClass("d-none");
+            $('#rate').addClass("d-none");
+        	$('#tech').addClass("d-none");
+        } 
+        else if(method =='2')
+        {
+        	$('.job-posting').addClass("d-none");
+        	$('.basic-info1').removeClass("d-none");
+        	$('#rate').removeClass("d-none");
+        }
+        else {
+        	$('.job-posting').addClass("d-none");
+        }
+    }
+    function changeSearchDBMethod() {
+        //  
+        var method = $('input[name="db_search"]:checked').attr('value');
+        if (method == 'B') {
+            $('.job-posting').addClass("d-none");
+            $('.basic-info1').removeClass("d-none");
+            $('#rate').removeClass("d-none");
+        	$('#tech').addClass("d-none");
+        }
+        else if(method=='T')
+        {
+        	$('#rate').addClass("d-none");
+        	$('#tech').removeClass("d-none");
+        }
+        else {
         	$('.job-posting').addClass("d-none");
         }
     }

@@ -30,6 +30,17 @@ class AdvanceSearchController extends JoshController
     {
         $user = Sentinel::getUser();
         $userlogin = $request->session()->get('users');
+        $prev_tech=array();
+        $contractsattfing = $request->session()->get('contractsattfing');
+        if (isset($contractsattfing['rate'])) {
+           $prev_tech['rate']=1;
+        }
+        if (isset($contractsattfing['technology'])) {
+           $technologies = Technology::where('technology_id', $contractsattfing['technology'])->get();
+            $prev_tech['name']=$technologies[0]['technology_name'];
+            $prev_tech['id']=$technologies[0]['technology_id'];
+        }
+        
         if (empty($request->input('job_category'))) {
 
             // Show the page
@@ -39,8 +50,8 @@ class AdvanceSearchController extends JoshController
             $universities = University::all();
             $technologies = Technology::where('parent_id', '0')->get();
             $customerindustries = CustomerIndustry::all();
-
-            return view('search/jobs', compact('projectcategorys','educationtype','qualifications','universities','technologies','customerindustries'));
+            
+            return view('search/jobs', compact('projectcategorys','educationtype','qualifications','universities','technologies','customerindustries','prev_tech'));
 
         } else {
 

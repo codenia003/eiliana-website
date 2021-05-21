@@ -52,7 +52,7 @@
                             <label>Technology Preference</label>
                             <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple required>
                             {{-- <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required> --}}
-                                <option value=""></option>
+                                <option selected="" value="">H</option>
                                 @foreach ($technologies as $technology)
                                 <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_technologies)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
                                 @endforeach

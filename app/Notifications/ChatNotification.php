@@ -28,7 +28,7 @@ class ChatNotification extends Notification
      * @return array
      */
     public function via($notifiable)
-    {
+    { 
         // return ['mail','database'];
         return ['database'];
     }

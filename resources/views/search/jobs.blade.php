@@ -47,7 +47,11 @@
                     <label>Model Of Engagement</label>
                     <br>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="1">
+                        <input class="form-check-input" type="checkbox"
+                         @if(isset($prev_tech['rate']))
+                            checked="" 
+                         @endif
+                          id="inlineCheckbox1" name="model_engagement" value="1">
                         <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -60,9 +64,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Technology Preference</label>
+
+                    <label>Technology Preference </label>
                     <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple>
-                        <option value=""></option>
+                        @if(isset($prev_tech) && isset($prev_tech['id']))
+                            <option selected="" value=" {{$prev_tech['id']}}"> {{$prev_tech['name']}}</option>
+                        @endif
+                        
                         @foreach ($technologies as $technology)
                         <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
                         @endforeach
@@ -168,3 +176,4 @@
     </form>
 </div>
 @stop
+

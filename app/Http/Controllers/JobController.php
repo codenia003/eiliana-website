@@ -71,12 +71,14 @@ class JobController extends JoshController
         	'page_title' => 'Hire Talent',
         	'lookingfor' => '1'
         ];
+
         $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
         $locations = Location::all();
+        $technologies = Technology::all();
 
         $request->session()->forget('sales_referral');
 
-        return view('job/hire-talent', compact('pagename','projectcategorys','locations'));
+        return view('job/hire-talent', compact('pagename','projectcategorys','locations','technologies'));
     }
 
     public function categoryDetails($slug, Request $request)
@@ -133,10 +135,13 @@ class JobController extends JoshController
     public function talentSearch(Request $request) {
 
         $data = $request->all();
+        // echo "<pre>";
+        // print_r($data);
+        // die;
         $contractsattfing = $data;
         $request->session()->forget('contractsattfing');
         $request->session()->put('contractsattfing', $contractsattfing);
-
+        
         $roleda = $request->session()->get('users');
         if ($data['lookingfor'] == '1') {
             // contract-sattfing

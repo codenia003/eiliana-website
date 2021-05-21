@@ -26,7 +26,11 @@ Job Post
         <div class="px-5 py-2">
             <div class="align-items-center">
                 <span class="border-title"><i class="fa fa-bars"></i></span>
-                <span class="h5 text-white ml-2">{{ $user->full_name }}</span>
+                <span class="h5 text-white ml-2">
+                    @if(isset($user->full_name))
+                        {{ $user->full_name }}
+                    @endif
+                    </span>
             </div>
         </div>
     </div>
@@ -56,17 +60,36 @@ Job Post
                             <div class="col-md-7">
                                 <div class="contract-body">
                                     <div class="mb-2">
-                                        <p class="h3">{{ $user->full_name }}</p>
-                                        <p class="key_skills">{{ $proexps->key_skills }}{{ $proexps->profile_headline }}</p>
+                                        <p class="h3">
+                                            @if(isset($user->full_name))
+                                            {{ $user->full_name }}
+                                            @endif
+                                            </p>
+                                        <p class="key_skills">
+                                        @if(isset($proexps->key_skills))
+                                            {{ $proexps->key_skills }}
+                                        @endif
+                                        @if(isset($proexps->profile_headline))
+                                            {{ $proexps->profile_headline }}
+                                        @endif
+                                        </p>
                                         <p class="user_exper">User Experience | User Experience</p>
-                                        <p class="experience_year">{{ $proexps->experience_year }} Years {{ $proexps->experience_month }} Month</p>
+                                        <p class="experience_year">
+                                        @if(isset($proexps->experience_year))
+                                            {{ $proexps->experience_year }}
+                                        @endif
+                                         Years 
+                                         @if(isset($proexps->experience_month))
+                                            {{ $proexps->experience_month }}
+                                        @endif Month</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="contract-apply text-center">
                                     <ul class="list-inline mb-0">
-                                        @if ($response['leadcheck'] === '0')
+                                        @if(isset($response['leadcheck']))
+                                            @if ($response['leadcheck'] === '0')
                                             <li class="list-inline-item">
                                                 <!-- <a class="btn-icon" data-toggle="modal" data-target="#modal-4"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a> -->
                                             </li>
@@ -75,12 +98,22 @@ Job Post
                                             </li>
                                         @else
                                             <li class="list-inline-item">
-                                                <a class="start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" data-chattype="4" title="Live Chat!"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
+                                                <a class="start_chat btn-icon" data-touserid="@if(isset($user->id))
+                                                    {{ $user->id }}
+                                                @endif " data-tousername="@if(isset($user->full_name))
+                                                    {{ $user->full_name }}
+                                                @endif" data-chattype="4" title="Live Chat!"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
                                             </li>
                                             <li class="list-inline-item">
-                                                <a class="start_chat btn-icon" data-touserid="{{ $user->id }}" data-tousername="{{ $user->full_name }}" data-chattype="4" title="Live Chat!"><i class="far fa-comment"></i></a>
+                                                <a class="start_chat btn-icon" data-touserid="@if(isset($user->id))
+                                                    {{ $user->id }}
+                                                @endif" data-tousername="@if(isset($user->full_name))
+                                                    {{ $user->full_name }}
+                                                @endif " data-chattype="4" title="Live Chat!"><i class="far fa-comment"></i></a>
                                             </li>
                                         @endif
+                                    @endif
+                                        
 
                                     </ul>
                                 </div>
@@ -103,11 +136,19 @@ Job Post
                                     <ul>
                                         <li>
                                             <span>Support Project</span>
-                                            <span class="ml-3">{{ $proexps->support_project }}</span>
+                                            <span class="ml-3">
+                                                @if(isset($proexps->support_project))
+                                                    {{ $proexps->support_project }}
+                                                @endif
+                                                </span>
                                         </li>
                                         <li>
                                             <span>Development Project</span>
-                                            <span class="ml-3">{{ $proexps->development_project }}</span>
+                                            <span class="ml-3">
+                                                @if(isset($proexps->development_project))
+                                                    {{ $proexps->development_project }}
+                                                @endif
+                                                </span>
                                         </li>
                                     </ul>
                                 </div>
@@ -121,15 +162,26 @@ Job Post
                                                         <tbody class="info-train">
                                                             <tr>
                                                                 <td class="heading">Project Name</td>
-                                                                <td>: {{ $project->project_name }}</td>
+                                                                <td>:
+                                                                    @if(isset($project->project_name))
+                                                                    {{ $project->project_name }}
+                                                                @endif </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="heading">Project Type</td>
-                                                                <td>: {{ $project->projecttypes->name }}</td>
+                                                                <td>:
+                                                                @if(isset($project->projecttypes->name))
+                                                                    {{ $project->projecttypes->name }}
+                                                                @endif
+                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="heading">Technology</td>
-                                                                <td>:  {{ $project->technologuname->technology_name }}</td>
+                                                                <td>: 
+                                                                    @if(isset($project->technologuname->technology_name))
+                                                                    {{ $project->technologuname->technology_name }}
+                                                                @endif
+                                                                 </td>
                                                             </tr>
                                                             </tr>
                                                             <tr>
@@ -139,23 +191,36 @@ Job Post
                                                             </tr>
                                                             <tr>
                                                                 <td class="heading">Framework</td>
-                                                                <td>:  {{ $project->frameworkname->technology_name }}</td>
+                                                                <td>:
+                                                                    @if(isset($project->frameworkname->technology_name))
+                                                                    {{ $project->frameworkname->technology_name }}
+                                                                @endif
+                                                                  </td>
                                                             </tr>
                                                             </tr>
                                                             <tr>
                                                                 <td class="heading">Customer Industry</td>
-                                                                <td>:  {{ $project->industry }}</td>
+                                                                <td>: 
+                                                                    @if(isset($project->industry))
+                                                                    {{ $project->industry }}
+                                                                @endif
+                                                                 </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
-                                                @if($project->upload_file)
-                                                <img src="{{ $project->upload_file }}" alt="img" class="img-fluid"/>
-                                                @else
-                                                <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
+                                                @if(isset($project->upload_file))
+                                                    @if($project->upload_file)
+                                                <img src=" @if(isset($project->upload_file))
+                                                                    {{ $project->upload_file }}
+                                                                @endif " alt="img" class="img-fluid"/>
+                                                    @else
+                                                    <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
+                                                    @endif         
                                                 @endif
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -178,9 +243,23 @@ Job Post
                                         <img src="{{ asset('assets/img/education.png') }}" alt="..." class="img-fluid"/>
                                     </div>
                                     <div class="col-md-9">
-                                        <div class="edu_name">{{ $education->university->name }}</div>
-                                        <div class="quli_name">{{ $education->qualification->name }}</div>
-                                        <div class="from_to">{{ $education->month }} - {{ $education->year }}</div>
+                                        <div class="edu_name">
+                                            @if(isset($education->university->name))
+                                                {{ $education->university->name }}
+                                            @endif
+                                                </div>
+                                        <div class="quli_name">
+                                        @if(isset($education->qualification->name))
+                                                {{ $education->qualification->name }}
+                                        @endif
+                                        </div>
+                                        <div class="from_to">
+                                        @if(isset($education->month))
+                                                {{ $education->month }}
+                                        @endif
+                                         - @if(isset($education->year))
+                                                {{ $education->year }}
+                                        @endif</div>
                                     </div>
                                 </div>
                                 @endforeach
@@ -193,9 +272,24 @@ Job Post
                                             <img src="{{ asset('assets/img/education.png') }}" alt="..." class="img-fluid"/>
                                         </div>
                                         <div class="col-md-9">
-                                            <div class="edu_name">{{ $education->university->name }}</div>
-                                            <div class="quli_name">{{ $education->qualification->name }}</div>
-                                            <div class="from_to">{{ $education->month }} - {{ $education->year }}</div>
+                                            <div class="edu_name">
+                                                @if(isset($education->university->name))
+                                                    {{ $education->university->name }}
+                                                @endif
+                                                </div>
+                                            <div class="quli_name">
+                                                @if(isset($education->qualification->name))
+                                                    {{ $education->qualification->name }}
+                                                @endif
+                                                </div>
+                                            <div class="from_to">
+                                                @if(isset($education->month))
+                                                    {{ $education->month }}
+                                                @endif
+
+                                               - @if(isset($education->year))
+                                                    {{ $education->year }}
+                                                @endif</div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -209,9 +303,24 @@ Job Post
                                             <img src="{{ asset('assets/img/education.png') }}" alt="..." class="img-fluid"/>
                                         </div>
                                         <div class="col-md-9">
-                                            <div class="edu_name">{{ $certificate->name }}</div>
-                                            <div class="quli_name">{{ $certificate->institutename }}</div>
-                                            <div class="from_to">{{ $certificate->from_date }} - {{ $certificate->till_date }}</div>
+                                            <div class="edu_name">
+                                                @if(isset($certificate->name))
+                                                    {{ $certificate->name }}
+                                                @endif
+                                            </div>
+                                            <div class="quli_name">
+                                                @if(isset($certificate->institutename))
+                                                    {{ $certificate->institutename }}
+                                                @endif
+                                            </div>
+                                            <div class="from_to">
+                                                 @if(isset($certificate->from_date))
+                                                    {{ $certificate->from_date }}
+                                                @endif
+                                                - @if(isset($certificate->till_date))
+                                                    {{$certificate->till_date }}
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -233,57 +342,7 @@ Job Post
             @include('layouts.left')
         </div>
     </div>
-    <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="{{ url('/post-staffing-lead') }}" method="POST" id="staffingflead">
-                    @csrf
-                    @isset(Session::get('sales_referral')['referral_id'])
-                        <input type="hidden" name="referral_id" value="{{ Session::get('sales_referral')['referral_id'] }}">
-                    @endisset
-                    @empty(Session::get('sales_referral')['referral_id'])
-                        <input type="hidden" name="referral_id" value="0">
-                    @endempty
-                    <div class="modal-header bg-blue text-white">
-                        <h4 class="modal-title" id="modalLabelnews">Contact Freelancer</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="from-name" class="col-form-label">From:</label>
-                                <input type="text" class="form-control" id="from-name" name="fromname" value="{{ Sentinel::getUser()->full_name }} " readonly>
-                            </div>
-                            <div class="form-group col">
-                                <label for="to-name" class="col-form-label">To:</label>
-                                <input type="text" class="form-control" id="to-name" name="toname" value="{{ $user->full_name }}" readonly>
-                                <input type="hidden" name="to_user_id" value="{{ $user->id }}">
-                                <input type="hidden" name="toemail" value="{{ $user->email }}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="lead-id" class="col-form-label">Lead Id:</label>
-                            <input type="text" class="form-control" id="lead-id" name="leadid" value="{{ $staffingleadsid }}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" class="col-form-label">Subject:</label>
-                            <input type="text" class="form-control" name="subject" id="subject">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control" id="message-text" name="messagetext" rows="3"></textarea>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer singup-body">
-                        <div class="btn-group" role="group">
-                            <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Send</button>
-                            <button class="btn btn-outline-primary" data-dismiss="modal">Discard</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    
 @stop
 
 {{-- footer scripts --}}

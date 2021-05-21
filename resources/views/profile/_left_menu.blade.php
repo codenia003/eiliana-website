@@ -155,4 +155,8 @@
         </div>
     </div>
 </div>
-
+<script>
+    function imageUpload(input) {
+        $("#modalIimage").modal('show');
+    }
+</script>

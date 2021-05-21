@@ -39,7 +39,7 @@ Job Post
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-5">
-                        
+
                     </div>
                 </div>
             </div>
@@ -64,56 +64,32 @@ Job Post
                                             @if(isset($user->full_name))
                                             {{ $user->full_name }}
                                             @endif
-                                            </p>
+                                        </p>
                                         <p class="key_skills">
-                                        @if(isset($proexps->key_skills))
-                                            {{ $proexps->key_skills }}
-                                        @endif
-                                        @if(isset($proexps->profile_headline))
-                                            {{ $proexps->profile_headline }}
-                                        @endif
+                                            @if(isset($proexps->key_skills))
+                                                {{ $proexps->key_skills }}
+                                            @endif
+                                            @if(isset($proexps->profile_headline))
+                                                {{ $proexps->profile_headline }}
+                                            @endif
                                         </p>
                                         <p class="user_exper">User Experience | User Experience</p>
                                         <p class="experience_year">
-                                        @if(isset($proexps->experience_year))
-                                            {{ $proexps->experience_year }}
-                                        @endif
-                                         Years 
-                                         @if(isset($proexps->experience_month))
-                                            {{ $proexps->experience_month }}
-                                        @endif Month</p>
+                                            @if(isset($proexps->experience_year))
+                                                {{ $proexps->experience_year }}
+                                            @endif
+                                            Years
+                                            @if(isset($proexps->experience_month))
+                                                {{ $proexps->experience_month }}
+                                            @endif Month
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="contract-apply text-center">
                                     <ul class="list-inline mb-0">
-                                        @if(isset($response['leadcheck']))
-                                            @if ($response['leadcheck'] === '0')
-                                            <li class="list-inline-item">
-                                                <!-- <a class="btn-icon" data-toggle="modal" data-target="#modal-4"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a> -->
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <!-- <a class="btn-icon" data-toggle="modal" data-target="#modal-4"><i class="far fa-comment"></i></a> -->
-                                            </li>
-                                        @else
-                                            <li class="list-inline-item">
-                                                <a class="start_chat btn-icon" data-touserid="@if(isset($user->id))
-                                                    {{ $user->id }}
-                                                @endif " data-tousername="@if(isset($user->full_name))
-                                                    {{ $user->full_name }}
-                                                @endif" data-chattype="4" title="Live Chat!"><img class="img-fluid" src="/assets/img/icons/icon-5.png" alt="Avatar"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a class="start_chat btn-icon" data-touserid="@if(isset($user->id))
-                                                    {{ $user->id }}
-                                                @endif" data-tousername="@if(isset($user->full_name))
-                                                    {{ $user->full_name }}
-                                                @endif " data-chattype="4" title="Live Chat!"><i class="far fa-comment"></i></a>
-                                            </li>
-                                        @endif
-                                    @endif
-                                        
+
 
                                     </ul>
                                 </div>
@@ -140,7 +116,7 @@ Job Post
                                                 @if(isset($proexps->support_project))
                                                     {{ $proexps->support_project }}
                                                 @endif
-                                                </span>
+                                            </span>
                                         </li>
                                         <li>
                                             <span>Development Project</span>
@@ -148,7 +124,7 @@ Job Post
                                                 @if(isset($proexps->development_project))
                                                     {{ $proexps->development_project }}
                                                 @endif
-                                                </span>
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>
@@ -177,7 +153,7 @@ Job Post
                                                             </tr>
                                                             <tr>
                                                                 <td class="heading">Technology</td>
-                                                                <td>: 
+                                                                <td>:
                                                                     @if(isset($project->technologuname->technology_name))
                                                                     {{ $project->technologuname->technology_name }}
                                                                 @endif
@@ -200,7 +176,7 @@ Job Post
                                                             </tr>
                                                             <tr>
                                                                 <td class="heading">Customer Industry</td>
-                                                                <td>: 
+                                                                <td>:
                                                                     @if(isset($project->industry))
                                                                     {{ $project->industry }}
                                                                 @endif
@@ -218,9 +194,9 @@ Job Post
                                                                 @endif " alt="img" class="img-fluid"/>
                                                     @else
                                                     <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
-                                                    @endif         
+                                                    @endif
                                                 @endif
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -327,22 +303,21 @@ Job Post
                             </div>
                         </div>
                     </div>
-                    <div class="form-group text-right mt-5">
-                    <div class="btn-group" role="group">
-                        <a href="/welcome"  class="btn btn-success" type="submit">
-                            <span class=" mr-1 "></span>
-                           &nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;
-                        </a>
-                        <!-- <button class="btn btn-outline-primary" type="reset">Discard</button> -->
+                    <div class="form-group text-right mt-5 singup-body">
+                        <div class="btn-group" role="group">
+                            <a href="{{ route('welcome') }}"  class="btn btn-primary">
+                                Next >>>
+                            </a>
+                            <!-- <button class="btn btn-outline-primary" type="reset">Discard</button> -->
+                        </div>
                     </div>
-                </div>
-                    
+
                 </div>
             </div>
             @include('layouts.left')
         </div>
     </div>
-    
+
 @stop
 
 {{-- footer scripts --}}

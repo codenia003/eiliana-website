@@ -122,9 +122,9 @@ class JobController extends JoshController
             ];
             $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
             $locations = Location::all();
-    
+
             $request->session()->forget('sales_referral');
-    
+
             return view('job/job-posting', compact('pagename','projectcategorys','locations'));
         }
         else{
@@ -141,7 +141,7 @@ class JobController extends JoshController
         $contractsattfing = $data;
         $request->session()->forget('contractsattfing');
         $request->session()->put('contractsattfing', $contractsattfing);
-        
+
         $roleda = $request->session()->get('users');
         if ($data['lookingfor'] == '1') {
             // contract-sattfing
@@ -817,9 +817,10 @@ class JobController extends JoshController
 
         return redirect('/freelancer/my-proposal')->with('success', 'Job Schedule Updated successfully');
     }
-    public function getResume($id) {
+    public function getResume() {
 
-        $user = User::where('id', $id)->first();
+        $user = Sentinel::getUser();
+        $id = $user->id;
 
         $ug_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '3')->get();
         $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
@@ -827,21 +828,21 @@ class JobController extends JoshController
         $proexps = ProfessionalExperience::where('user_id', $id)->first();
         $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
         $employers = Employers::where('user_id', $id)->get();
-        $staffingleadsid = ContractStaffingLeads::all()->last()->staffing_leads_id;
-        $staffingleadsid = $staffingleadsid + 1;
+        // $staffingleadsid = ContractStaffingLeads::all()->last()->staffing_leads_id;
+        // $staffingleadsid = $staffingleadsid + 1;
 
-        $staffingleadcheck = ContractStaffingLeads::where('from_user_id', '=', Sentinel::getUser()->id)->where('to_user_id', '=', $id)->first();
+        // $staffingleadcheck = ContractStaffingLeads::where('from_user_id', '=', Sentinel::getUser()->id)->where('to_user_id', '=', $id)->first();
 
-        if ($staffingleadcheck === null) {
-            $response['leadcheck'] = '0';
-        } else {
-            if($staffingleadcheck['lead_status'] == '1'){
-                $response['leadcheck'] = '0';
-            } else {
-                $response['leadcheck'] = '1';
-            }
-        }
+        // if ($staffingleadcheck === null) {
+        //     $response['leadcheck'] = '0';
+        // } else {
+        //     if($staffingleadcheck['lead_status'] == '1'){
+        //         $response['leadcheck'] = '0';
+        //     } else {
+        //         $response['leadcheck'] = '1';
+        //     }
+        // }
 
-        return view('job/resume-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','staffingleadsid','response'));
+        return view('job/resume-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
     }
 }

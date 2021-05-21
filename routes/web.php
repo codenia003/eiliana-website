@@ -407,7 +407,7 @@ Route::group(
         Route::get('project/{id}', 'ProjectController@getProjectDeatils')->name('project.view');
         Route::get('job/{id}', 'JobController@getJobDeatils')->name('jobdetails');
         Route::get('profile/{id}', 'JobController@getProfileDeatils')->name('profile.view');
-        Route::get('resume/{id}', 'JobController@getResume')->name('resume.view');
+        Route::get('resume/', 'JobController@getResume')->name('resume.view');
 
         Route::post('post-staffing-lead', 'JobController@postStaffingLead');
         Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');

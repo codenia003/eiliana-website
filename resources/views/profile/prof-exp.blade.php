@@ -142,6 +142,12 @@
                             <span class="text-danger">{{ $errors->first('model_engagement') }}</span>
                         @endif
                     </div>
+                    <div class="form-row rateperhour">
+                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
+                            <label>Rate Per Hour</label>
+                            <input type="number" name="rateperhour" class="form-control" min="100" value="{{  $proexp->rateperhour }}" required />
+                        </div>
+                    </div>
                     @endif
 
                     <div class="form-row">
@@ -277,6 +283,12 @@
                         @if ($errors->has('model_engagement'))
                             <span class="text-danger">{{ $errors->first('model_engagement') }}</span>
                         @endif
+                    </div>
+                    <div class="form-row rateperhour">
+                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
+                            <label>Rate Per Hour</label>
+                            <input type="number" name="rateperhour" class="form-control" min="100" value="" required />
+                        </div>
                     </div>
                     @endif
 

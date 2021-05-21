@@ -317,10 +317,12 @@ class AuthController extends JoshController
                     $company_id = 0;
                 } else {
                     $company_id = $invitation['from_user_id'];
+                    $user_bid = $invitation['user_bid'];
 
                     $teamuser = new TeamUser();
                     $teamuser->company_id = $company_id;
                     $teamuser->user_id = $user->id;
+                    $teamuser->user_type = $user_bid;
                     $teamuser->save();
 
                     $request->session()->forget('teaminvitation');
@@ -389,10 +391,12 @@ class AuthController extends JoshController
                     $company_id = 0;
                 } else {
                     $company_id = $invitation['from_user_id'];
+                    $user_bid = $invitation['user_bid'];
 
                     $teamuser = new TeamUser();
                     $teamuser->company_id = $company_id;
                     $teamuser->user_id = $user->id;
+                    $teamuser->user_type = $user_bid;
                     $teamuser->save();
 
                     $request->session()->forget('teaminvitation');

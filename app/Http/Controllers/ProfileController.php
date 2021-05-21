@@ -388,6 +388,7 @@ class ProfileController extends JoshController
             $professionalExperience->current_location = $input['current_location'];
             $professionalExperience->preferred_location = $input['preferred_location'];
             $professionalExperience->development_project = $input['development_project'];
+            $professionalExperience->rateperhour = $input['rateperhour'];
             $professionalExperience->indexing = $indexing;
             $professionalExperience->save();
 
@@ -406,7 +407,7 @@ class ProfileController extends JoshController
     public function registerProjects(Request $request)
     {
         $user = Sentinel::getUser();
-     
+
         $input = $request->except('_token');
 
         foreach ($input['user_project_id'] as $key => $value) {
@@ -470,8 +471,8 @@ class ProfileController extends JoshController
 
         // return redirect('profile/professional-experience')->with('success', 'Project updated successfully');
         // return redirect('welcome')->with('success', 'Project updated successfully');
-        $id= $user->id;
-        return redirect('resume/'.$id);
+
+        return redirect('resume')->with('success', 'Project updated successfully');
     }
 
     public function deleteProjects(Request $request)

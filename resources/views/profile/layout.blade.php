@@ -281,10 +281,6 @@ type="text/css"/>
 		$("#exampleModal1").modal();
     }
 
-	function imageUpload(input) {
-        $("#modalIimage").modal('show');
-    }
-
     function change_framework()
     {
         var technologty_pre = $("#technologty_pre").val();
@@ -355,6 +351,12 @@ type="text/css"/>
             },
         });
     }
+    $('input').on('ifChecked', function(event){
+        var check = event.target.value;
+        // if(check == '1'){
+        //     $('.rateperhour').removeClass("d-none");
+        // }
+    });
     /*$(window).scroll(function(){
 	    if ($(window).scrollTop() >= 150) {
 	        $('#sidebarNav').addClass('fixed-topscroll');

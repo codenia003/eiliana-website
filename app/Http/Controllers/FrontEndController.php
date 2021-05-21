@@ -389,6 +389,8 @@ class FrontEndController extends JoshController
             $request->session()->flush();
             // Log the user out
             Sentinel::logout();
+        } else {
+            return Redirect::route('login');
         }
         $request->session()->put('id', $id);
         $user = User::where('id', $id)->first();

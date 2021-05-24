@@ -7,7 +7,16 @@
             <div class="basic-padding">
                 <div class="mb-2">
                     <h5 class="card-title">Welcome back,</h5>
-                    <p>{{ Sentinel::getUser()->full_name }}</p>
+                    <p>
+                       @if(isset(Sentinel::getUser()->anonymous))
+                                    @if(Sentinel::getUser()->anonymous=='0')
+                                        {{ Sentinel::getUser()->full_name }}
+                                    @endif
+                                    @if(Sentinel::getUser()->anonymous=='1')
+                                        {{Sentinel::getUser()->pseudoName}}
+                                    @endif
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="basic-list">

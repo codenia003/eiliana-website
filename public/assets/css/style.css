@@ -1511,6 +1511,15 @@ span.select2-selection.select2-selection--single {
     color: #fff;
     font-weight: 600;
 }
+.reg-refer .btn.times {
+    position: absolute;
+    right: -18px;
+    top: -13px;
+    background: #ff2424;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 600;
+}
 .eiliana-refer {
     text-align: right;
 }

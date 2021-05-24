@@ -128,7 +128,14 @@ Logout
                         @else
                             <img src="/assets/img/logout_img.png" class="img-fluid logout_img" alt="">
                         @endif
-                            <h2 style="font-size: 25px;color: #41418a;">{!! $user->first_name !!} {!! $user->last_name !!}</h2>
+                            <h2 style="font-size: 25px;color: #41418a;">@if(isset($user->anonymous))
+                                    @if($user->anonymous=='0')
+                                        {{ $user->full_name }}
+                                    @endif
+                                    @if($user->anonymous=='1')
+                                       {{$user->pseudoName}}
+                                    @endif
+                                @endif</h2>
                             @if($user->company_name)
                             <p>{!! $user->company_name !!}</p><br>
                             @endif

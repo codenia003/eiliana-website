@@ -164,16 +164,26 @@
 
                                     <!-- for r per rate -->
                                     <div class="form-group " id="rate">
-                                            <label>Rate per Hour</label>
-                                            <select name="rate" class="form-control" id="rate_value">
-                                                <option value=""></option>
-                                                <option>1000</option>
-                                                <option>2000</option>
-                                                <option>3000</option>
-                                                <option>4000</option>
-                                                <option>5000</option>
-                                              
-                                            </select>
+                                        <label>Rate per Hour</label>
+                                        <div class="form-row">
+	                                            <div class="col">
+	                                                <select class="form-control" name="rate_min">
+	                                                    <option value="">Minimum</option>
+	                                                    @for ($i = 0; $i < 2; $i++)
+	                                                    <option value="{{ $i }}">{{ $i }} Thousand</option>
+	                                                    @endfor
+	                                                </select>
+	                                            </div>
+	                                            <div class="col">
+	                                                <select class="form-control" name="rate_max">
+	                                                    <option value="">Maximum</option>
+	                                                    @for ($i = 1; $i <=10; $i++)
+	                                                    <option value="{{ $i }}">{{ $i }} Thousand</option>
+	                                                    @endfor
+	                                                </select>
+	                                            </div>
+	                                        </div>
+                                            
                                     </div>
                                     <div class="form-group d-none" id="tech">
                                             <label>Technology</label>

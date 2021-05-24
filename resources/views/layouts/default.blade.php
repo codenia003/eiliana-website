@@ -236,7 +236,15 @@
                                 @else
                                 <img src="/assets/img/profile/avatar.svg" class="avatar" alt="Avatar">
                                 @endif
-                                {{ Sentinel::getUser()->full_name }}
+                                @if(isset(Sentinel::getUser()->anonymous))
+                                    @if(Sentinel::getUser()->anonymous=='0')
+                                        {{ Sentinel::getUser()->full_name }}
+                                    @endif
+                                    @if(Sentinel::getUser()->anonymous=='1')
+                                        {{Sentinel::getUser()->pseudoName}}
+                                    @endif
+                                @endif
+                                
                                 <b class="caret"></b>
                             </a>
                             <div class="dropdown-menu">
@@ -296,6 +304,27 @@
                 </div>
                 <div class="modal-footer eiliana-refer">
                     <button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- now code for registeration popup model -->
+    <div class="modal fade pullDown login-body border-0 reg-refer betaversion" id="reg-refer" role="dialog" aria-labelledby="modalLabelnews">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    <div class="eiliana-logo">
+                        <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
+                        <!-- <h4>Beta Version</h4> -->
+                        <div class="beta-parent" id="msg">
+                            <p>Account sucessfully created, Redirect to profile!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer eiliana-refer">
+                    <a id="link" class="btn btn-outline-primary red-linear-gradient" href="{{url('profile')}}">OK</a>
+                    <!-- <button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Close</button> -->
                 </div>
             </div>
         </div>
@@ -417,7 +446,13 @@
         function togglePopupHome(){
             $('#modal-refer').modal('show');
         }
+        function toggleRegPopup()
+        {
+            
+            $('#reg-refer').modal('show');
+        }
         function togglePopup(){
+            
             $('#modal-refer').modal('show');
             $('.beta-parent').html('<p>We are pleased to welcome you to experience the beta version of our portal. This section is still in the finalization phase , kindly bear with us.</p>');
         }

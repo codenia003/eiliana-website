@@ -23,7 +23,7 @@ class JoshController extends Controller
 
     /**
      * Message bag.
-     *
+     *showHome
      * @var Illuminate\Support\MessageBag
      */
     protected $messageBag = null;
@@ -83,6 +83,7 @@ class JoshController extends Controller
     public function showHome()
     {
         // analytics related functionality
+        
         $storagePath = storage_path() . '/app/analytics/';
         if (File::exists($storagePath . 'service-account-credentials.json')) {
             //Last week visitors statistics

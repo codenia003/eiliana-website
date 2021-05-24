@@ -32,7 +32,7 @@ class AdvanceSearchController extends JoshController
         $userlogin = $request->session()->get('users');
         $prev_tech=array();
         $contractsattfing = $request->session()->get('contractsattfing');
-        if (isset($contractsattfing['rate'])) {
+        if (isset($contractsattfing['rate_min']) && isset($contractsattfing['rate_max'])) {
            $prev_tech['rate']=1;
         }
         if (isset($contractsattfing['technology'])) {

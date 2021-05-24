@@ -56,11 +56,14 @@ $(document).ready(function() {
                   showConfirmButton: false,
                   timer: 2000
                 });
+            
+            
+               
                $('.spinner-border').addClass("d-none");
             } else if (userExists.usersexist == '2') {
                 swalWithBootstrapButtons.fire({
                   type: 'warning',
-                  title: 'Oops...',
+                  title: 'OOPS',
                   text: userExists.error,
                   showConfirmButton: false,
                   timer: 2000
@@ -222,23 +225,20 @@ $(document).ready(function() {
                 });
                 $('.spinner-border').addClass("d-none");
             } else if(userDatas.success == '2') {
-                swalWithBootstrapButtons.fire({
-                  type: 'success',
-                  title: 'Success...',
-                  text: 'Account sucessfully created, Redirect to profile!',
-                }).then(function() {
-                    window.location.href = userDatas.url;
-                });
+                toggleRegPopup();
+               
             } else {
                 localStorage.removeItem('reg_id');
                 $('.spinner-border').addClass("d-none");
-                swalWithBootstrapButtons.fire({
-                  type: 'success',
-                  title: 'Success...',
-                  text: 'Account sucessfully created, Login credentials send to your email!',
-                }).then(function() {
-                    window.location.href = '/account/login';
-                });
+                // swalWithBootstrapButtons.fire({
+                //   type: 'success',
+                //   title: 'Success...',
+                //   text: 'Account sucessfully created, Login credentials send to your email!',
+                // }).then(function() {
+                //     window.location.href = '/account/login';
+                // });
+                toggleRegPopup();
+                 
             }
         }, 'json');
     });

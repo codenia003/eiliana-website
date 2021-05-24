@@ -28,10 +28,10 @@ Advance Search
 			<span class="h5 text-white ml-2 profile_text">Advance Search</span>
 			<nav class="navbar navbar-expand-xl navbar-light custom_header">
 				<!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
-				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse1" style="margin-right: -34px;">
+				<!-- <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse1" style="margin-right: -34px;">
 				<span class="border-title"><i class="fa fa-bars"></i></span>
 				<span class="h5 text-white ml-2">Advance Search</span>
-				</button>
+				</button> -->
 				<!-- Collection of nav links, forms, and other content for toggling -->
 				<div id="navbarCollapse1" class="collapse navbar-collapse justify-content-start nav_sub">
 					<div class="navbar-nav ml-auto">
@@ -74,21 +74,57 @@ Advance Search
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/assets/js/profile_custom.js') }}"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
-<script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script>
      $(window).bind("load", function() {
         change_category();
+		changeBrowseProjectType();
+		changeBrowseProjectType1();
+		changeBrowseProjectType2();
     });
+
 	
     $('#technologty_pre').select2({
         theme: 'bootstrap',
         placeholder: 'Select a value',
     });
-    $('#framework').select2({
-        theme: 'bootstrap',
-        placeholder: 'Select a value',
-    });
+    // $('#framework').select2({
+    //     theme: 'bootstrap',
+    //     placeholder: 'Select a value',
+    // });
+
+
+	function changeBrowseProjectType() {
+		var checkBox = document.getElementById("inlineCheckbox1");
+		// Get the output text
+		var hourly = document.getElementById("hourly");
+		if (checkBox.checked == true){
+			hourly.style.display = "block";
+		} else {
+			hourly.style.display = "none";
+		}
+	}
+
+	function changeBrowseProjectType1() {
+		var checkBox = document.getElementById("inlineCheckbox2");
+		var retainer = document.getElementById("retainer");
+		if (checkBox.checked == true){
+			retainer.style.display = "block";
+		} else {
+			retainer.style.display = "none";
+		}
+	}
+
+	function changeBrowseProjectType2() {
+		var checkBox = document.getElementById("inlineCheckbox3");
+		var project_based = document.getElementById("project-based");
+		if (checkBox.checked == true){
+			project_based.style.display = "block";
+		} else {
+			project_based.style.display = "none";
+		}
+	}
 </script>
-<!--global js end-->
 @stop

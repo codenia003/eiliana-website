@@ -37,10 +37,10 @@ class CompanayController extends JoshController
         //     return view('team/bench', compact('teaminvitations','user_type_parent_id'));
         // }
         // else{
-            $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
+            $teaminvitations = TeamInvitation::with('useremail','useremail.userprofessionalexp')->where('from_user_id', $user->id)->paginate(15);
+            //return $teaminvitations;
             return view('team/bench', compact('teaminvitations'));
         // }
-
     }
     public function teamsForm()
     {

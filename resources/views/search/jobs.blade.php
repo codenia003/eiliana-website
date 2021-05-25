@@ -48,18 +48,26 @@
                     <br>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox"
-                         @if(isset($prev_tech['rate']))
+                         @if(isset($prev_tech['rate_hour']))
                             checked="" 
                          @endif
                           id="inlineCheckbox1" name="model_engagement" value="1">
                         <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="2">
+                        <input class="form-check-input" type="checkbox"
+                        @if(isset($prev_tech['rate_month']))
+                            checked="" 
+                         @endif
+                         id="inlineCheckbox2" name="model_engagement" value="2">
                         <label class="form-check-label" for="inlineCheckbox2">Retainership</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="3">
+                        <input class="form-check-input" type="checkbox"
+                         @if(isset($prev_tech['project_budget']))
+                            checked="" 
+                         @endif
+                         id="inlineCheckbox3" name="model_engagement" value="3">
                         <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
                     </div>
                 </div>
@@ -78,10 +86,23 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <label>Framework</label>
+                        <!-- <label>Framework</label>
                         <select class="form-control select2" name="framework[]" id="framework" multiple>
                             <option value=""></option>
-                        </select>
+                        </select> -->
+                        
+                                    
+                        
+                        <label>Project Duration</label>
+                            <div class="form-row">
+                                <div class="col">
+                                <input type="number" value="@if(isset($prev_tech['dur_min'])){{$prev_tech['dur_min']}}@endif" class="form-control" name="duration_min" placeholder="Min">
+                            </div>
+                            <div class="col">
+                            <input type="number" value="@if(isset($prev_tech['dur_max'])){{$prev_tech['dur_max']}}@endif" class="form-control" 
+                                name="duration_max" placeholder="Max">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group col">
                         <label>Industry that Product was designed for</label>

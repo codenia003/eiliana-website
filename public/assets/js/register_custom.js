@@ -49,25 +49,27 @@ $(document).ready(function() {
             // console.log(result);
             var userExists = result;
             if (userExists.usersexist == '1') {
-                swalWithBootstrapButtons.fire({
-                  type: 'warning',
-                  title: 'Oops...',
-                  text: userExists.error,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
-            
-            
-               
+                // swalWithBootstrapButtons.fire({
+                //   type: 'warning',
+                //   title: 'Oops...',
+                //   text: userExists.error,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+                msg= "Oops...<br>"+ userExists.error;
+                 toggleRegPopup(msg,'#');
+                  
                $('.spinner-border').addClass("d-none");
             } else if (userExists.usersexist == '2') {
-                swalWithBootstrapButtons.fire({
-                  type: 'warning',
-                  title: 'OOPS',
-                  text: userExists.error,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                // swalWithBootstrapButtons.fire({
+                //   type: 'warning',
+                //   title: 'OOPS',
+                //   text: userExists.error,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+                msg= "Oops...<br>"+ userExists.error;
+                 toggleRegPopup(msg,'#');
                 $('.spinner-border').addClass("d-none");
             } else {
                 localStorage.setItem("reg_id", userExists.reg_id);
@@ -78,13 +80,15 @@ $(document).ready(function() {
                 $("#mobile_otp").append(mobile_otp);
                 $("#otp_form").append('<input type="hidden" name="reg_id" id="reg_id" value="'+userExists.reg_id+'" />');
                 */
-                swalWithBootstrapButtons.fire({
-                  type: 'success',
-                  title: 'Success...',
-                  text: 'OTP send to your mobile and email successful',
-                }).then(function() {
-                    window.location.href = '/account/registerotp';
-                });
+                // swalWithBootstrapButtons.fire({
+                //   type: 'success',
+                //   title: 'Success...',
+                //   text: 'OTP send to your mobile and email successful',
+                // }).then(function() {
+                //     window.location.href = '/account/registerotp';
+                // });
+                msg= "OTP send to your mobile and email successful";
+                 toggleRegPopup(msg,'/account/registerotp');
             }
         }, 'json');
     });
@@ -128,23 +132,27 @@ $(document).ready(function() {
             // console.log(result);
             var userExists = result;
             if (userExists.success == '0') {
-                swalWithBootstrapButtons.fire({
-                  type: 'warning',
-                  title: 'Oops...',
-                  text: userExists.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                // swalWithBootstrapButtons.fire({
+                //   type: 'warning',
+                //   title: 'Oops...',
+                //   text: userExists.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+                msg= "Oops...<br>"+ userExists.error;
+                 toggleRegPopup(msg,'#');
                 $('.spinner-border').addClass("d-none");
             } else {
                 $('.spinner-border').addClass("d-none");
-                swalWithBootstrapButtons.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: 'OTP verify successful',
-                }).then(function() {
-                    window.location.href = '/account/registerbasic';
-                });
+                // swalWithBootstrapButtons.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //     text: 'OTP verify successful',
+                // }).then(function() {
+                //     window.location.href = '/account/registerbasic';
+                // });
+                msg= "OTP verify successful";
+                 toggleRegPopup(msg,'/account/registerbasic');
             }
         }, 'json');
     });
@@ -216,16 +224,19 @@ $(document).ready(function() {
             // console.log(result);
             var userDatas = result;
             if (userDatas.success == '0') {
-                swalWithBootstrapButtons.fire({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: userDatas.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                // swalWithBootstrapButtons.fire({
+                //   type: 'error',
+                //   title: 'Oops...',
+                //   text: userDatas.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+                msg= "Oops...<br>"+ userDatas.errors;
+                 toggleRegPopup(msg,'#');
                 $('.spinner-border').addClass("d-none");
             } else if(userDatas.success == '2') {
-                toggleRegPopup();
+                msg= "Account sucessfully created, Redirect to profile!";
+                 toggleRegPopup(msg,userDatas.url);
                
             } else {
                 localStorage.removeItem('reg_id');
@@ -237,7 +248,8 @@ $(document).ready(function() {
                 // }).then(function() {
                 //     window.location.href = '/account/login';
                 // });
-                toggleRegPopup();
+                msg= "Account sucessfully created, Login credentials send to your email!";
+                 toggleRegPopup(msg,'/account/login');
                  
             }
         }, 'json');

@@ -317,13 +317,13 @@
                     <div class="eiliana-logo">
                         <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
                         <!-- <h4>Beta Version</h4> -->
-                        <div class="beta-parent" id="msg">
-                            <p>Account sucessfully created, Redirect to profile!</p>
+                        <div class="beta-parent">
+                            <p id="msg"></p>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer eiliana-refer">
-                    <a id="link" class="btn btn-outline-primary red-linear-gradient" href="{{url('profile')}}">OK</a>
+                    <a id="linkUrl"  class="btn btn-outline-primary red-linear-gradient" href="#">OK</a>
                     <!-- <button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Close</button> -->
                 </div>
             </div>
@@ -446,9 +446,13 @@
         function togglePopupHome(){
             $('#modal-refer').modal('show');
         }
-        function toggleRegPopup()
-        {
-            
+        function toggleRegPopup(msg,link)
+         {
+            if (link=='#') {
+                $('#linkUrl').attr('data-dismiss','modal');
+            }
+            $('#msg').html(msg);
+            $('#linkUrl').attr('href',link);
             $('#reg-refer').modal('show');
         }
         function togglePopup(){

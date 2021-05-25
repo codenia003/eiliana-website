@@ -39,7 +39,7 @@
                             @csrf
                             <div class="card">
                                 <div class="px-3 py-2">
-                                	<h4 class="card-header text-left">Looking For 1</h4>
+                                	<h4 class="card-header text-left">Looking For </h4>
                                 	<div class="form-group basic-info my-3">
 					                    <!-- <label><span>Looking For</span></label> -->
 					                    <!-- <br> -->
@@ -73,24 +73,79 @@
                                                 <option value=""></option>
                                             </select>
                                         </div>
-					                	<div class="form-group job-posting d-none">
+                                        <!-- for r per rate -->
+                                    <div class="form-group d-none" id="rate">
+                                        <label>Rate per Hour</label>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <input type="number"  name="rate_hour_min" class="form-control" placeholder="Min">
+                                            </div>
+                                            <div class="col">
+                                                <input type="number"  name="rate_hour_max" class="form-control" placeholder="Max">
+                                            </div>
+                                        </div> 
+                                            
+                                    </div>
+                                    <!-- for duration field -->
+                                    <div class="form-group d-none" id="duration_field">
+                                        <label>Project Duration</label>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <input type="number" class="form-control" name="duration_min" placeholder="Min">
+                                            </div>
+                                            <div class="col">
+                                                <input type="number" class="form-control" name="duration_max" placeholder="Max">
+                                            </div>
+                                        </div>
+                                            
+                                    </div> 
+
+                                    <!-- for Rate per moth field -->
+                                    <div class="form-group d-none" id="rate_month">
+                                        <label>Rate Per Month</label>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <input type="number" class="form-control" name="rate_month_min" placeholder="Min">
+                                            </div>
+                                            <div class="col">
+                                                <input type="number" class="form-control" name="rate_month_max" placeholder="Max">
+                                            </div>
+                                        </div>
+                                            
+                                    </div> 
+                                    <!-- for project based field -->
+                                    <div class="form-group d-none" id="project_field">
+                                        <label>Project Budget</label>
+                                         <div class="form-row">
+                                            <div class="col">
+                                                <input type="number" class="form-control" name="project_budget_min" placeholder=" Min"> 
+                                            </div>
+                                             <div class="col">
+                                                <input type="number" class="form-control" name="project_budget_max" placeholder=" Max"> 
+                                            </div>
+                                        </div>
+                                           
+                                    </div>    
+
+                                    <div class="form-group d-none" id="tech">
+                                            <label>Technology</label>
+                                            <select name="technology" class="form-control" id="tech_">
+                                                <option value="">Select Technology</option>
+                                                        @foreach ($technologies as $technology)
+                                                        <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                                                        @endforeach
+                                            </select>
+                                    </div>
+					                	<div class="form-group job-posting d-none" id="project_duration">
 	                                        <label>Project Duration</label>
 	                                        <div class="form-row">
 	                                            <div class="col">
-	                                                <select class="form-control" name="dur_minimum">
-	                                                    <option value="">Minimum</option>
-	                                                    @for ($i = 0; $i < 21; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }}</option>
-	                                                    @endfor
-	                                                </select>
+	                                                <input type="number" placeholder="Min" class="form-control" name="dur_minimum"/>
+	                                                 
 	                                            </div>
 	                                            <div class="col">
-	                                                <select class="form-control" name="dur_maximum">
-	                                                    <option value="">Maximum</option>
-	                                                    @for ($i = 1; $i < 21; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }}</option>
-	                                                    @endfor
-	                                                </select>
+	                                                <input type="number" placeholder="Max" class="form-control" name="dur_maximum"/>
+	                                                    
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -131,6 +186,9 @@
 					                </div>
                                     <div class="basic-info mb-3 ">
                                         <label>Search Method</label>
+
+                                        <p class="m-0 p-0">Mode of engagement at heading of after search method in hire talent page</p>
+                                   
                                         <br>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
@@ -145,55 +203,96 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- for search method -->
-                                    <div class="basic-info1 mb-3 mr-3">
+                                    
+                                    <!-- for database search method -->
+                                    <div class="basic-info1 mb-3 mr-3 d-none">
                                         
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" id="budget" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="B" checked="false">
-                                                <label class="custom-control-label" for="budget">Budget</label>
+                                                <label class="custom-control-label" for="budget">Budget&nbsp;&nbsp;</label>
                                             </div>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" id="techanology" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="T">
-                                                <label class="custom-control-label" for="techanology">Technology</label>
+                                                <label class="custom-control-label" for="techanology">Technology&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="duration" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="D">
+                                                <label class="custom-control-label" for="duration">Duration</label>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- for r per rate -->
-                                    <div class="form-group " id="rate">
-                                        <label>Rate per Hour</label>
-                                        <div class="form-row">
-	                                            <div class="col">
-	                                                <select class="form-control" name="rate_min">
-	                                                    <option value="">Minimum</option>
-	                                                    @for ($i = 0; $i < 2; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }} Thousand</option>
-	                                                    @endfor
-	                                                </select>
-	                                            </div>
-	                                            <div class="col">
-	                                                <select class="form-control" name="rate_max">
-	                                                    <option value="">Maximum</option>
-	                                                    @for ($i = 1; $i <=10; $i++)
-	                                                    <option value="{{ $i }}">{{ $i }} Thousand</option>
-	                                                    @endfor
-	                                                </select>
-	                                            </div>
-	                                        </div>
-                                            
+                                    <!-- for job postiin search method -->
+                                    <div class="mb-3 mr-3 d-none" id="job_post">
+                                        
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="budget1" class="custom-control-input" name="job_post" onchange="changeSearchDBMethod1()" value="B1" checked="false">
+                                                <label class="custom-control-label" for="budget1">Budget&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="duration1" class="custom-control-input" name="job_post" onchange="changeSearchDBMethod1()" value="D1">
+                                                <label class="custom-control-label" for="duration1">Duration</label>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group d-none" id="tech">
-                                            <label>Technology</label>
-                                            <select name="technology" class="form-control" id="tech_">
-                                                <option value="">Select Technology</option>
-                                                        @foreach ($technologies as $technology)
-                                                        <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
-                                                        @endforeach
-                                            </select>
+
+
+                                    <!-- sub budget -->
+                                    <div class="mb-3 mr-3" id="sub_budget">
+                                        
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="hourly" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="H" checked="false">
+                                                <label class="custom-control-label" for="hourly">Hourly&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="retainer" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="R">
+                                                <label class="custom-control-label" for="retainer">Retainer&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="project_based" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="P">
+                                                <label class="custom-control-label" for="project_based">Project Based</label>
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    <!-- job posting budget -->
+                                    <div class="mb-3 mr-3 d-none" id="job_budget">
+                                        
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="hourly1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="H1" checked="false">
+                                                <label class="custom-control-label" for="hourly1">Hourly&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="retainer1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="R1">
+                                                <label class="custom-control-label" for="retainer1">Retainer&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="project_based1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="P1">
+                                                <label class="custom-control-label" for="project_based1">Project Based</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
                                            <button class="btn btn-primary" type="submit"> 
@@ -209,7 +308,7 @@
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-7 col-12">
                 	<div class="projects">
-                		<img src="/assets/img/profile/hire-right.png" class="img-fluid" alt="">
+                		<img src="/assets/img/profile/freelance.png" class="img-fluid" alt="">
                 	</div>
                 	<div class="border bg-img-hero right-colume d-none" style="background: linear-gradient(to left, rgb(0 0 0 / 0%), rgb(0 0 0 / 0.65)), url(/assets/img/others/hire-talent.png);">
         				<div class="row no-gutters">
@@ -323,21 +422,165 @@
         changeLookingFor();
         changeSearchMethod();
         changeSearchDBMethod();
+        changeSearchDBMethod1();
         change_category();
+        changeSubBudget();
+        changeSubBudget1();
     });
+
+    function changeSearchDBMethod1() {
+        //  
+        var method = $('input[name="job_post"]:checked').attr('value');
+        if (method == 'B1') {
+            $('#project_duration').addClass("d-none");
+            $('#job_budget').removeClass("d-none");
+            // $('.basic-info1').removeClass("d-none");
+            // $('#rate').removeClass("d-none");
+            // $('#tech').addClass("d-none");
+            // $('#duration_field').addClass("d-none");
+            // $('#sub_budget').removeClass("d-none");
+            //  $('#rate_month').addClass("d-none");
+        
+            // $('#rate').addClass("d-none");
+            // $('#sub_budget').addClass("d-none");
+            // $('#tech').removeClass("d-none");
+            // $('#duration_field').addClass("d-none");
+            // $('#project_field').addClass("d-none");
+            // $('#rate_month').addClass("d-none");
+        }
+        else if(method=='D1')
+        {
+            $('#job_budget').addClass("d-none");
+            $('#project_duration').removeClass("d-none");
+            // alert();
+            // $('#rate').addClass("d-none");
+            // $('#sub_budget').addClass("d-none");
+            // $('#tech').addClass("d-none");
+            //  $('#project_field').addClass("d-none");
+            // $('#duration_field').removeClass("d-none");
+            //  $('#rate_month').addClass("d-none");
+        }
+        
+        else {
+            // $('.job-posting').addClass("d-none");
+        }
+    }
+    function changeSubBudget1() {
+        //  
+        var method = $('input[name="job_budget"]:checked').attr('value');
+        
+        if (method == 'H1') {
+            
+            // $('.job-posting').addClass("d-none");
+            // $('.basic-info1').removeClass("d-none");
+            // alert();
+            $('#rate').removeClass("d-none");
+            $('#rate').show();
+            $('#rate_month').addClass("d-none");
+            $('#tech').addClass("d-none");
+            $('#duration_field').addClass("d-none");
+            $('#project_field').addClass("d-none");
+
+            // $('#job_budget').addClass("d-none");
+            // $('#job_post').removeClass("d-none");
+            // $('#job_budget').addClass("d-none");
+        }
+        else if(method=='R1')
+        {
+            $('#rate_month').removeClass("d-none");
+            $('#rate').addClass("d-none");
+            // $('#rate_month').removeClass("d-none");
+            // $('#sub_budget').addClass("d-none");
+            $('#tech').addClass("d-none");
+            $('#duration_field').addClass("d-none");
+            $('#job_budget').removeClass("d-none");
+        }
+        else if(method=='P1')
+        {
+            $('#project_field').removeClass("d-none");
+            $('#rate').addClass("d-none");
+            $('#project_field').removeClass("d-none");
+            $('#tech').addClass("d-none");
+            $('#duration_field').addClass("d-none");
+            $('#rate_month').addClass("d-none");
+            $('#job_budget').removeClass("d-none");
+        }
+        
+        else {
+            // $('.job-posting').addClass("d-none");
+        }
+    }
+    // for sub budget
+    function changeSubBudget() {
+        //  
+        var method = $('input[name="sub_budgets"]:checked').attr('value');
+        
+        if (method == 'H') {
+            
+            // $('.job-posting').addClass("d-none");
+            // $('.basic-info1').removeClass("d-none");
+            $('#rate').removeClass("d-none");
+            $('#rate_month').addClass("d-none");
+            $('#tech').addClass("d-none");
+            $('#duration_field').addClass("d-none");
+            $('#project_field').addClass("d-none");
+            $('#job_budget').addClass("d-none");
+            $('#job_post').addClass("d-none");
+            // $('#job_budget').addClass("d-none");
+        }
+        else if(method=='R')
+        {
+            $('#rate_month').removeClass("d-none");
+            $('#rate').addClass("d-none");
+            // $('#rate_month').removeClass("d-none");
+            // $('#sub_budget').addClass("d-none");
+            $('#tech').addClass("d-none");
+            $('#duration_field').addClass("d-none");
+            $('#job_budget').addClass("d-none");
+            $('#job_post').addClass("d-none");
+            // $('#job_budget').addClass("d-none");
+        }
+        else if(method=='P')
+        {
+            $('#project_field').removeClass("d-none");
+            $('#rate').addClass("d-none");
+            $('#project_field').removeClass("d-none");
+            $('#tech').addClass("d-none");
+            $('#duration_field').addClass("d-none");
+            $('#rate_month').addClass("d-none");
+            // $('#job_budget').addClass("d-none");
+            $('#job_post').addClass("d-none");
+            $('#job_budget').addClass("d-none");
+        }
+        
+        else {
+            // $('.job-posting').addClass("d-none");
+        }
+    }
     function changeSearchMethod() {
         var method = $('input[name="search_method"]:checked').attr('value');
         if (method == '1') {
-            $('.job-posting').removeClass("d-none");
+            $('.job-posting').addClass("d-none");
             $('.basic-info1').addClass("d-none");
             $('#rate').addClass("d-none");
         	$('#tech').addClass("d-none");
+            $('#duration_field').addClass("d-none");
+            $('#sub_budget').addClass("d-none");
+            $('#rate').addClass("d-none");
+            $('#rate_month').addClass("d-none");
+             $('#project_field').addClass("d-none");
+             $('#job_post').removeClass("d-none");
+             $('#job_budget').removeClass("d-none");
+             
+             
         } 
         else if(method =='2')
         {
         	$('.job-posting').addClass("d-none");
         	$('.basic-info1').removeClass("d-none");
-        	$('#rate').removeClass("d-none");
+            // $('#job_budget').addClass("d-none");
+            $('#job_post').addClass("d-none");
+            $('#job_budget').addClass("d-none");
         }
         else {
         	$('.job-posting').addClass("d-none");
@@ -351,12 +594,29 @@
             $('.basic-info1').removeClass("d-none");
             $('#rate').removeClass("d-none");
         	$('#tech').addClass("d-none");
+            $('#duration_field').addClass("d-none");
+            $('#sub_budget').removeClass("d-none");
+             $('#rate_month').addClass("d-none");
         }
         else if(method=='T')
         {
         	$('#rate').addClass("d-none");
+            $('#sub_budget').addClass("d-none");
         	$('#tech').removeClass("d-none");
+            $('#duration_field').addClass("d-none");
+            $('#project_field').addClass("d-none");
+            $('#rate_month').addClass("d-none");
         }
+        else if(method=='D')
+        {
+            $('#rate').addClass("d-none");
+            $('#sub_budget').addClass("d-none");
+            $('#tech').addClass("d-none");
+             $('#project_field').addClass("d-none");
+            $('#duration_field').removeClass("d-none");
+             $('#rate_month').addClass("d-none");
+        }
+        
         else {
         	$('.job-posting').addClass("d-none");
         }

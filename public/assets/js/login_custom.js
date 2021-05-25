@@ -36,33 +36,39 @@ $(document).ready(function() {
             // console.log(result);
             var userCheck = result;
             if (userCheck.success == '0') {
-                Swal.fire({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: userCheck.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                // Swal.fire({
+                //   type: 'error',
+                //   title: 'Oops...',
+                //   text: userCheck.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+                msg= "Oops...<br>"+ userCheck.errors;
+                 toggleRegPopup(msg,'#');
                 $('.spinner-border').addClass("d-none");
             } else if (userCheck.success == '1') {
-                Swal.fire({
-                  type: 'success',
-                  title: 'Success...',
-                  text: userCheck.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                // Swal.fire({
+                //   type: 'success',
+                //   title: 'Success...',
+                //   text: userCheck.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+                 msg= "Success...<br>"+ userCheck.errors;
+                 toggleRegPopup(msg,'/account/loginfirst');
                 localStorage.setItem("user_id", userCheck.id);
-                window.location.href = '/account/loginfirst';
+                // window.location.href = '/account/loginfirst';
             } else if (userCheck.success == '3') {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success...',
-                  text: userCheck.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
-                window.location.href = '/account/loginas';
+                // Swal.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //   text: userCheck.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+                msg= "Success...<br>"+ userCheck.errors;
+                 toggleRegPopup(msg,'/account/loginas');
+                // window.location.href = '/account/loginas';
             } else {
                 // get return url from query parameters or default to home page
                 // localStorage.setItem('user', JSON.stringify(this.userCheck.user));
@@ -115,33 +121,40 @@ $(document).ready(function() {
             // console.log(result);
             var userCheck = result;
             if (userCheck.success == '0') {
-                Swal.fire({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: this.userCheck.error,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                // Swal.fire({
+                //   type: 'error',
+                //   title: 'Oops...',
+                //   text: this.userCheck.error,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+                msg= "Oops...<br>"+ userCheck.errors;
+                 toggleRegPopup(msg,'/account/loginas');
+
                 $('.spinner-border').addClass("d-none");
             } else if (userCheck.success == '3') {
-                Swal.fire({
-                  type: 'success',
-                  title: 'Success...',
-                  text: userCheck.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
-                window.location.href = '/account/loginas';
+                // Swal.fire({
+                //   type: 'success',
+                //   title: 'Success...',
+                //   text: userCheck.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+                msg= "Success...<br>"+ userCheck.errors;
+                 toggleRegPopup(msg,'/account/loginas');
+                // window.location.href = '/account/loginas';
             } else {
                 localStorage.removeItem('reg_id');
                 localStorage.setItem("user_id", userCheck.id);
-                Swal.fire({
-                  type: 'success',
-                  title: 'Success...',
-                  text: 'Password changed sucessfully',
-                }).then(function() {
-                    window.location.href = '/profile';
-                });
+                // Swal.fire({
+                //   type: 'success',
+                //   title: 'Success...',
+                //   text: 'Password changed sucessfully',
+                // }).then(function() {
+                //     window.location.href = '/profile';
+                // });
+                msg= "Password changed sucessfully";
+                 toggleRegPopup(msg,'/profile');
             }
         }, 'json');
     });

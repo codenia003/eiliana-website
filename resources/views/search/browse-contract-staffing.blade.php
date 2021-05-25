@@ -79,7 +79,14 @@
                     <div class="col-md-9">
                         <div class="contract-body">
                             <div class="mb-2">
-                                <a href="{{ url('profile') }}/{{ $user->id }}" class="h3">{{ $user->full_name }}</a>
+                                <a href="{{ url('profile') }}/{{ $user->id }}" class="h3">@if(isset($user->anonymous))
+                                    @if($user->anonymous=='0')
+                                        {{ $user->full_name }}
+                                    @endif
+                                    @if($user->anonymous=='1')
+                                        {{$user->pseudoName}}
+                                    @endif
+                        @endif</a>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-md-6">

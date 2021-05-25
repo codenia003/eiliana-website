@@ -53,35 +53,41 @@ $(document).ready(function() {
             var userExists = result;
             if (userExists.success == '0') {
                 $('.spinner-border').addClass("d-none");
-                swalWithBootstrapButtons.fire({
-                  type: 'warning',
-                  title: 'Oops...',
-                  text: userExists.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                }).then(function() {
-                    window.location.href = '/company/teams';
-                });
+                // swalWithBootstrapButtons.fire({
+                //   type: 'warning',
+                //   title: 'Oops...',
+                //   text: userExists.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // }).then(function() {
+                //     window.location.href = '/company/teams';
+                // });
+                 msg= "Oops...<br>"+ userExists.errors;
+                 toggleRegPopup(msg,'/company/teams');
             } else if (userExists.success == '2') {
                 $('.spinner-border').addClass("d-none");
-                swalWithBootstrapButtons.fire({
-                  type: 'warning',
-                  title: 'Oops...',
-                  text: userExists.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                }).then(function() {
-                    window.location.href = '/company/teams';
-                });
+                // swalWithBootstrapButtons.fire({
+                //   type: 'warning',
+                //   title: 'Oops...',
+                //   text: userExists.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // }).then(function() {
+                //     window.location.href = '/company/teams';
+                // });
+                 msg= "Oops...<br>"+ userExists.errors;
+                 toggleRegPopup(msg,'/company/teams');
             }else {
                 $('.spinner-border').addClass("d-none");
-                swalWithBootstrapButtons.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: 'The Invite has been sent successfully',
-                }).then(function() {
-                    window.location.href = '/company/bench';
-                });
+                // swalWithBootstrapButtons.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //     text: 'The Invite has been sent successfully',
+                // }).then(function() {
+                //     window.location.href = '/company/bench';
+                // });
+                 msg= "The Invite has been sent successfully";
+                 toggleRegPopup(msg,'/company/bench');
             }
         }, 'json');
     });

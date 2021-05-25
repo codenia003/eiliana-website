@@ -32,15 +32,35 @@ class AdvanceSearchController extends JoshController
         $userlogin = $request->session()->get('users');
         $prev_tech=array();
         $contractsattfing = $request->session()->get('contractsattfing');
-        if (isset($contractsattfing['rate_min']) && isset($contractsattfing['rate_max'])) {
-           $prev_tech['rate']=1;
+        if (isset($contractsattfing['rate_hour_min']) || isset($contractsattfing['rate_hour_max'])) {
+           $prev_tech['rate_hour']=1;
         }
+        if (isset($contractsattfing['rate_month_min']) || isset($contractsattfing['rate_month_max'])) {
+           $prev_tech['rate_month']=1;
+           
+        }
+        if (isset($contractsattfing['duration_min']) || isset($contractsattfing['duration_max'])) {
+           $prev_tech['duration']=1;
+        }
+        if (isset($contractsattfing['project_budget_min']) || isset($contractsattfing['project_budget_maz'])) {
+           $prev_tech['project_budget']=1;
+        }
+
+        if (isset($contractsattfing['project_budget_min'])) {
+           $prev_tech['dur_min']=$contractsattfing['project_budget_min'];
+        }
+        if (isset($contractsattfing['project_budget_min'])) {
+           $prev_tech['dur_max']=$contractsattfing['project_budget_min'];
+        }
+
         if (isset($contractsattfing['technology'])) {
            $technologies = Technology::where('technology_id', $contractsattfing['technology'])->get();
             $prev_tech['name']=$technologies[0]['technology_name'];
             $prev_tech['id']=$technologies[0]['technology_id'];
         }
-        
+        // echo "<pre>";
+        // print_r($prev_tech);
+        // die;
         if (empty($request->input('job_category'))) {
 
             // Show the page

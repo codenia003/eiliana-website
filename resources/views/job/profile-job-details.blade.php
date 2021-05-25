@@ -26,7 +26,9 @@ Job Post
         <div class="px-5 py-2">
             <div class="align-items-center">
                 <span class="border-title"><i class="fa fa-bars"></i></span>
-                <span class="h5 text-white ml-2">{{ $user->full_name }}</span>
+                <span class="h5 text-white ml-2"> @if(isset($user->full_name))
+                        {{ $user->full_name }}
+                    @endif</span>
             </div>
         </div>
     </div>

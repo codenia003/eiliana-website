@@ -70,13 +70,15 @@ $(document).ready(function() {
             // console.log(result);
             var userDatas = result;
             if (userDatas.success == '0') {
-                Swal.fire({
-                   type: 'error',
-                   title: 'Oops...',
-                   text: userDatas.errors,
-                   showConfirmButton: false,
-                   timer: 2000
-                });
+                // Swal.fire({
+                //    type: 'error',
+                //    title: 'Oops...',
+                //    text: userDatas.errors,
+                //    showConfirmButton: false,
+                //    timer: 2000
+                // });
+                msg= "Oops...<br>"+ userDatas.errors;
+                 toggleRegPopup(msg,'#');
                 $('.spinner-border').addClass("d-none");
             } else {
                 localStorage.removeItem('reg_id');
@@ -93,6 +95,7 @@ $(document).ready(function() {
                         var msg = 'Redirecting To Education';
                         var redirect = '/profile/education';
                     } else if(radioValue == 2) {
+                        
                         var msg = 'Redirecting To Certification';
                         var redirect = '/profile/certification';
                     } else if(radioValue == 4) {
@@ -104,13 +107,14 @@ $(document).ready(function() {
                         var redirect = '/profile/education';
                     }
                 }
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: msg,
-                }).then(function() {
-                    window.location.href = redirect;
-                });
+                // Swal.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //     text: msg,
+                // }).then(function() {
+                //     window.location.href = redirect;
+                // });
+                 toggleRegPopup(msg,redirect);
             }
         }, 'json');
     });

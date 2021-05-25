@@ -78,6 +78,9 @@ type="text/css"/>
 <script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
 @yield('profile_script')
 <script>
+    $(window).bind("load", function() {
+        change_category1();
+    });
     // $('#registerprofexpForm').bootstrapValidator({});
     $(document).ready(function() {
         flatpickr('.flatpickr');

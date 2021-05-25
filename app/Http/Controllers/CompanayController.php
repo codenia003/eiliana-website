@@ -22,45 +22,30 @@ class CompanayController extends JoshController
     public function index()
     {
         $user = Sentinel::getUser();
-         // echo $user->id;
-        //$id=$user->id;
-        // if(Session::get('teaminvitation')['to_user'])
-        // {
-        //     $invite_user_email = Session::get('teaminvitation')['to_user'];
-        //     $role = DB::select("select * from user_registration where email = '.$invite_user_email. '");
-        //     $user_type_parent_id = $role->user_type_parent_id;
-        //     // echo "<pre>";
-        //     // print_r($role);
-        //     // die;
-        //     $teaminvitations = TeamInvitation::where('from_user_id', $user->id)->paginate(15);
-
-        //     return view('team/bench', compact('teaminvitations','user_type_parent_id'));
-        // }
-        // else{
-            $teaminvitations = TeamInvitation::with('useremail','useremail.userprofessionalexp')->where('from_user_id', $user->id)->paginate(15);
-            //return $teaminvitations;
-            return view('team/bench', compact('teaminvitations'));
-        // }
+        $user_email = Sentinel::getUser()->email;
+        $role = DB::table('user_registration')->where('email', '=', $user_email)->first();
+        $teaminvitations = TeamInvitation::with('useremail','useremail.userprofessionalexp')->where('from_user_id', $user->id)->paginate(15);
+        //return $teaminvitations;
+        return view('team/bench', compact('teaminvitations','role'));
+        
     }
     public function teamsForm()
     {
         $user = Sentinel::getUser();
-        // echo $user->id;
-        //$id=$user->id;
-        // if(Session::get('teaminvitation')['to_user'])
-        // {
-        //     $invite_user_email = Session::get('teaminvitation')['to_user'];
-        //     $role = DB::select("select * from user_registration where email = '.$invite_user_email. '");
-        //     if ($role->user_type_parent_id==1) {
-        //     return view('errors/404');
-        //     }
-        //     else
-        //     {
-        //         return view('team/teams');
-        //     }
-        //     return view('team/teams');
-        // }
-        return view('team/teams');
+        $user_email = Sentinel::getUser()->email;
+        $role = DB::table('user_registration')->where('email', '=', $user_email)->first();
+        if(isset($role->user_type_parent_id)){
+            if($role->user_type_parent_id!=1){
+                return view('team/teams');
+            }
+            else{
+                return view('team/bench', compact('teaminvitations','role'));
+            }
+        }
+        else{
+            return view('team/bench', compact('teaminvitations','role'));
+        }
+        
     }
 
     public function registerTeams(Request $request)

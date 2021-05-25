@@ -11,24 +11,16 @@
 @stop
 @section('profile_content')
 
-    <div class="card-header listofteam">
-        @if(isset($role[0]->user_type_parent_id))
-            @if($role[0]->user_type_parent_id!=1)
+        @if(isset($role->user_type_parent_id))
+            @if($role->user_type_parent_id!=1)
+            <div class="card-header listofteam">
                 <h5 class="card-title">
                     <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
                 </h5>
+            </div>    
             @endif
         @endif
-
-
-    {{-- @isset(Session::get('teaminvitation')['to_user'])
-        @if(user_type_parent_id == '0') --}}
-                <h5 class="card-title">
-                    <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
-                </h5>
-        {{-- @endif
-        @endisset     --}}
-    </div>
+    
     <!-- Body -->
     <div class="row teams-header">
         <div class="col-md-4 md-2 mt-6">

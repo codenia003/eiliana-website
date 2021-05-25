@@ -60,10 +60,10 @@ class JobController extends JoshController
         $locations = Location::all();
         $customerindustries = CustomerIndustry::all();
         $candidateroles = CandidateRole::all();
+        $jobcategorys = ProjectCategory::where('parent_id' , '0')->get();
 
-        return view('job/post-job', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','candidateroles'));
+        return view('job/post-job', compact('educationtype','qualifications','universities','technologies','locations','customerindustries','candidateroles','jobcategorys'));
     }
-
     public function hireTalent(Request $request)
     {
 
@@ -218,9 +218,9 @@ class JobController extends JoshController
         $technologty_pre = implode(',', $technologty_pre);
         $input['technologty_pre'] = $technologty_pre;
 
-        $framework = $request->input('framework');
-        $framework = implode(',', $framework);
-        $input['framework'] = $framework;
+        // $framework = $request->input('framework');
+        // $framework = implode(',', $framework);
+        // $input['framework'] = $framework;
 
         $current = Carbon::now();
         $jobExpires = $current->addDays(60);
@@ -238,10 +238,13 @@ class JobController extends JoshController
         $jobs->experience_month = $input['experience_month'];
         $jobs->customer_industry = $input['customer_industry'];
         $jobs->technologty_pre = $input['technologty_pre'];
-        $jobs->framework = $input['framework'];
+        $jobs->job_category = $input['job_category'];
+        $jobs->job_sub_category = $input['job_sub_category'];
+        //$jobs->framework = $input['framework'];
         $jobs->candidate_role = $input['candidate_role'];
         $jobs->product_industry_exprience = $input['product_industry_exprience'];
         $jobs->location = $input['location'];
+        $jobs->model_engagement = $input['model_engagement'];
         $jobs->budget_from = $input['budget_from'];
         $jobs->budget_to = $input['budget_to'];
         //$jobs->auto_match = $input['auto_match'];

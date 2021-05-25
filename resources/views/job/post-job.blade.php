@@ -42,8 +42,8 @@ Job Post
                         <button type="button" class="btn btn-md btn-info ml-3 eiliana-btn">Modify Job <i class="far fa-edit"></i></button> --}}
                     </div>
                 </div>
-                <div class="col-lg-1 col-md-1 col-sm-2 col-12"></div>
-                <div class="col-lg-10 col-md-10 col-sm-8 col-12 pr-0">
+                <!-- <div class="col-lg-1 col-md-1 col-sm-2 col-12"></div> -->
+                <div class="col-lg-8 col-md-10 col-sm-8 col-12 pr-0">
                     <div id="notific">
                         @include('notifications')
                     </div>
@@ -52,6 +52,9 @@ Job Post
                             @csrf
                             @isset(Session::get('sales_referral')['referral_id'])
                             <input type="hidden" name="referral_id" value="{{ Session::get('sales_referral')['referral_id'] }}">
+                            @endisset
+                            @isset(Session::get('contractsattfing')['model_engagement'])
+                            <input type="hidden" name="model_engagement" value="{{ Session::get('contractsattfing')['model_engagement'] }}">
                             @endisset
                             @empty(Session::get('sales_referral')['referral_id'])
                             <input type="hidden" name="referral_id" value="0">
@@ -109,6 +112,21 @@ Job Post
                                     <div class="form-group">
                                         <label>Key Skills</label>
                                         <input type="text" name="key_skills" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Job Category </label>
+                                        <select name="job_category" class="form-control" id="project_category" onchange="change_category();">
+                                            @foreach ($jobcategorys as $category)
+                                            <option value="{{ $category->id }}"  {{ (Session::get('projectcategory')['id']==$category->id)? "selected" : "" }}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" id="project_sub">
+                                        <label>Job Sub Category</label>
+                                        <select name="job_sub_category" class="form-control" id="project_sub_category">
+                                            <option value=""></option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Role Summary</label>
@@ -178,19 +196,20 @@ Job Post
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Technology Preference</label>
-                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
+                                            <!-- <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required> -->
+                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple required>
                                                 <option value=""></option>
                                                 @foreach ($technologies as $technology)
-                                                <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                                                <option value="{{ $technology->technology_id }}" {{ (Session::get('contractsattfing')['technology']==$technology->technology_id)? "selected" : "" }}>{{ $technology->technology_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group col-12">
+                                        <!-- <div class="form-group col-12">
                                             <label>Framework</label>
                                             <select class="form-control select2" name="framework[]" id="framework" multiple required>
                                                 <option value=""></option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group col">
                                             <label>Candidate Role</label>
                                             <select name="candidate_role" class="form-control" required>
@@ -220,27 +239,49 @@ Job Post
                                                 @endforeach
                                             </select>
                                         </div>
+                                        @if(Session::get('contractsattfing')['current_location'])
+                                        <div class="form-group col">
+                                            <label>Hourly</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" name="budget_from" placeholder="From">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" name="budget_to" placeholder="To">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @elseif(Session::get('contractsattfing')['current_location'])
+                                        <div class="form-group col">
+                                            <label>Retainership</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" name="budget_from" placeholder="From">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" name="budget_to" placeholder="To">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @else
                                         <div class="form-group col">
                                             <label>Budget</label>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <select class="form-control" name="budget_from">
+                                                    <input type="text" class="form-control" name="budget_from" placeholder="From">
+                                                    <!-- <select class="form-control" name="budget_from">
                                                         <option value="">From</option>
                                                         @for ($i = 0; $i < 51; $i++)
                                                         <option value="{{ $i }}">{{ $i }} Lacs</option>
                                                         @endfor
-                                                    </select>
+                                                    </select> -->
                                                 </div>
                                                 <div class="col">
-                                                    <select class="form-control" name="budget_to">
-                                                        <option value="">To</option>
-                                                        @for ($i = 1; $i < 51; $i++)
-                                                        <option value="{{ $i }}">{{ $i }} Lacs</option>
-                                                        @endfor
-                                                    </select>
+                                                    <input type="text" class="form-control" name="budget_to" placeholder="To">
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
                                     </div>
                                     <!-- <div class="form-group my-4">
                                         <label>Auto Match:&nbsp;&nbsp;&nbsp;&nbsp;</label>
@@ -608,8 +649,8 @@ Job Post
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-1 col-md-1 col-sm-2 col-12"></div>
-               {{-- @include('layouts.left') --}}
+                <!-- <div class="col-lg-1 col-md-1 col-sm-2 col-12"></div> -->
+               @include('layouts.left')
             </div>
         </div>
         <!-- End Row -->
@@ -626,7 +667,7 @@ Job Post
 <script>
 $('#postJobForm').bootstrapValidator({});
 $(window).bind("load", function() {
-  
+    change_category();
 });    
 $(document).ready(function() {
     $('#technologty_pre').select2({

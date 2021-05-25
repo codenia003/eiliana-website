@@ -30,9 +30,9 @@ Welcome
                         <div class="welcome">
                             <div class="col-lg-8 content1">
                                 @if (isset(Session::get('users')['login_as']))
-                                <h2 class="user-name">Hi {{ Sentinel::getUser()->full_name }},</h2>
+                                <h2 class="user-name" style="font-family: serif;">Hi {{ Sentinel::getUser()->full_name }},</h2>
                                 @endif
-                                <h2 class="user-text">Welcome to Eiliana Family !!!</h2>
+                                <h2 class="user-text" style="font-family: serif;">Welcome to Eiliana Family !!!</h2>
                                 <p>We are building the largest community of Gig-<br>
                                 Resources globally who will transform the lives of billions of <br>
                                 people through their technology enabled solutions. Look for-<br>ward
@@ -41,8 +41,10 @@ Welcome
                         </div>
                         <div class="col p-0 d-flex align-items-center">
                             <div class="account-second-side text-center">
-                                <a onclick="togglePopup()" class="btn btn-light bt btn-lg blue">BROWSE PROJECTS</a>
-                                <a onclick="togglePopup()" class="btn btn-light bt btn-lg red">SALES REFERRAL</a>
+                                <button class="login_signup_blue blue-linear-gradient text-white ml-3" onclick="togglePopup()">BROWSE PROJECTS</button>
+                                <button class="login_signup red-linear-gradient text-white ml-3" onclick="togglePopup()">SALES REFERRAL</button>
+                                <!-- <a onclick="togglePopup()" class="btn btn-light bt btn-lg blue">BROWSE PROJECTS</a>
+                                <a onclick="togglePopup()" class="btn btn-light bt btn-lg red">SALES REFERRAL</a> -->
                             </div>
                         </div>
                     </div>
@@ -66,16 +68,18 @@ Welcome
                         <div class="welcome">
                             <div class="content1">
                                 @if (isset(Session::get('users')['login_as']))
-                                <h2 class="user-name">Hi {{ Sentinel::getUser()->full_name }},</h2>
+                                <h2 class="user-name" style="font-family: serif;">Hi {{ Sentinel::getUser()->full_name }},</h2>
                                 @endif
-                                <h2 class="user-text">Congratulations !!!</h2>
+                                <h2 class="user-text" style="font-family: serif;">Congratulations !!!</h2>
                                 <p>Your resume has been updated successfully. <br> we will keep informing you about the new assignments Basis the new criterion suggested by you.</p>
                             </div>
                         </div>
                         <div class="p-0 d-flex align-items-center">
                         <div class="account-second-side text-center">
-                            <a onclick="togglePopup()" class="btn btn-light bt btn-lg blue">BROWSE PROJECTS</a>
-                            <a onclick="togglePopup()" class="btn btn-light bt btn-lg red">SALES REFERRAL</a>
+                            <button class="login_signup blue-linear-gradient text-white ml-3" onclick="togglePopup()">BROWSE PROJECTS</button>
+                            <button class="login_signup red-linear-gradient text-white ml-3" onclick="togglePopup()">SALES REFERRAL</button>
+                            <!-- <a onclick="togglePopup()" class="btn btn-light bt btn-lg blue">BROWSE PROJECTS</a>
+                            <a onclick="togglePopup()" class="btn btn-light bt btn-lg red">SALES REFERRAL</a> -->
                         </div>
                     </div>
                     </div>

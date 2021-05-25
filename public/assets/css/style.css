@@ -1917,6 +1917,26 @@ span.select2-selection.select2-selection--single {
 .project-budget1 .form-check-inline {
     margin-right: 10px;
 }
-.user_chat .modal-dialog {
-    max-width: 850px !important;
+
+.login_signup_blue:hover {
+    background: #1f20aa;
+    color: #fff !important;
+}
+
+.login_signup_blue {
+    margin-top: 7px;
+    border: 0 solid #2021ab;
+    border-radius: 50px;
+    padding: 2px 20px;
+    height: 35px;
+    line-height: 31px;
+    background: 0 0;
+    color: #2022b2;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.blue-linear-gradient {
+    background-color: #3f0d12;
+    background-image: linear-gradient(#1b29dc 0, #24197d 74%) !important;
 }

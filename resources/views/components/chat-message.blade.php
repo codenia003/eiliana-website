@@ -57,7 +57,8 @@ $(document).ready(function(){
         var to_user_name = $(this).data('tousername');
         var chat_type = $(this).data('chattype');
         make_chat_dialog_box(to_user_id, to_user_name,chat_type);
-        $('#user_dialog_'+to_user_id).modal();
+        // $('#user_dialog_'+to_user_id).modal();
+        $('#user_dialog').modal();
         // $('#user_dialog_'+to_user_id).dialog('open');
         // $('#chat_message_'+to_user_id).emojioneArea({
         //     pickerPosition:"top",

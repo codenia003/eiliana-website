@@ -244,7 +244,7 @@
                                         {{Sentinel::getUser()->pseudoName}}
                                     @endif
                                 @endif
-                                
+
                                 <b class="caret"></b>
                             </a>
                             <div class="dropdown-menu">
@@ -308,6 +308,7 @@
             </div>
         </div>
     </div>
+
     <!-- now code for registeration popup model -->
     <div class="modal fade pullDown login-body border-0 reg-refer betaversion" id="reg-refer" role="dialog" aria-labelledby="modalLabelnews">
         <div class="modal-dialog" role="document">
@@ -325,6 +326,56 @@
                 <div class="modal-footer eiliana-refer">
                     <a id="link" class="btn btn-outline-primary red-linear-gradient" href="{{url('profile')}}">OK</a>
                     <!-- <button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Close</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade pullDown border-0 modal-refer user_chat" id="user_dialog" role="dialog" aria-labelledby="modalLabelnews">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    <div class="row">
+                        <div class="col">
+                            <div class="eiliana-logo">
+                                <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
+                            </div>
+                            <div class="user-info">
+                                <div class="basic-padding">
+                                    <!-- Avatar -->
+                                    <div class="text-center mb-5">
+                                        <div class="avatar avatar-xxl avatar-circle mb-3">
+
+                                            <div>
+                                                @if(Sentinel::getUser()->pic)
+                                                <img class="image-preview avatar-img" src="{{ url('/') }}{{ Sentinel::getUser()->pic }}" class="avatar" alt="Avatar">
+                                                @else
+                                                <img class="avatar-img" src="/assets/img/logout_img.png" alt="Image Description">
+
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <h5 class="card-title text-secondary">{{ Sentinel::getUser()->full_name }} <button class="btn btn-white float-right"><i class="fa fa-pencil" aria-hidden="true"></i></button></h5>
+                                        <p class="card-text font-size-1">{{ Sentinel::getUser()->city }} @isset(Session::get('users')['country_name']){{ Session::get('users')['country_name'] }} @endisset - {{ \Carbon\Carbon::parse(Sentinel::getUser()->created_at)->format('F d, Y, g:m a')}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="chat-header">
+
+                            </div>
+                            <div class="chat-body">
+
+                            </div>
+                            <div class="chat-footer">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -448,11 +499,11 @@
         }
         function toggleRegPopup()
         {
-            
+
             $('#reg-refer').modal('show');
         }
         function togglePopup(){
-            
+
             $('#modal-refer').modal('show');
             $('.beta-parent').html('<p>We are pleased to welcome you to experience the beta version of our portal. This section is still in the finalization phase , kindly bear with us.</p>');
         }

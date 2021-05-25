@@ -1917,3 +1917,6 @@ span.select2-selection.select2-selection--single {
 .project-budget1 .form-check-inline {
     margin-right: 10px;
 }
+.user_chat .modal-dialog {
+    max-width: 850px !important;
+}

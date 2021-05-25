@@ -19,15 +19,15 @@
                 </h5>
             @endif
         @endif
-    
 
-   {{-- @isset(Session::get('teaminvitation')['to_user'])
-     @if(user_type_parent_id == '0') --}}
-            <h5 class="card-title">
-                <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
-            </h5>
-     {{-- @endif
-    @endisset     --}}
+
+    {{-- @isset(Session::get('teaminvitation')['to_user'])
+        @if(user_type_parent_id == '0') --}}
+                <h5 class="card-title">
+                    <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
+                </h5>
+        {{-- @endif
+        @endisset     --}}
     </div>
     <!-- Body -->
     <div class="row teams-header">

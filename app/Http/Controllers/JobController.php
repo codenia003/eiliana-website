@@ -817,6 +817,7 @@ class JobController extends JoshController
 
         return redirect('/freelancer/my-proposal')->with('success', 'Job Schedule Updated successfully');
     }
+
     public function getResume() {
 
         $user = Sentinel::getUser();

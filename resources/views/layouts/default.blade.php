@@ -331,7 +331,7 @@
         </div>
     </div>
 
-    <div class="modal fade pullDown border-0 modal-refer user_chat" id="user_dialog" role="dialog" aria-labelledby="modalLabelnews">
+    {{-- <div class="modal fade pullDown border-0 modal-refer user_chat" id="user_dialog" role="dialog" aria-labelledby="modalLabelnews">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
@@ -351,8 +351,7 @@
                                                 @if(Sentinel::getUser()->pic)
                                                 <img class="image-preview avatar-img" src="{{ url('/') }}{{ Sentinel::getUser()->pic }}" class="avatar" alt="Avatar">
                                                 @else
-                                                <img class="avatar-img" src="/assets/img/logout_img.png" alt="Image Description">
-
+                                                <img class="avatar-img" src="/images/authors/no_avatar.jpg" alt="Image Description">
                                                 @endif
                                             </div>
                                         </div>
@@ -365,21 +364,56 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="chat-header">
-
-                            </div>
-                            <div class="chat-body">
-
-                            </div>
-                            <div class="chat-footer">
-
+                            <div class="chat_main">
+                                <div class="chat_box">
+                                    <div class="head">
+                                        <div class="user">
+                                            <div class="avatar">
+                                                <img src="https://picsum.photos/g/40/40" />
+                                            </div>
+                                            <div class="name">Kai Cheng</div>
+                                        </div>
+                                        <ul class="bar_tool">
+                                            <li><span class="alink"><i class="fas fa-ellipsis-v"></i></span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="body">
+                                        <div class="incoming">
+                                            <div class="bubble">
+                                                <p>Hey, Father's Day is coming up..</p>
+                                            </div>
+                                            <div class="bubble">
+                                                <p>What are you getting.. Oh, oops sorry dude.</p>
+                                            </div>
+                                        </div>
+                                        <div class="outgoing">
+                                            <div class="bubble lower">
+                                                <p>Nah, it's cool.</p>
+                                            </div>
+                                            <div class="bubble">
+                                                <p>Well you should get your Dad a cologne. Here smell it. Oh wait! ...</p>
+                                            </div>
+                                        </div>
+                                        <div class="typing">
+                                            <div class="bubble">
+                                                <div class="ellipsis dot_1"></div>
+                                                <div class="ellipsis dot_2"></div>
+                                                <div class="ellipsis dot_3"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="foot">
+                                        <input type="text" class="msg" placeholder="Type a message..." />
+                                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Footer Section Start -->
     <footer class="custome-footer">
         <div class="container space-1">
@@ -497,7 +531,6 @@
         function togglePopupHome(){
             $('#modal-refer').modal('show');
         }
-<<<<<<< HEAD
         function toggleRegPopup(msg,link)
          {
             if (link=='#') {
@@ -505,11 +538,6 @@
             }
             $('#msg').html(msg);
             $('#linkUrl').attr('href',link);
-=======
-        function toggleRegPopup()
-        {
-
->>>>>>> acf110c82ffff089d40b7f2e71b9b2bd737ec91e
             $('#reg-refer').modal('show');
         }
         function togglePopup(){

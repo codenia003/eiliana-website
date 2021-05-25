@@ -1940,3 +1940,127 @@ span.select2-selection.select2-selection--single {
     background-color: #3f0d12;
     background-image: linear-gradient(#1b29dc 0, #24197d 74%) !important;
 }
+/* chat_box */
+.chat_box {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.chat_box > * {
+	padding: 16px;
+}
+
+/* head */
+.chat_box .head {
+	display: flex;
+	align-items: center;
+}
+.chat_box .head .user {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+}
+.chat_box .head .user .avatar {
+	margin-right: 8px;
+}
+.chat_box .head .user .avatar img {
+	display: block;
+	border-radius: 50%;
+}
+.chat_box .head .bar_tool {
+	display: flex;
+}
+.chat_box .head .bar_tool i {
+	padding: 5px;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* body */
+.chat_box .body {
+	flex-grow: 1;
+	background-color: #eee;
+}
+.chat_box .body .bubble {
+	display: inline-block;
+	padding: 10px;
+	margin-bottom: 5px;
+	border-radius: 15px;
+}
+.chat_box .body .bubble p {
+	color: #f9fbff;
+	font-size: 14px;
+	text-align: left;
+	line-height: 1.4;
+}
+.chat_box .body .incoming {
+	text-align: left;
+}
+.chat_box .body .incoming .bubble {
+	background-color: #b2b2b2;
+}
+.chat_box .body .outgoing {
+	text-align: right;
+}
+.chat_box .body .outgoing .bubble {
+	background-color: #79c7c5;
+}
+
+/* foot */
+.chat_box .foot {
+	display: flex;
+}
+.chat_box .foot .msg {
+	flex-grow: 1;
+}
+
+@keyframes bounce {
+	50% {
+		transform: translate(0, 5px);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
+}
+.chat_box .ellipsis {
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background-color: #b7b7b7;
+}
+.chat_box .dot_1 {
+	/* animation: name duration timing-function delay iteration-count */
+	animation: bounce 0.8s linear 0.1s infinite;
+}
+.chat_box .dot_2 {
+	animation: bounce 0.8s linear 0.2s infinite;
+}
+.chat_box .dot_3 {
+	animation: bounce 0.8s linear 0.3s infinite;
+}
+.chat_box .foot input[type="text"],
+button {
+	padding: 4px 8px;
+	border: 0;
+	outline: 0;
+}
+.chat_box .foot button {
+	background-color: transparent;
+	cursor: pointer;
+}
+.chat_box .foot button:hover i {
+	color: #79c7c5;
+	transform: scale(1.2);
+}
+.chat_main {
+    height: auto;
+    z-index: 1;
+    border-radius: 10px;
+    background-color: #f9fbff;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    overflow: hidden;
+}

@@ -53,18 +53,21 @@
                 @if(Session::get('contractsattfing')['browse_project']=='1')
                     <div class="form-group basic-info mb-3">
                         <label>Model Of Engagement</label>
+                        <?php
+                            $model_engagement_new = (array) Session::get('contractsattfing')['model_engagement'];
+                        ?>
                         <br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input hourly" type="checkbox" id="inlineCheckbox1" name="model_engagement"  onchange="changeBrowseProjectType()" value="1" {{ (Session::get('contractsattfing')['model_engagement']=='1')? "checked" : "" }}>
-                            <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
+                            <input class="form-check-input hourly" type="checkbox" id="inlineCheckbox11" name="model_engagement[]" onchange="changeBrowseProjectType();" value="1" {{ in_array(1, $model_engagement_new) ? "checked" : "" }}>
+                            <label class="form-check-label" for="inlineCheckbox11">Hourly</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input retainer" type="checkbox" id="inlineCheckbox2" name="model_engagement"  onchange="changeBrowseProjectType1()" value="2" {{ (Session::get('contractsattfing')['model_engagement']=='2')? "checked" : "" }}>
-                            <label class="form-check-label" for="inlineCheckbox2">Retainership</label>
+                            <input class="form-check-input retainer" type="checkbox" id="inlineCheckbox21" name="model_engagement[]" onchange="changeBrowseProjectType1();" value="2" {{ in_array(2, $model_engagement_new) ? "checked" : "" }}>
+                            <label class="form-check-label" for="inlineCheckbox21">Retainership</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input project_based" type="checkbox" id="inlineCheckbox3" name="model_engagement"  onchange="changeBrowseProjectType2()" value="3" {{ (Session::get('contractsattfing')['model_engagement']=='3')? "checked" : "" }}>
-                            <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
+                            <input class="form-check-input project_based" type="checkbox" id="inlineCheckbox31" name="model_engagement[]" onchange="changeBrowseProjectType2();" value="3" {{ in_array(3, $model_engagement_new) ? "checked" : "" }}>
+                            <label class="form-check-label" for="inlineCheckbox31">Project-based</label>
                         </div>
                     </div>
                 @endif
@@ -141,7 +144,7 @@
                         </div>
                     </div>
                    @endif
-                    <div class="form-group col-md-6 col-lg-6" id="hourly" style="display:none">
+                    <div class="form-group col-md-6 col-lg-6" id="hourly1" style="display:none">
                         <div class="form-group">
                             <label>Rate Per Hour</label>
                             <div class="form-row">
@@ -191,7 +194,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6 col-lg-6" id="retainer" style="display:none">
+                    <div class="form-group col-md-6 col-lg-6" id="retainer1" style="display:none">
                         <div class="form-group">
                             <label>Rate Per Month</label>
                             <div class="form-row">
@@ -214,7 +217,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-6 col-lg-6" id="project-based" style="display:none">
+                    <div class="form-group col-md-6 col-lg-6" id="project-based1" style="display:none">
                         <div class="form-group">
                             <label>Project Budget</label>
                             <div class="form-row">
@@ -246,12 +249,12 @@
                             <label class="custom-control-label" for="Relevance">Relevance</label>
                         </div>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <!-- <div class="form-check form-check-inline">
                         <div class="custom-control custom-radio">
                             <input type="radio" id="Resume" name="sortby" class="custom-control-input" value="1">
                             <label class="custom-control-label" for="Resume">Resume Fresher</label>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-check form-check-inline">
                         <div class="custom-control custom-radio">
                             <input type="radio" id="Last" name="sortby" class="custom-control-input" value="1">

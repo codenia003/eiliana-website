@@ -451,7 +451,7 @@ class ProjectController extends JoshController
             $contractsattfing = $data;
             $request->session()->forget('contractsattfing');
             $request->session()->put('contractsattfing', $contractsattfing);
-
+         
             $sound = "";
             $words = explode(" " , $request->input('key_skills')) ;
             foreach($words as $word) {

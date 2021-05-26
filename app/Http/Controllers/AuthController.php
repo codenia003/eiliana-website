@@ -504,6 +504,10 @@ class AuthController extends JoshController
 
                     $role_users = DB::table('role_users')->where('user_id', $user->id)->first();
 
+                    $user_email = $user->email;
+                    $role = DB::table('user_registration')->where('email', '=', $user_email)->first();
+                    $user['role_email'] = $role->user_type_parent_id;
+
                     $user['role'] = $role_users->role_id;
                     $country_name = DB::table('countries')->where('id', $user->country)->first();
 

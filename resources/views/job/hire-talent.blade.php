@@ -73,7 +73,160 @@
                                                 <option value=""></option>
                                             </select>
                                         </div>
-                                        <!-- for r per rate -->
+                                      
+
+                                    
+					                </div>
+					                <div class="contractual d-none">
+						                <div class="form-group">
+				                            <label>Key Skills</label>
+				                            <input type="text" name="key_skills" class="form-control" />
+				                        </div>
+						                <div class="form-group">
+	                                        <label>Experience</label>
+	                                        <div class="form-row">
+				                                <div class="col">
+				                                    <select class="form-control" required="" name="experience_year">
+				                                        @for ($i = 0; $i < 21; $i++)
+				                                        <option value="{{ $i }}">{{ $i }} Years</option>
+				                                        @endfor
+				                                    </select>
+				                                </div>
+				                                <div class="col">
+				                                    <select class="form-control" required="" name="experience_month">
+				                                        @for ($i = 1; $i < 13; $i++)
+				                                        <option value="{{ $i }}">{{ $i }} Months</option>
+				                                        @endfor
+				                                    </select>
+				                                </div>
+				                            </div>
+	                                    </div>
+                                        
+	                                    <div class="form-group">
+	                                        <label>Job Location</label>
+	                                        <select name="current_location" class="form-control">
+	                                            <option value=""></option>
+	                                            @foreach ($locations as $location)
+                                                <option value="{{ $location->location_id }}" >{{ $location->name }}</option>
+                                                @endforeach
+	                                        </select>
+	                                    </div>
+
+                                        <div class="form-group job-posting d-none">
+	                                        <label>Job Location</label>
+	                                        <select name="current_location" class="form-control">
+	                                            <option value=""></option>
+	                                            @foreach ($locations as $location)
+                                                <option value="{{ $location->location_id }}" >{{ $location->name }}</option>
+                                                @endforeach
+	                                        </select>
+	                                    </div>
+					                </div>
+                                    <div class="basic-info mb-3 ">
+                                        <label>Search Method</label>                                   
+                                        <br>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" checked="false" id="development" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="2" >
+                                                <label class="custom-control-label" for="development">Database Search</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="support" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="1">
+                                                <label class="custom-control-label" for="support">Job Posting</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- for database search method -->
+                                    <div class="basic-info1 mb-3 mr-3 d-none">
+                                        <label>Browse Project By</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="budget" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="B" checked="false">
+                                                <label class="custom-control-label" for="budget">Budget&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="techanology" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="T">
+                                                <label class="custom-control-label" for="techanology">Technology&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="duration" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="D">
+                                                <label class="custom-control-label" for="duration">Duration</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- for job postiin search method -->
+                                    <div class="mb-3 mr-3 d-none" id="job_post">
+                                        <label>Browse Project By</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="budget1" class="custom-control-input" name="job_post" onchange="changeSearchDBMethod1()" value="B1" checked="false">
+                                                <label class="custom-control-label" for="budget1">Budget&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="duration1" class="custom-control-input" name="job_post" onchange="changeSearchDBMethod1()" value="D1">
+                                                <label class="custom-control-label" for="duration1">Duration</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- sub budget -->
+                                    <div class="mb-3 mr-3" id="sub_budget">
+                                        <label>Mode Of Engagement</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="hourly" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="H" checked="false">
+                                                <label class="custom-control-label" for="hourly">Hourly&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="retainer" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="R">
+                                                <label class="custom-control-label" for="retainer">Retainer&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="project_based" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="P">
+                                                <label class="custom-control-label" for="project_based">Project Based</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- job posting budget -->
+                                    <div class="mb-3 mr-3 d-none" id="job_budget">
+                                        <label>Mode Of Engagement</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="hourly1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="H1">
+                                                <label class="custom-control-label" for="hourly1">Hourly&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="retainer1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="R1">
+                                                <label class="custom-control-label" for="retainer1">Retainer&nbsp;&nbsp;</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="project_based1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="P1">
+                                                <label class="custom-control-label" for="project_based1">Project Based</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- for r per rate -->
                                     <div class="form-group d-none" id="rate">
                                         <label>Rate per Hour</label>
                                         <div class="form-row">
@@ -125,173 +278,30 @@
                                             </div>
                                         </div>
                                            
-                                    </div>    
-
-                                    <div class="form-group d-none" id="tech">
-                                            <label>Technology</label>
-                                            <select name="technology" class="form-control" id="tech_">
-                                                <option value="">Select Technology</option>
-                                                        @foreach ($technologies as $technology)
-                                                        <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
-                                                        @endforeach
-                                            </select>
+                                    </div> 
+									
+									<div class="form-group d-none" id="tech">
+										<label>Technology</label>
+										<select name="technology" class="form-control" id="tech_">
+											<option value="">Select Technology</option>
+													@foreach ($technologies as $technology)
+													<option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+													@endforeach
+										</select>
                                     </div>
-					                	<div class="form-group job-posting d-none" id="project_duration">
-	                                        <label>Project Duration</label>
-	                                        <div class="form-row">
-	                                            <div class="col">
-	                                                <input type="number" placeholder="Min" class="form-control" name="dur_minimum"/>
-	                                                 
-	                                            </div>
-	                                            <div class="col">
-	                                                <input type="number" placeholder="Max" class="form-control" name="dur_maximum"/>
-	                                                    
-	                                            </div>
-	                                        </div>
-	                                    </div>
-					                </div>
-					                <div class="contractual d-none">
-						                <div class="form-group">
-				                            <label>Key Skills</label>
-				                            <input type="text" name="key_skills" class="form-control" />
-				                        </div>
-						                <div class="form-group">
-	                                        <label>Experience</label>
-	                                        <div class="form-row">
-				                                <div class="col">
-				                                    <select class="form-control" required="" name="experience_year">
-				                                        @for ($i = 0; $i < 21; $i++)
-				                                        <option value="{{ $i }}">{{ $i }} Years</option>
-				                                        @endfor
-				                                    </select>
-				                                </div>
-				                                <div class="col">
-				                                    <select class="form-control" required="" name="experience_month">
-				                                        @for ($i = 1; $i < 13; $i++)
-				                                        <option value="{{ $i }}">{{ $i }} Months</option>
-				                                        @endfor
-				                                    </select>
-				                                </div>
-				                            </div>
-	                                    </div>
-	                                    <div class="form-group job-posting d-none">
-	                                        <label>Job Location</label>
-	                                        <select name="current_location" class="form-control">
-	                                            <option value=""></option>
-	                                            @foreach ($locations as $location)
-                                                <option value="{{ $location->location_id }}" >{{ $location->name }}</option>
-                                                @endforeach
-	                                        </select>
-	                                    </div>
-					                </div>
-                                    <div class="basic-info mb-3 ">
-                                        <label>Search Method</label>
-
-                                        <p class="m-0 p-0">Mode of engagement at heading of after search method in hire talent page</p>
-                                   
-                                        <br>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" checked="false" id="development" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="2" >
-                                                <label class="custom-control-label" for="development">Database Search</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="support" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="1">
-                                                <label class="custom-control-label" for="support">Job Posting</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- for database search method -->
-                                    <div class="basic-info1 mb-3 mr-3 d-none">
-                                        
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="budget" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="B" checked="false">
-                                                <label class="custom-control-label" for="budget">Budget&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="techanology" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="T">
-                                                <label class="custom-control-label" for="techanology">Technology&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="duration" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="D">
-                                                <label class="custom-control-label" for="duration">Duration</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- for job postiin search method -->
-                                    <div class="mb-3 mr-3 d-none" id="job_post">
-                                        
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="budget1" class="custom-control-input" name="job_post" onchange="changeSearchDBMethod1()" value="B1" checked="false">
-                                                <label class="custom-control-label" for="budget1">Budget&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="duration1" class="custom-control-input" name="job_post" onchange="changeSearchDBMethod1()" value="D1">
-                                                <label class="custom-control-label" for="duration1">Duration</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <!-- sub budget -->
-                                    <div class="mb-3 mr-3" id="sub_budget">
-                                        
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="hourly" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="H" checked="false">
-                                                <label class="custom-control-label" for="hourly">Hourly&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="retainer" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="R">
-                                                <label class="custom-control-label" for="retainer">Retainer&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="project_based" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="P">
-                                                <label class="custom-control-label" for="project_based">Project Based</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- job posting budget -->
-                                    <div class="mb-3 mr-3 d-none" id="job_budget">
-                                        
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="hourly1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="H1" checked="false">
-                                                <label class="custom-control-label" for="hourly1">Hourly&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="retainer1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="R1">
-                                                <label class="custom-control-label" for="retainer1">Retainer&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="project_based1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="P1">
-                                                <label class="custom-control-label" for="project_based1">Project Based</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
+									<div class="form-group job-posting d-none" id="project_duration">
+										<label>Project Duration</label>
+										<div class="form-row">
+											<div class="col">
+												<input type="number" placeholder="Min" class="form-control" name="dur_minimum"/>
+													
+											</div>
+											<div class="col">
+												<input type="number" placeholder="Max" class="form-control" name="dur_maximum"/>
+													
+											</div>
+										</div>
+									</div>
                                     
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
@@ -402,7 +412,8 @@
         				</div>
                 	</div>
                 	<div class="contractual padding-c d-none">
-                		<img src="/assets/img/profile/hire-right-2.png" class="img-fluid" alt="">
+                		<!-- <img src="/assets/img/profile/hire-right-2.png" class="img-fluid" alt=""> -->
+                        <img src="/assets/img/profile/staffing.png" class="img-fluid" alt="">
                 	</div>
                 </div>
             </div>
@@ -475,7 +486,7 @@
             // $('.basic-info1').removeClass("d-none");
             // alert();
             $('#rate').removeClass("d-none");
-            $('#rate').show();
+            //$('#rate').show();
             $('#rate_month').addClass("d-none");
             $('#tech').addClass("d-none");
             $('#duration_field').addClass("d-none");
@@ -493,17 +504,17 @@
             // $('#sub_budget').addClass("d-none");
             $('#tech').addClass("d-none");
             $('#duration_field').addClass("d-none");
-            $('#job_budget').removeClass("d-none");
+           // $('#job_budget').removeClass("d-none");
         }
         else if(method=='P1')
         {
             $('#project_field').removeClass("d-none");
             $('#rate').addClass("d-none");
-            $('#project_field').removeClass("d-none");
+            //$('#project_field').removeClass("d-none");
             $('#tech').addClass("d-none");
             $('#duration_field').addClass("d-none");
             $('#rate_month').addClass("d-none");
-            $('#job_budget').removeClass("d-none");
+            //$('#job_budget').removeClass("d-none");
         }
         
         else {
@@ -606,6 +617,12 @@
             $('#duration_field').addClass("d-none");
             $('#project_field').addClass("d-none");
             $('#rate_month').addClass("d-none");
+            // document.getElementById("hourly").checked = false;
+            // document.getElementById("retainer").checked = false;
+            // document.getElementById("project_based").checked = false;
+            // $('#rate').hide();
+            // $('#project_field').hide();
+            // $('#rate_month').hide();
         }
         else if(method=='D')
         {
@@ -615,12 +632,19 @@
              $('#project_field').addClass("d-none");
             $('#duration_field').removeClass("d-none");
              $('#rate_month').addClass("d-none");
+            // document.getElementById("hourly").checked = false;
+            // document.getElementById("retainer").checked = false;
+            // document.getElementById("project_based").checked = false;
+            // $('#rate').hide();
+            // $('#project_field').hide();
+            // $('#rate_month').hide();
         }
         
         else {
         	$('.job-posting').addClass("d-none");
         }
     }
+
 	function changeLookingFor() {
         // var anonymous = e.target.value;
         var anonymous = $('input[name="lookingfor"]:checked').attr('value');

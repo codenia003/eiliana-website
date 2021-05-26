@@ -97,9 +97,9 @@ Advance Search
 
 
 	function changeBrowseProjectType() {
-		var checkBox = document.getElementById("inlineCheckbox1");
+		var checkBox = document.getElementById("inlineCheckbox11");
 		// Get the output text
-		var hourly = document.getElementById("hourly");
+		var hourly = document.getElementById("hourly1");
 		if (checkBox.checked == true){
 			hourly.style.display = "block";
 		} else {
@@ -108,8 +108,8 @@ Advance Search
 	}
 
 	function changeBrowseProjectType1() {
-		var checkBox = document.getElementById("inlineCheckbox2");
-		var retainer = document.getElementById("retainer");
+		var checkBox = document.getElementById("inlineCheckbox21");
+		var retainer = document.getElementById("retainer1");
 		if (checkBox.checked == true){
 			retainer.style.display = "block";
 		} else {
@@ -118,8 +118,8 @@ Advance Search
 	}
 
 	function changeBrowseProjectType2() {
-		var checkBox = document.getElementById("inlineCheckbox3");
-		var project_based = document.getElementById("project-based");
+		var checkBox = document.getElementById("inlineCheckbox31");
+		var project_based = document.getElementById("project-based1");
 		if (checkBox.checked == true){
 			project_based.style.display = "block";
 		} else {

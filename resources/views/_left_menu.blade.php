@@ -23,9 +23,15 @@
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action {!! (Request::is('home') ? 'active' : '' ) !!}" href="{{ url('home') }}">Dashboard</a>
                     <a class="list-group-item list-group-item-action {!! (Request::is('profile') ? 'active' : '' ) !!}" href="{{ url('profile') }}">Update Profile</a>
-                    {{--@if(!Sentinel::inRole('user'))--}}
-                    @if(Session::get('users')['login_as'] == '1')
+                    {{--@if(!Sentinel::inRole('user'))
+                    @if(Session::get('users')['role_email'] == '1')
                     <a class="list-group-item list-group-item-action {!! (Request::is('company') ? 'active' : '' ) !!}" href="{{ url('company/bench') }}">Teams</a>
+                    @endif--}}
+
+                    @if(isset(Session::get('users')['role_email']))
+                        @if(Session::get('users')['role_email']!=1)
+                        <a class="list-group-item list-group-item-action {!! (Request::is('company') ? 'active' : '' ) !!}" href="{{ url('company/bench') }}">Teams</a> 
+                        @endif
                     @endif
                 </div>
             </div>

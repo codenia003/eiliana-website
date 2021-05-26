@@ -98,6 +98,7 @@
                                         </div>
                                         
 					                	<div class="form-group project-budget d-none">
+                                            <label>Mode Of Engagement</label>
                                             <!-- <div class="form-group basic-info mb-3">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="hourly" checked>
@@ -114,19 +115,19 @@
                                             </div> -->
                                             <div class="basic-info mb-3 project-budget1">
                                                 <div class="form-check form-check-inline">
-                                                        <input type="checkbox" id="hourly1" class="form-check-input hourly" name="model_engagement" data-name="hourly" value="1">
-                                                        <label class="form-check-label" for="hourly1">Hourly</label>
+                                                    <input class="form-check-input hourly" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" onchange="changeBrowseProjectType11();" value="1">
+                                                    <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                        <input type="checkbox" id="retainer1" class="form-check-input retainer" name="model_engagement" data-name="retainer" value="2">
-                                                        <label class="form-check-label" for="retainer1">Retainer</label>
+                                                    <input class="form-check-input retainer" type="checkbox" id="inlineCheckbox2" name="model_engagement[]" onchange="changeBrowseProjectType12();" value="2">
+                                                    <label class="form-check-label" for="inlineCheckbox2">Retainership</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                        <input type="checkbox" id="project_based1" class="form-check-input project_based" name="model_engagement" data-name="project_based" value="3">
-                                                        <label class="form-check-label" for="project_based1">Project-based</label>
+                                                    <input class="form-check-input project_based" type="checkbox" id="inlineCheckbox3" name="model_engagement[]" onchange="changeBrowseProjectType23();" value="3">
+                                                    <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
                                                 </div>
                                             </div>
-                                            <div class="form-group hourly" id="hourly">
+                                            <div class="form-group" id="hourly11" style="display:none">
                                                 <label>Rate Per Hour</label>
                                                 <div class="form-row">
                                                     <div class="col">
@@ -148,7 +149,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group retainership" id="retainer">
+                                            <div class="form-group" id="retainer11" style="display:none">
                                                 <label>Rate Per Month</label>
                                                 <div class="form-row">
                                                     <div class="col">
@@ -170,7 +171,7 @@
                                                 </div>
                                             </div>
 	                                        
-	                                        <div class="form-group project-based" id="project_based">
+	                                        <div class="form-group" id="project-based11" style="display:none">
                                                 <label>Project Budget</label>
                                                 <div class="form-row">
                                                     <div class="col">
@@ -258,7 +259,17 @@
 				                                </div>
 				                            </div>
 	                                    </div>
-	                                    <div class="form-group job-posting d-none">
+                                        <div class="form-group">
+	                                        <label>Job Location</label>
+	                                        <select name="current_location" class="form-control">
+	                                            <option value=""></option>
+	                                            @foreach ($locations as $location)
+                                                <option value="{{ $location->location_id }}" >{{ $location->name }}</option>
+                                                @endforeach
+	                                        </select>
+	                                    </div>
+
+                                        <div class="form-group job-posting d-none">
 	                                        <label>Job Location</label>
 	                                        <select name="current_location" class="form-control">
 	                                            <option value=""></option>
@@ -332,46 +343,15 @@
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/frontend/jquery.circliful.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script>
- $(document).ready(function() {
-     $('#hourly').hide();
-     $('#retainer').hide();
-     $('#project_based').hide();
-    $('.hourly').change(function() {
-        var checkbox = $(this);                 
-        if( checkbox.is(':checked') ) {                       
-            $( '#' + checkbox.attr('data-name') ).show();
-        } else {                      
-            $( '#' + checkbox.attr('data-name') ).hide();
-        }
-    });
-
-    $('.retainer').change(function() {
-        var checkbox = $(this);                 
-        if( checkbox.is(':checked') ) {                       
-            $( '#' + checkbox.attr('data-name') ).show();
-        } else {                      
-            $( '#' + checkbox.attr('data-name') ).hide();
-        }
-    });
-
-    $('.project_based').change(function() {
-        var checkbox = $(this);                 
-        if( checkbox.is(':checked') ) {                       
-            $( '#' + checkbox.attr('data-name') ).show();
-        } else {                      
-            $( '#' + checkbox.attr('data-name') ).hide();
-        }
-    });
-});
-
-
-    $(window).bind("load", function() {
+ $(window).bind("load", function() {
         changeLookingFor();
         changeBrowseProject();
-        //changeBrowseProjectType();
         change_category();
+        changeBrowseProjectType11()
+        changeBrowseProjectType12()
+        changeBrowseProjectType23()
     });
     function changeBrowseProject() {
         var method = $('input[name="browse_project"]:checked').attr('value');
@@ -383,30 +363,56 @@
             $('.project-technology').removeClass("d-none");
             $('.project-budget').addClass("d-none");
             $('.project-duration').addClass("d-none");
+            document.getElementById("inlineCheckbox1").checked = false;
+            document.getElementById("inlineCheckbox2").checked = false;
+            document.getElementById("inlineCheckbox3").checked = false;
+            $('#hourly11').hide();
+            $('#retainer11').hide();
+            $('#project-based11').hide();
         } else {
             $('.project-duration').removeClass("d-none");
             $('.project-budget').addClass("d-none");
             $('.project-technology').addClass("d-none");
+            document.getElementById("inlineCheckbox1").checked = false;
+            document.getElementById("inlineCheckbox2").checked = false;
+            document.getElementById("inlineCheckbox3").checked = false;
+            $('#hourly11').hide();
+            $('#retainer11').hide();
+            $('#project-based11').hide();
         }
     }
 
-    
-    // function changeBrowseProjectType() {
-    //     var method = $('input[name="model_engagement"]:checked').attr('value');
-    //     if (method == '1') {
-    //         $('.hourly').removeClass("d-none");
-    //         // $('.retainership').addClass("d-none");
-    //         // $('.project-based').addClass("d-none");
-    //     } else if(method == '2') {
-    //         $('.retainership').removeClass("d-none");
-    //         // $('.hourly').addClass("d-none");
-    //         // $('.project-based').addClass("d-none");
-    //     } else {
-    //         $('.project-based').removeClass("d-none");
-    //         // $('.retainership').addClass("d-none");
-    //         // $('.hourly').addClass("d-none");
-    //     }
-    // }
+    function changeBrowseProjectType11() {
+		var checkBox = document.getElementById("inlineCheckbox1");
+		// Get the output text
+		var hourly = document.getElementById("hourly11");
+		if (checkBox.checked == true){
+			hourly.style.display = "block";
+		} else {
+			hourly.style.display = "none";
+		}
+	}
+
+	function changeBrowseProjectType12() {
+		var checkBox = document.getElementById("inlineCheckbox2");
+		var retainer = document.getElementById("retainer11");
+		if (checkBox.checked == true){
+			retainer.style.display = "block";
+		} else {
+			retainer.style.display = "none";
+		}
+	}
+
+	function changeBrowseProjectType23() {
+		var checkBox = document.getElementById("inlineCheckbox3");
+		var project_based = document.getElementById("project-based11");
+		if (checkBox.checked == true){
+			project_based.style.display = "block";
+		} else {
+			project_based.style.display = "none";
+		}
+	}
+
 
 	function changeLookingFor() {
         // var anonymous = e.target.value;

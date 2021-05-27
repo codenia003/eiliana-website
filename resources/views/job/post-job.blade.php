@@ -67,7 +67,7 @@ Job Post
                                     </div>
                                     @if (Session::get('contractsattfing')['lookingfor'] === '1')
                                         <div class="form-group basic-info mb-3">
-                                            <label>Contract Duration(Months)</label>
+                                            <label>Notice Period(Months)</label>
                                             <br />
                                             <input type="number" name="contract_duration" class="form-control" value="" required />
                                             {{-- <div class="form-check form-check-inline">
@@ -113,7 +113,7 @@ Job Post
                                         <label>Key Skills</label>
                                         <input type="text" name="key_skills" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" required />
                                     </div>
-                                    <div class="form-group">
+                                    {{--<div class="form-group">
                                         <label>Job Category </label>
                                         <select name="job_category" class="form-control" id="project_category" onchange="change_category();">
                                             @foreach ($jobcategorys as $category)
@@ -127,7 +127,7 @@ Job Post
                                         <select name="job_sub_category" class="form-control" id="project_sub_category">
                                             <option value=""></option>
                                         </select>
-                                    </div>
+                                    </div>--}}
                                     <div class="form-group">
                                         <label>Role Summary</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea2" name="role_summary" rows="3"></textarea>

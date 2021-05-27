@@ -145,7 +145,7 @@ class JobController extends JoshController
         $roleda = $request->session()->get('users');
         if ($data['lookingfor'] == '1') {
             // contract-sattfing
-            if ($data['search_method'] == '1') {
+            if ($data['contractual_search_method'] == '1') {
                 return redirect('/post-job');
             } else {
                 return redirect('/advance-search/contract-staffing');

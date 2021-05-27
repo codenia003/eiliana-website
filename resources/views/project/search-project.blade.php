@@ -99,20 +99,6 @@
                                         
 					                	<div class="form-group project-budget d-none">
                                             <label>Mode Of Engagement</label>
-                                            <!-- <div class="form-group basic-info mb-3">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="hourly" checked>
-                                                    <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="model_engagement" value="retainership">
-                                                    <label class="form-check-label" for="inlineCheckbox2">Retainer</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input model_engagement" type="checkbox" id="inlineCheckbox3" name="model_engagement" value="project-based">
-                                                    <label class="form-check-label" for="inlineCheckbox3">Project-based</label>
-                                                </div>
-                                            </div> -->
                                             <div class="basic-info mb-3 project-budget1">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input hourly" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" onchange="changeBrowseProjectType11();" value="1">

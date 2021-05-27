@@ -59,7 +59,7 @@
 
 					                <div class="projects">
 					                	<div class="form-group">
-                                            <label>Project Category </label>
+                                            <label>Project Category</label>
                                             <select name="project_category" class="form-control" id="project_category" onchange="change_category();">
                                                 @foreach ($projectcategorys as $category)
                                                 <option value="{{ $category->id }}"  {{ (Session::get('projectcategory')['id']==$category->id)? "selected" : "" }}>{{ $category->name }}</option>
@@ -73,9 +73,154 @@
                                                 <option value=""></option>
                                             </select>
                                         </div>
-                                      
 
-                                    
+                                        <div class="basic-info mb-3 ">
+                                            <label>Search Method</label>                                   
+                                            <br>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" checked="false" id="development" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="2" >
+                                                    <label class="custom-control-label" for="development">Database Search</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="support" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="1">
+                                                    <label class="custom-control-label" for="support">Job Posting</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="basic-info mb-3 freelancer_datasase_browse_project d-none">
+                                            <label>Browse Project By</label>
+                                            <br>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="budget" class="custom-control-input" name="browse_project" onchange="changeBrowseProject()" value="1">
+                                                    <label class="custom-control-label" for="budget">Budget</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="technology" class="custom-control-input" name="browse_project" onchange="changeBrowseProject()" value="2">
+                                                    <label class="custom-control-label" for="technology">Technology</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="duration" class="custom-control-input" name="browse_project" onchange="changeBrowseProject()" value="3">
+                                                    <label class="custom-control-label" for="duration">Duration</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="basic-info mb-3 freelancer_jobposting_browse_project d-none">
+                                            <label>Browse Project By</label>
+                                            <br>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="job_budget" class="custom-control-input" name="job_browse_project" onchange="jobPostChangeBrowseProject()" value="1" checked="">
+                                                    <label class="custom-control-label" for="job_budget">Budget</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="job_duration" class="custom-control-input" name="job_browse_project" onchange="jobPostChangeBrowseProject()" value="2">
+                                                    <label class="custom-control-label" for="job_duration">Duration</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+					                	<div class="form-group project-budget d-none">
+                                            <div class="basic-info mb-3">
+                                               <label>Mode Of Engagement</label>
+                                                <br>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="hourly" class="custom-control-input" name="model_engagement" onchange="changeBrowseProjectType();" value="1">
+                                                        <label class="custom-control-label" for="hourly">Hourly</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="retainer" class="custom-control-input" name="model_engagement" onchange="changeBrowseProjectType();" value="2">
+                                                        <label class="custom-control-label" for="retainer">Retainership</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="project_based" class="custom-control-input" name="model_engagement" onchange="changeBrowseProjectType();" value="3">
+                                                        <label class="custom-control-label" for="project_based">Project-based</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group hourly11 d-none">
+                                                <label>Rate Per Hour</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Min" class="form-control" name="hourly_minimum">
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Max" class="form-control" name="hourly_maximum">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group retainer11 d-none">
+                                                <label>Rate Per Month</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Min" class="form-control" name="retainer_minimum">
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Max" class="form-control" name="retainer_maximum">
+                                                    </div>
+                                                </div>
+                                            </div>
+	                                        
+	                                        <div class="form-group project-based11 d-none">
+                                                <label>Project Budget</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Min" class="form-control" name="project_based_minimum">
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Max" class="form-control" name="project_based_maximum">
+                                                    </div>
+	                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group project-technology d-none">
+	                                        <label>Technology Preference</label>
+	                                        <div class="form-row">
+                                                <div class="form-group col">
+                                                    {{-- <label>Technology Preference</label> --}}
+                                                    <select name="technologty_pre" class="form-control" id="technologty_pre" onchange="change_framework();">
+                                                        <option value="">Select Technology</option>
+                                                        @foreach ($technologies as $technology)
+                                                        <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                {{--  <div class="form-group col">
+                                                    <label>Framework</label> 
+                                                    <select class="form-control" name="framework" id="framework">
+                                                        <option value="">Select Framework</option>
+                                                    </select>
+                                                </div>--}}
+	                                        </div>
+                                        </div>
+                                        <div class="form-group project-duration d-none">
+	                                        <label>Project Duration</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <input type="number" placeholder="Min" class="form-control" name="project_duration_min"/>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="number" placeholder="Max" class="form-control" name="project_duration_max"/>
+                                                </div>
+                                            </div>
+	                                    </div>
 					                </div>
 					                <div class="contractual d-none">
 						                <div class="form-group">
@@ -86,25 +231,24 @@
 	                                        <label>Experience</label>
 	                                        <div class="form-row">
 				                                <div class="col">
-				                                    <select class="form-control" required="" name="experience_year">
+				                                    <select class="form-control" name="experience_year" id="experience_year" onchange="toExperience();">
 				                                        @for ($i = 0; $i < 21; $i++)
 				                                        <option value="{{ $i }}">{{ $i }} Years</option>
 				                                        @endfor
 				                                    </select>
 				                                </div>
 				                                <div class="col">
-				                                    <select class="form-control" required="" name="experience_month">
-				                                        @for ($i = 1; $i < 13; $i++)
-				                                        <option value="{{ $i }}">{{ $i }} Months</option>
+				                                    <select class="form-control" name="experience_month" id="experience_to_year">
+				                                        @for ($i = 1; $i < 21; $i++)
+				                                        <option value="{{ $i }}">{{ $i }} Years</option>
 				                                        @endfor
 				                                    </select>
 				                                </div>
 				                            </div>
 	                                    </div>
-                                        
-	                                    <div class="form-group">
+                                        <div class="form-group">
 	                                        <label>Job Location</label>
-	                                        <select name="current_location" class="form-control">
+	                                        <select name="location" class="form-control">
 	                                            <option value=""></option>
 	                                            @foreach ($locations as $location)
                                                 <option value="{{ $location->location_id }}" >{{ $location->name }}</option>
@@ -121,187 +265,138 @@
                                                 @endforeach
 	                                        </select>
 	                                    </div>
+
+                                        <div class="basic-info mb-3 ">
+                                            <label>Search Method</label>                                   
+                                            <br>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" checked="false" id="contractual_development" class="custom-control-input" name="contractual_search_method" onchange="contractualChangeSearchMethod()" value="2" >
+                                                    <label class="custom-control-label" for="contractual_development">Database Search</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="contractual_support" class="custom-control-input" name="contractual_search_method" onchange="contractualChangeSearchMethod()" value="1">
+                                                    <label class="custom-control-label" for="contractual_support">Job Posting</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="basic-info mb-3 contractual_datasase_browse_project d-none">
+                                            <label>Browse Project By</label>
+                                            <br>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="contractual_budget" class="custom-control-input" name="browse_project" onchange="contractualChangeBrowseProject()" value="1">
+                                                    <label class="custom-control-label" for="contractual_budget">Budget</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="contractual_technology" class="custom-control-input" name="browse_project" onchange="contractualChangeBrowseProject()" value="2">
+                                                    <label class="custom-control-label" for="contractual_technology">Technology</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="contractual_duration" class="custom-control-input" name="browse_project" onchange="contractualChangeBrowseProject()" value="3">
+                                                    <label class="custom-control-label" for="contractual_duration">Duration</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group contractual-project-budget d-none">
+                                            <div class="basic-info mb-3">
+                                               <label>Mode Of Engagement</label>
+                                                <br>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="contractual_hourly" class="custom-control-input" name="contractual_model_engagement" onchange="contractualChangeBrowseProjectType();" value="1">
+                                                        <label class="custom-control-label" for="contractual_hourly">Hourly</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="contractual_retainer" class="custom-control-input" name="contractual_model_engagement" onchange="contractualChangeBrowseProjectType();" value="2">
+                                                        <label class="custom-control-label" for="contractual_retainer">Retainership</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="contractual_project_based" class="custom-control-input" name="contractual_model_engagement" onchange="contractualChangeBrowseProjectType();" value="3">
+                                                        <label class="custom-control-label" for="contractual_project_based">Project-based</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group hourly11 d-none">
+                                                <label>Rate Per Hour</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Min" class="form-control" name="contractual_hourly_minimum"/>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Max" class="form-control" name="contractual_hourly_maximum"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group retainer11 d-none">
+                                                <label>Rate Per Month</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Min" class="form-control" name="contractual_retainer_minimum"/>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Max" class="form-control" name="contractual_retainer_maximum"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+	                                        
+	                                        <div class="form-group project-based11 d-none">
+                                                <label>Project Budget</label>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Min" class="form-control" name="contractual_project_based_minimum"/>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="number" placeholder="Max" class="form-control" name="contractual_project_based_maximum"/>
+                                                    </div>
+	                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group contractual-project-technology d-none">
+	                                        <label>Technology Preference</label>
+	                                        <div class="form-row">
+                                                <div class="form-group col">
+                                                    {{-- <label>Technology Preference</label> --}}
+                                                    <select name="technologty_pre" class="form-control" id="technologty_pre" onchange="change_framework();">
+                                                        <option value="">Select Technology</option>
+                                                        @foreach ($technologies as $technology)
+                                                        <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                {{--  <div class="form-group col">
+                                                    <label>Framework</label> 
+                                                    <select class="form-control" name="framework" id="framework">
+                                                        <option value="">Select Framework</option>
+                                                    </select>
+                                                </div>--}}
+	                                        </div>
+                                        </div>
+                                        <div class="form-group contractual-project-duration d-none">
+	                                        <label>Project Duration</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <input type="number" placeholder="Min" class="form-control" name="project_duration_min"/>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="number" placeholder="Max" class="form-control" name="project_duration_max"/>
+                                                </div>
+                                            </div>
+	                                    </div>
 					                </div>
-                                    <div class="basic-info mb-3 ">
-                                        <label>Search Method</label>                                   
-                                        <br>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" checked="false" id="development" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="2" >
-                                                <label class="custom-control-label" for="development">Database Search</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="support" class="custom-control-input" name="search_method" onchange="changeSearchMethod()" value="1">
-                                                <label class="custom-control-label" for="support">Job Posting</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- for database search method -->
-                                    <div class="basic-info1 mb-3 mr-3 d-none">
-                                        <label>Browse Project By</label><br>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="budget" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="B" checked="false">
-                                                <label class="custom-control-label" for="budget">Budget&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="techanology" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="T">
-                                                <label class="custom-control-label" for="techanology">Technology&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="duration" class="custom-control-input" name="db_search" onchange="changeSearchDBMethod()" value="D">
-                                                <label class="custom-control-label" for="duration">Duration</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- for job postiin search method -->
-                                    <div class="mb-3 mr-3 d-none" id="job_post">
-                                        <label>Browse Project By</label><br>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="budget1" class="custom-control-input" name="job_post" onchange="changeSearchDBMethod1()" value="B1" checked="false">
-                                                <label class="custom-control-label" for="budget1">Budget&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="duration1" class="custom-control-input" name="job_post" onchange="changeSearchDBMethod1()" value="D1">
-                                                <label class="custom-control-label" for="duration1">Duration</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <!-- sub budget -->
-                                    <div class="mb-3 mr-3" id="sub_budget">
-                                        <label>Mode Of Engagement</label><br>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="hourly" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="H" checked="false">
-                                                <label class="custom-control-label" for="hourly">Hourly&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="retainer" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="R">
-                                                <label class="custom-control-label" for="retainer">Retainer&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="project_based" class="custom-control-input" name="sub_budgets" onchange="changeSubBudget()" value="P">
-                                                <label class="custom-control-label" for="project_based">Project Based</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- job posting budget -->
-                                    <div class="mb-3 mr-3 d-none" id="job_budget">
-                                        <label>Mode Of Engagement</label><br>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="hourly1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="H1">
-                                                <label class="custom-control-label" for="hourly1">Hourly&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="retainer1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="R1">
-                                                <label class="custom-control-label" for="retainer1">Retainer&nbsp;&nbsp;</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="project_based1" class="custom-control-input" name="job_budget" onchange="changeSubBudget1()" value="P1">
-                                                <label class="custom-control-label" for="project_based1">Project Based</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- for r per rate -->
-                                    <div class="form-group d-none" id="rate">
-                                        <label>Rate per Hour</label>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <input type="number"  name="rate_hour_min" class="form-control" placeholder="Min">
-                                            </div>
-                                            <div class="col">
-                                                <input type="number"  name="rate_hour_max" class="form-control" placeholder="Max">
-                                            </div>
-                                        </div> 
-                                            
-                                    </div>
-                                    <!-- for duration field -->
-                                    <div class="form-group d-none" id="duration_field">
-                                        <label>Project Duration</label>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <input type="number" class="form-control" name="duration_min" placeholder="Min">
-                                            </div>
-                                            <div class="col">
-                                                <input type="number" class="form-control" name="duration_max" placeholder="Max">
-                                            </div>
-                                        </div>
-                                            
-                                    </div> 
-
-                                    <!-- for Rate per moth field -->
-                                    <div class="form-group d-none" id="rate_month">
-                                        <label>Rate Per Month</label>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <input type="number" class="form-control" name="rate_month_min" placeholder="Min">
-                                            </div>
-                                            <div class="col">
-                                                <input type="number" class="form-control" name="rate_month_max" placeholder="Max">
-                                            </div>
-                                        </div>
-                                            
-                                    </div> 
-                                    <!-- for project based field -->
-                                    <div class="form-group d-none" id="project_field">
-                                        <label>Project Budget</label>
-                                         <div class="form-row">
-                                            <div class="col">
-                                                <input type="number" class="form-control" name="project_budget_min" placeholder=" Min"> 
-                                            </div>
-                                             <div class="col">
-                                                <input type="number" class="form-control" name="project_budget_max" placeholder=" Max"> 
-                                            </div>
-                                        </div>
-                                           
-                                    </div> 
-									
-									<div class="form-group d-none" id="tech">
-										<label>Technology</label>
-										<select name="technology" class="form-control" id="tech_">
-											<option value="">Select Technology</option>
-													@foreach ($technologies as $technology)
-													<option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
-													@endforeach
-										</select>
-                                    </div>
-									<div class="form-group job-posting d-none" id="project_duration">
-										<label>Project Duration</label>
-										<div class="form-row">
-											<div class="col">
-												<input type="number" placeholder="Min" class="form-control" name="dur_minimum"/>
-													
-											</div>
-											<div class="col">
-												<input type="number" placeholder="Max" class="form-control" name="dur_maximum"/>
-													
-											</div>
-										</div>
-									</div>
                                     
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
@@ -431,217 +526,124 @@
 <script>
     $(window).bind("load", function() {
         changeLookingFor();
-        changeSearchMethod();
-        changeSearchDBMethod();
-        changeSearchDBMethod1();
+        changeBrowseProjectType();
+        contractualChangeSearchMethod();
+        contractualChangeBrowseProject();
+        changeBrowseProject();
+        jobPostChangeBrowseProject();
         change_category();
-        changeSubBudget();
-        changeSubBudget1();
+        changeSearchMethod();
+        contractualChangeBrowseProjectType();
     });
 
-    function changeSearchDBMethod1() {
-        //  
-        var method = $('input[name="job_post"]:checked').attr('value');
-        if (method == 'B1') {
-            $('#project_duration').addClass("d-none");
-            $('#job_budget').removeClass("d-none");
-            // $('.basic-info1').removeClass("d-none");
-            // $('#rate').removeClass("d-none");
-            // $('#tech').addClass("d-none");
-            // $('#duration_field').addClass("d-none");
-            // $('#sub_budget').removeClass("d-none");
-            //  $('#rate_month').addClass("d-none");
-        
-            // $('#rate').addClass("d-none");
-            // $('#sub_budget').addClass("d-none");
-            // $('#tech').removeClass("d-none");
-            // $('#duration_field').addClass("d-none");
-            // $('#project_field').addClass("d-none");
-            // $('#rate_month').addClass("d-none");
-        }
-        else if(method=='D1')
-        {
-            $('#job_budget').addClass("d-none");
-            $('#project_duration').removeClass("d-none");
-            // alert();
-            // $('#rate').addClass("d-none");
-            // $('#sub_budget').addClass("d-none");
-            // $('#tech').addClass("d-none");
-            //  $('#project_field').addClass("d-none");
-            // $('#duration_field').removeClass("d-none");
-            //  $('#rate_month').addClass("d-none");
-        }
-        
-        else {
-            // $('.job-posting').addClass("d-none");
-        }
-    }
-    function changeSubBudget1() {
-        //  
-        var method = $('input[name="job_budget"]:checked').attr('value');
-        
-        if (method == 'H1') {
-            
-            // $('.job-posting').addClass("d-none");
-            // $('.basic-info1').removeClass("d-none");
-            // alert();
-            $('#rate').removeClass("d-none");
-            //$('#rate').show();
-            $('#rate_month').addClass("d-none");
-            $('#tech').addClass("d-none");
-            $('#duration_field').addClass("d-none");
-            $('#project_field').addClass("d-none");
-
-            // $('#job_budget').addClass("d-none");
-            // $('#job_post').removeClass("d-none");
-            // $('#job_budget').addClass("d-none");
-        }
-        else if(method=='R1')
-        {
-            $('#rate_month').removeClass("d-none");
-            $('#rate').addClass("d-none");
-            // $('#rate_month').removeClass("d-none");
-            // $('#sub_budget').addClass("d-none");
-            $('#tech').addClass("d-none");
-            $('#duration_field').addClass("d-none");
-           // $('#job_budget').removeClass("d-none");
-        }
-        else if(method=='P1')
-        {
-            $('#project_field').removeClass("d-none");
-            $('#rate').addClass("d-none");
-            //$('#project_field').removeClass("d-none");
-            $('#tech').addClass("d-none");
-            $('#duration_field').addClass("d-none");
-            $('#rate_month').addClass("d-none");
-            //$('#job_budget').removeClass("d-none");
-        }
-        
-        else {
-            // $('.job-posting').addClass("d-none");
-        }
-    }
-    // for sub budget
-    function changeSubBudget() {
-        //  
-        var method = $('input[name="sub_budgets"]:checked').attr('value');
-        
-        if (method == 'H') {
-            
-            // $('.job-posting').addClass("d-none");
-            // $('.basic-info1').removeClass("d-none");
-            $('#rate').removeClass("d-none");
-            $('#rate_month').addClass("d-none");
-            $('#tech').addClass("d-none");
-            $('#duration_field').addClass("d-none");
-            $('#project_field').addClass("d-none");
-            $('#job_budget').addClass("d-none");
-            $('#job_post').addClass("d-none");
-            // $('#job_budget').addClass("d-none");
-        }
-        else if(method=='R')
-        {
-            $('#rate_month').removeClass("d-none");
-            $('#rate').addClass("d-none");
-            // $('#rate_month').removeClass("d-none");
-            // $('#sub_budget').addClass("d-none");
-            $('#tech').addClass("d-none");
-            $('#duration_field').addClass("d-none");
-            $('#job_budget').addClass("d-none");
-            $('#job_post').addClass("d-none");
-            // $('#job_budget').addClass("d-none");
-        }
-        else if(method=='P')
-        {
-            $('#project_field').removeClass("d-none");
-            $('#rate').addClass("d-none");
-            $('#project_field').removeClass("d-none");
-            $('#tech').addClass("d-none");
-            $('#duration_field').addClass("d-none");
-            $('#rate_month').addClass("d-none");
-            // $('#job_budget').addClass("d-none");
-            $('#job_post').addClass("d-none");
-            $('#job_budget').addClass("d-none");
-        }
-        
-        else {
-            // $('.job-posting').addClass("d-none");
-        }
-    }
     function changeSearchMethod() {
         var method = $('input[name="search_method"]:checked').attr('value');
         if (method == '1') {
-            $('.job-posting').addClass("d-none");
-            $('.basic-info1').addClass("d-none");
-            $('#rate').addClass("d-none");
-        	$('#tech').addClass("d-none");
-            $('#duration_field').addClass("d-none");
-            $('#sub_budget').addClass("d-none");
-            $('#rate').addClass("d-none");
-            $('#rate_month').addClass("d-none");
-             $('#project_field').addClass("d-none");
-             $('#job_post').removeClass("d-none");
-             $('#job_budget').removeClass("d-none");
-             
-             
+            $('.freelancer_jobposting_browse_project').removeClass("d-none");
+            $('.freelancer_datasase_browse_project').addClass("d-none"); 
+            document.getElementById("hourly").checked = false;
+            document.getElementById("retainer").checked = false;
+            document.getElementById("project_based").checked = false;
+            document.getElementById("job_budget").checked = false;
+            document.getElementById("job_duration").checked = false;
+            $('.project-budget').hide();
+            $('.project-technology').hide();
+            $('.project-duration').hide();
+            $('.hourly11').hide();
+            $('.retainer11').hide();
+            $('.project-based11').hide();
         } 
         else if(method =='2')
         {
-        	$('.job-posting').addClass("d-none");
-        	$('.basic-info1').removeClass("d-none");
-            // $('#job_budget').addClass("d-none");
-            $('#job_post').addClass("d-none");
-            $('#job_budget').addClass("d-none");
-        }
-        else {
-        	$('.job-posting').addClass("d-none");
+        	$('.freelancer_datasase_browse_project').removeClass("d-none");
+            $('.freelancer_jobposting_browse_project').addClass("d-none");
+            document.getElementById("hourly").checked = false;
+            document.getElementById("retainer").checked = false;
+            document.getElementById("project_based").checked = false;
+            document.getElementById("budget").checked = false;
+            document.getElementById("technology").checked = false;
+            document.getElementById("duration").checked = false;
+            $('.project-budget').hide();
+            $('.project-technology').hide();
+            $('.project-duration').hide();
+            $('.hourly11').hide();
+            $('.retainer11').hide();
+            $('.project-based11').hide();
         }
     }
-    function changeSearchDBMethod() {
-        //  
-        var method = $('input[name="db_search"]:checked').attr('value');
-        if (method == 'B') {
-            $('.job-posting').addClass("d-none");
-            $('.basic-info1').removeClass("d-none");
-            $('#rate').removeClass("d-none");
-        	$('#tech').addClass("d-none");
-            $('#duration_field').addClass("d-none");
-            $('#sub_budget').removeClass("d-none");
-             $('#rate_month').addClass("d-none");
+
+    function changeBrowseProject() {
+        var method = $('input[name="browse_project"]:checked').attr('value');
+        if (method == '1') {
+            $('.project-budget').removeClass("d-none");
+            $('.project-technology').addClass("d-none");
+            $('.project-duration').addClass("d-none");
+            $('.project-budget').show();
+            $('.project-based11').hide();
+        } else if(method == '2') {
+            $('.project-technology').removeClass("d-none");
+            $('.project-budget').addClass("d-none");
+            $('.project-duration').addClass("d-none");
+            $('.project-technology').show();
+            document.getElementById("hourly").checked = false;
+            document.getElementById("retainer").checked = false;
+            document.getElementById("project_based").checked = false;
+            $('.hourly11').hide();
+            $('.retainer11').hide();
+            $('.project-based11').hide();
+        } else {
+            $('.project-duration').removeClass("d-none");
+            $('.project-budget').addClass("d-none");
+            $('.project-technology').addClass("d-none");
+            $('.project-duration').show();
+            document.getElementById("hourly").checked = false;
+            document.getElementById("retainer").checked = false;
+            document.getElementById("project_based").checked = false;
+            $('.hourly11').hide();
+            $('.retainer11').hide();
+            $('.project-based11').hide();
         }
-        else if(method=='T')
-        {
-        	$('#rate').addClass("d-none");
-            $('#sub_budget').addClass("d-none");
-        	$('#tech').removeClass("d-none");
-            $('#duration_field').addClass("d-none");
-            $('#project_field').addClass("d-none");
-            $('#rate_month').addClass("d-none");
-            // document.getElementById("hourly").checked = false;
-            // document.getElementById("retainer").checked = false;
-            // document.getElementById("project_based").checked = false;
-            // $('#rate').hide();
-            // $('#project_field').hide();
-            // $('#rate_month').hide();
+    }
+
+    function jobPostChangeBrowseProject() {
+        var method = $('input[name="job_browse_project"]:checked').attr('value');
+        if (method == '1') {
+            $('.project-budget').removeClass("d-none");
+            $('.project-duration').addClass("d-none");
+            $('.project-budget').show();
+        } else {
+            $('.project-duration').removeClass("d-none");
+            $('.project-budget').addClass("d-none");
+            $('.project-duration').show();
+            document.getElementById("hourly").checked = false;
+            document.getElementById("retainer").checked = false;
+            document.getElementById("project_based").checked = false;
+            $('.hourly11').hide();
+            $('.retainer11').hide();
+            $('.project-based11').hide();
         }
-        else if(method=='D')
-        {
-            $('#rate').addClass("d-none");
-            $('#sub_budget').addClass("d-none");
-            $('#tech').addClass("d-none");
-             $('#project_field').addClass("d-none");
-            $('#duration_field').removeClass("d-none");
-             $('#rate_month').addClass("d-none");
-            // document.getElementById("hourly").checked = false;
-            // document.getElementById("retainer").checked = false;
-            // document.getElementById("project_based").checked = false;
-            // $('#rate').hide();
-            // $('#project_field').hide();
-            // $('#rate_month').hide();
+    }
+
+    function changeBrowseProjectType() {
+        // var anonymous = e.target.value;
+        var method = $('input[name="model_engagement"]:checked').attr('value');
+        // console.log(anonymous);
+        if (method == '1') {
+            $('.hourly11').removeClass("d-none");
+            $('.retainer11').addClass("d-none");
+            $('.project-based11').addClass("d-none");
+            $('.hourly11').show();
+        }else if (method == '2') {
+            $('.hourly11').addClass("d-none");
+            $('.retainer11').removeClass("d-none");
+            $('.project-based11').addClass("d-none");
+            $('.retainer11').show();
         }
-        
         else {
-        	$('.job-posting').addClass("d-none");
+        	$('.hourly11').addClass("d-none");
+            $('.retainer11').addClass("d-none");
+            $('.project-based11').removeClass("d-none");
+            $('.project-based11').show();
         }
     }
 
@@ -652,11 +654,103 @@
         if (anonymous == '1') {
             $('.contractual').removeClass("d-none");
             $('.projects').addClass("d-none");
-            $('.right-colume').addClass("d-none");
+            $('.contractual-project-duration').hide();
         } else {
         	$('.contractual').addClass("d-none");
-        	$('.right-colume').addClass("d-none");
             $('.projects').removeClass("d-none");
+        }
+    }
+
+
+    function contractualChangeSearchMethod() {
+        var method = $('input[name="contractual_search_method"]:checked').attr('value');
+        if (method == '1') {
+            //$('.contractual_jobposting_browse_project').removeClass("d-none");
+            $('.contractual_datasase_browse_project').addClass("d-none"); 
+            document.getElementById("contractual_hourly").checked = false;
+            document.getElementById("contractual_retainer").checked = false;
+            document.getElementById("contractual_project_based").checked = false;
+            //document.getElementById("job_budget").checked = false;
+            //document.getElementById("job_duration").checked = false;
+            $('.contractual-project-budget').hide();
+            $('.contractual-project-technology').hide();
+            $('.contractual-project-duration').hide();
+            $('.hourly11').hide();
+            $('.retainer11').hide();
+            $('.project-based11').hide();
+        } 
+        else if(method =='2')
+        {
+        	$('.contractual_datasase_browse_project').removeClass("d-none");
+            $('.contractual_jobposting_browse_project').addClass("d-none");
+            document.getElementById("contractual_hourly").checked = false;
+            document.getElementById("contractual_retainer").checked = false;
+            document.getElementById("contractual_project_based").checked = false;
+            document.getElementById("contractual_budget").checked = false;
+            document.getElementById("contractual_technology").checked = false;
+            document.getElementById("contractual_duration").checked = false;
+            $('.contractual-project-budget').hide();
+            $('.contractual-project-technology').hide();
+            $('.contractual-project-duration').hide();
+            $('.hourly11').hide();
+            $('.retainer11').hide();
+            $('.project-based11').hide();
+        }
+    }
+
+    function contractualChangeBrowseProject() {
+        var method = $('input[name="browse_project"]:checked').attr('value');
+        if (method == '1') {
+            $('.contractual-project-budget').removeClass("d-none");
+            $('.contractual-project-technology').addClass("d-none");
+            $('.contractual-project-duration').addClass("d-none");
+            $('.contractual-project-budget').show();
+            
+        } else if(method == '2') {
+            $('.contractual-project-technology').removeClass("d-none");
+            $('.contractual-project-budget').addClass("d-none");
+            $('.contractual-project-duration').addClass("d-none");
+            $('.contractual-project-technology').show();
+            document.getElementById("contractual_hourly").checked = false;
+            document.getElementById("contractual_retainer").checked = false;
+            document.getElementById("contractual_project_based").checked = false;
+            $('.hourly11').hide();
+            $('.retainer11').hide();
+            $('.project-based11').hide();
+        } else {
+            $('.contractual-project-duration').removeClass("d-none");
+            $('.contractual-project-budget').addClass("d-none");
+            $('.contractual-project-technology').addClass("d-none");
+            $('.contractual-project-duration').show();
+            document.getElementById("contractual_hourly").checked = false;
+            document.getElementById("contractual_retainer").checked = false;
+            document.getElementById("contractual_project_based").checked = false;
+            $('.hourly11').hide();
+            $('.retainer11').hide();
+            $('.project-based11').hide();
+        }
+    }
+
+    function contractualChangeBrowseProjectType() {
+        // var anonymous = e.target.value;
+        var method = $('input[name="contractual_model_engagement"]:checked').attr('value');
+        // console.log(anonymous);
+        if (method == '1') {
+            $('.hourly11').removeClass("d-none");
+            $('.retainer11').addClass("d-none");
+            $('.project-based11').addClass("d-none");
+            $('.hourly11').show();
+        }else if (method == '2') {
+            $('.hourly11').addClass("d-none");
+            $('.retainer11').removeClass("d-none");
+            $('.project-based11').addClass("d-none");
+            $('.retainer11').show();
+        }
+        else {
+        	$('.hourly11').addClass("d-none");
+            $('.retainer11').addClass("d-none");
+            $('.project-based11').removeClass("d-none");
+            $('.project-based11').show();
         }
     }
 </script>

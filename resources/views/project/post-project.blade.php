@@ -61,19 +61,19 @@ Post Project
                                         <br />
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="hourly" class="custom-control-input" name="model_engagement" value="1" onchange="changePricingModel()" checked="">
+                                                <input type="radio" id="hourly" class="custom-control-input" name="model_engagement" value="1" {{ (Session::get('contractsattfing')['model_engagement']=='1')? "checked" : "" }} onchange="changePricingModel()" checked="">
                                                 <label class="custom-control-label" for="hourly">Hourly</label>
                                             </div>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="retainership" class="custom-control-input" name="model_engagement" value="2" onchange="changePricingModel()">
+                                                <input type="radio" id="retainership" class="custom-control-input" name="model_engagement" value="2" {{ (Session::get('contractsattfing')['model_engagement']=='2')? "checked" : "" }} onchange="changePricingModel()">
                                                 <label class="custom-control-label" for="retainership">Retainership</label>
                                             </div>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="projectbase" class="custom-control-input" name="model_engagement" value="3" onchange="changePricingModel()">
+                                                <input type="radio" id="projectbase" class="custom-control-input" name="model_engagement" value="3" {{ (Session::get('contractsattfing')['model_engagement']=='3')? "checked" : "" }} onchange="changePricingModel()">
                                                 <label class="custom-control-label" for="projectbase">Project Based</label>
                                             </div>
                                         </div>
@@ -82,14 +82,15 @@ Post Project
                                         <label class="hourly">Rate Per Hour</label>
                                         <label class="retainership d-none">Rate Per Month</label>
                                         <label class="project-based d-none">Total Project Amount</label>
+                                        @if(Session::get('contractsattfing')['model_engagement']=='1')
                                         <div class="form-row">
-                                            <div class="col-3">
-                                                <input type="text" name="amount" class="form-control" value="" required />
+                                            <div class="col-4">
+                                                <input type="text" name="amount" class="form-control" value="{{ Session::get('contractsattfing')['hourly_minimum'] }}" required />
                                             </div>
-                                            <div class="col-3">
-                                                <input type="text" name="amount_to" class="form-control" value="" required />
+                                            <div class="col-4">
+                                                <input type="text" name="amount_to" class="form-control" value="{{ Session::get('contractsattfing')['hourly_maximum'] }}" required />
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-4">
                                                 <select class="form-control" name="currency_id">
                                                     @foreach ($currency as $currencies)
                                                         <option value="{{ $currencies->currency_id }}">{{ $currencies->code }} - {{ $currencies->symbol}}</option>
@@ -97,6 +98,39 @@ Post Project
                                                 </select>
                                             </div>
                                         </div>
+                                        @elseif(Session::get('contractsattfing')['model_engagement']=='2')
+                                        <div class="form-row">
+                                            <div class="col-4">
+                                                <input type="text" name="amount" class="form-control" value="{{ Session::get('contractsattfing')['retainer_minimum'] }}" required />
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" name="amount_to" class="form-control" value="{{ Session::get('contractsattfing')['retainer_maximum'] }}" required />
+                                            </div>
+                                            <div class="col-4">
+                                                <select class="form-control" name="currency_id">
+                                                    @foreach ($currency as $currencies)
+                                                        <option value="{{ $currencies->currency_id }}">{{ $currencies->code }} - {{ $currencies->symbol}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        @else
+                                        <div class="form-row">
+                                            <div class="col-4">
+                                                <input type="text" name="amount" class="form-control" value="{{ Session::get('contractsattfing')['project_based_minimum'] }}" required />
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" name="amount_to" class="form-control" value="{{ Session::get('contractsattfing')['project_based_maximum'] }}" required />
+                                            </div>
+                                            <div class="col-4">
+                                                <select class="form-control" name="currency_id">
+                                                    @foreach ($currency as $currencies)
+                                                        <option value="{{ $currencies->currency_id }}">{{ $currencies->code }} - {{ $currencies->symbol}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Project Title</label>
@@ -134,7 +168,7 @@ Post Project
                                         <br>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="support" class="custom-control-input" name="type_of_project" value="1" checked="">
+                                                <input type="radio" id="support" class="custom-control-input" name="type_of_project" value="1">
                                                 <label class="custom-control-label" for="support">Support</label>
                                             </div>
                                         </div>
@@ -173,9 +207,18 @@ Post Project
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-6">
+                                        {{--<div class="form-group col-6">
                                             <label>Customer Industry</label>
                                             <select name="customer_industry" class="form-control" required>
+                                                <option value=""></option>
+                                                @foreach ($customerindustries as $industry)
+                                                <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>--}}
+                                        <div class="form-group col-6">
+                                            <label>Product Industry Exprience</label>
+                                            <select name="product_industry_exprience" class="form-control" required>
                                                 <option value=""></option>
                                                 @foreach ($customerindustries as $industry)
                                                 <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
@@ -206,7 +249,7 @@ Post Project
                                                 <option value=""></option>
                                             </select>
                                         </div>--}}
-                                        <div class="form-group col">
+                                        {{--<div class="form-group col">
                                             <label>Candidate Role</label>
                                             <select name="candidate_role" class="form-control" required>
                                                 <option value=""></option>
@@ -214,18 +257,9 @@ Post Project
                                                 <option value="{{ $roles->candidate_role_id }}">{{ $roles->name }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                        <div class="form-group col">
-                                            <label>Product Industry Exprience</label>
-                                            <select name="product_industry_exprience" class="form-control" required>
-                                                <option value=""></option>
-                                                @foreach ($customerindustries as $industry)
-                                                <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        </div>--}}
                                     </div>
-                                    <div class="form-row">
+                                    {{--<div class="form-row">
                                         <div class="form-group col">
                                             <label>Location</label>
                                             <select name="location" class="form-control" required>
@@ -235,7 +269,7 @@ Post Project
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                     <!-- <div class="my-3">
                                         <button class="btn eiliana-btn btn-additional" type="button">Additional Fields <span class="fa fa-plus"></span></button>
                                     </div> -->

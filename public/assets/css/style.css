@@ -1514,6 +1514,7 @@ span.select2-selection.select2-selection--single {
     border-radius: 50%;
     color: #fff;
     font-weight: 600;
+    z-index: 999;
 }
 .reg-refer .btn.times {
     position: absolute;
@@ -1944,6 +1945,9 @@ span.select2-selection.select2-selection--single {
     background-color: #3f0d12;
     background-image: linear-gradient(#1b29dc 0, #24197d 74%) !important;
 }
+.user_chat .modal-dialog {
+    max-width: 900px !important;
+}
 /* chat_box */
 .chat_box {
 	display: flex;
@@ -1986,31 +1990,36 @@ span.select2-selection.select2-selection--single {
 /* body */
 .chat_box .body {
 	flex-grow: 1;
-	background-color: #eee;
+	/* background-color: #eee; */
+	height: 400px;
+	overflow-y: scroll;
+	overscroll-behavior-y: contain;
+	scroll-snap-type: y proximity;
 }
 .chat_box .body .bubble {
 	display: inline-block;
 	padding: 10px;
 	margin-bottom: 5px;
-	border-radius: 15px;
+	border-radius: 5px 5px 5px 0px;
 }
 .chat_box .body .bubble p {
-	color: #f9fbff;
+	color: #000000;
 	font-size: 14px;
 	text-align: left;
-	line-height: 1.4;
+	font-weight: 500;
 }
 .chat_box .body .incoming {
 	text-align: left;
 }
 .chat_box .body .incoming .bubble {
-	background-color: #b2b2b2;
+	background-color: #b6c4df;
 }
 .chat_box .body .outgoing {
 	text-align: right;
 }
 .chat_box .body .outgoing .bubble {
-	background-color: #79c7c5;
+	background-color: #3f5b82;
+	border-radius: 5px 5px 0px 5px;
 }
 
 /* foot */
@@ -2063,8 +2072,38 @@ button {
 .chat_main {
     height: auto;
     z-index: 1;
-    border-radius: 10px;
-    background-color: #f9fbff;
-    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    border-radius: 0px;
+    /* background-color: #f9fbff; */
+    /* box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px; */
     overflow: hidden;
+    border-left: 1px solid #e5e5e5;
+}
+.user_chat .modal-dialog .modal-body {
+    padding: 0px;
+}
+
+.user_chat .modal-dialog .eiliana-logo {
+    position: absolute;
+    top: -45%;
+    left: 38px;
+}
+.user_chat .modal-dialog .user-info .avatar img {
+    border-radius: 50%;
+    width: 200px;
+    object-fit: cover;
+}
+.user_chat .modal-dialog h5.card-title {
+    font-size: 28px;
+    color: #003466 !important;
+    margin-bottom: 0px;
+}
+.user_chat .modal-dialog p.card-text {
+    font-size: 15px;
+    color: #003466;
+}
+.chat_box .body .outgoing .bubble p {
+    color: #fff;
+}
+.user_chat .modal-dialog .eiliana-logo img {
+    width: 140px;
 }

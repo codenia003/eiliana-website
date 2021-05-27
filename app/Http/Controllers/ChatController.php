@@ -39,7 +39,6 @@ class ChatController extends JoshController
                                 ->where('to_user_id', $input['user_id']);
                         })->get();
 
-        $output .= '<ul class="list-unstyled">';
         foreach($chat_message as $row)
         {
             $user_name = '';
@@ -47,46 +46,54 @@ class ChatController extends JoshController
             $chat_message = '';
             if($row["from_user_id"] == $user->id)
             {
-                if($row["status"] == '2')
-                {
-                    $chat_message = '<em>This message has been removed</em>';
-                    $user_name = '<b class="text-success">You</b>';
-                }
-                else
-                {
+                // outgoing
+
+                // if($row["status"] == '2')
+                // {
+                //     $chat_message = '<em>This message has been removed</em>';
+                //     $user_name = '<b class="text-success">You</b>';
+                // }
+                // else
+                // {
                     $chat_message = $row['chat_message'];
                     // $user_name = '<button type="button" class="btn btn-danger btn-xs remove_chat" id="'.$row['chat_message_id'].'">x</button>&nbsp;<b class="text-success">You</b>';
                     $user_name = '<b class="text-success">You</b>';
-                }
+                // }
 
-
-                $dynamic_background = 'background-color:#ffe6e6;';
+                $dynamic_background = 'outgoing';
             }
             else
             {
-                if($row["status"] == '2')
-                {
-                    $chat_message = '<em>This message has been removed</em>';
-                }
-                else
-                {
+                // incoming
+
+                // if($row["status"] == '2')
+                // {
+                //     $chat_message = '<em>This message has been removed</em>';
+                // }
+                // else
+                // {
                     $chat_message = $row["chat_message"];
-                }
+                // }
                 $username = User::find($row["from_user_id"]);
                 $user_name = '<b class="text-danger">'.$username->full_name.'</b>';
-                $dynamic_background = 'background-color:#ffffe6;';
+                $dynamic_background = 'incoming';
             }
+            // $output .= '
+            // <li style="border-bottom:1px dotted #ccc;padding-top:8px; padding-left:8px; padding-right:8px;'.$dynamic_background.'">
+            //     <p>'.$user_name.' - '.$chat_message.'
+            //         <div align="right">
+            //             - <small><em>'.$row['created_at'].'</em></small>
+            //         </div>
+            //     </p>
+            // </li>
+            // ';
             $output .= '
-            <li style="border-bottom:1px dotted #ccc;padding-top:8px; padding-left:8px; padding-right:8px;'.$dynamic_background.'">
-                <p>'.$user_name.' - '.$chat_message.'
-                    <div align="right">
-                        - <small><em>'.$row['created_at'].'</em></small>
-                    </div>
-                </p>
-            </li>
-            ';
+            <div class="'.$dynamic_background.'">
+                <div class="bubble">
+                    <p>'.$chat_message.'</p>
+                </div>
+            </div>';
         }
-        $output .= '</ul>';
 
         return response()->json($output);
     }

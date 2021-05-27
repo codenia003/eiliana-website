@@ -286,7 +286,6 @@
         </div>
     </div>
 
-
     <div class="modal fade pullDown login-body border-0 modal-refer betaversion" id="modal-refer" role="dialog" aria-labelledby="modalLabelnews">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -331,34 +330,31 @@
         </div>
     </div>
 
-    {{-- <div class="modal fade pullDown border-0 modal-refer user_chat" id="user_dialog" role="dialog" aria-labelledby="modalLabelnews">
+    <div class="modal fade pullDown border-0 modal-refer user_chat" id="user_dialog" role="dialog" aria-labelledby="modalLabelnews">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     <div class="row">
-                        <div class="col">
+                        <div class="col align-self-center">
                             <div class="eiliana-logo">
                                 <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
                             </div>
                             <div class="user-info">
                                 <div class="basic-padding">
                                     <!-- Avatar -->
-                                    <div class="text-center mb-5">
+                                    <div class="text-center">
                                         <div class="avatar avatar-xxl avatar-circle mb-3">
-
-                                            <div>
-                                                @if(Sentinel::getUser()->pic)
-                                                <img class="image-preview avatar-img" src="{{ url('/') }}{{ Sentinel::getUser()->pic }}" class="avatar" alt="Avatar">
-                                                @else
-                                                <img class="avatar-img" src="/images/authors/no_avatar.jpg" alt="Image Description">
-                                                @endif
-                                            </div>
+                                            @if(Sentinel::getUser()->pic)
+                                            <img class="image-preview avatar-img" src="{{ url('/') }}{{ Sentinel::getUser()->pic }}" class="avatar" alt="Avatar">
+                                            @else
+                                            <img class="avatar-img" src="/images/authors/no_avatar.jpg" alt="Image Description">
+                                            @endif
                                         </div>
                                     </div>
-                                    <div class="mb-2">
-                                        <h5 class="card-title text-secondary">{{ Sentinel::getUser()->full_name }} <button class="btn btn-white float-right"><i class="fa fa-pencil" aria-hidden="true"></i></button></h5>
-                                        <p class="card-text font-size-1">{{ Sentinel::getUser()->city }} @isset(Session::get('users')['country_name']){{ Session::get('users')['country_name'] }} @endisset - {{ \Carbon\Carbon::parse(Sentinel::getUser()->created_at)->format('F d, Y, g:m a')}}</p>
+                                    <div class="text-center">
+                                        <h5 class="card-title text-secondary">{{ Sentinel::getUser()->full_name }}</h5>
+                                        <p class="card-text font-size-1">@isset(Session::get('users')['country_name']){{ Session::get('users')['country_name'] }} @endisset <br> {{ Sentinel::getUser()->city }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -371,7 +367,7 @@
                                             <div class="avatar">
                                                 <img src="https://picsum.photos/g/40/40" />
                                             </div>
-                                            <div class="name">Kai Cheng</div>
+                                            <div class="name">Nidhi Gupta</div>
                                         </div>
                                         <ul class="bar_tool">
                                             <li><span class="alink"><i class="fas fa-ellipsis-v"></i></span></li>
@@ -382,25 +378,19 @@
                                             <div class="bubble">
                                                 <p>Hey, Father's Day is coming up..</p>
                                             </div>
-                                            <div class="bubble">
-                                                <p>What are you getting.. Oh, oops sorry dude.</p>
-                                            </div>
                                         </div>
                                         <div class="outgoing">
-                                            <div class="bubble lower">
+                                            <div class="bubble">
                                                 <p>Nah, it's cool.</p>
                                             </div>
-                                            <div class="bubble">
-                                                <p>Well you should get your Dad a cologne. Here smell it. Oh wait! ...</p>
-                                            </div>
                                         </div>
-                                        <div class="typing">
+                                        {{-- <div class="typing">
                                             <div class="bubble">
                                                 <div class="ellipsis dot_1"></div>
                                                 <div class="ellipsis dot_2"></div>
                                                 <div class="ellipsis dot_3"></div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="foot">
                                         <input type="text" class="msg" placeholder="Type a message..." />
@@ -413,7 +403,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <!-- Footer Section Start -->
     <footer class="custome-footer">
         <div class="container space-1">

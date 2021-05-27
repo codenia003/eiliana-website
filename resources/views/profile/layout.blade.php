@@ -354,11 +354,17 @@ type="text/css"/>
             },
         });
     }
-    $('input').on('ifChecked', function(event){
+
+    $('input').on('ifChanged', function(event){
         var check = event.target.value;
-        // if(check == '1'){
-        //     $('.rateperhour').removeClass("d-none");
-        // }
+        var isChecked = event.currentTarget.checked;
+
+        // console.log(isChecked);
+        if(check == '1' && isChecked == true){
+            $('.rateperhour').removeClass("d-none");
+        } else if(check == '1' && isChecked == false) {
+            $('.rateperhour').addClass("d-none");
+        }
     });
     /*$(window).scroll(function(){
 	    if ($(window).scrollTop() >= 150) {

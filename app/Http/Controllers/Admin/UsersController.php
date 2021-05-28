@@ -126,7 +126,6 @@ class UsersController extends JoshController
      */
     public function store(UserRequest $request)
     {
-
         //upload image
         if ($file = $request->file('pic_file')) {
             $extension = $file->extension()?: 'png';

@@ -43,6 +43,21 @@
                     <label>Any Keyword(Key Skills)</label>
                     <input type="text" name="keyword" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" />
                 </div>
+                <div class="form-group">
+                    <label>Project Category</label>
+                    <select name="project_category" class="form-control" id="project_category" onchange="change_category();">
+                        @foreach ($projectcategorys as $category)
+                        <option value="{{ $category->id }}"  {{ (Session::get('projectcategory')['id']==$category->id)? "selected" : "" }}>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group" id="project_sub">
+                    <label>Project Sub Category</label>
+                    <select name="project_sub_category" class="form-control" id="project_sub_category">
+                        <option value=""></option>
+                    </select>
+                </div>
                 <div class="form-group basic-info mb-3">
                     <label>Model Of Engagement</label>
                     <br>
@@ -51,7 +66,7 @@
                          @if(isset($prev_tech['rate_hour']))
                             checked="" 
                          @endif
-                          id="inlineCheckbox1" name="model_engagement" value="1">
+                          id="inlineCheckbox1" name="model_engagement" value="1" checked="" >
                         <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -135,10 +150,10 @@
                         </div>
                     </div>
                     <div class="form-group col-6">
-                        <label>Budget</label>
+                        <label>Rate Per Hour</label>
                         <div class="form-row">
                             <div class="col">
-                                <select class="form-control" name="range_salary_from">
+                                <select class="form-control" name="range_salary_from" id="rate_per_hour">
                                     <option value="">From</option>
                                     @for ($i = 0; $i < 51; $i++)
                                     <option value="{{ $i }}">{{ $i }} Lacs</option>
@@ -146,7 +161,7 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <select class="form-control" name="range_salary_to">
+                                <select class="form-control" name="range_salary_to" id="rate_per_hour1">
                                     <option value="">To</option>
                                     @for ($i = 1; $i < 51; $i++)
                                     <option value="{{ $i }}">{{ $i }} Lacs</option>

@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-group col-6">
-                        <label>Salary Ranage</label>
+                        <label>Salary Range</label>
                         <div class="form-row">
                             <div class="col">
                                 <select class="form-control" name="range_salary_from">
@@ -80,34 +80,42 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-12">
+                    <div class="form-group col-6">
                         <label>Technology Preference</label>
-                        <select name="technologty_pre" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple>
+                        <!-- <select name="technologty_pre" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple> -->
+                        <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple>
                             <option value=""></option>
                             @foreach ($technologies as $technology)
                             <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-5">
+                    {{--<div class="form-group col-5">
                         <label>Framework</label>
                         <select class="form-control select2" name="framework" id="framework" multiple>
                             <option value=""></option>
                         </select>
                     </div>
-                    <div class="form-group col-1"></div>
+                    <div class="form-group col-1"></div>--}}
                     <div class="form-group col-6">
                         <label>Industry that Product was designed for</label>
-                        <select name="industry" class="form-control">
+                        <select name="customer_industry" class="form-control">
+                            <option value=""></option>
+                            @foreach ($customerindustries as $industry)
+                            <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
+                            @endforeach
+                        </select>
+                        {{--<select name="industry" class="form-control">
                             <option value=""></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                        </select>
+                        </select>--}}
                     </div>
                 </div>
+                
                 <div class="form-row">
-                    <div class="form-group col-5">
+                    <!-- <div class="form-group col-5">
                         <label>Current Location</label>
                         <select name="current_location" class="form-control">
                             <option value=""></option>
@@ -115,7 +123,28 @@
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select>
+                    </div> -->
+                    @if(Session::get('contractsattfing')['location'])
+                    <div class="form-group col-5">
+                        <label>Location</label>
+                        <select name="location" class="form-control">
+                            <option value=""></option>
+                            @foreach ($locations as $location)
+                            <option value="{{ $location->location_id }}" {{ (Session::get('contractsattfing')['location']==$location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
+                    @else
+                    <div class="form-group col-5">
+                        <label>Location</label>
+                        <select name="location" class="form-control">
+                            <option value=""></option>
+                            @foreach ($locations as $location)
+                            <option value="{{ $location->location_id }}">{{ $location->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endif
                     <div class="form-group col-1"></div>
                     <div class="form-group col-6">
                         <label>Preferred Location</label>

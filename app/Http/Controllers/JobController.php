@@ -145,7 +145,7 @@ class JobController extends JoshController
         $roleda = $request->session()->get('users');
         if ($data['lookingfor'] == '1') {
             // contract-sattfing
-            if ($data['contractual_search_method'] == '1') {
+            if ($data['search_method'] == '1') {
                 return redirect('/post-job');
             } else {
                 return redirect('/advance-search/contract-staffing');
@@ -183,6 +183,21 @@ class JobController extends JoshController
             return redirect('/account/login');
         }
     }
+
+    public function confirmationPostJobon(Request $request)
+    {
+        $data = $request->all();
+        $post_job_data = $data;
+        $technologies = Technology::where('parent_id', '0')->get();
+        $locations = Location::all();
+        $customerindustries = CustomerIndustry::all();
+
+        $request->session()->forget('post_job_data');
+        $request->session()->put('post_job_data', $post_job_data);
+        //return redirect('confirmation-post-project')->with('post_project_data', $post_project_data)->with('subprojectcategorys', $subprojectcategorys)->with('technologies', $technologies)->with('locations', $locations)->with('projectcategorys', $projectcategorys)->with('customerindustries', $customerindustries)->with('currency', $currency);
+        return view('job/confirmation-post-job', compact('post_job_data','technologies','locations','customerindustries'));
+    }
+
     public function postJobon(Request $request) {
 
         $user = Sentinel::getUser();
@@ -233,18 +248,18 @@ class JobController extends JoshController
         $jobs->job_title = $input['job_title'];
         $jobs->key_skills = $input['key_skills'];
         $jobs->role_summary = $input['role_summary'];
-        $jobs->type_of_project = $input['type_of_project'];
+        //$jobs->type_of_project = $input['type_of_project'];
         $jobs->experience_year = $input['experience_year'];
         $jobs->experience_month = $input['experience_month'];
-        $jobs->customer_industry = $input['customer_industry'];
+        //$jobs->customer_industry = $input['customer_industry'];
         $jobs->technologty_pre = $input['technologty_pre'];
-        $jobs->job_category = $input['job_category'];
-        $jobs->job_sub_category = $input['job_sub_category'];
+        //$jobs->job_category = $input['job_category'];
+        //$jobs->job_sub_category = $input['job_sub_category'];
         //$jobs->framework = $input['framework'];
-        $jobs->candidate_role = $input['candidate_role'];
+        //$jobs->candidate_role = $input['candidate_role'];
         $jobs->product_industry_exprience = $input['product_industry_exprience'];
         $jobs->location = $input['location'];
-        $jobs->model_engagement = $input['model_engagement'];
+        //$jobs->model_engagement = $input['model_engagement'];
         $jobs->budget_from = $input['budget_from'];
         $jobs->budget_to = $input['budget_to'];
         //$jobs->auto_match = $input['auto_match'];

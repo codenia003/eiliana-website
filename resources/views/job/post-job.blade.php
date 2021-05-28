@@ -48,7 +48,7 @@ Job Post
                         @include('notifications')
                     </div>
                     <div class="advance-search singup-body login-body">
-                        <form action="{{ url('/post-job-on') }}" method="POST" id="postJobForm" enctype="multipart/form-data">
+                        <form action="{{ url('confirmation-post-job') }}" method="POST" id="postJobForm" enctype="multipart/form-data">
                             @csrf
                             @isset(Session::get('sales_referral')['referral_id'])
                             <input type="hidden" name="referral_id" value="{{ Session::get('sales_referral')['referral_id'] }}">
@@ -65,8 +65,9 @@ Job Post
                                         <label>About Company</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" name="about_company" rows="3"></textarea>
                                     </div>
-                                    @if (Session::get('contractsattfing')['lookingfor'] === '1')
-                                        <div class="form-group basic-info mb-3">
+                                    {{--@if (Session::get('contractsattfing')['lookingfor'] === '1')--}}
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
                                             <label>Notice Period(Months)</label>
                                             <br />
                                             <input type="number" name="contract_duration" class="form-control" value="" required />
@@ -83,7 +84,29 @@ Job Post
                                                 <label class="form-check-label" for="inlineCheckbox3">Yearly</label>
                                             </div> --}}
                                         </div>
-                                    @else
+                                       @if(Session::get('contractsattfing')['location'])
+                                        <div class="form-group col-6">
+                                            <label>Location</label>
+                                            <select name="location" class="form-control">
+                                                <option value=""></option>
+                                                @foreach ($locations as $location)
+                                                <option value="{{ $location->location_id }}" {{ (Session::get('contractsattfing')['location']==$location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @else
+                                        <div class="form-group col">
+                                            <label>Location</label>
+                                            <select name="location" class="form-control">
+                                                <option value=""></option>
+                                                @foreach ($locations as $location)
+                                                <option value="{{ $location->location_id }}">{{ $location->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @endif
+                                    </div>   
+                                   {{-- @else
                                         <div class="form-group basic-info mb-3">
                                             <label>Pricing Model</label>
                                             <br />
@@ -104,7 +127,7 @@ Job Post
                                                 <label class="form-check-label" for="inlineCheckbox4">Contract Staffing</label>
                                             </div>
                                         </div>
-                                    @endif
+                                    @endif--}}
                                     <div class="form-group">
                                         <label>Job Title</label>
                                         <input type="text" name="job_title" class="form-control" value="" required />
@@ -182,9 +205,18 @@ Job Post
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-6">
+                                        {{--<div class="form-group col-6">
                                             <label>Customer Industry</label>
                                             <select name="customer_industry" class="form-control" required>
+                                                <option value=""></option>
+                                                @foreach ($customerindustries as $industry)
+                                                <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>--}}
+                                        <div class="form-group col">
+                                            <label>Product Industry Exprience</label>
+                                            <select name="product_industry_exprience" class="form-control" required>
                                                 <option value=""></option>
                                                 @foreach ($customerindustries as $industry)
                                                 <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
@@ -219,7 +251,7 @@ Job Post
                                                 @endforeach
                                             </select>
                                         </div>--}}
-                                        <div class="form-group col">
+                                        {{--<div class="form-group col">
                                             <label>Product Industry Exprience</label>
                                             <select name="product_industry_exprience" class="form-control" required>
                                                 <option value=""></option>
@@ -227,31 +259,9 @@ Job Post
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                             </select>
-                                        </div>
+                                        </div>--}}
                                     </div>
                                     <div class="form-row">
-                                       @if(Session::get('contractsattfing')['location'])
-                                        <div class="form-group col">
-                                            <label>Location</label>
-                                            <select name="location" class="form-control">
-                                                <option value=""></option>
-                                                @foreach ($locations as $location)
-                                                <option value="{{ $location->location_id }}" {{ (Session::get('contractsattfing')['location']==$location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @else
-                                        <div class="form-group col">
-                                            <label>Location</label>
-                                            <select name="location" class="form-control">
-                                                <option value=""></option>
-                                                @foreach ($locations as $location)
-                                                <option value="{{ $location->location_id }}">{{ $location->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @endif
-
                                         <div class="form-group col">
                                             <label>Budget(Per Month)</label>
                                             <div class="form-row">
@@ -626,7 +636,7 @@ Job Post
                                     <div class="form-group text-right mt-5">
                                         <div class="btn-group" role="group">
                                             <button class="btn btn-primary" type="submit">
-                                               Publish Online
+                                               Preview
                                             </button>
                                         </div>
                                     </div>

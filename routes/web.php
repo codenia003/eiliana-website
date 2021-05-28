@@ -399,7 +399,9 @@ Route::group(
         Route::get('home', 'FrontEndController@getDashboard')->name('home');
         Route::get('post-job', 'JobController@index')->name('post-job');
         Route::post('post-job-on', 'JobController@postJobon')->name('post-job-on');
+        Route::post('confirmation-post-job', 'JobController@confirmationPostJobon')->name('confirmation-post-job');
         Route::get('post-project', 'ProjectController@postProject')->name('post-project');
+        Route::post('confirmation-post-project', 'ProjectController@confirmationPostProjecton')->name('confirmation-post-project');
         Route::post('post-project-on', 'ProjectController@postProjecton')->name('post-project-on');
 
         Route::get('welcome', 'InformationController@welcome')->name('welcome');

@@ -19,6 +19,7 @@ use App\Models\EducationType;
 use App\Models\ProjectCategory;
 use App\Models\Technology;
 use App\Models\Job;
+use App\Models\Location;
 use App\Models\CustomerIndustry;
 use stdClass;
 use Carbon\Carbon;
@@ -64,7 +65,7 @@ class AdvanceSearchController extends JoshController
         if (empty($request->input('job_category'))) {
 
             // Show the page
-            $projectcategorys = ProjectCategory::all();
+            $projectcategorys = ProjectCategory::where('parent_id', '0')->get();
             $educationtype = EducationType::all();
             $qualifications = Qualification::all();
             $universities = University::all();
@@ -93,12 +94,12 @@ class AdvanceSearchController extends JoshController
                 $technologty_pre = [];
             }
 
-            if(!empty($framework)){
-                $framework = $request->input('framework');
-                $framework = implode(',', $framework);
-            } else {
-                $framework = [];
-            }
+            // if(!empty($framework)){
+            //     $framework = $request->input('framework');
+            //     $framework = implode(',', $framework);
+            // } else {
+            //     $framework = [];
+            // }
 
             if($userlogin['login_as'] == '1') {
                 $jobs = Job::where('indexing', 'LIKE', '%'.$sound.'%')
@@ -107,7 +108,7 @@ class AdvanceSearchController extends JoshController
                     ->orWhere('experience_month', '=', $request->input('experience_month'))
                     ->orWhere('customer_industry', '=', $request->input('customer_industry'))
                     ->whereIn('technologty_pre',$technologty_pre)
-                    ->whereIn('framework',$framework)
+                    //->whereIn('framework',$framework)
                     ->paginate(10);
 
                 // $id = DB::table('search_keyword')->insertGetId(
@@ -172,7 +173,9 @@ class AdvanceSearchController extends JoshController
             $qualifications = Qualification::all();
             $universities = University::all();
             $technologies = Technology::where('parent_id', '0')->get();
-            return view('search/contract-staffing', compact('educationtype','qualifications','universities','technologies'));
+            $customerindustries = CustomerIndustry::all();
+            $locations = Location::all();
+            return view('search/contract-staffing', compact('educationtype','qualifications','universities','locations','technologies','customerindustries'));
 
         } else {
             $sound = "";

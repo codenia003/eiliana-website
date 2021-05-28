@@ -85,6 +85,19 @@ Advance Search
 		changeBrowseProjectType2();
     });
 
+	$('#inlineCheckbox1').change(function() {
+		if(this.checked) {
+			$('#rate_per_hour').prop('disabled',true);
+		} else {
+			$('#rate_per_hour').prop('disabled',false);
+		}
+	});
+
+	document.getElementById('inlineCheckbox1').onchange = function() {
+		document.getElementById('rate_per_hour').disabled = !this.checked;
+		document.getElementById('rate_per_hour1').disabled = !this.checked;
+	};
+
 	
     $('#technologty_pre').select2({
         theme: 'bootstrap',

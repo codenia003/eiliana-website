@@ -120,7 +120,8 @@
                         </div>
                     </div>
                     <div class="form-group col">
-                        <label>Industry that Product was designed for</label>
+                        <!-- <label>Industry that Product was designed for</label> -->
+                        <label>Customer Industry</label>
                         <select name="customer_industry" class="form-control">
                             <option value=""></option>
                             @foreach ($customerindustries as $industry)
@@ -185,12 +186,12 @@
                             <label class="custom-control-label" for="Relevance">Relevance</label>
                         </div>
                     </div>
-                    <div class="form-check form-check-inline">
+                    {{--<div class="form-check form-check-inline">
                         <div class="custom-control custom-radio">
                             <input type="radio" id="Resume" name="sortby" class="custom-control-input" value="1">
                             <label class="custom-control-label" for="Resume">Resume Fresher</label>
                         </div>
-                    </div>
+                    </div>--}}
                     <div class="form-check form-check-inline">
                         <div class="custom-control custom-radio">
                             <input type="radio" id="Last" name="sortby" class="custom-control-input" value="1">

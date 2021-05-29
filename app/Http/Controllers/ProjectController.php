@@ -160,11 +160,11 @@ class ProjectController extends JoshController
 
         $projects->project_duration_min = $input['project_duration_min'];
         $projects->project_duration_max = $input['project_duration_max'];
-        //$projects->customer_industry = $input['customer_industry'];
+        $projects->customer_industry = $input['customer_industry'];
         $projects->technologty_pre = $input['technologty_pre'];
         // $projects->framework = $input['framework'];
         //$projects->candidate_role = $input['candidate_role'];
-        $projects->product_industry_exprience = $input['product_industry_exprience'];
+        //$projects->product_industry_exprience = $input['product_industry_exprience'];
         //$projects->location = $input['location'];
         $projects->budget_from = $input['amount'];
         $projects->budget_to = $input['amount_to'];

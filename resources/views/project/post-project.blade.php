@@ -73,11 +73,14 @@ Post Project
                                             @endforeach
                                         </select>
                                     </div>
-
                                     <div class="form-row">
-                                        <div class="form-group col-12">
+                                        <div class="form-group col-6">
+                                            <label>Project Title</label>
+                                            <input type="text" name="project_title" class="form-control" value="" required />
+                                        </div>
+                                        <div class="form-group col-6">
                                             <label>Technology Preference</label>
-                                            {{--<select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>--}}
+                                            <!-- <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required> -->
                                             <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple required>
                                                 <option value=""></option>
                                                 @foreach ($technologies as $technology)
@@ -85,13 +88,26 @@ Post Project
                                                 @endforeach
                                             </select>
                                         </div>
-                                        {{--<div class="form-group col-12">
+                                    </div>
+
+                                    {{--<div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label>Technology Preference</label>
+                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required>
+                                            <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple required>
+                                                <option value=""></option>
+                                                @foreach ($technologies as $technology)
+                                                <option value="{{ $technology->technology_id }}">{{ $technology->technology_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-12">
                                             <label>Framework</label>
                                             <select class="form-control select2" name="framework[]" id="framework" multiple required>
                                                 <option value=""></option>
                                             </select>
-                                        </div>--}}
-                                        {{--<div class="form-group col">
+                                        </div>
+                                        <div class="form-group col">
                                             <label>Candidate Role</label>
                                             <select name="candidate_role" class="form-control" required>
                                                 <option value=""></option>
@@ -99,8 +115,8 @@ Post Project
                                                 <option value="{{ $roles->candidate_role_id }}">{{ $roles->name }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>--}}
-                                    </div>
+                                        </div>
+                                    </div>--}}
                                     {{--<div class="form-group basic-info mb-3">
                                         <label>Pricing Model</label>
                                         <br />
@@ -165,10 +181,7 @@ Post Project
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Project Title</label>
-                                        <input type="text" name="project_title" class="form-control" value="" required />
-                                    </div>
+                                    
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Key Skills</label>
@@ -236,18 +249,9 @@ Post Project
                                                 </div>
                                             </div>
                                         </div>
-                                        {{--<div class="form-group col-6">
+                                        <div class="form-group col-6">
                                             <label>Customer Industry</label>
                                             <select name="customer_industry" class="form-control" required>
-                                                <option value=""></option>
-                                                @foreach ($customerindustries as $industry)
-                                                <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>--}}
-                                        <div class="form-group col-6">
-                                            <label>Product Industry Exprience</label>
-                                            <select name="product_industry_exprience" class="form-control" required>
                                                 <option value=""></option>
                                                 @foreach ($customerindustries as $industry)
                                                 <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>

@@ -62,15 +62,27 @@ Job Post
                             <div class="card">
                                 <div class="p-4">
                                     <div class="form-group">
+                                        <label>Job Title</label>
+                                        <input type="text" name="job_title" class="form-control" value="" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Key Skills</label>
+                                        <input type="text" name="key_skills" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Role Summary</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea2" name="role_summary" rows="3"></textarea>
+                                    </div>
+                                {{--<div class="form-group">
                                         <label>About Company</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" name="about_company" rows="3"></textarea>
-                                    </div>
+                                    </div>--}}
                                     {{--@if (Session::get('contractsattfing')['lookingfor'] === '1')--}}
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Notice Period(Months)</label>
                                             <br />
-                                            <input type="number" name="contract_duration" class="form-control" value="" required />
+                                            <input type="number" name="notice_period" class="form-control" value="" required />
                                             {{-- <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement" value="1">
                                                 <label class="form-check-label" for="inlineCheckbox1">Monthly</label>
@@ -128,14 +140,7 @@ Job Post
                                             </div>
                                         </div>
                                     @endif--}}
-                                    <div class="form-group">
-                                        <label>Job Title</label>
-                                        <input type="text" name="job_title" class="form-control" value="" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Key Skills</label>
-                                        <input type="text" name="key_skills" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" required />
-                                    </div>
+                                    
                                     {{--<div class="form-group">
                                         <label>Job Category </label>
                                         <select name="job_category" class="form-control" id="project_category" onchange="change_category();">
@@ -151,10 +156,6 @@ Job Post
                                             <option value=""></option>
                                         </select>
                                     </div>--}}
-                                    <div class="form-group">
-                                        <label>Role Summary</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea2" name="role_summary" rows="3"></textarea>
-                                    </div>
 
                                     {{--<div class="basic-info mb-3">
                                         <label>Type of Project</label>
@@ -215,8 +216,8 @@ Job Post
                                             </select>
                                         </div>--}}
                                         <div class="form-group col">
-                                            <label>Product Industry Exprience</label>
-                                            <select name="product_industry_exprience" class="form-control" required>
+                                             <label>Customer Industry</label>
+                                            <select name="customer_industry" class="form-control" required>
                                                 <option value=""></option>
                                                 @foreach ($customerindustries as $industry)
                                                 <option value="{{ $industry->customer_industry_id }}">{{ $industry->name }}</option>
@@ -262,6 +263,18 @@ Job Post
                                         </div>--}}
                                     </div>
                                     <div class="form-row">
+                                        <div class="form-group col">
+                                            <label>Contract Duration</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" name="contract_duration_from" placeholder="From">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" name="contract_duration_to" placeholder="To">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group col">
                                             <label>Budget(Per Month)</label>
                                             <div class="form-row">

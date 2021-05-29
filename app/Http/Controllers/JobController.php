@@ -229,9 +229,9 @@ class JobController extends JoshController
 
         $input['indexing'] = $indexing;
 
-        $technologty_pre = $request->input('technologty_pre');
-        $technologty_pre = implode(',', $technologty_pre);
-        $input['technologty_pre'] = $technologty_pre;
+        // $technologty_pre = $request->input('technologty_pre');
+        // $technologty_pre = implode(',', $technologty_pre);
+        // $input['technologty_pre'] = $technologty_pre;
 
         // $framework = $request->input('framework');
         // $framework = implode(',', $framework);
@@ -243,23 +243,25 @@ class JobController extends JoshController
         $jobs = new Job;
         $jobs->user_id = $user->id;
         $jobs->job_status_id = 1;
-        $jobs->about_company = $input['about_company'];
-        $jobs->contract_duration = $input['contract_duration'];
+        //$jobs->about_company = $input['about_company'];
+        $jobs->notice_period = $input['notice_period'];
         $jobs->job_title = $input['job_title'];
         $jobs->key_skills = $input['key_skills'];
         $jobs->role_summary = $input['role_summary'];
         //$jobs->type_of_project = $input['type_of_project'];
         $jobs->experience_year = $input['experience_year'];
         $jobs->experience_month = $input['experience_month'];
-        //$jobs->customer_industry = $input['customer_industry'];
+        $jobs->customer_industry = $input['customer_industry'];
         $jobs->technologty_pre = $input['technologty_pre'];
         //$jobs->job_category = $input['job_category'];
         //$jobs->job_sub_category = $input['job_sub_category'];
         //$jobs->framework = $input['framework'];
         //$jobs->candidate_role = $input['candidate_role'];
-        $jobs->product_industry_exprience = $input['product_industry_exprience'];
+        //$jobs->product_industry_exprience = $input['product_industry_exprience'];
         $jobs->location = $input['location'];
         //$jobs->model_engagement = $input['model_engagement'];
+        $jobs->contract_duration_from = $input['contract_duration_from'];
+        $jobs->contract_duration_to = $input['contract_duration_to'];
         $jobs->budget_from = $input['budget_from'];
         $jobs->budget_to = $input['budget_to'];
         //$jobs->auto_match = $input['auto_match'];
@@ -864,4 +866,5 @@ class JobController extends JoshController
 
         return view('job/resume-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
     }
+    
 }

@@ -491,4 +491,35 @@ class ClientController extends JoshController
         }
         return view('pdf.invoice');
     }
+
+    public function postJobStatus(Request $request)
+    {
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $jobstatuscheck = Job::where('job_id', '=', $input['job_id'])->where('status', '=', $input['job_status'])->first();
+        if($jobstatuscheck === null) {
+
+            $jobstatus = Job::find($input['job_id']);
+            $jobstatus->status = $input['job_status'];
+            $jobstatus->save();
+
+            if($input['job_status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Job Status Closed successfully';
+            }if($input['job_status'] === '3'){
+                $response['success'] = '2';
+                $response['msg'] = 'Job Status Repost successfully';
+            }else if($input['job_status'] === '1'){
+                $response['success'] = '3';
+                $response['msg'] = 'Job Status Online successfully';
+            }
+
+        } else {
+            $response['success'] = '4';
+            $response['errors'] = 'You are already changed status';
+        }
+        return response()->json($response);
+
+    }
 }

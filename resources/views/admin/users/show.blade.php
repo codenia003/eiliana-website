@@ -487,6 +487,9 @@ View User Details
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive-lg table-responsive-sm table-responsive-md table-responsive">
+                                                @if (isset($proexps))
+                                                    
+                                                
                                                 <form action="{{ url('admin/users/update-professionalexp') }}" method="POST">
                                                     @csrf
                                                     <table class="table table-bordered table-striped" id="users">
@@ -495,21 +498,21 @@ View User Details
                                                             <td> Technology Preference</td>
                                                             <td>
                                                                 @foreach ($technologies as $technology)
-                                                                <p class="none_professionalexp_edit user_name_max">{{ $technology->technology_name }} ,</p>
+                                                                    <p class="none_professionalexp_edit user_name_max">{{ $technology->technology_name }} ,</p>
                                                                 @endforeach
                                                                 
                                                                <div class="form-group d-none professionalexp_edit">
                                                                 <select name="technologty_pre[]" class="form-control select2" onchange="change_framework();" id="technologty_pre"  multiple required>
                                 
 									                            @foreach ($response['technologies'] as $technology)
-									                            <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_technologty_pre)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
+									                                <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_technologty_pre)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
 									                            @endforeach
 									                        </select>
                                                               </div> 
                                                              
                                                             </td>
                                                         </tr>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <td>Framework</td>
                                                             <td>
                                                                 @foreach ($childtechnologies as $technology)
@@ -524,7 +527,7 @@ View User Details
 										                            </select>
                                                                 </div>
                                                             </td>
-                                                        </tr>
+                                                        </tr> --}}
                                                         <tr>
                                                             <td>Profile Headline</td>
                                                             <td>
@@ -605,6 +608,7 @@ View User Details
                                                         <p onclick="editprofessionalexp_cancel()" class="btn btn-primary">Cancel</p>
                                                     </div>
                                                 </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

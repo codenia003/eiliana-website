@@ -461,7 +461,7 @@ class ProjectController extends JoshController
         $user = Sentinel::getUser();
 
         if (empty($request->input('lookingfor'))) {
-            $technologies = Technology::where('parent_id', '0')->get();
+            $technologies = Technology::where('display_status', '1')->get();
             $projectcategorys = ProjectCategory::where('parent_id' , '0')->get();
             $locations = Location::all();
 
@@ -497,9 +497,9 @@ class ProjectController extends JoshController
                 //     $framework = [];
                 // }
 
-                $projects = Project::with('locations','customerindustry1','projectamount')->expire()->active('1')->where('project_category', '=', $data['project_category'])->where('project_sub_category', '=', $data['project_sub_category'])->paginate(10);
+                $projects = Project::with('locations','customerindustry1','projectamount','projectsubcategory','projectCurrency')->expire()->active('1')->where('project_category', '=', $data['project_category'])->where('project_sub_category', '=', $data['project_sub_category'])->paginate(10);
                 
-                //return $projects;
+                // return $projects;
                 $count = count($projects);
 
                 return view('search/browse-project', compact('count', 'projects'));

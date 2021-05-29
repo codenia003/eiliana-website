@@ -43,7 +43,7 @@ Search Project
     </div>
     <div class="container space-top-1 space-top-md-2 space-bottom-2 space-bottom-lg-3">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
                 <div class="card mb-3 mb-lg-5">
                     <div class="card-header">
                         <span class="h5 card-title text-secondary">Project Deatils</span>
@@ -73,10 +73,6 @@ Search Project
                             <p>{{ $project->project_summary }}</p>
                         </div>
                         <div class="skills mt-4">
-                            <span class="h5">Budget</span>
-                            <p>{{ $project->budget_from }} to {{ $project->budget_to }}</p>
-                        </div>
-                        <div class="skills mt-4">
                             <span class="h5">Years of Experience</span>
                             <p>{{ $project->experience_year }} Years {{ $project->experience_month }} Month</p>
                         </div>
@@ -87,14 +83,8 @@ Search Project
                         <hr>
                         <h3>Additional Information</h3>
                         <div class="skills mt-4">
-                            <span class="h5">Technology: </span>
+                            <span class="h5">Technology/Framework: </span>
                             @foreach ($technologies as $technology)
-                                {{ $loop->first ? '' : ', ' }}
-                                <span>{{ $technology->technology_name }}</span>
-                            @endforeach
-                            <br>
-                            <span class="h5">Framework: </span>
-                            @foreach ($childtechnologies as $technology)
                                 {{ $loop->first ? '' : ', ' }}
                                 <span>{{ $technology->technology_name }}</span>
                             @endforeach
@@ -116,43 +106,7 @@ Search Project
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="card mb-5 shadow p-4 mb-4">
-                    <div class="border-bottom pb-4">
-                        <h4>About the Employer</h4>
-                         <p>{{ $project->about_company }}</p>
-                          <p>Posted On {{  \Carbon\Carbon::parse($project->created_at)->isoFormat('MMM Do YYYY') }}</p>
-                    </div>
-                    <!-- <div class="border-bottom pb-4 mt-4">
-                        <h4 class="mb-2"><strong>Employer Verification</strong></h4>
-                    </div> -->
-                </div>
-                <div class="card mb-5 shadow p-4">
-                    <ul class="list-unstyled list-sm-article">
-                        <li>
-                            <a class="row align-items-center mx-n2 font-size-1" href="javascript:;">
-                                <div class="col-10 px-2">
-                                    <span class="text-dark">Bid Left</span>
-                                </div>
-
-                                <div class="col-2 text-right px-2">
-                                    <span>12</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="row align-items-center mx-n2 font-size-1" href="javascript:;">
-                                <div class="col-10 px-2">
-                                    <span class="text-dark">Average Bid</span>
-                                </div>
-                                <div class="col-2 text-right px-2">
-                                    <span>12</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            @include('layouts.left')
         </div>
         <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
             <div class="modal-dialog" role="document">

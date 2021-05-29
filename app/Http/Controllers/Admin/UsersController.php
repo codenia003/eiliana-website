@@ -463,12 +463,20 @@ class UsersController extends JoshController
             $certificates = Certificate::where('user_id', $id)->get();
             $proexps = ProfessionalExperience::where('user_id', $id)->first();
             
-            $selected_technologty_pre = explode(',', $proexps->technologty_pre);
-            $selected_framework = explode(',', $proexps->framework);
-            $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
-            $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
-            $locations = Location::where('location_id', $proexps->current_location)->first();
-            $preferred_location = Location::where('location_id', $proexps->preferred_location)->first();
+            if(empty($proexps->technologty_pre)){
+                $technologies = [];
+                $selected_technologty_pre = [];
+                $locations = '';
+                $preferred_location = '';
+            } else {
+                $selected_technologty_pre = explode(',', $proexps->technologty_pre);
+                // $selected_framework = explode(',', $proexps->framework);
+                $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
+                // $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
+                $locations = Location::where('location_id', $proexps->current_location)->first();
+                $preferred_location = Location::where('location_id', $proexps->preferred_location)->first();
+            }
+            
             
             $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname','customerindustry','employername')->where('user_id', $id)->get();
             $employers = Employers::with('designationtype','employertype')->where('user_id', $id)->get();
@@ -483,7 +491,7 @@ class UsersController extends JoshController
             return Redirect::route('admin.users.index')->with('error', $error);
         }
         // Show the page
-        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','selected_framework','technologies','childtechnologies','locations','preferred_location','employer_details','response'));
+        return view('admin.users.show', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers','countries','selected_technologty_pre','technologies','locations','preferred_location','employer_details','response'));
     }
 
     public function getframework(Request $request)

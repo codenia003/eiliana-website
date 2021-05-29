@@ -50,7 +50,7 @@ type="text/css"/>
                         @endif
                         <div class="form-group">
                             <label for="applyas">Apply As</label>
-                            <select name="applyas" class="form-control" onchange="changeCompnay(event)">
+                            <select name="applyas" class="form-control" onchange="changeCompnay(event)" id="applyas">
                                 <option value="">--Select--</option>
                                 @foreach ($roles as $role)
                                 @if ($role->status == 1)
@@ -64,34 +64,34 @@ type="text/css"/>
                             <br>
                             <div class="form-check form-check-inline mb-3">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="register_as1" class="custom-control-input" name="register_as" value="1" checked>
+                                    <input type="radio" id="register_as1" class="custom-control-input" name="register_as" value="1" onchange="changePanelAnonymus(event)" checked>
                                     <label class="custom-control-label" for="register_as1">Freelancer</label>
                                 </div>
                             </div>
-                            <!-- <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="register_as2" class="custom-control-input" name="register_as" value="2">
+                                    <input type="radio" id="register_as2" class="custom-control-input" name="register_as" value="2" onchange="changePanelAnonymus(event)">
                                     <label class="custom-control-label" for="register_as2">Client</label>
                                 </div>
                             </div>
                             <div class="form-check form-check-inline">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="register_as3" class="custom-control-input" name="register_as" value="3">
+                                    <input type="radio" id="register_as3" class="custom-control-input" name="register_as" value="3" onchange="changePanelAnonymus(event)">
                                     <label class="custom-control-label" for="register_as3">Both</label>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="form-row company_show d-none">
-                            <div class="form-group col-12">
+                            <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>Company Name</label>
                                 <input type="text" name="company_name" class="form-control" />
                             </div>
-                            <div class="form-group col-12">
+                            <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>GST Number/PAN Number</label>
                                 <input type="text" name="gst_number" class="form-control" />
                             </div>
                         </div>
-                        <div class="form-group basic-info d-none">
+                        {{-- <div class="form-group basic-info d-none">
                             <label>Title</label>
                             <div class="form-check form-check-inline ml-3">
                                 <div class="custom-control custom-radio">
@@ -105,9 +105,9 @@ type="text/css"/>
                                     <label class="custom-control-label" for="mrs">Mrs.</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         @if(Session::get('teaminvitation')['user_bid']!='0')
-                        <div class="form-group basic-info">
+                        <div class="form-group basic-info profile-anonymous">
                             <label>Do you keep your profile anonymous?</label>
                             <br>
                             <div class="form-check form-check-inline mb-3">
@@ -233,15 +233,43 @@ type="text/css"/>
 
     function changeCompnay(e){
         var value = e.target.value;
+        var radio = $('input[name="register_as"]:checked').val();
         // console.log(value);
         if (value == "2") {
             $('.company_show').addClass("d-none");
             $('.anonymousShow-1 label').text("Date Of Birth");
+            $('.profile-anonymous').removeClass("d-none");
         } else {
             $('.company_show').removeClass("d-none");
-            $('.anonymousShow-1 label').text("Date Of Incorporation");
+            $('.anonymousShow-1 label').text("Date Of Incorporation"); 
+            if(radio == '1'){
+                $('.profile-anonymous').addClass("d-none");
+                $('.anonymousShow').addClass("d-none");
+                $('.anonymousShow-1').removeClass("col-lg-6");
+                $('.anonymousShow-1').addClass("col-lg-12");
+            }
         }
+        
         $('.register-as').removeClass("d-none");
+    }
+    function changePanelAnonymus(e){
+        var publicAnonymus = e.target.value;
+        var status = $('#applyas option:selected').val();
+        console.log(status);
+        if (publicAnonymus == '2') {
+            $('.profile-anonymous').addClass("d-none");
+            $('.anonymousShow-1').removeClass("col-lg-12");
+            $('.anonymousShow-1').addClass("col-lg-6");
+            $('.anonymousShow').removeClass("d-none");
+        } else {
+            $('.profile-anonymous').removeClass("d-none");
+            if(status != "2"){
+                $('.profile-anonymous').addClass("d-none");
+                $('.anonymousShow').addClass("d-none");
+                $('.anonymousShow-1').removeClass("col-lg-6");
+                $('.anonymousShow-1').addClass("col-lg-12"); 
+            }
+        }
     }
 
     $(document).ready(function() {

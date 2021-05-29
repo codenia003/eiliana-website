@@ -72,10 +72,8 @@ Advance Search
 <script type="text/javascript" src="{{ asset('vendors/moment/js/moment.min.js') }}"></script>
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/assets/js/profile_custom.js') }}"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script>
      $(window).bind("load", function() {

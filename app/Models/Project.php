@@ -72,4 +72,19 @@ class Project extends Model
     {
         return $query->where('project_status_id', '=', $value);
     }
+
+    public function projectdetail()
+    {
+        return $this->belongsTo('App\Models\ProjectLeads', 'project_id', 'project_id');
+    }
+
+    public function fromuser()
+    {
+        return $this->belongsTo('App\Models\User', 'from_user_id', 'id');
+    }
+
+    public function technologys()
+    {
+        return $this->belongsTo('App\Models\Technology', 'technologty_pre', 'technology_id');
+    }
 }

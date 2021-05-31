@@ -46,7 +46,7 @@ Post Project
             <div class="col-lg-12">
                 <div class="card mb-3 mb-lg-5">
                     <div class="card-header">
-                        <span class="h5 card-title text-secondary">{{ Session::get('post_project_data')['project_title'] }}</span>
+                        <span class="h5 card-title text-secondary" style="font-size: 25px;">{{ Session::get('post_project_data')['project_title'] }}</span>
                     </div>
                     <!-- <div class="card-body mb-3 mb-lg-5 p-4 text-center d-block" *ngIf="loading">
                         <div class="spinner-border spinner-border-lg"></div>
@@ -65,7 +65,8 @@ Post Project
                             <input type="hidden" name="project_title" value="{{ Session::get('post_project_data')['project_title'] }}">
                             <input type="hidden" name="key_skills" value="{{ Session::get('post_project_data')['key_skills'] }}">
                             <input type="hidden" name="project_summary" value="{{ Session::get('post_project_data')['project_summary'] }}">
-                            <input type="hidden" name="technologty_pre" value="{{ json_decode(Session::get('post_project_data')['technologty_pre'],TRUE)}}">
+                            <input type="hidden" name="technologty_pre" value="{{ json_encode(Session::get('post_project_data')['technologty_pre']) }}">
+                            
                             <input type="hidden" name="customer_industry" value="{{ Session::get('post_project_data')['customer_industry'] }}">
                             <input type="hidden" name="experience_year" value="{{ Session::get('post_project_data')['experience_year'] }}">
                             <input type="hidden" name="experience_month" value="{{ Session::get('post_project_data')['experience_month'] }}">
@@ -98,29 +99,29 @@ Post Project
                                 <p>{{ Session::get('post_project_data')['key_skills'] }}</p>
                             </div>
                             <div class="skills mt-4">
-                                <span class="h5">Pricing Model</span>
+                                <span class="h5">Pricing Model</span><br>
                               @if(Session::get('post_project_data')['model_engagement']=='1')
-                                <p> Hourly :</p>
+                                <span> Hourly :</span>
                                 <span>Rate Per Hour</span>
                                 <p>{{ Session::get('post_project_data')['amount'] }} to {{ Session::get('post_project_data')['amount_to'] }}</p>
                               @elseif(Session::get('post_project_data')['model_engagement']=='2')  
-                                <p>Retainership :</p>
+                                <span>Retainership :</span>
                                 <span>Rate Per Month</span>
                                 <p>{{ Session::get('post_project_data')['amount'] }} to {{ Session::get('post_project_data')['amount_to'] }}</p>
                               @else
-                                <p>Project Based :</p>
+                                <span>Project Based :</span>
                                 <span>Total Project Amount</span>
                                 <p>{{ Session::get('post_project_data')['amount'] }} to {{ Session::get('post_project_data')['amount_to'] }}</p>
                               @endif
                             </div>
                             <div class="skills mt-4">
-                               <span class="h5">Type of Project :</span>
+                               <span class="h5">Type of Project </span>
                               @if(Session::get('post_project_data')['type_of_project']=='1')
-                                <span>Maintenance</span>
+                                <p>Maintenance</p>
                               @elseif(Session::get('post_project_data')['type_of_project']=='2')  
-                                <span>New Development</span>
+                                <p>New Development</p>
                               @else
-                                <span>Maintenance Cum New Development</span>
+                                <p>Maintenance Cum New Development</p>
                               @endif
                             </div>
                             <hr>
@@ -175,11 +176,14 @@ Post Project
                                     </li>
                                 </ul>
                             </div> -->
-                            <div class="form-group text-right mt-5">
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-primary" type="submit">
-                                        Publish Online
-                                    </button>
+                            <hr>
+                            <div class="singup-body">
+                                <div class="form-group text-right mt-5">
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-primary" type="submit">
+                                            Publish Online
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

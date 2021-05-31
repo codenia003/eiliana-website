@@ -467,6 +467,7 @@ Route::group(
         Route::get('my-requirement-project', 'ClientController@myRequirementProject')->name('my-requirement-project');
         Route::post('job-status-change', 'ClientController@postJobStatus')->name('job-status-change');
 
+        Route::post('project-status-change', 'ClientController@postProjectStatus')->name('project-status-change');
         Route::get('my-requirement/{id}', 'ClientController@myRequirementView')->name('my-requirement.view');
 
         Route::get('my-delivery-job', 'ClientController@myDeliveryJob')->name('my-delivery-job');

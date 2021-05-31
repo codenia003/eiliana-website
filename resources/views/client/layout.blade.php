@@ -1,24 +1,5 @@
 @extends('layouts/default')
 
-{{-- Page title --}}
-@section('title')
-Requirement Job
-@parent
-@stop
-
-{{-- page level styles --}}
-@section('header_styles')
-<!--page level css starts-->
-<link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
-<link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}">
-<link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
-type="text/css"/>
-@yield('client_css')
-<!--end of page level css-->
-@stop
 
 {{--@section('top')
 <div class="bg-red">

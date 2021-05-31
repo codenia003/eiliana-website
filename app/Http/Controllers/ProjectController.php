@@ -114,6 +114,7 @@ class ProjectController extends JoshController
         $user = Sentinel::getUser();
 
         $input = $request->except('_token');
+        
         $input['user_id'] = $user->id;
 
         $indexing = "";
@@ -133,10 +134,10 @@ class ProjectController extends JoshController
 
         $input['indexing'] = $indexing;
 
-        $technologty_pre = $request->input('technologty_pre');
+        $technologty_pre = json_decode($request->input('technologty_pre'));
         $technologty_pre = implode(',', $technologty_pre);
         $input['technologty_pre'] = $technologty_pre;
-
+        
         // $framework = $request->input('framework');
         // $framework = implode(',', $framework);
         // $input['framework'] = $framework;

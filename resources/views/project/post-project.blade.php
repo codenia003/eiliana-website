@@ -166,14 +166,14 @@ Post Project
                                         <label class="retainership d-none">Rate Per Month</label>
                                         <label class="project-based d-none">Total Project Amount</label>
                                         <div class="form-row">
-                                            <div class="col-4">
+                                            <div class="form-group col-4">
                                                 <input type="text" name="amount" class="form-control" required />
                                             </div>
-                                            <div class="col-4">
+                                            <div class="form-group col-4">
                                                 <input type="text" name="amount_to" class="form-control" required />
                                             </div>
-                                            <div class="col-4">
-                                                <select class="form-control" name="currency_id">
+                                            <div class="form-group col-4">
+                                                <select class="form-control" name="currency_id" required>
                                                     @foreach ($currency as $currencies)
                                                         <option value="{{ $currencies->currency_id }}">{{ $currencies->code }} - {{ $currencies->symbol}}</option>
                                                     @endforeach
@@ -187,14 +187,14 @@ Post Project
                                             <label>Key Skills</label>
                                             <input type="text" name="key_skills" class="form-control" value="{{ Session::get('contractsattfing')['key_skills'] }}" required />
                                         </div>
-                                        <div class="form-group col-6">
+                                        <div class="col-6">
                                             <label>Project Duration</label>
                                             <div class="form-row">
-                                                <div class="col">
-                                                    <input type="number" placeholder="Min" class="form-control" name="project_duration_min"/>
+                                                <div class="form-group col">
+                                                    <input type="number" placeholder="Min" class="form-control" id="project_duration_min" name="project_duration_min" required/>
                                                 </div>
-                                                <div class="col">
-                                                    <input type="number" placeholder="Max" class="form-control" name="project_duration_max"/>
+                                                <div class="form-group col">
+                                                    <input type="number" placeholder="Max" class="form-control" id="project_duration_max" name="project_duration_max" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,7 +210,7 @@ Post Project
                                         <br>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="support" class="custom-control-input" name="type_of_project" value="1">
+                                                <input type="radio" id="support" class="custom-control-input" name="type_of_project" value="1" checked="">
                                                 <label class="custom-control-label" for="support">Maintenance</label>
                                             </div>
                                         </div>

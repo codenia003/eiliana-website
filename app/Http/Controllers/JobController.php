@@ -229,9 +229,9 @@ class JobController extends JoshController
 
         $input['indexing'] = $indexing;
 
-        // $technologty_pre = $request->input('technologty_pre');
-        // $technologty_pre = implode(',', $technologty_pre);
-        // $input['technologty_pre'] = $technologty_pre;
+        $technologty_pre = json_decode($request->input('technologty_pre'));
+        $technologty_pre = implode(',', $technologty_pre);
+        $input['technologty_pre'] = $technologty_pre;
 
         // $framework = $request->input('framework');
         // $framework = implode(',', $framework);
@@ -377,6 +377,7 @@ class JobController extends JoshController
         $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
         $employers = Employers::where('user_id', $id)->get();
         $staffingleadsid = ContractStaffingLeads::all()->last()->staffing_leads_id;
+        //$staffingleadsid = 0;
         $staffingleadsid = $staffingleadsid + 1;
 
         $staffingleadcheck = ContractStaffingLeads::where('from_user_id', '=', Sentinel::getUser()->id)->where('to_user_id', '=', $id)->first();

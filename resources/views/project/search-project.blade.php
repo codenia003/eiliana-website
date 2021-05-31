@@ -101,7 +101,7 @@
                                             <label>Mode Of Engagement</label>
                                             <div class="basic-info mb-3 project-budget1">
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input hourly" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" onchange="changeBrowseProjectType11();" value="1">
+                                                    <input class="form-check-input hourly" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" onchange="changeBrowseProjectType11();" value="1" checked="">
                                                     <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">

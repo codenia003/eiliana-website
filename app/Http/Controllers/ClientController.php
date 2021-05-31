@@ -50,13 +50,15 @@ class ClientController extends JoshController
     public function myRequirementJob()
     {
         //$leads = ContractStaffingLeads::with('touser')->where('from_user_id', Sentinel::getUser()->id)->latest()->get();
-        $leads = Job::with('locations')->where('user_id', Sentinel::getUser()->id)->paginate(10);
+        $leads = Job::with('locations','jobdetail','jobdetail.fromuser')->where('user_id', Sentinel::getUser()->id)->paginate(10);
+        //return $leads;
         return view('client/myrequirementjob', compact('leads'));
     }
 
     public function myRequirementProject()
     {
-        $leads = Project::with('locations')->where('posted_by_user_id', Sentinel::getUser()->id)->paginate(10);
+        $leads = Project::with('locations','projectdetail','projectdetail.fromuser','technologys')->where('posted_by_user_id', Sentinel::getUser()->id)->paginate(10);
+        //return $leads;
         return view('client/myrequirementproject', compact('leads'));
     }
 
@@ -513,6 +515,37 @@ class ClientController extends JoshController
             }else if($input['job_status'] === '1'){
                 $response['success'] = '3';
                 $response['msg'] = 'Job Status Online successfully';
+            }
+
+        } else {
+            $response['success'] = '4';
+            $response['errors'] = 'You are already changed status';
+        }
+        return response()->json($response);
+
+    }
+
+    public function postProjectStatus(Request $request)
+    {
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $projectstatuscheck = Project::where('project_id', '=', $input['project_id'])->where('status', '=', $input['project_status'])->first();
+        if($projectstatuscheck === null) {
+
+            $projectstatus = Project::find($input['project_id']);
+            $projectstatus->status = $input['project_status'];
+            $projectstatus->save();
+
+            if($input['project_status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Project Status Shortlist successfully';
+            }if($input['project_status'] === '3'){
+                $response['success'] = '2';
+                $response['msg'] = 'Project Status Reject successfully';
+            }else if($input['project_status'] === '1'){
+                $response['success'] = '3';
+                $response['msg'] = 'Project Status Onhold successfully';
             }
 
         } else {

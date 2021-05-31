@@ -1,5 +1,22 @@
 @extends('client/layout')
-@section('client_css')
+
+{{-- Page title --}}
+@section('title')
+My Job Post
+@parent
+@stop
+
+{{-- page level styles --}}
+@section('header_styles')
+<!--page level css starts-->
+<link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
+<link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}">
+<link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
+type="text/css"/>
+
 <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap4.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/dataTables.bootstrap4.css') }}"/>
  <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap4.css') }}">
@@ -17,7 +34,7 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">My Requirement Job</span>
+            <span class="h5 text-white ml-2">My Job Post</span>
         </div>
     </div>
 </div>
@@ -27,8 +44,9 @@
         <table class="table table-striped" id="myopportunity-table">
             <thead>
             <tr>
-                <th>Job Post Id</th>
+                <th style="width: 15%;">Job Post Id</th>
                 <th>Job Title</th>
+                <th>Freelancer Name</th>
                 <th>Skills</th>
                 <th>Notice Period</th>
                 <th>Location</th>
@@ -40,10 +58,15 @@
                         <tr>
                             <td>{{ $lead->job_id }}</td>
                             <td>{{ $lead->job_title }}</td>
+                            @if(!empty($lead->jobdetail))
+                               <td><a href="{{ url('profile') }}/{{ $lead->jobdetail->fromuser->id }}" class="h5" style="font-size: 17px;">{{ $lead->jobdetail->fromuser->full_name }}</a></td>
+                            @else
+                               <td></td>
+                            @endif
                             <td>{{ $lead->key_skills }}</td>
                             <td>{{ $lead->notice_period }}</td>
                             <td>{{ $lead->locations->name }}</td>
-                            <form action="{{ route('project-contract-payment') }}" method="POST">
+                            <form action="" method="POST">
                                @csrf
                                 <td>
                                     <select name="job_status" id="job_status{{ $lead->job_id }}" class="form-control" onchange="jobStatusChange('{{ $lead->job_id }}')" style="width: 105px;" required>
@@ -88,48 +111,25 @@ function jobStatusChange(job_id){
             var userCheck = data;
             //$('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: userCheck.msg,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
+                
+                var msg = userCheck.msg;
+                var redirect = '/client/my-requirement-job';
+                toggleRegPopup(msg,redirect);
 
-                // window.location.href = '/freelancer/my-opportunity';
             } else if(userCheck.success == '2') {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: userCheck.msg,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
+                var msg = userCheck.msg;
+                var redirect = '/client/my-requirement-job';
+                toggleRegPopup(msg,redirect);
 
-                // window.location.href = '/freelancer/my-opportunity';
             } else if(userCheck.success == '3') {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: userCheck.msg,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
+                var msg = userCheck.msg;
+                var redirect = '/client/my-requirement-job';
+                toggleRegPopup(msg,redirect);
 
-                // window.location.href = '/freelancer/my-opportunity';
             } else{
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: userCheck.errors,
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-                // if (userCheck.success == '2') {
-                //     window.location.href = '/freelancer/my-opportunity';
-                // }
+                msg= "Oops...<br>"+ userExists.error;
+                 toggleRegPopup(msg,'#');
             }
-
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);

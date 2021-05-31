@@ -46,7 +46,7 @@ Post Job
             <div class="col-lg-12">
                 <div class="card mb-3 mb-lg-5">
                     <div class="card-header">
-                        <span class="h5 card-title text-secondary">{{ Session::get('post_job_data')['job_title'] }}</span>
+                        <span class="h5 card-title text-secondary" style="font-size: 25px;">{{ Session::get('post_job_data')['job_title'] }}</span>
                     </div>
                     <!-- <div class="card-body mb-3 mb-lg-5 p-4 text-center d-block" *ngIf="loading">
                         <div class="spinner-border spinner-border-lg"></div>
@@ -68,7 +68,7 @@ Post Job
                             <input type="hidden" name="job_title" value="{{ Session::get('post_job_data')['job_title'] }}">
                             <input type="hidden" name="key_skills" value="{{ Session::get('post_job_data')['key_skills'] }}">
                             <input type="hidden" name="role_summary" value="{{ Session::get('post_job_data')['role_summary'] }}">
-                            <input type="hidden" name="technologty_pre" value="{{ json_decode(Session::get('post_job_data')['technologty_pre'],TRUE)}}">
+                            <input type="hidden" name="technologty_pre" value="{{ json_encode(Session::get('post_job_data')['technologty_pre']) }}">
                             <input type="hidden" name="customer_industry" value="{{ Session::get('post_job_data')['customer_industry'] }}">
                             <input type="hidden" name="experience_year" value="{{ Session::get('post_job_data')['experience_year'] }}">
                             <input type="hidden" name="experience_month" value="{{ Session::get('post_job_data')['experience_month'] }}">
@@ -77,6 +77,8 @@ Post Job
                             <input type="hidden" name="location" value="{{ Session::get('post_job_data')['location'] }}">
                             <input type="hidden" name="contract_duration_from" value="{{ Session::get('post_job_data')['contract_duration_from'] }}">
                             <input type="hidden" name="contract_duration_to" value="{{ Session::get('post_job_data')['contract_duration_to'] }}">
+
+                            
 
                             {{--<h5>{{ Session::get('post_job_data')['job_title'] }}</h5>--}}
                             <div class="skills mt-4">
@@ -144,11 +146,14 @@ Post Job
                                     </li>
                                 </ul>
                             </div> -->
-                            <div class="form-group text-right mt-5">
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-primary" type="submit">
-                                        Publish Online
-                                    </button>
+                            <hr>
+                            <div class="singup-body">
+                                <div class="form-group text-right mt-5">
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-primary" type="submit">
+                                            Publish Online
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

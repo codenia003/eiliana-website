@@ -71,7 +71,7 @@ Job Post
                                     </div>
                                     <div class="form-group">
                                         <label>Role Summary</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea2" name="role_summary" rows="3"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea2" name="role_summary" rows="3" required></textarea>
                                     </div>
                                 {{--<div class="form-group">
                                         <label>About Company</label>
@@ -99,7 +99,7 @@ Job Post
                                        @if(Session::get('contractsattfing')['location'])
                                         <div class="form-group col-6">
                                             <label>Location</label>
-                                            <select name="location" class="form-control">
+                                            <select name="location" class="form-control" required="">
                                                 <option value=""></option>
                                                 @foreach ($locations as $location)
                                                 <option value="{{ $location->location_id }}" {{ (Session::get('contractsattfing')['location']==$location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
@@ -109,7 +109,7 @@ Job Post
                                         @else
                                         <div class="form-group col">
                                             <label>Location</label>
-                                            <select name="location" class="form-control">
+                                            <select name="location" class="form-control" required="">
                                                 <option value=""></option>
                                                 @foreach ($locations as $location)
                                                 <option value="{{ $location->location_id }}">{{ $location->name }}</option>
@@ -263,23 +263,23 @@ Job Post
                                         </div>--}}
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col">
+                                        <div class="col">
                                             <label>Contract Duration</label>
                                             <div class="form-row">
-                                                <div class="col">
-                                                    <input type="text" class="form-control" name="contract_duration_from" placeholder="From">
+                                                <div class="form-group col">
+                                                    <input type="text" class="form-control" name="contract_duration_from" placeholder="From" required>
                                                 </div>
-                                                <div class="col">
-                                                    <input type="text" class="form-control" name="contract_duration_to" placeholder="To">
+                                                <div class="form-group col">
+                                                    <input type="text" class="form-control" name="contract_duration_to" placeholder="To" required>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="form-group col">
+                                        <div class="col">
                                             <label>Budget(Per Month)</label>
                                             <div class="form-row">
-                                                <div class="col">
-                                                    <input type="text" class="form-control" name="budget_from" placeholder="From">
+                                                <div class="form-group col">
+                                                    <input type="text" class="form-control" name="budget_from" placeholder="From" required>
                                                     <!-- <select class="form-control" name="budget_from">
                                                         <option value="">From</option>
                                                         @for ($i = 0; $i < 51; $i++)
@@ -287,8 +287,8 @@ Job Post
                                                         @endfor
                                                     </select> -->
                                                 </div>
-                                                <div class="col">
-                                                    <input type="text" class="form-control" name="budget_to" placeholder="To">
+                                                <div class="form-group col">
+                                                    <input type="text" class="form-control" name="budget_to" placeholder="To" required>
                                                 </div>
                                             </div>
                                         </div>

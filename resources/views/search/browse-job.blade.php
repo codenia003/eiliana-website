@@ -79,9 +79,13 @@
                         <div class="contract-body">
                             <div class="row no-gutters">
                                 <div class="col-md-6">
-                                    <div class="mb-2">
+                                    {{--<div class="mb-2">
                                         <div class="display-5">Profile Title</div>
                                         <p>{{ $job->job_title }}</p>
+                                    </div>--}}
+                                    <div class="mb-2">
+                                        <div class="display-5">Job Title</div>
+                                        <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->job_title }}</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -90,9 +94,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-2">
-                                <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->about_company }}</a>
-                            </div>
+                            
                             <div class="mb-2">
                                 <div class="display-5">Job Description</div>
                                 <p class="description">{{ $job->role_summary }}</p>

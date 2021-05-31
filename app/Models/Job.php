@@ -18,6 +18,16 @@ class Job extends Model
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 
+    public function jobdetail()
+    {
+        return $this->belongsTo('App\Models\JobLeads', 'job_id', 'job_id');
+    }
+
+    public function fromuser()
+    {
+        return $this->belongsTo('App\Models\User', 'from_user_id', 'id');
+    }
+
     public function locations()
     {
         return $this->belongsTo('App\Models\Location', 'location', 'location_id');

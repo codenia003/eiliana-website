@@ -103,13 +103,6 @@ type="text/css"/>
         placeholder: 'Select a value',
     });
 
-    $('.custom-file-input').on('change',function(){
-        //get the file name
-        var fileName = $(this).val();
-        //replace the "Choose a file" label
-        $(this).next('.custom-file-label').html(fileName);
-    });
-
    	function changeAnonymus(e) {
         var anonymous = e.target.value;
         if (anonymous == '0') {

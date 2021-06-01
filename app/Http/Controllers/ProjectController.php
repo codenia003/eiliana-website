@@ -251,6 +251,7 @@ class ProjectController extends JoshController
         $projectschedules->customer_objective = $input['customer_objective'];
         $projectschedules->project_start_date = $input['project_start_date'];
         $projectschedules->project_end_date = $input['project_end_date'];
+        $projectschedules->hours_proposed = $input['hours_proposed'];
         $projectschedules->remarks = $input['remarks'];
         $projectschedules->satuts = '1';
         $projectschedules->save();
@@ -270,8 +271,8 @@ class ProjectController extends JoshController
             $schedulemodule->module_scope = $input['module_scope'][$key];
             $schedulemodule->module_start_date = $input['module_start_date'][$key];
             $schedulemodule->module_end_date = $input['module_end_date'][$key];
-            $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
-            $schedulemodule->hours_approved = $input['hours_approved'][$key];
+            // $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
+            // $schedulemodule->hours_approved = $input['hours_approved'][$key];
             // $schedulemodule->modify_hours = $input['modify_hours'][$key];
             $schedulemodule->module_status = $input['module_status'][$key];
             $schedulemodule->current = $current_pending;
@@ -590,18 +591,38 @@ class ProjectController extends JoshController
         return response()->json($projects);
     }
 
-    public function postProjectLead(Request $request){
+    public function projectApplyLead($id)
+    {
+        $project = Project::with('companydetails','locations','projectAmount','projectCurrency','projectsubcategory','customerindustry1')->where('project_id', $id)->first();
 
+        // return $project;
+        return view('project/project-apply', compact('project'));
+    }
+
+    public function postProjectLead(Request $request)
+    {
         $input = $request->except('_token');
         $response['success'] = '0';
         $projectleadcheck = ProjectLeads::where('project_id', '=', $input['project_id'])->where('from_user_id', '=', Sentinel::getUser()->id)->first();
         if ($projectleadcheck === null) {
+            $safeName = "";
+
+            if ($request->hasFile('attach_file')) {
+                $file = $request->file('attach_file');
+                $extension = $file->extension()?: 'png';
+                $safeName = str_random(10) . '.' . $extension;
+                $destinationPath = public_path() . '/uploads/applylead/';
+                $file->move($destinationPath, $safeName);
+            }
+
             $projectleads = new ProjectLeads;
             $projectleads->project_id = $input['project_id'];
             $projectleads->from_user_id = Sentinel::getUser()->id;
             $projectleads->subject = $input['subject'];
             $projectleads->message = $input['messagetext'];
             $projectleads->bid_amount = $input['bid_amount'];
+            $projectleads->delivery_timeline = $input['delivery_timeline'];
+            $projectleads->attach_file = $safeName;
             $projectleads->notify = '0';
             $projectleads->display_status = '1';
             $projectleads->lead_status = '1';

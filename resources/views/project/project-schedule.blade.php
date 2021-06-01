@@ -111,6 +111,16 @@ type="text/css"/>
                                             <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="" required>
                                         </div>
                                     </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label>Hours Proposed</label>
+                                            <input class="form-control" type="text" name="hours_proposed">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>Hours Approved</label>
+                                            <input class="form-control" type="text" name="hours_approved">
+                                        </div>
+                                    </div>
                                 </div>
 
 								<div class="module-1">
@@ -132,7 +142,7 @@ type="text/css"/>
 												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="" required>
 											</div>
 										</div>
-										<div class="form-row">
+										{{-- <div class="form-row">
 											<div class="form-group col-6">
 												<label>Hours Proposed</label>
 												<input class="form-control" type="text" name="hours_proposed[]" required>
@@ -141,7 +151,7 @@ type="text/css"/>
 												<label>Hours Approved</label>
 												<input class="form-control" type="text" name="hours_approved[]" required>
 											</div>
-										</div>
+										</div> --}}
 										{{-- <div class="form-row">
 											<div class="form-group col-6">
 												<label>Modify Hours</label>
@@ -235,7 +245,7 @@ type="text/css"/>
                             <input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="">
                         </div>
                     </div>
-                    <div class="form-row">
+                    {{-- <div class="form-row">
                         <div class="form-group col-6">
                             <label>Hours Proposed</label>
                             <input class="form-control" type="text" name="hours_proposed[]">
@@ -244,7 +254,7 @@ type="text/css"/>
                             <label>Hours Approved</label>
                             <input class="form-control" type="text" name="hours_approved[]">
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="form-row">
                         <div class="form-group col-6">
                             <label>Modify Hours</label>

@@ -4,7 +4,9 @@
 Route::group(
     ['prefix' => 'project', 'middleware' => 'user'],
     function () {
+        Route::get('project-apply/{id}', 'ProjectController@projectApplyLead')->name('projectlead.view');
         Route::post('post-project-lead', 'ProjectController@postProjectLead')->name('ProjectLead.new');
+        
         Route::get('project-bid-response/{id}', 'ProjectController@projectBidResponse');
         Route::get('profile-projectbid/{id}', 'ProjectController@profileProjectbid')->name('project.profileProjectbid');
 

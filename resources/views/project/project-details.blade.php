@@ -37,28 +37,28 @@ Search Project
         <div class="px-5 py-2">
             <div class="align-items-center">
                 <span class="border-title"><i class="fa fa-bars"></i></span>
-                <span class="h5 text-white ml-2">Project</span>
+                <span class="h5 text-white ml-2">Project Deatils</span>
             </div>
         </div>
     </div>
     <div class="container space-top-1 space-top-md-2 space-bottom-2 space-bottom-lg-3">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-lg-5 project-deatils">
                     <div class="card-header">
-                        <span class="h5 card-title text-secondary">Project Deatils</span>
-                        <div class="float-right font-weight-700">
+                        <span class="h5 card-title font-weight-700">{{ $project->project_title }}</span>
+                        <div class="font-weight-500">
                             @if ($project->projectAmount->pricing_model == '1')
-                                <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} - {{ $project->projectAmount->project_amount_to }}@endif /Hr</span>
+                                <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} - {{ $project->projectAmount->project_amount_to }}@endif /Rate Per Hour</span>
 
                             @elseif ($project->projectAmount->pricing_model == '2')
-                                <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} - {{ $project->projectAmount->project_amount_to }}@endif /Month</span>
+                                <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} - {{ $project->projectAmount->project_amount_to }}@endif /Rate Per Month</span>
                             @else
-                                <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} - {{ $project->projectAmount->project_amount_to }}@endif Fixed Price</span>
+                                <span class="bid">@if(!empty($project->projectAmount->project_amount)){{ $project->projectCurrency->symbol }} {{ $project->projectAmount->project_amount }} - {{ $project->projectAmount->project_amount_to }}@endif Project Amount</span>
                             @endif
                             <br>
                             <span class="day-left">Bidding Ends In {{ $project->expiry_days }} Days</span><br>
-                            <div class="float-right font-weight-700 mt-1">
+                            <div class="font-weight-700 mt-1">
                                 <a class="btn-icon bg-blue btn rounded-0 text-white" data-toggle="modal" data-target="#modal-4">Apply Now</a>
                             </div>
                         </div>
@@ -67,41 +67,34 @@ Search Project
                         <div class="spinner-border spinner-border-lg"></div>
                     </div> -->
                     <div class="card-body">
-                        <h5>{{ $project->project_title }}</h5>
-                        <div class="skills mt-4">
-                            <span class="h5">Project Description</span>
+                        <div class="skills">
+                            <span class="h5">Project Summary</span>
                             <p>{{ $project->project_summary }}</p>
                         </div>
                         <div class="skills mt-4">
-                            <span class="h5">Years of Experience</span>
-                            <p>{{ $project->experience_year }} Years {{ $project->experience_month }} Month</p>
+                            <span class="h5">Years of Experience: </span>
+                            <span>{{ $project->experience_year }} Years {{ $project->experience_month }} Month</span>
                         </div>
                         <div class="skills mt-4">
-                            <span class="h5">Skills Required</span>
-                            <p>{{ $project->key_skills }}</p>
+                            <span class="h5">Skills Required: </span>
+                            <span>{{ $project->key_skills }}</span>
                         </div>
-                        <hr>
-                        <h3>Additional Information</h3>
+                        <div class="skills mt-4">
+                            <span class="h5">Customer Industry: </span>
+                            <span>{{ $project->customerindustry1->name }}</span>
+                        </div>
+                        <div class="skills mt-4">
+                            <span class="h5">Project Sub Category: </span>
+                            <span>{{ $project->projectsubcategory->name }}</span>
+                        </div>
+                        {{-- <hr> --}}
+                        {{-- <h3>Additional Information</h3> --}}
                         <div class="skills mt-4">
                             <span class="h5">Technology/Framework: </span>
                             @foreach ($technologies as $technology)
                                 {{ $loop->first ? '' : ', ' }}
                                 <span>{{ $technology->technology_name }}</span>
                             @endforeach
-                        </div>
-                        <div class="skills mt-4">
-                            <!--<span class="h5">Skills Required</span>-->
-                            <ul class="nav mt-4">
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-light text-dark" href="#">Sales</a>
-                                </li>
-                                <li class="nav-item ml-1">
-                                    <a class="nav-link btn btn-light text-dark" href="#">Internet</a>
-                                </li>
-                                <li class="nav-item ml-1">
-                                    <a class="nav-link btn btn-light text-dark" href="#">Marketing</a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>

@@ -28,10 +28,8 @@
                     <a class="list-group-item list-group-item-action {!! (Request::is('company') ? 'active' : '' ) !!}" href="{{ url('company/bench') }}">Teams</a>
                     @endif--}}
 
-                    @if(isset(Session::get('users')['role_email']))
-                        @if(Session::get('users')['role_email']!=1)
-                        <a class="list-group-item list-group-item-action {!! (Request::is('company') ? 'active' : '' ) !!}" href="{{ url('company/bench') }}">Teams</a> 
-                        @endif
+                    @if(Session::get('users')['role_email']==0)
+                    <a class="list-group-item list-group-item-action {!! (Request::is('company') ? 'active' : '' ) !!}" href="{{ url('company/bench') }}">Teams</a> 
                     @endif
                 </div>
             </div>

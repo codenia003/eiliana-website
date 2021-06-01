@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <div class="display-5">Project summary</div>
+                                <div class="display-5">Project Summary</div>
                                 <p class="description">{{ $project->project_summary }}</p>
                             </div>
                             <div class="row no-gutters">

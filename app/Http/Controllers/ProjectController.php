@@ -567,7 +567,7 @@ class ProjectController extends JoshController
 
     public function getProjectDeatils($id)
     {
-        $project = Project::with('companydetails','locations','projectAmount','projectCurrency')->where('project_id', $id)->first();
+        $project = Project::with('companydetails','locations','projectAmount','projectCurrency','projectsubcategory','customerindustry1')->where('project_id', $id)->first();
 
         $selected_technologty_pre = explode(',', $project->technologty_pre);
         $selected_framework = explode(',', $project->framework);
@@ -580,7 +580,7 @@ class ProjectController extends JoshController
 
         $project['expiry_days'] = floor($difference / 86400);
 
-
+        // return $project;
         return view('project/project-details', compact('project','technologies','childtechnologies'));
     }
 

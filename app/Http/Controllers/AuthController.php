@@ -452,6 +452,15 @@ class AuthController extends JoshController
             $role_users = DB::table('role_users')->where('user_id', $user->id)->first();
             $user['role'] = $role_users->role_id;
 
+            $teamuser = TeamUser::where('user_id', '=', $user->id)->first();
+
+            if(!empty($teamuser)){
+                $user['teamuser'] = $teamuser;
+                $user['role_email'] = $teamuser->user_type;
+            } else {
+                $user['role_email'] = 0;
+            }   
+
             $country_name = DB::table('countries')->where('id', $user->country)->first();
             $user['country_name'] = $country_name->name;
 
@@ -503,13 +512,14 @@ class AuthController extends JoshController
                     }
 
                     $role_users = DB::table('role_users')->where('user_id', $user->id)->first();
-                    $users_email = DB::table('user_registration')->where('email', '=', $user->email)->first();
+                    $teamuser = TeamUser::where('user_id', '=', $user->id)->first();
 
-                    if(!empty($users_email)){
-                        $user_email = $user->email;
-                        $role = DB::table('user_registration')->where('email', '=', $user_email)->first();
-                        $user['role_email'] = $role->user_type_parent_id;
-                    }
+                    if(!empty($teamuser)){
+                        $user['teamuser'] = $teamuser;
+                        $user['role_email'] = $teamuser->user_type;
+                    } else {
+                        $user['role_email'] = 0;
+                    }   
 
                     $user['role'] = $role_users->role_id;
                     $country_name = DB::table('countries')->where('id', $user->country)->first();

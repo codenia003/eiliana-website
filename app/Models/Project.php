@@ -38,6 +38,11 @@ class Project extends Model
         return $this->belongsTo('App\Models\CustomerIndustry', 'customer_industry', 'customer_industry_id');
     }
     
+    public function projectcategory()
+    {
+        return $this->belongsTo('App\Models\ProjectCategory', 'project_category', 'id');
+    }
+
     public function projectsubcategory()
     {
         return $this->belongsTo('App\Models\ProjectCategory', 'project_sub_category', 'id');

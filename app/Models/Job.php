@@ -78,4 +78,9 @@ class Job extends Model
         return $this->hasMany('App\Models\JobLeads', 'job_id', 'job_id');
     }
 
+    public function technologys()
+    {
+        return $this->belongsTo('App\Models\Technology', 'technologty_pre', 'technology_id');
+    }
+
 }

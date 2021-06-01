@@ -10,15 +10,12 @@
 </div>
 @stop
 @section('profile_content')
-
-        @if(isset($role->user_type_parent_id))
-            @if($role->user_type_parent_id!=1)
+        @if(Session::get('users')['role_email']==0)
             <div class="card-header listofteam">
                 <h5 class="card-title">
                     <a  href="{{ URL::to('/company/teams')  }}" class="btn btn-primary bg-orange float-right">Add Team</a>
                 </h5>
             </div>    
-            @endif
         @endif
     
     <!-- Body -->

@@ -189,17 +189,17 @@
                                       <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
                                        <ul class="submenu1 submenu_item">
                                             <li>
-                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-contract-job') }}">Contract Job</a> --}}
-                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Contract Job</a>
+                                                <a class="dropdown-item submenu_down" href="{{ url('/client/my-contract-job') }}">Contract Job</a> 
+                                                {{-- <a class="dropdown-item submenu_down" onclick="togglePopup()">Contract Job</a>--}}
                                             </li>
                                             <li>
-                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-project') }}">Project</a> --}}
-                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Project</a>
+                                                 <a class="dropdown-item submenu_down" href="{{ url('/client/my-project') }}">Project</a> 
+                                                 {{--<a class="dropdown-item submenu_down" onclick="togglePopup()">Project</a>--}}
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Posting &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
+                                        <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Postings &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
                                         <ul class="submenu1 submenu_item">
                                             <li>
                                                 <a class="dropdown-item submenu_down" href="{{ url('/client/my-requirement-job') }}">Contract Job</a> 
@@ -215,12 +215,12 @@
                                         <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Delivery &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
                                         <ul class="submenu1 submenu_item">
                                             <li>
-                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-job') }}">Contract Job</a> --}}
-                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Contract Job</a>
+                                                <a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-job') }}">Contract Job</a> 
+                                                {{-- <a class="dropdown-item submenu_down" onclick="togglePopup()">Contract Job</a>--}}
                                             </li>
                                             <li>
-                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-project') }}">Project</a> --}}
-                                                <a class="dropdown-item submenu_down" onclick="togglePopup()">Project</a>
+                                                 <a class="dropdown-item submenu_down" href="{{ url('/client/my-delivery-project') }}">Project</a> 
+                                                 {{--<a class="dropdown-item submenu_down" onclick="togglePopup()">Project</a>--}}
                                             </li>
                                         </ul>
                                    </li>

@@ -46,9 +46,10 @@ type="text/css"/>
             <tr>
                 <th style="width: 15%;">Project Post Id</th>
                 <th>Project Title</th>
-                <th>Freelancer Name</th>
+                <th>Price</th>
+                <th>Model Of Engagement</th>
                 <th>Technology</th>
-                <th>Delivery Time</th>
+                <th>Contract Duration</th>
                 <th>Status</th>
             </tr>
             </thead>
@@ -57,26 +58,32 @@ type="text/css"/>
                         <tr>
                             <td>{{ $lead->project_id }}</td>
                             <td>{{ $lead->project_title }}</td>
-                            @if(!empty($lead->projectdetail))
-                               <td><a href="{{ url('profile') }}/{{ $lead->projectdetail->fromuser->id }}" class="h5" style="font-size: 17px;">{{ $lead->projectdetail->fromuser->full_name }}</a></td>
+                            @if($lead->projectamount->pricing_model == '1')
+                               <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }}/Hour</td>
+                               <td>Hourly</td>
+                            @elseif($lead->projectamount->pricing_model == '2')
+                                <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }}/Month</td>
+                                <td>Retainer</td>
                             @else
-                               <td></td>
+                                <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }}</td>
+                                <td>Project Based</td>
                             @endif
-
+                            
                             @if(!empty($lead->technologys->technology_name))
                                <td>{{ $lead->technologys->technology_name }}</td>
                             @else
-                               <td></td>
+                               <td>Any</td>
                             @endif
-                            <td>{{ $lead->notice_period }}</td>
+
+                            <td>{{ $lead->project_duration_max }}</td>
                             <form action="" method="POST">
                                @csrf
                                 <td>
                                     <select name="project_status" id="project_status{{ $lead->project_id }}" class="form-control" onchange="projectStatusChange('{{ $lead->project_id }}')" style="width: 105px;" required>
                                         <option value=""></option>
-                                        <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Onhold</option>
-                                        <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Shortlist</option>
-                                        <option value="3" {{ ($lead->status== '3')? "selected" : "" }}>Reject</option>
+                                        <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Online</option>
+                                        <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Closed</option>
+                                        <option value="3" {{ ($lead->status== '3')? "selected" : "" }}>Repost</option>
                                     </select>
                                 </td>
                             </form>
@@ -84,9 +91,9 @@ type="text/css"/>
                     @endforeach
                 </tbody>
         </table>
-        {{--<div class="pager">
-            {{ $leads->withQueryString()->links() }}
-        </div>--}}
+        <div class="pager">
+             {{ $leads->withQueryString()->links() }}
+        </div>
     </div>
 
 @stop
@@ -113,26 +120,26 @@ function projectStatusChange(project_id){
         success: function(data) {
             var userCheck = data;
             //$('.spinner-border').addClass("d-none");
-            if (userCheck.success == '1') {
+            if(userCheck.success == '1') {
                 var msg = userCheck.msg;
                 var redirect = '/client/my-requirement-project';
-                toggleRegPopup(msg,redirect);
-
+                
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
+                
             } else if(userCheck.success == '2') {
                 var msg = userCheck.msg;
                 var redirect = '/client/my-requirement-project';
-                toggleRegPopup(msg,redirect);
-
-            } else if(userCheck.success == '3') {
-                var msg = userCheck.msg;
-                var redirect = '/client/my-requirement-project';
-                toggleRegPopup(msg,redirect);
-
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
             } else{
-                
-                msg= "Oops...<br>"+ userExists.error;
-                 toggleRegPopup(msg,'#');
-                
+               var msg= "Oops...<br>"+ userCheck.errors;
+               var redirect = '/client/my-requirement-project';
+                 toggleRegPopup(msg,redirect);
             }
 
         },

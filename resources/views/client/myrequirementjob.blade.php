@@ -46,8 +46,8 @@ type="text/css"/>
             <tr>
                 <th style="width: 15%;">Job Post Id</th>
                 <th>Job Title</th>
-                <th>Freelancer Name</th>
-                <th>Skills</th>
+                <th>Price</th>
+                <th>Technology</th>
                 <th>Notice Period</th>
                 <th>Location</th>
                 <th>Status</th>
@@ -58,13 +58,13 @@ type="text/css"/>
                         <tr>
                             <td>{{ $lead->job_id }}</td>
                             <td>{{ $lead->job_title }}</td>
-                            @if(!empty($lead->jobdetail))
-                               <td><a href="{{ url('profile') }}/{{ $lead->jobdetail->fromuser->id }}" class="h5" style="font-size: 17px;">{{ $lead->jobdetail->fromuser->full_name }}</a></td>
+                            <td>{{ rtrim(rtrim($lead->budget_to, '0'), '.') }}/Month</td>
+                            @if(!empty($lead->technologys->technology_name))
+                               <td>{{ $lead->technologys->technology_name }}</td>
                             @else
-                               <td></td>
+                               <td>Any</td>
                             @endif
-                            <td>{{ $lead->key_skills }}</td>
-                            <td>{{ $lead->notice_period }}</td>
+                            <td>{{ $lead->notice_period }} Days</td>
                             <td>{{ $lead->locations->name }}</td>
                             <form action="" method="POST">
                                @csrf
@@ -111,25 +111,27 @@ function jobStatusChange(job_id){
             var userCheck = data;
             //$('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
-                
                 var msg = userCheck.msg;
                 var redirect = '/client/my-requirement-job';
-                toggleRegPopup(msg,redirect);
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
 
             } else if(userCheck.success == '2') {
                 var msg = userCheck.msg;
                 var redirect = '/client/my-requirement-job';
-                toggleRegPopup(msg,redirect);
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
 
-            } else if(userCheck.success == '3') {
-                var msg = userCheck.msg;
+            } else {
+                var msg= "Oops...<br>"+ userCheck.errors;
                 var redirect = '/client/my-requirement-job';
                 toggleRegPopup(msg,redirect);
 
-            } else{
-                msg= "Oops...<br>"+ userExists.error;
-                 toggleRegPopup(msg,'#');
-            }
+            } 
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);

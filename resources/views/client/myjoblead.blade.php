@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-My Project Leads
+My Job Leads
 @parent
 @stop
 
@@ -34,7 +34,7 @@ type="text/css"/>
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">My Project Leads</span>
+            <span class="h5 text-white ml-2">My Job Leads</span>
         </div>
     </div>
 </div>
@@ -44,30 +44,28 @@ type="text/css"/>
         <table class="table table-striped" id="myopportunity-table">
             <thead>
             <tr>
-                <th style="width: 15%;">Project Lead Id</th>
-                <th>Project Title</th>
+                <th style="width: 15%;">Job Lead Id</th>
+                <th>Job Title</th>
                 <th>Freelancer Name</th>
                 <th>Subject</th>
-                <th>Delivery Time Line</th>
                 <th>Status</th>
             </tr>
             </thead>
                 <tbody>
                     @foreach($leads as $lead)
                         <tr>
-                            <td>{{ $lead->project_leads_id }}</td>
-                            <td>{{ $lead->projectdetail->project_title }}</td>
+                            <td>{{ $lead->job_leads_id }}</td>
+                            <td>{{ $lead->jobdetail->job_title }}</td>
                             @if(!empty($lead->fromuser))
                              <td>{{ $lead->fromuser->full_name }}</td>
                              @else
                              <td></td>
                             @endif
                             <td>{{ $lead->subject }}</td>
-                            <td>{{ $lead->delivery_timeline }} Day</td>
                             <form action="" method="POST">
                                @csrf
                                 <td>
-                                    <select name="project_status" id="project_status{{ $lead->project_leads_id }}" class="form-control" onchange="projectLeadStatusChange('{{ $lead->project_leads_id }}')" style="width: 105px;" required>
+                                    <select name="job_status" id="job_status{{ $lead->job_leads_id }}" class="form-control" onchange="jobLeadStatusChange('{{ $lead->job_leads_id }}')" style="width: 105px;" required>
                                         <option value=""></option>
                                         <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Onhold</option>
                                         <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Shortlist</option>
@@ -151,14 +149,14 @@ $(document).ready(function() {
   });
 });
 
-function projectLeadStatusChange(project_leads_id){
+function jobLeadStatusChange(job_leads_id){
     //$('.spinner-border').removeClass("d-none");
-    var url = '/client/proposal-project-status-change';
-    var project_lead_status = $('#project_status'+ project_leads_id).val();
+    var url = '/client/proposal-job-status-change';
+    var job_lead_status = $('#job_status'+ job_leads_id).val();
     var data= {
         _token: "{{ csrf_token() }}",
-        project_leads_id: project_leads_id,
-        project_lead_status: project_lead_status
+        job_leads_id: job_leads_id,
+        job_lead_status: job_lead_status
     };
     //console.log(data);
     $.ajax({
@@ -170,7 +168,7 @@ function projectLeadStatusChange(project_leads_id){
             //$('.spinner-border').addClass("d-none");
             if(userCheck.success == '1') {
                 var msg = userCheck.msg;
-                var redirect = '/client/my-project-lead/'+ project_leads_id;
+                var redirect = '/client/my-job-lead/'+ job_leads_id;
                 
                 var result = confirm('Are you sure you want to change this status?');
                 if (result) {
@@ -179,21 +177,21 @@ function projectLeadStatusChange(project_leads_id){
                 
             } else if(userCheck.success == '2') {
                 var msg = userCheck.msg;
-                var redirect = '/client/my-project-lead/'+ project_leads_id;
+                var redirect = '/client/my-job-lead/'+ job_leads_id;
                 var result = confirm('Are you sure you want to change this status?');
                 if (result) {
                     toggleRegPopup(msg,redirect);
                 }
             }else if(userCheck.success == '3') {
                 var msg = userCheck.msg;
-                var redirect = '/client/my-project-lead/'+ project_leads_id;
+                var redirect = '/client/my-job-lead/'+ job_leads_id;
                 var result = confirm('Are you sure you want to change this status?');
                 if (result) {
                     toggleRegPopup(msg,redirect);
                 }
             } else{
                var msg= "Oops...<br>"+ userCheck.errors;
-               var redirect = '/client/my-project-lead/'+ project_leads_id;
+               var redirect = '/client/my-job-lead/'+ job_leads_id;
                  toggleRegPopup(msg,redirect);
             }
 

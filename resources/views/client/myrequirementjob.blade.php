@@ -64,6 +64,24 @@ type="text/css"/>
                             @else
                                <td>Any</td>
                             @endif
+
+                            {{--<?php 
+                                $technologty_pre = explode(',', $lead->technologty_pre);
+                            ?>
+                            <td>
+                            @foreach ($technologty_pre as $tech)
+                               @foreach ($technologies as $technology)
+                                    @if($tech == $technology->technology_id)
+                                        {{ $loop->first ? '' : ', ' }}
+                                        @if(!empty($technology->technology_name))
+                                        {{ $technology->technology_name }}
+                                        @endif
+                                    @else
+                                       Any  
+                                    @endif
+                                @endforeach
+                            @endforeach--}}
+
                             <td>{{ $lead->notice_period }} Days</td>
                             <td>{{ $lead->locations->name }}</td>
                             <form action="" method="POST">

@@ -47,7 +47,8 @@ type="text/css"/>
                 <th style="width: 15%;">Job Lead Id</th>
                 <th>Job Title</th>
                 <th>Freelancer Name</th>
-                <th>Subject</th>
+                <th>Notice Period</th>
+                <th>Bid Amount</th>
                 <th>Status</th>
             </tr>
             </thead>
@@ -61,7 +62,8 @@ type="text/css"/>
                              @else
                              <td></td>
                             @endif
-                            <td>{{ $lead->subject }}</td>
+                            <td>{{ $lead->notice_period }} Days</td>
+                            <td>{{ $lead->bid_amount }} INR /Month</td>
                             <form action="" method="POST">
                                @csrf
                                 <td>
@@ -70,6 +72,7 @@ type="text/css"/>
                                         <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Onhold</option>
                                         <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Shortlist</option>
                                         <option value="3" {{ ($lead->status== '3')? "selected" : "" }}>Reject</option>
+                                        <option value="4" {{ ($lead->status== '4')? "selected" : "" }}>Order Finalized</option>
                                     </select>
                                 </td>
                             </form>
@@ -183,6 +186,13 @@ function jobLeadStatusChange(job_leads_id){
                     toggleRegPopup(msg,redirect);
                 }
             }else if(userCheck.success == '3') {
+                var msg = userCheck.msg;
+                var redirect = '/client/my-job-lead/'+ job_leads_id;
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
+            }else if(userCheck.success == '4') {
                 var msg = userCheck.msg;
                 var redirect = '/client/my-job-lead/'+ job_leads_id;
                 var result = confirm('Are you sure you want to change this status?');

@@ -53,4 +53,9 @@ class JobLeads extends Model
     {
         return $this->hasOne('App\Models\ContractualJobSchedule', 'job_leads_id', 'job_leads_id');
     }
+
+    public function technologys()
+    {
+        return $this->belongsTo('App\Models\Technology', 'technologty_pre', 'technology_id');
+    }
 }

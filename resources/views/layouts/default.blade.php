@@ -161,7 +161,7 @@
                                     <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
                                        <ul class="submenu1 submenu_item">
                                             <li>
-                                                {{-- <a class="dropdown-item submenu_down" href="url('/freelancer/my-contract_job')">Contract Job</a> --}}
+                                                {{-- <a class="dropdown-item submenu_down" href="{{ url('/freelancer/my-contract_job') }}">Contract Job</a> --}}
                                                 <a class="dropdown-item submenu_down" onclick="togglePopup()">Contract Job</a>
                                             </li>
                                             <li>

@@ -64,14 +64,14 @@ class FreelancerController extends Controller
 
     public function myProject()
     {
-        $leads = ProjectLeads::with('projectdetail')->where('from_user_id', Sentinel::getUser()->id)->where('lead_status', '!=' ,'1')->paginate(10);
-        // return $leads;
+        $leads = ProjectLeads::with('projectdetail','projectdetail.technologys','projectdetail.projectamount')->where('from_user_id', Sentinel::getUser()->id)->where('lead_status', '!=' ,'1')->paginate(10);
+        //return $leads;
         return view('freelancer/myproject', compact('leads'));
     }
 
     public function myJobProposal()
     {
-        $leads = JobLeads::with('jobdetail','jobcontractschedule')->where('from_user_id', Sentinel::getUser()->id)->paginate(10);
+        $leads = JobLeads::with('jobdetail','jobdetail.technologys','jobcontractschedule')->where('from_user_id', Sentinel::getUser()->id)->paginate(10);
         //return $leads;
         return view('freelancer/myproposal', compact('leads'));
     }
@@ -222,6 +222,91 @@ class FreelancerController extends Controller
         }
 
         return redirect('/freelancer/my-contract_job')->with($success ,  $msg);
+    }
+
+    public function proposalJobStatus(Request $request)
+    {
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $projectstatuscheck = JobLeads::where('job_leads_id', '=', $input['job_leads_id'])->where('status', '=', $input['job_lead_status'])->first();
+        if($projectstatuscheck === null) {
+
+            if($input['job_lead_status'] === '1'){
+                $projectstatus = JobLeads::find($input['job_leads_id']);
+                $projectstatus->status = $input['job_lead_status'];
+                $projectstatus->save();
+                
+                $response['success'] = '1';
+                $response['msg'] = 'Job Status Onhold successfully';
+            }else if($input['job_lead_status'] === '2'){
+                $projectstatus = JobLeads::find($input['job_leads_id']);
+                $projectstatus->status = $input['job_lead_status'];
+                $projectstatus->save();
+
+                $response['success'] = '2';
+                $response['msg'] = 'Job Status Shortlist successfully';
+            }else if($input['job_lead_status'] === '3'){
+                $projectstatus = JobLeads::find($input['job_leads_id']);
+                $projectstatus->status = $input['job_lead_status'];
+                $projectstatus->save();
+
+                $response['success'] = '3';
+                $response['msg'] = 'Job Status Reject successfully';
+            }else {
+                $projectstatus = JobLeads::find($input['job_leads_id']);
+                $projectstatus->status = $input['job_lead_status'];
+                $projectstatus->save();
+                
+                $response['success'] = '4';
+                $response['msg'] = 'Job Status Order Finalized successfully';
+            }
+
+        } else {
+            $response['success'] = '5';
+            $response['errors'] = 'You are already changed status';
+        }
+        return response()->json($response);
+
+    }
+
+    public function proposalProjectStatus(Request $request)
+    {
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $projectstatuscheck = ProjectLeads::where('project_leads_id', '=', $input['project_leads_id'])->where('status', '=', $input['project_lead_status'])->first();
+        if($projectstatuscheck === null) {
+
+            if($input['project_lead_status'] === '2'){
+                $projectstatus = ProjectLeads::find($input['project_leads_id']);
+                $projectstatus->status = $input['project_lead_status'];
+                $projectstatus->save();
+
+                $response['success'] = '1';
+                $response['msg'] = 'Project Status Shortlist successfully';
+            }else if($input['project_lead_status'] === '3'){
+                $projectstatus = ProjectLeads::find($input['project_leads_id']);
+                $projectstatus->status = $input['project_lead_status'];
+                $projectstatus->save();
+                
+                $response['success'] = '2';
+                $response['msg'] = 'Project Status Reject successfully';
+            }else {
+                $projectstatus = ProjectLeads::find($input['project_leads_id']);
+                $projectstatus->status = $input['project_lead_status'];
+                $projectstatus->save();
+                
+                $response['success'] = '3';
+                $response['msg'] = 'Project Status Onhold successfully';
+            }
+
+        } else {
+            $response['success'] = '4';
+            $response['errors'] = 'You are already changed status';
+        }
+        return response()->json($response);
+
     }
 
 

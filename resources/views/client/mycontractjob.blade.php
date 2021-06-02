@@ -48,7 +48,7 @@ type="text/css"/>
                 <th>Job Title</th>
                 <th>Price</th>
                 <th>Technology</th>
-                <th>Notice Period</th>
+                <th>No Of Bids</th>
                 <th>Location</th>
                 <th>More Actions</th>
             </tr>
@@ -58,13 +58,13 @@ type="text/css"/>
                         <tr>
                             <td>{{ $lead->job_id }}</td>
                             <td>{{ $lead->job_title }}</td>
-                            <td>{{ rtrim(rtrim($lead->budget_to, '0'), '.') }}/Month</td>
+                            <td>{{ rtrim(rtrim($lead->budget_to, '0'), '.') }} INR /Month</td>
                             @if(!empty($lead->technologys->technology_name))
                                <td>{{ $lead->technologys->technology_name }}</td>
                             @else
                                <td>Any</td>
                             @endif
-                            <td>{{ $lead->notice_period }} Days</td>
+                            <td>{{ count($lead->jobbidresponse) }}</td>
                             <td>{{ $lead->locations->name }}</td>
                             {{--<form action="" method="POST">
                                @csrf

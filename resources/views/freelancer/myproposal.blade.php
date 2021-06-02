@@ -1,6 +1,32 @@
-@extends('profile/layout')
-@section('profile_css')
+@extends('client/layout')
 
+{{-- Page title --}}
+@section('title')
+My Contract Job
+@parent
+@stop
+
+{{-- page level styles --}}
+@section('header_styles')
+<!--page level css starts-->
+<link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
+<link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}">
+<link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
+type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap4.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/dataTables.bootstrap4.css') }}"/>
+ <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap4.css') }}">
+
+ <style>
+		.profile-setting .my-alldata tr:nth-child(even) {
+			background-color: #ffffff;
+		}
+		
+</style>
 @stop
 
 @section('top')
@@ -12,178 +38,130 @@
         </div>
     </div>
 </div>
-<!-- <style type="text/css">
-    @media (min-width: 992px){
-        .col-lg-8 {
-            flex: 0 0 66.6666666667%;
-            max-width: 69.666667%;
-        }
-        .col-lg-4 {
-            flex: 0 0 33.333333%;
-            max-width: 30.333333%;
-        }
-        .device-iphone-x-screen {
-            position: absolute;
-            top: 14%;
-            left: 12%;
-            width: 69%;
-            height: 100%;
-        }
-   } 
-</style> -->
 @stop
-@section('profile_content')
-<div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md">
-    <table class="table table-striped" id="myopportunity-table">
-        <thead>
-         <tr>
-            <th>Opportunity Id</th>
-            <th>Job Name</th>
-            <th>Subject</th>
-            <th>Status</th>
-            <!-- <th>Schedule Status</th>
-            <th>Update Schedule Date</th> -->
-            <th>Status Date</th>
-            <!-- <th>View</th> -->
-         </tr>
-        </thead>
-        <tbody>
-        @foreach($leads as $lead)
+@section('client_content')
+<div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md teams-basic">
+        <table class="table table-striped" id="myopportunity-table">
+            <thead>
             <tr>
-                <td>{{ $lead->job_leads_id }}</td>
-                <td><a href="{{ route('jobdetails',$lead->job_id) }}">{{ $lead->jobdetail->job_title }}</a></td>
-                <td>{{ $lead->subject }}</td>
-                <td>
-                    @if ($lead->lead_status == 1)
-                    Pending
-                    @elseif($lead->lead_status == 2)
-                    Process
-                    @elseif($lead->lead_status == 3)
-                    Complete
-                    @else
-                    Cancel
-                    @endif
-                </td>
-                {{--<td>
-                    @if(!empty($lead->jobcontractschedule))
-                        @if($lead->jobcontractschedule->satuts == 1)
-                        Pending
-                        @elseif($lead->jobcontractschedule->satuts == 2)
-                        Accept
-                        @elseif($lead->jobcontractschedule->satuts == 3)
-                        Modify
-                        @else
-                        Cancel
-                        @endif
-                    @endif
-                </td>--}}
-                <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('F d, Y') }}</td>
-                <!-- <td>
-                    <a href="{{ route('my-proposal.view',$lead->job_leads_id) }}"><i class="fas fa-info-circle"></i></a>
-                </td> -->
-                {{--<td>
-                    @if(!empty($lead->jobcontractschedule))
-                    <a onclick="proposalDetails('{{ $lead->jobcontractschedule->job_schedule_id}}')"><i class="fas fa-info-circle"></i></a>
-                    @endif
-                </td>--}}
+                <th style="width: 15%;">Job Post Id</th>
+                <th>Job Title</th>
+                <th>Price</th>
+                <th>Technology</th>
+                <th>Notice Period</th>
+                <th>Status</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
-    <div class="pager">
-        {{ $leads->withQueryString()->links() }}
+            </thead>
+                <tbody>
+                    @foreach($leads as $lead)
+                        <tr>
+                            <td>{{ $lead->job_leads_id }}</td>
+                            <td>{{ $lead->jobdetail->job_title }}</td>
+                            <td>{{ $lead->bid_amount }} INR /Month</td>
+                            @if(!empty($lead->jobdetail->technologys->technology_name))
+                               <td>{{ $lead->jobdetail->technologys->technology_name }}</td>
+                            @else
+                               <td>Any</td>
+                            @endif
+                            <td>{{ $lead->notice_period }} Days</td>
+                            <form action="" method="POST">
+                               @csrf
+                                <td>
+                                    <select name="job_status" id="job_status{{ $lead->job_leads_id }}" class="form-control" onchange="jobStatusChange('{{ $lead->job_leads_id }}')" style="width: 105px;" required>
+                                        <option value=""></option>
+                                        <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Onhold</option>
+                                        <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Shortlist</option>
+                                        <option value="3" {{ ($lead->status== '3')? "selected" : "" }}>Reject</option>
+                                        <option value="4" {{ ($lead->status== '4')? "selected" : "" }}>Order Finalized</option>
+                                    </select>
+                                </td>
+                            </form>
+                        </tr>
+                    @endforeach
+                </tbody>
+        </table>
+        {{--<div class="pager">
+            {{ $leads->withQueryString()->links() }}
+        </div>--}}
     </div>
-</div>
-<div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form action="{{ url('/freelancer/post-proposal-job-lead') }}" method="POST" id="">
-                @csrf
-                
-                <div class="modal-header bg-blue text-white">
-                    <h4 class="modal-title" id="modalLabelnews">Proposal For Client </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-row">
-                        <div class="form-group col-12">
-                            <label for="job_schedule_id" class="col-form-label">Proposal Id:</label>
-                            <input type="text" class="form-control" id="job_schedule_id" name="job_schedule_id" readonly>
-                        </div>
-                        <!-- <div class="form-group col">
-                            <label for="date_acceptance" class="col-form-label">Acceptance Date:</label>
-                            <input type="text" class="form-control" name="date_acceptance" id="date_acceptance" readonly>
-                        </div> -->
-                    </div>
-                    <div class="form-group">
-                        <label for="actual_date" class="col-form-label">Date :</label>
-                        <input class="flatpickr flatpickr-input form-control" type="text" name="actual_date" value="" required>
-                    </div>
-                </div>
-                <div class="modal-footer singup-body">
-                    <div class="btn-group" role="group">
-                        <button class="btn btn-primary">Send</button>
-                        <button class="btn btn-outline-primary" data-dismiss="modal">Discard</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-@stop
-<script type="">
-     function proposalDetails(job_schedule_id){
-    $('.spinner-border').removeClass("d-none");
-    var url = '/freelancer/project-contract-post';
 
+@stop
+
+@section('client_script')
+<script type="text/javascript" src="{{ asset('vendors/datatables/js/jquery.dataTables.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap4.js') }}" ></script>
+<script>
+
+function jobStatusChange(job_leads_id){
+    //$('.spinner-border').removeClass("d-none");
+    var url = '/freelancer/proposal-job-status-change';
+    var job_lead_status = $('#job_status'+ job_leads_id).val();
     var data= {
         _token: "{{ csrf_token() }}",
-        job_schedule_id: job_schedule_id
+        job_leads_id: job_leads_id,
+        job_lead_status: job_lead_status
     };
-    console.log(data);
-    
-    $('#modal-4').modal('show');
-    //$('#job_proposal_id').val(job_proposal_id);
-    $('#job_schedule_id').val(job_schedule_id);
-    // $.ajax({
-    //     type: 'POST',
-    //     url: url,
-    //     data: data,
-    //     success: function(data) {
-    //         var userCheck = data;
-    //         $('.spinner-border').addClass("d-none");
-    //         if (userCheck.success == '1') {
-    //             Swal.fire({
-    //                 type: 'success',
-    //                 title: 'Success...',
-    //                 text: userCheck.msg,
-    //                 showConfirmButton: false,
-    //                 timer: 2000
-    //             });
+    //console.log(data);
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: function(data) {
+            var userCheck = data;
+            //$('.spinner-border').addClass("d-none");
+            if (userCheck.success == '1') {
+                var msg = userCheck.msg;
+                var redirect = '/freelancer/my-contract_job';
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
 
-    //             $('#payment_button').show();
-    //             $('#status').hide();
+            } else if(userCheck.success == '2') {
+                var msg = userCheck.msg;
+                var redirect = '/freelancer/my-contract_job';
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
 
-    //             // window.location.href = '/freelancer/my-opportunity';
-    //         } else {
-    //             Swal.fire({
-    //                 type: 'error',
-    //                 title: 'Oops...',
-    //                 text: userCheck.errors,
-    //                 showConfirmButton: false,
-    //                 timer: 3000
-    //             });
-    //             // if (userCheck.success == '2') {
-    //             //     window.location.href = '/freelancer/my-opportunity';
-    //             // }
-    //         }
+            }else if(userCheck.success == '3') {
+                var msg = userCheck.msg;
+                var redirect = '/freelancer/my-contract_job';
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
+            }else if(userCheck.success == '4') {
+                var msg = userCheck.msg;
+                var redirect = '/freelancer/my-contract_job';
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
+            } else {
+                var msg= "Oops...<br>"+ userCheck.errors;
+                var redirect = '/freelancer/my-contract_job';
+                toggleRegPopup(msg,redirect);
 
-    //     },
-    //     error: function(xhr, status, error) {
-    //         console.log("error: ",error);
-    //     },
-    // });
+            } 
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
 }
-</script>
-@section('profile_script')
 
+function padStart(str) {
+    return ('0' + str).slice(-2)
+}
+
+    // $('#myrequirement-table').DataTable({
+    //     responsive: true,
+    //     pageLength: 10,
+    //     searching: false,
+    //     paging: false,
+    //     info: false
+    // });
+</script>
 @stop

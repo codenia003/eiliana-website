@@ -114,11 +114,13 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Hours Proposed</label>
-                                            <input class="form-control" type="text" name="hours_proposed">
+                                            <input class="form-control" type="text" name="hours_proposed_as" value="as per eiliana software" readonly>
+                                            <input class="form-control" type="hidden" name="hours_proposed" value="0">
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Hours Approved</label>
-                                            <input class="form-control" type="text" name="hours_approved">
+                                            <input class="form-control" type="text" name="hours_approved_as" value="as per eiliana software" readonly>
+                                            <input class="form-control" type="hidden" name="hours_approved" value="0" >
                                         </div>
                                     </div>
                                 </div>

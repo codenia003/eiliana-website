@@ -93,7 +93,7 @@ class ProfileController extends JoshController
         $user = Sentinel::getUser();
         //$projectcategorys = ProjectCategory::all();
         $proexps = ProfessionalExperience::where('user_id', $user->id)->get();
-        $technologies = Technology::where('parent_id', '0')->get();
+        $technologies = Technology::where('display_status', '1')->orderBy('technology_name')->get();
         $locations = Location::all();
         $projectcategorys = ProjectCategory::where('parent_id', '0')->get();
         $subprojectcategorys = ProjectCategory::where('parent_id', '!=', '0')->get();
@@ -131,7 +131,7 @@ class ProfileController extends JoshController
 
         $projects = UserProject::where('user_id', Sentinel::getUser()->id)->get();
         $employers = Employers::where('user_id', Sentinel::getUser()->id)->get();
-        $technologies = Technology::where('parent_id', '0')->get();
+        $technologies = Technology::where('display_status', '1')->orderBy('technology_name')->get();
         $frameworks = Technology::where('parent_id', '!=', '0')->get();
         $projecttypes = ProjectType::all();
         $customerindustries = CustomerIndustry::all();

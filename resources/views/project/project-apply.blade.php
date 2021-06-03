@@ -59,13 +59,35 @@ type="text/css"/>
                                         <label for="project_id" class="col-form-label">Job ID:</label>
                                         <input type="text" class="form-control" name="project_id" id="project_id" value="{{ $project->project_id }}" readonly="">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="bid_amount" class="col-form-label">Bid Amount:</label>
-                                        <input type="number" class="form-control" name="bid_amount" id="bid_amount" required>
+                                    <div class="form-row">
+                                        <div class="form-group col">
+                                            <label for="bid_amount" class="col-form-label">Bid Amount({{ $project->projectCurrency->symbol }}):</label>
+                                            <input type="number" class="form-control" name="bid_amount" id="bid_amount" required>
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="engagement" class="col-form-label">Mode of engagement:</label>
+                                            @if ($project->projectAmount->pricing_model == '1')
+                                                <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                            @elseif ($project->projectAmount->pricing_model == '2')
+                                                <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                            @else
+                                                <input type="text" class="form-control" value="Project Amount" readonly>
+                                            @endif
+                                            
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="delivery_timeline" class="col-form-label">Delivery Timeline(Days):</label>
                                         <input type="number" class="form-control" name="delivery_timeline" id="delivery_timeline" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Technology Preference</label>
+                                        <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple required>
+                                            <option value=""></option>
+                                            @foreach ($technologies as $technology)
+                                            <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, explode(',', $project->technologty_pre))) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="subject" class="col-form-label">Subject:</label>
@@ -117,6 +139,10 @@ type="text/css"/>
 <script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
 <script>
+    $('#technologty_pre').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
     $('#projectlead').bootstrapValidator({
         fields: {
             subject: {

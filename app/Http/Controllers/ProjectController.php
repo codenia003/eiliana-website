@@ -595,8 +595,10 @@ class ProjectController extends JoshController
     {
         $project = Project::with('companydetails','locations','projectAmount','projectCurrency','projectsubcategory','customerindustry1')->where('project_id', $id)->first();
 
+        $technologies = Technology::where('display_status', '1')->orderBy('technology_name')->get();
+
         // return $project;
-        return view('project/project-apply', compact('project'));
+        return view('project/project-apply', compact('project','technologies'));
     }
 
     public function postProjectLead(Request $request)
@@ -605,6 +607,11 @@ class ProjectController extends JoshController
         $response['success'] = '0';
         $projectleadcheck = ProjectLeads::where('project_id', '=', $input['project_id'])->where('from_user_id', '=', Sentinel::getUser()->id)->first();
         if ($projectleadcheck === null) {
+
+            $technologty_pre = $request->input('technologty_pre');
+            $technologty_pre = implode(',', $technologty_pre);
+            $input['technologty_pre'] = $technologty_pre;
+
             $safeName = "";
 
             if ($request->hasFile('attach_file')) {
@@ -650,6 +657,7 @@ class ProjectController extends JoshController
         }
 
         return response()->json($response);
+        // return redirect('resume')->with('success', 'Project updated successfully');
 
     }
 
@@ -657,7 +665,7 @@ class ProjectController extends JoshController
 
        $project = Project::with('companydetails','locations','projectbidresponse','projectbidresponse.fromuser','projectbidresponse.fromuser.userprofessionalexp','projectbidresponse.fromuser.userprofessionalexp.currentlocation')->where('project_id', $id)->first();
 
-       $selected_technologty_pre = explode(',', $project->technologty_pre);
+        $selected_technologty_pre = explode(',', $project->technologty_pre);
         $selected_framework = explode(',', $project->framework);
         $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
         $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();

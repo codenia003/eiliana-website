@@ -102,7 +102,6 @@ class JobController extends JoshController
 
     public function hireTalentSales(Request $request)
     {
-
         $pagename = [
         	'page_title' => 'Hire Talent',
         	'lookingfor' => '1'
@@ -132,12 +131,10 @@ class JobController extends JoshController
         }
     }
 
-    public function talentSearch(Request $request) {
-
+    public function talentSearch(Request $request) 
+    {
         $data = $request->all();
-        // echo "<pre>";
-        // print_r($data);
-        // die;
+        
         $contractsattfing = $data;
         $request->session()->forget('contractsattfing');
         $request->session()->put('contractsattfing', $contractsattfing);
@@ -164,8 +161,8 @@ class JobController extends JoshController
         }
     }
 
-    public function jobPostingSearch(Request $request){
-
+    public function jobPostingSearch(Request $request)
+    {
         if(Session::get('users')['login_as'] == '2'){
             $data = $request->all();
             $contractsattfing = $data;

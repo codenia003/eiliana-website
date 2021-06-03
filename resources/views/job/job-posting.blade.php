@@ -52,7 +52,7 @@
 					                    <div class="form-check form-check-inline">
 					                        <div class="custom-control custom-radio">
 					                            <input type="radio" id="Contractual" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="1">
-					                            <label class="custom-control-label" for="Contractual">Contractual Staffing</label>
+					                            <label class="custom-control-label" for="Contractual">Contractual Job</label>
 					                        </div>
 					                    </div>
 					                </div>
@@ -164,6 +164,7 @@
 <script>
     $(window).bind("load", function() {
         changeLookingFor();
+		change_category();
     });
 	function changeLookingFor() {
         // var anonymous = e.target.value;

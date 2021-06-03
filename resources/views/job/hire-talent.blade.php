@@ -52,7 +52,7 @@
 					                    <div class="form-check form-check-inline">
 					                        <div class="custom-control custom-radio">
 					                            <input type="radio" id="Contractual" class="custom-control-input" name="lookingfor" onchange="changeLookingFor()" value="1">
-					                            <label class="custom-control-label" for="Contractual">Contractual Employer</label>
+					                            <label class="custom-control-label" for="Contractual">Contractual Job</label>
 					                        </div>
 					                    </div>
 					                </div>
@@ -98,7 +98,7 @@
 				                                </div>
 				                            </div>
 	                                    </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
 	                                        <label>Job Location</label>
 	                                        <select name="location" class="form-control">
 	                                            <option value=""></option>
@@ -106,7 +106,7 @@
                                                 <option value="{{ $location->location_id }}" >{{ $location->name }}</option>
                                                 @endforeach
 	                                        </select>
-	                                    </div>
+	                                    </div> --}}
 
                                         <div class="form-group job-posting d-none">
 	                                        <label>Job Location</label>

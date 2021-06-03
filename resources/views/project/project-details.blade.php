@@ -32,7 +32,7 @@ Search Project
 
 {{-- content --}}
 @section('content')
-<div class="bg-light browse-project">
+<div class="browse-project">
     <div class="bg-red">
         <div class="px-5 py-2">
             <div class="align-items-center">
@@ -44,7 +44,7 @@ Search Project
     <div class="container space-top-1 space-top-md-2 space-bottom-2 space-bottom-lg-3">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
-                <div class="card mb-3 mb-lg-5 project-deatils">
+                <div class="card mb-3 mb-lg-5 project-deatils shadow border">
                     <div class="card-header">
                         <span class="h5 card-title font-weight-700">{{ $project->project_title }}</span>
                         <div class="float-right font-weight-700 mt-1">
@@ -69,7 +69,7 @@ Search Project
                     </div> -->
                     <div class="card-body">
                         <div class="skills">
-                            <span class="h5">Project Summary</span>
+                            <span class="h5">Project Summary: </span>
                             <p>{{ $project->project_summary }}</p>
                         </div>
                         <div class="skills mt-4">

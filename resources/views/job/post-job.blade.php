@@ -96,7 +96,7 @@ Job Post
                                                 <label class="form-check-label" for="inlineCheckbox3">Yearly</label>
                                             </div> --}}
                                         </div>
-                                       @if(Session::get('contractsattfing')['location'])
+                                       @if(isset(Session::get('contractsattfing')['location']))
                                         <div class="form-group col-6">
                                             <label>Location</label>
                                             <select name="location" class="form-control" required="">

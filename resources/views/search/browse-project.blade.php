@@ -72,7 +72,7 @@
                             </div>
                             <div class="mb-4">
                                 <div class="display-5">Project Summary</div>
-                                <p class="description">{{ $project->project_summary }}</p>
+                                <p class="description">{!! \Illuminate\Support\Str::words($project->project_summary, 50,'...')  !!}</p>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-md-6">

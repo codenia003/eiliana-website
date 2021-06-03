@@ -187,19 +187,14 @@ Job Post
                                             <div class="form-row">
                                                 <div class="col">
                                                     <select class="form-control" name="experience_year">
-                                                        @for ($i = 0; $i < 21; $i++)
+                                                        @for ($i = 0; $i < 51; $i++)
                                                         <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_year']==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                                         @endfor
                                                     </select>
                                                 </div>
                                                 <div class="col">
-                                                    <!-- <select class="form-control" name="experience_month">
-                                                        @for ($i = 1; $i < 13; $i++)
-                                                        <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_month']==$i)? "selected" : "" }}>{{ $i }} Months</option>
-                                                        @endfor
-                                                    </select> -->
                                                     <select class="form-control" name="experience_month">
-                                                        @for ($i = 1; $i < 21; $i++)
+                                                        @for ($i = 1; $i < 52; $i++)
                                                         <option value="{{ $i }}" {{ (Session::get('contractsattfing')['experience_month']==$i)? "selected" : "" }}>{{ $i }} Years</option>
                                                         @endfor
                                                     </select>
@@ -264,31 +259,31 @@ Job Post
                                     </div>
                                     <div class="form-row">
                                         <div class="col">
-                                            <label>Contract Duration</label>
+                                            <label>Contract Duration(In Months)</label>
                                             <div class="form-row">
                                                 <div class="form-group col">
-                                                    <input type="text" class="form-control" name="contract_duration_from" placeholder="From" required>
+                                                    <input type="number" class="form-control" name="contract_duration_from" placeholder="From" required>
                                                 </div>
                                                 <div class="form-group col">
-                                                    <input type="text" class="form-control" name="contract_duration_to" placeholder="To" required>
+                                                    <input type="number" class="form-control" name="contract_duration_to" placeholder="To" required>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col">
-                                            <label>Budget(Per Month)</label>
+                                            <label>Per Month Budget</label>
                                             <div class="form-row">
                                                 <div class="form-group col">
-                                                    <input type="text" class="form-control" name="budget_from" placeholder="From" required>
-                                                    <!-- <select class="form-control" name="budget_from">
+                                                    <input type="number" class="form-control" name="budget_from" placeholder="From" required>
+                                                    {{-- <select class="form-control" name="budget_from">
                                                         <option value="">From</option>
                                                         @for ($i = 0; $i < 51; $i++)
                                                         <option value="{{ $i }}">{{ $i }} Lacs</option>
                                                         @endfor
-                                                    </select> -->
+                                                    </select> --}}
                                                 </div>
                                                 <div class="form-group col">
-                                                    <input type="text" class="form-control" name="budget_to" placeholder="To" required>
+                                                    <input type="number" class="form-control" name="budget_to" placeholder="To" required>
                                                 </div>
                                             </div>
                                         </div>

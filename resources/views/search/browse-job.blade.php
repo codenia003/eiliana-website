@@ -83,21 +83,21 @@
                                         <div class="display-5">Profile Title</div>
                                         <p>{{ $job->job_title }}</p>
                                     </div>--}}
-                                    <div class="mb-2">
+                                    <div class="mb-4">
                                         <div class="display-5">Job Title</div>
                                         <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->job_title }}</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="contract-profile mb-1">
+                                    <div class="contract-profile mb-1 text-right">
                                         <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="mb-2">
+                            <div class="mb-4">
                                 <div class="display-5">Job Description</div>
-                                <p class="description">{{ $job->role_summary }}</p>
+                                <p class="description">{!! \Illuminate\Support\Str::words($job->role_summary, 50,'...')  !!}</p>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-md-6">
@@ -108,20 +108,31 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-2">
-                                        <div class="display-5">Experience</div>
-                                        <p>{{ $job->experience_year }} Years {{ $job->experience_month }} Month</p>
+                                        <div class="display-5">Experience required</div>
+                                        <p>{{ $job->experience_year }} Year to {{ $job->experience_month }} Year</p>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="mb-2">
                                         <div class="display-5">Location</div>
                                         <p>@if($job->location != null){{ $job->locations->name }}@endif</p>
                                     </div>
+                                </div> --}}
+                                <div class="col-md-6">
+                                    <div class="mb-3 duration">
+                                        <div class="display-5">Technology</div>
+                                        @foreach (App\Models\Technology::whereIn('technology_id', explode(',', $job->technologty_pre))->get() as $data)
+                                            {{ $data->technology_name }}
+                                            @if (!$loop->last)
+                                                ,
+                                            @endif                                          
+                                        @endforeach
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3 duration">
-                                        <div class="display-5">Duration of Project</div>
-                                        <p>10</p>
+                                        <div class="display-5">Contract Duration</div>
+                                        <p>{{ $job->contract_duration_from }} Month to {{ $job->contract_duration_to }} Month</p>
                                     </div>
                                 </div>
                             </div>

@@ -44,6 +44,9 @@ Search Project
     <div class="container space-top-1 space-top-md-2 space-bottom-2 space-bottom-lg-3">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
+                <div id="notific">
+                    @include('notifications')
+                </div>
                 <div class="card mb-3 mb-lg-5 project-deatils shadow border">
                     <div class="card-header">
                         <span class="h5 card-title font-weight-700">{{ $project->project_title }}</span>
@@ -64,9 +67,6 @@ Search Project
                             <span class="day-left">Bidding Ends In {{ $project->expiry_days }} Days</span><br>
                         </div>
                     </div>
-                    <!-- <div class="card-body mb-3 mb-lg-5 p-4 text-center d-block" *ngIf="loading">
-                        <div class="spinner-border spinner-border-lg"></div>
-                    </div> -->
                     <div class="card-body">
                         <div class="skills">
                             <span class="h5">Project Summary: </span>
@@ -74,7 +74,7 @@ Search Project
                         </div>
                         <div class="skills mt-4">
                             <span class="h5">Years of Experience: </span>
-                            <span>{{ $project->experience_year }} Years {{ $project->experience_month }} Month</span>
+                            <span>{{ $project->experience_year }} Year to  {{ $project->experience_month }} Year</span>
                         </div>
                         <div class="skills mt-4">
                             <span class="h5">Skills Required: </span>
@@ -97,6 +97,7 @@ Search Project
                                 <span>{{ $technology->technology_name }}</span>
                             @endforeach
                         </div>
+                        <p class="mt-4 font-weight-700">Posted On {{  \Carbon\Carbon::parse($project->created_at)->isoFormat('MMM Do YYYY') }}</p>
                     </div>
                 </div>
             </div>

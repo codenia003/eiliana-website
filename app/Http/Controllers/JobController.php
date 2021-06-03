@@ -339,15 +339,32 @@ class JobController extends JoshController
 
     public function getJobDeatils($id) {
 
-        $job = Job::with('companydetails','locations','jobseducation','jobseducation.educationtype','jobscertificate','jobsquestion')->where('job_id', $id)->first();
+        $job = Job::with('companydetails','locations','jobseducation','jobseducation.educationtype','jobscertificate','jobsquestion','customerindustry1')->where('job_id', $id)->first();
 
         $selected_technologty_pre = explode(',', $job->technologty_pre);
         $selected_framework = explode(',', $job->framework);
         $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
         $childtechnologies = Technology::whereIn('technology_id', $selected_framework)->get();
         $savejob = SaveJob::where('job_id', '=', $id)->where('user_id', '=', Sentinel::getUser()->id)->first();
-        //return $job;
+
+        $from = strtotime($job['expiry_datetime']);
+        $today = time();
+        $difference = $from - $today;
+
+        $job['expiry_days'] = floor($difference / 86400);
+
+        // return $job;
         return view('job/job-details', compact('job','technologies','childtechnologies','savejob'));
+    }
+
+    public function jobApplyLead($id)
+    {
+        $job = Job::with('companydetails','locations','jobseducation','jobseducation.educationtype','jobscertificate','jobsquestion','customerindustry1')->where('job_id', $id)->first();
+
+        $technologies = Technology::where('display_status', '1')->orderBy('technology_name')->get();
+
+        // return $project;
+        return view('job/job-apply', compact('job','technologies'));
     }
 
     public function jobLeadResponse($id) {

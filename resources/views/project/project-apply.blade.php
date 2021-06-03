@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Contract Details
+Apply Project
 @parent
 @stop
 
@@ -101,13 +101,13 @@ type="text/css"/>
                                         <label>Attach File</label>
                                         <div class="custom-file" style="height: calc(1.5em + 0.75rem + 8px);">
                                             <input type="file" class="custom-file-input" id="customFile" name="attach_file">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                            <label class="custom-file-label" for="customFile">Attach File/Resume</label>
                                         </div>
                                     </div>
 
                                     <div class="singup-body float-right mt-3">
                                         <div class="btn-group" role="group">
-                                            <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Apply  >>></button>
+                                            <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Apply >>></button>
                                             {{-- <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button> --}}
                                         </div>
                                     </div>

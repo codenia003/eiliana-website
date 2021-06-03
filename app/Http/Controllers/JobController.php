@@ -821,19 +821,47 @@ class JobController extends JoshController
         $input['user_id'] = $user->id;
 
         $jobschedules = ContractualJobSchedule::where('job_leads_id', $input['job_leads_id'])->first();
+
+        $jobschedules->job_leads_id = $input['job_leads_id'];
+        $jobschedules->job_proposal_id = $input['job_proposal_id'];
+        $jobschedules->job_id = $input['job_id'];
+        $jobschedules->customer_name = $input['customer_name'];
         $jobschedules->price = $input['price'];
+
+        // $jobschedules->gst_rate = $input['gst_rate'];
+        // $jobschedules->total_price = $input['total_price'];
+        $jobschedules->notice_period = $input['notice_period'];
+        $jobschedules->company_name = $input['company_name'];
+        $jobschedules->job_start_date = $input['job_start_date'];
+        $jobschedules->remarks = $input['remarks'];
+
         $jobschedules->contract_duration = $input['contract_duration'];
         $jobschedules->pricing_cycle = $input['pricing_cycle'];
-
-        if($input['pricing_cycle'] == '2')
+        if($jobschedules->pricing_cycle == 2)
         {
-             $jobschedules->on_postpaid_amount = $input['on_postpaid_amount'];
-             $jobschedules->advance_amount = $input['advance_amount'];
+            $jobschedules->advance_amount = $input['advance_amount'];
+            $jobschedules->on_postpaid_amount = $input['on_postpaid_amount'];
         }
+
 
         $jobschedules->location = $input['location'];
         $jobschedules->satuts = '1';
         $jobschedules->save();
+
+        // $jobschedules = ContractualJobSchedule::where('job_leads_id', $input['job_leads_id'])->first();
+        // $jobschedules->price = $input['price'];
+        // $jobschedules->contract_duration = $input['contract_duration'];
+        // $jobschedules->pricing_cycle = $input['pricing_cycle'];
+
+        // if($input['pricing_cycle'] == '2')
+        // {
+        //      $jobschedules->on_postpaid_amount = $input['on_postpaid_amount'];
+        //      $jobschedules->advance_amount = $input['advance_amount'];
+        // }
+
+        // $jobschedules->location = $input['location'];
+        // $jobschedules->satuts = '1';
+        // $jobschedules->save();
 
         $job = Job::where('job_id', $input['job_id'])->first();
 
@@ -850,7 +878,8 @@ class JobController extends JoshController
 
         Notification::send($user, new UserNotification($details));
 
-        return redirect('/freelancer/my-proposal')->with('success', 'Job Schedule Updated successfully');
+        //return redirect('/freelancer/my-contract_job')->with('success', 'Job Schedule Updated successfully');
+        return redirect('/freelancer/my-contract_job')->with('success', 'Job Schedule Updated successfully');
     }
 
     public function getResume() {

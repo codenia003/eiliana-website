@@ -164,6 +164,13 @@ class FreelancerController extends Controller
         $contractualJobs->customer_name = $input['customer_name'];
         $contractualJobs->price = $input['price'];
 
+        // $contractualJobs->gst_rate = $input['gst_rate'];
+        // $contractualJobs->total_price = $input['total_price'];
+        $contractualJobs->notice_period = $input['notice_period'];
+        $contractualJobs->company_name = $input['company_name'];
+        $contractualJobs->job_start_date = $input['job_start_date'];
+        $contractualJobs->remarks = $input['remarks'];
+
         $contractualJobs->contract_duration = $input['contract_duration'];
         $contractualJobs->pricing_cycle = $input['pricing_cycle'];
         if($contractualJobs->pricing_cycle == 2)
@@ -175,6 +182,10 @@ class FreelancerController extends Controller
 
         $contractualJobs->location = $input['location'];
         $contractualJobs->save();
+
+        $jobleadchange = JobLeads::find($contractualJobs->job_leads_id);
+        $jobleadchange->bid_amount = $input['price'];
+        $jobleadchange->save();
 
         $insertedId = $contractualJobs->job_schedule_id;
         $job = Job::where('job_id', $input['job_id'])->first();
@@ -229,41 +240,48 @@ class FreelancerController extends Controller
         $input = $request->except('_token');
         $response['success'] = '0';
 
-        $projectstatuscheck = JobLeads::where('job_leads_id', '=', $input['job_leads_id'])->where('status', '=', $input['job_lead_status'])->first();
-        if($projectstatuscheck === null) {
+        $jobstatuscheck = JobLeads::where('job_leads_id', '=', $input['job_leads_id'])->where('status', '=', $input['job_lead_status'])->first();
+        if($jobstatuscheck === null) {
 
             if($input['job_lead_status'] === '1'){
-                $projectstatus = JobLeads::find($input['job_leads_id']);
-                $projectstatus->status = $input['job_lead_status'];
-                $projectstatus->save();
+                $jobstatus = JobLeads::find($input['job_leads_id']);
+                $jobstatus->status = $input['job_lead_status'];
+                $jobstatus->save();
                 
                 $response['success'] = '1';
-                $response['msg'] = 'Job Status Onhold successfully';
+                $response['msg'] = 'Job Status Resume Onhold successfully';
             }else if($input['job_lead_status'] === '2'){
-                $projectstatus = JobLeads::find($input['job_leads_id']);
-                $projectstatus->status = $input['job_lead_status'];
-                $projectstatus->save();
+                $jobstatus = JobLeads::find($input['job_leads_id']);
+                $jobstatus->status = $input['job_lead_status'];
+                $jobstatus->save();
 
                 $response['success'] = '2';
-                $response['msg'] = 'Job Status Shortlist successfully';
+                $response['msg'] = 'Job Status Resume Shortlist successfully';
             }else if($input['job_lead_status'] === '3'){
-                $projectstatus = JobLeads::find($input['job_leads_id']);
-                $projectstatus->status = $input['job_lead_status'];
-                $projectstatus->save();
+                $jobstatus = JobLeads::find($input['job_leads_id']);
+                $jobstatus->status = $input['job_lead_status'];
+                $jobstatus->save();
 
                 $response['success'] = '3';
-                $response['msg'] = 'Job Status Reject successfully';
-            }else {
-                $projectstatus = JobLeads::find($input['job_leads_id']);
-                $projectstatus->status = $input['job_lead_status'];
-                $projectstatus->save();
-                
+                $response['msg'] = 'Job Status Resume Reject successfully';
+            }else if($input['job_lead_status'] === '4'){
+                $jobstatus = JobLeads::find($input['job_leads_id']);
+                $jobstatus->status = $input['job_lead_status'];
+                $jobstatus->save();
+
                 $response['success'] = '4';
-                $response['msg'] = 'Job Status Order Finalized successfully';
+                $response['msg'] = 'Job Status Review Proposal successfully';
+            }else {
+                $jobstatus = JobLeads::find($input['job_leads_id']);
+                $jobstatus->status = $input['job_lead_status'];
+                $jobstatus->save();
+                
+                $response['success'] = '5';
+                $response['msg'] = 'Job Status Accept Proposal successfully';
             }
 
         } else {
-            $response['success'] = '5';
+            $response['success'] = '6';
             $response['errors'] = 'You are already changed status';
         }
         return response()->json($response);

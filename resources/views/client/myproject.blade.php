@@ -58,11 +58,11 @@ type="text/css"/>
                             <td>{{ $lead->project_id }}</td>
                             <td>{{ $lead->project_title }}</td>
                             @if($lead->projectamount->pricing_model == '1')
-                               <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }}/Hour</td>
+                               <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR /Hour</td>
                             @elseif($lead->projectamount->pricing_model == '2')
-                            <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }}/Month</td>
+                            <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR /Month</td>
                             @else
-                            <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }}</td>
+                            <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR</td>
                             @endif
 
                             @if(!empty($lead->technologys->technology_name))

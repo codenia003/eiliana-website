@@ -50,6 +50,7 @@ type="text/css"/>
                 <th>Technology</th>
                 <th>Notice Period</th>
                 <th>Status</th>
+                <th>More Actions</th>
             </tr>
             </thead>
                 <tbody>
@@ -67,15 +68,21 @@ type="text/css"/>
                             <form action="" method="POST">
                                @csrf
                                 <td>
-                                    <select name="job_status" id="job_status{{ $lead->job_leads_id }}" class="form-control" onchange="jobStatusChange('{{ $lead->job_leads_id }}')" style="width: 105px;" required>
+                                    <select name="job_status" id="job_status{{ $lead->job_leads_id }}" class="form-control" onchange="jobStatusChange('{{ $lead->job_leads_id }}')" style="width: 170px;" required>
                                         <option value=""></option>
-                                        <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Onhold</option>
-                                        <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Shortlist</option>
-                                        <option value="3" {{ ($lead->status== '3')? "selected" : "" }}>Reject</option>
-                                        <option value="4" {{ ($lead->status== '4')? "selected" : "" }}>Order Finalized</option>
+                                        <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Resume Onhold</option>
+                                        <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Resume Shortlist</option>
+                                        <option value="3" {{ ($lead->status== '3')? "selected" : "" }}>Resume Reject</option>
+                                        <option value="4" {{ ($lead->status== '4')? "selected" : "" }}>Rewise Proposal</option>
+                                        <option value="5" {{ ($lead->status== '5')? "selected" : "" }}>Proposal Accepted</option>
                                     </select>
                                 </td>
                             </form>
+                            @if($lead->status== '4')
+                              <td><a style="font-weight: 600;" href="{{ url('/freelancer/contractual-job-inform'. '/' . $lead->job_leads_id) }}">New Proposal</a></td>
+                            @elseif($lead->status== '5')
+                              <td><a style="font-weight: 600;" href="{{ url('/freelancer/contractual-job-inform'. '/' . $lead->job_leads_id) }}">Onboarding</a></td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
@@ -133,6 +140,13 @@ function jobStatusChange(job_leads_id){
                     toggleRegPopup(msg,redirect);
                 }
             }else if(userCheck.success == '4') {
+                var msg = userCheck.msg;
+                var redirect = '/freelancer/my-contract_job';
+                var result = confirm('Are you sure you want to change this status?');
+                if (result) {
+                    toggleRegPopup(msg,redirect);
+                }
+            }else if(userCheck.success == '5') {
                 var msg = userCheck.msg;
                 var redirect = '/freelancer/my-contract_job';
                 var result = confirm('Are you sure you want to change this status?');

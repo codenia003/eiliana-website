@@ -485,6 +485,9 @@ Route::group(
         Route::post('post-proposal-job-lead', 'ClientController@postProposalJobLead');
         Route::get('my-project', 'ClientController@myProject')->name('my-project');
 
+        Route::get('resource-details-form/{id}', 'ClientController@resourceDetailsForm')->name('resource-details-form');
+        Route::post('post-resource-details', 'ClientController@postResourceDetails')->name('post-resource-details');
+
         Route::get('project-schedule/{id}', 'ClientController@projectSchedule')->name('project-schedule');
         Route::post('project-lead-schedule', 'ClientController@projectLeadSchedule')->name('project-lead-schedule');
 

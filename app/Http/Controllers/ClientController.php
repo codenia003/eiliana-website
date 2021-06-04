@@ -25,6 +25,7 @@ use App\Models\JobOrderInvoice;
 use App\Models\JobLeads;
 use App\Models\Finance;
 use App\Models\Technology;
+use App\Models\ResourceDetails;
 use App\Models\JobOrderFinance;
 use App\Models\JobContractDetails;
 use App\Models\JobPaymentSchedule;
@@ -98,6 +99,32 @@ class ClientController extends JoshController
         return view('client/myproposalview', compact('leads'));
     }
 
+    public function resourceDetailsForm($id)
+    {
+        $leads =ContractualJobSchedule::with('userjobs','jobdetail.by_user_job','userjobs.fromuser','jobAmount')->where('job_schedule_id', '=', $id)->first();
+        //return $leads;
+        return view('client/resource_details_form', compact('leads'));
+    }
+
+    public function postResourceDetails(Request $request)
+    {
+        $input = $request->except('_token');
+        $response['success'] = '0';
+        
+        $job_resource_details = new ResourceDetails;
+        $job_resource_details->job_schedule_id = $input['job_schedule_id'];
+        $job_resource_details->freelancer_name = $input['freelancer_name'];
+        $job_resource_details->sprovider_name = $input['sprovider_name'];
+        $job_resource_details->onboard_date = $input['onboard_date'];
+        $job_resource_details->onboard_status = $input['onboard_status'];
+        $job_resource_details->save();
+
+        $success = 'success';
+        $msg = 'Resource details submit successfully';
+
+        return redirect('/client/resource-details-form/'.$input['job_schedule_id'])->with($success ,  $msg);
+    }
+
     public function myContractJob()
     {
         $jobs = Job::with('jobbidresponse','technologys','locations')->where('user_id', Sentinel::getUser()->id)->paginate(10);
@@ -122,8 +149,9 @@ class ClientController extends JoshController
     public function myJobLeadView($id)
     {
         $leads = JobLeads::with('jobdetail','fromuser')->where('job_id', $id)->where('lead_status', '!=' ,'1')->paginate(10);
+        $resource_leads = ResourceDetails::all();
         //return $leads;
-        return view('client/myjoblead', compact('leads'));
+        return view('client/myjoblead', compact('leads','resource_leads'));
     }
 
     public function projectSchedule($id)
@@ -318,6 +346,10 @@ class ClientController extends JoshController
             $contractualjob_schedules->save();
 
             if($input['lead_status'] === '2'){
+                $jobstatus = JobLeads::find($contractualjob_schedules->job_leads_id);
+                $jobstatus->status = '5';
+                $jobstatus->save();
+
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Schedule Accepted successfully';
                 $url = '/job/job-contract-details/'. $contractualjob_schedules->job_leads_id;
@@ -545,26 +577,17 @@ class ClientController extends JoshController
 
         $projectstatuscheck = ProjectLeads::where('project_leads_id', '=', $input['project_leads_id'])->where('status', '=', $input['project_lead_status'])->first();
         if($projectstatuscheck === null) {
-
-            if($input['project_lead_status'] === '2'){
                 $projectstatus = ProjectLeads::find($input['project_leads_id']);
                 $projectstatus->status = $input['project_lead_status'];
                 $projectstatus->save();
 
+            if($input['project_lead_status'] === '2'){
                 $response['success'] = '1';
                 $response['msg'] = 'Project Status Shortlist successfully';
             }else if($input['project_lead_status'] === '3'){
-                $projectstatus = ProjectLeads::find($input['project_leads_id']);
-                $projectstatus->status = $input['project_lead_status'];
-                $projectstatus->save();
-                
                 $response['success'] = '2';
                 $response['msg'] = 'Project Status Reject successfully';
             }else {
-                $projectstatus = ProjectLeads::find($input['project_leads_id']);
-                $projectstatus->status = $input['project_lead_status'];
-                $projectstatus->save();
-                
                 $response['success'] = '3';
                 $response['msg'] = 'Project Status Onhold successfully';
             }
@@ -584,19 +607,14 @@ class ClientController extends JoshController
 
         $projectstatuscheck = Project::where('project_id', '=', $input['project_id'])->where('status', '=', $input['project_status'])->first();
         if($projectstatuscheck === null) {
-
-            if($input['project_status'] === '2'){
                 $projectstatus = Project::find($input['project_id']);
                 $projectstatus->status = $input['project_status'];
                 $projectstatus->save();
 
+            if($input['project_status'] === '2'){
                 $response['success'] = '1';
                 $response['msg'] = 'Project Status Closed successfully';
             }else if($input['project_status'] === '3'){
-                $projectstatus = Project::find($input['project_id']);
-                $projectstatus->status = $input['project_status'];
-                $projectstatus->save();
-
                 $response['success'] = '2';
                 $response['msg'] = 'Project Status Repost successfully';
             }else {
@@ -619,33 +637,21 @@ class ClientController extends JoshController
 
         $jobstatuscheck = JobLeads::where('job_leads_id', '=', $input['job_leads_id'])->where('status', '=', $input['job_lead_status'])->first();
         if($jobstatuscheck === null) {
-
-            if($input['job_lead_status'] === '1'){
                 $jobstatus = JobLeads::find($input['job_leads_id']);
                 $jobstatus->status = $input['job_lead_status'];
                 $jobstatus->save();
-                
+
+            if($input['job_lead_status'] === '1'){
                 $response['success'] = '1';
                 $response['msg'] = 'Job Status Resume Onhold successfully';
             }else if($input['job_lead_status'] === '2'){
-                $jobstatus = JobLeads::find($input['job_leads_id']);
-                $jobstatus->status = $input['job_lead_status'];
-                $jobstatus->save();
-
                 $response['success'] = '2';
                 $response['msg'] = 'Job Status Resume Shortlist successfully';
             }else if($input['job_lead_status'] === '3'){
-                $jobstatus = JobLeads::find($input['job_leads_id']);
-                $jobstatus->status = $input['job_lead_status'];
-                $jobstatus->save();
-
                 $response['success'] = '3';
                 $response['msg'] = 'Job Status Resume Reject successfully';
             }else if($input['job_lead_status'] === '4'){
-                $jobstatus = JobLeads::find($input['job_leads_id']);
-                $jobstatus->status = $input['job_lead_status'];
-                $jobstatus->save();
-
+                
                 $users = User::find($jobstatus->from_user_id);
                 $details = [
                     'greeting' => 'Hi '. $users->full_name,
@@ -661,10 +667,6 @@ class ClientController extends JoshController
                 $response['success'] = '4';
                 $response['msg'] = 'Job Status Review Proposal successfully';
             }else {
-                $jobstatus = JobLeads::find($input['job_leads_id']);
-                $jobstatus->status = $input['job_lead_status'];
-                $jobstatus->save();
-                
                 $response['success'] = '5';
                 $response['msg'] = 'Job Status Accept Proposal successfully';
             }

@@ -7,7 +7,7 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Rewise Proposal </span>
+            <span class="h5 text-white ml-2">Revise Proposal </span>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
         <div class="card">
         <div class="bg-blue">
             <div class="px-5 py-2">
-                <span class="h5 text-white" style="margin-left: -25px;">Rewise Proposal</span>
+                <span class="h5 text-white" style="margin-left: -25px;">Revise Proposal</span>
             </div>
         </div>
             <div class="card-body p-4">
@@ -43,11 +43,11 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Price Per Month </label><small> (Excluding GST)</small>
-                                <input type="text" class="form-control" name="price" id="price" value="" required>
+                                <input type="number" class="form-control" name="price" id="price" value="" required>
                             </div>
                             <div class="form-group col-6">
                                 <label>Notice Period</label><small> (Days)</small>
-                                <input type="text" class="form-control" name="notice_period" value="" required>
+                                <input type="number" class="form-control" name="notice_period" value="" required>
                             </div>
                         </div>
                         {{--<div class="form-row">
@@ -63,7 +63,7 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Contract Duration</label>
-                                <input type="text" class="form-control" name="contract_duration" value="{{$joblead->jobdetail->contract_duration}}">
+                                <input type="number" class="form-control" name="contract_duration" value="{{$joblead->jobdetail->contract_duration}}">
                             </div>
                             <div class="form-group col-6">
                                 <label>Resource Name</label>
@@ -108,11 +108,11 @@
                                 <select class="form-control" name="pricing_cycle" id="pricing_cycle" required>
                                     <option></option>
                                     <option value="1">Monthly Advance</option>
-                                    <option value="2">Monthly Postpaid</option>
-                                    <option value="3">Quarterly Advance</option>
-                                    <option value="5">Bi-Monthly Advance</option>
-                                    <option value="6">Bi-Monthly Postpaid</option>
-                                    <option value="7">Yearly Advance</option>
+                                    <!-- <option value="2">Monthly Postpaid</option> -->
+                                    <option value="2">Quarterly Advance</option>
+                                    <option value="3">Bi-Monthly Advance</option>
+                                    <!-- <option value="6">Bi-Monthly Postpaid</option> -->
+                                    <option value="4">Yearly Advance</option>
                                 </select>
                             </div>
                         </div>
@@ -163,9 +163,11 @@
                         </div>
                     </div>
                     <div class="form-group text-right mt-5">
-                        <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                         <div class="btn-group" role="group">
-                            <button class="btn btn-primary" type="submit">Send To Customer</button>
+                            <button class="btn btn-primary" type="submit">
+                               Send To Customer
+                            </button>
+                            <button class="btn btn-primary" type="reset">Discard</button>
                         </div>
                     </div>
                 </form>
@@ -184,20 +186,24 @@ $('#educationForm').bootstrapValidator({});
         flatpickr('.flatpickr');
     });
    
-   $('#on_postpaid').hide();
+    $('#on_postpaid').hide();
 
-   $("#pricing_cycle").change(function() {
-        var pricing_cycle = this.value;
-        console.log(pricing_cycle);
-        if(pricing_cycle == 2)
-        {
-            $('#on_postpaid').show();
-        }
-        else
-        {
-            $('#on_postpaid').hide();
-        }
-    });
+//    $("#pricing_cycle").change(function() {
+//         var pricing_cycle = this.value;
+//         console.log(pricing_cycle);
+//         if(pricing_cycle == 2)
+//         {
+//             $('#on_postpaid').show();
+//         }
+//         else
+//         {
+//             $('#on_postpaid').hide();
+//         }
+//     });
+
+    function resetForm() {
+        document.getElementById("educationForm").reset();
+    }
 
     $("#price").keyup(function() {
         var price = this.value;

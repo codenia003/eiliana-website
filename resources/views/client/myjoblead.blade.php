@@ -48,7 +48,7 @@ type="text/css"/>
                 <th>Job Title</th>
                 <th>Freelancer Name</th>
                 <th>Notice Period</th>
-                <th>Bid Amount</th>
+                <th>Bid Amount <small> (Excluding GST)</small></th>
                 <th>Status</th>
             </tr>
             </thead>
@@ -72,7 +72,7 @@ type="text/css"/>
                                         <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Resume Onhold</option>
                                         <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Resume Shortlist</option>
                                         <option value="3" {{ ($lead->status== '3')? "selected" : "" }}>Resume Reject</option>
-                                        <option value="4" {{ ($lead->status== '4')? "selected" : "" }}>Rewise Proposal</option>
+                                        <option value="4" {{ ($lead->status== '4')? "selected" : "" }}>Revise Proposal</option>
                                         <option value="5" {{ ($lead->status== '5')? "selected" : "" }}>Proposal Accepted</option>
                                     </select>
                                 </td>
@@ -85,7 +85,44 @@ type="text/css"/>
              {{ $leads->withQueryString()->links() }}
         </div>
     </div>
-    <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
+    <div class="row teams-header">
+        <div class="col-md-4 md-2 mt-6">
+           <h2>Resource Details</h2>
+        </div>
+        <div class="col-md-8 md-2 mt-6 bench-img">
+           
+        </div>
+    </div>
+    <div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md teams-basic" >
+                <table class="table table-striped team-form" id="myopportunity-table">
+                    <thead>
+                    <tr>
+                        <th>Freelancer Name </th>
+                        <th>Service Provider Name</th>
+                        <th>Date Of Onboard </th>
+                        <th>Onboard Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($resource_leads as $resource_lead)
+                        <tr>
+                            <td>{{ $resource_lead->freelancer_name }}</td>
+                            <td>{{ $resource_lead->sprovider_name }}</td>
+                            <td>{{ $resource_lead->onboard_date }}</td>
+                            <td>
+                                @if($resource_lead->onboard_status == '1')
+                                    Onboarded 
+                                @else
+                                    Not Onboarded
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                </table>
+    </div>
+
+    <!-- <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
         <div class="modal-dialog" role="document" style="max-width: 900px !important;">
             <div class="modal-content">
                 <form action="#" method="POST" id="staffingflead">
@@ -127,7 +164,7 @@ type="text/css"/>
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
 @stop
 
@@ -136,7 +173,11 @@ type="text/css"/>
 <script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap4.js') }}" ></script>
 <script>
 
+
 $(document).ready(function() {
+
+    flatpickr('.flatpickr');
+
   $('.addAttr').click(function() {
     var id = $(this).data('id');  
     console.log(id); 
@@ -152,6 +193,20 @@ $(document).ready(function() {
     $('#display_status').val(display_status); 
   });
 });
+
+$("#onboard_status").change(function(){
+    $(this).find("option:selected").each(function(){
+        var optionValue = $(this).attr("value");
+        //alert(optionValue);
+        if(optionValue == '1'){
+            $("#onboard_button").show();
+            $("#onboard_status").hide();
+        } else{
+            $("#onboard_button").hide();
+            $("#onboard_status").show();
+        }
+    });
+}).change();
 
 function jobLeadStatusChange(job_leads_id){
     //$('.spinner-border').removeClass("d-none");

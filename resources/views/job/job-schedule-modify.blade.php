@@ -7,7 +7,7 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Rewise Proposal </span>
+            <span class="h5 text-white ml-2">Revise Proposal </span>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
         <div class="card">
         <div class="bg-blue">
             <div class="px-5 py-2">
-                <span class="h5 text-white" style="margin-left: -25px;">Rewise Proposal</span>
+                <span class="h5 text-white" style="margin-left: -25px;">Revise Proposal</span>
             </div>
         </div>
             <div class="card-body p-4">
@@ -44,11 +44,11 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Price Per Month </label><small> (Excluding GST)</small>
-                                <input type="text" class="form-control" name="price" id="price" value="{{ $contractual_job->price }}" required>
+                                <input type="number" class="form-control" name="price" id="price" value="{{ $contractual_job->price }}" required>
                             </div>
                             <div class="form-group col-6">
                                 <label>Notice Period</label><small> (Days)</small>
-                                <input type="text" class="form-control" name="notice_period" value="{{ $contractual_job->notice_period }}" required>
+                                <input type="number" class="form-control" name="notice_period" value="{{ $contractual_job->notice_period }}" required>
                             </div>
                         </div>
                         {{--<div class="form-row">
@@ -64,7 +64,7 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Contract Duration</label>
-                                <input type="text" class="form-control" name="contract_duration" value="{{ $contractual_job->contract_duration }}" required>
+                                <input type="number" class="form-control" name="contract_duration" value="{{ $contractual_job->contract_duration }}" required>
                             </div>
                             <div class="form-group col-6">
                                 <label>Resource Name</label>
@@ -84,12 +84,12 @@
                                 <select class="form-control" name="pricing_cycle" id="pricing_cycle" required>
                                     <option>Select Pricing Cycle</option>
                                     <option value="1" {{ ($contractual_job->pricing_cycle=='1')? "selected" : "" }}>Monthly Advance</option>
-                                    <option value="2" {{ ($contractual_job->pricing_cycle=='2')? "selected" : "" }}>Monthly Postpaid</option>
-                                    <option value="3" {{ ($contractual_job->pricing_cycle=='3')? "selected" : "" }}>Quarterly Advance</option>
-                                    <option value="4" {{ ($contractual_job->pricing_cycle=='4')? "selected" : "" }}>Quarterly Postpaid</option>
-                                    <option value="5" {{ ($contractual_job->pricing_cycle=='5')? "selected" : "" }}>Bi-Monthly Advance</option>
-                                    <option value="6" {{ ($contractual_job->pricing_cycle=='6')? "selected" : "" }}>Bi-Monthly Postpaid</option>
-                                    <option value="7" {{ ($contractual_job->pricing_cycle=='7')? "selected" : "" }}>Yearly Advance</option>
+                                    {{--<option value="2" {{ ($contractual_job->pricing_cycle=='2')? "selected" : "" }}>Monthly Postpaid</option>--}}
+                                    <option value="2" {{ ($contractual_job->pricing_cycle=='3')? "selected" : "" }}>Quarterly Advance</option>
+                                    {{--<option value="4" {{ ($contractual_job->pricing_cycle=='4')? "selected" : "" }}>Quarterly Postpaid</option>--}}
+                                    <option value="3" {{ ($contractual_job->pricing_cycle=='5')? "selected" : "" }}>Bi-Monthly Advance</option>
+                                    {{--<option value="6" {{ ($contractual_job->pricing_cycle=='6')? "selected" : "" }}>Bi-Monthly Postpaid</option>--}}
+                                    <option value="4" {{ ($contractual_job->pricing_cycle=='7')? "selected" : "" }}>Yearly Advance</option>
                                 </select>
                             </div>
                         </div>
@@ -124,10 +124,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group text-right mt-5">
+                    <!-- <div class="form-group text-right mt-5">
                         <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                         <div class="btn-group" role="group">
                             <button class="btn btn-primary" type="submit">Send To Customer</button>
+                        </div>
+                    </div> -->
+                    <div class="form-group text-right mt-5">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-primary" type="submit">
+                               Send To Customer
+                            </button>
+                            <button class="btn btn-primary" type="reset">Discard</button>
                         </div>
                     </div>
                 </form>
@@ -146,17 +154,17 @@ $('#educationForm').bootstrapValidator({});
         flatpickr('.flatpickr');
     });
    
-   $("#pricing_cycle").change(function(){
-        $(this).find("option:selected").each(function(){
-            var optionValue = $(this).attr("value");
-            //alert(optionValue);
-            if(optionValue == '2'){
-                $("#on_postpaid").show();
-            } else{
-                $("#on_postpaid").hide();
-            }
-        });
-    }).change();
+//    $("#pricing_cycle").change(function(){
+//         $(this).find("option:selected").each(function(){
+//             var optionValue = $(this).attr("value");
+//             //alert(optionValue);
+//             if(optionValue == '2'){
+//                 $("#on_postpaid").show();
+//             } else{
+//                 $("#on_postpaid").hide();
+//             }
+//         });
+//     }).change();
 
     $("#price").keyup(function() {
         var price = this.value;

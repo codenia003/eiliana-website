@@ -73,15 +73,15 @@ type="text/css"/>
                                         <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Resume Onhold</option>
                                         <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Resume Shortlist</option>
                                         <option value="3" {{ ($lead->status== '3')? "selected" : "" }}>Resume Reject</option>
-                                        <option value="4" {{ ($lead->status== '4')? "selected" : "" }}>Rewise Proposal</option>
+                                        <option value="4" {{ ($lead->status== '4')? "selected" : "" }}>Revise Proposal</option>
                                         <option value="5" {{ ($lead->status== '5')? "selected" : "" }}>Proposal Accepted</option>
                                     </select>
                                 </td>
                             </form>
                             @if($lead->status== '4')
-                              <td><a style="font-weight: 600;" href="{{ url('/freelancer/contractual-job-inform'. '/' . $lead->job_leads_id) }}">New Proposal</a></td>
+                              <td><a style="font-weight: 600;" href="{{ url('/freelancer/contractual-job-inform'. '/' . $lead->job_leads_id) }}">Review Proposal</a></td>
                             @elseif($lead->status== '5')
-                              <td><a style="font-weight: 600;" href="{{ url('/freelancer/contractual-job-inform'. '/' . $lead->job_leads_id) }}">Onboarding</a></td>
+                              <td><a style="font-weight: 600;" onclick="jobOnboarding('{{ $lead->jobcontractschedule->job_schedule_id }}')">Onboard</a></td>
                             @endif
                         </tr>
                     @endforeach
@@ -91,6 +91,41 @@ type="text/css"/>
             {{ $leads->withQueryString()->links() }}
         </div>--}}
     </div>
+    <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{ url('/freelancer/post-proposal-job-lead') }}" method="POST" id="">
+                @csrf
+                
+                <div class="modal-header bg-blue text-white">
+                    <h4 class="modal-title" id="modalLabelnews">Proposal For Client </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label for="job_schedule_id" class="col-form-label">Proposal Id:</label>
+                            <input type="text" class="form-control" id="job_schedule_id" name="job_schedule_id" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="actual_date" class="col-form-label">Date Of Onboarding :</label>
+                        <input class="flatpickr flatpickr-input form-control" type="text" name="actual_date" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Remarks</label>
+                        <textarea class="form-control" name="remarks" rows="4" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer singup-body">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-primary">Send To Customer</button>
+                        <button class="btn btn-outline-primary" data-dismiss="modal">Discard</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @stop
 
@@ -170,12 +205,56 @@ function padStart(str) {
     return ('0' + str).slice(-2)
 }
 
-    // $('#myrequirement-table').DataTable({
-    //     responsive: true,
-    //     pageLength: 10,
-    //     searching: false,
-    //     paging: false,
-    //     info: false
+function jobOnboarding(job_schedule_id){
+    $('.spinner-border').removeClass("d-none");
+
+    var data= {
+        _token: "{{ csrf_token() }}",
+        job_schedule_id: job_schedule_id
+    };
+    console.log(data);
+    
+    $('#modal-4').modal('show');
+    $('#job_schedule_id').val(job_schedule_id);
+    // $.ajax({
+    //     type: 'POST',
+    //     url: url,
+    //     data: data,
+    //     success: function(data) {
+    //         var userCheck = data;
+    //         $('.spinner-border').addClass("d-none");
+    //         if (userCheck.success == '1') {
+    //             Swal.fire({
+    //                 type: 'success',
+    //                 title: 'Success...',
+    //                 text: userCheck.msg,
+    //                 showConfirmButton: false,
+    //                 timer: 2000
+    //             });
+
+    //             $('#payment_button').show();
+    //             $('#status').hide();
+
+    //             // window.location.href = '/freelancer/my-opportunity';
+    //         } else {
+    //             Swal.fire({
+    //                 type: 'error',
+    //                 title: 'Oops...',
+    //                 text: userCheck.errors,
+    //                 showConfirmButton: false,
+    //                 timer: 3000
+    //             });
+    //             // if (userCheck.success == '2') {
+    //             //     window.location.href = '/freelancer/my-opportunity';
+    //             // }
+    //         }
+
+    //     },
+    //     error: function(xhr, status, error) {
+    //         console.log("error: ",error);
+    //     },
     // });
-</script>
+}
+
+</script>    
 @stop

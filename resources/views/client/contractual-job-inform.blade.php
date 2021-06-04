@@ -7,7 +7,7 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Rewise Proposal </span>
+            <span class="h5 text-white ml-2">Revise Proposal </span>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
         <div class="card">
         <div class="bg-blue">
             <div class="px-5 py-2">
-                <span class="h5 text-white" style="margin-left: -25px;">Rewise Proposal</span>
+                <span class="h5 text-white" style="margin-left: -25px;">Revise Proposal</span>
             </div>
         </div>
             <div class="card-body p-4">
@@ -79,10 +79,18 @@
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label>Pricing Cycle</label>
-                                <input type="text" class="form-control" name="pricing_cycle" value="{{$contractual_job->pricing_cycle}}" readonly="">
+                                @if($contractual_job->pricing_cycle == 1)
+                                   <input type="text" class="form-control" name="pricing_cycle" value="Monthly Advance" readonly="">
+                                @elseif($contractual_job->pricing_cycle == 2)
+                                   <input type="text" class="form-control" name="pricing_cycle" value="Quarterly Advance" readonly="">
+                                @elseif($contractual_job->pricing_cycle == 3)
+                                   <input type="text" class="form-control" name="pricing_cycle" value="Bi-Monthly Advance" readonly="">
+                                @else
+                                   <input type="text" class="form-control" name="pricing_cycle" value="Yearly Advance" readonly="">
+                                @endif
                             </div>
                         </div>
-                        @if($contractual_job->pricing_cycle == 2)
+                        {{--@if($contractual_job->pricing_cycle == 2)
 
                         <div class="form-row" id="on_postpaid">
                             <div class="form-group col-6">
@@ -94,7 +102,7 @@
                                 <input type="text" class="form-control" name="advance_amount" value="{{$contractual_job->advance_amount}}" readonly="">
                             </div>
                         </div>
-                        @endif
+                        @endif--}}
 
                         {{--<div class="form-row">
                             <div class="form-group col-12">

@@ -173,11 +173,11 @@ class FreelancerController extends Controller
 
         $contractualJobs->contract_duration = $input['contract_duration'];
         $contractualJobs->pricing_cycle = $input['pricing_cycle'];
-        if($contractualJobs->pricing_cycle == 2)
-        {
-            $contractualJobs->advance_amount = $input['advance_amount'];
-            $contractualJobs->on_postpaid_amount = $input['on_postpaid_amount'];
-        }
+        // if($contractualJobs->pricing_cycle == 2)
+        // {
+        //     $contractualJobs->advance_amount = $input['advance_amount'];
+        //     $contractualJobs->on_postpaid_amount = $input['on_postpaid_amount'];
+        // }
 
 
         $contractualJobs->location = $input['location'];
@@ -218,11 +218,29 @@ class FreelancerController extends Controller
             if(!empty($job_proposal_leads))
             {
                 $job_proposal_leads->actual_start_date = $input['actual_date'];
+                $job_proposal_leads->remarks = $input['remarks'];
                 $job_proposal_leads->save();
+
+                $insertedId = $job_proposal_leads->job_schedule_id;
+                $job = Job::where('job_id', $job_proposal_leads->job_id)->first();
 
                 $success = 'success';
                 $msg = 'Proposal date update successfully';
-            }
+
+                    if($insertedId != 0) {
+                        $users = User::find($job->user_id);
+                        $details = [
+                            'greeting' => 'Hi '. $users->full_name,
+                            'body' => 'You have response on your contractual job proposal',
+                            'thanks' => 'Thank you for using eiliana.com!',
+                            'actionText' => 'View My Site',
+                            'actionURL' => '/client/resource-details-form/'. $insertedId,
+                            'main_id' => $insertedId
+                        ];
+            
+                        Notification::send($users, new UserNotification($details));
+                    }
+            }       
             else {
                 $success = 'error';
                 $msg = 'You are already updated date this proposal';
@@ -242,40 +260,23 @@ class FreelancerController extends Controller
 
         $jobstatuscheck = JobLeads::where('job_leads_id', '=', $input['job_leads_id'])->where('status', '=', $input['job_lead_status'])->first();
         if($jobstatuscheck === null) {
-
-            if($input['job_lead_status'] === '1'){
                 $jobstatus = JobLeads::find($input['job_leads_id']);
                 $jobstatus->status = $input['job_lead_status'];
                 $jobstatus->save();
-                
+
+            if($input['job_lead_status'] === '1'){
                 $response['success'] = '1';
                 $response['msg'] = 'Job Status Resume Onhold successfully';
             }else if($input['job_lead_status'] === '2'){
-                $jobstatus = JobLeads::find($input['job_leads_id']);
-                $jobstatus->status = $input['job_lead_status'];
-                $jobstatus->save();
-
                 $response['success'] = '2';
                 $response['msg'] = 'Job Status Resume Shortlist successfully';
             }else if($input['job_lead_status'] === '3'){
-                $jobstatus = JobLeads::find($input['job_leads_id']);
-                $jobstatus->status = $input['job_lead_status'];
-                $jobstatus->save();
-
                 $response['success'] = '3';
                 $response['msg'] = 'Job Status Resume Reject successfully';
             }else if($input['job_lead_status'] === '4'){
-                $jobstatus = JobLeads::find($input['job_leads_id']);
-                $jobstatus->status = $input['job_lead_status'];
-                $jobstatus->save();
-
                 $response['success'] = '4';
                 $response['msg'] = 'Job Status Review Proposal successfully';
             }else {
-                $jobstatus = JobLeads::find($input['job_leads_id']);
-                $jobstatus->status = $input['job_lead_status'];
-                $jobstatus->save();
-                
                 $response['success'] = '5';
                 $response['msg'] = 'Job Status Accept Proposal successfully';
             }
@@ -295,26 +296,17 @@ class FreelancerController extends Controller
 
         $projectstatuscheck = ProjectLeads::where('project_leads_id', '=', $input['project_leads_id'])->where('status', '=', $input['project_lead_status'])->first();
         if($projectstatuscheck === null) {
-
-            if($input['project_lead_status'] === '2'){
                 $projectstatus = ProjectLeads::find($input['project_leads_id']);
                 $projectstatus->status = $input['project_lead_status'];
                 $projectstatus->save();
 
+            if($input['project_lead_status'] === '2'){
                 $response['success'] = '1';
                 $response['msg'] = 'Project Status Shortlist successfully';
             }else if($input['project_lead_status'] === '3'){
-                $projectstatus = ProjectLeads::find($input['project_leads_id']);
-                $projectstatus->status = $input['project_lead_status'];
-                $projectstatus->save();
-                
                 $response['success'] = '2';
                 $response['msg'] = 'Project Status Reject successfully';
             }else {
-                $projectstatus = ProjectLeads::find($input['project_leads_id']);
-                $projectstatus->status = $input['project_lead_status'];
-                $projectstatus->save();
-                
                 $response['success'] = '3';
                 $response['msg'] = 'Project Status Onhold successfully';
             }

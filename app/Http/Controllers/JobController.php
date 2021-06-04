@@ -837,11 +837,11 @@ class JobController extends JoshController
 
         $jobschedules->contract_duration = $input['contract_duration'];
         $jobschedules->pricing_cycle = $input['pricing_cycle'];
-        if($jobschedules->pricing_cycle == 2)
-        {
-            $jobschedules->advance_amount = $input['advance_amount'];
-            $jobschedules->on_postpaid_amount = $input['on_postpaid_amount'];
-        }
+        // if($jobschedules->pricing_cycle == 2)
+        // {
+        //     $jobschedules->advance_amount = $input['advance_amount'];
+        //     $jobschedules->on_postpaid_amount = $input['on_postpaid_amount'];
+        // }
 
 
         $jobschedules->location = $input['location'];

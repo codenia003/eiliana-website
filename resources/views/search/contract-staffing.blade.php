@@ -184,7 +184,7 @@ Advance Search
                                                 <option value="3">3</option>
                                             </select>
                                         </div> -->
-                                        @if(Session::get('contractsattfing')['location'])
+                                        @if(isset(Session::get('contractsattfing')['location']))
                                         <div class="form-group col">
                                             <label>Job Location</label>
                                             <select name="location" class="form-control">

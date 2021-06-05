@@ -102,7 +102,7 @@
                             <div class="row no-gutters">
                                 <div class="col-md-6">
                                     <div class="mb-2">
-                                        <div class="display-5">Industry</div>
+                                        <div class="display-5">Customer Industry</div>
                                         <p>{{ $job->customerindustry1->name }}</p>
                                     </div>
                                 </div>
@@ -120,13 +120,8 @@
                                 </div> --}}
                                 <div class="col-md-6">
                                     <div class="mb-3 duration">
-                                        <div class="display-5">Technology</div>
-                                        @foreach (App\Models\Technology::whereIn('technology_id', explode(',', $job->technologty_pre))->get() as $data)
-                                            {{ $data->technology_name }}
-                                            @if (!$loop->last)
-                                                ,
-                                            @endif                                          
-                                        @endforeach
+                                        <div class="display-5">Budget Per Month</div>
+                                        <p>{{ $job->budget_from }} to {{ $job->budget_to }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

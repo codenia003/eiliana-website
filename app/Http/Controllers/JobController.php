@@ -595,20 +595,36 @@ class JobController extends JoshController
 
     }
 
-    public function postJobLead(Request $request){
-
+    public function postJobLead(Request $request)
+    {
         $input = $request->except('_token');
+        $now = Carbon::now();
+        
         $response['success'] = '0';
         $jobleadcheck = JobLeads::where('job_id', '=', $input['job_id'])->where('from_user_id', '=', Sentinel::getUser()->id)->first();
+
         if ($jobleadcheck === null) {
+
+            $safeName = "";
+
+            if ($request->hasFile('attach_file')) {
+                $file = $request->file('attach_file');
+                $extension = $file->extension()?: 'png';
+                $safeName = str_random(10) . '.' . $extension;
+                $destinationPath = public_path() . '/uploads/applylead/';
+                $file->move($destinationPath, $safeName);
+            }
+
             $jobleads = new JobLeads;
             $jobleads->job_id = $input['job_id'];
             $jobleads->from_user_id = Sentinel::getUser()->id;
-            $jobleads->application_date = $input['application_date'];
-            $jobleads->expected_ctc = $input['expected_ctc'];
+            $jobleads->application_date =  Carbon::today()->toDateString();
+            $jobleads->resource_name = $input['resource_name'];
+            $jobleads->price_per_month = $input['price_per_month'];
             $jobleads->notice_period = $input['notice_period'];
             $jobleads->subject = $input['subject'];
             $jobleads->message = $input['messagetext'];
+            $jobleads->attach_file = $safeName;
             $jobleads->notify = '0';
             $jobleads->display_status = '1';
             $jobleads->lead_status = '1';

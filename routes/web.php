@@ -434,6 +434,7 @@ Route::group(
     function () {
         Route::get('job-apply/{id}', 'JobController@jobApplyLead')->name('joblead.view');
         Route::post('post-job-lead', 'JobController@postJobLead')->name('postJobLead.new');
+        Route::get('lead-response/{id}', 'JobController@jobApplyLeadResponse')->name('joblead.resposne');
 
         Route::get('job-lead-response/{id}', 'JobController@jobLeadResponse');
         Route::get('profilejoblead/{id}', 'JobController@profileJobLead')->name('job.profilejoblead');

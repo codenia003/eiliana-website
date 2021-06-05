@@ -98,7 +98,7 @@ type="text/css"/>
                                         <textarea class="form-control" id="message-text" name="messagetext" rows="3"></textarea>
                                     </div>
                                     <div class="form-group basic-file">
-                                        <label>Attach File</label>
+                                        <label>Attach File/Resume</label>
                                         <div class="custom-file" style="height: calc(1.5em + 0.75rem + 8px);">
                                             <input type="file" class="custom-file-input" id="customFile" name="attach_file">
                                             <label class="custom-file-label" for="customFile">Attach File/Resume</label>

@@ -56,28 +56,28 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="job_id" id="job_id" value="{{ $job->job_id }}" readonly="">
                                        </div>
                                        <div class="form-group col-6">
-                                            <label for="application_date" class="col-form-label">Application date:</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="application_date" id="application_date">
+                                            <label for="resource_name" class="col-form-label">Resource Name:</label>
+                                            <input class="form-control" type="text" name="resource_name" id="resource_name">
                                         </div>
                                     </div>
         
                                     <div class="form-row">
-                                       <div class="form-group col-6">
-                                            <label for="current_ctc" class="col-form-label">Current ctc:</label>
-                                            <input type="text" class="form-control" name="current_ctc" id="current_ctc" value="{{ $job->companydetails->id }}" readonly="">
-                                       </div>
-                                       <div class="form-group col-6">
+                                        <div class="form-group col-6">
+                                            <label for="price_per_month" class="col-form-label">Price per month:</label>
+                                            <input type="number" class="form-control" name="price_per_month" id="price_per_month"  required>
+                                        </div>
+                                       {{-- <div class="form-group col-6">
                                             <label for="expected_ctc" class="col-form-label">Expected ctc:</label>
                                             <input type="number" class="form-control" name="expected_ctc" id="expected_ctc" required>
-                                        </div>
+                                        </div> --}}
+                                        <div class="form-group col-6">
+                                            <label for="notice_period" class="col-form-label">Notice Period(In Months):</label>
+                                            <input type="number" class="form-control" name="notice_period" id="notice_period">
+                                       </div>
                                     </div>
         
                                     <div class="form-row">
-                                       <div class="form-group col-6">
-                                            <label for="notice_period" class="col-form-label">Notice Period:</label>
-                                            <input type="text" class="form-control" name="notice_period" id="notice_period">
-                                       </div>
-                                       <div class="form-group col-6">
+                                       <div class="form-group col-12">
                                             <label for="subject" class="col-form-label">Subject:</label>
                                             <input type="text" class="form-control" name="subject" id="subject">
                                         </div>
@@ -86,6 +86,14 @@ type="text/css"/>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Message:</label>
                                         <textarea class="form-control" id="message-text" name="messagetext" rows="3"></textarea>
+                                    </div>
+
+                                    <div class="form-group basic-file">
+                                        <label>Attach File/Resume</label>
+                                        <div class="custom-file" style="height: calc(1.5em + 0.75rem + 8px);">
+                                            <input type="file" class="custom-file-input" id="customFile" name="attach_file">
+                                            <label class="custom-file-label" for="customFile">Attach File/Resume</label>
+                                        </div>
                                     </div>
                                     
                                     <div class="singup-body float-right mt-3">
@@ -143,13 +151,6 @@ $('#staffingflead').bootstrapValidator({
                 },
             },
         },
-        application_date: {
-            validators: {
-                notEmpty: {
-                    message: 'The application date is required',
-                },
-            },
-        },
         notice_period: {
             validators: {
                 notEmpty: {
@@ -166,7 +167,6 @@ $('#staffingflead').bootstrapValidator({
     $.post($form.attr('action'), $form.serialize(), function(result) {
         var userCheck = result;
         if (userCheck.success == '1') {
-            $('#modal-4').modal('toggle');
             $('#subject').val('');
             $('#message-text').val('');
             $('#notice_period').val('');
@@ -179,7 +179,6 @@ $('#staffingflead').bootstrapValidator({
               timer: 2000
             });
         } else {
-            $('#modal-4').modal('toggle');
             $('#subject').val('');
             $('#message-text').val('');
             $('#notice_period').val('');

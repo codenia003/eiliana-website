@@ -70,8 +70,16 @@ type="text/css"/>
                             <span>{{ $job->budget_from }} to {{ $job->budget_to }}</span>
                         </div>
                         <div class="skills mt-4">
-                            <span class="h5">Years of Experience: </span>
+                            <span class="h5">Notice Period(Months): </span>
+                            <span>{{ $job->budget_from }}</span>
+                        </div>
+                        <div class="skills mt-4">
+                            <span class="h5">Experience Required: </span>
                             <span>{{ $job->experience_year }} Year to  {{ $job->experience_month }} Year</span>
+                        </div>
+                        <div class="skills mt-4">
+                            <span class="h5">Contract Duration: </span>
+                            <span>{{ $job->contract_duration_from }}  Month to {{ $job->contract_duration_to }} Month</span>
                         </div>
                         <div class="skills mt-4">
                             <span class="h5">Skills Required: </span>

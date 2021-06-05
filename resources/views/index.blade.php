@@ -530,36 +530,34 @@ Home
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-12">
                         {{-- <h4 class="featured-jobs mx-4">Featured Jobs</h4> --}}
-                        <div class="browse-job-posting">
-                            <div class="mb-3 mb-lg-5">
-                                <ul class="list-unstyled">
-                                    <li class="card mb-4">
-                                        <div class="row no-gutters d-flex align-items-center">
-                                            <div class="col-md-12">
-                                                <div class="contract-body position-reletive">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-2">
-                                                                <div class="display-5">REFER A Freelancer AND EARN COMMISSION ON HIS FIRST PROJECT DELIVERED</div>
-                                                                <figure class="mt-0">
-                                                                    <img class="img-fluid" src="/assets/img/profile/refere-freelancer.png" alt="SVG">
-                                                                </figure>
-                                                            </div>
-                                                            <div class="find_job_button text-right">
-                                                                {{--<a class="btn_small yellow-linear-gradient text-white" href="{{ url('freelancer-referral') }}">Refer</a>--}}
-                                                                <a class="btn_small yellow-linear-gradient text-white" onclick="togglePopup()">Coming soon</a>
-                                                                {{-- @else
-                                                                <a class="btn_small yellow-linear-gradient text-white" data-toggle="modal" data-target="#modal-refer">Refer</a>
-                                                                @endif --}}
-                                                            </div>
+                        <div class="mb-3 mb-lg-5">
+                            <ul class="list-unstyled">
+                                <li class="mb-4">
+                                    <div class="row no-gutters d-flex align-items-center">
+                                        <div class="col-md-12">
+                                            <div class="contract-body position-reletive">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-12">
+                                                        <div class="mb-2">
+                                                            <div class="display-5">REFER A Freelancer AND EARN COMMISSION ON HIS FIRST PROJECT DELIVERED</div>
+                                                            <figure class="mt-0">
+                                                                <img class="img-fluid" src="/assets/img/profile/refere-freelancer.png" alt="SVG">
+                                                            </figure>
+                                                        </div>
+                                                        <div class="find_job_button text-right">
+                                                            {{--<a class="btn_small yellow-linear-gradient text-white" href="{{ url('freelancer-referral') }}">Refer</a>--}}
+                                                            <a class="btn_small yellow-linear-gradient text-white" onclick="togglePopup()">Coming soon</a>
+                                                            {{-- @else
+                                                            <a class="btn_small yellow-linear-gradient text-white" data-toggle="modal" data-target="#modal-refer">Refer</a>
+                                                            @endif --}}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                </ul>
-                            </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

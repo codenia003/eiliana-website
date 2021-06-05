@@ -98,7 +98,7 @@
         </ul>
 </li>
 
-<li {!! (Request::is('admin/finance*') || Request::is('admin/job_finance*') ? 'class="active"' : '' ) !!}>
+<li {!! (Request::is('admin/finance*') || Request::is('admin/job_finance*') || Request::is('admin/resourceDetails*') ? 'class="active"' : '' ) !!}>
     <a href="#">
         <i class="livicon" data-name="doc-portrait" data-size="18" data-c="#67C5DF" data-hc="#67C5DF" data-loop="true"></i>
         <span class="title">Finance</span>
@@ -115,6 +115,12 @@
             <a href="{{ route('admin.job_finance.index') }}">
                 <i class="fa fa-angle-double-right"></i>
                 Eiliana Job Finance
+            </a>
+        </li>
+        <li {!! (Request::is('admin/resourceDetails*') ? 'class="active"' : '' ) !!}>
+            <a href="{{ route('admin.resourceDetails.index') }}">
+                <i class="fa fa-angle-double-right"></i>
+                Resource Details List
             </a>
         </li>
     </ul>

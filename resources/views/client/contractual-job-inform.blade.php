@@ -129,7 +129,7 @@
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label>Remarks</label>
-                                <textarea class="form-control" name="remarks" rows="4" readonly="">{{$contractual_job->remarks}}"</textarea>
+                                <textarea class="form-control" name="remarks" rows="4" readonly="">{{$contractual_job->remarks}}</textarea>
                             </div>
                         </div>
                     </div>

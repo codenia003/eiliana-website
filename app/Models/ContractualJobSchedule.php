@@ -34,4 +34,10 @@ class ContractualJobSchedule extends Model
     {
         return $this->belongsTo('App\Models\Location', 'location', 'location_id');
     }
+
+    public function joblead()
+    {
+        return $this->belongsTo('App\Models\JobLeads', 'job_leads_id', 'job_leads_id');
+    }
+
 }

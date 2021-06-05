@@ -15,17 +15,28 @@
 <!-- Logo Field -->
 <label>Logo:</label>
 <div class="form-row">
-<div class="fileinput fileinput-new form-group col-sm-6" data-provides="fileinput">
 
-                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-                                <div>
-                                            <span class="btn btn-secondary btn-file">
-                                                <span class="fileinput-new">Select image</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="logo" value=""></span>
-                                    <a href="#" class="btn btn-secondary fileinput-exists color_a" data-dismiss="fileinput">Remove</a>
-                                </div>
-                            </div>
+<div class="fileinput fileinput-new form-group col-sm-6" data-provides="fileinput">
+    <div class="fileinput-new thumbnail" style="max-width: 200px; max-height: 200px;">
+        @if(!empty($university->pic))
+            <img src="{{ url('/') }}{{ $university->logo }}" alt="img"
+                class="img-fluid"/>
+        @else
+            <img src="{{ asset('uploads/university/no-image.jpeg') }}" alt="..."
+                class="img-fluid"/>
+        @endif
+    </div>
+
+    <!-- <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div> -->
+    <div class="fileinput-preview fileinput-exists thumbnail" data-trigger="fileinput" style="max-width: 200px; max-height: 150px;"></div>
+    <div>
+        <span class="btn btn-secondary btn-file">
+        <span class="fileinput-new">Select image</span>
+        <span class="fileinput-exists">Change</span>
+        <input type="file" name="logo" value=""></span>
+        <a href="#" class="btn btn-secondary fileinput-exists color_a" data-dismiss="fileinput">Remove</a>
+    </div>
+</div>
 
 <!-- Display Status Field -->
 <div class="form-group col-sm-6">

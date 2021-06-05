@@ -17,6 +17,7 @@ use App\Models\Finance;
 use App\Models\JobOrderFinance;
 use App\Models\Job;
 use App\Models\JobLeads;
+use App\Models\ResourceDetails;
 use App\Models\User;
 use App\Models\ProjectLeads;
 use App\Notifications\UserNotification;
@@ -198,6 +199,20 @@ class FinanceController extends Controller
             $response['errors'] = 'You are already assign finance resource';
         }
         return response()->json($response);
+    }
+
+    public function resourceDetails()
+    {
+        $resources = ResourceDetails::with('jobcontractschedule')->get();
+        //return $resources;
+        return view('admin.resourceDetails.index', compact('resources'));
+    }
+
+    public function resourceDetailsEdit($id)
+    {
+        $resources =  ResourceDetails::with('jobcontractschedule','jobcontractschedule.joblead','jobcontractschedule.joblead.fromuser')->where('resource_id', $id)->first();
+        //return $resources;
+        return view('admin.resourceDetails.edit', compact('resources'));
     }
 
 }

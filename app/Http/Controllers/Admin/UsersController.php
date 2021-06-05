@@ -581,16 +581,16 @@ class UsersController extends JoshController
         $technologty_pre = implode(',', $technologty_pre);
         $input['technologty_pre'] = $technologty_pre;
 
-        $framework = $request->input('framework');
-        $framework = implode(',', $framework);
-        $input['framework'] = $framework;
+        // $framework = $request->input('framework');
+        // $framework = implode(',', $framework);
+        // $input['framework'] = $framework;
 
 
             $professionalExperience = ProfessionalExperience::find($input['professional_experience_id']);      
             $professionalExperience->key_skills = $input['key_skills'];
             $professionalExperience->profile_headline = $input['profile_headline'];
             $professionalExperience->technologty_pre = $input['technologty_pre'];
-            $professionalExperience->framework = $input['framework'];        
+            //$professionalExperience->framework = $input['framework'];        
             $professionalExperience->experience_year = $input['experience_year'];
             $professionalExperience->experience_month = $input['experience_month'];
             $professionalExperience->support_project = $input['support_project'];       

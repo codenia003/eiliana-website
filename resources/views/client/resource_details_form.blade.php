@@ -61,7 +61,7 @@
                     <div class="form-group text-right mt-5" id="onboard_button">
                         <div class="btn-group" role="group">
                             <button class="btn btn-primary" type="submit">
-                               Send To Customer
+                               Send
                             </button>
                             <button class="btn btn-primary" type="reset">Discard</button>
                         </div>

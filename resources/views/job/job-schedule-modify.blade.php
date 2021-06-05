@@ -123,6 +123,16 @@
                                 <textarea class="form-control" name="remarks" rows="4" required>{{ $contractual_job->remarks }}</textarea>
                             </div>
                         </div>
+                        @if(!empty($contractual_job->schedule_status))
+                            @if($contractual_job->schedule_status == '2')
+                                <div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label>Remarks</label>
+                                        <textarea class="form-control" name="remarks" rows="4" required>{{ $contractual_job->reject_remarks }}</textarea>
+                                    </div>
+                                </div>
+                            @endif
+                        @endif
                     </div>
                     <!-- <div class="form-group text-right mt-5">
                         <span class="spinner-border spinner-border-sm mr-1 d-none"></span>

@@ -2539,4 +2539,9 @@ button {
 
 .project-deatils .card-body .skills span.h5 {
     display: block;
+    font-weight: 600;
+}
+
+.project-deatils .skills {
+    margin-top: 20px;
 }

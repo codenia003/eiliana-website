@@ -639,19 +639,29 @@ class JobController extends JoshController
                 'body' => 'You have new job proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => 'job/job-lead-response/'. $insertedId,
+                'actionURL' => 'job/profilejoblead/'. $insertedId,
                 'main_id' => $insertedId
             ];
 
             Notification::send($user, new UserNotification($details));
             $response['success'] = '1';
             $response['msg'] = 'Proposal Submitted Successfully';
+            return Redirect::route('joblead.resposne', $insertedId)->with('success', 'Proposal Submitted Successfully');
 
         } else {
+            return Redirect::back()->with('success', 'You are already submitted proposal');
             $response['errors'] = 'You are already submitted proposal';
         }
 
-        return response()->json($response);
+        
+
+        // return response()->json($response);
+    }
+
+    public function jobApplyLeadResponse($id)
+    {
+        $joblead = JobLeads::with('jobdetail')->where('job_leads_id', $id)->first();
+        return view('job/job-leadresponse', compact('joblead'));
     }
 
 

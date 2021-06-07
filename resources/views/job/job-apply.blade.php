@@ -16,7 +16,6 @@ Apply Job
 <link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}">
 <link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
 type="text/css"/>
-@yield('profile_css')
 <!--end of page level css-->
 @stop
 
@@ -42,11 +41,11 @@ type="text/css"/>
 	             <div class="singup-body login-body profile-basic">
 					<div class="card">
 						<div class="card-body p-4">
-                            <form action="{{ route('postJobLead.new') }}" method="POST" id="staffingflead">
+                            <form action="{{ route('postJobLead.new') }}" method="POST" id="staffingflead" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="job_id" value="{{ $job->job_id }}">
                                 <input type="hidden" name="to_user_id" value="{{ $job->companydetails->id }}">
-                                <div class="modal-header">
+                                <div class="modal-header text-black bg-img-hero" style="background-image: url(/assets/img/others/applyproject-removebg.png);background-size: contain;background-position: right;">
                                     <h4 class="modal-title" id="modalLabelnews">Apply JOB</h4>
                                 </div>
                                 <div class="modal-body">
@@ -71,7 +70,7 @@ type="text/css"/>
                                             <input type="number" class="form-control" name="expected_ctc" id="expected_ctc" required>
                                         </div> --}}
                                         <div class="form-group col-6">
-                                            <label for="notice_period" class="col-form-label">Notice Period(In Months):</label>
+                                            <label for="notice_period" class="col-form-label">Notice Period(In Days):</label>
                                             <input type="number" class="form-control" name="notice_period" id="notice_period">
                                        </div>
                                     </div>
@@ -98,7 +97,7 @@ type="text/css"/>
                                     
                                     <div class="singup-body float-right mt-3">
                                         <div class="btn-group" role="group">
-                                            <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Apply</button>
+                                            <button class="btn btn-primary" type="submit"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Apply</button>
                                             {{-- <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button> --}}
                                         </div>
                                     </div>
@@ -159,40 +158,8 @@ $('#staffingflead').bootstrapValidator({
             },
         },
     },
-}).on('success.form.bv', function(e) {
-    e.preventDefault();
-    var $form = $(e.target);
-    var bv = $form.data('bootstrapValidator');
-    $('.spinner-border').removeClass("d-none");
-    $.post($form.attr('action'), $form.serialize(), function(result) {
-        var userCheck = result;
-        if (userCheck.success == '1') {
-            $('#subject').val('');
-            $('#message-text').val('');
-            $('#notice_period').val('');
-            $('.spinner-border').addClass("d-none");
-            Swal.fire({
-              type: 'success',
-              title: 'Success...',
-              text: userCheck.msg,
-              showConfirmButton: false,
-              timer: 2000
-            });
-        } else {
-            $('#subject').val('');
-            $('#message-text').val('');
-            $('#notice_period').val('');
-            $('.spinner-border').addClass("d-none");
-            Swal.fire({
-              type: 'error',
-              title: 'Oops...',
-              text: userCheck.errors,
-              showConfirmButton: false,
-              timer: 2000
-            });
-        }
-    }, 'json');
-});</script>
+});
+</script>
 
 <!--global js end-->
 @stop

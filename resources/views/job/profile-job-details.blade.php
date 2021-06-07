@@ -34,12 +34,11 @@ Job Post
     </div>
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12 pr-lg-0">
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-5">
                         <div class="bs-advanced">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                
                                 @if ($joblead->lead_status == '1')
                                     <li class="nav-item beforeaccept">
                                         <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','2')">Accept</a>
@@ -68,7 +67,7 @@ Job Post
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-0">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-12 pr-lg-0">
                 <div id="notific">
                     @include('notifications')
                 </div>
@@ -366,6 +365,8 @@ function jobleadConvert(lead_id,lead_status){
                     showConfirmButton: false,
                     timer: 2000
                 });
+                $('.beforeaccept').addClass("d-none");
+                $('.afteraccept').removeClass("d-none");
                 // window.location.href = '/freelancer/my-opportunity';
             } else {
                 Swal.fire({

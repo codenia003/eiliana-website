@@ -329,7 +329,7 @@ class ClientController extends JoshController
     public function ContractualJobInform($id)
     {
         $contractual_job = ContractualJobSchedule::with('locations')->where('job_leads_id', $id)->first();
-        //$joblead = JobLeads::where('job_leads_id', $id)->first();
+        // $joblead = JobLeads::where('job_leads_id', $id)->first();
         return view('client/contractual-job-inform', compact('contractual_job'));
     }
 

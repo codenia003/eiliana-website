@@ -51,7 +51,7 @@ type="text/css"/>
                                 @csrf
                                 <input type="hidden" name="project_id" value="{{ $project->project_id }}">
                                 <input type="hidden" name="to_user_id" value="{{ $project->companydetails->id }}">
-                                <div class="modal-header text-black">
+                                <div class="modal-header text-black bg-img-hero" style="background-image: url(/assets/img/others/applyproject-removebg.png);background-size: contain;background-position: right;">
                                     <h4 class="modal-title" id="modalLabelnews">Apply Project</h4>
                                 </div>
                                 <div class="modal-body">

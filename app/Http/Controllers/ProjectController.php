@@ -644,25 +644,33 @@ class ProjectController extends JoshController
                 'body' => 'You have new project proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => 'project/project-bid-response/'. $insertedId,
+                'actionURL' => 'project/profile-projectbid/'. $insertedId,
                 'main_id' => $insertedId
             ];
 
             Notification::send($user, new UserNotification($details));
             $response['success'] = '1';
             $response['msg'] = 'Proposal Submitted Successfully';
+            return Redirect::route('projectlead.resposne', $insertedId)->with('success', 'Proposal Submitted Successfully');
 
         } else {
-            $response['errors'] = 'You are already submitted proposal';
+            return Redirect::back()->with('success', 'You are already submitted proposal');
+            // $response['errors'] = 'You are already submitted proposal';
         }
 
-        return response()->json($response);
-        // return redirect('resume')->with('success', 'Project updated successfully');
+        // return response()->json($response);
 
     }
 
-    public function projectBidResponse($id) {
+    public function projectpplyLeadResponse($id)
+    {
+        $projectlead = ProjectLeads::with('projectdetail')->where('project_leads_id', $id)->first();
+        return view('project/project-leadresponse', compact('projectlead'));
+    }
 
+    public function projectBidResponse($id) 
+    {
+        
        $project = Project::with('companydetails','locations','projectbidresponse','projectbidresponse.fromuser','projectbidresponse.fromuser.userprofessionalexp','projectbidresponse.fromuser.userprofessionalexp.currentlocation')->where('project_id', $id)->first();
 
         $selected_technologty_pre = explode(',', $project->technologty_pre);

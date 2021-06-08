@@ -184,7 +184,7 @@ class FreelancerController extends Controller
         $contractualJobs->save();
 
         $jobleadchange = JobLeads::find($contractualJobs->job_leads_id);
-        $jobleadchange->bid_amount = $input['price'];
+        $jobleadchange->price_per_month = $input['price'];
         $jobleadchange->save();
 
         $insertedId = $contractualJobs->job_schedule_id;

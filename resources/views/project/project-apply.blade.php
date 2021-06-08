@@ -107,7 +107,7 @@ type="text/css"/>
 
                                     <div class="singup-body float-right mt-3">
                                         <div class="btn-group" role="group">
-                                            <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Apply >>></button>
+                                            <button class="btn btn-primary" type="submit"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Apply >>></button>
                                             {{-- <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button> --}}
                                         </div>
                                     </div>
@@ -160,37 +160,6 @@ type="text/css"/>
                 },
             },
         },
-    }).on('success.form.bv', function(e) {
-        e.preventDefault();
-        var $form = $(e.target);
-        var bv = $form.data('bootstrapValidator');
-        $('.spinner-border').removeClass("d-none");
-        $.post($form.attr('action'), $form.serialize(), function(result) {
-            var userCheck = result;
-            if (userCheck.success == '1') {
-                $('#subject').val('');
-                $('#message-text').val('');
-                $('.spinner-border').addClass("d-none");
-                Swal.fire({
-                  type: 'success',
-                  title: 'Success...',
-                  text: userCheck.msg,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
-            } else {
-                $('#subject').val('');
-                $('#message-text').val('');
-                $('.spinner-border').addClass("d-none");
-                Swal.fire({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: userCheck.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
-            }
-        }, 'json');
     });
 </script>
 

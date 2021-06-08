@@ -21,7 +21,7 @@
         <div class="card">
         <div class="bg-blue">
             <div class="px-5 py-2">
-                <span class="h5 text-white" style="margin-left: -25px;">Please verify the details below</span>
+                <span class="h5 text-white" style="margin-left: -25px;">Please confirm the details below</span>
             </div>
         </div>
             <div class="card-body p-4">

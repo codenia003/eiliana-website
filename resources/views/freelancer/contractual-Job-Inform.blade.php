@@ -7,7 +7,7 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Revise Proposal </span>
+            <span class="h5 text-white ml-2">Onboarding Resource </span>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
         <div class="card">
         <div class="bg-blue">
             <div class="px-5 py-2">
-                <span class="h5 text-white" style="margin-left: -25px;">Revise Proposal</span>
+                <span class="h5 text-white" style="margin-left: -25px;">Please verify the details below</span>
             </div>
         </div>
             <div class="card-body p-4">
@@ -43,11 +43,11 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Price Per Month </label><small> (Excluding GST)</small>
-                                <input type="number" class="form-control" name="price" id="price" value="" required>
+                                <input type="number" class="form-control" name="price" id="price" value="{{ $joblead->price_per_month }}" required>
                             </div>
                             <div class="form-group col-6">
                                 <label>Notice Period</label><small> (Days)</small>
-                                <input type="number" class="form-control" name="notice_period" value="" required>
+                                <input type="number" class="form-control" name="notice_period" value="{{ $joblead->notice_period }}" required>
                             </div>
                         </div>
                         {{--<div class="form-row">

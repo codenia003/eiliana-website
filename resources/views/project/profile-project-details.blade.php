@@ -19,7 +19,6 @@ Project Post
     }
 </style>
 @stop
-
 {{-- content --}}
 @section('content')
     <div class="bg-red">
@@ -39,13 +38,16 @@ Project Post
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 @if ($joblead->lead_status == '1')
                                     <li class="nav-item beforeaccept">
-                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','2')">Accept</a>
+                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','2')">Accept Proposal</a>
                                     </li>
                                     <li class="nav-item beforeaccept">
-                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','4')">Reject</a>
+                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','4')">Reject Proposal</a>
                                     </li>
                                     <li class="nav-item beforeaccept">
                                         <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','5')">On Hold</a>
+                                    </li>
+                                    <li class="nav-item beforeaccept">
+                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->project_leads_id }}','6')">Revise Proposal</a>
                                     </li>
                                 @endif
                                 <li class="nav-item afteraccept d-none">
@@ -86,12 +88,20 @@ Project Post
                                 </div>
                             </div>
                             <div class="col-md-7">
-                               <div class="mb-2">
+                                <div class="contract-body">
+                                    <div class="mb-2">
+                                        <p class="h3">{{ $user->full_name }}</p>
+                                        <p class="key_skills">{{ $proexps->key_skills }}{{ $proexps->profile_headline }}</p>
+                                        <p class="user_exper">User Experience | User Experience</p>
+                                        <p class="experience_year">{{ $proexps->experience_year }} Years {{ $proexps->experience_month }} Month</p>
+                                    </div>
+                                </div>
+                               {{--<div class="mb-2">
                                     <p class="h3">{{ $user->full_name }}</p>
                                     <p class="key_skills">{{ $proexps->key_skills }}{{ $proexps->profile_headline }}</p>
                                     <p class="user_exper">User Experience | User Experience</p>
                                     <p class="experience_year">{{ $proexps->experience_year }} Years {{ $proexps->experience_month }} Month</p>
-                                </div>
+                                </div>--}}
                             </div>
                             <div class="col-md-2">
                                 <div class="contract-apply text-center">
@@ -113,6 +123,42 @@ Project Post
                             </div>
                         </div>
                     </div>
+                    <div class="card p-3 mb-4 pb-4">
+                        <div class="card-header">
+                            <h5 class="card-title">Proposal Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-education">
+                                <div class="project-date">
+                                    <table class="table table-borderless">
+                                        <tbody class="info-train">
+                                            <tr>
+                                                <td class="heading">Resource Name</td>
+                                                <td>: {{ $user->company_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="heading">Price Per Month</td>
+                                                <td>: {{ $joblead->bid_amount }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="heading">Notice Period</td>
+                                                <td>: {{ $joblead->delivery_timeline }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="heading">Subject</td>
+                                                <td>:  {{ $joblead->subject }}</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td class="heading">Message</td>
+                                                <td>:  {{ $joblead->message }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card p-3 my-5 pb-4">
                         <div class="card-header">
                             <h5 class="card-title">Projects</h5>
@@ -123,36 +169,118 @@ Project Post
                                     <ul>
                                         <li>
                                             <span>Support Project</span>
-                                            <span class="ml-3"></span>
+                                            <span class="ml-3">{{ $proexps->support_project }}</span>
                                         </li>
                                         <li>
                                             <span>Development Project</span>
-                                            <span class="ml-3"></span>
+                                            <span class="ml-3">{{ $proexps->development_project }}</span>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="project-slid slider">
-
+                                    @foreach ($projects as $project)
+                                    <div class="slide">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-7">
+                                                <div class="project-date">
+                                                    <table class="table table-borderless">
+                                                        <tbody class="info-train">
+                                                            <tr>
+                                                                <td class="heading">Project Name</td>
+                                                                <td>: {{ $project->project_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="heading">Project Type</td>
+                                                                <td>: {{ $project->projecttypes->name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="heading">Technology</td>
+                                                                <td>:  {{ $project->technologuname->technology_name }}</td>
+                                                            </tr>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="heading">Duration</td>
+                                                                <td>:  {{ $project->duration }}</td>
+                                                            </tr>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="heading">Framework</td>
+                                                                <td>:  {{ $project->frameworkname->technology_name }}</td>
+                                                            </tr>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="heading">Customer Industry</td>
+                                                                <td>:  {{ $project->industry }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                @if($project->upload_file)
+                                                <img src="{{ $project->upload_file }}" alt="img" class="img-fluid"/>
+                                                @else
+                                                <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card p-3 mb-4 pb-4 d-none">
+                    <div class="card p-3 mb-4 pb-4">
                         <div class="card-header">
                             <h5 class="card-title">Educations</h5>
                         </div>
                         <div class="card-body">
                             <div class="card-education">
                                 <span class="h4 text-left mt-3 mb-4 d-inline-block">Under Graduate Qualification</span>
-
+                                @foreach ($ug_educations as $education)
+                                <div class="row align-items-center">
+                                    <div class="col-md-3">
+                                        <img src="{{ asset('assets/img/education.png') }}" alt="..." class="img-fluid"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="edu_name">{{ $education->university->name }}</div>
+                                        <div class="quli_name">{{ $education->qualification->name }}</div>
+                                        <div class="from_to">{{ $education->month }} - {{ $education->year }}</div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
                             <div class="card-education">
                                 <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graduate Qualification</span>
-
+                                @foreach ($pg_educations as $education)
+                                    <div class="row align-items-center">
+                                        <div class="col-md-3">
+                                            <img src="{{ asset('assets/img/education.png') }}" alt="..." class="img-fluid"/>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="edu_name">{{ $education->university->name }}</div>
+                                            <div class="quli_name">{{ $education->qualification->name }}</div>
+                                            <div class="from_to">{{ $education->month }} - {{ $education->year }}</div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            <h3 class="card-title mt-4">Certifications</h5>
+                            <h4 class="card-title mt-4">Certifications</h4>
                             <hr>
-
+                            <div class="card-education">
+                                @foreach ($certificates as $certificate)
+                                    <div class="row align-items-center">
+                                        <div class="col-md-3">
+                                            <img src="{{ asset('assets/img/education.png') }}" alt="..." class="img-fluid"/>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="edu_name">{{ $certificate->name }}</div>
+                                            <div class="quli_name">{{ $certificate->institutename }}</div>
+                                            <div class="from_to">{{ $certificate->from_date }} - {{ $certificate->till_date }}</div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>

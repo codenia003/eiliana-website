@@ -507,6 +507,8 @@ Route::group(
         Route::get('invoice',array('as'=>'invoice','uses'=>'ClientController@GenerateInvoice'));
         Route::get('my-contract-job', 'ClientController@myContractJob')->name('my-contract-job');
 
+        Route::get('project-revise/{id}', 'ClientController@projectReviseProposal')->name('projectrevise.view');
+
     }
 );
 

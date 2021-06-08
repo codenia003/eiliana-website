@@ -678,4 +678,14 @@ class ClientController extends JoshController
         return response()->json($response);
 
     }
+
+    public function projectReviseProposal($id)
+    {
+        //$project = Project::with('companydetails','locations','projectAmount','projectCurrency','projectsubcategory','customerindustry1')->where('project_id', $id)->first();
+        $project = ProjectLeads::with('projectdetail','projectdetail.projectAmount','projectdetail.projectCurrency')->where('project_leads_id', $id)->first();
+        $technologies = Technology::where('display_status', '1')->orderBy('technology_name')->get();
+
+        //return $project;
+        return view('client/project-revise-proposal', compact('project','technologies'));
+    }
 }

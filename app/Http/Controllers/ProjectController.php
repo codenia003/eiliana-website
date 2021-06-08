@@ -601,6 +601,106 @@ class ProjectController extends JoshController
         return view('project/project-apply', compact('project','technologies'));
     }
 
+    public function projectReviseProposal($id)
+    {
+        //$project = Project::with('companydetails','locations','projectAmount','projectCurrency','projectsubcategory','customerindustry1')->where('project_id', $id)->first();
+        $project = ProjectLeads::with('projectdetail','projectdetail.projectAmount','projectdetail.projectCurrency')->where('project_leads_id', $id)->first();
+        $technologies = Technology::where('display_status', '1')->orderBy('technology_name')->get();
+
+        //return $project;
+        return view('project/project-revise-proposal', compact('project','technologies'));
+    }
+
+    public function projectAcceptProposal($id)
+    {
+        $project = ProjectLeads::with('projectdetail','projectdetail.projectAmount','projectdetail.projectCurrency')->where('project_leads_id', $id)->first();
+        $technologies = Technology::where('display_status', '1')->orderBy('technology_name')->get();
+
+        //return $project;
+        return view('project/project-accept-proposal', compact('project','technologies'));
+    }
+
+    public function postAcceptProposal(Request $request)
+    {
+        $input = $request->except('_token');
+
+        $projectleadcheck = ProjectLeads::where('project_leads_id', '=', $input['project_leads_id'])->first();
+        if (!empty($projectleadcheck)) {
+
+            $projectleads = ProjectLeads::find($input['project_leads_id']);
+            $projectleads->subject = $input['subject'];
+            $projectleads->message = $input['messagetext'];
+            $projectleads->save();
+
+            if($projectleadcheck->lead_status == '2'){
+                $actionURL = '/project/project-schedule/'. $input['project_leads_id'];
+            }
+            
+            $insertedId = $projectleads->project_leads_id;
+            $user = User::find($projectleads->from_user_id);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have response on your project proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => $actionURL,
+                'main_id' => $input['project_leads_id']
+            ];
+
+            Notification::send($user, new UserNotification($details));
+            return Redirect::route('projectaccept.view', $insertedId)->with('success', 'Accept Proposal Submitted Successfully');
+
+        } else {
+            return Redirect::back()->with('success', 'You are already submitted proposal');
+        }
+
+    }
+
+    public function postReviseProposal(Request $request)
+    {
+        $input = $request->except('_token');
+
+        $projectleadcheck = ProjectLeads::where('project_leads_id', '=', $input['project_leads_id'])->first();
+        if (!empty($projectleadcheck)) {
+
+            $technologty_pre = $request->input('technologty_pre');
+            $technologty_pre = implode(',', $technologty_pre);
+            $input['technologty_pre'] = $technologty_pre;
+
+            $projectleads = ProjectLeads::find($input['project_leads_id']);
+            $projectleads->subject = $input['subject'];
+            $projectleads->message = $input['messagetext'];
+            $projectleads->bid_amount = $input['bid_amount'];
+            $projectleads->technologty_pre = $input['technologty_pre'];
+            $projectleads->delivery_timeline = $input['delivery_timeline'];
+            $projectleads->notify = '0';
+            $projectleads->display_status = '1';
+            $projectleads->lead_status = '1';
+            $projectleads->save();
+
+            $insertedId = $projectleads->project_leads_id;
+            $project = Project::where('project_id', $projectleads->project_id)->first();
+        
+            $user = User::find($project->posted_by_user_id);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have new revise project proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => 'client/project-revise/'. $insertedId,
+                'main_id' => $insertedId
+            ];
+
+            Notification::send($user, new UserNotification($details));
+            return Redirect::route('projectrevise.view', $insertedId)->with('success', 'Revise Proposal Submitted Successfully');
+
+        } else {
+            return Redirect::back()->with('success', 'You are already submitted proposal');
+        }
+    }
+
     public function postProjectLead(Request $request)
     {
         $input = $request->except('_token');
@@ -695,7 +795,7 @@ class ProjectController extends JoshController
         $employers = Employers::where('user_id', $joblead->from_user_id)->get();
 
         $other_projects = Project::where('posted_by_user_id', $joblead->projectdetail->posted_by_user_id)->where('project_id', '!=', $joblead->projectdetail->project_id)->get();
-        // return $projects;
+         //return $projects;
 
         return view('project/profile-project-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers','other_projects'));
     }
@@ -724,12 +824,18 @@ class ProjectController extends JoshController
                 $project_proposal->save();
 
                 $response['success'] = '1';
+                $actionURL = '/project/project-accept/'. $input['lead_id'];
+                //$actionURL = '/project/project-schedule/'. $input['lead_id'];
                 $response['msg'] = 'Proposal Accepted successfully';
-            } elseif($input['lead_status'] === '5') {
+            }elseif($input['lead_status'] === '5') {
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Onhold successfully';
+            }elseif($input['lead_status'] === '6') {
+                $response['success'] = '1';
+                $actionURL = '/project/project-revise/'. $input['lead_id'];
+                $response['msg'] = 'Proposal Revise successfully';
             } else {
-                $response['success'] = '2';
+                $response['success'] = '3';
                 $response['errors'] = 'Proposal Decline successfully';
             }
 
@@ -740,14 +846,14 @@ class ProjectController extends JoshController
                 'body' => 'You have response on your project proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/project/project-schedule/'. $input['lead_id'],
+                'actionURL' => $actionURL,
                 'main_id' => $input['lead_id']
             ];
 
             Notification::send($user, new UserNotification($details));
 
         } else {
-            $response['success'] = '2';
+            $response['success'] = '3';
             $response['errors'] = 'You are already accept this proposal';
         }
         return response()->json($response);

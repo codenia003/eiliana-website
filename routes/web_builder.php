@@ -11,6 +11,12 @@ Route::group(
         Route::get('project-bid-response/{id}', 'ProjectController@projectBidResponse');
         Route::get('profile-projectbid/{id}', 'ProjectController@profileProjectbid')->name('project.profileProjectbid');
 
+        Route::get('project-revise/{id}', 'ProjectController@projectReviseProposal')->name('projectrevise.view');
+        Route::post('post-revise-proposal', 'ProjectController@postReviseProposal')->name('ProjectReviseProposal.new');
+
+        Route::get('project-accept/{id}', 'ProjectController@projectAcceptProposal')->name('projectaccept.view');
+        Route::post('post-accept-proposal', 'ProjectController@postAcceptProposal')->name('ProjectAcceptProposal.new');
+
         Route::post('project-lead-convert', 'ProjectController@projectLeadConvert');
         Route::get('project-schedule/{id}', 'ProjectController@projectSchedule')->name('project-schedule');
         Route::get('project-schedule-modify/{id}', 'ProjectController@projectScheduleModify')->name('project-schedule-modify');

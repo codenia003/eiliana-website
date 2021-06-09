@@ -41,13 +41,16 @@ Job Post
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 @if ($joblead->lead_status == '1')
                                     <li class="nav-item beforeaccept">
-                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','2')">Accept</a>
+                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','2')">Accept Proposal</a>
                                     </li>
                                     <li class="nav-item beforeaccept">
-                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','4')">Reject</a>
+                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','4')">Reject Proposal</a>
                                     </li>
                                     <li class="nav-item beforeaccept">
                                         <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','5')">On Hold</a>
+                                    </li>
+                                    <li class="nav-item beforeaccept">
+                                        <a class="nav-link" onclick="jobleadConvert('{{ $joblead->job_leads_id }}','6')">Revised Proposal</a>
                                     </li>
                                 @endif
                                 <li class="nav-item afteraccept d-none">
@@ -92,7 +95,7 @@ Job Post
                                     <div class="mb-2">
                                         <p class="h3">{{ $user->full_name }}</p>
                                         <p class="key_skills">{{ $proexps->key_skills }}{{ $proexps->profile_headline }}</p>
-                                        <p class="user_exper">User Experience | User Experience</p>
+                                        <p class="user_exper">User Experience</p>
                                         <p class="experience_year">{{ $proexps->experience_year }} Years {{ $proexps->experience_month }} Month</p>
                                     </div>
                                 </div>
@@ -114,6 +117,52 @@ Job Post
                                     <span class="b">Pricing Model: </span>
                                     <span>Hourly | Retainership | Project Based</span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-3 my-5 pb-4">
+                        <div class="card-header">
+                            <h5 class="card-title">Proposal Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="project">
+                                <div class="slider">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div class="project-date">
+                                                <table class="table table-borderless">
+                                                    <tbody class="info-train">
+                                                        <tr>
+                                                            <td class="heading">Resource Name</td>
+                                                            <td>: {{ $joblead->resource_name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="heading">Price Per Month</td>
+                                                            <td>: {{ $joblead->price_per_month }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="heading">Notice Period</td>
+                                                            <td>:  {{ $joblead->notice_period }}</td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="heading">Subject</td>
+                                                            <td>:  {{ $joblead->subject }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="heading">Message</td>
+                                                            <td>:  {{ $joblead->message }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="heading">Apply On</td>
+                                                            <td>:   {{  \Carbon\Carbon::parse($joblead->created_at)->isoFormat('MMM Do YYYY') }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -155,16 +204,13 @@ Job Post
                                                                 <td class="heading">Technology</td>
                                                                 <td>:  {{ $project->technologuname->technology_name }}</td>
                                                             </tr>
-                                                            </tr>
                                                             <tr>
                                                                 <td class="heading">Duration</td>
                                                                 <td>:  {{ $project->duration }}</td>
                                                             </tr>
-                                                            </tr>
                                                             <tr>
                                                                 <td class="heading">Framework</td>
                                                                 <td>:  {{ $project->frameworkname->technology_name }}</td>
-                                                            </tr>
                                                             </tr>
                                                             <tr>
                                                                 <td class="heading">Customer Industry</td>

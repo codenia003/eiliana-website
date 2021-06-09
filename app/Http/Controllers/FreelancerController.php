@@ -149,7 +149,7 @@ class FreelancerController extends Controller
     {
         $joblead = JobLeads::with('jobdetail','jobdetail.by_user_job','jobProposal')->where('job_leads_id', $id)->first();
         $locations = Location::all();
-        //return $joblead;
+        // return $joblead;
         return view('freelancer/contractual-job-inform', compact('joblead','locations'));
     }
 

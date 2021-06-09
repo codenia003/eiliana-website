@@ -423,7 +423,7 @@ class JobController extends JoshController
         $employers = Employers::where('user_id', $joblead->from_user_id)->get();
         $other_jobs = Job::where('user_id', $joblead->jobdetail->user_id)->where('job_id', '!=', $joblead->jobdetail->job_id)->get();
 
-        //return  $joblead;
+        // return  $joblead;
 
         return view('job/profile-job-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers','other_jobs'));
     }
@@ -552,22 +552,33 @@ class JobController extends JoshController
 
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Accepted successfully';
+                $not_msg = 'Your contractual job proposal accepted';
+                $not_url = '/freelancer/contractual-job-inform/'. $input['lead_id'];
             } elseif($input['lead_status'] === '5') {
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Onhold successfully';
+                $not_msg = 'Your contractual job proposal Onhold';
+                $not_url = '/freelancer/my-proposal/';
+            } elseif($input['lead_status'] === '6') {
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Revised successfully';
+                $not_msg = 'Your contractual job proposal revised';
+                $not_url = '/freelancer/contractual-job-inform/'. $input['lead_id'];
             } else {
                 $response['success'] = '2';
                 $response['errors'] = 'Proposal Decline successfully';
+                $not_msg = 'Your contractual job proposal Decline';
+                $not_url = '/freelancer/my-proposal/';
             }
 
 
             $users = User::find($jobleads->from_user_id);
             $details = [
                 'greeting' => 'Hi '. $users->full_name,
-                'body' => 'You have response on your contractual job proposal',
+                'body' => $not_msg,
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/freelancer/contractual-job-inform/'. $input['lead_id'],
+                'actionURL' => $not_url,
                 'main_id' => $input['lead_id']
             ];
 

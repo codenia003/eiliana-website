@@ -346,9 +346,9 @@ class ClientController extends JoshController
             $contractualjob_schedules->save();
 
             if($input['lead_status'] === '2'){
-                $jobstatus = JobLeads::find($contractualjob_schedules->job_leads_id);
-                $jobstatus->status = '5';
-                $jobstatus->save();
+                // $jobstatus = JobLeads::find($contractualjob_schedules->job_leads_id);
+                // $jobstatus->lead_status = '5';
+                // $jobstatus->save();
 
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Schedule Accepted successfully';

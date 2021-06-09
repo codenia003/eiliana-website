@@ -7,7 +7,12 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
+            @if ($joblead->lead_status == '6')
+            <span class="h5 text-white ml-2">Revised Proposal</span>
+            @else
             <span class="h5 text-white ml-2">Onboarding Resource </span>
+            @endif
+            
         </div>
     </div>
 </div>
@@ -21,7 +26,11 @@
         <div class="card">
         <div class="bg-blue">
             <div class="px-5 py-2">
+                @if ($joblead->lead_status == '6')
+                <span class="h5 text-white" style="margin-left: -25px;">Please Revised the details below</span>
+                @else
                 <span class="h5 text-white" style="margin-left: -25px;">Please verify the details below</span>
+                @endif
             </div>
         </div>
             <div class="card-body p-4">
@@ -29,6 +38,7 @@
                     @csrf
                     <input type="hidden" name="job_leads_id" value="{{ $joblead->job_leads_id }}">
                     <input type="hidden" name="job_id" value="{{ $joblead->job_id }}">
+                    <input type="hidden" name="job_leads_status" value="{{ $joblead->lead_status }}">
                     <div class="main-moudle">
                         <div class="form-row">
                             <div class="form-group col-6">
@@ -43,31 +53,21 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Price Per Month </label><small> (Excluding GST)</small>
-                                <input type="number" class="form-control" name="price" id="price" value="{{ $joblead->price_per_month }}" required>
+                                <input type="number" class="form-control" name="price" id="price" value="{{ $joblead->price_per_month }}" {{ $joblead->lead_status == '6' ? 'required' : 'readonly' }}>
                             </div>
                             <div class="form-group col-6">
                                 <label>Notice Period</label><small> (Days)</small>
-                                <input type="number" class="form-control" name="notice_period" value="{{ $joblead->notice_period }}" required>
+                                <input type="number" class="form-control" name="notice_period" value="{{ $joblead->notice_period }}" {{ $joblead->lead_status == '6' ? 'required' : 'readonly' }}>
                             </div>
                         </div>
-                        {{--<div class="form-row">
-                            <div class="form-group col-6">
-                                <label>Total Price </label><small> (Price + GST)</small>
-                                <input type="text" class="form-control" name="total_price" id="total_price" readonly="">
-                            </div>
-                            <div class="form-group col-6">
-                                <label>GST Rate</label><small> (%)</small>
-                                <input type="text" class="form-control" name="gst_rate" id="gst_rate" value="18" readonly="">
-                            </div>
-                        </div>--}}
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Contract Duration</label>
-                                <input type="number" class="form-control" name="contract_duration" value="{{$joblead->jobdetail->contract_duration}}">
+                                <input type="number" class="form-control" name="contract_duration" value="{{$joblead->jobdetail->contract_duration_to}}" readonly>
                             </div>
                             <div class="form-group col-6">
                                 <label>Resource Name</label>
-                                <input type="text" class="form-control" name="company_name" value="" required>
+                                <input type="text" class="form-control" name="company_name" value="{{ $joblead->resource_name }}" {{ $joblead->lead_status == '6' ? 'required' : 'readonly' }}>
                             </div>
                         </div>
                         <div class="form-row">

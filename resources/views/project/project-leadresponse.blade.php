@@ -40,7 +40,7 @@ Project Lead Response
                             <div class="message-part">
                                 <h3>Hi, {{ Sentinel::getUser()->full_name }}</h3>
                                 <p>
-                                    Message send by ankur sir
+                                    Your proposal has been submitted successfully. Will keep you posted on update.
                                 </p>
                             </div>
                             <div class="singup-body float-right mt-3">

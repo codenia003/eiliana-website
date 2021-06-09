@@ -50,6 +50,7 @@ type="text/css"/>
                 <th>Technology</th>
                 <th>Delivery Time Line</th>
                 <th>Status</th>
+                <th>More Actions</th>
             </tr>
             </thead>
                 <tbody>
@@ -67,14 +68,22 @@ type="text/css"/>
                             <form action="" method="POST">
                                @csrf
                                 <td>
-                                    <select name="project_status" id="project_status{{ $lead->project_leads_id }}" class="form-control" onchange="projectStatusChange('{{ $lead->project_leads_id }}')" style="width: 105px;" required>
+                                    {{--<select name="project_status" id="project_status{{ $lead->project_leads_id }}" class="form-control" onchange="projectStatusChange('{{ $lead->project_leads_id }}')" style="width: 170px;" required>--}}
+                                    <select name="project_status" id="project_status{{ $lead->project_leads_id }}" class="form-control" style="width: 170px;" required>
                                         <option value=""></option>
                                         <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Onhold</option>
                                         <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Shortlist</option>
                                         <option value="3" {{ ($lead->status== '3')? "selected" : "" }}>Reject</option>
+                                        <option value="4" {{ ($lead->status== '4')? "selected" : "" }}>Solution Revision</option>
+                                        <option value="5" {{ ($lead->status== '5')? "selected" : "" }}>Solution Accepted</option>
                                     </select>
                                 </td>
                             </form>
+                            @if($lead->status== '4')
+                              <td><a style="font-weight: 600;" href="{{ url('/project/project-schedule-modify'. '/' . $lead->project_leads_id) }}">Submit Project Scope</a></td>
+                            @else
+                              <td></td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

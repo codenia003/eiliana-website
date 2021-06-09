@@ -87,7 +87,7 @@ class ProjectController extends JoshController
         $projectleads = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
         $user = User::where('id', $projectleads->from_user_id)->first();
 
-        // return $projectleads;
+        //return $projectleads;
         return view('project/project-schedule-modify', compact('projectleads','user'));
     }
 
@@ -367,6 +367,14 @@ class ProjectController extends JoshController
         //     }
         // }
 
+        $projectschedules = ProjectSchedule::find($insertedId);
+        $projectschedules->satuts = '1';
+        $projectschedules->save();
+
+        $projectleadsstatus = ProjectLeads::find($input['project_leads_id']);
+        $projectleadsstatus->status = '1';
+        $projectleadsstatus->save();
+
         $project = Project::where('project_id', $input['project_id'])->first();
 
         $user = User::find($project->posted_by_user_id);
@@ -624,15 +632,26 @@ class ProjectController extends JoshController
     {
         $input = $request->except('_token');
 
-        $projectleadcheck = ProjectLeads::where('project_leads_id', '=', $input['project_leads_id'])->first();
-        if (!empty($projectleadcheck)) {
+        $projectleadcheck = ProjectLeads::where('project_leads_id', '=', $input['project_leads_id'])->where('lead_status', '!=', '1')->first();
+        if ($projectleadcheck === null) {
 
             $projectleads = ProjectLeads::find($input['project_leads_id']);
+            $projectleads->lead_status = '2';
             $projectleads->subject = $input['subject'];
             $projectleads->message = $input['messagetext'];
             $projectleads->save();
+            
+            $project_proposal = new ProjectProposal;
+            $projectlead = ProjectLeads::where('project_leads_id', '=', $input['project_leads_id'])->first();
+            $project_proposal->project_leads_id = $projectlead->project_leads_id;
+            $project_proposal->project_id = $projectlead->project_id;
+            $project_proposal->from_user_id = $projectlead->from_user_id;
+            $project_proposal->subject = $projectlead->subject;
+            $project_proposal->message = $projectlead->message;
+            $project_proposal->lead_status = $projectlead->lead_status;
+            $project_proposal->save();
 
-            if($projectleadcheck->lead_status == '2'){
+            if($projectleads->lead_status == '2'){
                 $actionURL = '/project/project-schedule/'. $input['project_leads_id'];
             }
             
@@ -652,7 +671,7 @@ class ProjectController extends JoshController
             return Redirect::route('projectaccept.view', $insertedId)->with('success', 'Accept Proposal Submitted Successfully');
 
         } else {
-            return Redirect::back()->with('success', 'You are already submitted proposal');
+            return Redirect::back()->with('error', 'You are already submitted proposal');
         }
 
     }
@@ -676,7 +695,7 @@ class ProjectController extends JoshController
             $projectleads->delivery_timeline = $input['delivery_timeline'];
             $projectleads->notify = '0';
             $projectleads->display_status = '1';
-            $projectleads->lead_status = '1';
+            //$projectleads->lead_status = '1';
             $projectleads->save();
 
             $insertedId = $projectleads->project_leads_id;
@@ -784,7 +803,7 @@ class ProjectController extends JoshController
     public function profileProjectbid($id)
     {
 
-        $joblead = ProjectLeads::with('projectdetail')->where('project_leads_id', $id)->first();
+        $joblead = ProjectLeads::with('projectdetail','projectdetail.projectAmount','projectdetail.projectCurrency')->where('project_leads_id', $id)->first();
         $user = User::where('id', $joblead->from_user_id)->first();
 
         $ug_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $joblead->from_user_id)->where('graduation_type', '3')->get();
@@ -794,10 +813,13 @@ class ProjectController extends JoshController
         $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $joblead->from_user_id)->get();
         $employers = Employers::where('user_id', $joblead->from_user_id)->get();
 
-        $other_projects = Project::where('posted_by_user_id', $joblead->projectdetail->posted_by_user_id)->where('project_id', '!=', $joblead->projectdetail->project_id)->get();
-         //return $projects;
+        $selected_technologty_pre = explode(',', $joblead->technologty_pre);
+        $technologies = Technology::whereIn('technology_id', $selected_technologty_pre)->get();
 
-        return view('project/profile-project-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers','other_projects'));
+        $other_projects = Project::where('posted_by_user_id', $joblead->projectdetail->posted_by_user_id)->where('project_id', '!=', $joblead->projectdetail->project_id)->get();
+         //return $joblead;
+
+        return view('project/profile-project-details', compact('joblead','user','ug_educations','pg_educations','certificates','proexps','projects','employers','other_projects','technologies'));
     }
 
     public function projectLeadConvert(Request $request) {
@@ -808,33 +830,35 @@ class ProjectController extends JoshController
         $projectleadcheck = ProjectLeads::where('project_leads_id', '=', $input['lead_id'])->where('lead_status', '!=', '1')->first();
         if ($projectleadcheck === null) {
 
-            $projectleads = ProjectLeads::find($input['lead_id']);
-            $projectleads->lead_status = $input['lead_status'];
-            $projectleads->save();
-
             if($input['lead_status'] === '2'){
-                $project_proposal = new ProjectProposal;
-                $projectlead = ProjectLeads::where('project_leads_id', '=', $input['lead_id'])->first();
-                $project_proposal->project_leads_id = $projectlead->project_leads_id;
-                $project_proposal->project_id = $projectlead->project_id;
-                $project_proposal->from_user_id = $projectlead->from_user_id;
-                $project_proposal->subject = $projectlead->subject;
-                $project_proposal->message = $projectlead->message;
-                $project_proposal->lead_status = $projectlead->lead_status;
-                $project_proposal->save();
+                $projectleads = ProjectLeads::find($input['lead_id']);
+                $projectleads->lead_status = '1';
+                $projectleads->save();
 
                 $response['success'] = '1';
                 $actionURL = '/project/project-accept/'. $input['lead_id'];
                 //$actionURL = '/project/project-schedule/'. $input['lead_id'];
                 $response['msg'] = 'Proposal Accepted successfully';
             }elseif($input['lead_status'] === '5') {
+                $projectleads = ProjectLeads::find($input['lead_id']);
+                $projectleads->lead_status = $input['lead_status'];
+                $projectleads->save();
+
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Onhold successfully';
             }elseif($input['lead_status'] === '6') {
+                $projectleads = ProjectLeads::find($input['lead_id']);
+                $projectleads->lead_status = $input['lead_status'];
+                $projectleads->save();
+
                 $response['success'] = '1';
                 $actionURL = '/project/project-revise/'. $input['lead_id'];
                 $response['msg'] = 'Proposal Revise successfully';
             } else {
+                // $projectleads = ProjectLeads::find($input['lead_id']);
+                // $projectleads->lead_status = $input['lead_status'];
+                // $projectleads->save();
+
                 $response['success'] = '3';
                 $response['errors'] = 'Proposal Decline successfully';
             }

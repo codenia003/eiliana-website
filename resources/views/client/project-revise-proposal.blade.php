@@ -48,13 +48,14 @@ type="text/css"/>
                         </div> --}}
                         <div class="bg-blue">
                             <div class="px-5 py-2">
-                                <span class="h5 text-white" style="margin-left: -25px;">Please verify the details below</span>
+                                <span class="h5 text-white" style="margin-left: -25px;">Please confirm the details below</span>
                             </div>
                         </div>
 						<div class="card-body p-4">
-                            <form action="{{ route('ProjectLead.new') }}" method="POST" id="projectlead" enctype="multipart/form-data">
+                            <form action="{{ route('project-revise-proposal') }}" method="POST" id="projectlead" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="project_id" value="{{ $project->project_id }}">
+                                <input type="hidden" name="project_leads_id" value="{{ $project->project_leads_id }}">
                                 <!-- <div class="modal-header text-black bg-img-hero" style="background-image: url(/assets/img/others/applyproject-removebg.png);background-size: contain;background-position: right;">
                                     <h4 class="modal-title" id="modalLabelnews">Revise Proposal</h4>
                                 </div> -->
@@ -73,7 +74,7 @@ type="text/css"/>
                                             @if ($project->projectdetail->projectAmount->pricing_model == '1')
                                                 <input type="text" class="form-control" value="Rate Per Hour" readonly>
                                             @elseif ($project->projectdetail->projectAmount->pricing_model == '2')
-                                                <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                                <input type="text" class="form-control" value="Rate Per Month" readonly>
                                             @else
                                                 <input type="text" class="form-control" value="Project Amount" readonly>
                                             @endif
@@ -86,7 +87,7 @@ type="text/css"/>
                                     </div>
                                     <div class="form-group">
                                         <label>Technology Preference</label>
-                                        <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple readonly>
+                                        <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple disabled>
                                             <option value=""></option>
                                             @foreach ($technologies as $technology)
                                             <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, explode(',', $project->technologty_pre))) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
@@ -109,10 +110,18 @@ type="text/css"/>
                                         </div>
                                     </div> -->
 
-                                    <div class="singup-body float-right mt-3">
+                                    <!-- <div class="singup-body float-right mt-3">
                                         <div class="btn-group" role="group">
                                             <button class="btn btn-primary" type="submit"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Submit</button>
                                             <button class="btn btn-primary" type="reset">Discard</button>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group text-right mt-5">
+                                        <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-primary" type="button" onclick="reviseProposalStatus('{{ $project->project_leads_id }}','2')">Accept</button>
+                                            {{--<button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $project->project_leads_id }}','3')">Modify</button>--}}
+                                            <button class="btn btn-primary" type="button" onclick="reviseProposalStatus('{{ $project->project_leads_id }}','3')">Reject</button>
                                         </div>
                                     </div>
                                 </div>
@@ -165,6 +174,50 @@ type="text/css"/>
             },
         },
     });
+
+function reviseProposalStatus(project_leads_id,status){
+    $('.spinner-border').removeClass("d-none");
+    var url = '/client/project-revise-proposal';
+    var data= {
+        _token: "{{ csrf_token() }}",
+        project_leads_id: project_leads_id,
+        status: status
+    };
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: function(data) {
+            var userCheck = data;
+            $('.spinner-border').addClass("d-none");
+            if (userCheck.success == '1') {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Success...',
+                    text: userCheck.msg,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                // window.location.href = '/freelancer/my-opportunity';
+            } else {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: userCheck.errors,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                // if (userCheck.success == '2') {
+                //     window.location.href = '/freelancer/my-opportunity';
+                // }
+            }
+
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
+}
 </script>
 
 <!--global js end-->

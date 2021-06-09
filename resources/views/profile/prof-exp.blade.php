@@ -145,7 +145,7 @@
                     <div class="form-row rateperhour {{ in_array(1, $model_engagement_new) ? "" : "d-none" }}">
                         <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Rate Per Hour</label>
-                            <input type="number" name="rateperhour" class="form-control" min="100" value="{{  $proexp->rateperhour }}" required />
+                            <input type="number" name="rateperhour" class="form-control" min="100" value="{{  $proexp->rateperhour }}"/>
                         </div>
                     </div>
                     @endif
@@ -287,7 +287,7 @@
                     <div class="form-row rateperhour">
                         <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Rate Per Hour</label>
-                            <input type="number" name="rateperhour" class="form-control" min="100" value="" required />
+                            <input type="number" name="rateperhour" class="form-control" min="100" value="" />
                         </div>
                     </div>
                     @endif

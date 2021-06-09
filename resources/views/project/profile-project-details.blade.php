@@ -115,12 +115,12 @@ Project Post
                                     </ul>
                                 </div>
                             </div>
-                            <div class="pricing-model col-md-9">
+                            <!-- <div class="pricing-model col-md-9">
                                 <div class="a p-1">
                                     <span class="b">Pricing Model: </span>
                                     <span>Hourly | Retainership | Project Based</span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="card p-3 mb-4 pb-4">
@@ -133,16 +133,29 @@ Project Post
                                     <table class="table table-borderless">
                                         <tbody class="info-train">
                                             <tr>
-                                                <td class="heading">Resource Name</td>
-                                                <td>: {{ $user->company_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="heading">Price Per Month</td>
+                                            @if ($joblead->projectdetail->projectAmount->pricing_model == '1')
+                                                <td class="heading">Price Per Hour<small>({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
                                                 <td>: {{ $joblead->bid_amount }}</td>
+                                            @elseif ($joblead->projectdetail->projectAmount->pricing_model == '2')
+                                                <td class="heading">Price Per Month<small>({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
+                                                <td>: {{ $joblead->bid_amount }}</td>
+                                            @else
+                                                <td class="heading">Price Per Project Amount<small>({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
+                                                <td>: {{ $joblead->bid_amount }}</td>
+                                            @endif
                                             </tr>
                                             <tr>
-                                                <td class="heading">Notice Period</td>
+                                                <td class="heading">Delivery Timeline<small>(Days)</small></td>
                                                 <td>: {{ $joblead->delivery_timeline }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="heading">Technology</td>
+                                                <td>:  
+                                                    @foreach ($technologies as $technology)
+                                                        {{ $loop->first ? '' : ', ' }}
+                                                        {{ $technology->technology_name }}
+                                                    @endforeach
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="heading">Subject</td>

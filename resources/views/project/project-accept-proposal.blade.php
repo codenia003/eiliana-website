@@ -73,7 +73,7 @@ type="text/css"/>
                                             @if ($project->projectdetail->projectAmount->pricing_model == '1')
                                                 <input type="text" class="form-control" value="Rate Per Hour" readonly>
                                             @elseif ($project->projectdetail->projectAmount->pricing_model == '2')
-                                                <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                                <input type="text" class="form-control" value="Rate Per Month" readonly>
                                             @else
                                                 <input type="text" class="form-control" value="Project Amount" readonly>
                                             @endif
@@ -86,7 +86,7 @@ type="text/css"/>
                                     </div>
                                     <div class="form-group">
                                         <label>Technology Preference</label>
-                                        <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple readonly>
+                                        <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple disabled>
                                             <option value=""></option>
                                             @foreach ($technologies as $technology)
                                             <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, explode(',', $project->projectdetail->technologty_pre))) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>

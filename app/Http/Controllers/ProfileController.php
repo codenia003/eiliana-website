@@ -377,6 +377,7 @@ class ProfileController extends JoshController
             $professionalExperience->technologty_pre = $input['technologty_pre'];
             // $professionalExperience->framework = $input['framework'];
             $professionalExperience->model_engagement = $input['model_engagement'];
+
             $professionalExperience->experience_year = $input['experience_year'];
             $professionalExperience->experience_month = $input['experience_month'];
             $professionalExperience->support_project = $input['support_project'];

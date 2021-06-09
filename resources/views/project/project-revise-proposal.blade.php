@@ -25,7 +25,7 @@ type="text/css"/>
   	<div class="px-5 py-2">
     	<div class="align-items-center">
         	<span class="border-title"><i class="fa fa-bars"></i></span>
-        	<span class="h5 text-white">Project Scheduler</span>
+        	<span class="h5 text-white">Revise Proposal</span>
     	</div>
   	</div>
 </div>
@@ -73,7 +73,7 @@ type="text/css"/>
                                             @if ($project->projectdetail->projectAmount->pricing_model == '1')
                                                 <input type="text" class="form-control" value="Rate Per Hour" readonly>
                                             @elseif ($project->projectdetail->projectAmount->pricing_model == '2')
-                                                <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                                <input type="text" class="form-control" value="Rate Per Month" readonly>
                                             @else
                                                 <input type="text" class="form-control" value="Project Amount" readonly>
                                             @endif

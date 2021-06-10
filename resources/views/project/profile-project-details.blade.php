@@ -92,7 +92,7 @@ Project Post
                                     <div class="mb-2">
                                         <p class="h3">{{ $user->full_name }}</p>
                                         <p class="key_skills">{{ $proexps->key_skills }}{{ $proexps->profile_headline }}</p>
-                                        <p class="user_exper">User Experience | User Experience</p>
+                                        <p class="user_exper">User Experience </p>
                                         <p class="experience_year">{{ $proexps->experience_year }} Years {{ $proexps->experience_month }} Month</p>
                                     </div>
                                 </div>
@@ -115,12 +115,12 @@ Project Post
                                     </ul>
                                 </div>
                             </div>
-                            <!-- <div class="pricing-model col-md-9">
+                            <div class="pricing-model col-md-9">
                                 <div class="a p-1">
                                     <span class="b">Pricing Model: </span>
                                     <span>Hourly | Retainership | Project Based</span>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                     <div class="card p-3 mb-4 pb-4">
@@ -412,28 +412,16 @@ function jobleadConvert(lead_id,lead_status){
             var userCheck = data;
             $('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: userCheck.msg,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-                // window.location.href = '/freelancer/my-opportunity';
+                var msg = userCheck.msg;
+                var redirect = '/project/profile-projectbid/'+ lead_id;
             } else {
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: userCheck.errors,
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-                // if (userCheck.success == '2') {
-                //     window.location.href = '/freelancer/my-opportunity';
-                // }
+                var msg = userCheck.errors;
+                var redirect = '/project/profile-projectbid/'+ lead_id;
             }
             $('.beforeaccept').addClass("d-none");
             $('.afteraccept').removeClass("d-none");
+
+            toggleRegPopup(msg,redirect);
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);
@@ -451,24 +439,29 @@ $('#projectAssign').bootstrapValidator({
         if (userCheck.success == '1') {
             $('#modal-5').modal('toggle');
             $('.spinner-border').addClass("d-none");
-            Swal.fire({
-              type: 'success',
-              title: 'Success...',
-              text: userCheck.msg,
-              showConfirmButton: false,
-              timer: 2000
-            });
+            var msg = userCheck.msg;
+            var redirect = '#';
+            // Swal.fire({
+            //   type: 'success',
+            //   title: 'Success...',
+            //   text: userCheck.msg,
+            //   showConfirmButton: false,
+            //   timer: 2000
+            // });
         } else {
             $('#modal-4').modal('toggle');
             $('.spinner-border').addClass("d-none");
-            Swal.fire({
-              type: 'error',
-              title: 'Oops...',
-              text: userCheck.errors,
-              showConfirmButton: false,
-              timer: 2000
-            });
+            var msg = userCheck.errors;
+            var redirect = '#';
+            // Swal.fire({
+            //   type: 'error',
+            //   title: 'Oops...',
+            //   text: userCheck.errors,
+            //   showConfirmButton: false,
+            //   timer: 2000
+            // });
         }
+        toggleRegPopup(msg,redirect);
     }, 'json');
 });
 </script>

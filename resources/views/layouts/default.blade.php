@@ -323,7 +323,7 @@
                     </div>
                 </div>
                 <div class="modal-footer eiliana-refer">
-                    <a id="linkUrl"  class="btn btn-outline-primary red-linear-gradient" href="#">OK</a>
+                    <a id="linkUrl" style="color:#ffff !important;" class="btn btn-outline-primary1 red-linear-gradient" href="#">OK</a>
                     <!-- <button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Close</button> -->
                 </div>
             </div>

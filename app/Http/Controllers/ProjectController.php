@@ -316,60 +316,56 @@ class ProjectController extends JoshController
     {
         $user = Sentinel::getUser();
         $input = $request->except('_token');
-
+        
         $input['user_id'] = $user->id;
 
-        // $projectschedules = new ProjectSchedule;
-        // $projectschedules->project_leads_id = $input['project_leads_id'];
-        // $projectschedules->project_id = $input['project_id'];
-        // $projectschedules->customer_objective = $input['customer_objective'];
-        // $projectschedules->project_start_date = $input['project_start_date'];
-        // $projectschedules->project_end_date = $input['project_end_date'];
-        // $projectschedules->remarks = $input['remarks'];
-        // $projectschedules->satuts = '1';
-        // $projectschedules->save();
-
-        $insertedId = $input['project_schedule_id'];
-
-        // foreach ($input['module_id'] as $key => $value) {
-
-        //     if($input['module_id'] == '1'){
-        //         $current_pending = '1';
-        //     } else {
-        //         $current_pending = '0';
-        //     }
-
-        //     $schedulemodule = new ProjectScheduleModule;
-        //     $schedulemodule->project_schedule_id = $insertedId;
-        //     $schedulemodule->module_scope = $input['module_scope'][$key];
-        //     $schedulemodule->module_start_date = $input['module_start_date'][$key];
-        //     $schedulemodule->module_end_date = $input['module_end_date'][$key];
-        //     $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
-        //     $schedulemodule->hours_approved = $input['hours_approved'][$key];
-        //     // $schedulemodule->modify_hours = $input['modify_hours'][$key];
-        //     $schedulemodule->module_status = $input['module_status'][$key];
-        //     $schedulemodule->current = $current_pending;
-        //     $schedulemodule->save();
-
-        //     $insertedScheduleId = $schedulemodule->project_schedule_module_id;
-
-        //     foreach ($input['sub_module_id'] as $key1 => $value1) {
-
-        //         if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
-
-        //             $subschedulemodule = new ProjectSubScheduleModule;
-        //             $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
-        //             $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
-        //             $subschedulemodule->module_description = $input['sub_module_description'][$key1];
-        //             $subschedulemodule->module_status = $input['sub_module_status'][$key1];
-        //             $subschedulemodule->save();
-        //         }
-        //     }
-        // }
-
-        $projectschedules = ProjectSchedule::find($insertedId);
+        $projectschedules = ProjectSchedule::find($input['project_schedule_id']);
+        $projectschedules->project_leads_id = $input['project_leads_id'];
+        $projectschedules->project_id = $input['project_id'];
+        $projectschedules->customer_objective = $input['customer_objective'];
+        $projectschedules->project_start_date = $input['project_start_date'];
+        $projectschedules->project_end_date = $input['project_end_date'];
+        $projectschedules->remarks = $input['remarks'];
         $projectschedules->satuts = '1';
         $projectschedules->save();
+
+        $insertedId = $projectschedules->project_schedule_id;
+
+        foreach ($input['module_id'] as $key => $value) {
+
+            if($input['module_id'] == '1'){
+                $current_pending = '1';
+            } else {
+                $current_pending = '0';
+            }
+
+            $schedulemodule = ProjectScheduleModule::find($input['project_schedule_id']);
+            $schedulemodule->project_schedule_id = $insertedId;
+            $schedulemodule->module_scope = $input['module_scope'][$key];
+            $schedulemodule->module_start_date = $input['module_start_date'][$key];
+            $schedulemodule->module_end_date = $input['module_end_date'][$key];
+            $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
+            $schedulemodule->hours_approved = $input['hours_approved'][$key];
+            // $schedulemodule->modify_hours = $input['modify_hours'][$key];
+            $schedulemodule->module_status = $input['module_status'][$key];
+            $schedulemodule->current = $current_pending;
+            $schedulemodule->save();
+
+            $insertedScheduleId = $schedulemodule->project_schedule_module_id;
+
+            foreach ($input['sub_module_id'] as $key1 => $value1) {
+
+                if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
+
+                    $subschedulemodule = ProjectSubScheduleModule::find($insertedScheduleId);
+                    $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
+                    $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
+                    $subschedulemodule->module_description = $input['sub_module_description'][$key1];
+                    $subschedulemodule->module_status = $input['sub_module_status'][$key1];
+                    $subschedulemodule->save();
+                }
+            }
+        }
 
         $projectleadsstatus = ProjectLeads::find($input['project_leads_id']);
         $projectleadsstatus->status = '1';
@@ -713,7 +709,7 @@ class ProjectController extends JoshController
             ];
 
             Notification::send($user, new UserNotification($details));
-            return Redirect::route('projectrevise.view', $insertedId)->with('success', 'Revise Proposal Submitted Successfully');
+            return Redirect::route('projectreviseproposal.view', $insertedId)->with('success', 'Revise Proposal Submitted Successfully');
 
         } else {
             return Redirect::back()->with('success', 'You are already submitted proposal');

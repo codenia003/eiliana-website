@@ -388,7 +388,7 @@ class JobController extends JoshController
         $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
         $certificates = Certificate::where('user_id', $id)->get();
         $proexps = ProfessionalExperience::where('user_id', $id)->first();
-        $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
+        $projects = UserProject::with('projecttypes', 'technologuname', 'customerindustry', 'frameworkname')->where('user_id', $id)->get();
         $employers = Employers::where('user_id', $id)->get();
         $staffingleadsid = ContractStaffingLeads::all()->last()->staffing_leads_id;
         //$staffingleadsid = 0;
@@ -419,7 +419,7 @@ class JobController extends JoshController
         $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $joblead->from_user_id)->where('graduation_type', '4')->get();
         $certificates = Certificate::where('user_id', $joblead->from_user_id)->get();
         $proexps = ProfessionalExperience::where('user_id', $joblead->from_user_id)->first();
-        $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $joblead->from_user_id)->get();
+        $projects = UserProject::with('projecttypes', 'technologuname', 'customerindustry', 'frameworkname')->where('user_id', $joblead->from_user_id)->get();
         $employers = Employers::where('user_id', $joblead->from_user_id)->get();
         $other_jobs = Job::where('user_id', $joblead->jobdetail->user_id)->where('job_id', '!=', $joblead->jobdetail->job_id)->get();
 
@@ -928,7 +928,7 @@ class JobController extends JoshController
         $pg_educations = Education::with('educationtype', 'university', 'qualification')->where('user_id', $id)->where('graduation_type', '4')->get();
         $certificates = Certificate::where('user_id', $id)->get();
         $proexps = ProfessionalExperience::where('user_id', $id)->first();
-        $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
+        $projects = UserProject::with('projecttypes', 'technologuname', 'customerindustry', 'frameworkname')->where('user_id', $id)->get();
         $employers = Employers::where('user_id', $id)->get();
         // $staffingleadsid = ContractStaffingLeads::all()->last()->staffing_leads_id;
         // $staffingleadsid = $staffingleadsid + 1;
@@ -944,6 +944,7 @@ class JobController extends JoshController
         //         $response['leadcheck'] = '1';
         //     }
         // }
+        //return $projects;
 
         return view('job/resume-details', compact('user','ug_educations','pg_educations','certificates','proexps','projects','employers'));
     }

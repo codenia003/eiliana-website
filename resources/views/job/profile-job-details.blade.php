@@ -404,29 +404,33 @@ function jobleadConvert(lead_id,lead_status){
             var userCheck = data;
             $('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: userCheck.msg,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
+                 var msg = userCheck.msg;
+                 var redirect = '/job/job-lead-convert'+ lead_id;
+                // Swal.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //     text: userCheck.msg,
+                //     showConfirmButton: false,
+                //     timer: 2000
+                // });
                 $('.beforeaccept').addClass("d-none");
                 $('.afteraccept').removeClass("d-none");
                 // window.location.href = '/freelancer/my-opportunity';
             } else {
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: userCheck.errors,
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                 var msg = userCheck.errors;
+                 var redirect = '/job/job-lead-convert'+ lead_id;
+                // Swal.fire({
+                //     type: 'error',
+                //     title: 'Oops...',
+                //     text: userCheck.errors,
+                //     showConfirmButton: false,
+                //     timer: 3000
+                // });
                 // if (userCheck.success == '2') {
                 //     window.location.href = '/freelancer/my-opportunity';
                 // }
             }
-
+            toggleRegPopup(msg,redirect);
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);
@@ -444,24 +448,29 @@ $('#jobAssign').bootstrapValidator({
         if (userCheck.success == '1') {
             $('#modal-5').modal('toggle');
             $('.spinner-border').addClass("d-none");
-            Swal.fire({
-              type: 'success',
-              title: 'Success...',
-              text: userCheck.msg,
-              showConfirmButton: false,
-              timer: 2000
-            });
+               var msg = userCheck.msg;
+               var redirect = '#';
+            // Swal.fire({
+            //   type: 'success',
+            //   title: 'Success...',
+            //   text: userCheck.msg,
+            //   showConfirmButton: false,
+            //   timer: 2000
+            // });
         } else {
             $('#modal-4').modal('toggle');
             $('.spinner-border').addClass("d-none");
-            Swal.fire({
-              type: 'error',
-              title: 'Oops...',
-              text: userCheck.errors,
-              showConfirmButton: false,
-              timer: 2000
-            });
+                 var msg = userCheck.errors;
+                 var redirect = '#';
+            // Swal.fire({
+            //   type: 'error',
+            //   title: 'Oops...',
+            //   text: userCheck.errors,
+            //   showConfirmButton: false,
+            //   timer: 2000
+            // });
         }
+        toggleRegPopup(msg,redirect);
     }, 'json');
 });
 </script>

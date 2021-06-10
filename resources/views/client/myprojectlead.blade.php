@@ -53,7 +53,7 @@ type="text/css"/>
             </tr>
             </thead>
                 <tbody>
-                    @foreach($leads as $lead)
+                    @forelse($leads as $lead)
                         <tr>
                             <td>{{ $lead->project_leads_id }}</td>
                             <td>{{ $lead->projectdetail->project_title }}</td>
@@ -76,7 +76,13 @@ type="text/css"/>
                                 </td>
                             </form>
                         </tr>
-                    @endforeach
+                        @empty
+                        <tr>
+                            <td class="text-center" colspan="6">
+                               <h4>List is empty</h4>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
         </table>
         <div class="pager">

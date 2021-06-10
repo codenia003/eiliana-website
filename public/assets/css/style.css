@@ -1493,13 +1493,13 @@ button.btn.btn-danger.float-right.mt-3.rounded-0 {
 }
 
 .profile-information .contract-body p.h3 {
-    font-size: 21px;
+    font-size: 28px;
     color: #003466;
     font-weight: 600;
 }
 
 .profile-information .contract-body p.key_skills {
-    font-size: 22px;
+    font-size: 21px;
     color: #de4b39;
     font-weight: 500;
 }
@@ -2544,4 +2544,11 @@ button {
 
 .project-deatils .skills {
     margin-top: 20px;
+}
+
+.project-schedule button.btn-info span {
+    float: right;
+    font-size: 20px;
+    position: relative;
+    left: 4px;
 }

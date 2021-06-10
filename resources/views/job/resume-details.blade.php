@@ -73,7 +73,7 @@ Job Post
                                                 {{ $proexps->profile_headline }}
                                             @endif
                                         </p>
-                                        <p class="user_exper">User Experience | User Experience</p>
+                                        <p class="user_exper">User Experience </p>
                                         <p class="experience_year">
                                             @if(isset($proexps->experience_year))
                                                 {{ $proexps->experience_year }}
@@ -94,12 +94,12 @@ Job Post
                                     </ul>
                                 </div>
                             </div>
-                            <div class="pricing-model col-md-9">
+                            <!-- <div class="pricing-model col-md-9">
                                 <div class="a p-1">
                                     <span class="b">Pricing Model: </span>
                                     <span>Hourly | Retainership | Project Based</span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="card p-3 my-5 pb-4">
@@ -159,26 +159,26 @@ Job Post
                                                                 @endif
                                                                  </td>
                                                             </tr>
-                                                            </tr>
+                                                            
                                                             <tr>
-                                                                <td class="heading">Duration</td>
+                                                                <td class="heading">Duration<small>(Month)</small></td>
                                                                 <td>:  {{ $project->duration }}</td>
                                                             </tr>
-                                                            </tr>
-                                                            <tr>
+                                                            
+                                                            {{--<tr>
                                                                 <td class="heading">Framework</td>
                                                                 <td>:
                                                                     @if(isset($project->frameworkname->technology_name))
                                                                     {{ $project->frameworkname->technology_name }}
                                                                 @endif
                                                                   </td>
-                                                            </tr>
-                                                            </tr>
+                                                            </tr>--}}
+                                                            
                                                             <tr>
                                                                 <td class="heading">Customer Industry</td>
                                                                 <td>:
-                                                                    @if(isset($project->industry))
-                                                                    {{ $project->industry }}
+                                                                    @if(isset($project->customerindustry->name))
+                                                                    {{ $project->customerindustry->name }}
                                                                 @endif
                                                                  </td>
                                                             </tr>
@@ -270,7 +270,7 @@ Job Post
                                     </div>
                                 @endforeach
                             </div>
-                            <h3 class="card-title mt-4">Certifications</h5>
+                            <h4 class="card-title mt-4">Certifications</h4>
                             <hr>
                             <div class="card-education">
                                 @foreach ($certificates as $certificate)
@@ -380,26 +380,31 @@ $(document).ready(function(){
                 $('#subject').val('');
                 $('#message-text').val('');
                 $('.spinner-border').addClass("d-none");
-                Swal.fire({
-                  type: 'success',
-                  title: 'Success...',
-                  text: userCheck.msg,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                  var msg = userCheck.msg;
+                  var redirect = '#';
+                // Swal.fire({
+                //   type: 'success',
+                //   title: 'Success...',
+                //   text: userCheck.msg,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
             } else {
                 $('#modal-4').modal('toggle');
                 $('#subject').val('');
                 $('#message-text').val('');
                 $('.spinner-border').addClass("d-none");
-                Swal.fire({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: userCheck.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                  var msg = userCheck.errors;
+                  var redirect = '#';
+                // Swal.fire({
+                //   type: 'error',
+                //   title: 'Oops...',
+                //   text: userCheck.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
             }
+            toggleRegPopup(msg,redirect);
         }, 'json');
     });
 });

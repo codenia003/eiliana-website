@@ -103,26 +103,30 @@ Job Post
             success: function(data) {
                 var userCheck = data;
                 if (userCheck.success == '1') {
-                    Swal.fire({
-                        type: 'success',
-                        title: 'Success...',
-                        text: userCheck.msg,
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                    window.location.href = '/freelancer/my-opportunity';
+                    var msg = userCheck.msg;
+                    var redirect = '/freelancer/my-opportunity';
+                    // Swal.fire({
+                    //     type: 'success',
+                    //     title: 'Success...',
+                    //     text: userCheck.msg,
+                    //     showConfirmButton: false,
+                    //     timer: 2000
+                    // });
+                    //window.location.href = '/freelancer/my-opportunity';
                 } else {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: userCheck.errors,
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
+                    // Swal.fire({
+                    //     type: 'error',
+                    //     title: 'Oops...',
+                    //     text: userCheck.errors,
+                    //     showConfirmButton: false,
+                    //     timer: 3000
+                    // });
+                    var msg = userCheck.errors;
                     if (userCheck.success == '2') {
-                        window.location.href = '/freelancer/my-opportunity';
+                        var redirect = '/freelancer/my-opportunity';
                     }
                 }
+                toggleRegPopup(msg,redirect);
                 //
                 // Swal.fire({
                 //     type: 'success',

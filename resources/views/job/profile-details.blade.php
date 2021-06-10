@@ -85,7 +85,8 @@ Job Post
                                     <div class="mb-2">
                                         <p class="h3">{{ $user->full_name }}</p>
                                         <p class="key_skills">{{ $proexps->key_skills }}{{ $proexps->profile_headline }}</p>
-                                        <p class="user_exper">User Experience | User Experience</p>
+                                        <!-- <p class="user_exper">User Experience | User Experience</p> -->
+                                        <p class="user_exper">User Experience </p>
                                         <p class="experience_year">{{ $proexps->experience_year }} Years {{ $proexps->experience_month }} Month</p>
                                     </div>
                                 </div>
@@ -112,12 +113,12 @@ Job Post
                                     </ul>
                                 </div>
                             </div>
-                            <div class="pricing-model col-md-9">
+                            <!-- <div class="pricing-model col-md-9">
                                 <div class="a p-1">
                                     <span class="b">Pricing Model: </span>
                                     <span>Hourly | Retainership | Project Based</span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="card p-3 my-5 pb-4">
@@ -227,7 +228,7 @@ Job Post
                                     </div>
                                 @endforeach
                             </div>
-                            <h3 class="card-title mt-4">Certifications</h5>
+                            <h4 class="card-title mt-4">Certifications</h4>
                             <hr>
                             <div class="card-education">
                                 @foreach ($certificates as $certificate)
@@ -363,26 +364,31 @@ $(document).ready(function(){
                 $('#subject').val('');
                 $('#message-text').val('');
                 $('.spinner-border').addClass("d-none");
-                Swal.fire({
-                  type: 'success',
-                  title: 'Success...',
-                  text: userCheck.msg,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                 var msg = userCheck.msg;
+                 var redirect = '#';
+                // Swal.fire({
+                //   type: 'success',
+                //   title: 'Success...',
+                //   text: userCheck.msg,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
             } else {
                 $('#modal-4').modal('toggle');
                 $('#subject').val('');
                 $('#message-text').val('');
                 $('.spinner-border').addClass("d-none");
-                Swal.fire({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: userCheck.errors,
-                  showConfirmButton: false,
-                  timer: 2000
-                });
+                var msg = userCheck.errors;
+                var redirect = '#';
+                // Swal.fire({
+                //   type: 'error',
+                //   title: 'Oops...',
+                //   text: userCheck.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
             }
+            toggleRegPopup(msg,redirect);
         }, 'json');
     });
 });

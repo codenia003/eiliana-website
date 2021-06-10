@@ -188,29 +188,33 @@ function SaveJob(job_id){
             var userCheck = data;
             //$('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: userCheck.msg,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-                  window.location.href = '/job'+"/"+job_id;
+                var msg = userCheck.msg;
+                var redirect = '/job'+"/"+job_id;
+                // Swal.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //     text: userCheck.msg,
+                //     showConfirmButton: false,
+                //     timer: 2000
+                // });
+                  //window.location.href = '/job'+"/"+job_id;
                 // window.location.href = '/freelancer/my-opportunity';
             } else {
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: userCheck.errors,
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-                   window.location.href = '/job'+"/"+job_id;
+                var msg = userCheck.errors;
+                var redirect = '/job'+"/"+job_id;
+                // Swal.fire({
+                //     type: 'error',
+                //     title: 'Oops...',
+                //     text: userCheck.errors,
+                //     showConfirmButton: false,
+                //     timer: 3000
+                // });
+                  // window.location.href = '/job'+"/"+job_id;
                 // if (userCheck.success == '2') {
                 //     window.location.href = '/freelancer/my-opportunity';
                 // }
             }
-
+            toggleRegPopup(msg,redirect);
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);

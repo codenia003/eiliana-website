@@ -40,7 +40,7 @@ type="text/css"/>
 	        	<div id="notific">
 		            @include('notifications')
 		        </div>
-	             <div class="singup-body login-body profile-basic">
+	             <div class="singup-body login-body profile-basic project-schedule">
 					<div class="card">
 					<div class="bg-blue">
 						<div class="px-5 py-2">

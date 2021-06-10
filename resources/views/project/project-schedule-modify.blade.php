@@ -40,7 +40,7 @@ type="text/css"/>
 	        	<div id="notific">
 		            @include('notifications')
 		        </div>
-	             <div class="singup-body login-body profile-basic">
+	             <div class="singup-body login-body profile-basic project-schedule">
 					<div class="card">
 					<div class="bg-blue">
 						<div class="px-5 py-2">
@@ -52,6 +52,7 @@ type="text/css"/>
 								@csrf
                                 <input type="hidden" name="project_leads_id" value="{{ $projectleads->project_leads_id }}">
                                 <input type="hidden" name="project_schedule_id" value="{{ $projectleads->projectschedulee->project_schedule_id }}">
+                                
 								<div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">
@@ -112,6 +113,18 @@ type="text/css"/>
                                             <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="{{ $projectleads->projectschedulee->project_end_date }}" required>
                                         </div>
                                     </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label>Hours Proposed</label>
+                                            <input class="form-control" type="text" name="hours_proposed_as" value="as per eiliana software" readonly>
+                                            <input class="form-control" type="hidden" name="hours_proposed" value="0">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>Hours Approved</label>
+                                            <input class="form-control" type="text" name="hours_approved_as" value="as per eiliana software" readonly>
+                                            <input class="form-control" type="hidden" name="hours_approved" value="0" >
+                                        </div>
+                                    </div>
                                 </div>
 
 								<div class="module-1">
@@ -134,7 +147,7 @@ type="text/css"/>
 												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="{{ $modulee->module_end_date }}" required>
 											</div>
 										</div>
-										<div class="form-row">
+										{{--<div class="form-row">
 											<div class="form-group col-6">
 												<label>Hours Proposed</label>
 												<input class="form-control" type="text" name="hours_proposed[]" value="{{ $modulee->hours_proposed }}" required>
@@ -143,7 +156,7 @@ type="text/css"/>
 												<label>Hours Approved</label>
 												<input class="form-control" type="text" name="hours_approved[]" value="{{ $modulee->hours_approved }}" required>
 											</div>
-										</div>
+										</div>--}}
 										{{-- <div class="form-row">
 											<div class="form-group col-6">
 												<label>Modify Hours</label>
@@ -164,6 +177,8 @@ type="text/css"/>
 										<div class="sub-module-1">
                                             @foreach ($modulee->subschedulemodulee as  $key1 => $submodulee)
                                                 <div class="sub-module-3 remove-qual-1">
+                                                    <input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
+                                                    <input type="hidden" name="last_module_id[]" id="last_module_id" value="1">
                                                     <div class="form-row">
                                                         <div class="form-group col-12">
                                                             <label><span class="module_num">{{ $key + 1 }}</span>.<span class="sub_module_num">{{ $key1 + 1 }}</span>. Sub-module Scope</label>
@@ -179,13 +194,23 @@ type="text/css"/>
                                                     <div class="form-row d-none">
                                                         <div class="form-group col-6">
                                                             <label>Sub-module Status (Optional)</label>
+                                                            <select name="sub_module_status[]" class="form-control" readonly>
+                                                                <option value="1">To be Started</option>
+                                                                <option value="2">In Progress</option>
+                                                                <option value="3">Completed</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    {{--<div class="form-row d-none">
+                                                        <div class="form-group col-6">
+                                                            <label>Sub-module Status (Optional)</label>
                                                             <select name="sub_module_status[]" class="form-control" disabled>
                                                                 <option value="1" {{ ($submodulee->sub_module_status=='1')? "selected" : "" }}>To be Started</option>
                                                                 <option value="2" {{ ($submodulee->sub_module_status=='2')? "selected" : "" }}>In Progress</option>
                                                                 <option value="3" {{ ($submodulee->sub_module_status=='3')? "selected" : "" }}>Completed</option>
                                                             </select>
                                                         </div>
-                                                    </div>
+                                                    </div>--}}
                                                 </div>
                                             @endforeach
 										</div>
@@ -198,7 +223,6 @@ type="text/css"/>
                                         <p>No data</p>
                                     @endforelse
 								</div>
-
 								<div class="form-row">
                                     <div class="form-group col-12">
                                         <label>Remarks</label>

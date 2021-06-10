@@ -184,24 +184,28 @@
                 dataType: "json",
                 success: function(data) {
                     if(data.success === '1'){
-                        Swal.fire({
-                            type: 'success',
-                            title: 'Success...',
-                            text: data.msg,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        window.location.href = '/hire-talent-sales';
+                        var msg = data.msg;
+                        var redirect = '/hire-talent-sales';
+                        // Swal.fire({
+                        //     type: 'success',
+                        //     title: 'Success...',
+                        //     text: data.msg,
+                        //     showConfirmButton: false,
+                        //     timer: 1500
+                        // });
+                        //window.location.href = '/hire-talent-sales';
                     } else {
-                        Swal.fire({
-                            type: 'info',
-                            title: 'Oops...',
-                            text: data.msg,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        var msg = data.msg;
+                        var redirect = '/hire-talent-sales';
+                        // Swal.fire({
+                        //     type: 'info',
+                        //     title: 'Oops...',
+                        //     text: data.msg,
+                        //     showConfirmButton: false,
+                        //     timer: 1500
+                        // });
                     }
-
+                    toggleRegPopup(msg,redirect);
                 },
                 error: function(xhr, status, error) {
                     console.log("error: ",error);

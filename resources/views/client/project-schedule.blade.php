@@ -66,6 +66,18 @@
                                 <input class="form-control" type="text" name="project_end_date" value="{{ $projectlead->projectschedulee->project_end_date }}" readonly>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>Hours Proposed</label>
+                                <input class="form-control" type="text" name="hours_proposed_as" value="as per eiliana software" readonly>
+                                <input class="form-control" type="hidden" name="hours_proposed" value="0">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Hours Approved</label>
+                                <input class="form-control" type="text" name="hours_approved_as" value="as per eiliana software" readonly>
+                                <input class="form-control" type="hidden" name="hours_approved" value="0" >
+                            </div>
+                        </div>
                     </div>
 
                     <div class="module-1">
@@ -88,7 +100,7 @@
                                         <input class="form-control" type="text" name="module_end_date[]" value="{{ $modulee->module_end_date }}" readonly>
                                     </div>
                                 </div>
-                                <div class="form-row">
+                                {{--<div class="form-row">
                                     <div class="form-group col-6">
                                         <label>Hours Proposed</label>
                                         <input class="form-control" type="text" name="hours_proposed[]" value="{{ $modulee->hours_proposed }}" readonly>
@@ -97,8 +109,8 @@
                                         <label>Hours Approved</label>
                                         <input class="form-control" type="text" name="hours_approved[]" value="{{ $modulee->hours_approved }}" readonly>
                                     </div>
-                                </div>
-                                <div class="form-row">
+                                </div>--}}
+                                {{--<div class="form-row">
                                     <div class="form-group col-6">
                                         <label>Module Status (Mandatory)</label>
                                         <select name="module_status[]" class="form-control" disabled>
@@ -107,7 +119,7 @@
                                             <option value="3" {{ ($modulee->module_status=='3')? "selected" : "" }}>Completed</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>--}}
 
                                 <div class="sub-module-1">
                                     @foreach ($modulee->subschedulemodulee as  $key1 => $submodulee)
@@ -124,7 +136,7 @@
                                                     <textarea class="form-control" name="sub_module_description[]" rows="4" readonly>{{ $submodulee->module_description }}</textarea>
                                                 </div>
                                             </div>
-                                            <div class="form-row">
+                                            {{--<div class="form-row">
                                                 <div class="form-group col-6">
                                                     <label>Sub-module Status (Optional)</label>
                                                     <select name="sub_module_status[]" class="form-control" disabled>
@@ -133,7 +145,7 @@
                                                         <option value="3" {{ ($submodulee->sub_module_status=='3')? "selected" : "" }}>Completed</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div>--}}
                                         </div>
                                     @endforeach
                                 </div>
@@ -185,27 +197,32 @@ function projectleadSchedule(schedule_id,lead_status){
             var userCheck = data;
             $('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success...',
-                    text: userCheck.msg,
-                    showConfirmButton: false,
-                    timer: 2000
-                });
+                var msg = userCheck.msg;
+                var redirect = '/client/project-schedule/'+ schedule_id;
+               
+                // Swal.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //     text: userCheck.msg,
+                //     showConfirmButton: false,
+                //     timer: 2000
+                // });
                 // window.location.href = '/freelancer/my-opportunity';
             } else {
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: userCheck.errors,
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                var msg = userCheck.errors;
+                var redirect = '/client/project-schedule/'+ schedule_id;
+                // Swal.fire({
+                //     type: 'error',
+                //     title: 'Oops...',
+                //     text: userCheck.errors,
+                //     showConfirmButton: false,
+                //     timer: 3000
+                // });
                 // if (userCheck.success == '2') {
                 //     window.location.href = '/freelancer/my-opportunity';
                 // }
             }
-
+            toggleRegPopup(msg,redirect);
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);

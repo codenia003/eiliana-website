@@ -187,15 +187,6 @@ class ClientController extends JoshController
                 $user = User::find($projects->posted_by_user_id);
                 $url = '/project/contract-details/'. $projectschedules->project_leads_id;
 
-                $details = [
-                    'greeting' => 'Hi '. $user->full_name,
-                    'body' => 'You have response on your project schedule proposal',
-                    'thanks' => 'Thank you for using eiliana.com!',
-                    'actionText' => 'View My Site',
-                    'actionURL' => $url,
-                    'main_id' => $projectschedules->project_leads_id
-                ];
-
             } elseif($input['lead_status'] === '3') {
                 $projectleadsstatus = ProjectLeads::find($projectschedules->project_leads_id);
                 $projectleadsstatus->status = '4';
@@ -206,15 +197,6 @@ class ClientController extends JoshController
                 $url = '/project/project-schedule-modify/'. $projectschedules->project_leads_id;
                 $user = User::find($projectleads->from_user_id);
 
-                $details = [
-                    'greeting' => 'Hi '. $user->full_name,
-                    'body' => 'You have response on your project schedule proposal',
-                    'thanks' => 'Thank you for using eiliana.com!',
-                    'actionText' => 'View My Site',
-                    'actionURL' => $url,
-                    'main_id' => $projectschedules->project_leads_id
-                ];
-
             } else {
                 $projectleadsstatus = ProjectLeads::find($projectschedules->project_leads_id);
                 $projectleadsstatus->status = '3';
@@ -224,25 +206,16 @@ class ClientController extends JoshController
                 $response['errors'] = 'Proposal Schedule Rejected successfully';
                 $url = '#';
                 $user = User::find($projectleads->from_user_id);
-
-                $details = [
-                    'greeting' => 'Hi '. $user->full_name,
-                    'body' => 'You have response on your project schedule proposal',
-                    'thanks' => 'Thank you for using eiliana.com!',
-                    'actionText' => 'View My Site',
-                    'actionURL' => $url,
-                    'main_id' => $projectschedules->project_leads_id
-                ];
             }
 
-            // $details = [
-            //     'greeting' => 'Hi '. $user->full_name,
-            //     'body' => 'You have response on your project schedule proposal',
-            //     'thanks' => 'Thank you for using eiliana.com!',
-            //     'actionText' => 'View My Site',
-            //     'actionURL' => $url,
-            //     'main_id' => $projectschedules->project_leads_id
-            // ];
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have response on your project schedule proposal',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => $url,
+                'main_id' => $projectschedules->project_leads_id
+            ];
 
             Notification::send($user, new UserNotification($details));
 

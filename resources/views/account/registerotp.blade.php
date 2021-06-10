@@ -152,23 +152,27 @@ OTP Verification
             success: function(data) {
                 var userCheck = data;
                 if (userCheck.success == '1') {
-                    Swal.fire({
-                        type: 'success',
-                        title: 'Success...',
-                        text: userCheck.errors,
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
+                    var msg = userCheck.msg;
+                    var redirect = '#';
+                    // Swal.fire({
+                    //     type: 'success',
+                    //     title: 'Success...',
+                    //     text: userCheck.errors,
+                    //     showConfirmButton: false,
+                    //     timer: 2000
+                    // });
                 } else {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: userCheck.errors,
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
+                    var msg = userCheck.errors;
+                    var redirect = '#';
+                    // Swal.fire({
+                    //     type: 'error',
+                    //     title: 'Oops...',
+                    //     text: userCheck.errors,
+                    //     showConfirmButton: false,
+                    //     timer: 3000
+                    // });
                 }
-
+                toggleRegPopup(msg,redirect);
             },
             error: function(xhr, status, error) {
                 console.log("error: ",error);

@@ -74,7 +74,7 @@
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label>Date Of Onboarding</label>
-                                <input class="flatpickr flatpickr-input form-control" type="text" name="job_start_date" value="{{ $contractual_job->job_start_date }}" required>
+                                <input class="form-control" type="text" name="job_start_date"  id="startDate" required>
                             </div>
                         </div>
 
@@ -94,7 +94,7 @@
                             </div>
                         </div>
 
-                        <div class="form-row" id="on_postpaid">
+                        {{-- <div class="form-row" id="on_postpaid">
                             <div class="form-group col-6">
                                 <label>Postpaid Amount </label>
                                 <input type="text" class="form-control" name="on_postpaid_amount" value="{{$contractual_job->on_postpaid_amount}}" required>
@@ -103,7 +103,7 @@
                                 <label>Advance Amount</label>
                                 <input type="text" class="form-control" name="advance_amount" value="{{$contractual_job->advance_amount}}" required>
                             </div>
-                        </div>
+                        </div> --}}
 
                         
                         <div class="form-row">
@@ -156,12 +156,14 @@
 @stop
 
 @section('profile_script')
-<script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
 
 <script>
 $('#educationForm').bootstrapValidator({});
     $(document).ready(function() {
-        flatpickr('.flatpickr');
+        flatpickr('#startDate', {
+            defaultDate: '{{ $contractual_job->job_start_date }}',
+        });
+
     });
    
 //    $("#pricing_cycle").change(function(){

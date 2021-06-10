@@ -405,7 +405,7 @@ class ClientController extends JoshController
                 $response['errors'] = 'Proposal Schedule Rejected successfully';
                 $url = '#';
             }
-
+            $url = '#';
             $contractualjob_leads = JobLeads::where('job_leads_id', $contractualjob_schedules->job_leads_id)->first();
 
             $user = User::find($contractualjob_leads->from_user_id);
@@ -432,7 +432,7 @@ class ClientController extends JoshController
     public function jobContractDetails($id)
     {
         $joblead = JobLeads::with('jobdetail','jobcontractdetails','jobcontractdetails.joborderinvoice','jobcontractdetails.jobpaymentschedule','jobcontractdetails.jobadvacne_amount')->where('job_leads_id', $id)->first();
-        //return $joblead;
+        // return $joblead;
         return view('client/job-contract-details', compact('joblead'));
     }
 

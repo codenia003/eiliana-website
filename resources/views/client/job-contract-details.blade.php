@@ -32,7 +32,7 @@
             <div class="card-body p-4">
                 <form action="{{ route('contractual-job-payment') }}" method="POST" id="educationForm">
                     @csrf
-                    <input type="hidden" name="contract_id" value="{{ $joblead->jobcontractdetails->contract_id }}">
+                    {{-- <input type="hidden" name="contract_id" value="{{ $joblead->jobcontractdetails->contract_id }}"> --}}
                     <div class="main-moudle">
                         <div class="form-row">
                             <div class="form-group col-6">
@@ -41,23 +41,34 @@
                             </div>
                             <div class="form-group col-6">
                                 <label>Order Closed Value</label>
-                                <input type="text" class="form-control" name="order_closed_value" value="{{ $joblead->jobcontractdetails->order_closed_value }}" readonly>
+                                <input type="text" class="form-control" name="order_closed_value" value="{{ $joblead->price_per_month }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Date of Acceptance</label>
-                                <input class="form-control" type="text" name="date_acceptance" value="{{ $joblead->jobcontractdetails->date_acceptance }}" readonly>
+                                <input class="form-control" type="text" name="date_acceptance" value="{{ $joblead->application_date }}" readonly>
                             </div>
                             <div class="form-group col-6">
                                 <label>Ordering Company Name/Individual  </label>
-                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $joblead->jobcontractdetails->ordering_com_name }}" readonly>
+                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $joblead->jobdetail->about_company }}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>GST Details(Optional)</label>
+                                <input type="text" class="form-control" name="gst_details" value="" readonly="">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Resource Name</label>
+                                <input type="text" class="form-control" name="resource_name" value="{{$joblead->company_name}}" readonly="">
                             </div>
                         </div>
                         
-                        <h4 class="modal-title">Customer Payment Schedules</h4>
-                        @foreach ($joblead->jobcontractdetails->jobpaymentschedule as $item)
+                        {{-- <h4 class="modal-title">Customer Payment Schedules</h4> --}}
+                        {{-- @foreach ($joblead->jobcontractdetails->jobpaymentschedule as $item)
                             <div class="form-row">
                                 <div class="form-group col-5">
                                     @if ($item->advance_payment == '1')
@@ -76,27 +87,27 @@
                                     <input type="text" class="form-control" name="milestones_name" value="{{ $item->milestones_name }}" readonly>
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach --}}
                     </div>
-                    @forelse ($joblead->jobcontractdetails->jobadvacne_amount as $item)
+                    {{-- @forelse ($joblead->jobcontractdetails->jobadvacne_amount as $item)
                     <input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">
                     <input type="hidden" name="payment_schedule_id" id="payment_schedule_id" value="{{ $item->payment_schedule_id }}">
-                    @empty
+                    @empty --}}
                     <input type="hidden" name="amount" id="amount" value="0">
-                    @endforelse
+                    {{-- @endforelse --}}
 
                     <input type="hidden" name="currency" id="currency" value="INR">
                     <input type="hidden" name="status" id="status" value="1">
                     <input type="hidden" name="payment_id" id="payment_id" value="">
-                    @if ($joblead->jobcontractdetails->status == '1')
+                    {{-- @if ($joblead->jobcontractdetails->status == '1') --}}
                         <div class="form-group text-right mt-5" id="status">
                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                             <div class="btn-group" role="group">
-                                <button class="btn btn-primary" type="button" onclick="JobContractDetails('{{ $joblead->jobcontractdetails->contract_id }}','2')">Accept</button>
-                                <button class="btn btn-primary" type="button" onclick="JobContractDetails('{{ $joblead->jobcontractdetails->contract_id }}''4')">Reject</button>
+                                <button class="btn btn-primary" type="button" onclick="JobContractDetails('{{ $joblead->job_leads_id }}','2')">Accept</button>
+                                <button class="btn btn-primary" type="button" onclick="JobContractDetails('{{ $joblead->job_leads_id }}''4')">Reject</button>
                             </div>
                         </div>
-                    @elseif ($joblead->jobcontractdetails->status == '4')
+                    {{-- @elseif ($joblead->jobcontractdetails->status == '4')
                     <p>Status: Cancel</p>
                     @else
                         <div class="singup-body" id="payment_button" style="border-top: 1px solid #ffffff;">
@@ -110,7 +121,7 @@
                                 <button type="button" class="invoice" style="border: none;background: white;" ><a class="btn btn-primary deliverinfo1" href="{{ route('invoice',['download'=>'pdf']) }}">Invoice Download</a> </button>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
                 </form>
             </div>
         </div>

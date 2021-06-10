@@ -210,7 +210,7 @@ function ContractualJobLeadSchedule(job_schedule_id,lead_status){
                     showConfirmButton: false,
                     timer: 2000
                 });
-                // window.location.href = '/freelancer/my-opportunity';
+                window.location.href = '/client/job-contract-details/'+job_schedule_id;
             } else {
                 Swal.fire({
                     type: 'error',

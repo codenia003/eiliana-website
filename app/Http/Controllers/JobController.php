@@ -563,7 +563,7 @@ class JobController extends JoshController
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Revised successfully';
                 $not_msg = 'Your contractual job proposal revised';
-                $not_url = '/freelancer/contractual-job-inform/'. $input['lead_id'];
+                $not_url = '/job/job-schedule-modify/'. $input['lead_id'];
             } else {
                 $response['success'] = '2';
                 $response['errors'] = 'Proposal Decline successfully';

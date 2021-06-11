@@ -271,6 +271,7 @@ class ProjectController extends JoshController
             $schedulemodule->module_scope = $input['module_scope'][$key];
             $schedulemodule->module_start_date = $input['module_start_date'][$key];
             $schedulemodule->module_end_date = $input['module_end_date'][$key];
+            $schedulemodule->milestone_no = $input['milestone_no'][$key];
             // $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
             // $schedulemodule->hours_approved = $input['hours_approved'][$key];
             // $schedulemodule->modify_hours = $input['modify_hours'][$key];
@@ -344,6 +345,7 @@ class ProjectController extends JoshController
             $schedulemodule->module_scope = $input['module_scope'][$key];
             $schedulemodule->module_start_date = $input['module_start_date'][$key];
             $schedulemodule->module_end_date = $input['module_end_date'][$key];
+            $schedulemodule->milestone_no = $input['milestone_no'][$key];
             $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
             $schedulemodule->hours_approved = $input['hours_approved'][$key];
             // $schedulemodule->modify_hours = $input['modify_hours'][$key];
@@ -885,13 +887,15 @@ class ProjectController extends JoshController
         $projectlead = ProjectLeads::with('projectdetail','projectschedulee')->where('project_leads_id', $id)->first();
 
         $project_amounts = ProjectBudgetAmount::where('project_id', $projectlead->project_id)->first();
+        //return $project_amounts;
         return view('project/contract-details', compact('projectlead','project_amounts'));
     }
 
     public function projectFinance($id)
     {
-        $projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
-
+        //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        //return $projectlead;
         return view('project/project-finance', compact('projectlead'));
     }
 
@@ -905,7 +909,7 @@ class ProjectController extends JoshController
             $orderfinmace = new ProjectOrderFinance;
             $orderfinmace->project_leads_id = $input['proposal_id'];
             $orderfinmace->contract_id = $input['contract_id'];
-            $orderfinmace->invoice_id = $input['invoice_id'];
+            //$orderfinmace->invoice_id = $input['invoice_id'];
             $orderfinmace->status = '1';
             $orderfinmace->save();
 
@@ -918,8 +922,8 @@ class ProjectController extends JoshController
                 'body' => 'You have one project for finance',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/admin/finance/edit/'. $insertedId,
-                'main_id' => $insertedId
+                'actionURL' => '/admin/finance/edit/'. $input['proposal_id'],
+                'main_id' => $input['proposal_id']
             ];
 
             Notification::send($user, new UserNotification($details));

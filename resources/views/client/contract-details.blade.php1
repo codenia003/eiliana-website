@@ -7,7 +7,7 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Payment Details </span>
+            <span class="h5 text-white ml-2">Contract Details </span>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
         <div class="card">
         <div class="bg-blue">
             <div class="px-5 py-2">
-                <span class="h5 text-white" style="margin-left: -25px;">Payment Details</span>
+                <span class="h5 text-white" style="margin-left: -25px;">Contract Details</span>
             </div>
         </div>
             <div class="card-body p-4">
@@ -35,53 +35,84 @@
                                 <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
                             </div>
                             <div class="form-group col-6">
-                                <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label>No Of Hours Purchase({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                <input type="number" class="form-control num2 hours_purchase" name="order_closed_value" value="" required>
-                            </div>
-                            <div class="form-group col-6">
-                                <label>GST Details(Optional)</label>
-                                @if(!empty($projectlead->fromuser->gst_number))
-                                   <input type="text" class="form-control" name="gst_details" value="{{ $projectlead->fromuser->gst_number }}" readonly>
-                                @else
-                                   <input type="text" class="form-control" name="gst_details" value="">
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-12">
-                                <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                <input type="text" class="form-control order_closed_value" name="total_advance_payment" id=""  value="0" readonly>
+                                <label>Order Closed Value</label>
+                                <input type="text" class="form-control" name="order_closed_value" value="{{ $projectlead->contractdetails->order_closed_value }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Date of Acceptance</label>
-                                <input class="form-control" type="text" name="date_acceptance" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $projectlead->contractdetails->created_at))) }}" readonly>
+                                <input class="form-control" type="text" name="date_acceptance" value="{{ $projectlead->contractdetails->date_acceptance }}" readonly>
                             </div>
                             <div class="form-group col-6">
                                 <label>Ordering Company Name/Individual  </label>
                                 <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
                             </div>
                         </div>
+                        {{-- <div class="form-group basic-info mb-3">
+                            <label>Model Of Engagement:
+                                <span>Hourly</span>
+                            </label>
+                        </div> --}}
+                        <!-- <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>Advance Payment details</label>
+                                <input type="text" class="form-control" name="advance_payment_details" value="" readonly>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Remarks </label>
+                                <input type="text" class="form-control" name="remarks" value="" readonly>
+                            </div>
+                        </div> -->
+
+                        <div class="form-row">
+                            <div class="form-group col-5">
+                                <label>Invoice Number </label><small>(Against Advance)</small>
+                                <input type="text" class="form-control" name="invoive_no" value="{{ $projectlead->contractdetails->orderinvoice->invoice_no }}" readonly>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Invoice Date</label>
+                                <input class="form-control" type="text" name="invoice_date" value="{{ $projectlead->contractdetails->orderinvoice->invoice_due_date }}" readonly>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>Invoice Amount</label><small>(Including GST)</small>
+                                <input type="text" class="form-control" name="invoice_amount" value="{{ $projectlead->contractdetails->orderinvoice->invoice_amount }}" readonly>
+                            </div>
+                        </div>
+                        <h4 class="modal-title">Customer Payment Schedules</h4>
+                        @foreach ($projectlead->contractdetails->paymentschedule as $item)
+                            <div class="form-row">
+                                <div class="form-group col-5">
+                                    @if ($item->advance_payment == '1')
+                                        <label>Advance Payment </label><small>(Excluding GST)</small>
+                                    @else
+                                        <label>{{ $item->installment_no }} Installment</label><small>(Excluding GST)</small>
+                                    @endif
+                                    <input type="text" class="form-control" name="installment_amount" value="{{ $item->installment_amount }}" readonly>
+                                </div>
+                                <div class="form-group col-3">
+                                    <label>Payment Due Date</label>
+                                    <input class="form-control" type="text" name="payment_due_date" value="{{ $item->paymwnt_due_date }}" readonly>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label>Hrs/Milestones/Remarks </label>
+                                    <input type="text" class="form-control" name="milestones_name" value="{{ $item->milestones_name }}" readonly>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                    @forelse ($projectlead->contractdetails->paymentschedule as $item)
+                    @forelse ($projectlead->contractdetails->advacne_amount as $item)
                     <input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">
                     <input type="hidden" name="payment_schedule_id" id="payment_schedule_id" value="{{ $item->payment_schedule_id }}">
                     @empty
                     <input type="hidden" name="amount" id="amount" value="0">
                     @endforelse
 
-                    <input type="hidden" name="currency" id="currency" value="{{ $projectlead->projectdetail->projectCurrency->code }}">
+                    <input type="hidden" name="currency" id="currency" value="INR">
                     <input type="hidden" name="status" id="status" value="1">
                     <input type="hidden" name="payment_id" id="payment_id" value="">
-                    {{--@if ($projectlead->contractdetails->status == '1')
+                    @if ($projectlead->contractdetails->status == '1')
                         <div class="form-group text-right mt-5" id="status">
                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                             <div class="btn-group" role="group">
@@ -91,14 +122,14 @@
                         </div>
                     @elseif ($projectlead->contractdetails->status == '4')
                     <p>Status: Cancel</p>
-                    @else--}}
+                    @else
                         <div class="singup-body" id="payment_button" style="border-top: 1px solid #ffffff;">
                             <div class="btn-group" role="group">
                                 <span>Please pay advance payment for further process</span>
                                 <button type="button" id="paybtn" class="btn btn-primary deliverinfo">Payment Link</button>
                             </div>
                         </div>
-                    {{--@endif--}}
+                    @endif
                 </form>
             </div>
         </div>
@@ -110,24 +141,6 @@
 {{-- <x-chat-message/> --}}
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-//$('#educationForm').bootstrapValidator({});
-$(document).ready(function(){
-    $(".order_closed_value").val("0");
-    $(".hours_purchase").val();
-
-    function calc(){
-        var num1 = $(".num1").val();
-        var num2 = $(".num2").val();
-        var gst_rate = 18;
-        price = parseInt(num1) * parseInt(num2);
-        GST_amount = (price * gst_rate) / 100;
-        total_price = price + GST_amount;
-        $('.order_closed_value').val(total_price);
-    }
-    $(".hours_purchase").keyup(function(){
-        calc();
-    });
-});
 
 function contractDetails(contract_id,lead_status){
     $('.spinner-border').removeClass("d-none");
@@ -153,7 +166,7 @@ function contractDetails(contract_id,lead_status){
                 //     timer: 2000
                 // });
                 var msg = userCheck.msg;
-                var redirect = '/client/project-contract-details/'+ contract_id;
+                var redirect = '#';
 
                 $('#payment_button').show();
                 $('#status').hide();
@@ -161,7 +174,7 @@ function contractDetails(contract_id,lead_status){
                 // window.location.href = '/freelancer/my-opportunity';
             } else {
                 var msg = userCheck.errors;
-                var redirect = '/client/project-contract-details/'+ contract_id;
+                var redirect = '#';
                 // Swal.fire({
                 //     type: 'error',
                 //     title: 'Oops...',
@@ -173,8 +186,8 @@ function contractDetails(contract_id,lead_status){
                 //     window.location.href = '/freelancer/my-opportunity';
                 // }
             }
-            toggleRegPopup(msg,redirect);
             location.reload();
+            toggleRegPopup(msg,redirect);
         },
         error: function(xhr, status, error) {
             console.log("error: ",error);

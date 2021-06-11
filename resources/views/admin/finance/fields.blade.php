@@ -22,9 +22,12 @@
 
 <div class="form-row">
 	<div class="form-group col-6">
-        <label>Total Order Value</label><small>(including sales Commission & Excluding GST)</small>
-        <input type="text" class="form-control" name="total_order_value" value="{{ $finance->contractdetails->order_closed_value }}" readonly>
-    </div>
+        <label>Total Advance Payment</label><small>(Including GST)</small>
+		@foreach($finance->contractdetails->paymentschedule as $paymentschedule)
+           <input type="text" class="form-control" name="total_order_value" value="{{ $paymentschedule->total_advance_payment }}" readonly>
+		@endforeach
+	</div>
+	
 	<div class="form-group col-6">
         <label>Sales Commission Amount</label><small>(Excluding GST)</small>
         <input type="text" class="form-control" name="sales_commission_amount" value="{{ $finance->contractdetails->sales_comm_amount }}" readonly>
@@ -64,7 +67,7 @@
         </div>
     </div>
 </div>
-<br>
+{{--<br>
 <h4 class="modal-title" id="modalLabelnews1">Payment Details</h4><br>
 
 <!-- <div class="mb-3 mt-3 profile-basic">
@@ -92,14 +95,14 @@
         <label>Invoice Amount</label><small>(Including GST)</small>
         <input type="text" class="form-control" name="invoice_amount" value="{{ $finance->contractdetails->orderinvoice->invoice_amount }}" readonly="">
     </div>
-</div>
+</div>--}}
 <div class="form-row">
-	<div class="form-group col-6">
+	<div class="form-group col-12">
         <label>Remarks </label>
         <textarea class="form-control" name="remarks" readonly>{!! $finance->contractdetails->remarks !!}</textarea>
     </div>
 </div>
-
+{{--
 <br>
 <h4 class="modal-title" id="modalLabelnews1">Customer Payment Schedule</h4><br>
 
@@ -123,6 +126,7 @@
         </div>
     </div>
 @endforeach
+--}}
 
 {{--<div class="form-row">
 	<div class="form-group col-5">
@@ -168,7 +172,7 @@
 	</div>
 </div>--}}
 
-<br>
+{{--<br>
 <h4 class="modal-title" id="modalLabelnews1">Commission Payment Schedule</h4><br>
 
 <div class="form-group basic-info mb-3">
@@ -220,7 +224,7 @@
 	    <label>Remarks </label>
 	    <input type="text" class="form-control" name="milestones_name" value="" readonly="">
 	</div>
-</div>
+</div>--}}
 <!-- <div class="form-row">
 	<div class="form-group col-5">
 	    <label>Commission Amount </label><small>(INR)</small>

@@ -31,6 +31,7 @@ use App\Models\JobContractDetails;
 use App\Models\JobPaymentSchedule;
 use App\Models\ProjectSchedule;
 use App\Models\ProjectContractDetails;
+use App\Models\ProjectBudgetAmount;
 use App\Models\ProjectPaymentSchedule;
 use App\Notifications\UserNotification;
 use Carbon\Carbon;
@@ -166,6 +167,7 @@ class ClientController extends JoshController
     public function projectLeadSchedule(Request $request) {
 
         $input = $request->except('_token');
+        $user = Sentinel::getUser();
         $response['success'] = '0';
 
         $projectschedulecheck = ProjectSchedule::where('project_schedule_id', '=', $input['schedule_id'])->where('satuts', '!=', '1')->first();
@@ -177,16 +179,51 @@ class ClientController extends JoshController
 
             $projectleads = ProjectLeads::where('project_leads_id', $projectschedules->project_leads_id)->first();
             $projects = Project::where('project_id', $projectleads->project_id)->first();
+            $project_amounts = ProjectBudgetAmount::where('project_id', $projectleads->project_id)->first();
 
             if($input['lead_status'] === '2') {
                 $projectleadsstatus = ProjectLeads::find($projectschedules->project_leads_id);
                 $projectleadsstatus->status = '5';
                 $projectleadsstatus->save();
 
+                $input['user_id'] = $user->id;
+
+                $contractdetails = new ProjectContractDetails;
+                $contractdetails->project_leads_id = $projectschedules->project_leads_id;
+                $contractdetails->from_user_id = $input['user_id'];
+                $contractdetails->order_closed_value = $project_amounts->project_amount_to;
+                // $contractdetails->date_acceptance = $input['date_acceptance'];
+                $contractdetails->ordering_com_name = 'Eiliana';
+                // $contractdetails->sales_comm_amount = $input['sales_comm_amount'];
+                // $contractdetails->remarks = $input['remarks'];
+                // $contractdetails->advance_payment_details = $input['advance_payment_details'];
+                $contractdetails->status = '1';
+                $contractdetails->save();
+
+                $insertedId = $contractdetails->contract_id;
+
+                // Mail::send('emails.emailTemplates.invoice', $data, function ($m) use ($data) {
+                //     $m->from('info@eiliana.com', 'Eiliana OTP');
+                //     $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');
+                // });
+
+                $paymentschedule = new ProjectPaymentSchedule;
+                $paymentschedule->project_leads_id = $projectschedules->project_leads_id;
+                $paymentschedule->contract_id = $insertedId;
+                // $paymentschedule->advance_payment = $input['advance_payment'][$key];
+                // $paymentschedule->installment_no = $input['payment_schedule_id'][$key];
+                $paymentschedule->installment_amount = $project_amounts->project_amount_to;
+                // $paymentschedule->paymwnt_due_date = $input['paymwnt_due_date'][$key];
+                // $paymentschedule->milestones_name = $input['milestones_name'][$key];
+                $paymentschedule->status = '1';
+                $paymentschedule->save();
+
+                
+
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Schedule Accepted successfully';
                 $user = User::find($projects->posted_by_user_id);
-                $url = '/project/contract-details/'. $projectschedules->project_leads_id;
+                $url = '/client/project-contract-details/'. $projectschedules->project_leads_id;
 
             } elseif($input['lead_status'] === '3') {
                 $projectleadsstatus = ProjectLeads::find($projectschedules->project_leads_id);
@@ -230,9 +267,10 @@ class ClientController extends JoshController
 
     public function projectContractDetails($id)
     {
-        $projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
-
-        // return $projectlead;
+        //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        
+        //return $projectlead;
         return view('client/contract-details', compact('projectlead'));
     }
 
@@ -294,6 +332,7 @@ class ClientController extends JoshController
                 $paymentschedule = ProjectPaymentSchedule::find($input['payment_schedule_id']);
                 $paymentschedule->status = $input['status'];
                 $paymentschedule->payment_id = $input['payment_id'];
+                $paymentschedule->total_advance_payment = $input['total_advance_payment'];
                 $paymentschedule->save();
 
 
@@ -301,16 +340,19 @@ class ClientController extends JoshController
 
                 $user = User::find($projectleads->from_user_id);
 
+                $advance_body = 'Payemnt process by Client';
+                $advance_url =  '/project/project-finance/'. $input['proposal_id'];
+                $msg = 'Payment Process successfully';
 
-                if($paymentschedule->advance_payment == '1'){
-                    $advance_body = 'Advacne Payemnt process by Client';
-                    $advance_url =  '/project/project-finance/'. $input['proposal_id'];
-                    $msg = 'Advance Payment Process successfully';
-                } else {
-                    $advance_body = 'Payemnt process by Client';
-                    $advance_url =  '/freelancer/my-project-schedule/'. $input['proposal_id'];
-                    $msg = 'Payment Process successfully';
-                }
+                // if($paymentschedule->advance_payment == '1'){
+                //     $advance_body = 'Advacne Payemnt process by Client';
+                //     $advance_url =  '/project/project-finance/'. $input['proposal_id'];
+                //     $msg = 'Advance Payment Process successfully';
+                // } else {
+                //     $advance_body = 'Payemnt process by Client';
+                //     $advance_url =  '/freelancer/my-project-schedule/'. $input['proposal_id'];
+                //     $msg = 'Payment Process successfully';
+                // }
 
                 $details = [
                     'greeting' => 'Hi '. $user->full_name,

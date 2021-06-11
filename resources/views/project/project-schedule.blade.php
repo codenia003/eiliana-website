@@ -134,6 +134,17 @@ type="text/css"/>
 												<input type="text" name="module_scope[]" class="form-control" required>
 											</div>
 										</div>
+                                        <div class="form-row">
+                                            <div class="form-group col-12">
+                                                <label> Milestone No.</label>
+                                                <select class="form-control" name="milestone_no[]" required>
+                                                    <option value=""> </option>
+                                                    @for ($i = 1; $i < 101; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
 										<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Start Date</label>
@@ -235,6 +246,17 @@ type="text/css"/>
                         <div class="form-group col-12">
                             <label><span class="module_num">1</span>. Module Scope</label>
                             <input type="text" name="module_scope[]" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label> Milestone No.</label>
+                            <select class="form-control" name="milestone_no[]" required>
+                                <option value=""> </option>
+                                @for ($i = 1; $i < 101; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">

@@ -91,6 +91,17 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label> Milestone No.</label>
+                                        <select class="form-control" name="milestone_no[]" disabled>
+                                            <option value=""> </option>
+                                            @for ($i = 1; $i < 101; $i++)
+                                            <option value="{{ $i }}" {{ ($modulee->milestone_no== $i)? "selected" : "" }}>{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="form-group col-6">
                                         <label>Module Start Date</label>
                                         <input class="form-control" type="text" name="module_start_date[]" value="{{ $modulee->module_start_date }}" readonly>

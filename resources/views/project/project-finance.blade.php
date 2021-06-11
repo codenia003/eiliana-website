@@ -50,7 +50,7 @@ type="text/css"/>
                             <form action="{{ route('project-finance.send') }}" method="POST" id="educationForm">
                                 @csrf
                                 <input type="hidden" name="contract_id" value="{{ $projectlead->contractdetails->contract_id }}">
-                                <input type="hidden" name="invoice_id" value="{{ $projectlead->contractdetails->orderinvoice->order_invoice_id }}">
+                                {{--<input type="hidden" name="invoice_id" value="{{ $projectlead->contractdetails->orderinvoice->order_invoice_id }}">--}}
                                 <div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">
@@ -58,19 +58,41 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label>Order Closed Value</label>
-                                            <input type="text" class="form-control" name="order_closed_value" value="{{ $projectlead->contractdetails->order_closed_value }}" readonly>
+                                            <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                            <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                            @foreach($projectlead->contractdetails->paymentschedule as $paymentschedule)
+                                               <input type="text" class="form-control order_closed_value" name="total_advance_payment" id=""  value="{{ $paymentschedule->total_advance_payment }}" readonly>
+                                            @endforeach
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>GST Details</label>
+                                            <input type="text" class="form-control" name="gst_details" value="{{ $projectlead->fromuser->gst_number }}" readonly>
                                         </div>
                                     </div>
 
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Date of Acceptance</label>
-                                            <input class="form-control" type="text" name="date_acceptance" value="{{ $projectlead->contractdetails->date_acceptance }}" readonly>
+                                            <input class="form-control" type="text" name="date_acceptance" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $projectlead->contractdetails->created_at))) }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Ordering Company Name/Individual  </label>
                                             <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label>Status</label>
+                                            <select name="status[]" class="form-control" disabled>
+                                                <option value="1" {{ ($projectlead->contractdetails->status=='1')? "selected" : "" }}>Pending</option>
+                                                <option value="2" {{ ($projectlead->contractdetails->status=='2')? "selected" : "" }}>Paid</option>
+                                                <option value="3" {{ ($projectlead->contractdetails->status=='3')? "selected" : "" }}>Cancel</option>
+                                            </select>
                                         </div>
                                     </div>
                                     {{-- <div class="form-group basic-info mb-3">
@@ -79,7 +101,7 @@ type="text/css"/>
                                         </label>
                                     </div> --}}
 
-                                    <h4 class="modal-title my-3">Customer Payment Schedules</h4>
+                                    {{--<h4 class="modal-title my-3">Customer Payment Schedules</h4>
                                     @foreach ($projectlead->contractdetails->paymentschedule as $item)
                                         <div class="form-row">
                                             <div class="form-group col-3">
@@ -108,6 +130,7 @@ type="text/css"/>
                                             </div>
                                         </div>
                                     @endforeach
+                                    --}}
                                 </div>
                                 <div class="form-group text-right mt-5" id="status">
                                     <span class="spinner-border spinner-border-sm mr-1 d-none"></span>

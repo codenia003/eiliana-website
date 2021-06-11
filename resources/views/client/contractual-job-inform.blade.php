@@ -149,43 +149,6 @@
 @stop
 
 @section('profile_script')
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-    function padStart(str) {
-    return ('0' + str).slice(-2)
-}
-
-function demoSuccessHandler(transaction) {
-
-    if (transaction.razorpay_payment_id) {
-        $('#payment_id').val(transaction.razorpay_payment_id);
-        $('#status').val('2');
-        $("#educationForm").submit();
-    }
-}
-
-$('body').on('click', '#paybtn', function(e){
-
-    var totalAmount = document.getElementById("amount").value;
-    var currency = document.getElementById("currency").value;
-    var name = 'Eilaian India';
-    var store_logo = "{{ asset('/assets/img/logo.png') }}";
-    var options = {
-        "key": "{{ env('RAZOR_KEY') }}",
-        "amount": (totalAmount*100), // 2000 paise = INR 20
-        "currency": currency,
-        "name": name,
-        "image": store_logo,
-        "handler": demoSuccessHandler,
-        "theme": {
-           "color": "#ff2424"
-        }
-    };
-    var rzp1 = new Razorpay(options);
-    rzp1.open();
-    e.preventDefault();
-});
-</script>
 <script>
 function ContractualJobLeadSchedule(job_schedule_id,lead_status){
     $('.spinner-border').removeClass("d-none");
@@ -202,9 +165,14 @@ function ContractualJobLeadSchedule(job_schedule_id,lead_status){
         success: function(data) {
             var userCheck = data;
             $('.spinner-border').addClass("d-none");
-            if (userCheck.success == '1') {
+            if (userCheck.success == '1' || userCheck.success == '3') {
                 var msg = userCheck.msg;
                 var redirect = '/client/job-contract-details/'+job_schedule_id;
+                if (userCheck.success == '3') {
+                    var redirect = '/client/job-contract-details/'+userCheck.job_leads_id;
+                } else {
+                    var redirect = '/client/job-contract-details/'+userCheck.job_leads_id;
+                }
                 // Swal.fire({
                 //     type: 'success',
                 //     title: 'Success...',
@@ -215,7 +183,7 @@ function ContractualJobLeadSchedule(job_schedule_id,lead_status){
                 // window.location.href = '/freelancer/my-opportunity';
             } else {
                 var msg = userCheck.errors;
-                var redirect = '/client/job-contract-details/'+job_schedule_id;
+                var redirect = '#';
                 // Swal.fire({
                 //     type: 'error',
                 //     title: 'Oops...',

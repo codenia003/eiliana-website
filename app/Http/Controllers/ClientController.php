@@ -33,6 +33,7 @@ use App\Models\ProjectSchedule;
 use App\Models\ProjectContractDetails;
 use App\Models\ProjectPaymentSchedule;
 use App\Notifications\UserNotification;
+use Carbon\Carbon;
 
 class ClientController extends JoshController
 {
@@ -362,13 +363,50 @@ class ClientController extends JoshController
             $contractualjob_schedules->save();
 
             if($input['lead_status'] === '2'){
-                // $jobstatus = JobLeads::find($contractualjob_schedules->job_leads_id);
+                // $JobLeads = JobLeads::find($contractualjob_schedules->job_leads_id);
                 // $jobstatus->lead_status = '5';
                 // $jobstatus->save();
+
+                $joblead = JobLeads::where('job_leads_id', $contractualjob_schedules->job_leads_id)->first();
+
+                if ($contractualjob_schedules->pricing_cycle == 1) {
+                    $advance_payment_details = $contractualjob_schedules->price*1;
+                } elseif($contractualjob_schedules->pricing_cycle == 2) {
+                    $advance_payment_details = $contractualjob_schedules->price*3;
+                } elseif($contractualjob_schedules->pricing_cycle == 3) {
+                    $advance_payment_details = $contractualjob_schedules->price*6;
+                } else {
+                    $advance_payment_details = $contractualjob_schedules->price*12;
+                }
+                
+
+                $contractdetails = new JobContractDetails;
+                $contractdetails->job_leads_id = $contractualjob_schedules->job_leads_id;
+                $contractdetails->from_user_id = $joblead->from_user_id;
+                $contractdetails->order_closed_value = $contractualjob_schedules->price;
+                $contractdetails->date_acceptance = Carbon::today()->toDateString();
+                $contractdetails->ordering_com_name = $contractualjob_schedules->company_name;
+                $contractdetails->remarks = $contractualjob_schedules->remarks;
+                $contractdetails->advance_payment_details = $advance_payment_details;
+                $contractdetails->status = '1';
+                $contractdetails->save();
+
+                $insertedId = $contractdetails->contract_id;
+                
+                $paymentschedule = new JobPaymentSchedule;
+                $paymentschedule->job_leads_id = $contractualjob_schedules->job_leads_id;
+                $paymentschedule->contract_id = $insertedId;
+                $paymentschedule->installment_no = 1;
+                $paymentschedule->installment_amount = $advance_payment_details;
+                $paymentschedule->paymwnt_due_date = Carbon::today()->toDateString();
+                $paymentschedule->milestones_name = 'NA';
+                $paymentschedule->status = '1';
+                $paymentschedule->save();
 
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Schedule Accepted successfully';
                 $url = '/job/job-contract-details/'. $contractualjob_schedules->job_leads_id;
+                $url = '#';
             } elseif($input['lead_status'] === '3') {
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Schedule Modify Request to freelancer successfully';
@@ -378,7 +416,8 @@ class ClientController extends JoshController
                 $response['errors'] = 'Proposal Schedule Rejected successfully';
                 $url = '#';
             }
-            $url = '#';
+            // $url = '#';
+            $response['job_leads_id'] = $contractualjob_schedules->job_leads_id;
             $contractualjob_leads = JobLeads::where('job_leads_id', $contractualjob_schedules->job_leads_id)->first();
 
             $user = User::find($contractualjob_leads->from_user_id);
@@ -395,8 +434,9 @@ class ClientController extends JoshController
             Notification::send($user, new UserNotification($details));
 
         } else {
-            $response['success'] = '2';
+            $response['success'] = '3';
             $response['errors'] = 'You are already accept this proposal schedule';
+            $response['job_leads_id'] = $contractualjobschedulecheck->job_leads_id;
         }
         return response()->json($response);
 

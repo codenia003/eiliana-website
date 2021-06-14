@@ -37,16 +37,36 @@ Job Lead Response
                             <div class="text-center">
                                 <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid" alt="Image" width="150">
                             </div>
-                            <div class="message-part">
-                                <h3>Hi, {{ Sentinel::getUser()->full_name }}</h3>
+                            <div class="message-part mt-5">
+                                <h3>Hi, {{ Sentinel::getUser()->full_name }} !!!</h3>
                                 <p>
                                     Your proposal has been submitted successfully. Will keep you posted on update.
                                 </p>
+								<div class="skills">
+									<span>Proposal Id: </span>
+									<span><b>{{ $joblead->job_leads_id }}</b></span>
+								</div>
+								<div class="skills mt-1">
+									<span>Price Per Month: </span>
+									<span><b>{{ $joblead->price_per_month }}</b></span>
+								</div>
+								<div class="skills mt-1">
+									<span>Subject: </span>
+									<span><b>{{ $joblead->subject }}</b></span>
+								</div>
+								<div class="skills mt-1">
+									<span>Message: </span>
+									<span><b>{{ $joblead->message }}</b></span>
+								</div>
+								<div class="skills mt-1">
+									<span>Notice Period: </span>
+									<span><b>{{ $joblead->notice_period }}</b></span>
+								</div>
                             </div>
-                            {{-- <div class="singup-body float-right mt-3">
-                                <a class="btn btn-primary" href="#">Check</a>
-                                <a class="btn btn-outline-primary" href="#">My Lead</a>
-                            </div> --}}
+                            <div class="float-right mt-3">
+                                <a class="btn btn-outline-primary bg-yellow yellow-linear-gradient btn-pill" href="#">Check</a>
+                                <a class="btn btn-outline-primary bg-orange red-linear-gradient btn-pill" href="#">My Lead</a>
+                            </div>
 						</div>
 					</div>
 				</div>

@@ -2552,3 +2552,13 @@ button {
     position: relative;
     left: 4px;
 }
+
+.message-part h3 {
+    font-size: 27px;
+    color: #dd4c39;
+    font-weight: 300;
+}
+
+.message-part p {
+    font-size: 17px;
+}

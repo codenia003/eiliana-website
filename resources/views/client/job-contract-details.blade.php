@@ -40,7 +40,7 @@
                                 <input type="text" class="form-control" name="job_leads_id" value="{{ $joblead->job_leads_id }}" readonly>
                             </div>
                             <div class="form-group col-6">
-                                <label>Order Closed Value</label>
+                                <label>Order Closed Amount(Rate Per Month)</label>
                                 <input type="text" class="form-control" name="order_closed_value" value="{{ $joblead->jobcontractdetails->order_closed_value }}" readonly>
                             </div>
                         </div>
@@ -55,17 +55,25 @@
                                 <input type="text" class="form-control" name="ordering_com_name" value="{{ $joblead->jobcontractdetails->ordering_com_name }}" readonly>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label>Total Advance Payment </label>
+                                <input type="text" class="form-control" name="advance_payment_details" value="{{ $joblead->jobcontractdetails->advance_payment_details }}" readonly>
+                            </div>
+                        </div>
 
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label>Gst</label>
-                                <input class="form-control" type="text" name="date_acceptance" value="" readonly>
+                                <label>Gst Details(Optional)</label>
+                                <input class="form-control" type="text" name="date_acceptance" value="">
                             </div>
                             <div class="form-group col-6">
                                 <label>Resource name  </label>
-                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $joblead->jobcontractdetails->ordering_com_name }}" readonly>
+                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $joblead->resource_name }}" readonly>
                             </div>
                         </div>
+
+                        
                         
                         {{-- <h4 class="modal-title">Customer Payment Schedules</h4>
                         @foreach ($joblead->jobcontractdetails->jobpaymentschedule as $item)

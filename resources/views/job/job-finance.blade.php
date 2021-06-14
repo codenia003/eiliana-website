@@ -50,7 +50,8 @@ type="text/css"/>
                             <form action="{{ route('job-finance.send') }}" method="POST" id="educationForm">
                                 @csrf
                                 <input type="hidden" name="contract_id" value="{{ $joblead->jobcontractdetails->contract_id }}">
-                                <input type="hidden" name="invoice_id" value="{{ $joblead->jobcontractdetails->joborderinvoice->order_invoice_id }}">
+                                {{-- <input type="hidden" name="invoice_id" value="{{ $joblead->jobcontractdetails->joborderinvoice->order_invoice_id }}"> --}}
+                                <input type="hidden" name="invoice_id" value="0">
                                 <div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">

@@ -416,7 +416,7 @@ class ClientController extends JoshController
                 } elseif($contractualjob_schedules->pricing_cycle == 2) {
                     $advance_payment_details = $contractualjob_schedules->price*3;
                 } elseif($contractualjob_schedules->pricing_cycle == 3) {
-                    $advance_payment_details = $contractualjob_schedules->price*6;
+                    $advance_payment_details = $contractualjob_schedules->price*2;
                 } else {
                     $advance_payment_details = $contractualjob_schedules->price*12;
                 }

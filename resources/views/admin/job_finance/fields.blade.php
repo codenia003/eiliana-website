@@ -55,17 +55,17 @@
 </div> -->
 
 <div class="form-row">
-    <div class="form-group col-6">
+    {{-- <div class="form-group col-6">
         <label>Invoice Number</label>
         <input type="text" class="form-control" name="invoice_number" value="{{ $finance->jobcontractdetails->joborderinvoice->invoice_no }}" readonly>
-    </div>
+    </div> --}}
     <div class="form-group col-6">
         <label>Advance payment Details</label>
         <input type="text" class="form-control" name="advance_payment_details" value="{{ $finance->jobcontractdetails->advance_payment_details }}" readonly="">
     </div>
 </div>
 
-<div class="form-row">
+{{-- <div class="form-row">
     <div class="form-group col-6">
         <label>Invoice Date </label>
         <input class="flatpickr flatpickr-input form-control" type="text" name="invoice_date" value="{{ $finance->jobcontractdetails->joborderinvoice->invoice_due_date }}" readonly="">
@@ -74,7 +74,7 @@
         <label>Invoice Amount</label><small>(Including GST)</small>
         <input type="text" class="form-control" name="invoice_amount" value="{{ $finance->jobcontractdetails->joborderinvoice->invoice_amount }}" readonly="">
     </div>
-</div>
+</div> --}}
 <div class="form-row">
     <div class="form-group col-6">
         <label>Remarks </label>

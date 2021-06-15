@@ -50,10 +50,10 @@ class FinanceController extends Controller
 
     public function edit($id)
     {
-        $finance =  ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
-        $order_finances_id = Finance::where('project_leads_id', $id)->first();
+        $finance =  ProjectLeads::with('projectdetail','projectdetail.projectCurrency','projectschedulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+        $order_finances_id = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('project_leads_id', $id)->first();
         //return $finance;
-        return view('admin.finance.edit', compact('finance'), compact('order_finances_id'));
+        return view('admin.finance.edit', compact('finance','order_finances_id'));
     }
 
     public function assignToResource(Request $request)
@@ -70,8 +70,19 @@ class FinanceController extends Controller
             $financeschedules->save();
 
             if($input['finance_status'] === '2'){
+                // $user_details = User::where('id', '=', $input['user_id']);
+                // $user_details->pan_card_no = $input['pan_card'];
+                // $user_details->gst_number = $input['gst_no'];
+                // $user_details->save();
+                
                 $response['success'] = '1';
                 $response['msg'] = 'Assign Finance Resource successfully';
+                $actUrl = '/freelancer/my-project';
+            }
+            else {
+                $response['success'] = '1';
+                $response['msg'] = 'Modify Finance Resource successfully';
+                $actUrl = '/project/project-finance-modify/'. $financeschedules->project_leads_id;
             }
 
             $finance = ProjectLeads::with('projectdetail')->where('project_leads_id', $financeschedules->project_leads_id)->first();
@@ -83,7 +94,7 @@ class FinanceController extends Controller
                 'body' => 'You have response on your assign finance resource',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => '/freelancer/my-project',
+                'actionURL' => $actUrl,
                 'main_id' => $financeschedules->project_leads_id
             ];
 

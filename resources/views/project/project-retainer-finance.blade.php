@@ -25,7 +25,7 @@ type="text/css"/>
   	<div class="px-5 py-2">
     	<div class="align-items-center">
         	<span class="border-title"><i class="fa fa-bars"></i></span>
-        	<span class="h5 text-white">Contract Details</span>
+        	<span class="h5 text-white">Project Contract Details</span>
     	</div>
   	</div>
 </div>
@@ -43,7 +43,7 @@ type="text/css"/>
 					<div class="card">
                         <div class="bg-blue">
                             <div class="px-5 py-2">
-                                <span class="h5 text-white" style="margin-left: -25px;">Contract Details</span> <small>(To be filled by developer)</small>
+                                <span class="h5 text-white" style="margin-left: -25px;">Project Contract Details</span> <small>(To be filled by developer)</small>
                             </div>
                         </div>
 						<div class="card-body p-4">
@@ -55,28 +55,12 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Proposal Id</label>
-                                            <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
+                                            <input type="text" class="form-control" name="project_leads_id" value="{{ $projectlead->project_leads_id }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                            <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                            <label>Order Closed Amount(Rate Per Month)</label>
+                                            <input type="text" class="form-control" name="order_closed_value" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-6">
-                                            <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                            @foreach($projectlead->contractdetails->paymentschedule as $paymentschedule)
-                                               <input type="text" class="form-control order_closed_value" name="total_advance_payment" id=""  value="{{ $paymentschedule->total_advance_payment }}" readonly>
-                                            @endforeach
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label>No Of Hours Purchase</label>
-                                            <input type="number" class="form-control num2 hours_purchase" name="hours_purchase" value="{{ $paymentschedule->hours_purchase }}" readonly>
-                                        </div>
-                                        {{--<div class="form-group col-6">
-                                            <label>GST Details</label>
-                                            <input type="text" class="form-control" name="gst_details" value="{{ $projectlead->fromuser->gst_number }}" readonly>
-                                        </div>--}}
                                     </div>
 
                                     <div class="form-row">
@@ -89,6 +73,17 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
                                         </div>
                                     </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label>Total Advance Payment </label>
+                                            <input type="text" class="form-control" name="advance_payment_details" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>Resource name  </label>
+                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->fromuser->company_name }}" readonly>
+                                        </div>
+                                    </div>
+
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Status</label>

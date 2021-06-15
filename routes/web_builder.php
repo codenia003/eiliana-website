@@ -29,6 +29,11 @@ Route::group(
         Route::get('project-finance/{id}', 'ProjectController@projectFinance')->name('project-finance');
         Route::post('project-send-finance', 'ProjectController@sendProjectFinance')->name('project-finance.send');
 
+        Route::get('project-retainer-finance/{id}', 'ProjectController@projectRetainerFinance')->name('project-retainer-finance');
+
+        Route::get('project-finance-modify/{id}', 'ProjectController@projectFinanceModify')->name('project-finance-modify');
+        Route::post('project-update-finance', 'ProjectController@updateProjectFinance')->name('project-finance.update');
+
         Route::post('assign-project', 'ProjectController@assignProject')->name('assignProject');
     }
 );

@@ -899,6 +899,22 @@ class ProjectController extends JoshController
         return view('project/project-finance', compact('projectlead'));
     }
 
+    public function projectRetainerFinance($id)
+    {
+        //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        //return $projectlead;
+        return view('project/project-retainer-finance', compact('projectlead'));
+    }
+
+    public function projectFinanceModify($id)
+    {
+        //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        //return $projectlead;
+        return view('project/project-finance-modify', compact('projectlead'));
+    }
+
     public function sendProjectFinance(Request $request)
     {
         $input = $request->except('_token');
@@ -930,6 +946,44 @@ class ProjectController extends JoshController
 
             $success = 'success';
             $msg = 'Proposal successfully send to eiliana finance';
+
+        } else {
+            $success = 'error';
+            $msg = 'You are already finance this proposal';
+        }
+
+        return redirect('/freelancer/my-project')->with($success ,  $msg);
+    }
+
+    public function updateProjectFinance(Request $request)
+    {
+        $input = $request->except('_token');
+
+        $orderfinancecehck = ProjectOrderFinance::where('project_leads_id', '=', $input['proposal_id'])->where('status', '=', '1')->first();
+        if ($orderfinancecehck === null) {
+
+            $paymentschedule = ProjectPaymentSchedule::find($input['proposal_id']);
+            $paymentschedule->hours_purchase = $input['hours_purchase'];
+            $paymentschedule->installment_amount = $input['installment_amount'];
+            $paymentschedule->total_advance_payment = $input['total_advance_payment'];
+            $paymentschedule->status = '1';
+            $paymentschedule->save();
+
+            $user = User::find(1);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have one project modify for finance',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/admin/finance/edit/'. $input['proposal_id'],
+                'main_id' => $input['proposal_id']
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+            $success = 'success';
+            $msg = 'Proposal update successfully send to eiliana finance';
 
         } else {
             $success = 'error';

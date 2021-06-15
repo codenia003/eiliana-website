@@ -5,7 +5,7 @@
         <th>Sr.No</th>
         <th>Project Title</th>
         <th>Freelancer Name</th>
-        <th>Post By</th>
+        <th>Customer Name</th>
         <th>Status</th>
         <th >Action</th>
      </tr>

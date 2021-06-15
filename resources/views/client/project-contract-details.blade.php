@@ -7,11 +7,16 @@
     <div class="px-5 py-2">
         <div class="align-items-center">
             <span class="border-title"><i class="fa fa-bars"></i></span>
-            <span class="h5 text-white ml-2">Payment Details </span>
+            <span class="h5 text-white ml-2">Project Contract Details </span>
         </div>
     </div>
 </div>
 @stop
+<style type="text/css">
+     .invoice a:hover { 
+       color: #3b5999 !important;
+     }
+</style>
 @section('profile_content')
 <div class="profile-information">
     <div id="notific">
@@ -21,42 +26,22 @@
         <div class="card">
         <div class="bg-blue">
             <div class="px-5 py-2">
-                <span class="h5 text-white" style="margin-left: -25px;">Payment Details</span>
+                <span class="h5 text-white" style="margin-left: -25px;">Project Contract Details</span>
             </div>
         </div>
             <div class="card-body p-4">
-                <form action="{{ route('project-contract-payment') }}" method="POST" id="educationForm">
+                <form action="{{ route('project-retainer-contract-payment') }}" method="POST" id="educationForm">
                     @csrf
-                    <input type="hidden" name="contract_id" value="{{ $projectlead->contractdetails->contract_id }}">
+                    {{--<input type="hidden" name="contract_id" value="{{ $projectlead->jobcontractdetails->contract_id }}">--}}
                     <div class="main-moudle">
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Proposal Id</label>
-                                <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
+                                <input type="text" class="form-control" name="project_leads_id" value="{{ $projectlead->project_leads_id }}" readonly>
                             </div>
                             <div class="form-group col-6">
-                                <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label>No Of Hours Purchase</label>
-                                <input type="number" class="form-control num2 hours_purchase" name="hours_purchase" value="" required>
-                            </div>
-                            <div class="form-group col-6">
-                                <label>GST Details(Optional)</label>
-                                @if(!empty($projectlead->fromuser->gst_number))
-                                   <input type="text" class="form-control" name="gst_details" value="{{ $projectlead->fromuser->gst_number }}" readonly>
-                                @else
-                                   <input type="text" class="form-control" name="gst_details" value="">
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-12">
-                                <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                <input type="text" class="form-control order_closed_value" name="total_advance_payment" id=""  value="0" readonly>
+                                <label>Order Closed Amount(Rate Per Month)</label>
+                                <input type="text" class="form-control" name="order_closed_value" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
                             </div>
                         </div>
 
@@ -70,10 +55,27 @@
                                 <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label>Total Advance Payment </label>
+                                <input type="text" class="form-control" name="advance_payment_details" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>Gst Details(Optional)</label>
+                                <input class="form-control" type="text" name="gst" value="">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Resource name  </label>
+                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->fromuser->company_name }}" readonly>
+                            </div>
+                        </div>
                     </div>
                     @forelse ($projectlead->contractdetails->paymentschedule as $item)
-                    {{--<input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">--}}
-                    <input type="hidden" name="amount" id="amount" value="">
+                    <input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">
+                    <!-- <input type="hidden" name="amount" id="amount" value=""> -->
                     <input type="hidden" name="payment_schedule_id" id="payment_schedule_id" value="{{ $item->payment_schedule_id }}">
                     @empty
                     <input type="hidden" name="amount" id="amount" value="0">
@@ -111,25 +113,6 @@
 {{-- <x-chat-message/> --}}
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-//$('#educationForm').bootstrapValidator({});
-$(document).ready(function(){
-    $(".order_closed_value").val("0");
-    $(".hours_purchase").val();
-
-    function calc(){
-        var num1 = $(".num1").val();
-        var num2 = $(".num2").val();
-        var gst_rate = 18;
-        price = parseInt(num1) * parseInt(num2);
-        GST_amount = (price * gst_rate) / 100;
-        total_price = price + GST_amount;
-        $('.order_closed_value').val(total_price);
-        $('#amount').val(total_price);
-    }
-    $(".hours_purchase").keyup(function(){
-        calc();
-    });
-});
 
 function contractDetails(contract_id,lead_status){
     $('.spinner-border').removeClass("d-none");
@@ -218,5 +201,36 @@ $('body').on('click', '#paybtn', function(e){
     rzp1.open();
     e.preventDefault();
 });
+
+
+function GeneratePdf(order_invoice_id,job_leads_id){
+    var get_url = "{{URL('client/invoice')}}";
+    var url = get_url+"/"+order_invoice_id;
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function(response) {
+            var userCheck = response;
+            console.log(userCheck);
+            if (userCheck.success == '1') {
+                var msg = userCheck.msg;
+                var redirect = '/client/job-contract-details'+"/"+job_leads_id;
+                // Swal.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //     text: userCheck.msg,
+                //     showConfirmButton: false,
+                //     timer: 2000
+                // });
+                response.download('receipt.pdf');
+                //window.location.href = '/client/job-contract-details'+"/"+job_leads_id;
+            } 
+            toggleRegPopup(msg,redirect);
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
+}
 </script>
 @stop

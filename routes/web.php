@@ -513,6 +513,8 @@ Route::group(
         Route::get('project-revise/{id}', 'ClientController@projectReviseProposal')->name('projectrevise.view');
         Route::post('project-revise-proposal', 'ClientController@postProjectReviseProposal')->name('project-revise-proposal');
 
+        Route::post('job-onboarding', 'ClientController@postJobOnboarding')->name('job-onboarding');
+
     }
 );
 

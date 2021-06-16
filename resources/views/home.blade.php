@@ -9,6 +9,8 @@ Home
 {{-- page level styles --}}
 @section('header_styles')
 <!--page level css starts-->
+<link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
+type="text/css"/>
 <!--end of page level css-->
 @stop
 
@@ -54,37 +56,116 @@ Home
 	    </div>
 	    <!-- End Row -->
 	</div>
-	<div class="modal fade pullDown login-body border-0 modal-refer betaversion" id="onboarding" role="dialog" aria-labelledby="modalLabelnews">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                    <div class="eiliana-logo">
-                        <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
-                        <h4>Beta Version</h4>
-                        <div class="beta-parent">
-                            <p>We are pleased to welcome you to experience the beta version of our portal. Currently we are open for freelancers and agencies registration only.</p>
-                            {{-- <p>We are pleased to welcome you to experience the beta version of our portal.
-                            <br> This section is still in the finalization phase , kindly bear with us.</p> --}}
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer eiliana-refer">
-                    <button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+	@if (Session::get('users')['login_as'] == '1') {
+		{{-- freelancer --}}
+		@foreach ($job_onboarding as $key => $onboarding)
+		<div class="modal fade pullDown login-body border-0 modal-refer betaversion" id="onboarding_{{ $key+1 }}" role="dialog" aria-labelledby="modalLabelnews">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
+						<div class="eiliana-logo">
+							<img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
+							<h4>On Boardind</h4>
+							<div class="onboarding border-0 login-body">
+								<div class="form-row">
+									<div class="form-group col-12">
+										<label>Date of Onboarding</label>
+										<input class="flatpickr flatpickr-input form-control" type="text" name="date_onboarding" id="date_onboarding_{{ $key+1 }}" required>
+										<input type="hidden" id="job_leads_{{ $key+1 }}" value="{{ $finances->userjobs->job_leads_id }}">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer eiliana-refer">
+						<button class="btn btn-primary red-linear-gradient" type="button" onclick="sendToFreelancer('{{ $finances->job_order_id }}','{{ $key+1 }}')"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Submit</button>
+						<button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		@endforeach
+	@else
+		{{-- customer --}}
+		@foreach ($job_finances as $key => $finances)
+		<div class="modal fade pullDown login-body border-0 modal-refer betaversion" id="onboarding_{{ $key+1 }}" role="dialog" aria-labelledby="modalLabelnews">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
+						<div class="eiliana-logo">
+							<img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
+							<h4>On Boardind</h4>
+							<div class="onboarding border-0 login-body">
+								<div class="form-row">
+									<div class="form-group col-12">
+										<label>Date of Onboarding</label>
+										<input class="flatpickr flatpickr-input form-control" type="text" name="date_onboarding" id="date_onboarding_{{ $key+1 }}" required>
+										<input type="hidden" id="job_leads_{{ $key+1 }}" value="{{ $finances->userjobs->job_leads_id }}">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer eiliana-refer">
+						<button class="btn btn-primary red-linear-gradient" type="button" onclick="sendToFreelancer('{{ $finances->job_order_id }}','{{ $key+1 }}')"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Submit</button>
+						<button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		@endforeach
+
+	@endif
 </div>
 @stop
 {{-- footer scripts --}}
 @section('footer_scripts')
-<!-- page level js starts-->
+<!-- page level js starts-->	
+<script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
 <script>
-	// toggleBoardPopup();
-    function toggleBoardPopup(){
-		$('#onboarding').modal('show');
+    $(document).ready(function() {
+		flatpickr('.flatpickr', {
+			minDate: 'today',
+			dateFormat: 'Y-m-d',
+		});
+    });
+    function toggleBoardPopup(id){
+		$('#onboarding_'+id).modal('show');
 	}
+	function sendToFreelancer(job_order_id,key) {
+        $('.spinner-border').removeClass("d-none");
+        var url = 'client/job-onboarding';
+        var date_onboarding = $('#date_onboarding_'+key).val();
+        var job_leads_id = $('#job_leads_'+key).val();
+        var data= {
+            _token: "{{ csrf_token() }}",
+            job_order_id:job_order_id,
+            job_leads_id:job_leads_id,
+            date_onboarding: date_onboarding,
+            status: "1"
+        };
+		console.log(data);
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            success: function(data) {
+                var userCheck = data;
+				$('#onboarding_'+key).modal('hide');
+                $('.spinner-border').addClass("d-none");
+            },
+            error: function(xhr, status, error) {
+                console.log("error: ",error);
+            },
+        });
+    }
 </script>
+@foreach ($job_finances as $key => $item)
+<script>
+		toggleBoardPopup({{ $key+1 }});
+</script>
+@endforeach
 <!--page level js ends-->
 @stop

@@ -27,6 +27,7 @@ use App\Mail\ContactUser;
 use App\Mail\ForgotPassword;
 use App\Models\Country;
 use App\Models\JobOrderFinance;
+use App\Models\JobOnboarding;
 use Carbon\Carbon;
 
 class FrontEndController extends JoshController
@@ -52,13 +53,15 @@ class FrontEndController extends JoshController
         // $finances = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','userjobs.jobdetail.by_user_job')->whereDate('created_at', Carbon::today())->get();
 
         if (Session::get('users')['login_as'] == '1') {
-            # code...
+            $job_finances = [];
+            $job_onboarding = JobOnboarding::whereDate('created_at', Carbon::today())->where('status', '=', '1')->get();
         } else {
-            $finances = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','jobcontractdetails')->whereDate('date_of_boarding', Carbon::today())->get();
+            $job_finances = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','jobcontractdetails')->whereDate('date_of_boarding', Carbon::today())->where('status', '==', '2')->get();
+            $job_onboarding = [];
             
-            // return $finances;
-        }        
-        return view('home');
+        } 
+        // return $job_onboarding;       
+        return view('home', compact('job_finances','job_onboarding'));
     }
 
     public function getLogin()

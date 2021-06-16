@@ -33,6 +33,7 @@ use App\Models\ProjectSchedule;
 use App\Models\ProjectContractDetails;
 use App\Models\ProjectBudgetAmount;
 use App\Models\ProjectPaymentSchedule;
+use App\Models\JobOnboarding;
 use App\Notifications\UserNotification;
 use Carbon\Carbon;
 
@@ -904,4 +905,50 @@ class ClientController extends JoshController
         return response()->json($response);
 
     }
+
+    public function postJobOnboarding(Request $request)
+    {
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $jobonboardingcheck = JobOnboarding::where('job_order_id', '=', $input['job_order_id'])->first();
+        if ($jobonboardingcheck === null) {
+
+            $jobonboarding = new JobOnboarding;
+            $jobonboarding->job_order_id = $input['job_order_id'];
+            $jobonboarding->job_leads_id = $input['job_leads_id'];
+            $jobonboarding->date_onboarding = $input['date_onboarding'];
+            $jobonboarding->status = $input['status'];
+            $jobonboarding->save();
+
+            $job_finance = JobOrderFinance::find($input['job_order_id']);
+            $job_finance->status = '3';
+            $job_finance->save();
+
+
+            $response['success'] = '1';
+            $response['msg'] = 'Proposal Contract Accepted successfully';
+
+            $joblead = JobLeads::where('job_leads_id', $input['job_leads_id'])->first();
+
+            $user = User::find($joblead->from_user_id);
+
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You on boarding schedule today',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '#',
+                'main_id' => $jobonboarding->job_onboarding_id,
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+        } else {
+            $response['success'] = '2';
+            $response['errors'] = 'You are already accept this';
+        }
+        return response()->json($response);
+    }
+    
 }

@@ -192,7 +192,9 @@ class ClientController extends JoshController
                 $contractdetails->project_leads_id = $projectschedules->project_leads_id;
                 $contractdetails->from_user_id = $input['user_id'];
                 $contractdetails->order_closed_value = $project_amounts->project_amount_to;
-                // $contractdetails->date_acceptance = $input['date_acceptance'];
+                $contractdetails->model_engagement = $input['pricing_model'];
+
+                // $contractdetails->model_engagement = $input['model_engagement'];
                 $contractdetails->ordering_com_name = 'Eiliana';
                 // $contractdetails->sales_comm_amount = $input['sales_comm_amount'];
                 // $contractdetails->remarks = $input['remarks'];
@@ -224,11 +226,11 @@ class ClientController extends JoshController
                 $response['msg'] = 'Proposal Schedule Accepted successfully';
                 $user = User::find($projects->posted_by_user_id);
 
-                if($project_amounts->pricing_model == '1')
+                if($input['pricing_model'] == '1')
                 {
                     $url = '/client/project-contract-details/'. $projectschedules->project_leads_id;
                 }
-                else if($project_amounts->pricing_model == '2')
+                elseif($input['pricing_model'] == '2')
                 {
                     $url = '/client/project-retainer-contract-details/'. $projectschedules->project_leads_id;
                 }

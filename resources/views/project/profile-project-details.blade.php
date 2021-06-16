@@ -133,7 +133,7 @@ Project Post
                                     <table class="table table-borderless">
                                         <tbody class="info-train">
                                             <tr>
-                                            @if ($joblead->projectdetail->projectAmount->pricing_model == '1')
+                                            @if($joblead->projectdetail->projectAmount->pricing_model == '1')
                                                 <td class="heading">Price Per Hour<small>({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
                                                 <td>: {{ $joblead->bid_amount }}</td>
                                             @elseif ($joblead->projectdetail->projectAmount->pricing_model == '2')

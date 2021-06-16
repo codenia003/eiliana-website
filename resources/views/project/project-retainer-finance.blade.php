@@ -50,6 +50,7 @@ type="text/css"/>
                             <form action="{{ route('project-finance.send') }}" method="POST" id="educationForm">
                                 @csrf
                                 <input type="hidden" name="contract_id" value="{{ $projectlead->contractdetails->contract_id }}">
+                                <input type="hidden" name="proposal_id" value="{{ $projectlead->project_leads_id }}">
                                 {{--<input type="hidden" name="invoice_id" value="{{ $projectlead->contractdetails->orderinvoice->order_invoice_id }}">--}}
                                 <div class="main-moudle">
                                     <div class="form-row">
@@ -58,7 +59,7 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="project_leads_id" value="{{ $projectlead->project_leads_id }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label>Order Closed Amount(Rate Per Month)</label>
+                                            <label>Rate Per Month({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
                                             <input type="text" class="form-control" name="order_closed_value" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
                                         </div>
                                     </div>
@@ -69,28 +70,35 @@ type="text/css"/>
                                             <input class="form-control" type="text" name="date_acceptance" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $projectlead->contractdetails->created_at))) }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label>Ordering Company Name/Individual  </label>
-                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
+                                            <label>Contract Duration  </label>
+                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->delivery_timeline }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-6">
-                                            <label>Total Advance Payment </label>
+                                            <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
                                             <input type="text" class="form-control" name="advance_payment_details" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Resource name  </label>
-                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->fromuser->company_name }}" readonly>
+                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
                                         </div>
                                     </div>
-
+                                    {{--<div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label>Ordering Company Name/Individual  </label>
+                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
+                                        </div>
+                                    </div>--}}
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Status</label>
                                             <select name="status[]" class="form-control" disabled>
-                                                <option value="1" {{ ($projectlead->contractdetails->status=='1')? "selected" : "" }}>Pending</option>
-                                                <option value="2" {{ ($projectlead->contractdetails->status=='2')? "selected" : "" }}>Paid</option>
-                                                <option value="3" {{ ($projectlead->contractdetails->status=='3')? "selected" : "" }}>Cancel</option>
+                                            @foreach($projectlead->contractdetails->paymentschedule as $item)
+                                                <option value="1" {{ ($item->status=='1')? "selected" : "" }}>Pending</option>
+                                                <option value="2" {{ ($item->status=='2')? "selected" : "" }}>Paid</option>
+                                                <option value="3" {{ ($item->status=='3')? "selected" : "" }}>Cancel</option>
+                                            @endforeach
                                             </select>
                                         </div>
                                     </div>

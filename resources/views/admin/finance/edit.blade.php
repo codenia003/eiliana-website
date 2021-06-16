@@ -51,14 +51,24 @@ Finances
         });
     </script>
 <script>
-    function assignToResource(order_finance_id,finance_status){
+    $(".user_details").keyup(function(){
+        assignToResource();
+    });
+
+    function assignToResource(order_finance_id,user_id,finance_status){
         $('.spinner-border').removeClass("d-none");
+        var gst_no = $(".gst_no").val();
+        var pan_card = $(".pan_card").val();
         var url = '/admin/finance/assign-to-resource';
         var data= {
             _token: "{{ csrf_token() }}",
             order_finance_id: order_finance_id,
-            finance_status: finance_status
+            finance_status: finance_status,
+            user_id: user_id,
+            gst_no: gst_no,
+            pan_card: pan_card
         };
+        console.log(data);
         $.ajax({
             type: 'POST',
             url: url,

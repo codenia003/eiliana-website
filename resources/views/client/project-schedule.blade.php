@@ -42,11 +42,11 @@
                         <div class="form-group basic-info mb-3">
                             <label>Type Of Project:
                                     @if ($projectlead->projectdetail->type_of_project == '1')
-                                    <span>Support</span>
+                                    <span>Maintenance</span>
                                     @elseif($projectlead->projectdetail->type_of_project == '2')
-                                    <span>Development</span>
+                                    <span>New Development</span>
                                     @else
-                                    <span>Support Cum Development</span>
+                                    <span>Maintenance Cum New Development</span>
                                     @endif
                             </label>
                         </div>
@@ -56,7 +56,7 @@
                                 <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4" readonly>{{ $projectlead->projectschedulee->customer_objective }}</textarea>
                             </div>
                         </div>
-                        <div class="form-row">
+                        {{--<div class="form-row">
                             <div class="form-group col-6">
                                 <label>Project Start Date</label>
                                 <input class="form-control" type="text" name="project_start_date" value="{{ $projectlead->projectschedulee->project_start_date }}" readonly>
@@ -65,19 +65,28 @@
                                 <label>Project End Date</label>
                                 <input class="form-control" type="text" name="project_end_date" value="{{ $projectlead->projectschedulee->project_end_date }}" readonly>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label>Hours Proposed</label>
-                                <input class="form-control" type="text" name="hours_proposed_as" value="as per eiliana software" readonly>
-                                <input class="form-control" type="hidden" name="hours_proposed" value="0">
+                        </div>--}}
+                        @if($projectlead->projectdetail->projectAmount->pricing_model == '1')
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Hours Proposed</label>
+                                    <input class="form-control" type="text" name="hours_proposed_as" value="as per eiliana software" readonly>
+                                    <input class="form-control" type="hidden" name="hours_proposed" value="0">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Hours Approved</label>
+                                    <input class="form-control" type="text" name="hours_approved_as" value="as per eiliana software" readonly>
+                                    <input class="form-control" type="hidden" name="hours_approved" value="0" >
+                                </div>
                             </div>
-                            <div class="form-group col-6">
-                                <label>Hours Approved</label>
-                                <input class="form-control" type="text" name="hours_approved_as" value="as per eiliana software" readonly>
-                                <input class="form-control" type="hidden" name="hours_approved" value="0" >
+                        @elseif($projectlead->projectdetail->projectAmount->pricing_model == '2')
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Agree Scope Of Work</label>
+                                    <input class="form-control" type="text" name="scope_of_work" value="{{ $projectlead->projectschedulee->scope_of_work }}">
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
 
                     <div class="module-1">
@@ -90,18 +99,21 @@
                                         <input type="text" name="module_scope[]" class="form-control" value="{{ $modulee->module_scope }}" readonly>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-12">
-                                        <label> Milestone No.</label>
-                                        <select class="form-control" name="milestone_no[]" disabled>
-                                            <option value=""> </option>
-                                            @for ($i = 1; $i < 101; $i++)
-                                            <option value="{{ $i }}" {{ ($modulee->milestone_no== $i)? "selected" : "" }}>{{ $i }}</option>
-                                            @endfor
-                                        </select>
+                                @if($projectlead->projectdetail->projectAmount->pricing_model == '3')
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label> Milestone No.</label>
+                                            <select class="form-control" name="milestone_no[]" disabled>
+                                                <option value=""> </option>
+                                                @for ($i = 1; $i < 101; $i++)
+                                                <option value="{{ $i }}" {{ ($modulee->milestone_no== $i)? "selected" : "" }}>{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-row">
+                                @endif
+                                
+                                {{--<div class="form-row">
                                     <div class="form-group col-6">
                                         <label>Module Start Date</label>
                                         <input class="form-control" type="text" name="module_start_date[]" value="{{ $modulee->module_start_date }}" readonly>
@@ -110,7 +122,7 @@
                                         <label>Module End Date</label>
                                         <input class="form-control" type="text" name="module_end_date[]" value="{{ $modulee->module_end_date }}" readonly>
                                     </div>
-                                </div>
+                                </div>--}}
                                 {{--<div class="form-row">
                                     <div class="form-group col-6">
                                         <label>Hours Proposed</label>
@@ -177,9 +189,9 @@
                      <div class="form-group text-right mt-5">
                         <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                         <div class="btn-group" role="group">
-                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','2')">Accept</button>
-                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','3')">Modify</button>
-                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','4')">Reject</button>
+                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','{{ $projectlead->projectdetail->projectAmount->pricing_model }}','{{ $projectlead->project_leads_id }}','2')">Accept</button>
+                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','{{ $projectlead->projectdetail->projectAmount->pricing_model }}','{{ $projectlead->project_leads_id }}','3')">Modify</button>
+                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','{{ $projectlead->projectdetail->projectAmount->pricing_model }}','{{ $projectlead->project_leads_id }}','4')">Reject</button>
                         </div>
                     </div>
                 </form>
@@ -192,14 +204,17 @@
 @section('profile_script')
 {{-- <x-chat-message/> --}}
 <script>
-function projectleadSchedule(schedule_id,lead_status){
+function projectleadSchedule(schedule_id,pricing_model,project_leads_id,lead_status){
     $('.spinner-border').removeClass("d-none");
     var url = '/client/project-lead-schedule';
     var data= {
         _token: "{{ csrf_token() }}",
         schedule_id: schedule_id,
-        lead_status: lead_status
+        lead_status: lead_status,
+        pricing_model: pricing_model,
+        project_leads_id: project_leads_id
     };
+    console.log(data);
     $.ajax({
         type: 'POST',
         url: url,
@@ -209,7 +224,7 @@ function projectleadSchedule(schedule_id,lead_status){
             $('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
                 var msg = userCheck.msg;
-                var redirect = '/client/project-schedule/'+ schedule_id;
+                var redirect = '/client/project-schedule/'+ project_leads_id;
                
                 // Swal.fire({
                 //     type: 'success',
@@ -221,7 +236,7 @@ function projectleadSchedule(schedule_id,lead_status){
                 // window.location.href = '/freelancer/my-opportunity';
             } else {
                 var msg = userCheck.errors;
-                var redirect = '/client/project-schedule/'+ schedule_id;
+                var redirect = '/client/project-schedule/'+ project_leads_id;
                 // Swal.fire({
                 //     type: 'error',
                 //     title: 'Oops...',

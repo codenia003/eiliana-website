@@ -51,6 +51,7 @@ type="text/css"/>
 							<form action="{{ route('projectschedule.create') }}" method="POST" id="educationForm">
 								@csrf
                                 <input type="hidden" name="project_leads_id" value="{{ $projectleads->project_leads_id }}">
+                                <input type="hidden" name="pricing_model" value="{{ $projectleads->projectdetail->projectAmount->pricing_model }}">
 								<div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">
@@ -65,11 +66,11 @@ type="text/css"/>
                                     <div class="form-group basic-info mb-3">
                                         <label>Type Of Project:
                                                 @if ($projectleads->projectdetail->type_of_project == '1')
-                                                <span>Support</span>
+                                                <span>Maintenance</span>
                                                 @elseif($projectleads->projectdetail->type_of_project == '2')
-                                                <span>Development</span>
+                                                <span>New Development</span>
                                                 @else
-                                                <span>Support Cum Development</span>
+                                                <span>Maintenance Cum New Development</span>
                                                 @endif
                                         </label>
                                     </div>
@@ -101,7 +102,7 @@ type="text/css"/>
                                             </div>
                                         </div>
                                     </div> --}}
-                                    <div class="form-row">
+                                    {{--<div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Project Start Date</label>
                                             <input class="flatpickr flatpickr-input form-control" type="text" name="project_start_date" value="" required>
@@ -110,19 +111,28 @@ type="text/css"/>
                                             <label>Project End Date</label>
                                             <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="" required>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-6">
-                                            <label>Hours Proposed</label>
-                                            <input class="form-control" type="text" name="hours_proposed_as" value="as per eiliana software" readonly>
-                                            <input class="form-control" type="hidden" name="hours_proposed" value="0">
+                                    </div>--}}
+                                    @if($projectleads->projectdetail->projectAmount->pricing_model == '1')
+                                        <div class="form-row">
+                                            <div class="form-group col-6">
+                                                <label>Hours Proposed</label>
+                                                <input class="form-control" type="text" name="hours_proposed_as" value="as per eiliana software" readonly>
+                                                <input class="form-control" type="hidden" name="hours_proposed" value="0">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label>Hours Approved</label>
+                                                <input class="form-control" type="text" name="hours_approved_as" value="as per eiliana software" readonly>
+                                                <input class="form-control" type="hidden" name="hours_approved" value="0" >
+                                            </div>
                                         </div>
-                                        <div class="form-group col-6">
-                                            <label>Hours Approved</label>
-                                            <input class="form-control" type="text" name="hours_approved_as" value="as per eiliana software" readonly>
-                                            <input class="form-control" type="hidden" name="hours_approved" value="0" >
+                                    @elseif($projectleads->projectdetail->projectAmount->pricing_model == '2')
+                                        <div class="form-row">
+                                            <div class="form-group col-12">
+                                                <label>Agree Scope Of Work</label>
+                                                <input class="form-control" type="text" name="scope_of_work">
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
 
 								<div class="module-1">
@@ -134,18 +144,20 @@ type="text/css"/>
 												<input type="text" name="module_scope[]" class="form-control" required>
 											</div>
 										</div>
-                                        <div class="form-row">
-                                            <div class="form-group col-12">
-                                                <label> Milestone No.</label>
-                                                <select class="form-control" name="milestone_no[]" required>
-                                                    <option value=""> </option>
-                                                    @for ($i = 1; $i < 101; $i++)
-                                                    <option value="{{ $i }}">{{ $i }}</option>
-                                                    @endfor
-                                                </select>
+                                        @if($projectleads->projectdetail->projectAmount->pricing_model == '3')
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label> Milestone No.</label>
+                                                    <select class="form-control" name="milestone_no[]" required>
+                                                        <option value=""> </option>
+                                                        @for ($i = 1; $i < 101; $i++)
+                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-										<div class="form-row">
+                                        @endif
+										{{--<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Start Date</label>
 												<input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="" required>
@@ -154,7 +166,7 @@ type="text/css"/>
 												<label>Module End Date</label>
 												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="" required>
 											</div>
-										</div>
+										</div>--}}
 										{{-- <div class="form-row">
 											<div class="form-group col-6">
 												<label>Hours Proposed</label>
@@ -248,18 +260,20 @@ type="text/css"/>
                             <input type="text" name="module_scope[]" class="form-control">
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-12">
-                            <label> Milestone No.</label>
-                            <select class="form-control" name="milestone_no[]" required>
-                                <option value=""> </option>
-                                @for ($i = 1; $i < 101; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                                @endfor
-                            </select>
+                    @if($projectleads->projectdetail->projectAmount->pricing_model == '3')
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label> Milestone No.</label>
+                                <select class="form-control" name="milestone_no[]" required>
+                                    <option value=""> </option>
+                                    @for ($i = 1; $i < 101; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
+                    @endif
+                    {{--<div class="form-row">
                         <div class="form-group col-6">
                             <label>Module Start Date</label>
                             <input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="">
@@ -268,7 +282,7 @@ type="text/css"/>
                             <label>Module End Date</label>
                             <input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="">
                         </div>
-                    </div>
+                    </div>--}}
                     {{-- <div class="form-row">
                         <div class="form-group col-6">
                             <label>Hours Proposed</label>

@@ -19,6 +19,7 @@ use App\Models\Job;
 use App\Models\JobLeads;
 use App\Models\ResourceDetails;
 use App\Models\User;
+use App\Models\Country;
 use App\Models\ProjectLeads;
 use App\Notifications\UserNotification;
 
@@ -52,8 +53,9 @@ class FinanceController extends Controller
     {
         $finance =  ProjectLeads::with('projectdetail','projectdetail.projectCurrency','projectschedulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
         $order_finances_id = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('project_leads_id', $id)->first();
+        $country_name = Country::where('id', $order_finances_id->userprojects->projectdetail->companydetails->country)->first();
         //return $finance;
-        return view('admin.finance.edit', compact('finance','order_finances_id'));
+        return view('admin.finance.edit', compact('finance','order_finances_id','country_name'));
     }
 
     public function assignToResource(Request $request)
@@ -70,10 +72,10 @@ class FinanceController extends Controller
             $financeschedules->save();
 
             if($input['finance_status'] === '2'){
-                // $user_details = User::where('id', '=', $input['user_id']);
-                // $user_details->pan_card_no = $input['pan_card'];
-                // $user_details->gst_number = $input['gst_no'];
-                // $user_details->save();
+                $user_details = User::find($input['user_id']);
+                $user_details->pan_card_no = $input['pan_card'];
+                $user_details->gst_number = $input['gst_no'];
+                $user_details->save();
                 
                 $response['success'] = '1';
                 $response['msg'] = 'Assign Finance Resource successfully';

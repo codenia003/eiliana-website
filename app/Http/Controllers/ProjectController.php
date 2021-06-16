@@ -79,7 +79,7 @@ class ProjectController extends JoshController
         $projectleads = ProjectLeads::with('projectdetail','projectdetail.projectAmount')->where('project_leads_id', $id)->first();
         $user = User::where('id', $projectleads->from_user_id)->first();
 
-        // return $projectleads;
+        //return $projectleads;
         return view('project/project-schedule', compact('projectleads','user'));
     }
     public function projectScheduleModify($id)
@@ -249,9 +249,17 @@ class ProjectController extends JoshController
         $projectschedules->project_leads_id = $input['project_leads_id'];
         $projectschedules->project_id = $input['project_id'];
         $projectschedules->customer_objective = $input['customer_objective'];
-        $projectschedules->project_start_date = $input['project_start_date'];
-        $projectschedules->project_end_date = $input['project_end_date'];
-        $projectschedules->hours_proposed = $input['hours_proposed'];
+        // $projectschedules->project_start_date = $input['project_start_date'];
+        // $projectschedules->project_end_date = $input['project_end_date'];
+        if($input['pricing_model'] == '1')
+        {
+            $projectschedules->hours_proposed = $input['hours_proposed'];
+            $projectschedules->hours_approved = $input['hours_approved'];
+        }
+        else if($input['pricing_model'] == '2'){
+            $projectschedules->scope_of_work = $input['scope_of_work'];
+        }
+        
         $projectschedules->remarks = $input['remarks'];
         $projectschedules->satuts = '1';
         $projectschedules->save();
@@ -269,9 +277,13 @@ class ProjectController extends JoshController
             $schedulemodule = new ProjectScheduleModule;
             $schedulemodule->project_schedule_id = $insertedId;
             $schedulemodule->module_scope = $input['module_scope'][$key];
-            $schedulemodule->module_start_date = $input['module_start_date'][$key];
-            $schedulemodule->module_end_date = $input['module_end_date'][$key];
-            $schedulemodule->milestone_no = $input['milestone_no'][$key];
+            // $schedulemodule->module_start_date = $input['module_start_date'][$key];
+            // $schedulemodule->module_end_date = $input['module_end_date'][$key];
+            if($input['pricing_model'] == '3')
+            {
+                $schedulemodule->milestone_no = $input['milestone_no'][$key];
+            }
+            
             // $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
             // $schedulemodule->hours_approved = $input['hours_approved'][$key];
             // $schedulemodule->modify_hours = $input['modify_hours'][$key];
@@ -746,6 +758,7 @@ class ProjectController extends JoshController
             $projectleads->message = $input['messagetext'];
             $projectleads->bid_amount = $input['bid_amount'];
             $projectleads->delivery_timeline = $input['delivery_timeline'];
+            $projectleads->technologty_pre = $input['technologty_pre'];
             $projectleads->attach_file = $safeName;
             $projectleads->notify = '0';
             $projectleads->display_status = '1';
@@ -761,8 +774,8 @@ class ProjectController extends JoshController
                 'body' => 'You have new project proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
-                'actionURL' => 'project/profile-projectbid/'. $insertedId,
-                'main_id' => $insertedId
+                'actionURL' => 'project/profile-projectbid/'. $projectleads->project_leads_id,
+                'main_id' => $projectleads->project_leads_id
             ];
 
             Notification::send($user, new UserNotification($details));
@@ -962,12 +975,25 @@ class ProjectController extends JoshController
         $orderfinancecehck = ProjectOrderFinance::where('project_leads_id', '=', $input['proposal_id'])->where('status', '=', '1')->first();
         if ($orderfinancecehck === null) {
 
-            $paymentschedule = ProjectPaymentSchedule::find($input['proposal_id']);
-            $paymentschedule->hours_purchase = $input['hours_purchase'];
-            $paymentschedule->installment_amount = $input['installment_amount'];
-            $paymentschedule->total_advance_payment = $input['total_advance_payment'];
-            $paymentschedule->status = '1';
-            $paymentschedule->save();
+            if($input['model_engagement'] == '1')
+            {
+                $paymentschedule = ProjectPaymentSchedule::find($input['proposal_id']);
+                $paymentschedule->hours_purchase = $input['hours_purchase'];
+                $paymentschedule->installment_amount = $input['installment_amount'];
+                $paymentschedule->total_advance_payment = $input['total_advance_payment'];
+                $paymentschedule->status = '1';
+                $paymentschedule->save();
+            }
+            elseif($input['model_engagement'] == '2')
+            {
+                $projectschedules = ProjectSchedule::find($input['proposal_id']);
+                $projectschedules->scope_of_work = $input['scope_of_work'];
+                $projectschedules->save();
+                
+                $paymentschedule = ProjectPaymentSchedule::find($input['proposal_id']);
+                $paymentschedule->status = '1';
+                $paymentschedule->save();
+            }
 
             $user = User::find(1);
 

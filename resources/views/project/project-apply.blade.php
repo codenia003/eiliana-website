@@ -56,7 +56,7 @@ type="text/css"/>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="project_id" class="col-form-label">Job ID:</label>
+                                        <label for="project_id" class="col-form-label">Project ID:</label>
                                         <input type="text" class="form-control" name="project_id" id="project_id" value="{{ $project->project_id }}" readonly="">
                                     </div>
                                     <div class="form-row">
@@ -69,7 +69,7 @@ type="text/css"/>
                                             @if ($project->projectAmount->pricing_model == '1')
                                                 <input type="text" class="form-control" value="Rate Per Hour" readonly>
                                             @elseif ($project->projectAmount->pricing_model == '2')
-                                                <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                                <input type="text" class="form-control" value="Rate Per Month" readonly>
                                             @else
                                                 <input type="text" class="form-control" value="Project Amount" readonly>
                                             @endif

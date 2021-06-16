@@ -80,7 +80,7 @@ class FreelancerController extends Controller
     {
         $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
         // return $projectlead->projectschedulee->project_schedule_id;
-
+        //return $projectlead;
         $update_status = ProjectScheduleModule::where('project_schedule_id',$projectlead->projectschedulee->project_schedule_id)->where('module_status', '!=','3')->first();
         if(!empty($update_status)) {
             $update_status = $update_status->project_schedule_module_id;

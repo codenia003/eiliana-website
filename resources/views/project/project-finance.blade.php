@@ -92,10 +92,17 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Status</label>
-                                            <select name="status[]" class="form-control" disabled>
+                                            {{--<select name="status[]" class="form-control" disabled>
                                                 <option value="1" {{ ($projectlead->contractdetails->status=='1')? "selected" : "" }}>Pending</option>
                                                 <option value="2" {{ ($projectlead->contractdetails->status=='2')? "selected" : "" }}>Paid</option>
                                                 <option value="3" {{ ($projectlead->contractdetails->status=='3')? "selected" : "" }}>Cancel</option>
+                                            </select>--}}
+                                            <select name="status[]" class="form-control" disabled>
+                                                @foreach($projectlead->contractdetails->paymentschedule as $item)
+                                                    <option value="1" {{ ($item->status=='1')? "selected" : "" }}>Pending</option>
+                                                    <option value="2" {{ ($item->status=='2')? "selected" : "" }}>Paid</option>
+                                                    <option value="3" {{ ($item->status=='3')? "selected" : "" }}>Cancel</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

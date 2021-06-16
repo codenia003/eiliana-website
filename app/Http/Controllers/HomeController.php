@@ -35,7 +35,7 @@ class HomeController extends JoshController
     public function categoryDetails($slug)
     {
         $projectcategorie = ProjectCategory::where('slug' , $slug)->first();
-        return $projectcategorie;
+        // return $projectcategorie;
         return view('home.projectcategorie', compact('projectcategorie'));
     }
 }

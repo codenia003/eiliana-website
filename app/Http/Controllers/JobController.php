@@ -678,7 +678,7 @@ class JobController extends JoshController
 
     public function jobFinance($id)
     {
-        $joblead = JobLeads::with('jobdetail','jobcontractdetails','jobcontractdetails.joborderinvoice','jobcontractdetails.jobpaymentschedule','jobcontractdetails.jobadvacne_amount')->where('job_leads_id', $id)->first();
+        $joblead = JobLeads::with('jobdetail','jobcontractschedule','jobcontractdetails','jobcontractdetails.joborderinvoice','jobcontractdetails.jobpaymentschedule','jobcontractdetails.jobadvacne_amount')->where('job_leads_id', $id)->first();
         // return $joblead;
         return view('job/job-finance', compact('joblead'));
     }
@@ -694,6 +694,7 @@ class JobController extends JoshController
             $orderfinmace->job_leads_id = $input['job_leads_id'];
             $orderfinmace->contract_id = $input['contract_id'];
             $orderfinmace->invoice_id = $input['invoice_id'];
+            $orderfinmace->date_of_boarding = $input['date_of_boarding'];
             $orderfinmace->status = '1';
             $orderfinmace->save();
 

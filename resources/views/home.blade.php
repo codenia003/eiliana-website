@@ -54,13 +54,37 @@ Home
 	    </div>
 	    <!-- End Row -->
 	</div>
+	<div class="modal fade pullDown login-body border-0 modal-refer betaversion" id="onboarding" role="dialog" aria-labelledby="modalLabelnews">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    <div class="eiliana-logo">
+                        <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
+                        <h4>Beta Version</h4>
+                        <div class="beta-parent">
+                            <p>We are pleased to welcome you to experience the beta version of our portal. Currently we are open for freelancers and agencies registration only.</p>
+                            {{-- <p>We are pleased to welcome you to experience the beta version of our portal.
+                            <br> This section is still in the finalization phase , kindly bear with us.</p> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer eiliana-refer">
+                    <button class="btn btn-outline-primary red-linear-gradient" type="button" data-dismiss="modal"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @stop
 {{-- footer scripts --}}
 @section('footer_scripts')
 <!-- page level js starts-->
-{{-- <script>
-    togglePopup();
-</script> --}}
+<script>
+	// toggleBoardPopup();
+    function toggleBoardPopup(){
+		$('#onboarding').modal('show');
+	}
+</script>
 <!--page level js ends-->
 @stop

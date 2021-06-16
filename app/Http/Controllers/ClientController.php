@@ -69,8 +69,8 @@ class ClientController extends JoshController
 
     public function myDeliveryJob()
     {
-        $delivery_job = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','userjobs.jobdetail.by_user_job')->where('status', '=', '2')->get();
-        //return $delivery_job;
+        $delivery_job = JobOrderFinance::with('userjobs','userjobs.jobcontractschedule','userjobs.jobdetail','userjobs.fromuser','userjobs.jobdetail.by_user_job')->where('status', '=', '2')->get();
+        // return $delivery_job;
         return view('client/mydeliveryjob', compact('delivery_job'));
     }
 

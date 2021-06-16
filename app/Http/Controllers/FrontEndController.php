@@ -21,10 +21,13 @@ use Sentinel;
 use URL;
 use View;
 use stdClass;
+use Session;
 use App\Mail\Contact;
 use App\Mail\ContactUser;
 use App\Mail\ForgotPassword;
 use App\Models\Country;
+use App\Models\JobOrderFinance;
+use Carbon\Carbon;
 
 class FrontEndController extends JoshController
 {
@@ -46,6 +49,15 @@ class FrontEndController extends JoshController
         // $value = session('users');
         // print_r($value['first_name']);
         // Show the login page
+        // $finances = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','userjobs.jobdetail.by_user_job')->whereDate('created_at', Carbon::today())->get();
+
+        if (Session::get('users')['login_as'] == '1') {
+            # code...
+        } else {
+            $finances = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','jobcontractdetails')->whereDate('date_of_boarding', Carbon::today())->get();
+            
+            // return $finances;
+        }        
         return view('home');
     }
 

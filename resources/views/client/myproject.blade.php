@@ -62,7 +62,7 @@ type="text/css"/>
                             @elseif($lead->projectamount->pricing_model == '2')
                             <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR /Month</td>
                             @else
-                            <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR</td>
+                            <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR /Amount</td>
                             @endif
 
                             @if(!empty($lead->technologys->technology_name))

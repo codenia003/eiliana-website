@@ -336,8 +336,17 @@ class ProjectController extends JoshController
         $projectschedules->project_leads_id = $input['project_leads_id'];
         $projectschedules->project_id = $input['project_id'];
         $projectschedules->customer_objective = $input['customer_objective'];
-        $projectschedules->project_start_date = $input['project_start_date'];
-        $projectschedules->project_end_date = $input['project_end_date'];
+        // $projectschedules->project_start_date = $input['project_start_date'];
+        // $projectschedules->project_end_date = $input['project_end_date'];
+        if($input['pricing_model'] == '1')
+        {
+            $projectschedules->hours_proposed = $input['hours_proposed'];
+            $projectschedules->hours_approved = $input['hours_approved'];
+        }
+        else if($input['pricing_model'] == '2'){
+            $projectschedules->scope_of_work = $input['scope_of_work'];
+        }
+
         $projectschedules->remarks = $input['remarks'];
         $projectschedules->satuts = '1';
         $projectschedules->save();
@@ -355,11 +364,18 @@ class ProjectController extends JoshController
             $schedulemodule = ProjectScheduleModule::find($input['project_schedule_id']);
             $schedulemodule->project_schedule_id = $insertedId;
             $schedulemodule->module_scope = $input['module_scope'][$key];
-            $schedulemodule->module_start_date = $input['module_start_date'][$key];
-            $schedulemodule->module_end_date = $input['module_end_date'][$key];
-            $schedulemodule->milestone_no = $input['milestone_no'][$key];
-            $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
-            $schedulemodule->hours_approved = $input['hours_approved'][$key];
+            // $schedulemodule->module_start_date = $input['module_start_date'][$key];
+            // $schedulemodule->module_end_date = $input['module_end_date'][$key];
+            if($input['pricing_model'] == '3')
+            {
+                $schedulemodule->milestone_no = $input['milestone_no'][$key];
+            }
+            else if($input['pricing_model'] == '1')
+            {
+                $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
+                $schedulemodule->hours_approved = $input['hours_approved'][$key];
+            }
+        
             // $schedulemodule->modify_hours = $input['modify_hours'][$key];
             $schedulemodule->module_status = $input['module_status'][$key];
             $schedulemodule->current = $current_pending;

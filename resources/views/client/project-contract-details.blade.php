@@ -55,26 +55,29 @@
                                 <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->delivery_timeline }}" readonly>
                             </div>
                         </div>
+                        <?php
+                                $gst_rate = 18;
+                                $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
+                                $GST_amount = ($price * $gst_rate) / 100;
+                                $total_price = $price + $GST_amount;
+                        ?>
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }}) </label>
-                                <input type="text" class="form-control" name="advance_payment_details" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                <input type="text" class="form-control" name="advance_payment_details" value="{{ $total_price }}" readonly>
                             </div>
                             <div class="form-group col-6">
-                                <label>Resource name  </label>
-                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
-                            </div>
-                            {{--<div class="form-group col-6">
-                                <label>Ordering Company Name/Individual  </label>
-                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
-                            </div>--}}
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-12">
                                 <label>Gst Details(Optional)</label>
                                 <input class="form-control" type="text" name="gst" value="">
                             </div>
+                            {{--<div class="form-group col-6">
+                                <label>Resource name  </label>
+                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Ordering Company Name/Individual  </label>
+                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
+                            </div>--}}
                         </div>
                     </div>
                     @forelse ($projectlead->contractdetails->paymentschedule as $item)

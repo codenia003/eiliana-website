@@ -258,3 +258,12 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
     Route::get('homePage/{homePage}', ['as'=> 'homePage.show', 'uses' => 'HomeController@show']);
     Route::get('homePage/{homePage}/edit', ['as'=> 'homePage.edit', 'uses' => 'HomeController@edit']);
 });
+
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+    Route::get('salesReferral', ['as'=> 'salesReferral.index', 'uses' => 'SalesController@index']);
+    Route::get('salesReferral/edit/{id}', ['as'=> 'salesReferral.edit', 'uses' => 'SalesController@edit']);
+    Route::post('salesReferral/sales-referral-assign-to-client', 'SalesController@salesReferralAssignToClient')->name('sales-referral-assign-to-client');
+    
+});

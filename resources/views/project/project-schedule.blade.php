@@ -18,6 +18,23 @@ Project Schedule
 type="text/css"/>
 @yield('profile_css')
 <!--end of page level css-->
+<style>
+    .project-schedule .title {
+        color: #003466;
+        border-bottom: #003466;
+        text-align: center;
+    }
+
+    .project-schedule .title:after {
+        content: " ";
+        border-bottom-style: double;
+        border-bottom-width: 1px;
+        display: block;
+        width: 40%;
+        text-align: center;
+        margin: auto !important;
+    }
+</style>
 @stop
 
 @section('top')
@@ -128,7 +145,7 @@ type="text/css"/>
                                     @elseif($projectleads->projectdetail->projectAmount->pricing_model == '2')
                                         <div class="form-row">
                                             <div class="form-group col-12">
-                                                <label>Agree Scope Of Work</label>
+                                                <label>Agreed Scope Of Work</label>
                                                 <input class="form-control" type="text" name="scope_of_work">
                                             </div>
                                         </div>
@@ -145,15 +162,39 @@ type="text/css"/>
 											</div>
 										</div>
                                         @if($projectleads->projectdetail->projectAmount->pricing_model == '3')
+                                           <h4 class="title">Customer Payment Schedules</h4>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label> Milestone No.</label>
-                                                    <select class="form-control" name="milestone_no[]" required>
+                                                    <select class="form-control milestone_no" name="milestone_no" required>
+                                                    <!-- <select class="form-control milestone_no" name="milestone_no" onchange="createMilestone()" required> -->
                                                         <option value=""> </option>
                                                         @for ($i = 1; $i < 101; $i++)
                                                         <option value="{{ $i }}">{{ $i }}</option>
                                                         @endfor
                                                     </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label>Payable Amount</label>
+                                                    <input type="number" name="payable_amount" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label> Milestones</label>
+                                                    <input type="number" name="milestone_no" class="form-control" required>
+                                                </div>
+                                            </div> -->
+                                            <div class="milestone-1 d-none">
+                                                <input type="hidden" name="milestone_no[]" id="milestone_id" value="1">
+                                                <div class="form-row">
+                                                    <div class="form-group col-12">
+                                                        <label> Milestones</label>
+                                                        <input type="number" name="milestone_no" class="form-control" required>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endif
@@ -402,6 +443,16 @@ type="text/css"/>
         theme: 'bootstrap',
         placeholder: 'Select a value',
     });
+
+    function createMilestone(){
+        var milestone = $('.milestone_no').val();
+		console.log(milestone)
+        var x = parseInt(milestone) + parseInt(1);
+
+        var element = '<div class="module-3 module-'+x+'">'+$('.milestone-1').html()+'</div>';
+	  	$('.module-1').append(element);
+
+	}
 
 	$(function(){
         $(document).on("click",".btn-copy-ps",function() {

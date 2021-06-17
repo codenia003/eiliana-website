@@ -1,4 +1,32 @@
-@extends('profile/layout')
+@extends('client/layout')
+{{-- Page title --}}
+@section('title')
+My Lead
+@parent
+@stop
+
+{{-- page level styles --}}
+@section('header_styles')
+<!--page level css starts-->
+<link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
+<link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}">
+<link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
+type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap4.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/dataTables.bootstrap4.css') }}"/>
+ <link rel="stylesheet" type="text/css" href="{{ asset('vendors/datatables/css/buttons.bootstrap4.css') }}">
+
+ <style>
+		.profile-setting .my-alldata tr:nth-child(even) {
+			background-color: #ffffff;
+		}
+		
+</style>
+@stop
 @section('top')
 <div class="bg-red">
     <div class="px-5 py-2">
@@ -9,7 +37,7 @@
     </div>
 </div>
 @stop
-@section('profile_content')
+@section('client_content')
 <div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md">
     <table class="table table-striped" id="myrequirement-table">
         <thead>
@@ -20,7 +48,7 @@
             <th>Designation</th>
             <th>Status</th>
             <th>Mobile No</th>
-            <th>View</th>
+            <!-- <th>View</th> -->
          </tr>
         </thead>
         <tbody>
@@ -42,10 +70,14 @@
                     @endif
                 </td>
                 <td>{{ $lead->mobile_no }}</td>
-                <td><a href="{{ route('my-lead.view',$lead->sales_referral_id) }}"><i class="fas fa-info-circle"></i></a></td>
+                {{--<td><a href="{{ route('my-lead.view',$lead->sales_referral_id) }}"><i class="fas fa-info-circle"></i></a></td>--}}
             </tr>
         @endforeach
         </tbody>
     </table>
 </div>
+@stop
+@section('client_script')
+<script type="text/javascript" src="{{ asset('vendors/datatables/js/jquery.dataTables.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('vendors/datatables/js/dataTables.bootstrap4.js') }}" ></script>
 @stop

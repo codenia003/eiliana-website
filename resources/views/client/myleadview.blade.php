@@ -125,7 +125,7 @@
 
                 <div class="stafflead-basic">
                     <button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->sales_referral_id }}','{{ $leads->referral_code }}','1')">Identify Consultant</button>
-                    <button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->sales_referral_id }}','{{ $leads->referral_code }}','2')">Contact Eiliana</button>
+                    {{--<button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->sales_referral_id }}','{{ $leads->referral_code }}','2')">Contact Eiliana</button>--}}
                 </div>
             </div>
         </div>

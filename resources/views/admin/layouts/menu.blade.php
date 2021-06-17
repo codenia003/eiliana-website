@@ -142,3 +142,19 @@
     </ul>
 </li>
 
+<li {!! (Request::is('admin/salesReferral*') ? 'class="active"' : '' ) !!}>
+    <a href="#">
+        <i class="livicon" data-name="doc-portrait" data-size="18" data-c="#67C5DF" data-hc="#67C5DF" data-loop="true"></i>
+        <span class="title">Eiliana Sales Referral</span>
+        <span class="fa arrow"></span>
+    </a>
+    <ul class="sub-menu">
+        <li {!! (Request::is('admin/salesReferral*') ? 'class="active"' : '' ) !!}>
+            <a href="{{ route('admin.salesReferral.index') }}">
+                <i class="fa fa-angle-double-right"></i>
+                 Sales Referral List
+            </a>
+        </li>
+    </ul>
+</li>
+

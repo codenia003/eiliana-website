@@ -33,7 +33,6 @@ class SalesController extends JoshController
         //return view('sales/sales-referral-form');
         
     }
-
     public function postSalesReferralForm(Request $request)
     {
         $user = Sentinel::getUser();
@@ -48,6 +47,44 @@ class SalesController extends JoshController
         return redirect('sales-referral')->with('success', 'Form updated successfully');
     }
 
+    public function ModifySalesReferralForm($id)
+    {
+        if (Session::get('users')['login_as'] == '2'){
+            $sales_referral = SalesReferral::where('sales_referral_id', $id)->first();
+            //return $sales_referral;
+            return view('sales/sales-referral-modify-form', compact('sales_referral'));
+        }
+        else{
+            return redirect('logout');
+        }
+        
+    }
+
+    public function updateSalesReferralForm(Request $request)
+    {
+        $user = Sentinel::getUser();
+        $input = $request->except('_token');
+
+        $sales_referral = SalesReferral::find($input['sales_referral_id']);
+        $sales_referral->company_name = $input['company_name'];
+        $sales_referral->legal_status = $input['legal_status'];
+        $sales_referral->contact_person = $input['contact_person'];
+        $sales_referral->designation = $input['designation'];
+        $sales_referral->email = $input['email'];
+        $sales_referral->mobile_no = $input['mobile_no'];
+        $sales_referral->website_address = $input['website_address'];
+        $sales_referral->requirment_details = $input['requirment_details'];
+        $sales_referral->customer_industry = $input['customer_industry'];
+        $sales_referral->datetimeconnect = $input['datetimeconnect'];
+        $sales_referral->confirmed = $input['confirmed'];
+        $sales_referral->commission_type = $input['commission_type'];
+        $sales_referral->expected_commission = $input['expected_commission'];
+        $sales_referral->lead_status = '1';
+        $sales_referral->save();
+
+        return redirect('sales-referral')->with('success', 'Modify sales referral form successfully');
+    }
+
     public function identifyconsultant(Request $request)
     {
         $response['success'] = '0';
@@ -55,7 +92,7 @@ class SalesController extends JoshController
         $leads = SalesReferral::where('sales_referral_id', $data['referral_id'])->first();
 
         if ($leads->lead_status == 1) {
-            $response['msg'] = 'Eilian review your sales referral lead';
+            $response['msg'] = 'Eiliana review your sales referral lead';
         } else {
             $request->session()->forget('sales_referral');
             $request->session()->put('sales_referral', $data);

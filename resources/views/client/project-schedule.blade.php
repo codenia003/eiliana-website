@@ -82,8 +82,8 @@
                         @elseif($projectlead->projectdetail->projectAmount->pricing_model == '2')
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <label>Agree Scope Of Work</label>
-                                    <input class="form-control" type="text" name="scope_of_work" value="{{ $projectlead->projectschedulee->scope_of_work }}">
+                                    <label>Agreed Scope Of Work</label>
+                                    <input class="form-control" type="text" name="scope_of_work" value="{{ $projectlead->projectschedulee->scope_of_work }}" readonly>
                                 </div>
                             </div>
                         @endif

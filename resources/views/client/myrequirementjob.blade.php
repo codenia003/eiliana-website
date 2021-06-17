@@ -58,7 +58,7 @@ type="text/css"/>
                         <tr>
                             <td>{{ $lead->job_id }}</td>
                             <td>{{ $lead->job_title }}</td>
-                            <td>{{ rtrim(rtrim($lead->budget_to, '0'), '.') }}/Month</td>
+                            <td>{{ rtrim(rtrim($lead->budget_to, '0'), '.') }} INR /Month</td>
                             @if(!empty($lead->technologys->technology_name))
                                <td>{{ $lead->technologys->technology_name }}</td>
                             @else

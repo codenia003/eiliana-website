@@ -79,10 +79,16 @@
         <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->contractdetails->order_closed_value }}" readonly="">
 	</div>
     <div class="form-group col-6">
-        <label>Agree Scope Of Work</label>
+        <label>Agreed Scope Of Work</label>
         <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->projectschedulee->scope_of_work }}" readonly="">
 	</div>
 </div>
+<?php
+        $gst_rate = 18;
+        $price = number_format($finance->contractdetails->order_closed_value, 0, ".", "");
+        $GST_amount = ($price * $gst_rate) / 100;
+        $total_price = $price + $GST_amount;
+?>
 <div class="form-row">
     <div class="form-group col-6">
         <label>Date of Acceptance</label>
@@ -90,7 +96,7 @@
 	</div>
     <div class="form-group col-6">
         <label>Total Advance Payment</label><small>({{ $finance->projectdetail->projectCurrency->symbol }})</small>
-        <input type="text" class="form-control" name="total_order_value" value="{{ $finance->contractdetails->order_closed_value }}" readonly>
+        <input type="text" class="form-control" name="total_order_value" value="{{ $total_price }}" readonly>
 	</div>
 </div>
 @endif

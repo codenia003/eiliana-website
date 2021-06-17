@@ -419,6 +419,9 @@ Route::group(
         Route::post('sales/post-referral-form', 'SalesController@postSalesReferralForm')->name('referralform');
         Route::get('sales/identifyconsultant', 'SalesController@identifyconsultant');
 
+        Route::get('sales-referral-modify-form/{id}', 'SalesController@ModifySalesReferralForm');
+        Route::post('sales/update-referral-form', 'SalesController@updateSalesReferralForm')->name('updateReferralform');
+
         Route::get('user-type', 'ProjectController@userSliderType')->name('user-type');
         Route::get('user-type/{slug}', 'ProjectController@userType')->name('user-type-slug');
 

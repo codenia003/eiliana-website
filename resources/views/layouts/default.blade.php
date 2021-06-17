@@ -178,8 +178,8 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                {{-- <a class="nav-link" href="{{ url('/client/my-lead') }}">My Sales Referral</a> --}}
-                                <a class="nav-link" onclick="togglePopup()">My Sales Referral</a>
+                                 <a class="nav-link" href="{{ url('/client/my-lead') }}">My Sales Referral</a> 
+                                 {{--<a class="nav-link" onclick="togglePopup()">My Sales Referral</a>--}}
                             </li>
 
                             <li class="nav-item opportunity" id="myDropdown">

@@ -11,4 +11,10 @@ class SalesReferral extends Model
     protected $primaryKey = 'sales_referral_id';
 
     protected $guarded = [];
+
+    public function companydetails()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
+
 }

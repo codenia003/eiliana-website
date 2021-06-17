@@ -194,8 +194,7 @@ class ClientController extends JoshController
                 $contractdetails->from_user_id = $input['user_id'];
                 $contractdetails->order_closed_value = $project_amounts->project_amount_to;
                 $contractdetails->model_engagement = $input['pricing_model'];
-
-                // $contractdetails->model_engagement = $input['model_engagement'];
+                $contractdetails->date_acceptance = Carbon::today()->toDateString();
                 $contractdetails->ordering_com_name = 'Eiliana';
                 // $contractdetails->sales_comm_amount = $input['sales_comm_amount'];
                 // $contractdetails->remarks = $input['remarks'];
@@ -214,9 +213,9 @@ class ClientController extends JoshController
                 $paymentschedule->project_leads_id = $projectschedules->project_leads_id;
                 $paymentschedule->contract_id = $insertedId;
                 // $paymentschedule->advance_payment = $input['advance_payment'][$key];
-                // $paymentschedule->installment_no = $input['payment_schedule_id'][$key];
+                $paymentschedule->installment_no = '1';
                 $paymentschedule->installment_amount = $project_amounts->project_amount_to;
-                // $paymentschedule->paymwnt_due_date = $input['paymwnt_due_date'][$key];
+                $paymentschedule->paymwnt_due_date = Carbon::today()->toDateString();
                 // $paymentschedule->milestones_name = $input['milestones_name'][$key];
                 $paymentschedule->status = '1';
                 $paymentschedule->save();

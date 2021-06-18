@@ -166,7 +166,7 @@ type="text/css"/>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label> Milestone No.</label>
-                                                    <select class="form-control milestone_no" name="milestone_no" required>
+                                                    <select class="form-control milestone_no" name="milestone_no" onchange="createMilestone()" required>
                                                     <!-- <select class="form-control milestone_no" name="milestone_no" onchange="createMilestone()" required> -->
                                                         <option value=""> </option>
                                                         @for ($i = 1; $i < 101; $i++)
@@ -450,7 +450,10 @@ type="text/css"/>
         var x = parseInt(milestone) + parseInt(1);
 
         var element = '<div class="module-3 module-'+x+'">'+$('.milestone-1').html()+'</div>';
-	  	$('.module-1').append(element);
+         for (i=1; i<=milestone; i++)  
+          {  
+             $('.module-1').append(element);
+          }  
 
 	}
 

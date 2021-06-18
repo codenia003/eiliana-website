@@ -52,9 +52,16 @@ My Job
                 <tr>
                     <td>{{ $lead->job_id }}</td>
                     <td>{{ $lead->job_title }}</td>
-                    <td>{{ rtrim(rtrim($lead->budget_to, '0'), '.') }} INR /Month</td>
-                    @if(!empty($lead->technologys->technology_name))
-                        <td>{{ $lead->technologys->technology_name }}</td>
+                    <td>{{ $lead->budget_to }} INR /Month</td>
+                    @if(!empty($lead->technologty_pre))
+                    <td>
+                        @foreach (App\Models\Technology::whereIn('technology_id', explode(',', $lead->technologty_pre))->get() as $data)
+                        {{ $data->technology_name }}
+                            @if (!$loop->last)
+                                ,
+                            @endif                                          
+                        @endforeach
+                    </td>
                     @else
                         <td>Any</td>
                     @endif

@@ -69,10 +69,17 @@ type="text/css"/>
                                 <td>Project Based</td>
                             @endif
                             
-                            @if(!empty($lead->technologys->technology_name))
-                               <td>{{ $lead->technologys->technology_name }}</td>
+                            @if(!empty($lead->technologty_pre))
+                            <td>
+                                @foreach (App\Models\Technology::whereIn('technology_id', explode(',', $lead->technologty_pre))->get() as $data)
+                                {{ $data->technology_name }}
+                                    @if (!$loop->last)
+                                        ,
+                                    @endif                                          
+                                @endforeach
+                            </td>
                             @else
-                               <td>Any</td>
+                                <td>Any</td>
                             @endif
 
                             <td>{{ $lead->project_duration_max }}</td>

@@ -415,6 +415,8 @@ Route::group(
         Route::get('staffing-lead-response/{id}', 'JobController@staffingLeadResponse');
         Route::post('staffing-lead-convert', 'JobController@staffingLeadConvert');
 
+        Route::post('post-sales-referral-to-eiliana', 'JobController@postSalesReferralContactEiliana')->name('post-sales-referral-to-eiliana');
+
         Route::get('sales-referral-form', 'SalesController@salesReferralForm');
         Route::post('sales/post-referral-form', 'SalesController@postSalesReferralForm')->name('referralform');
         Route::get('sales/identifyconsultant', 'SalesController@identifyconsultant');

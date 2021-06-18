@@ -6,15 +6,15 @@
     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
         <label>Legal Status</label>
         <select name="legal_status" class="form-control" disabled>
-            <option value=""></option>
-            <option value="1" {{ ($sales_referral->legal_status == '1')? "selected" : "" }}>Pending</option>
-            <option value="2" {{ ($sales_referral->legal_status == '2')? "selected" : "" }}>Processing</option>
+            @foreach($company_types as $compny_type)
+                <option value="{{ $compny_type->id }}" {{ ($sales_referral->legal_status==$compny_type->id)? "selected" : "" }}>{{ $compny_type->name }}</option>
+            @endforeach
         </select>
     </div>
 </div>
 <div class="form-row">
     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-        <label>Contact Person</label>
+        <label>Sales Executive</label>
         <input type="text" name="contact_person" class="form-control" value="{{ $sales_referral->contact_person }}" readonly />
     </div>
     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">

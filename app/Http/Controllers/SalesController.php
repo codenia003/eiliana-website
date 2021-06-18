@@ -13,6 +13,7 @@ use Mail;
 use Session;
 use App\Models\SalesReferral;
 use App\Models\FreelanceReferral;
+use DB;
 
 class SalesController extends JoshController
 {
@@ -24,7 +25,8 @@ class SalesController extends JoshController
     public function salesReferralForm()
     {
         if (Session::get('users')['login_as'] == '2'){
-            return view('sales/sales-referral-form');
+            $company_types = DB::table('roles')->where('id', '!=', '1')->where('id', '!=', '2')->where('id', '!=', '3')->where('id', '!=', '7')->get();
+            return view('sales/sales-referral-form', compact('company_types'));
         }
         else{
             return redirect('logout');
@@ -51,8 +53,9 @@ class SalesController extends JoshController
     {
         if (Session::get('users')['login_as'] == '2'){
             $sales_referral = SalesReferral::where('sales_referral_id', $id)->first();
+            $company_types = DB::table('roles')->where('id', '!=', '1')->where('id', '!=', '2')->where('id', '!=', '3')->where('id', '!=', '7')->get();
             //return $sales_referral;
-            return view('sales/sales-referral-modify-form', compact('sales_referral'));
+            return view('sales/sales-referral-modify-form', compact('sales_referral','company_types'));
         }
         else{
             return redirect('logout');

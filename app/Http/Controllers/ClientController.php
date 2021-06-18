@@ -48,8 +48,8 @@ class ClientController extends JoshController
     public function myLeadView($id) {
 
         $leads = SalesReferral::where('sales_referral_id', $id)->first();
-
-        return view('client/myleadview', compact('leads'));
+        $company_types = DB::table('roles')->where('id', '!=', '1')->where('id', '!=', '2')->where('id', '!=', '3')->where('id', '!=', '7')->get();
+        return view('client/myleadview', compact('leads','company_types'));
     }
 
     public function myRequirementJob()
@@ -449,7 +449,6 @@ class ClientController extends JoshController
             }
         }
     }
-
     public function projectPayments($id)
     {
         $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
@@ -462,7 +461,7 @@ class ClientController extends JoshController
 
     public function ContractualJobInform($id)
     {
-        $contractual_job = ContractualJobSchedule::with('locations')->where('job_leads_id', $id)->first();
+        $contractual_job = ContractualJobSchedule::with('locations')->where('job_leads_id', $id)->orderBy('job_schedule_id', 'DESC')->first();
         // $joblead = JobLeads::where('job_leads_id', $id)->first();
         return view('client/contractual-job-inform', compact('contractual_job'));
     }

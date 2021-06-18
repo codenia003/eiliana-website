@@ -65,11 +65,19 @@ type="text/css"/>
                             <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR /Amount</td>
                             @endif
 
-                            @if(!empty($lead->technologys->technology_name))
-                               <td>{{ $lead->technologys->technology_name }}</td>
+                            @if(!empty($lead->technologty_pre))
+                            <td>
+                                @foreach (App\Models\Technology::whereIn('technology_id', explode(',', $lead->technologty_pre))->get() as $data)
+                                {{ $data->technology_name }}
+                                    @if (!$loop->last)
+                                        ,
+                                    @endif                                          
+                                @endforeach
+                            </td>
                             @else
-                               <td>Any</td>
+                                <td>Any</td>
                             @endif
+
                             <td>{{ $lead->project_duration_max }}</td>
                             {{--<form action="" method="POST">
                                @csrf

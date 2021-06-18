@@ -44,10 +44,10 @@ type="text/css"/>
          <tr>
             <th>Referral Code</th>
             <th>Company Name</th>
-            <th>Contact Person</th>
+            <th>Sales Executive</th>
             <th>Designation</th>
-            <th>Status</th>
             <th>Mobile No</th>
+            <th>Status</th>
             <!-- <th>View</th> -->
          </tr>
         </thead>
@@ -55,21 +55,21 @@ type="text/css"/>
         @foreach($leads as $lead)
             <tr>
                 <td>{{ $lead->referral_code }}</td>
-                <td>{{ $lead->company_name }}</td>
+                <td><a style="font-weight: 600;" href="{{ route('my-lead.view',$lead->sales_referral_id) }}">{{ $lead->company_name }}</a></td>
                 <td>{{ $lead->contact_person }}</td>
                 <td>{{ $lead->designation }}</td>
+                <td>{{ $lead->mobile_no }}</td>
                 <td>
                     @if ($lead->lead_status == 1)
                     Pending
                     @elseif($lead->lead_status == 2)
-                    Process
+                    Assign
                     @elseif($lead->lead_status == 3)
                     Complete
-                    @else
-                    Cancel
+                    @elseif($lead->lead_status == 4)
+                    Reject
                     @endif
                 </td>
-                <td>{{ $lead->mobile_no }}</td>
                 {{--<td><a href="{{ route('my-lead.view',$lead->sales_referral_id) }}"><i class="fas fa-info-circle"></i></a></td>--}}
             </tr>
         @endforeach

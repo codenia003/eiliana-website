@@ -3,8 +3,8 @@
     <thead>
      <tr>
         <th>Sr.No</th>
-        <th>Contact Person</th>
         <th>Customer Name</th>
+        <th>Sales Executive</th>
         <th>Status</th>
         <th >Action</th>
      </tr>
@@ -16,12 +16,14 @@
      @foreach($sales_referrals as $sales_referral)
         <tr>
             <td>{!! $a++ !!}</td>
-            <td>{!! $sales_referral->contact_person !!} </td>
             <td>{!! $sales_referral->companydetails->full_name !!} </td>
+            <td>{!! $sales_referral->contact_person !!} </td>
             <td>@if($sales_referral->lead_status == 1)
                Pending
               @elseif($sales_referral->lead_status == 2)
                Assign
+              @elseif($sales_referral->lead_status == 3)
+               Complete
               @elseif($sales_referral->lead_status == 4)
                Reject
               @endif

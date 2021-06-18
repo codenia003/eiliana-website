@@ -58,11 +58,19 @@ type="text/css"/>
                         <tr>
                             <td>{{ $lead->job_leads_id }}</td>
                             <td>{{ $lead->jobdetail->job_title }}</td>
-                            <td>{{ $lead->bid_amount }} INR /Month</td>
-                            @if(!empty($lead->jobdetail->technologys->technology_name))
-                               <td>{{ $lead->jobdetail->technologys->technology_name }}</td>
+                            <td>{{ $lead->jobdetail->budget_to }} INR /Month</td>
+                            
+                            @if(!empty($lead->jobdetail->technologty_pre))
+                                <td>
+                                    @foreach (App\Models\Technology::whereIn('technology_id', explode(',', $lead->jobdetail->technologty_pre))->get() as $data)
+                                    {{ $data->technology_name }}
+                                        @if (!$loop->last)
+                                            ,
+                                        @endif                                          
+                                    @endforeach
+                                </td>
                             @else
-                               <td>Any</td>
+                                <td>Any</td>
                             @endif
                             <td>{{ $lead->notice_period }} Days</td>
                             <form action="" method="POST">

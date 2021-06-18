@@ -52,6 +52,11 @@ type="text/css"/>
                         <div class="font-weight-500">
                             <span class="day-left">Bidding Ends In {{ $job->expiry_days }} Days</span><br>
                         </div>
+                        @if($job->referral_id != '0')  
+                            <div class="mb-2">
+                                <div class="display-5">Eiliana Sales Referral Program</div>
+                            </div>
+                        @endif
                     </div>  
 
                     <div class="card-body">

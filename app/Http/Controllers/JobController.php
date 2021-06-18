@@ -36,6 +36,7 @@ use App\Models\Employers;
 use App\Models\Location;
 use App\Models\CustomerIndustry;
 use App\Models\ContractStaffingLeads;
+use App\Models\SalesReferralToEiliana;
 use App\Models\ContractualJobSchedule;
 use App\Models\JobLeads;
 use App\Models\SaveJob;
@@ -480,6 +481,50 @@ class JobController extends JoshController
 
         $user = User::where('id', $staffingleads->from_user_id)->first();
         return view('job/stafflead-response', compact('user','staffingleads'));
+    }
+
+    public function postSalesReferralContactEiliana(Request $request){
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+        $staffingleadcheck = SalesReferralToEiliana::where('from_user_id', '=', Sentinel::getUser()->id)->first();
+        if ($staffingleadcheck === null) {
+                $staffingleads = new SalesReferralToEiliana;
+                $staffingleads->from_user_id = Sentinel::getUser()->id;
+                $staffingleads->subject = $input['subject'];
+                $staffingleads->message = $input['messagetext'];
+                $staffingleads->status = '1';
+                $staffingleads->sales_referral_id = $input['sales_referral_id'];
+                $staffingleads->save();
+
+                $response['success'] = '1';
+                $response['sales_referral_id'] = $input['sales_referral_id'];
+                $response['msg'] = 'Sales referral Submitted Successfully';
+
+            // $user = User::find($input['to_user_id']);
+
+            // $details = [
+            //     'greeting' => 'Hi '. $input['toname'],
+            //     'body' => 'You have new opportunity',
+            //     'thanks' => 'Thank you for using eiliana.com!',
+            //     'actionText' => 'View My Site',
+            //     'actionURL' => 'staffing-lead-response/'. $insertedId,
+            //     'main_id' => $insertedId
+            // ];
+
+            // Notification::send($user, new UserNotification($details));
+
+            // Mail::send('emails.emailTemplates.staffingleads', $input, function ($m) use ($input) {
+            //     $m->from('info@eiliana.com', $input['fromname']);
+            //     $m->to($input['toemail'], $input['toname'])->subject('New Job Application From ');
+            // });
+        } else {
+            $response['success'] = '2';
+            $response['sales_referral_id'] = $input['sales_referral_id'];
+            $response['errors'] = 'You are already connected to this user';
+        }
+        return response()->json($response);
+
     }
 
     public function staffingLeadConvert(Request $request) {

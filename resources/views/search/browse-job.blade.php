@@ -130,6 +130,13 @@
                                         <p>{{ $job->contract_duration_from }} Month to {{ $job->contract_duration_to }} Month</p>
                                     </div>
                                 </div>
+                                @if($job->referral_id != '0') 
+                                    <div class="col-md-6"> 
+                                        <div class="mb-2">
+                                            <div class="display-5">Eiliana Sales Referral Program</div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

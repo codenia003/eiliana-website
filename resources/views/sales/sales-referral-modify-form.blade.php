@@ -47,8 +47,9 @@ type="text/css"/>
                                         <label>Legal Status</label>
                                         <select name="legal_status" class="form-control" required>
                                             <option value=""></option>
-                                            <option value="1" {{ ($sales_referral->legal_status == '1')? "selected" : "" }}>Pending</option>
-                                            <option value="2" {{ ($sales_referral->legal_status == '2')? "selected" : "" }}>Processing</option>
+                                            @foreach($company_types as $compny_type)
+                                                <option value="{{ $compny_type->id }}" {{ ($sales_referral->legal_status==$compny_type->id)? "selected" : "" }}>{{ $compny_type->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -126,10 +127,10 @@ type="text/css"/>
                                         <input type="text" name="expected_commission" class="form-control" value="{{ $sales_referral->expected_commission}}" required />
                                     </div>
                                 </div>
-                                <div class="form-group mt-5">
-                                    <div class="stafflead-basic">
-                                        <!-- <button class="btn btn-md btn-info bg-light-blue" type="submit">Identify Consultant</button> -->
-                                        <button class="btn btn-md btn-info bg-light-blue" type="submit"> submit</button>
+                                <div class="form-group text-right mt-5">
+                                    <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-primary" type="submit">Submit</button>
                                     </div>
                                 </div>
                             </div>

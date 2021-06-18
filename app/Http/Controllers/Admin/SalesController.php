@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\SalesReferral;
 use App\Models\FreelanceReferral;
 use App\Notifications\UserNotification;
+use DB;
 
 class SalesController extends Controller
 {
@@ -26,9 +27,10 @@ class SalesController extends Controller
 
     public function edit($id)
     {
+        $company_types = DB::table('roles')->where('id', '!=', '1')->where('id', '!=', '2')->where('id', '!=', '3')->where('id', '!=', '7')->get();
         $sales_referral =  SalesReferral::where('sales_referral_id', $id)->first();
-        //return $finance;
-        return view('admin.salesReferral.edit', compact('sales_referral'));
+        //return $company_types;
+        return view('admin.salesReferral.edit', compact('sales_referral','company_types'));
     }
 
     public function salesReferralAssignToClient(Request $request)

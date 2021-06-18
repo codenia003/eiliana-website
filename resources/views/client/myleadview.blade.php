@@ -27,9 +27,9 @@
                 <div class="form-group col">
                     <label>Legal Status</label>
                     <select name="legal_status" class="form-control" disabled>
-                        <option value=""></option>
-                        <option value="1" {{ ($leads->legal_status=='1')? "selected" : "" }}>Pending</option>
-                        <option value="2" {{ ($leads->legal_status=='2')? "selected" : "" }}>Processing</option>
+                    @foreach($company_types as $compny_type)
+                        <option value="{{ $compny_type->id }}" {{ ($leads->legal_status==$compny_type->id)? "selected" : "" }}>{{ $compny_type->name }}</option>
+                    @endforeach
                     </select>
                 </div>
             </div>
@@ -111,32 +111,38 @@
                 <label>Lead Status: </label>
                 <b class="">
                     @if ($leads->lead_status == 1)
-                    Pending: Eilian review your sales referral lead
+                    Pending: Eiliana review your sales referral lead
                     @elseif($leads->lead_status == 2)
-                    Process: Now you can Identify Consultant
+                    Assign: Now you can Identify Consultant
                     @elseif($leads->lead_status == 3)
                     Complete
-                    @else
-                    Cancel: Eilian cancal your sales referral lead
+                    @elseif($leads->lead_status == 4)
+                    Reject: Eiliana reject your sales referral lead
                     @endif
                 </b>
             </div>
-            <div class="form-group mt-5">
-
-                <div class="stafflead-basic">
-                    <button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->sales_referral_id }}','{{ $leads->referral_code }}','1')">Identify Consultant</button>
-                    {{--<button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->sales_referral_id }}','{{ $leads->referral_code }}','2')">Contact Eiliana</button>--}}
+            <div class="form-group text-right mt-5">
+                <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-primary" type="button" onclick="identify('{{ $leads->sales_referral_id }}','{{ $leads->referral_code }}','1')">Identify Consultant</button>
+                    <button class="btn btn-primary" type="button" onclick="showModel('2')">Contact Eiliana</button>
                 </div>
             </div>
+            {{--<div class="form-group mt-5">
+                <div class="stafflead-basic">
+                    <button class="btn btn-md btn-info bg-light-blue" type="button" onclick="identify('{{ $leads->sales_referral_id }}','{{ $leads->referral_code }}','1')">Identify Consultant</button>
+                    <button class="btn btn-md btn-info bg-light-blue" type="button" onclick="showModel('2')">Contact Eiliana</button>
+                </div>
+            </div>--}}
         </div>
     </div>
 </div>
 <div class="modal fade pullDown login-body border-0" id="modal-4" role="dialog" aria-labelledby="modalLabelnews">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{ url('/post-staffing-lead') }}" method="POST" id="staffingflead">
+            <form action="{{ url('/post-sales-referral-to-eiliana') }}" method="POST" id="staffingflead">
                 @csrf
-                <input type="hidden" name="sales_referral_id" value="{{ $leads->sales_referral_id }}">
+                <input type="hidden" name="sales_referral_id" id="sales_referral_id" value="{{ $leads->sales_referral_id }}">
                 <div class="modal-header bg-blue text-white">
                     <h4 class="modal-title" id="modalLabelnews">Contact Eiliana: <span>Do you need to support in eiliana</span></h4>
                 </div>
@@ -157,7 +163,7 @@
                 </div>
                 <div class="modal-footer singup-body">
                     <div class="btn-group" role="group">
-                        <button class="btn btn-primary"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Send</button>
+                        <button class="btn btn-primary" type="submit"><span class="spinner-border spinner-border-sm mr-1 d-none"></span> Send</button>
                         <button class="btn btn-outline-primary" data-dismiss="modal">Discard</button>
                     </div>
                 </div>
@@ -217,6 +223,12 @@
         }
     }
 
+    function showModel(conatct_type){
+        if(conatct_type === '2'){
+            $('#modal-4').modal('show');
+        }
+    }
+
     $('#staffingflead').bootstrapValidator({
         fields: {
             subject: {
@@ -239,34 +251,40 @@
         var $form = $(e.target);
         var bv = $form.data('bootstrapValidator');
         $('.spinner-border').removeClass("d-none");
-        // $.post($form.attr('action'), $form.serialize(), function(result) {
-        //     var userCheck = result;
-        //     if (userCheck.success == '1') {
-        //         $('#modal-4').modal('toggle');
-        //         $('#subject').val('');
-        //         $('#message-text').val('');
-        //         $('.spinner-border').addClass("d-none");
-        //         Swal.fire({
-        //           type: 'success',
-        //           title: 'Success...',
-        //           text: userCheck.msg,
-        //           showConfirmButton: false,
-        //           timer: 2000
-        //         });
-        //     } else {
-        //         $('#modal-4').modal('toggle');
-        //         $('#subject').val('');
-        //         $('#message-text').val('');
-        //         $('.spinner-border').addClass("d-none");
-        //         Swal.fire({
-        //           type: 'error',
-        //           title: 'Oops...',
-        //           text: userCheck.errors,
-        //           showConfirmButton: false,
-        //           timer: 2000
-        //         });
-        //     }
-        // }, 'json');
+        $.post($form.attr('action'), $form.serialize(), function(result) {
+            var userCheck = result;
+            //console.log(userCheck);
+            if (userCheck.success == '1') {
+                $('#modal-4').modal('toggle');
+                $('#subject').val('');
+                $('#message-text').val('');
+                $('.spinner-border').addClass("d-none");
+                var msg = userCheck.msg;
+                var redirect = '/client/my-lead/'+ userCheck.sales_referral_id;
+                // Swal.fire({
+                //   type: 'success',
+                //   title: 'Success...',
+                //   text: userCheck.msg,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+            } else {
+                $('#modal-4').modal('toggle');
+                $('#subject').val('');
+                $('#message-text').val('');
+                $('.spinner-border').addClass("d-none");
+                var msg = userCheck.errors;
+                var redirect = '/client/my-lead/'+ userCheck.sales_referral_id;
+                // Swal.fire({
+                //   type: 'error',
+                //   title: 'Oops...',
+                //   text: userCheck.errors,
+                //   showConfirmButton: false,
+                //   timer: 2000
+                // });
+            }
+            toggleRegPopup(msg,redirect);
+        }, 'json');
     });
 </script>
 @stop

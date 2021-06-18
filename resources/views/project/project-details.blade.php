@@ -65,6 +65,11 @@ Search Project
                             @endif
                             <br>
                             <span class="day-left">Bidding Ends In {{ $project->expiry_days }} Days</span><br>
+                            @if($project->referral_id != '0')  
+                                <div class="mb-2">
+                                    <div class="display-5">Eiliana Sales Referral Program</div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">

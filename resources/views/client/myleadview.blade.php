@@ -68,8 +68,9 @@
                     <label>Customer Industry</label>
                     <select name="customer_industry" class="form-control" disabled>
                         <option value=""></option>
-                        <option value="1" {{ ($leads->customer_industry=='1')? "selected" : "" }}>Pending</option>
-                        <option value="2" {{ ($leads->customer_industry=='2')? "selected" : "" }}>Processing</option>
+                        @foreach($customer_industries as $customer_industry)
+                            <option value="{{ $customer_industry->customer_industry_id }}" {{ ($leads->customer_industry == $customer_industry->customer_industry_id)? "selected" : "" }}>{{ $customer_industry->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col">

@@ -88,8 +88,9 @@ type="text/css"/>
                                         <label>Customer Industry</label>
                                         <select name="customer_industry" class="form-control" required>
                                             <option value=""></option>
-                                            <option value="1" {{ ($sales_referral->customer_industry == '1')? "selected" : "" }}>Pending</option>
-                                            <option value="2" {{ ($sales_referral->customer_industry == '2')? "selected" : "" }}>Processing</option>
+                                            @foreach($customer_industries as $customer_industry)
+                                                <option value="{{ $customer_industry->customer_industry_id }}" {{ ($sales_referral->customer_industry == $customer_industry->customer_industry_id)? "selected" : "" }}>{{ $customer_industry->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">

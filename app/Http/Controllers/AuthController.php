@@ -433,8 +433,8 @@ class AuthController extends JoshController
                     'user_name' => $user->first_name .' '. $user->last_name,
                 ];
             // welcome email
-            Mail::to($user->email)
-                ->send(new Welcome($data));
+            // Mail::to($user->email)
+            //     ->send(new Welcome($data));
 
             activity($user->full_name)
                     ->performedOn($user)
@@ -524,7 +524,10 @@ class AuthController extends JoshController
                     $user['role'] = $role_users->role_id;
                     $country_name = DB::table('countries')->where('id', $user->country)->first();
 
-                    $user['country_name'] = $country_name->name;
+                    if(!empty($country_name))
+                    {
+                        $user['country_name'] = $country_name->name;
+                    }
 
                     if(session()->has('url.intended')) {
                         $response['url'] = $request->session()->get('url.intended');

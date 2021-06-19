@@ -58,6 +58,29 @@
                     <div class="col-md-12">
                         <div class="contract-body">
                             <div class="row no-gutters">
+                                @if($project->referral_id != '0')
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <span class="display-5" style="font-size: 16px;">Posted By - Eiliana Sales Referral Program</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contract-profile mb-1 text-right">
+                                            <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid w-25"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <div class="display-5">Project Title</div>
+                                            <a href="{{ url('project') }}/{{ $project->project_id }}" class="h3">{{ $project->project_title }}</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contract-profile mb-1 text-right">
+                                            
+                                        </div>
+                                    </div>
+                                @else
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <div class="display-5">Project Title</div>
@@ -69,6 +92,7 @@
                                         <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid w-25"/>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                             <div class="mb-4">
                                 <div class="display-5">Project Summary</div>
@@ -114,14 +138,6 @@
                                         @endforeach
                                     </div>
                                 </div>
-
-                                @if($project->referral_id != '0')
-                                    <div class="col-md-6">
-                                        <div class="mb-2">
-                                            <div class="display-5">Eiliana Sales Referral Program</div>
-                                        </div>
-                                    </div>
-                                @endif
                             </div>
                         </div>
                     </div>

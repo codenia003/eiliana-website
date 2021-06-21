@@ -35,6 +35,7 @@ use App\Models\ProjectBudgetAmount;
 use App\Models\ProjectPaymentSchedule;
 use App\Models\JobOnboarding;
 use App\Models\CustomerIndustry;
+use App\Models\ProjectScheduleModule;
 use App\Notifications\UserNotification;
 use Carbon\Carbon;
 
@@ -162,8 +163,8 @@ class ClientController extends JoshController
     public function projectSchedule($id)
     {
 
-        $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
-        //return $projectlead;
+        $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        // return $projectlead;
         return view('client/project-schedule', compact('projectlead'));
     }
 
@@ -172,6 +173,9 @@ class ClientController extends JoshController
         $input = $request->except('_token');
         $user = Sentinel::getUser();
         $response['success'] = '0';
+
+        $current = Carbon::now();
+        $paymentExpires = $current->addDays(60);
 
         $projectschedulecheck = ProjectSchedule::where('project_schedule_id', '=', $input['schedule_id'])->where('satuts', '!=', '1')->first();
         if ($projectschedulecheck === null) {
@@ -210,30 +214,51 @@ class ClientController extends JoshController
 
                 $insertedId = $contractdetails->contract_id;
 
+                if($input['pricing_model'] == '3')
+                {
+                    
+                    $projectschedulemodules = ProjectScheduleModule::where('project_schedule_id', $projectschedules->project_schedule_id)->get();
+                    
+                    foreach($projectschedulemodules as $key => $modules){
+                        $paymentschedule = new ProjectPaymentSchedule;
+                        $paymentschedule->project_leads_id = $projectschedules->project_leads_id;
+                        $paymentschedule->contract_id = $insertedId;
+                        $paymentschedule->advance_payment = '0';
+                        $paymentschedule->installment_no = $modules->installment_no;
+                        $paymentschedule->installment_amount = $modules->payable_amount;
+                        $paymentschedule->paymwnt_due_date = $paymentExpires;
+                        $paymentschedule->milestones_name = $modules->milestones_name;
+                        $paymentschedule->status = '1';
+                        $paymentschedule->save();
+                    }
+                    
+                } else {
+                    $paymentschedule = new ProjectPaymentSchedule;
+                    $paymentschedule->project_leads_id = $projectschedules->project_leads_id;
+                    $paymentschedule->contract_id = $insertedId;
+                    // $paymentschedule->advance_payment = $input['advance_payment'][$key];
+                    $paymentschedule->installment_no = '1';
+
+                    if($projects->referral_id != '0') 
+                    {
+                        $paymentschedule->installment_amount = $projectleads->total_proposal_value;
+                    }
+                    else
+                    {
+                        $paymentschedule->installment_amount = $project_amounts->project_amount_to;
+                    }
+
+                    $paymentschedule->installment_amount = $project_amounts->project_amount_to;
+                    $paymentschedule->paymwnt_due_date = Carbon::today()->toDateString();
+                    // $paymentschedule->milestones_name = $input['milestones_name'][$key];
+                    $paymentschedule->status = '1';
+                    $paymentschedule->save();
+                }
+
                 // Mail::send('emails.emailTemplates.invoice', $data, function ($m) use ($data) {
                 //     $m->from('info@eiliana.com', 'Eiliana OTP');
                 //     $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');
                 // });
-
-                $paymentschedule = new ProjectPaymentSchedule;
-                $paymentschedule->project_leads_id = $projectschedules->project_leads_id;
-                $paymentschedule->contract_id = $insertedId;
-                // $paymentschedule->advance_payment = $input['advance_payment'][$key];
-                $paymentschedule->installment_no = '1';
-
-                if($projects->referral_id != '0') 
-                {
-                    $paymentschedule->installment_amount = $projectleads->total_proposal_value;
-                }
-                else
-                {
-                    $paymentschedule->installment_amount = $project_amounts->project_amount_to;
-                }
-
-                $paymentschedule->paymwnt_due_date = Carbon::today()->toDateString();
-                $paymentschedule->milestones_name = 'NA';
-                $paymentschedule->status = '1';
-                $paymentschedule->save();
 
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Schedule Accepted successfully';
@@ -246,6 +271,10 @@ class ClientController extends JoshController
                 elseif($input['pricing_model'] == '2')
                 {
                     $url = '/client/project-retainer-contract-details/'. $projectschedules->project_leads_id;
+                } 
+                else 
+                {
+                    $url = '/client/project-contract-details/'. $projectschedules->project_leads_id;
                 }
 
             } elseif($input['lead_status'] === '3') {

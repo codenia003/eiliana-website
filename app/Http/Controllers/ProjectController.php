@@ -269,29 +269,22 @@ class ProjectController extends JoshController
 
         $insertedId = $projectschedules->project_schedule_id;
 
-        $contractdetails = new ProjectContractDetails;
-        $contractdetails->project_leads_id = $input['project_leads_id'];
-        $contractdetails->from_user_id = $input['user_id'];
-        $contractdetails->order_closed_value = '0';
-        $contractdetails->date_acceptance = $input['date_acceptance'];
-        $contractdetails->ordering_com_name = 'NA';
-        $contractdetails->sales_comm_amount = '0';
-        $contractdetails->remarks = $input['remarks'];
-        $contractdetails->advance_payment_details = '0';
-        $contractdetails->status = '1';
-        $contractdetails->save();
+        // if($input['pricing_model'] == '3')
+        // {
+        //     $contractdetails = new ProjectContractDetails;
+        //     $contractdetails->project_leads_id = $input['project_leads_id'];
+        //     $contractdetails->from_user_id = $input['user_id'];
+        //     $contractdetails->order_closed_value = '0';
+        //     $contractdetails->date_acceptance = Carbon::today()->toDateString();
+        //     $contractdetails->ordering_com_name = 'NA';
+        //     $contractdetails->sales_comm_amount = '0';
+        //     $contractdetails->remarks = $input['remarks'];
+        //     $contractdetails->advance_payment_details = '0';
+        //     $contractdetails->status = '1';
+        //     $contractdetails->save();
 
-        $contract_id = $contractdetails->contract_id;
-
-        // $projectorderinvoice = new ProjectOrderInvoice;
-        // $projectorderinvoice->project_leads_id = $input['proposal_id'];
-        // $projectorderinvoice->contract_id = $insertedId;
-        // $projectorderinvoice->invoice_no = $input['invoice_no'];
-        // $projectorderinvoice->invoice_amount = $input['invoice_amount'];
-        // $projectorderinvoice->invoice_due_date = $input['invoice_due_date'];
-        // $projectorderinvoice->invoice_milestones = $input['invoice_milestones'];
-        // $projectorderinvoice->status = '1';
-        // $projectorderinvoice->save();
+        //     $contract_id = $contractdetails->contract_id;
+        // }
 
 
         foreach ($input['module_id'] as $key => $value) {
@@ -309,6 +302,7 @@ class ProjectController extends JoshController
             // $schedulemodule->module_end_date = $input['module_end_date'][$key];
             if($input['pricing_model'] == '3')
             {
+                $schedulemodule->payable_amount = $input['payable_amount'][$key];
                 $schedulemodule->milestone_no = $input['milestone_no'][$key];
             }
             
@@ -334,16 +328,20 @@ class ProjectController extends JoshController
                 }
             }
 
-            $paymentschedule = new ProjectPaymentSchedule;
-            $paymentschedule->project_leads_id = $input['project_leads_id'];
-            $paymentschedule->contract_id = $contract_id;
-            $paymentschedule->advance_payment = $input['payable_amount'][$key];
-            $paymentschedule->installment_no = $input['module_id'][$key];
-            $paymentschedule->installment_amount = $input['payable_amount'][$key];
-            $paymentschedule->paymwnt_due_date = $paymentExpires;
-            $paymentschedule->milestones_name = $input['milestones_name'][$key];
-            $paymentschedule->status = '1';
-            $paymentschedule->save();
+            // if($input['pricing_model'] == '3')
+            // {
+            //     $paymentschedule = new ProjectPaymentSchedule;
+            //     $paymentschedule->project_leads_id = $input['project_leads_id'];
+            //     $paymentschedule->contract_id = $contract_id;
+            //     $paymentschedule->advance_payment = '0';
+            //     $paymentschedule->installment_no = $input['module_id'][$key];
+            //     $paymentschedule->installment_amount = $input['payable_amount'][$key];
+            //     $paymentschedule->paymwnt_due_date = $paymentExpires;
+            //     $paymentschedule->milestones_name = $input['milestone_no'][$key];
+            //     $paymentschedule->status = '1';
+            //     $paymentschedule->save();
+
+            // }
         }
 
         $project = Project::where('project_id', $input['project_id'])->first();

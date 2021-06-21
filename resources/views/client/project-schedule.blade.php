@@ -120,6 +120,12 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label>Payable Amount</label>
+                                            <input type="number" name="payable_amount[]" class="form-control" value="{{ $modulee->payable_amount }}" required>
+                                        </div>
+                                    </div>
                                 @endif
                                 
                                 {{--<div class="form-row">
@@ -233,7 +239,7 @@ function projectleadSchedule(schedule_id,pricing_model,project_leads_id,lead_sta
             $('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
                 var msg = userCheck.msg;
-                var redirect = '/client/project-contract-details/'+ project_leads_id;
+                var redirect = userCheck.url;
                
                 // Swal.fire({
                 //     type: 'success',

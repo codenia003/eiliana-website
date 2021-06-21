@@ -52,12 +52,16 @@ Sales Referral
     </script>
 <script>
 
-    function salesReferralAssignToClient(sales_referral_id,lead_status){
+    function salesReferralAssignToClient(sales_referral_id,company_name,contact_person,email,mobile_no,lead_status){
         $('.spinner-border').removeClass("d-none");
         var url = '/admin/salesReferral/sales-referral-assign-to-client';
         var data= {
             _token: "{{ csrf_token() }}",
             sales_referral_id: sales_referral_id,
+            company_name: company_name,
+            contact_person: contact_person,
+            email: email,
+            mobile_no: mobile_no,
             lead_status: lead_status
         };
         console.log(data);
@@ -67,7 +71,7 @@ Sales Referral
             data: data,
             success: function(data) {
                 var userCheck = data;
-                //console.log(userCheck);
+                console.log(userCheck);
                 $('.spinner-border').addClass("d-none");
                 if (userCheck.success == '1') {
                     Swal.fire({

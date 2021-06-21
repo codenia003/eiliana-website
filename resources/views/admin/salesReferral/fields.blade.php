@@ -47,8 +47,9 @@
         <label>Customer Industry</label>
         <select name="customer_industry" class="form-control" disabled>
             <option value=""></option>
-            <option value="1" {{ ($sales_referral->customer_industry == '1')? "selected" : "" }}>Pending</option>
-            <option value="2" {{ ($sales_referral->customer_industry == '2')? "selected" : "" }}>Processing</option>
+            @foreach($customer_industries as $customer_industry)
+                <option value="{{ $customer_industry->customer_industry_id }}" {{ ($sales_referral->customer_industry == $customer_industry->customer_industry_id)? "selected" : "" }}>{{ $customer_industry->name }}</option>
+            @endforeach
         </select>
     </div>
     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
@@ -90,17 +91,17 @@
 <!-- Submit Field -->
 <div class="form-group text-right mt-5" style="text-align: left !important;">
 	<div class="btn-group" role="group">
-        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','2')">
+        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','{{ $sales_referral->company_name }}','{{ $sales_referral->contact_person }}','{{ $sales_referral->email }}','{{ $sales_referral->mobile_no }}','2')">
 			Accept 
 		</button>&nbsp;&nbsp;
     </div>
-    <div class="btn-group" role="group">
-        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','5')">
+    {{--<div class="btn-group" role="group">
+        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','{{ $sales_referral->company_name }}','{{ $sales_referral->contact_person }}','{{ $sales_referral->email }}','{{ $sales_referral->mobile_no }}','5')">
 			Modify
 		</button>&nbsp;&nbsp;
-	</div>
+	</div>--}}
     <div class="btn-group" role="group">
-        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','4')">
+        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','{{ $sales_referral->company_name }}','{{ $sales_referral->contact_person }}','{{ $sales_referral->email }}','{{ $sales_referral->mobile_no }}','4')">
 			Reject
 		</button>
 	</div>

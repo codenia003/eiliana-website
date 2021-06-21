@@ -34,6 +34,7 @@ use App\Models\ProjectContractDetails;
 use App\Models\ProjectBudgetAmount;
 use App\Models\ProjectPaymentSchedule;
 use App\Models\JobOnboarding;
+use App\Models\CustomerIndustry;
 use App\Notifications\UserNotification;
 use Carbon\Carbon;
 
@@ -49,7 +50,8 @@ class ClientController extends JoshController
 
         $leads = SalesReferral::where('sales_referral_id', $id)->first();
         $company_types = DB::table('roles')->where('id', '!=', '1')->where('id', '!=', '2')->where('id', '!=', '3')->where('id', '!=', '7')->get();
-        return view('client/myleadview', compact('leads','company_types'));
+        $customer_industries = CustomerIndustry::all();
+        return view('client/myleadview', compact('leads','company_types','customer_industries'));
     }
 
     public function myRequirementJob()

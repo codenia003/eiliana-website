@@ -39,6 +39,10 @@ type="text/css"/>
                 </div>
                 <div class="card mb-3 mb-lg-5 project-deatils shadow border">
                     <div class="card-header">
+                        @if($job->referral_id != '0')  
+                          <span class="h5 card-title font-weight-700"> Job Posted By:-</span> 
+                          <span class="h5 font-weight-500" style="font-size: 16px;">Eiliana Sales Referral Program</span></br></br>
+                        @endif
                         <span class="h5 card-title font-weight-700">{{ $job->job_title }}</span>
                         <div class="float-right font-weight-700 mt-1">
                             <a class="btn-icon bg-blue btn rounded-0 text-white" href="{{ route('joblead.view',  $job->job_id) }}">Apply Now</a>&nbsp;

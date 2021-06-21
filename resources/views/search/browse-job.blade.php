@@ -78,21 +78,41 @@
                     <div class="col-md-12">
                         <div class="contract-body">
                             <div class="row no-gutters">
-                                <div class="col-md-6">
-                                    {{--<div class="mb-2">
-                                        <div class="display-5">Profile Title</div>
-                                        <p>{{ $job->job_title }}</p>
-                                    </div>--}}
-                                    <div class="mb-4">
-                                        <div class="display-5">Job Title</div>
-                                        <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->job_title }}</a>
+                                   @if($job->referral_id != '0')
+                                        <div class="col-md-6">
+                                            <div class="mb-4">
+                                                <span class="display-5" style="font-size: 16px;">Posted By - Eiliana Sales Referral Program</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="contract-profile mb-1 text-right">
+                                                <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-4">
+                                                <div class="display-5">Job Title</div>
+                                                <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->job_title }}</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="contract-profile mb-1 text-right">
+                                                
+                                            </div>
+                                        </div>
+                                    @else
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <div class="display-5">Job Title</div>
+                                            <a href="{{ route('jobdetails', $job->job_id) }}" class="h3">{{ $job->job_title }}</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="contract-profile mb-1 text-right">
-                                        <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
+                                    <div class="col-md-6">
+                                        <div class="contract-profile mb-1 text-right">
+                                            <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid"/>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                             
                             <div class="mb-4">

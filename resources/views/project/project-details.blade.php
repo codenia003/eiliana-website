@@ -49,6 +49,10 @@ Search Project
                 </div>
                 <div class="card mb-3 mb-lg-5 project-deatils shadow border">
                     <div class="card-header">
+                        @if($project->referral_id != '0')  
+                          <span class="h5 card-title font-weight-700"> Project Posted By:-</span> 
+                          <span class="h5 font-weight-500" style="font-size: 16px;">Eiliana Sales Referral Program</span></br></br>
+                        @endif
                         <span class="h5 card-title font-weight-700">{{ $project->project_title }}</span>
                         <div class="float-right font-weight-700 mt-1">
                             {{-- <a class="btn-icon bg-blue btn rounded-0 text-white" data-toggle="modal" data-target="#modal-4">Apply Now</a> --}}
@@ -65,11 +69,6 @@ Search Project
                             @endif
                             <br>
                             <span class="day-left">Bidding Ends In {{ $project->expiry_days }} Days</span><br>
-                            @if($project->referral_id != '0')  
-                                <div class="mb-2">
-                                    <div class="display-5">Eiliana Sales Referral Program</div>
-                                </div>
-                            @endif
                         </div>
                     </div>
                     <div class="card-body">

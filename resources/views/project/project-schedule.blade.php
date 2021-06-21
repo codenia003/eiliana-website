@@ -42,7 +42,7 @@ type="text/css"/>
   	<div class="px-5 py-2">
     	<div class="align-items-center">
         	<span class="border-title"><i class="fa fa-bars"></i></span>
-        	<span class="h5 text-white">Project Schedule</span>
+        	<span class="h5 text-white">Project Payment Schedules</span>
          	<!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
     	</div>
   	</div>
@@ -61,7 +61,7 @@ type="text/css"/>
 					<div class="card">
 					<div class="bg-blue">
 						<div class="px-5 py-2">
-							<span class="h5 text-white" style="margin-left: -25px;">Project Schedule</span>
+							<span class="h5 text-white" style="margin-left: -25px;">Project Payment Schedules</span>
 						</div>
 					</div>
 						<div class="card-body p-4">
@@ -162,12 +162,11 @@ type="text/css"/>
 											</div>
 										</div>
                                         @if($projectleads->projectdetail->projectAmount->pricing_model == '3')
-                                           <h4 class="title">Customer Payment Schedules</h4>
+                                           {{-- <h4 class="title">Customer Payment Schedules</h4> --}}
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label> Milestone No.</label>
-                                                    <select class="form-control milestone_no" name="milestone_no" onchange="createMilestone()" required>
-                                                    <!-- <select class="form-control milestone_no" name="milestone_no" onchange="createMilestone()" required> -->
+                                                    <select class="form-control milestone_no" name="milestone_no[]" required>
                                                         <option value=""> </option>
                                                         @for ($i = 1; $i < 101; $i++)
                                                         <option value="{{ $i }}">{{ $i }}</option>
@@ -179,22 +178,7 @@ type="text/css"/>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label>Payable Amount</label>
-                                                    <input type="number" name="payable_amount" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="form-row">
-                                                <div class="form-group col-12">
-                                                    <label> Milestones</label>
-                                                    <input type="number" name="milestone_no" class="form-control" required>
-                                                </div>
-                                            </div> -->
-                                            <div class="milestone-1 d-none">
-                                                <input type="hidden" name="milestone_no[]" id="milestone_id" value="1">
-                                                <div class="form-row">
-                                                    <div class="form-group col-12">
-                                                        <label> Milestones</label>
-                                                        <input type="number" name="milestone_no" class="form-control" required>
-                                                    </div>
+                                                    <input type="number" name="payable_amount[]" class="form-control" required>
                                                 </div>
                                             </div>
                                         @endif
@@ -302,15 +286,23 @@ type="text/css"/>
                         </div>
                     </div>
                     @if($projectleads->projectdetail->projectAmount->pricing_model == '3')
+                        {{-- <h4 class="title">Customer Payment Schedules</h4> --}}
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label> Milestone No.</label>
-                                <select class="form-control" name="milestone_no[]" required>
+                                <select class="form-control milestone_no" name="milestone_no[]" required>
                                     <option value=""> </option>
                                     @for ($i = 1; $i < 101; $i++)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
                                 </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label>Payable Amount</label>
+                                <input type="number" name="payable_amount[]" class="form-control" required>
                             </div>
                         </div>
                     @endif
@@ -443,19 +435,6 @@ type="text/css"/>
         theme: 'bootstrap',
         placeholder: 'Select a value',
     });
-
-    function createMilestone(){
-        var milestone = $('.milestone_no').val();
-		console.log(milestone)
-        var x = parseInt(milestone) + parseInt(1);
-
-        var element = '<div class="module-3 module-'+x+'">'+$('.milestone-1').html()+'</div>';
-         for (i=1; i<=milestone; i++)  
-          {  
-             $('.module-1').append(element);
-          }  
-
-	}
 
 	$(function(){
         $(document).on("click",".btn-copy-ps",function() {

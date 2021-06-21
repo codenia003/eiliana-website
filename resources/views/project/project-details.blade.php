@@ -50,8 +50,8 @@ Search Project
                 <div class="card mb-3 mb-lg-5 project-deatils shadow border">
                     <div class="card-header">
                         @if($project->referral_id != '0')  
-                          <span class="h5 card-title font-weight-700"> Project Posted By:-</span> 
-                          <span class="h5 font-weight-500" style="font-size: 16px;">Eiliana Sales Referral Program</span></br></br>
+                          <span class="h5 card-title font-weight-700"> Posted By: </span> 
+                          <span class="h5 font-weight-500" style="font-size: 16px;color: red;font-weight: bolder;">Eiliana Sales Referral Program</span></br></br>
                         @endif
                         <span class="h5 card-title font-weight-700">{{ $project->project_title }}</span>
                         <div class="float-right font-weight-700 mt-1">

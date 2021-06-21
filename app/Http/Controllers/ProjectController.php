@@ -76,7 +76,7 @@ class ProjectController extends JoshController
 
     public function projectSchedule($id)
     {
-        $projectleads = ProjectLeads::with('projectdetail','projectdetail.projectAmount')->where('project_leads_id', $id)->first();
+        $projectleads = ProjectLeads::with('projectdetail','projectdetail.projectAmount','projectdetail.projectCurrency')->where('project_leads_id', $id)->first();
         $user = User::where('id', $projectleads->from_user_id)->first();
 
         //return $projectleads;
@@ -666,14 +666,12 @@ class ProjectController extends JoshController
 
     public function projectApplyLead($id)
     {
-        $project = Project::with('companydetails','locations','projectAmount','projectCurrency','projectsubcategory','customerindustry1')->where('project_id', $id)->first();
-
+        $project = Project::with('companydetails','locations','projectAmount','projectCurrency','projectsubcategory','customerindustry1','salesreferraldetails')->where('project_id', $id)->first();
         $technologies = Technology::where('display_status', '1')->orderBy('technology_name')->get();
-
-        // return $project;
+        //return $project;
         return view('project/project-apply', compact('project','technologies'));
     }
-
+    
     public function projectReviseProposal($id)
     {
         //$project = Project::with('companydetails','locations','projectAmount','projectCurrency','projectsubcategory','customerindustry1')->where('project_id', $id)->first();
@@ -812,6 +810,13 @@ class ProjectController extends JoshController
             $projectleads->subject = $input['subject'];
             $projectleads->message = $input['messagetext'];
             $projectleads->bid_amount = $input['bid_amount'];
+
+            if($input['referral_id'] != 0)
+            {
+                $projectleads->sales_comm_amount = $input['sales_comm_amount'];
+                $projectleads->total_proposal_value = $input['total_proposal_value'];
+            }
+            
             $projectleads->delivery_timeline = $input['delivery_timeline'];
             $projectleads->technologty_pre = $input['technologty_pre'];
             $projectleads->attach_file = $safeName;

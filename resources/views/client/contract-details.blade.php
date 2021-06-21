@@ -34,11 +34,28 @@
                                 <label>Proposal Id</label>
                                 <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
                             </div>
-                            <div class="form-group col-6">
-                                <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
-                            </div>
+                            @if($projectlead->projectdetail->referral_id != '0') 
+                                <div class="form-group col-6">
+                                    <label>Per Hour Rate + Sales Commission Amount({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                    <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ $projectlead->total_proposal_value }}" readonly>
+                                </div>
+                            @else
+                                <div class="form-group col-6">
+                                    <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                    <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                </div>
+                            @endif
                         </div>
+
+                        @if($projectlead->projectdetail->referral_id != '0') 
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Sales Commission Amount(%)</label>
+                                    <input type="text" class="form-control" name="sales_comm_amount"  value="{{ $projectlead->sales_comm_amount }}" readonly>
+                                </div>
+                            </div>
+                        @endif
+
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>No Of Hours Purchase</label>
@@ -63,7 +80,7 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Date of Acceptance</label>
-                                <input class="form-control" type="text" name="date_acceptance" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $projectlead->contractdetails->created_at))) }}" readonly>
+                                <input class="form-control" type="text" name="date_acceptance" value="{{ $projectlead->contractdetails->date_acceptance }}" readonly>
                             </div>
                             <div class="form-group col-6">
                                 <label>Ordering Company Name/Individual  </label>

@@ -39,28 +39,39 @@
                                 <label>Proposal Id</label>
                                 <input type="text" class="form-control" name="project_leads_id" value="{{ $projectlead->project_leads_id }}" readonly>
                             </div>
-                            <div class="form-group col-6">
-                                <label>Rate Per Month({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                <input type="text" class="form-control" name="order_closed_value" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
-                            </div>
+                            @if($projectlead->projectdetail->referral_id != '0') 
+                                <div class="form-group col-6">
+                                    <label>Rate Per Month + Sales Commission Amount({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                    <input type="text" class="form-control" name="order_closed_value" value="{{ $projectlead->total_proposal_value }}" readonly>
+                                </div>
+                            @else
+                                <div class="form-group col-6">
+                                    <label>Rate Per Month({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                    <input type="text" class="form-control" name="order_closed_value" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                </div>
+                            @endif
                         </div>
+
+                        @if($projectlead->projectdetail->referral_id != '0') 
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Sales Commission Amount(%)</label>
+                                    <input type="text" class="form-control" name="sales_comm_amount"  value="{{ $projectlead->sales_comm_amount }}" readonly>
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Date of Acceptance</label>
-                                <input class="form-control" type="text" name="date_acceptance" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $projectlead->contractdetails->created_at))) }}" readonly>
+                                <input class="form-control" type="text" name="date_acceptance" value="{{ $projectlead->contractdetails->date_acceptance }}" readonly>
                             </div>
                             <div class="form-group col-6">
                                 <label>Contract Duration(Days)</label>
                                 <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->delivery_timeline }}" readonly>
                             </div>
                         </div>
-                        <?php
-                                $gst_rate = 18;
-                                $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
-                                $GST_amount = ($price * $gst_rate) / 100;
-                                $total_price = $price + $GST_amount;
-                        ?>
+                    
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }}) </label>
@@ -81,7 +92,12 @@
                         </div>
                     </div>
                     @forelse ($projectlead->contractdetails->paymentschedule as $item)
-                    <input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">
+
+                    @if($projectlead->projectdetail->referral_id != '0') 
+                       <input type="hidden" name="amount" id="amount" value="{{ $total_price }}">
+                    @else
+                       <input type="hidden" name="amount" id="amount" value="{{ $total_price }}">
+                    @endif
                     <!-- <input type="hidden" name="amount" id="amount" value=""> -->
                     <input type="hidden" name="payment_schedule_id" id="payment_schedule_id" value="{{ $item->payment_schedule_id }}">
                     @empty

@@ -11,6 +11,7 @@ use Sentinel;
 use View;
 use Mail;
 use Session;
+use App\Models\Country;
 use App\Models\SalesReferral;
 use App\Models\FreelanceReferral;
 use App\Models\CustomerIndustry;
@@ -28,7 +29,8 @@ class SalesController extends JoshController
         if (Session::get('users')['login_as'] == '2'){
             $company_types = DB::table('roles')->where('id', '!=', '1')->where('id', '!=', '2')->where('id', '!=', '3')->where('id', '!=', '7')->get();
             $customer_industries = CustomerIndustry::all();
-            return view('sales/sales-referral-form', compact('company_types','customer_industries'));
+            $countries = Country::all();
+            return view('sales/sales-referral-form', compact('company_types','customer_industries','countries'));
         }
         else{
             return redirect('logout');
@@ -57,8 +59,9 @@ class SalesController extends JoshController
             $sales_referral = SalesReferral::where('sales_referral_id', $id)->first();
             $company_types = DB::table('roles')->where('id', '!=', '1')->where('id', '!=', '2')->where('id', '!=', '3')->where('id', '!=', '7')->get();
             $customer_industries = CustomerIndustry::all();
+            $countries = Country::where('id', $sales_referral->country)->get();
             //return $sales_referral;
-            return view('sales/sales-referral-modify-form', compact('sales_referral','company_types','customer_industries'));
+            return view('sales/sales-referral-modify-form', compact('sales_referral','company_types','customer_industries','countries'));
         }
         else{
             return redirect('logout');
@@ -78,6 +81,9 @@ class SalesController extends JoshController
         $sales_referral->designation = $input['designation'];
         $sales_referral->email = $input['email'];
         $sales_referral->mobile_no = $input['mobile_no'];
+        $sales_referral->dob = $input['dob'];
+        $sales_referral->city = $input['city'];
+        $sales_referral->country = $input['country'];
         $sales_referral->website_address = $input['website_address'];
         $sales_referral->requirment_details = $input['requirment_details'];
         $sales_referral->customer_industry = $input['customer_industry'];

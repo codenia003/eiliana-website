@@ -87,6 +87,15 @@
                                 </div>
                             </div>
                         @endif
+
+                        @if($projectlead->projectdetail->referral_id != '0') 
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Total Proposal Value<small>({{ $projectlead->projectdetail->projectCurrency->symbol }})</small></label>
+                                    <input class="form-control" type="text" name="total_proposal_value" value="{{ $projectlead->total_proposal_value }}" readonly>
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="module-1">
@@ -224,7 +233,7 @@ function projectleadSchedule(schedule_id,pricing_model,project_leads_id,lead_sta
             $('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
                 var msg = userCheck.msg;
-                var redirect = '/client/project-schedule/'+ project_leads_id;
+                var redirect = '/client/project-contract-details/'+ project_leads_id;
                
                 // Swal.fire({
                 //     type: 'success',
@@ -234,6 +243,9 @@ function projectleadSchedule(schedule_id,pricing_model,project_leads_id,lead_sta
                 //     timer: 2000
                 // });
                 // window.location.href = '/freelancer/my-opportunity';
+            } else if (userCheck.success == '2') {
+                var msg = userCheck.msg;
+                var redirect = '/client/project-schedule/'+ project_leads_id;
             } else {
                 var msg = userCheck.errors;
                 var redirect = '/client/project-schedule/'+ project_leads_id;

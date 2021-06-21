@@ -198,9 +198,13 @@ class ClientController extends JoshController
                 $contractdetails->model_engagement = $input['pricing_model'];
                 $contractdetails->date_acceptance = Carbon::today()->toDateString();
                 $contractdetails->ordering_com_name = 'Eiliana';
-                // $contractdetails->sales_comm_amount = $input['sales_comm_amount'];
-                // $contractdetails->remarks = $input['remarks'];
-                // $contractdetails->advance_payment_details = $input['advance_payment_details'];
+                $contractdetails->remarks = $projectschedules->remarks;
+                if($projects->referral_id != '0') 
+                {
+                    $contractdetails->sales_comm_amount = $projectleads->sales_comm_amount;
+                    $contractdetails->advance_payment_details = $projectleads->total_proposal_value;
+                }
+                
                 $contractdetails->status = '1';
                 $contractdetails->save();
 
@@ -216,13 +220,20 @@ class ClientController extends JoshController
                 $paymentschedule->contract_id = $insertedId;
                 // $paymentschedule->advance_payment = $input['advance_payment'][$key];
                 $paymentschedule->installment_no = '1';
-                $paymentschedule->installment_amount = $project_amounts->project_amount_to;
+
+                if($projects->referral_id != '0') 
+                {
+                    $paymentschedule->installment_amount = $projectleads->total_proposal_value;
+                }
+                else
+                {
+                    $paymentschedule->installment_amount = $project_amounts->project_amount_to;
+                }
+
                 $paymentschedule->paymwnt_due_date = Carbon::today()->toDateString();
-                // $paymentschedule->milestones_name = $input['milestones_name'][$key];
+                $paymentschedule->milestones_name = 'NA';
                 $paymentschedule->status = '1';
                 $paymentschedule->save();
-
-                
 
                 $response['success'] = '1';
                 $response['msg'] = 'Proposal Schedule Accepted successfully';
@@ -242,7 +253,7 @@ class ClientController extends JoshController
                 $projectleadsstatus->status = '4';
                 $projectleadsstatus->save();
 
-                $response['success'] = '1';
+                $response['success'] = '2';
                 $response['msg'] = 'Proposal Schedule Modify Request to freelancer successfully';
                 $url = '/project/project-schedule-modify/'. $projectschedules->project_leads_id;
                 $user = User::find($projectleads->from_user_id);
@@ -252,7 +263,7 @@ class ClientController extends JoshController
                 $projectleadsstatus->status = '3';
                 $projectleadsstatus->save();
 
-                $response['success'] = '2';
+                $response['success'] = '3';
                 $response['errors'] = 'Proposal Schedule Rejected successfully';
                 $url = '#';
                 $user = User::find($projectleads->from_user_id);
@@ -270,7 +281,7 @@ class ClientController extends JoshController
             Notification::send($user, new UserNotification($details));
 
         } else {
-            $response['success'] = '2';
+            $response['success'] = '3';
             $response['errors'] = 'You are already accept this proposal schedule';
         }
         return response()->json($response);
@@ -280,8 +291,23 @@ class ClientController extends JoshController
     public function projectRetainerContractDetails($id)
     {
         $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        
+        if($projectlead->projectdetail->referral_id != '0')
+        {
+            $gst_rate = 18;
+            $price = $projectlead->total_proposal_value;
+            $GST_amount = ($price * $gst_rate) / 100;
+            $total_price = $price + $GST_amount;
+        }
+        else
+        {
+            $gst_rate = 18;
+            $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
+            $GST_amount = ($price * $gst_rate) / 100;
+            $total_price = $price + $GST_amount;
+        }
         //return $projectlead;
-        return view('client/project-contract-details', compact('projectlead'));
+        return view('client/project-contract-details', compact('projectlead','total_price'));
     }
 
     public function projectContractDetails($id)

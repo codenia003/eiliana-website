@@ -17,6 +17,24 @@ Apply Project
 <link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
 type="text/css"/>
 @yield('profile_css')
+
+<style>
+    .project-contract .title {
+        color: #003466;
+        border-bottom: #003466;
+        text-align: center;
+    }
+
+    .project-contract .title:after {
+        content: " ";
+        border-bottom-style: double;
+        border-bottom-width: 1px;
+        display: block;
+        width: 31%;
+        text-align: center;
+        margin: auto !important;
+    }
+</style>
 <!--end of page level css-->
 @stop
 
@@ -51,6 +69,11 @@ type="text/css"/>
                                 @csrf
                                 <input type="hidden" name="project_id" value="{{ $project->project_id }}">
                                 <input type="hidden" name="to_user_id" value="{{ $project->companydetails->id }}">
+
+                                @if($project->referral_id != '0') 
+                                   <input type="hidden" name="referral_id" value="{{ $project->referral_id }}">
+                                @endif
+                                
                                 <div class="modal-header text-black bg-img-hero" style="background-image: url(/assets/img/others/applyproject-removebg.png);background-size: contain;background-position: right;">
                                     <h4 class="modal-title" id="modalLabelnews">Apply Project</h4>
                                 </div>
@@ -59,23 +82,54 @@ type="text/css"/>
                                         <label for="project_id" class="col-form-label">Project ID:</label>
                                         <input type="text" class="form-control" name="project_id" id="project_id" value="{{ $project->project_id }}" readonly="">
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            <label for="bid_amount" class="col-form-label">Bid Amount({{ $project->projectCurrency->symbol }}):</label>
-                                            <input type="number" class="form-control" name="bid_amount" id="bid_amount" required>
+                                    @if($project->referral_id != '0') 
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <label for="bid_amount" class="col-form-label">Bid Amount({{ $project->projectCurrency->symbol }}):</label>
+                                                <input type="number" class="form-control num1 bid_amount" name="bid_amount" id="bid_amount" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="engagement" class="col-form-label">Mode of engagement:</label>
+                                                @if ($project->projectAmount->pricing_model == '1')
+                                                    <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                                @elseif ($project->projectAmount->pricing_model == '2')
+                                                    <input type="text" class="form-control" value="Rate Per Month" readonly>
+                                                @else
+                                                    <input type="text" class="form-control" value="Project Amount" readonly>
+                                                @endif
+                                            </div>
+                                        </div> 
+                                        <h4 class="title">Commission Amount</h4>
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <label for="sales_commision" class="col-form-label">Sales Commission(%):</label>
+                                                <input type="number" class="form-control num2 bid_amount" name="sales_comm_amount" id="sales_commision" value="{{ $project->salesreferraldetails->expected_commission }}" readonly>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="total_proposal_value" class="col-form-label">Total Proposal Value:</label>
+                                                <input type="number" class="form-control total_proposal_value" name="total_proposal_value" id="total_proposal_value" value="" readonly>
+                                            </div>
                                         </div>
-                                        <div class="form-group col">
-                                            <label for="engagement" class="col-form-label">Mode of engagement:</label>
-                                            @if ($project->projectAmount->pricing_model == '1')
-                                                <input type="text" class="form-control" value="Rate Per Hour" readonly>
-                                            @elseif ($project->projectAmount->pricing_model == '2')
-                                                <input type="text" class="form-control" value="Rate Per Month" readonly>
-                                            @else
-                                                <input type="text" class="form-control" value="Project Amount" readonly>
-                                            @endif
-                                            
+                                    @else
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <label for="bid_amount" class="col-form-label">Bid Amount({{ $project->projectCurrency->symbol }}):</label>
+                                                <input type="number" class="form-control" name="bid_amount" id="bid_amount" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="engagement" class="col-form-label">Mode of engagement:</label>
+                                                @if ($project->projectAmount->pricing_model == '1')
+                                                    <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                                @elseif ($project->projectAmount->pricing_model == '2')
+                                                    <input type="text" class="form-control" value="Rate Per Month" readonly>
+                                                @else
+                                                    <input type="text" class="form-control" value="Project Amount" readonly>
+                                                @endif
+                                                
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
+
                                     <div class="form-group">
                                         <label for="delivery_timeline" class="col-form-label">Delivery Timeline(Days):</label>
                                         <input type="number" class="form-control" name="delivery_timeline" id="delivery_timeline" required>
@@ -139,6 +193,24 @@ type="text/css"/>
 <script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
 <script>
+
+    $(document).ready(function(){
+        $(".total_proposal_value").val("0");
+        $(".bid_amount").val();
+
+        function calc(){
+            var num1 = $(".num1").val();
+            var commission_amount = $(".num2").val();
+            price = parseInt(num1);
+            sales_commission_amount = (price * commission_amount) / 100;
+            total_price = price + sales_commission_amount;
+            $('.total_proposal_value').val(total_price);
+        }
+        $(".bid_amount").keyup(function(){
+            calc();
+        });
+    });
+
     $('#technologty_pre').select2({
         theme: 'bootstrap',
         placeholder: 'Select a value',

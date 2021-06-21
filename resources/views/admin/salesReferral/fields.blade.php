@@ -34,6 +34,27 @@
 </div>
 <div class="form-row">
     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+        <label>DOB</label>
+        <input class="form-control" type="text" name="dob" value="{{ $sales_referral->dob }}" readonly>
+    </div>
+    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+        <label>City</label>
+        <input type="text" name="city" class="form-control" value="{{ $sales_referral->city }}" readonly />
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-12">
+        <label>Country</label>
+        <select name="country" class="form-control" disabled>
+            <option value=""></option>
+            @foreach($countries as $country)
+                <option value="{{ $country->id }}" {{ ($sales_referral->country == $country->id)? "selected" : "" }}>{{ $country->name }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
         <label>Website Address</label>
         <input type="text" name="website_address" class="form-control" value="{{ $sales_referral->website_address }}" readonly />
     </div>
@@ -42,6 +63,7 @@
         <input type="text" name="requirment_details" class="form-control" value="{{ $sales_referral->requirment_details }}" readonly />
     </div>
 </div>
+
 <div class="form-row">
     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
         <label>Customer Industry</label>
@@ -79,29 +101,28 @@
         <select name="commission_type" class="form-control" disabled>
             <option value=""></option>
             <option value="1" {{ ($sales_referral->commission_type == '1')? "selected" : "" }}>Percentage</option>
-            <option value="2" {{ ($sales_referral->commission_type == '2')? "selected" : "" }}>Processing</option>
         </select>
     </div>
     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
         <label>Expected Commission(%/INR)</label>
-        <input type="text" name="expected_commission" class="form-control" value="{{ $sales_referral->expected_commission }}" readonly />
+        <input type="number" name="expected_commission" class="form-control" value="{{ $sales_referral->expected_commission }}" readonly />
     </div>
 </div>
 
 <!-- Submit Field -->
 <div class="form-group text-right mt-5" style="text-align: left !important;">
 	<div class="btn-group" role="group">
-        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','{{ $sales_referral->company_name }}','{{ $sales_referral->contact_person }}','{{ $sales_referral->email }}','{{ $sales_referral->mobile_no }}','2')">
+        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','{{ $sales_referral->company_name }}','{{ $sales_referral->contact_person }}','{{ $sales_referral->email }}','{{ $sales_referral->mobile_no }}','{{ $sales_referral->dob }}','{{ $sales_referral->city }}','{{ $sales_referral->country }}','2')">
 			Accept 
 		</button>&nbsp;&nbsp;
     </div>
     {{--<div class="btn-group" role="group">
-        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','{{ $sales_referral->company_name }}','{{ $sales_referral->contact_person }}','{{ $sales_referral->email }}','{{ $sales_referral->mobile_no }}','5')">
+        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','{{ $sales_referral->company_name }}','{{ $sales_referral->contact_person }}','{{ $sales_referral->email }}','{{ $sales_referral->mobile_no }}','{{ $sales_referral->dob }}','{{ $sales_referral->city }}','{{ $sales_referral->country }}','5')">
 			Modify
 		</button>&nbsp;&nbsp;
 	</div>--}}
     <div class="btn-group" role="group">
-        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','{{ $sales_referral->company_name }}','{{ $sales_referral->contact_person }}','{{ $sales_referral->email }}','{{ $sales_referral->mobile_no }}','4')">
+        <button class="btn btn-primary" type="button" onclick="salesReferralAssignToClient('{{ $sales_referral->sales_referral_id }}','{{ $sales_referral->company_name }}','{{ $sales_referral->contact_person }}','{{ $sales_referral->email }}','{{ $sales_referral->mobile_no }}','{{ $sales_referral->dob }}','{{ $sales_referral->city }}','{{ $sales_referral->country }}','4')">
 			Reject
 		</button>
 	</div>

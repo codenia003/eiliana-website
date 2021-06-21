@@ -17,6 +17,23 @@ Accept Proposal
 <link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
 type="text/css"/>
 @yield('profile_css')
+<style>
+    .project-contract .title {
+        color: #003466;
+        border-bottom: #003466;
+        text-align: center;
+    }
+
+    .project-contract .title:after {
+        content: " ";
+        border-bottom-style: double;
+        border-bottom-width: 1px;
+        display: block;
+        width: 31%;
+        text-align: center;
+        margin: auto !important;
+    }
+</style>
 <!--end of page level css-->
 @stop
 
@@ -63,23 +80,53 @@ type="text/css"/>
                                         <label for="project_id" class="col-form-label">Project ID:</label>
                                         <input type="text" class="form-control" name="project_id" id="project_id" value="{{ $project->project_id }}" readonly="">
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            <label for="bid_amount" class="col-form-label">Bid Amount({{ $project->projectdetail->projectCurrency->symbol }}):</label>
-                                            <input type="number" class="form-control" name="bid_amount" id="bid_amount" value="{{ $project->bid_amount }}" readonly>
+                                    
+                                    @if($project->referral_id != '0') 
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <label for="bid_amount" class="col-form-label">Bid Amount({{ $project->projectdetail->projectCurrency->symbol }}):</label>
+                                                <input type="number" class="form-control num1 bid_amount" id="bid_amount" value="{{ $project->bid_amount }}" readonly>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="engagement" class="col-form-label">Mode of engagement:</label>
+                                                @if ($project->projectdetail->projectAmount->pricing_model == '1')
+                                                    <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                                @elseif ($project->projectdetail->projectAmount->pricing_model == '2')
+                                                    <input type="text" class="form-control" value="Rate Per Month" readonly>
+                                                @else
+                                                    <input type="text" class="form-control" value="Project Amount" readonly>
+                                                @endif
+                                            </div>
+                                        </div> 
+                                        <h4 class="title">Commission Amount</h4>
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <label for="sales_commision" class="col-form-label">Sales Commission(%):</label>
+                                                <input type="number" class="form-control" name="sales_comm_amount"  value="{{ $project->sales_comm_amount }}" readonly>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="total_proposal_value" class="col-form-label">Total Proposal Value({{ $project->projectdetail->projectCurrency->symbol }}):</label>
+                                                <input type="number" class="form-control" name="total_proposal_value" value="{{ $project->total_proposal_value }}" readonly>
+                                            </div>
                                         </div>
-                                        <div class="form-group col">
-                                            <label for="engagement" class="col-form-label">Mode of engagement:</label>
-                                            @if ($project->projectdetail->projectAmount->pricing_model == '1')
-                                                <input type="text" class="form-control" value="Rate Per Hour" readonly>
-                                            @elseif ($project->projectdetail->projectAmount->pricing_model == '2')
-                                                <input type="text" class="form-control" value="Rate Per Month" readonly>
-                                            @else
-                                                <input type="text" class="form-control" value="Project Amount" readonly>
-                                            @endif
-                                            
+                                    @else
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <label for="bid_amount" class="col-form-label">Bid Amount({{ $project->projectdetail->projectCurrency->symbol }}):</label>
+                                                <input type="number" class="form-control" name="bid_amount" id="bid_amount" value="{{ $project->bid_amount }}" readonly>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="engagement" class="col-form-label">Mode of engagement:</label>
+                                                @if ($project->projectdetail->projectAmount->pricing_model == '1')
+                                                    <input type="text" class="form-control" value="Rate Per Hour" readonly>
+                                                @elseif ($project->projectdetail->projectAmount->pricing_model == '2')
+                                                    <input type="text" class="form-control" value="Rate Per Month" readonly>
+                                                @else
+                                                    <input type="text" class="form-control" value="Project Amount" readonly>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                     <div class="form-group">
                                         <label for="delivery_timeline" class="col-form-label">Delivery Timeline(Days):</label>
                                         <input type="number" class="form-control" name="delivery_timeline" id="delivery_timeline" value="{{ $project->delivery_timeline }}" readonly>

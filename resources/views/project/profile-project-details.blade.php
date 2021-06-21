@@ -134,16 +134,39 @@ Project Post
                                         <tbody class="info-train">
                                             <tr>
                                             @if($joblead->projectdetail->projectAmount->pricing_model == '1')
-                                                <td class="heading">Price Per Hour<small>({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
-                                                <td>: {{ $joblead->bid_amount }}</td>
+                                              @if($joblead->referral_id != '0') 
+                                                 <td class="heading">Price Per Hour<small>(Including Sales Commission)({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
+                                                 <td>: {{ $joblead->total_proposal_value }}</td>
+                                              @else
+                                                 <td class="heading">Price Per Hour<small>({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
+                                                 <td>: {{ $joblead->bid_amount }}</td>
+                                              @endif
                                             @elseif ($joblead->projectdetail->projectAmount->pricing_model == '2')
+                                              @if($joblead->referral_id != '0') 
+                                                <td class="heading">Price Per Month<small>(Including Sales Commission)({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
+                                                <td>: {{ $joblead->total_proposal_value }}</td>
+                                              @else
                                                 <td class="heading">Price Per Month<small>({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
                                                 <td>: {{ $joblead->bid_amount }}</td>
+                                              @endif
                                             @else
+                                              @if($joblead->referral_id != '0') 
+                                                <td class="heading">Price Per Project Amount<small>(Including Sales Commission)({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
+                                                <td>: {{ $joblead->total_proposal_value }}</td>
+                                              @else
                                                 <td class="heading">Price Per Project Amount<small>({{ $joblead->projectdetail->projectCurrency->symbol }})</small></td>
                                                 <td>: {{ $joblead->bid_amount }}</td>
+                                              @endif
                                             @endif
                                             </tr>
+
+                                            @if($joblead->referral_id != '0') 
+                                                <tr>
+                                                    <td class="heading">Sales Commission Amount<small>(%)</small></td>
+                                                    <td>: {{ $joblead->sales_comm_amount }}</td>
+                                                </tr>
+                                            @endif
+
                                             <tr>
                                                 <td class="heading">Delivery Timeline<small>(Days)</small></td>
                                                 <td>: {{ $joblead->delivery_timeline }}</td>

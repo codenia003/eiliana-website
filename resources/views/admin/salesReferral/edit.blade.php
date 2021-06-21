@@ -52,7 +52,7 @@ Sales Referral
     </script>
 <script>
 
-    function salesReferralAssignToClient(sales_referral_id,company_name,contact_person,email,mobile_no,lead_status){
+    function salesReferralAssignToClient(sales_referral_id,company_name,contact_person,email,mobile_no,dob,city,country,lead_status){
         $('.spinner-border').removeClass("d-none");
         var url = '/admin/salesReferral/sales-referral-assign-to-client';
         var data= {
@@ -62,6 +62,9 @@ Sales Referral
             contact_person: contact_person,
             email: email,
             mobile_no: mobile_no,
+            dob: dob,
+            city: city,
+            country: country,
             lead_status: lead_status
         };
         console.log(data);

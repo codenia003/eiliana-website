@@ -92,4 +92,9 @@ class Project extends Model
     {
         return $this->belongsTo('App\Models\Technology', 'technologty_pre', 'technology_id');
     }
+
+    public function salesreferraldetails()
+    {
+        return $this->belongsTo('App\Models\SalesReferral', 'referral_id', 'sales_referral_id');
+    }
 }

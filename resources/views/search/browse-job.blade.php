@@ -81,7 +81,9 @@
                                    @if($job->referral_id != '0')
                                         <div class="col-md-6">
                                             <div class="mb-4">
-                                                <span class="display-5" style="font-size: 16px;">Posted By - Eiliana Sales Referral Program</span>
+                                              <span class="h5 card-title" style="font-weight: 600;"> Posted By: </span> 
+                                              <span class="h5 font-weight-500" style="font-size: 15px;color: red;font-weight: bolder;">Eiliana Sales Referral Program</span>
+                                                <!-- <span class="display-5" style="font-size: 16px;">Posted By - Eiliana Sales Referral Program</span> -->
                                             </div>
                                         </div>
                                         <div class="col-md-6">

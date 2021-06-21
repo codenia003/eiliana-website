@@ -75,6 +75,25 @@ type="text/css"/>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                        <label>DOB</label>
+                                        <input type="date" placeholder="DD/MM/YYYY" name="dob" class="form-control" value="{{ $sales_referral->dob}}" required/>
+                                    </div>
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                        <label>City</label>
+                                        <input type="text" name="city" class="form-control" value="{{ $sales_referral->city}}" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <select name="country" class="form-control" required>
+                                        <option value="">--Select Country--</option>
+                                        @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}" {{ ($sales_referral->country == $country->id)? "selected" : "" }}>{{ $country->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                                         <label>Website Address</label>
                                         <input type="text" name="website_address" class="form-control" value="{{ $sales_referral->website_address}}" required />
                                     </div>
@@ -120,7 +139,6 @@ type="text/css"/>
                                         <select name="commission_type" class="form-control" required>
                                             <option value=""></option>
                                             <option value="1" {{ ($sales_referral->commission_type == '1')? "selected" : "" }}>Percentage</option>
-                                            <option value="2" {{ ($sales_referral->commission_type == '2')? "selected" : "" }}>Processing</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">

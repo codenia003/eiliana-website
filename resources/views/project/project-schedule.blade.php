@@ -150,7 +150,17 @@ type="text/css"/>
                                             </div>
                                         </div>
                                     @endif
+
+                                    @if($projectleads->projectdetail->referral_id != '0') 
+                                        <div class="form-row">
+                                            <div class="form-group col-12">
+                                                <label>Total Proposal Value<small>({{ $projectleads->projectdetail->projectCurrency->symbol }})</small></label>
+                                                <input class="form-control" type="text" name="total_proposal_value" value="{{ $projectleads->total_proposal_value }}" readonly>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
+                                
 
 								<div class="module-1">
 									<div class="module-3 remove-qual-1 submodule-1">

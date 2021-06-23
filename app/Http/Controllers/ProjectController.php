@@ -974,22 +974,50 @@ class ProjectController extends JoshController
     {
         //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
         $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        if($projectlead->projectdetail->referral_id != '0')
+        {
+            $gst_rate = 18;
+            $price = $projectlead->total_proposal_value;
+            $GST_amount = ($price * $gst_rate) / 100;
+            $total_price = $price + $GST_amount;
+        }
+        else
+        {
+            $gst_rate = 18;
+            $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
+            $GST_amount = ($price * $gst_rate) / 100;
+            $total_price = $price + $GST_amount;
+        }
         //return $projectlead;
-        return view('project/project-retainer-finance', compact('projectlead'));
+        return view('project/project-retainer-finance', compact('projectlead','total_price'));
     }
 
     public function projectFinanceModify($id)
     {
         //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
         $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        if($projectlead->projectdetail->referral_id != '0')
+        {
+            $gst_rate = 18;
+            $price = $projectlead->total_proposal_value;
+            $GST_amount = ($price * $gst_rate) / 100;
+            $total_price = $price + $GST_amount;
+        }
+        else
+        {
+            $gst_rate = 18;
+            $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
+            $GST_amount = ($price * $gst_rate) / 100;
+            $total_price = $price + $GST_amount;
+        }
         //return $projectlead;
-        return view('project/project-finance-modify', compact('projectlead'));
+        return view('project/project-finance-modify', compact('projectlead','total_price'));
     }
 
     public function sendProjectFinance(Request $request)
     {
         $input = $request->except('_token');
-
+        //return $input;
         $orderfinancecehck = ProjectOrderFinance::where('project_leads_id', '=', $input['proposal_id'])->where('status', '=', '1')->first();
         if ($orderfinancecehck === null) {
 

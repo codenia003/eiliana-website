@@ -48,14 +48,18 @@ class FinanceController extends Controller
         //return $finances;
         return view('admin.job_finance.index', compact('finances'));
     }
-
     public function edit($id)
     {
-        $finance =  ProjectLeads::with('projectdetail','projectdetail.projectCurrency','projectschedulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+        $finance =  ProjectLeads::with('projectdetail','projectdetail.projectCurrency','projectschedulee','projectschedulee.schedulemodulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
         $order_finances_id = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('project_leads_id', $id)->first();
         $country_name = Country::where('id', $order_finances_id->userprojects->projectdetail->companydetails->country)->first();
+        
+        $gst_rate = 18;
+        $price = number_format($finance->contractdetails->order_closed_value, 0, ".", "");
+        $GST_amount = ($price * $gst_rate) / 100;
+        $total_price = $price + $GST_amount;
         //return $finance;
-        return view('admin.finance.edit', compact('finance','order_finances_id','country_name'));
+        return view('admin.finance.edit', compact('finance','order_finances_id','country_name','total_price'));
     }
 
     public function assignToResource(Request $request)

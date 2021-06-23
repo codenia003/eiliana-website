@@ -59,30 +59,61 @@ type="text/css"/>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                            <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                            @if($projectlead->projectdetail->referral_id != '0')
+                                               <input class="form-control" type="text" name="total_proposal_value" value="{{ $projectlead->total_proposal_value }}" readonly>
+                                            @else
+                                               <input type="number" class="form-control" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-6">
-                                            <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                            @foreach($projectlead->contractdetails->paymentschedule as $paymentschedule)
-                                               <input type="text" class="form-control order_closed_value" name="total_advance_payment" id=""  value="{{ $paymentschedule->total_advance_payment }}" readonly>
-                                            @endforeach
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label>No Of Hours Purchase</label>
-                                            <input type="number" class="form-control num2 hours_purchase" name="hours_purchase" value="{{ $paymentschedule->hours_purchase }}" readonly>
-                                        </div>
+                                        @if($projectlead->projectdetail->referral_id != '0')
+                                            <div class="form-group col-6">
+                                                <label>Sales Commission(%):</label>
+                                                <input class="form-control" type="text" name="sales_commision" value="{{ $projectlead->sales_comm_amount }}" readonly>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label>No Of Hours Purchase</label>
+                                                @foreach($projectlead->contractdetails->paymentschedule as $paymentschedule)
+                                                <input type="number" class="form-control" name="hours_purchase" value="{{ $paymentschedule->hours_purchase }}" readonly>
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <div class="form-group col-6">
+                                                <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                                @foreach($projectlead->contractdetails->paymentschedule as $paymentschedule)
+                                                <input type="text" class="form-control" name="total_advance_payment" id=""  value="{{ $paymentschedule->total_advance_payment }}" readonly>
+                                                @endforeach
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label>No Of Hours Purchase</label>
+                                                @foreach($projectlead->contractdetails->paymentschedule as $paymentschedule)
+                                                <input type="number" class="form-control" name="hours_purchase" value="{{ $paymentschedule->hours_purchase }}" readonly>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                            
                                         {{--<div class="form-group col-6">
                                             <label>GST Details</label>
                                             <input type="text" class="form-control" name="gst_details" value="{{ $projectlead->fromuser->gst_number }}" readonly>
                                         </div>--}}
                                     </div>
 
+                                    @if($projectlead->projectdetail->referral_id != '0')
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                            @foreach($projectlead->contractdetails->paymentschedule as $paymentschedule)
+                                            <input type="text" class="form-control" name="total_advance_payment" id=""  value="{{ $paymentschedule->total_advance_payment }}" readonly>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @endif
+
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Date of Acceptance</label>
-                                            <input class="form-control" type="text" name="date_acceptance" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $projectlead->contractdetails->created_at))) }}" readonly>
+                                            <input class="form-control" type="text" name="date_acceptance" value="{{ $projectlead->contractdetails->date_acceptance }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Ordering Company Name/Individual  </label>
@@ -92,11 +123,6 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Status</label>
-                                            {{--<select name="status[]" class="form-control" disabled>
-                                                <option value="1" {{ ($projectlead->contractdetails->status=='1')? "selected" : "" }}>Pending</option>
-                                                <option value="2" {{ ($projectlead->contractdetails->status=='2')? "selected" : "" }}>Paid</option>
-                                                <option value="3" {{ ($projectlead->contractdetails->status=='3')? "selected" : "" }}>Cancel</option>
-                                            </select>--}}
                                             <select name="status[]" class="form-control" disabled>
                                                 @foreach($projectlead->contractdetails->paymentschedule as $item)
                                                     <option value="1" {{ ($item->status=='1')? "selected" : "" }}>Pending</option>

@@ -46,12 +46,29 @@
         @endif
 	</div>
 </div>
+<!-- Type Field -->
+<div class="form-row">
+    <div class="form-group col-6">
+        <label>Date of Acceptance</label>
+        <input type="text" class="form-control" name="total_order_value" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $finance->contractdetails->created_at))) }}" readonly>
+	</div>
+    <div class="form-group col-6">
+        <label>Ordering Company Name/Individual</label>
+        <input type="text" class="form-control" name="ordering_company_name" value="{{ $finance->contractdetails->ordering_com_name }}" readonly>
+    </div>
+</div>
+
+<h4 class="modal-title" id="modalLabelnews1"> Payment Details</h4><br>
 @if($finance->contractdetails->model_engagement == '1')
 <!-- Type Field -->
 <div class="form-row">
     <div class="form-group col-6">
         <label>Per Hour Rate</label><small>({{ $finance->projectdetail->projectCurrency->symbol }})</small>
-        <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->contractdetails->order_closed_value }}" readonly="">
+        @if($finance->projectdetail->referral_id != '0') 
+           <input class="form-control" type="text" name="total_proposal_value" value="{{ $finance->total_proposal_value }}" readonly>
+        @else
+           <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->contractdetails->order_closed_value }}" readonly="">
+        @endif
 	</div>
     <div class="form-group col-6">
         <label>No Of Hours Purchase</label>
@@ -60,62 +77,102 @@
         @endforeach
     </div>
 </div>
+
+@foreach($finance->contractdetails->paymentschedule as $paymentschedule)
 <div class="form-row">
     <div class="form-group col-6">
-        <label>Date of Acceptance</label>
-        <input type="text" class="form-control" name="total_order_value" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $finance->contractdetails->created_at))) }}" readonly>
+        <label>Due Date</label>
+        <input type="text" class="form-control" name="total_order_value" value="{{ $paymentschedule->paymwnt_due_date }}" readonly>
 	</div>
     <div class="form-group col-6">
         <label>Total Advance Payment</label><small>({{ $finance->projectdetail->projectCurrency->symbol }})</small>
-		@foreach($finance->contractdetails->paymentschedule as $paymentschedule)
-           <input type="text" class="form-control" name="total_order_value" value="{{ $paymentschedule->total_advance_payment }}" readonly>
-		@endforeach
+        <input type="text" class="form-control" name="total_order_value" value="{{ $paymentschedule->total_advance_payment }}" readonly>
 	</div>
 </div>
+@endforeach
+
 @elseif($finance->contractdetails->model_engagement == '2')
 <div class="form-row">
     <div class="form-group col-6">
         <label>Rate Per Month</label><small>({{ $finance->projectdetail->projectCurrency->symbol }})</small>
-        <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->contractdetails->order_closed_value }}" readonly="">
+
+        @if($finance->projectdetail->referral_id != '0') 
+           <input class="form-control" type="text" name="total_proposal_value" value="{{ $finance->total_proposal_value }}" readonly>
+        @else
+           <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->contractdetails->order_closed_value }}" readonly="">
+        @endif
 	</div>
     <div class="form-group col-6">
         <label>Agreed Scope Of Work</label>
         <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->projectschedulee->scope_of_work }}" readonly="">
 	</div>
 </div>
-<?php
-        $gst_rate = 18;
-        $price = number_format($finance->contractdetails->order_closed_value, 0, ".", "");
-        $GST_amount = ($price * $gst_rate) / 100;
-        $total_price = $price + $GST_amount;
-?>
+
 <div class="form-row">
     <div class="form-group col-6">
-        <label>Date of Acceptance</label>
-        <input type="text" class="form-control" name="total_order_value" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $finance->contractdetails->created_at))) }}" readonly>
-	</div>
+        <label>Due Date</label>
+        @foreach($finance->contractdetails->paymentschedule as $paymentschedule)
+           <input type="text" class="form-control" name="total_order_value" value="{{ $paymentschedule->paymwnt_due_date }}" readonly>
+        @endforeach
+    </div>
     <div class="form-group col-6">
         <label>Total Advance Payment</label><small>({{ $finance->projectdetail->projectCurrency->symbol }})</small>
         <input type="text" class="form-control" name="total_order_value" value="{{ $total_price }}" readonly>
 	</div>
 </div>
+
+@else
+<div class="form-row">
+    <div class="form-group col-4">
+        <label>Total Project Cost</label><small>({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+
+        @if($finance->projectdetail->referral_id != '0') 
+           <input class="form-control" type="text" name="total_proposal_value" value="{{ $finance->total_proposal_value }}" readonly>
+        @else
+           <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->contractdetails->order_closed_value }}" readonly="">
+        @endif
+	</div>
+    @foreach ($finance->projectschedulee->schedulemodulee as $item)
+    <div class="form-group col-4">
+        <label>Payble Amount</label>
+        <input type="text" class="form-control" name="payable_amount" value="{{ $item->payable_amount }}" readonly="">
+	</div>
+    <div class="form-group col-4">
+        <label>Milestones No.</label>
+        <input type="text" class="form-control" name="milestone_no" value="{{ $item->milestone_no }}" readonly="">
+	</div>
+    @endforeach
+</div>
+
+@foreach ($finance->contractdetails->paymentschedule as $item)
+<div class="form-row">
+    <div class="form-group col-6">
+        <label>Due Date</label>
+        <input type="text" class="form-control" name="total_order_value" value="{{ $item->paymwnt_due_date }}" readonly>
+	</div>
+    <div class="form-group col-6">
+        <label>Total Advance Payment</label><small>({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+        <input type="text" class="form-control" name="total_order_value" value="{{ $item->total_advance_payment }}" readonly>
+	</div>
+</div>
+@endforeach
+
 @endif
 <!-- Type Field -->
 
-<!-- Type Field -->
+@if($finance->projectdetail->referral_id != '0') 
+<h4 class="modal-title" id="modalLabelnews1">Commission Payment Schedule</h4><br>
 <div class="form-row">
-	<div class="form-group col-6">
-        <label>Payment Details</label>
-        @foreach($finance->contractdetails->paymentschedule as $paymentschedule)
-           <input type="text" class="form-control" name="total_order_value" value="{{ $paymentschedule->payment_id }}" readonly>
-		@endforeach
+    <div class="form-group col-6">
+        <label>Sales Commission(%):</label>
+        <input class="form-control" type="text" name="sales_commision" value="{{ $finance->sales_comm_amount }}" readonly>
 	</div>
     <div class="form-group col-6">
-        <label>Ordering Company Name/Individual</label>
-        <input type="text" class="form-control" name="ordering_company_name" value="{{ $finance->contractdetails->ordering_com_name }}" readonly>
-    </div>
+        <label>Total Proposal Value</label><small>({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+		<input class="form-control" type="text" name="total_proposal_value" value="{{ $finance->total_proposal_value }}" readonly>
+	</div>
 </div>
-
+@endif
 <!-- Submit Field -->
 <div class="form-group text-right mt-5" style="text-align: left !important;">
 	<div class="btn-group" role="group">

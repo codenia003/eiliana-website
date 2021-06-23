@@ -36,7 +36,7 @@
                             </div>
                             @if($projectlead->projectdetail->referral_id != '0') 
                                 <div class="form-group col-6">
-                                    <label>Per Hour Rate + Sales Commission Amount({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                    <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
                                     <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ $projectlead->total_proposal_value }}" readonly>
                                 </div>
                             @else
@@ -47,14 +47,14 @@
                             @endif
                         </div>
 
-                        @if($projectlead->projectdetail->referral_id != '0') 
+                        {{--@if($projectlead->projectdetail->referral_id != '0') 
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label>Sales Commission Amount(%)</label>
                                     <input type="text" class="form-control" name="sales_comm_amount"  value="{{ $projectlead->sales_comm_amount }}" readonly>
                                 </div>
                             </div>
-                        @endif
+                        @endif--}}
 
                         <div class="form-row">
                             <div class="form-group col-6">

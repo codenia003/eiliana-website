@@ -239,7 +239,8 @@ function projectleadSchedule(schedule_id,pricing_model,project_leads_id,lead_sta
             $('.spinner-border').addClass("d-none");
             if (userCheck.success == '1') {
                 var msg = userCheck.msg;
-                var redirect = userCheck.url;
+                var redirect = '/client/project-contract-details/'+ project_leads_id;
+                //var redirect = userCheck.url;
                
                 // Swal.fire({
                 //     type: 'success',

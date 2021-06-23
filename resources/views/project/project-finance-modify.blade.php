@@ -60,22 +60,34 @@ type="text/css"/>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Date of Acceptance</label>
-                                            <input class="form-control" type="text" name="date_acceptance" value="{{ date('Y-m-d', strtotime(str_replace('-', '/', $projectlead->contractdetails->created_at))) }}" readonly>
+                                            <input class="form-control" type="text" name="date_acceptance" value="{{ $projectlead->contractdetails->date_acceptance }}" readonly>
                                         </div>
                                     </div>
                                     @if($projectlead->contractdetails->model_engagement == '1')
                                         <div class="form-row">
                                             <div class="form-group col-6">
                                                 <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                                <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                                @if($projectlead->projectdetail->referral_id != '0')
+                                                   <input type="text" class="form-control" name="total_proposal_value" value="{{ $projectlead->total_proposal_value }}" readonly>
+                                                @else
+                                                   <input type="number" class="form-control num1 hours_purchase" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                                @endif
                                             </div>
                                             <div class="form-group col-6">
                                                 <label>No Of Hours Purchase</label>
                                                 @foreach($projectlead->contractdetails->paymentschedule as $paymentschedule)
-                                                <input type="number" class="form-control num2 hours_purchase" name="hours_purchase" value="{{ $paymentschedule->hours_purchase }}" required>
+                                                <input type="number" class="form-control num2 hours_purchase" name="hours_purchase" value="{{ $paymentschedule->hours_purchase }}" readonly>
                                                 @endforeach
                                             </div>
                                         </div>
+                                        @if($projectlead->projectdetail->referral_id != '0')
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label>Sales Commission(%):</label>
+                                                    <input class="form-control" type="text" name="sales_commision" value="{{ $projectlead->sales_comm_amount }}" readonly>
+                                                </div>
+                                            </div>
+                                        @endif
                                         <div class="form-row">
                                             <div class="form-group col-6">
                                                 <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
@@ -92,22 +104,38 @@ type="text/css"/>
                                         <div class="form-row">
                                             <div class="form-group col-6">
                                                 <label>Rate Per Month({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                                <input type="number" class="form-control" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                                @if($projectlead->projectdetail->referral_id != '0')
+                                                   <input type="text" class="form-control" name="total_proposal_value" value="{{ $projectlead->total_proposal_value }}" readonly>
+                                                @else
+                                                   <input type="number" class="form-control" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                                @endif
                                             </div>
                                             <div class="form-group col-6">
-                                                <label>Agree Scope Of Work</label>
+                                                <label>Agreed Scope Of Work</label>
                                                 <input type="number" class="form-control" name="scope_of_work" value="{{ $projectlead->projectschedulee->scope_of_work }}" required>
                                             </div>
                                         </div>
+                                        @if($projectlead->projectdetail->referral_id != '0')
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label>Sales Commission(%):</label>
+                                                    <input class="form-control" type="text" name="sales_commision" value="{{ $projectlead->sales_comm_amount }}" readonly>
+                                                </div>
+                                            </div>
+                                        @endif
                                         <div class="form-row">
                                             <div class="form-group col-6">
-                                                <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                                <input type="text" class="form-control order_closed_value" name="total_advance_payment" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                                <label>Contract Duration  </label>
+                                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->delivery_timeline }}" readonly>
                                             </div>
                                             <div class="form-group col-6">
+                                                <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                                <input type="text" class="form-control order_closed_value" name="total_advance_payment" value="{{ $total_price }}" readonly>
+                                            </div>
+                                            {{--<div class="form-group col-6">
                                                 <label>Ordering Company Name/Individual  </label>
                                                 <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
-                                            </div>
+                                            </div>--}}
                                         </div>
                                     @endif
 

@@ -55,14 +55,14 @@ type="text/css"/>
                 <tbody>
                     @foreach($project_ids as $lead)
                         <tr>
-                            <td>{{ $lead->project_id }}</td>
-                            <td>{{ $lead->project_title }}</td>
-                            @if($lead->projectamount->pricing_model == '1')
-                               <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR /Hour</td>
-                            @elseif($lead->projectamount->pricing_model == '2')
-                            <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR /Month</td>
+                            <td>{{ $lead->projectdetail->project_id }}</td>
+                            <td>{{ $lead->projectdetail->project_title }}</td>
+                            @if($lead->projectdetail->projectamount->pricing_model == '1')
+                               <td>{{ rtrim(rtrim($lead->projectdetail->projectamount->project_amount_to, '0'), '.') }} INR /Hour</td>
+                            @elseif($lead->projectdetail->projectamount->pricing_model == '2')
+                            <td>{{ rtrim(rtrim($lead->projectdetail->projectamount->project_amount_to, '0'), '.') }} INR /Month</td>
                             @else
-                            <td>{{ rtrim(rtrim($lead->projectamount->project_amount_to, '0'), '.') }} INR /Amount</td>
+                            <td>{{ rtrim(rtrim($lead->projectdetail->projectamount->project_amount_to, '0'), '.') }} INR /Amount</td>
                             @endif
 
                             @if(!empty($lead->technologty_pre))
@@ -78,11 +78,11 @@ type="text/css"/>
                                 <td>Any</td>
                             @endif
 
-                            <td>{{ $lead->project_duration_max }}</td>
+                            <td>{{ $lead->projectdetail->project_duration_max }}</td>
                             {{--<form action="" method="POST">
                                @csrf
                                 <td>
-                                    <select name="project_status" id="project_status{{ $lead->project_id }}" class="form-control" onchange="projectStatusChange('{{ $lead->project_id }}')" style="width: 105px;" required>
+                                    <select name="project_status" id="project_status{{ $lead->projectdetail->project_id }}" class="form-control" onchange="projectStatusChange('{{ $lead->projectdetail->project_id }}')" style="width: 105px;" required>
                                         <option value=""></option>
                                         <option value="1" {{ ($lead->status== '1')? "selected" : "" }}>Onhold</option>
                                         <option value="2" {{ ($lead->status== '2')? "selected" : "" }}>Shortlist</option>
@@ -91,7 +91,7 @@ type="text/css"/>
                                 </td>
                             </form>--}}
                             <td>
-                                <a href="{{ route('my-project-lead.view',$lead->project_id) }}"><i class="fas fa-info-circle"></i></a>
+                                <a href="{{ route('my-project-lead.view',$lead->projectdetail->project_id) }}"><i class="fas fa-info-circle"></i></a>
                             </td>
                         </tr>
                     @endforeach

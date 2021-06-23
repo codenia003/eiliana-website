@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Sentinel;
+use Mail;
 use View;
 use DB;
 use App\Repositories\FinanceRepository;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Lang;
 use App\Models\Finance;
 use App\Models\JobOrderFinance;
+use App\Models\ProjectOrderInvoice;
 use App\Models\Job;
 use App\Models\JobLeads;
 use App\Models\ResourceDetails;
@@ -58,7 +60,7 @@ class FinanceController extends Controller
         $price = number_format($finance->contractdetails->order_closed_value, 0, ".", "");
         $GST_amount = ($price * $gst_rate) / 100;
         $total_price = $price + $GST_amount;
-        //return $finance;
+        //return $order_finances_id;
         return view('admin.finance.edit', compact('finance','order_finances_id','country_name','total_price'));
     }
 
@@ -230,6 +232,61 @@ class FinanceController extends Controller
         $resources =  ResourceDetails::with('jobcontractschedule','jobcontractschedule.joblead','jobcontractschedule.joblead.fromuser')->where('resource_id', $id)->first();
         //return $resources;
         return view('admin.resourceDetails.edit', compact('resources'));
+    }
+
+    public function generateInvoice(Request $request)
+    {
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $projectorderinvoice_statuscheck = ProjectOrderInvoice::where('project_leads_id', '=', $input['project_leads_id'])->where('status', '=', '1')->first();
+        if ($projectorderinvoice_statuscheck === null) {
+
+            $latest_invoice = ProjectOrderInvoice::latest()->first();
+            $latest_invoice_no = substr($latest_invoice->invoice_no,4,-4);
+
+            if(!empty($latest_invoice_no))
+            {
+                $invoice_no = 'Eil-' . (str_pad((int)$latest_invoice_no + 1, 4, '0', STR_PAD_LEFT));
+            }
+            else
+            {
+                $invoice_no = 'Eil-0001';
+            }
+
+            $order_finances = Finance::where('project_leads_id', '=', $input['project_leads_id'])->first();
+            $order_finances_id = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('project_leads_id', '=', $input['project_leads_id'])->first();
+            
+            $projectorderinvoice = new ProjectOrderInvoice;
+            $projectorderinvoice->project_leads_id = $input['project_leads_id'];
+            $projectorderinvoice->contract_id = $order_finances->contract_id;
+            $projectorderinvoice->invoice_no = $invoice_no;
+            $projectorderinvoice->invoice_amount = $input['total_advance_payment'];
+            //$projectorderinvoice->invoice_due_date = $input['invoice_due_date'];
+            //$projectorderinvoice->invoice_milestones = $input['invoice_milestones'];
+            $projectorderinvoice->status = '1';
+            $projectorderinvoice->save();
+
+            $data['email'] = $order_finances_id->userprojects->projectdetail->companydetails->email;
+            $data['invoice_amount'] = $input['total_advance_payment'];
+            $data['invoice_no'] = $invoice_no;
+            $data['created_at'] = $projectorderinvoice->created_at;
+
+            if($input['status'] === '2'){
+                $response['success'] = '1';
+                $response['msg'] = 'Invoice generate successfully';
+            }
+
+            Mail::send('emails.emailTemplates.invoice', $data, function ($m) use ($data) {
+                $m->from('info@eiliana.com', 'Eiliana Invoice');
+                $m->to($data['email'], 'Eiliana')->subject('Invoice for Client');
+             });
+
+        } else {
+            $response['success'] = '2';
+            $response['errors'] = 'You are already generate invoice';
+        }
+        return response()->json($response);
     }
 
 }

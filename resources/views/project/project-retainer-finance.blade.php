@@ -59,7 +59,7 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="project_leads_id" value="{{ $projectlead->project_leads_id }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label>Rate Per Month({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                            <label>Rate Per Month</label><small>({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
                                             @if($projectlead->projectdetail->referral_id != '0')
                                                <input class="form-control" type="text" name="total_proposal_value" value="{{ $projectlead->total_proposal_value }}" readonly>
                                             @else
@@ -82,16 +82,16 @@ type="text/css"/>
                                     <div class="form-row">
                                         @if($projectlead->projectdetail->referral_id != '0')
                                             <div class="form-group col-6">
-                                                <label>Sales Commission(%):</label>
-                                                <input class="form-control" type="text" name="sales_commision" value="{{ $projectlead->sales_comm_amount }}" readonly>
+                                                <label>Sales Commission</label><small>({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
+                                                <input class="form-control" type="text" name="sales_commision" value="{{ $total_commission }}" readonly>
                                             </div>
                                             <div class="form-group col-6">
-                                                <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                                <label>Total Advance Payment</label><small>(Including GST)({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
                                                 <input type="text" class="form-control" name="advance_payment_details" value="{{ $total_price }}" readonly>
                                             </div>
                                         @else
                                             <div class="form-group col-12">
-                                                <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                                <label>Total Advance Payment</label><small>(Including GST)({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
                                                 <input type="text" class="form-control" name="advance_payment_details" value="{{ $total_price }}" readonly>
                                             </div>
                                         @endif

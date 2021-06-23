@@ -140,8 +140,9 @@ class ClientController extends JoshController
 
     public function myProject()
     {
-        $project_ids = Project::with('projectbidresponse','projectamount')->where('posted_by_user_id', Sentinel::getUser()->id)->paginate(10);
-       //return $project_ids;
+        $project_ids = ProjectLeads::with('projectdetail','projectdetail.projectamount','fromuser')->where('lead_status', '!=' ,'1')->paginate(10);
+        //$project_ids = Project::with('projectbidresponse','projectamount')->where('posted_by_user_id', Sentinel::getUser()->id)->paginate(10);
+        //return $project_ids;
         return view('client/myproject', compact('project_ids'));
     }
 
@@ -164,7 +165,7 @@ class ClientController extends JoshController
     {
 
         $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
-        // return $projectlead;
+        //return $projectlead;
         return view('client/project-schedule', compact('projectlead'));
     }
 
@@ -260,10 +261,6 @@ class ClientController extends JoshController
                 //     $m->to($data['email'], 'Eiliana')->subject('OTP for Eiliana');
                 // });
 
-                $response['success'] = '1';
-                $response['msg'] = 'Proposal Schedule Accepted successfully';
-                $user = User::find($projects->posted_by_user_id);
-
                 if($input['pricing_model'] == '1')
                 {
                     $url = '/client/project-contract-details/'. $projectschedules->project_leads_id;
@@ -276,6 +273,11 @@ class ClientController extends JoshController
                 {
                     $url = '/client/project-contract-details/'. $projectschedules->project_leads_id;
                 }
+
+                $response['success'] = '1';
+                $response['msg'] = 'Proposal Schedule Accepted successfully';
+                $response['url'] = $url;
+                $user = User::find($projects->posted_by_user_id);
 
             } elseif($input['lead_status'] === '3') {
                 $projectleadsstatus = ProjectLeads::find($projectschedules->project_leads_id);
@@ -300,7 +302,7 @@ class ClientController extends JoshController
 
             $details = [
                 'greeting' => 'Hi '. $user->full_name,
-                'body' => 'You have response on your project schedule proposal',
+                'body' => 'You have response on your project payment schedule proposal',
                 'thanks' => 'Thank you for using eiliana.com!',
                 'actionText' => 'View My Site',
                 'actionURL' => $url,

@@ -242,6 +242,8 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
     Route::get('job_finance/edit/{id}', ['as'=> 'job_finance.edit', 'uses' => 'FinanceController@jobFinanceEdit']);
     Route::post('job_finance/job-assign-to-resource', 'FinanceController@JobAssignToResource')->name('job-assign-to-resource');
     
+    Route::post('finance/generate-invoice', 'FinanceController@generateInvoice')->name('generate-invoice');
+
     Route::get('resourceDetails', ['as'=> 'resourceDetails.index', 'uses' => 'FinanceController@resourceDetails']);
     Route::get('resourceDetails/edit/{id}', ['as'=> 'resourceDetails.edit', 'uses' => 'FinanceController@resourceDetailsEdit']);
 });

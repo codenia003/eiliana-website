@@ -966,8 +966,18 @@ class ProjectController extends JoshController
     {
         //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
         $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        
+        if($projectlead->projectdetail->referral_id != '0')
+        {
+            $installment = $projectlead->contractdetails->order_closed_value;
+            $commission = $projectlead->sales_comm_amount;
+            $total_commission = $installment * $commission/100;
+        }
+        else{
+            $total_commission = 0;
+        }
         //return $projectlead;
-        return view('project/project-finance', compact('projectlead'));
+        return view('project/project-finance', compact('projectlead','total_commission'));
     }
 
     public function projectRetainerFinance($id)
@@ -980,6 +990,10 @@ class ProjectController extends JoshController
             $price = $projectlead->total_proposal_value;
             $GST_amount = ($price * $gst_rate) / 100;
             $total_price = $price + $GST_amount;
+
+            $installment = $projectlead->contractdetails->order_closed_value;
+            $commission = $projectlead->sales_comm_amount;
+            $total_commission = $installment * $commission/100;
         }
         else
         {
@@ -987,9 +1001,10 @@ class ProjectController extends JoshController
             $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
             $GST_amount = ($price * $gst_rate) / 100;
             $total_price = $price + $GST_amount;
+            $total_commission = 0;
         }
         //return $projectlead;
-        return view('project/project-retainer-finance', compact('projectlead','total_price'));
+        return view('project/project-retainer-finance', compact('projectlead','total_price','total_commission'));
     }
 
     public function projectFinanceModify($id)

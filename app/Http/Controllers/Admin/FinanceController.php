@@ -55,13 +55,30 @@ class FinanceController extends Controller
         $finance =  ProjectLeads::with('projectdetail','projectdetail.projectCurrency','projectschedulee','projectschedulee.schedulemodulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
         $order_finances_id = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('project_leads_id', $id)->first();
         $country_name = Country::where('id', $order_finances_id->userprojects->projectdetail->companydetails->country)->first();
-        
-        $gst_rate = 18;
-        $price = number_format($finance->contractdetails->order_closed_value, 0, ".", "");
-        $GST_amount = ($price * $gst_rate) / 100;
-        $total_price = $price + $GST_amount;
+
+        if($finance->projectdetail->referral_id != '0') 
+        {
+            $gst_rate = 18;
+            $price = $finance->total_proposal_value;
+            $GST_amount = ($price * $gst_rate) / 100;
+            $total_price = $price + $GST_amount;
+
+            $installment = $finance->contractdetails->order_closed_value;
+            $commission = $finance->sales_comm_amount;
+            $total_commission = $installment * $commission/100;
+        }
+        else
+        {
+            $gst_rate = 18;
+            $price = number_format($finance->contractdetails->order_closed_value, 0, ".", "");
+            $GST_amount = ($price * $gst_rate) / 100;
+            $total_price = $price + $GST_amount;
+
+            $total_commission = 0;
+        }
+
         //return $order_finances_id;
-        return view('admin.finance.edit', compact('finance','order_finances_id','country_name','total_price'));
+        return view('admin.finance.edit', compact('finance','order_finances_id','country_name','total_price','total_commission'));
     }
 
     public function assignToResource(Request $request)
@@ -287,6 +304,34 @@ class FinanceController extends Controller
             $response['errors'] = 'You are already generate invoice';
         }
         return response()->json($response);
+    }
+
+    public function directOrderJob(Request $request)
+    {
+        $directOrderJobs = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','userjobs.jobdetail.by_user_job')->get();
+        //return $directOrderJobs;
+        return view('admin.directOrders.index', compact('directOrderJobs'));
+    }
+
+    public function directOrderProject(Request $request)
+    {
+        $directOrderProjects = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('referral_id', '=', '0')->get();
+        // return $directOrderProjects;
+        return view('admin.directOrders.project', compact('directOrderProjects'));
+    }
+
+    public function directOrdersEdit($id)
+    {
+        $finance =  ProjectLeads::with('projectdetail','projectdetail.projectCurrency','projectschedulee','projectschedulee.schedulemodulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+        $order_finances_id = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('project_leads_id', $id)->first();
+        $country_name = Country::where('id', $order_finances_id->userprojects->projectdetail->companydetails->country)->first();
+        
+        $gst_rate = 18;
+        $price = number_format($finance->contractdetails->order_closed_value, 0, ".", "");
+        $GST_amount = ($price * $gst_rate) / 100;
+        $total_price = $price + $GST_amount;
+
+        return view('admin.directOrders.edit', compact('finance','order_finances_id','country_name','total_price'));
     }
 
 }

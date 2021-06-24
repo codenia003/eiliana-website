@@ -969,7 +969,11 @@ class ProjectController extends JoshController
         
         if($projectlead->projectdetail->referral_id != '0')
         {
-            $installment = $projectlead->contractdetails->order_closed_value;
+            foreach($projectlead->contractdetails->paymentschedule as $paymentschedule){
+                $hours_purchase = $paymentschedule->hours_purchase;
+            }
+
+            $installment = $projectlead->contractdetails->order_closed_value * $hours_purchase;
             $commission = $projectlead->sales_comm_amount;
             $total_commission = $installment * $commission/100;
         }
@@ -1007,7 +1011,7 @@ class ProjectController extends JoshController
         return view('project/project-retainer-finance', compact('projectlead','total_price','total_commission'));
     }
 
-    public function projectFinanceModify($id)
+    public function projectBasedFinance($id)
     {
         //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
         $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
@@ -1017,6 +1021,10 @@ class ProjectController extends JoshController
             $price = $projectlead->total_proposal_value;
             $GST_amount = ($price * $gst_rate) / 100;
             $total_price = $price + $GST_amount;
+
+            $installment = $projectlead->contractdetails->order_closed_value;
+            $commission = $projectlead->sales_comm_amount;
+            $total_commission = $installment * $commission/100;
         }
         else
         {
@@ -1024,9 +1032,93 @@ class ProjectController extends JoshController
             $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
             $GST_amount = ($price * $gst_rate) / 100;
             $total_price = $price + $GST_amount;
+            $total_commission = 0;
         }
         //return $projectlead;
-        return view('project/project-finance-modify', compact('projectlead','total_price'));
+        return view('project/project-based-finance', compact('projectlead','total_price','total_commission'));
+    }
+
+    public function projectFinanceModify($id)
+    {
+        //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('fromuser','projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        
+        if($projectlead->contractdetails->model_engagement == '1')
+        {
+            if($projectlead->projectdetail->referral_id != '0')
+            {
+                $gst_rate = 18;
+                $price = $projectlead->total_proposal_value;
+                $GST_amount = ($price * $gst_rate) / 100;
+                $total_price = $price + $GST_amount;
+    
+                foreach($projectlead->contractdetails->paymentschedule as $paymentschedule){
+                    $hours_purchase = $paymentschedule->hours_purchase;
+                }
+    
+                $installment = $projectlead->contractdetails->order_closed_value * $hours_purchase;
+                $commission = $projectlead->sales_comm_amount;
+                $total_commission = $installment * $commission/100;
+            }
+            else
+            {
+                $gst_rate = 18;
+                $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
+                $GST_amount = ($price * $gst_rate) / 100;
+                $total_price = $price + $GST_amount;
+    
+                $total_commission = 0;
+            }
+        }
+        elseif($projectlead->contractdetails->model_engagement == '2')
+        {
+            if($projectlead->projectdetail->referral_id != '0')
+            {
+                $gst_rate = 18;
+                $price = $projectlead->total_proposal_value;
+                $GST_amount = ($price * $gst_rate) / 100;
+                $total_price = $price + $GST_amount;
+    
+                $installment = $projectlead->contractdetails->order_closed_value;
+                $commission = $projectlead->sales_comm_amount;
+                $total_commission = $installment * $commission/100;
+            }
+            else
+            {
+                $gst_rate = 18;
+                $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
+                $GST_amount = ($price * $gst_rate) / 100;
+                $total_price = $price + $GST_amount;
+    
+                $total_commission = 0;
+            }
+        }
+        else
+        {
+            if($projectlead->projectdetail->referral_id != '0')
+            {
+                $gst_rate = 18;
+                $price = $projectlead->total_proposal_value;
+                $GST_amount = ($price * $gst_rate) / 100;
+                $total_price = $price + $GST_amount;
+
+                $installment = $projectlead->contractdetails->order_closed_value;
+                $commission = $projectlead->sales_comm_amount;
+                $total_commission = $installment * $commission/100;
+            }
+            else
+            {
+                $gst_rate = 18;
+                $price = number_format($projectlead->contractdetails->order_closed_value, 0, ".", "");
+                $GST_amount = ($price * $gst_rate) / 100;
+                $total_price = $price + $GST_amount;
+
+                $total_commission = 0;
+            }
+        }
+
+        //return $projectlead;
+        return view('project/project-finance-modify', compact('projectlead','total_price','total_commission'));
     }
 
     public function sendProjectFinance(Request $request)
@@ -1039,7 +1131,7 @@ class ProjectController extends JoshController
             $orderfinmace = new ProjectOrderFinance;
             $orderfinmace->project_leads_id = $input['proposal_id'];
             $orderfinmace->contract_id = $input['contract_id'];
-            //$orderfinmace->invoice_id = $input['invoice_id'];
+            $orderfinmace->referral_id = $input['referral_id'];
             $orderfinmace->status = '1';
             $orderfinmace->save();
 
@@ -1085,11 +1177,21 @@ class ProjectController extends JoshController
                 $paymentschedule->status = '1';
                 $paymentschedule->save();
             }
-            elseif($input['model_engagement'] == '2')
+            else if($input['model_engagement'] == '2')
             {
                 $projectschedules = ProjectSchedule::find($input['proposal_id']);
                 $projectschedules->scope_of_work = $input['scope_of_work'];
                 $projectschedules->save();
+                
+                $paymentschedule = ProjectPaymentSchedule::find($input['proposal_id']);
+                $paymentschedule->status = '1';
+                $paymentschedule->save();
+            }
+            else
+            {
+                $projectschedulemodule = ProjectScheduleModule::where('project_schedule_id', '=', $input['project_schedule_id'])->first();
+                $projectschedulemodule->milestone_no = $input['milestone_no'];
+                $projectschedulemodule->save();
                 
                 $paymentschedule = ProjectPaymentSchedule::find($input['proposal_id']);
                 $paymentschedule->status = '1';

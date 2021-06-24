@@ -17,6 +17,8 @@ use Mail;
 use Session;
 use App\Models\User;
 use App\Models\Country;
+use App\Models\JobOrderFinance;
+use App\Models\Finance;
 use App\Models\SalesReferral;
 use App\Models\TeamUser;
 use App\Models\FreelanceReferral;
@@ -170,5 +172,19 @@ class SalesController extends JoshController
             $response['errors'] = 'You are already assign sales referral';
         }
         return response()->json($response);
+    }
+
+    public function salesReferralJob(Request $request)
+    {
+        $directOrderJobs = JobOrderFinance::with('userjobs','userjobs.jobdetail','userjobs.fromuser','userjobs.jobdetail.by_user_job')->get();
+        //return $directOrderJobs;
+        return view('admin.salesReferral.job', compact('directOrderJobs'));
+    }
+
+    public function salesReferralProject(Request $request)
+    {
+        $directOrderProjects = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('referral_id', '!=', '0')->get();
+        // return $directOrderProjects;
+        return view('admin.salesReferral.project', compact('directOrderProjects'));
     }
 }

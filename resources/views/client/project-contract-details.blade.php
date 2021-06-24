@@ -42,7 +42,8 @@
                             @if($projectlead->projectdetail->referral_id != '0') 
                                 <div class="form-group col-6">
                                     <label>Rate Per Month({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                    <input type="text" class="form-control" name="order_closed_value" value="{{ $projectlead->total_proposal_value }}" readonly>
+                                    {{--<input type="text" class="form-control" name="order_closed_value" value="{{ $projectlead->total_proposal_value }}" readonly>--}}
+                                    <input type="text" class="form-control" name="order_closed_value" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
                                 </div>
                             @else
                                 <div class="form-group col-6">

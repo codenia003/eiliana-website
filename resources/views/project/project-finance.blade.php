@@ -50,6 +50,7 @@ type="text/css"/>
                             <form action="{{ route('project-finance.send') }}" method="POST" id="educationForm">
                                 @csrf
                                 <input type="hidden" name="contract_id" value="{{ $projectlead->contractdetails->contract_id }}">
+                                <input type="hidden" name="referral_id" value="{{ $projectlead->projectdetail->referral_id }}">
                                 {{--<input type="hidden" name="invoice_id" value="{{ $projectlead->contractdetails->orderinvoice->order_invoice_id }}">--}}
                                 <div class="main-moudle">
                                     <div class="form-row">
@@ -59,11 +60,7 @@ type="text/css"/>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Per Hour Rate</label><small>({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
-                                            @if($projectlead->projectdetail->referral_id != '0')
-                                               <input class="form-control" type="text" name="total_proposal_value" value="{{ $projectlead->total_proposal_value }}" readonly>
-                                            @else
-                                               <input type="number" class="form-control" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
-                                            @endif
+                                            <input type="number" class="form-control" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-row">

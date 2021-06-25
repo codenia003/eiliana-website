@@ -306,10 +306,17 @@ class ClientController extends JoshController
                 'actionURL' => $url,
                 'main_id' => $projectschedules->project_leads_id
             ];
-
-            Notification::send($user, new UserNotification($details));
+            $response['url'] = $url;
+            // Notification::send($user, new UserNotification($details));
 
         } else {
+            if($projectschedulecheck->satuts == '2'){
+                $url = '/client/project-contract-details/'. $projectschedulecheck->project_leads_id;
+            } else {
+                $url = '/client/my-project/';
+            }
+            
+            $response['url'] = $url;
             $response['success'] = '3';
             $response['errors'] = 'You are already accept this proposal schedule';
         }

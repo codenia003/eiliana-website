@@ -89,8 +89,8 @@
                         </div>
                     </div>
                     @forelse ($projectlead->contractdetails->paymentschedule as $item)
-                    {{--<input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">--}}
-                    <input type="hidden" name="amount" id="amount" value="">
+                    <input type="hidden" name="amount" id="amount" value="{{ $item->installment_amount }}">
+                    {{-- <input type="hidden" name="amount" id="amount" value=""> --}}
                     <input type="hidden" name="payment_schedule_id" id="payment_schedule_id" value="{{ $item->payment_schedule_id }}">
                     @empty
                     <input type="hidden" name="amount" id="amount" value="0">

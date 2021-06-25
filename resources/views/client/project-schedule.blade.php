@@ -251,10 +251,10 @@ function projectleadSchedule(schedule_id,pricing_model,project_leads_id,lead_sta
                 // window.location.href = '/freelancer/my-opportunity';
             } else if (userCheck.success == '2') {
                 var msg = userCheck.msg;
-                var redirect = '/client/project-schedule/'+ project_leads_id;
+                var redirect = userCheck.url;
             } else {
                 var msg = userCheck.errors;
-                var redirect = '/client/project-schedule/'+ project_leads_id;
+                var redirect = userCheck.url;
                 // Swal.fire({
                 //     type: 'error',
                 //     title: 'Oops...',

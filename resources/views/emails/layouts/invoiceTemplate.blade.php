@@ -1,10 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <title>Eiliana Admin</title>
+    <title>Eiliana Invoice</title>
     <!-- Jquery Framework -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/invoice.css') }}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <!-- API 2 -->
     <script type="text/javascript" src="http://www.stampready.net/api2/api.js"></script>

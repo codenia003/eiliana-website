@@ -41,7 +41,7 @@ type="text/css"/>
                     <div class="card-header">
                         @if($job->referral_id != '0')  
                           <span class="h5 card-title font-weight-700"> Posted By: </span> 
-                          <span class="h5 font-weight-500" style="font-size: 16px;color: red;font-weight: bolder;">Eiliana Sales Referral Program</span></br></br>
+                          <span class="h5 font-weight-500" style="font-size: 19px;color: red;font-weight: 600;">Eiliana Sales Referral Program</span></br></br>
                         @endif
                         <span class="h5 card-title font-weight-700">{{ $job->job_title }}</span>
                         <div class="float-right font-weight-700 mt-1">

@@ -41,8 +41,9 @@
                             </div>
                             @if($projectlead->projectdetail->referral_id != '0') 
                                 <div class="form-group col-6">
-                                    <label>Rate Per Month + Sales Commission Amount({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                    <input type="text" class="form-control" name="order_closed_value" value="{{ $projectlead->total_proposal_value }}" readonly>
+                                    <label>Rate Per Month({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                    {{--<input type="text" class="form-control" name="order_closed_value" value="{{ $projectlead->total_proposal_value }}" readonly>--}}
+                                    <input type="text" class="form-control" name="order_closed_value" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
                                 </div>
                             @else
                                 <div class="form-group col-6">
@@ -52,14 +53,14 @@
                             @endif
                         </div>
 
-                        @if($projectlead->projectdetail->referral_id != '0') 
+                        {{--@if($projectlead->projectdetail->referral_id != '0') 
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label>Sales Commission Amount(%)</label>
                                     <input type="text" class="form-control" name="sales_comm_amount"  value="{{ $projectlead->sales_comm_amount }}" readonly>
                                 </div>
                             </div>
-                        @endif
+                        @endif--}}
 
                         <div class="form-row">
                             <div class="form-group col-6">

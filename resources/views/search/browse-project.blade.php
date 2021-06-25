@@ -59,16 +59,16 @@
                         <div class="contract-body">
                             <div class="row no-gutters">
                                 @if($project->referral_id != '0')
-                                    <div class="col-md-6">
+                                    <div class="col-md-7">
                                         <div class="mb-4">
                                             <span class="h5 card-title" style="font-weight: 600;"> Posted By: </span> 
-                                            <span class="h5 font-weight-500" style="font-size: 15px;color: red;font-weight: bolder;">Eiliana Sales Referral Program</span>
+                                            <span class="h5 font-weight-500" style="font-size: 19px;color: red;font-weight: 600;">Eiliana Sales Referral Program</span>
                                             <!-- <span class="display-5" style="font-size: 16px;">Posted By - Eiliana Sales Referral Program</span> -->
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="contract-profile mb-1 text-right">
-                                            <img src="{{ asset('assets/img/logo.png') }}" alt="..." class="img-fluid w-25"/>
+                                            <img src="{{ asset('assets/img/logo.png') }}" style="width: 90px !important;" alt="..." class="img-fluid w-25"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

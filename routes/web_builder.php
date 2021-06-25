@@ -31,6 +31,8 @@ Route::group(
 
         Route::get('project-retainer-finance/{id}', 'ProjectController@projectRetainerFinance')->name('project-retainer-finance');
 
+        Route::get('project-based-finance/{id}', 'ProjectController@projectBasedFinance')->name('project-based-finance');
+
         Route::get('project-finance-modify/{id}', 'ProjectController@projectFinanceModify')->name('project-finance-modify');
         Route::post('project-update-finance', 'ProjectController@updateProjectFinance')->name('project-finance.update');
 
@@ -242,6 +244,8 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
     Route::get('job_finance/edit/{id}', ['as'=> 'job_finance.edit', 'uses' => 'FinanceController@jobFinanceEdit']);
     Route::post('job_finance/job-assign-to-resource', 'FinanceController@JobAssignToResource')->name('job-assign-to-resource');
     
+    Route::post('finance/generate-invoice', 'FinanceController@generateInvoice')->name('generate-invoice');
+
     Route::get('resourceDetails', ['as'=> 'resourceDetails.index', 'uses' => 'FinanceController@resourceDetails']);
     Route::get('resourceDetails/edit/{id}', ['as'=> 'resourceDetails.edit', 'uses' => 'FinanceController@resourceDetailsEdit']);
 });
@@ -263,7 +267,19 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
 Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
 
     Route::get('salesReferral', ['as'=> 'salesReferral.index', 'uses' => 'SalesController@index']);
+    Route::get('salesReferral_job', ['as'=> 'salesReferral.job.index', 'uses' => 'SalesController@salesReferralJob']);
+    Route::get('salesReferral_project', ['as'=> 'salesReferral.project.index', 'uses' => 'SalesController@salesReferralProject']);
     Route::get('salesReferral/edit/{id}', ['as'=> 'salesReferral.edit', 'uses' => 'SalesController@edit']);
     Route::post('salesReferral/sales-referral-assign-to-client', 'SalesController@salesReferralAssignToClient')->name('sales-referral-assign-to-client');
     
 });
+
+Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
+
+    Route::get('directOrders_job', ['as'=> 'directOrders.job.index', 'uses' => 'FinanceController@directOrderJob']);
+    Route::get('directOrders_project', ['as'=> 'directOrders.project.index', 'uses' => 'FinanceController@directOrderProject']);
+    Route::get('directOrders_project/edit/{id}', ['as'=> 'directOrders.edit', 'uses' => 'FinanceController@directOrdersEdit']);
+    Route::post('directOrders/order-assign-to-client', 'FinanceController@assignToResource')->name('order-assign-to-client');
+    
+});
+

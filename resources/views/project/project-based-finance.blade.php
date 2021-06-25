@@ -60,8 +60,8 @@ type="text/css"/>
                                             <input type="text" class="form-control" name="project_leads_id" value="{{ $projectlead->project_leads_id }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label>Rate Per Month</label><small>({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
-                                            <input type="text" class="form-control" name="order_closed_value" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                                            <label>Per Project Amount({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                            <input type="number" class="form-control" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
                                         </div>
                                     </div>
 
@@ -71,45 +71,33 @@ type="text/css"/>
                                             <input class="form-control" type="text" name="date_acceptance" value="{{ $projectlead->contractdetails->date_acceptance }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label>Contract Duration  </label>
-                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->delivery_timeline }}" readonly>
+                                            <label>Milestone No.</label>
+                                            @foreach($projectlead->projectschedulee->schedulemodulee as $schedulemodulee)
+                                            <input type="number" class="form-control" name="milestone_no" value="{{ $schedulemodulee->milestone_no }}" readonly>
+                                            @endforeach
                                         </div>
                                     </div>
-                                    
-                                    <div class="form-row">
-                                        @if($projectlead->projectdetail->referral_id != '0')
-                                            <div class="form-group col-6">
+                                    @if($projectlead->projectdetail->referral_id != '0')
+                                        <div class="form-row">
+                                            <div class="form-group col-12">
                                                 <label>Sales Commission</label><small>({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
                                                 <input class="form-control" type="text" name="sales_commision" value="{{ $total_commission }}" readonly>
                                             </div>
-                                            <div class="form-group col-6">
-                                                <label>Total Advance Payment</label><small>(Including GST)({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
-                                                <input type="text" class="form-control" name="advance_payment_details" value="{{ $total_price }}" readonly>
-                                            </div>
-                                        @else
-                                            <div class="form-group col-12">
-                                                <label>Total Advance Payment</label><small>(Including GST)({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
-                                                <input type="text" class="form-control" name="advance_payment_details" value="{{ $total_price }}" readonly>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    
-                                    {{--<div class="form-row">
-                                        <div class="form-group col-12">
-                                            <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                            <input type="text" class="form-control" name="advance_payment_details" value="{{ $total_price }}" readonly>
+                                        </div>
+                                    @endif
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label>Paybale Amount </label><small>({{ $projectlead->projectdetail->projectCurrency->symbol }})</small>
+                                            @foreach($projectlead->projectschedulee->schedulemodulee as $schedulemodulee)
+                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $schedulemodulee->payable_amount }}" readonly>
+                                            @endforeach
                                         </div>
                                         <div class="form-group col-6">
-                                            <label>Resource name  </label>
-                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
+                                            <label>Total Advance Payment({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                            <input type="text" class="form-control order_closed_value" name="total_advance_payment" value="{{ $total_price }}" readonly>
                                         </div>
-                                    </div>--}}
-                                    {{--<div class="form-row">
-                                        <div class="form-group col-12">
-                                            <label>Ordering Company Name/Individual  </label>
-                                            <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
-                                        </div>
-                                    </div>--}}
+                                    </div>
+                                    
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Status</label>
@@ -122,42 +110,6 @@ type="text/css"/>
                                             </select>
                                         </div>
                                     </div>
-                                    {{-- <div class="form-group basic-info mb-3">
-                                        <label>Model Of Engagement:
-                                            <span>Hourly</span>
-                                        </label>
-                                    </div> --}}
-
-                                    {{--<h4 class="modal-title my-3">Customer Payment Schedules</h4>
-                                    @foreach ($projectlead->contractdetails->paymentschedule as $item)
-                                        <div class="form-row">
-                                            <div class="form-group col-3">
-                                                @if ($item->advance_payment == '1')
-                                                    <label>Advance Payment </label>
-                                                @else
-                                                    <label>{{ $item->installment_no }} Installment</label>
-                                                @endif
-                                                <input type="text" class="form-control" name="installment_amount" value="{{ $item->installment_amount }}" readonly>
-                                            </div>
-                                            <div class="form-group col-3">
-                                                <label>Payment Due Date</label>
-                                                <input class="form-control" type="text" name="payment_due_date" value="{{ $item->paymwnt_due_date }}" readonly>
-                                            </div>
-                                            <div class="form-group col-4">
-                                                <label>Hrs/Milestones/Remarks </label>
-                                                <input type="text" class="form-control" name="milestones_name" value="{{ $item->milestones_name }}" readonly>
-                                            </div>
-                                            <div class="form-group col-2">
-                                                <label>Status</label>
-                                                <select name="status[]" class="form-control" disabled>
-                                                    <option value="1" {{ ($item->status=='1')? "selected" : "" }}>Pending</option>
-                                                    <option value="2" {{ ($item->status=='2')? "selected" : "" }}>Paid</option>
-                                                    <option value="3" {{ ($item->status=='3')? "selected" : "" }}>Cancel</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                    --}}
                                 </div>
                                 <div class="form-group text-right mt-5" id="status">
                                     <span class="spinner-border spinner-border-sm mr-1 d-none"></span>

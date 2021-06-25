@@ -1,21 +1,21 @@
 @extends('admin/layouts/default')
 
 @section('title')
-Finances
+Project 
 @parent
 @stop
 @section('content')
   @include('common.errors')
     <section class="content-header">
-     <h1>Finances Edit</h1>
+     <h1>Project Edit</h1>
      <ol class="breadcrumb">
          <li>
              <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                  Dashboard
              </a>
          </li>
-         <li>Finances</li>
-         <li class="active">Edit Finance </li>
+         <li>Project</li>
+         <li class="active">Edit Project </li>
      </ol>
     </section>
     <section class="content">
@@ -25,13 +25,13 @@ Finances
               <div class="card border-primary">
                     <div class="card-header bg-primary text-white">
                         <h4 class="card-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                            Edit  Finance
+                            Edit  Project
                         </h4></div>
                     <br />
                 <div class="card-body">
-                {!! Form::model($finance, ['route' => ['admin.assign-to-resource', collect($finance)->first() ], 'method' => 'patch']) !!}
+                {!! Form::model($finance, ['route' => ['admin.order-assign-to-client', collect($finance)->first() ], 'method' => 'post']) !!}
 
-                @include('admin.finance.fields')
+                @include('admin.directOrders.fields')
 
                 {!! Form::close() !!}
                 </div>
@@ -41,7 +41,7 @@ Finances
     </div>
    </section>
  @stop
-@section('footer_scripts')
+ @section('footer_scripts')
     <script type="text/javascript">
         $(document).ready(function() {
             $("form").submit(function() {
@@ -59,7 +59,7 @@ Finances
         $('.spinner-border').removeClass("d-none");
         var gst_no = $(".gst_no").val();
         var pan_card = $(".pan_card").val();
-        var url = '/admin/finance/assign-to-resource';
+        var url = '/admin/directOrders/order-assign-to-client';
         var data= {
             _token: "{{ csrf_token() }}",
             order_finance_id: order_finance_id,

@@ -244,7 +244,7 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
     Route::get('job_finance/edit/{id}', ['as'=> 'job_finance.edit', 'uses' => 'FinanceController@jobFinanceEdit']);
     Route::post('job_finance/job-assign-to-resource', 'FinanceController@JobAssignToResource')->name('job-assign-to-resource');
     
-    Route::post('finance/generate-invoice', 'FinanceController@generateInvoice')->name('generate-invoice');
+    Route::get('finance/generate-invoice/{id}', 'FinanceController@generateInvoice')->name('generate-invoice');
 
     Route::get('resourceDetails', ['as'=> 'resourceDetails.index', 'uses' => 'FinanceController@resourceDetails']);
     Route::get('resourceDetails/edit/{id}', ['as'=> 'resourceDetails.edit', 'uses' => 'FinanceController@resourceDetailsEdit']);
@@ -266,7 +266,7 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
 
 Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => 'admin','as'=>'admin.'), function () {
 
-    Route::get('salesReferral', ['as'=> 'salesReferral.index', 'uses' => 'SalesController@index']);
+    Route::get('salesReferral_list', ['as'=> 'salesReferral.index', 'uses' => 'SalesController@index']);
     Route::get('salesReferral_job', ['as'=> 'salesReferral.job.index', 'uses' => 'SalesController@salesReferralJob']);
     Route::get('salesReferral_project', ['as'=> 'salesReferral.project.index', 'uses' => 'SalesController@salesReferralProject']);
     Route::get('salesReferral/edit/{id}', ['as'=> 'salesReferral.edit', 'uses' => 'SalesController@edit']);

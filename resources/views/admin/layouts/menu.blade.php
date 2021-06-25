@@ -183,10 +183,10 @@
                  Project
             </a>
         </li>
-        <li {!! (Request::is('admin/salesReferral*') ? 'class="active"' : '' ) !!}>
+        <li {!! (Request::is('admin/salesReferral_list*') ? 'class="active"' : '' ) !!}>
             <a href="{{ route('admin.salesReferral.index') }}">
                 <i class="fa fa-angle-double-right"></i>
-                 Sales Referral List
+                New Sales Referral Leads
             </a>
         </li>
     </ul>

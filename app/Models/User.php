@@ -49,10 +49,10 @@ class User extends EloquentUser
     {
         return Str::limit($this->first_name . ' ' . $this->last_name, 30);
     }
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
+    // public function country()
+    // {
+    //     return $this->belongsTo(Country::class);
+    // }
 
     public function usereducation()
     {
@@ -77,5 +77,10 @@ class User extends EloquentUser
     public function useremployers()
     {
         return $this->hasMany('App\Models\Employers', 'user_id', 'id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country', 'country', 'id');
     }
 }

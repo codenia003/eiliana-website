@@ -29,4 +29,9 @@ class ProjectLeads extends Model
     {
         return $this->hasOne('App\Models\ProjectContractDetails', 'project_leads_id', 'project_leads_id');
     }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country', 'country', 'id');
+    }
 }

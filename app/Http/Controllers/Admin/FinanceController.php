@@ -24,6 +24,7 @@ use App\Models\User;
 use App\Models\Country;
 use App\Models\ProjectLeads;
 use App\Notifications\UserNotification;
+use Carbon\Carbon;
 
 
 class FinanceController extends Controller
@@ -99,6 +100,54 @@ class FinanceController extends Controller
                 $user_details->pan_card_no = $input['pan_card'];
                 $user_details->gst_number = $input['gst_no'];
                 $user_details->save();
+
+                $ProjectInvoice = ProjectOrderInvoice::all();
+    
+                if(!empty($ProjectInvoice))
+                {
+                    $latest_invoice = ProjectOrderInvoice::latest()->first();
+                    $latest_invoice_no = substr($latest_invoice->invoice_no, 3, -6);
+                    $id = $latest_invoice_no + 1;
+                    $curr_year = date('y');
+                    $curr_year_to = (int) $curr_year + 1;
+                    $invoice_no = 'EL/00'.$id.'/'.$curr_year.-$curr_year_to;
+                }
+                else
+                {
+                    $curr_year = date('y');
+                    $curr_year_to = (int) $curr_year + 1;
+                    $invoice_no = 'EL/001/'.$curr_year.-$curr_year_to;
+                }
+
+                
+                $order_finances = Finance::where('project_leads_id', '=', $input['project_leads_id'])->first();
+                $projectlead = ProjectLeads::with('contractdetails')->where('project_leads_id', $input['project_leads_id'])->first();
+                
+                $projectorderinvoice = new ProjectOrderInvoice;
+                $projectorderinvoice->project_leads_id = $input['project_leads_id'];
+                $projectorderinvoice->contract_id = $order_finances->contract_id;
+                $projectorderinvoice->invoice_no = $invoice_no;
+
+                if($projectlead->contractdetails->model_engagement == '1')
+                {
+                    $projectorderinvoice->invoice_amount = $input['total_advance_payment'];
+                }
+                else
+                {
+                    $projectorderinvoice->invoice_amount = $input['total_price'];
+                }
+
+                
+                $projectorderinvoice->invoice_due_date = Carbon::today()->toDateString();
+                //$projectorderinvoice->invoice_milestones = $input['invoice_milestones'];
+                $projectorderinvoice->status = '1';
+                $projectorderinvoice->save();
+
+            // Mail::send('emails.emailTemplates.invoice', $data, function ($m) use ($data) {
+            //     $m->from('info@eiliana.com', 'Eiliana Invoice');
+            //     $m->to($data['email'], 'Eiliana')->subject('Invoice for Client');
+            //  });
+    
                 
                 $response['success'] = '1';
                 $response['msg'] = 'Assign Finance Resource successfully';
@@ -251,59 +300,12 @@ class FinanceController extends Controller
         return view('admin.resourceDetails.edit', compact('resources'));
     }
 
-    public function generateInvoice(Request $request)
+    public function generateInvoice($id)
     {
-        $input = $request->except('_token');
-        $response['success'] = '0';
-
-        $projectorderinvoice_statuscheck = ProjectOrderInvoice::where('project_leads_id', '=', $input['project_leads_id'])->where('status', '=', '1')->first();
-        if ($projectorderinvoice_statuscheck === null) {
-
-            $latest_invoice = ProjectOrderInvoice::latest()->first();
-            $latest_invoice_no = substr($latest_invoice->invoice_no,4,-4);
-
-            if(!empty($latest_invoice_no))
-            {
-                $invoice_no = 'Eil-' . (str_pad((int)$latest_invoice_no + 1, 4, '0', STR_PAD_LEFT));
-            }
-            else
-            {
-                $invoice_no = 'Eil-0001';
-            }
-
-            $order_finances = Finance::where('project_leads_id', '=', $input['project_leads_id'])->first();
-            $order_finances_id = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('project_leads_id', '=', $input['project_leads_id'])->first();
-            
-            $projectorderinvoice = new ProjectOrderInvoice;
-            $projectorderinvoice->project_leads_id = $input['project_leads_id'];
-            $projectorderinvoice->contract_id = $order_finances->contract_id;
-            $projectorderinvoice->invoice_no = $invoice_no;
-            $projectorderinvoice->invoice_amount = $input['total_advance_payment'];
-            //$projectorderinvoice->invoice_due_date = $input['invoice_due_date'];
-            //$projectorderinvoice->invoice_milestones = $input['invoice_milestones'];
-            $projectorderinvoice->status = '1';
-            $projectorderinvoice->save();
-
-            $data['email'] = $order_finances_id->userprojects->projectdetail->companydetails->email;
-            $data['invoice_amount'] = $input['total_advance_payment'];
-            $data['invoice_no'] = $invoice_no;
-            $data['created_at'] = $projectorderinvoice->created_at;
-
-            if($input['status'] === '2'){
-                $response['success'] = '1';
-                $response['msg'] = 'Invoice generate successfully';
-            }
-
-            Mail::send('emails.emailTemplates.invoice', $data, function ($m) use ($data) {
-                $m->from('info@eiliana.com', 'Eiliana Invoice');
-                $m->to($data['email'], 'Eiliana')->subject('Invoice for Client');
-             });
-
-        } else {
-            $response['success'] = '2';
-            $response['errors'] = 'You are already generate invoice';
-        }
-        return response()->json($response);
+        $invoice_data =  ProjectLeads::with('projectdetail','projectdetail.companydetails','projectdetail.projectCurrency','projectschedulee','projectschedulee.schedulemodulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        $country_name = Country::where('id', $invoice_data->projectdetail->companydetails->country)->first();
+        //return $invoice_data;
+        return view('admin.finance.invoice', compact('invoice_data','country_name'));
     }
 
     public function directOrderJob(Request $request)

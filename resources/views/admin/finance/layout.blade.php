@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -10,22 +9,27 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         @section('title')
-            | Eiliana Admin
+            | Eiliana Invoice
         @show
     </title>
 
     <!-- global css -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}"  rel="stylesheet" type="text/css" />
-    <link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('vendors/iCheck/css/all.css') }}"  rel="stylesheet" type="text/css" />
+    
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/invoice.css') }}">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <!-- API 2 -->
+    <script type="text/javascript" src="http://www.stampready.net/api2/api.js"></script>
     <!-- end of global css -->
 
     <!--page level css-->
     @yield('header_styles')
     <!--end of page level css-->
 <style>
+
+        @import url('https://fonts.googleapis.com/css?family=Montserrat');
+        @import url('https://fonts.googleapis.com/css?family=Open Sans');
 
         .container{
             margin-top:20px;
@@ -105,7 +109,7 @@
         </div>
         <div class="navbar-right toggle">
             <ul class="nav navbar-nav  list-inline">
-                @include('admin.layouts._messages')
+                
                 @include('admin.layouts._notifications')
                 <li class=" nav-item dropdown user user-menu">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -236,8 +240,7 @@
         <div id="notific">
         @include('notifications')
         </div>
-
-                <!-- Content -->
+         <!-- Content -->
         @yield('content')
 
     </aside>
@@ -257,3 +260,4 @@
         <!-- end page level js -->
 </body>
 </html>
+

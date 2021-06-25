@@ -103,7 +103,11 @@
         <input type="text" class="form-control" name="total_order_value" value="{{ $paymentschedule->payment_id }}" readonly>
 	</div>
     <div class="form-group col-6">
+    @if($finance->projectdetail->referral_id != '0') 
         <label>Total Advance Payment</label><small>(Including GST + Commission)({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+    @else
+       <label>Total Advance Payment</label><small>(Including GST)({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+    @endif
         <input type="text" class="form-control" name="total_order_value" value="{{ $paymentschedule->total_advance_payment }}" readonly>
 	</div>
 </div>
@@ -167,7 +171,11 @@
         @endforeach
     </div>
     <div class="form-group col-6">
+    @if($finance->projectdetail->referral_id != '0') 
         <label>Total Advance Payment</label><small>(Including GST + Commission)({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+    @else
+       <label>Total Advance Payment</label><small>(Including GST)({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+    @endif
         <input type="text" class="form-control" name="total_order_value" value="{{ $total_price }}" readonly>
 	</div>
 </div>
@@ -239,7 +247,11 @@
         @endforeach
     </div>
     <div class="form-group col-6">
+    @if($finance->projectdetail->referral_id != '0') 
         <label>Total Advance Payment</label><small>(Including GST + Commission)({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+    @else
+       <label>Total Advance Payment</label><small>(Including GST)({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+    @endif
         <input type="text" class="form-control" name="total_order_value" value="{{ $total_price }}" readonly>
 	</div>
 </div>
@@ -249,7 +261,7 @@
 <!-- Submit Field -->
 <div class="form-group text-right mt-5" style="text-align: left !important;">
 	<div class="btn-group" role="group">
-        <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="assignToResource('{{ $order_finances_id->order_finance_id }}','{{ $finance->projectdetail->posted_by_user_id }}','2')">
+        <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="assignToResource('{{ $order_finances_id->order_finance_id }}','{{ $finance->projectdetail->posted_by_user_id }}','{{ $finance->project_leads_id }}','{{ $paymentschedule->total_advance_payment }}','{{ $total_price }}','2')">
 			Accept 
 		</button>&nbsp;&nbsp;
     </div>
@@ -258,23 +270,9 @@
 			Modify
 		</button>&nbsp;&nbsp;
 	</div>
-    @if($finance->contractdetails->model_engagement == '1')
-        <div class="btn-group" role="group">
-            <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="GenerateBill('{{ $finance->project_leads_id }}','{{ $paymentschedule->total_advance_payment }}','2')">
-                Generate Bill 
-            </button>
-        </div>
-    @elseif($finance->contractdetails->model_engagement == '2')
-        <div class="btn-group" role="group">
-            <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="GenerateBill('{{ $finance->project_leads_id }}','{{ $total_price }}','2')">
-                Generate Bill 
-            </button>
-        </div>
-    @else
-        <div class="btn-group" role="group">
-            <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="GenerateBill('{{ $finance->project_leads_id }}','{{ $total_price }}','2')">
-                Generate Bill 
-            </button>
-        </div>
-    @endif
+    <div class="btn-group" role="group">
+        <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="GenerateBill('{{ $finance->project_leads_id }}')">
+            Send To Billing 
+        </button>
+    </div>
 </div>

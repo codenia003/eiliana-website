@@ -176,7 +176,7 @@
         @endforeach
     </div>
     <div class="form-group col-6">
-        <label>Total Advance Payment</label><small>(Including GST + Commission)({{ $finance->projectdetail->projectCurrency->symbol }})</small>
+        <label>Total Advance Payment</label><small>(Including GST)({{ $finance->projectdetail->projectCurrency->symbol }})</small>
         <input type="text" class="form-control" name="total_order_value" value="{{ $total_price }}" readonly>
 	</div>
 </div>
@@ -198,19 +198,19 @@
     @if($finance->contractdetails->model_engagement == '1')
         <div class="btn-group" role="group">
             <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="GenerateBill('{{ $finance->project_leads_id }}','{{ $paymentschedule->total_advance_payment }}','2')">
-                Generate Bill 
+                Send To Billing 
             </button>
         </div>
     @elseif($finance->contractdetails->model_engagement == '2')
         <div class="btn-group" role="group">
             <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="GenerateBill('{{ $finance->project_leads_id }}','{{ $total_price }}','2')">
-                Generate Bill 
+                Send To Billing 
             </button>
         </div>
     @else
         <div class="btn-group" role="group">
             <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="GenerateBill('{{ $finance->project_leads_id }}','{{ $total_price }}','2')">
-                Generate Bill 
+                Send To Billing 
             </button>
         </div>
     @endif

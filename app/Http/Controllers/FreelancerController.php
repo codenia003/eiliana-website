@@ -21,6 +21,8 @@ use App\Models\ProjectLeads;
 use App\Models\ContractualJobSchedule;
 use App\Models\ProjectSchedule;
 use App\Models\JobProposal;
+use App\Models\JobOrderFinance;
+use App\Models\Finance;
 use App\Models\ProjectScheduleModule;
 use App\Notifications\UserNotification;
 
@@ -74,6 +76,20 @@ class FreelancerController extends Controller
         $leads = JobLeads::with('jobdetail','jobdetail.technologys','jobcontractschedule')->where('from_user_id', Sentinel::getUser()->id)->paginate(10);
         //return $leads;
         return view('freelancer/myproposal', compact('leads'));
+    }
+
+    public function myDeliveryJob()
+    {
+        $delivery_job = JobOrderFinance::with('userjobs','userjobs.jobcontractschedule','userjobs.jobdetail','userjobs.fromuser','userjobs.jobdetail.by_user_job')->join('job_leads', 'job_leads.job_leads_id', '=', 'job_order_finance.job_leads_id')->where('job_leads.from_user_id', Sentinel::getUser()->id)->get();
+        // return $delivery_job;
+        return view('freelancer/mydeliveryjob', compact('delivery_job'));
+    }
+
+    public function myDeliveryProject()
+    {
+        $delivery_project = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->join('project_leads', 'project_leads.project_leads_id', '=', 'project_order_finance.project_leads_id')->where('project_leads.from_user_id', Sentinel::getUser()->id)->get();
+        // return $delivery_project;
+        return view(' freelancer/mydeliveryproject', compact('delivery_project'));
     }
 
     public function projectSchedule($id)
@@ -207,8 +223,8 @@ class FreelancerController extends Controller
         return redirect('/freelancer/contractual-job-inform/'. $input['job_leads_id'])->with('success', 'Contractual Job Proposal Completed');
     }
 
-    public function postProposalJobLead(Request $request){
-
+    public function postProposalJobLead(Request $request)
+    {
         $input = $request->except('_token');
         $response['success'] = '0';
         $proposaljobleadcheck = ContractualJobSchedule::where('job_schedule_id', '=', $input['job_schedule_id'])->where('satuts', '=', '2')->first();
@@ -318,6 +334,5 @@ class FreelancerController extends Controller
         return response()->json($response);
 
     }
-
 
 }

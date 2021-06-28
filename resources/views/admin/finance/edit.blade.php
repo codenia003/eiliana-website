@@ -151,7 +151,8 @@ Finances
     // }
 
     function GenerateBill(project_leads_id){
-        location.href = '/admin/finance/generate-invoice/'+ project_leads_id;
+        //location.href = '/admin/finance/generate-invoice/'+ project_leads_id;
+        location.href = '/admin/finance/billingPayment/'+ project_leads_id;
     }
 </script> 
 @stop

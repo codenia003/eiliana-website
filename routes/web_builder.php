@@ -239,12 +239,15 @@ Route::group(array('prefix' => 'admin/','namespace' => 'Admin','middleware' => '
     Route::get('finance', ['as'=> 'finances.index', 'uses' => 'FinanceController@index']);
     Route::get('finance/edit/{id}', ['as'=> 'finances.edit', 'uses' => 'FinanceController@edit']);
     //Route::put('finance/{id}', ['as'=> 'finances.update', 'uses' => 'FinanceController@update']);
+    Route::get('finance/billingPayment/{id}', 'FinanceController@billingPayment')->name('billing_payment');
     Route::post('finance/assign-to-resource', 'FinanceController@assignToResource')->name('assign-to-resource');
     Route::get('job_finance', ['as'=> 'job_finance.index', 'uses' => 'FinanceController@jobFinance']);
     Route::get('job_finance/edit/{id}', ['as'=> 'job_finance.edit', 'uses' => 'FinanceController@jobFinanceEdit']);
     Route::post('job_finance/job-assign-to-resource', 'FinanceController@JobAssignToResource')->name('job-assign-to-resource');
     
     Route::get('finance/generate-invoice/{id}', 'FinanceController@generateInvoice')->name('generate-invoice');
+
+    Route::post('finance/send-to-customer', 'FinanceController@sendToCustomer')->name('send-to-customer');
 
     Route::get('resourceDetails', ['as'=> 'resourceDetails.index', 'uses' => 'FinanceController@resourceDetails']);
     Route::get('resourceDetails/edit/{id}', ['as'=> 'resourceDetails.edit', 'uses' => 'FinanceController@resourceDetailsEdit']);

@@ -107,10 +107,11 @@ class FinanceController extends Controller
                 {
                     $latest_invoice = ProjectOrderInvoice::latest()->first();
                     $latest_invoice_no = substr($latest_invoice->invoice_no, 3, -6);
+
                     $id = $latest_invoice_no + 1;
                     $curr_year = date('y');
                     $curr_year_to = (int) $curr_year + 1;
-                    $invoice_no = 'EL/00'.$id.'/'.$curr_year.-$curr_year_to;
+                    $invoice_no = 'EL/'. sprintf('%03s', $id).'/'.$curr_year.-$curr_year_to;
                 }
                 else
                 {
@@ -334,6 +335,43 @@ class FinanceController extends Controller
         $total_price = $price + $GST_amount;
 
         return view('admin.directOrders.edit', compact('finance','order_finances_id','country_name','total_price'));
+    }
+
+    public function billingPayment($id)
+    {
+        //$finances = ProjectOrderInvoice::with('projectdetail','projectdetail.companydetails','projectdetail.projectCurrency','projectschedulee','projectschedulee.schedulemodulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule')->get();
+        $finance =  ProjectLeads::with('projectdetail','projectdetail.companydetails','projectdetail.projectCurrency','projectschedulee','projectschedulee.schedulemodulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        //return $finance;
+        return view('admin.finance.billing_payment_details', compact('finance'));
+    }
+
+    public function sendToCustomer(Request $request)
+    {
+
+        $input = $request->except('_token');
+        //$response['success'] = '0';
+        $finance =  ProjectLeads::with('projectdetail','projectdetail.companydetails','projectdetail.projectCurrency','projectschedulee','projectschedulee.schedulemodulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule')->where('project_leads_id', $input['project_leads_id'])->first();
+        $country_name = Country::where('id', $finance->projectdetail->companydetails->country)->first();
+        $order_finances_id = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('project_leads_id', $input['project_leads_id'])->first();
+        $data['country_name'] = $country_name->name;
+        $data['user_details'] = $finance;
+        //$data['email'] = $finance->projectdetail->companydetails->email;
+
+        $data['email'] = $finance->projectdetail->companydetails->email;
+        $data['email'] = $order_finances_id->userprojects->fromuser->email;
+       // $emails = [$email,$freelancer_email];
+
+        //return $data;
+        Mail::send('emails.emailTemplates.invoice', $data, function ($m) use ($data) {
+            $m->from('info@eiliana.com', 'Eiliana Invoice');
+            $m->to($data['email'], 'Eiliana')->subject('Invoice for Client');
+            
+        });
+         
+        $response['success'] = '1';
+        $response['msg'] = 'Invoice sent successfully';
+
+        return response()->json($response);
     }
 
 }

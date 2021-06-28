@@ -13,6 +13,10 @@
                         <td>
                             Invoice No: #{{ $invoice_data->contractdetails->orderinvoice->invoice_no }}<br />
                             Invoice date: {{ $invoice_data->contractdetails->orderinvoice->invoice_due_date }}<br />
+
+                            @if(!empty($invoice_data->projectdetail->companydetails->gst_number))
+                               GST No: {{ $invoice_data->projectdetail->companydetails->gst_number }}<br />
+                            @endif
                         </td>
                         
                     </tr>
@@ -63,6 +67,18 @@
                 @endforeach
             </tr>
 
+        @if($invoice_data->projectdetail->referral_id != 0)
+            <tr class="heading">
+                <td>Sales Commission</td>
+                <td> </td>
+            </tr>
+
+            <tr class="details">
+                <td></td>
+                <td>{{ $invoice_data->sales_comm_amount }}%</td>
+            </tr>
+        @endif    
+
         @elseif($invoice_data->contractdetails->model_engagement == '2') 
             <tr class="heading">
                 <td>Service Charge Per Month</td>
@@ -93,6 +109,19 @@
                 <td></td>
                 <td>0</td>
             </tr>
+
+            @if($invoice_data->projectdetail->referral_id != 0)
+                <tr class="heading">
+                    <td>Sales Commission</td>
+                    <td> </td>
+                </tr>
+
+                <tr class="details">
+                    <td></td>
+                    <td>{{ $invoice_data->sales_comm_amount }}%</td>
+                </tr>
+            @endif
+
         @else
             <tr class="heading">
                 <td>Service Charge</td>
@@ -115,6 +144,18 @@
                   <td>{{ $item->milestone_no }}</td>
                 @endforeach
             </tr>
+
+            @if($invoice_data->projectdetail->referral_id != 0)
+                <tr class="heading">
+                    <td>Sales Commission</td>
+                    <td> </td>
+                </tr>
+
+                <tr class="details">
+                    <td></td>
+                    <td>{{ $invoice_data->sales_comm_amount }}%</td>
+                </tr>
+            @endif
 
         @endif
 
@@ -149,7 +190,7 @@
         </tr> -->
 
         <tr class="heading">
-            <td>Total</td>
+            <td>Total Amount</td>
             <td></td>
         </tr>
         <tr class="total">
@@ -159,7 +200,7 @@
     </table>
     <div class="form-group text-right mt-5" style="text-align: left !important;">
         <div class="btn-group" role="group">
-            <button class="btn btn-primary" style="font-size: 17px !important;" type="button">
+            <button class="btn btn-primary" style="font-size: 16px !important;" type="button" onclick="sendToCustomer('{{ $invoice_data->project_leads_id }}')">
                 Send To Customer 
             </button>
         </div>

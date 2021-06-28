@@ -293,9 +293,11 @@
 			Modify
 		</button>&nbsp;&nbsp;
 	</div>
+    @if($order_finances_id->status == '2')
     <div class="btn-group" role="group">
         <button class="btn btn-primary" style="font-size: 17px !important;" type="button" onclick="GenerateBill('{{ $finance->project_leads_id }}')">
             Send To Billing 
         </button>
     </div>
+    @endif
 </div>

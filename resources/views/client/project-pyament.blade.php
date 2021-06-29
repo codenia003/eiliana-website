@@ -29,28 +29,143 @@
                     @csrf
                     <input type="hidden" name="contract_id" value="{{ $projectlead->contractdetails->contract_id }}">
                     <div class="main-moudle">
+                     
+                    @if($projectlead->contractdetails->model_engagement == '1')
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Proposal Id</label>
                                 <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
                             </div>
                             <div class="form-group col-6">
-                                <label>Order Closed Value</label>
-                                <input type="text" class="form-control" name="order_closed_value" value="{{ $projectlead->contractdetails->order_closed_value }}" readonly>
+                                <label>Per Hour Rate({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                <input type="number" class="form-control" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-6">
-                                <label>Date of Acceptance</label>
-                                <input class="form-control" type="text" name="date_acceptance" value="{{ $projectlead->contractdetails->date_acceptance }}" readonly>
-                            </div>
-                            <div class="form-group col-6">
-                                <label>Ordering Company Name/Individual  </label>
-                                <input type="text" class="form-control" name="ordering_com_name" value="{{ $projectlead->contractdetails->ordering_com_name }}" readonly>
+                            <div class="form-group col-12">
+                                <label>No Of Hours Purchase</label>
+                                @foreach($projectlead->contractdetails->paymentschedule as $paymentschedule)
+                                    <input type="text" class="form-control" name="total_order_value" value="{{ $paymentschedule->hours_purchase }}" readonly>
+                                @endforeach
                             </div>
                         </div>
-                        <h4 class="modal-title">Customer Payment Schedules</h4>
+
+                        @foreach($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Project Start Date</label>
+                                    <input class="form-control" type="text" name="actual_module_start_date" value="{{ $modulee->actual_module_start_date }}" readonly>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label> Module Scope</label>
+                                    <input type="text" name="module_scope" class="form-control" value="{{ $modulee->module_scope }}" readonly>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Module Status </label>
+                                    <select name="module_status[]" class="form-control" disabled>
+                                        <option value="1" {{ ($modulee->module_status=='1')? "selected" : "" }}>To be Started</option>
+                                        <option value="2" {{ ($modulee->module_status=='2')? "selected" : "" }}>In Progress</option>
+                                        <option value="3" {{ ($modulee->module_status=='3')? "selected" : "" }}>Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Remarks</label>
+                                    <textarea class="form-control" name="remarks" rows="4" readonly>{{ $modulee->module_remark }}</textarea>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    @elseif($projectlead->projectdetail->projectAmount->pricing_model == '2')
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>Proposal Id</label>
+                                <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Rate Per Month({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                <input type="number" class="form-control" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                            </div>
+                        </div>
+
+                        @foreach($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Project Start Date</label>
+                                    <input class="form-control" type="text" name="actual_module_start_date" value="{{ $modulee->actual_module_start_date }}" readonly>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label> Module Scope</label>
+                                    <input type="text" name="module_scope" class="form-control" value="{{ $modulee->module_scope }}" readonly>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Module Status </label>
+                                    <select name="module_status[]" class="form-control" disabled>
+                                        <option value="1" {{ ($modulee->module_status=='1')? "selected" : "" }}>To be Started</option>
+                                        <option value="2" {{ ($modulee->module_status=='2')? "selected" : "" }}>In Progress</option>
+                                        <option value="3" {{ ($modulee->module_status=='3')? "selected" : "" }}>Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Remarks</label>
+                                    <textarea class="form-control" name="remarks" rows="4" readonly>{{ $modulee->module_remark }}</textarea>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    @elseif($projectlead->projectdetail->projectAmount->pricing_model == '3')
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>Proposal Id</label>
+                                <input type="text" class="form-control" name="proposal_id" value="{{ $projectlead->project_leads_id }}" readonly>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Per Project Amount({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
+                                <input type="number" class="form-control" name="installment_amount" value="{{ number_format($projectlead->contractdetails->order_closed_value, 0, ".", "") }}" readonly>
+                            </div>
+                        </div>
+
+                        @foreach($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Project Start Date</label>
+                                    <input class="form-control" type="text" name="actual_module_start_date" value="{{ $modulee->actual_module_start_date }}" readonly>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label> Module Scope</label>
+                                    <input type="text" name="module_scope" class="form-control" value="{{ $modulee->module_scope }}" readonly>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Module Status </label>
+                                    <select name="module_status[]" class="form-control" disabled>
+                                        <option value="1" {{ ($modulee->module_status=='1')? "selected" : "" }}>To be Started</option>
+                                        <option value="2" {{ ($modulee->module_status=='2')? "selected" : "" }}>In Progress</option>
+                                        <option value="3" {{ ($modulee->module_status=='3')? "selected" : "" }}>Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Remarks</label>
+                                    <textarea class="form-control" name="remarks" rows="4" readonly>{{ $modulee->module_remark }}</textarea>
+                                </div>
+                            </div>
+                        @endforeach
+                        
+                        <!-- <h4 class="modal-title">Customer Payment Schedules</h4> -->
                         @foreach ($projectlead->contractdetails->paymentschedule as $item)
                             <div class="form-row">
                                 <div class="form-group col-4">
@@ -61,15 +176,17 @@
                                     @endif
                                     <input type="text" class="form-control" name="installment_amount" value="{{ $item->installment_amount }}" readonly>
                                 </div>
-                                <div class="form-group col-3">
+                                {{--<div class="form-group col-3">
                                     <label>Payment Due Date</label>
                                     <input class="form-control" type="text" name="payment_due_date" value="{{ $item->paymwnt_due_date }}" readonly>
+                                </div>--}}
+                                <div class="form-group col-4">
+                                    <label>Milestone No. </label>
+                                    @foreach($projectlead->projectschedulee->schedulemodulee as $schedulemodulee)
+                                       <input type="number" class="form-control" name="milestone_no" value="{{ $schedulemodulee->milestone_no }}" readonly>
+                                    @endforeach
                                 </div>
-                                <div class="form-group col-3">
-                                    <label>Hrs/Milestones/Remarks </label>
-                                    <input type="text" class="form-control" name="milestones_name" value="{{ $item->milestones_name }}" readonly>
-                                </div>
-                                <div class="form-group col-2">
+                                <div class="form-group col-4">
                                     <label>Status</label>
                                     <select name="status[]" class="form-control" disabled>
                                         <option value="1" {{ ($item->status=='1')? "selected" : "" }}>Pending</option>
@@ -79,6 +196,7 @@
                                 </div>
                             </div>
                         @endforeach
+                      @endif
                     </div>
                     @isset($next_installment->installment_amount)
 

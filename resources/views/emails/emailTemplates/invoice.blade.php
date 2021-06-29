@@ -131,7 +131,9 @@
 
             <tr class="details">
                 <td></td>
-                <td>{{ $user_details->projectdetail->projectCurrency->symbol }}{{ $user_details->bid_amount }}</td>
+                @foreach ($user_details->projectschedulee->schedulemodulee as $item)
+                  <td>{{ $user_details->projectdetail->projectCurrency->symbol }}{{ $item->payable_amount }}</td>
+                @endforeach
             </tr>
 
             <tr class="heading">

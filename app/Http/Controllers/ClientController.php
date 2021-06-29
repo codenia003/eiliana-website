@@ -546,10 +546,10 @@ class ClientController extends JoshController
     {
         $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
 
-        //$next_installment = ProjectPaymentSchedule::where('project_leads_id',$id)->where('status', '!=','2')->first();
+        $next_installment = ProjectPaymentSchedule::where('project_leads_id',$id)->where('status', '!=','2')->first();
 
         //return $projectlead;
-        return view('client/recommend', compact('projectlead'));
+        return view('client/project-pyament', compact('projectlead'));
     }
 
     public function ContractualJobInform($id)
@@ -1038,6 +1038,47 @@ class ClientController extends JoshController
         } else {
             $response['success'] = '2';
             $response['errors'] = 'You are already accept this';
+        }
+        return response()->json($response);
+    }
+
+    public function projectScheduleModuleStatus(Request $request)
+    {
+
+        $input = $request->except('_token');
+        $response['success'] = '0';
+
+        $projectschedulecheck = ProjectScheduleModule::where('project_schedule_module_id', '=', $input['module_id'])->where('status', '!=', '1')->first();
+        if ($projectschedulecheck === null) {
+
+            $projectschedule = ProjectScheduleModule::find($input['module_id']);
+            $projectschedule->status = $input['lead_status'];
+            $projectschedule->save();
+
+            if($input['lead_status'] == '2') {
+                $response['success'] = '1';
+                $response['msg'] = 'Project Schedule Module Accepted successfully';
+            }
+            else {
+                $response['success'] = '1';
+                $response['msg'] = 'Project Schedule Module Rejected successfully';
+            }
+
+            $user = User::find($input['to_user_id']);
+            $details = [
+                'greeting' => 'Hi '. $user->full_name,
+                'body' => 'You have response on your project schedule module status',
+                'thanks' => 'Thank you for using eiliana.com!',
+                'actionText' => 'View My Site',
+                'actionURL' => '/freelancer/my-project',
+                'main_id' => $input['module_id']
+            ];
+
+            Notification::send($user, new UserNotification($details));
+
+        } else {
+            $response['success'] = '2';
+            $response['errors'] = 'You are already process this schedule';
         }
         return response()->json($response);
     }

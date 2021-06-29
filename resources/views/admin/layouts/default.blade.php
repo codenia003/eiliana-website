@@ -19,7 +19,7 @@
     <link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}"  rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendors/iCheck/css/all.css') }}"  rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/invoice.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/invoice.css') }}"> -->
     <!-- end of global css -->
 
     <!--page level css-->

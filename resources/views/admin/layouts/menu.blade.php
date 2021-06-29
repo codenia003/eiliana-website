@@ -101,20 +101,20 @@
 <li {!! (Request::is('admin/finance*') || Request::is('admin/job_finance*') || Request::is('admin/resourceDetails*') ? 'class="active"' : '' ) !!}>
     <a href="#">
         <i class="livicon" data-name="doc-portrait" data-size="18" data-c="#67C5DF" data-hc="#67C5DF" data-loop="true"></i>
-        <span class="title">Finance</span>
+        <span class="title">Billing & Payment</span>
         <span class="fa arrow"></span>
     </a>
     <ul class="sub-menu">
         <li {!! (Request::is('admin/finance*') ? 'class="active"' : '' ) !!}>
             <a href="{{ route('admin.finances.index') }}">
                 <i class="fa fa-angle-double-right"></i>
-                Eiliana Project Finance
+                  Project Billing & Payment
             </a>
         </li>
          <li {!! (Request::is('admin/job_finance*') ? 'class="active"' : '' ) !!}>
             <a href="{{ route('admin.job_finance.index') }}">
                 <i class="fa fa-angle-double-right"></i>
-                Eiliana Job Finance
+                  Job Billing & Payment
             </a>
         </li>
         <li {!! (Request::is('admin/resourceDetails*') ? 'class="active"' : '' ) !!}>

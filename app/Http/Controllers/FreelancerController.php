@@ -155,7 +155,7 @@ class FreelancerController extends Controller
             $projectschedule->save();
 
             $response['success'] = '1';
-            $response['errors'] = 'Schedule Status changed successfully';
+            $response['msg'] = 'Schedule Status changed successfully';
 
             $user = User::find($input['to_user_id']);
 

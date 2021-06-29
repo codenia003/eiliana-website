@@ -130,7 +130,9 @@
 
             <tr class="details">
                 <td></td>
-                <td>{{ $invoice_data->projectdetail->projectCurrency->symbol }}{{ $invoice_data->bid_amount }}</td>
+                @foreach ($invoice_data->projectschedulee->schedulemodulee as $item)
+                  <td>{{ $invoice_data->projectdetail->projectCurrency->symbol }}{{ $item->payable_amount }}</td>
+                @endforeach
             </tr>
 
             <tr class="heading">

@@ -68,14 +68,16 @@
                         @endforelse
                     </div>
 
-                     <!-- <div class="form-group text-right mt-5">
+                     <div class="form-group text-right mt-5">
                         <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                         <div class="btn-group" role="group">
-                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','2')">Accept</button>
-                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','3')">Modify</button>
-                            <button class="btn btn-primary" type="button" onclick="projectleadSchedule('{{ $projectlead->projectschedulee->project_schedule_id }}','4')">Reject</button>
+                        @foreach($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                            <button class="btn btn-primary" type="button" onclick="projectScheduleModule('{{ $modulee->project_schedule_module_id }}','2')">Accept</button>
+                            {{--<button class="btn btn-primary" type="button" onclick="projectScheduleModule('{{ $projectlead->projectschedulee->project_schedule_id }}','3')">Modify</button>--}}
+                            <button class="btn btn-primary" type="button" onclick="projectScheduleModule('{{ $modulee->project_schedule_module_id }}','3')">Deny</button>
+                        @endforeach
                         </div>
-                    </div> -->
+                    </div>
                 </form>
             </div>
         </div>
@@ -86,12 +88,17 @@
 @section('profile_script')
 {{-- <x-chat-message/> --}}
 <script>
-function projectleadSchedule(schedule_id,lead_status){
+
+
+
+function projectScheduleModule(module_id,lead_status){
     $('.spinner-border').removeClass("d-none");
-    var url = '/client/project-lead-schedule';
+    var url = '/client/project-schedule-module-status';
+    var to_user_id = {{ $projectlead->from_user_id }};
     var data= {
         _token: "{{ csrf_token() }}",
-        schedule_id: schedule_id,
+        module_id: module_id,
+        to_user_id: to_user_id,
         lead_status: lead_status
     };
     $.ajax({

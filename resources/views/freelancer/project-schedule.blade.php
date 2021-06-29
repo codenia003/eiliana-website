@@ -57,7 +57,7 @@
                                 <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4" readonly>{{ $projectlead->projectschedulee->customer_objective }}</textarea>
                             </div>
                         </div>
-                        <div class="form-row">
+                        {{--<div class="form-row">
                             <div class="form-group col-6">
                                 <label>Project Start Date</label>
                                 <input class="form-control" type="text" name="project_start_date" value="{{ $projectlead->projectschedulee->project_start_date }}" readonly>
@@ -66,7 +66,38 @@
                                 <label>Project End Date</label>
                                 <input class="form-control" type="text" name="project_end_date" value="{{ $projectlead->projectschedulee->project_end_date }}" readonly>
                             </div>
-                        </div>
+                        </div>--}}
+
+                        @if($projectlead->projectdetail->projectAmount->pricing_model == '1')
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Hours Proposed</label>
+                                    <input class="form-control" type="text" name="hours_proposed_as" value="as per eiliana software" readonly>
+                                    <input class="form-control" type="hidden" name="hours_proposed" value="0">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Hours Approved</label>
+                                    <input class="form-control" type="text" name="hours_approved_as" value="as per eiliana software" readonly>
+                                    <input class="form-control" type="hidden" name="hours_approved" value="0" >
+                                </div>
+                            </div>
+                        @elseif($projectlead->projectdetail->projectAmount->pricing_model == '2')
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Agreed Scope Of Work</label>
+                                    <input class="form-control" type="text" name="scope_of_work" value="{{ $projectlead->projectschedulee->scope_of_work }}" readonly>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if($projectlead->projectdetail->referral_id != '0') 
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label>Total Proposal Value<small>({{ $projectlead->projectdetail->projectCurrency->symbol }})</small></label>
+                                    <input class="form-control" type="text" name="total_proposal_value" value="{{ $projectlead->total_proposal_value }}" readonly>
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="module-1">
@@ -79,7 +110,27 @@
                                         <input type="text" name="module_scope" class="form-control" value="{{ $modulee->module_scope }}" readonly>
                                     </div>
                                 </div>
-                                <div class="form-row">
+                                @if($projectlead->projectdetail->projectAmount->pricing_model == '3')
+                                    {{-- <h4 class="title">Customer Payment Schedules</h4> --}}
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label> Milestone No.</label>
+                                            @foreach($projectlead->projectschedulee->schedulemodulee as $schedulemodulee)
+                                               <input type="number" class="form-control" name="milestone_no" value="{{ $schedulemodulee->milestone_no }}" readonly>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label>Payable Amount</label>
+                                            @foreach($projectlead->projectschedulee->schedulemodulee as $schedulemodulee)
+                                               <input type="number" class="form-control" name="payable_amount" value="{{ $schedulemodulee->payable_amount }}" readonly>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                                {{--<div class="form-row">
                                     <div class="form-group col-6">
                                         <label>Module Start Date</label>
                                         <input class="form-control" type="text" name="module_start_date" value="{{ $modulee->module_start_date }}" readonly>
@@ -98,7 +149,7 @@
                                         <label>Hours Approved</label>
                                         <input class="form-control" type="text" name="hours_approved" value="{{ $modulee->hours_approved }}" readonly>
                                     </div>
-                                </div>
+                                </div>--}}
                                 @if ($modulee->project_schedule_module_id == $update_status)
                                     <div class="form-row">
                                         <div class="form-group col-6">
@@ -111,7 +162,7 @@
                                         </div>
                                         <div class="form-group col-6" id="start_picker">
                                             <label>Start Date</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="actual_module_start_date" id="actual_module_start_date" value="">
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="actual_module_start_date" id="actual_module_start_date" value="{{ $modulee->actual_module_start_date }}">
                                             <small class="help-block d-none">Start Date is required</small>
                                         </div>
                                         <div class="form-group col-12" id="remark_id">

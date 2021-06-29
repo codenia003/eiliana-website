@@ -132,7 +132,7 @@
 
 @elseif($finance->contractdetails->model_engagement == '2')
 {{-- pt retainer --}}
-    <h4 class="modal-title" style="font-size: 21px;" id="modalLabelnews1"> Installment Details</h4><br>
+    <h4 class="modal-title" style="font-size: 21px;" id="modalLabelnews1"> Customer Payment Schedule</h4><br>
     <div class="form-row">
         <div class="form-group col-6">
             <label>First Installment</label><small>({{ $finance->projectdetail->projectCurrency->symbol }})</small>
@@ -143,7 +143,7 @@
             <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->projectdetail->project_duration_min }}" readonly="">
         </div>
         <div class="form-group col-3">
-            <label>Billing Period To</label><small>(Month)</small>
+            <label>{{ $finance->projectdetail->project_duration_min }}
             <input type="text" class="form-control" name="name_of_lead_generator" value="{{ $finance->projectdetail->project_duration_max }}" readonly="">
         </div>
     </div>

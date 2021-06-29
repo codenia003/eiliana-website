@@ -23,6 +23,7 @@ use App\Models\ProjectSchedule;
 use App\Models\JobProposal;
 use App\Models\JobOrderFinance;
 use App\Models\Finance;
+use App\Models\Country;
 use App\Models\ProjectScheduleModule;
 use App\Notifications\UserNotification;
 
@@ -87,9 +88,41 @@ class FreelancerController extends Controller
 
     public function myDeliveryProject()
     {
-        $delivery_project = Finance::with('userprojects','userprojects.projectdetail','userprojects.fromuser','userprojects.projectdetail.companydetails')->join('project_leads', 'project_leads.project_leads_id', '=', 'project_order_finance.project_leads_id')->where('project_leads.from_user_id', Sentinel::getUser()->id)->get();
+        $delivery_project = Finance::with('userprojects','userprojects.projectdetail','userprojects.projectdetail.projectamount','userprojects.fromuser','userprojects.projectdetail.companydetails')->join('project_leads', 'project_leads.project_leads_id', '=', 'project_order_finance.project_leads_id')->where('project_leads.from_user_id', Sentinel::getUser()->id)->get();
         // return $delivery_project;
         return view(' freelancer/mydeliveryproject', compact('delivery_project'));
+    }
+
+    public function myDeliveryProjectView($id)
+    {
+        $delivery_project = Finance::with('userprojects','userprojects.projectdetail','userprojects.projectdetail.projectamount','userprojects.fromuser','userprojects.projectdetail.companydetails')->where('order_finance_id', $id)->first();
+
+        
+        $finance =  ProjectLeads::with('projectdetail','projectdetail.projectCurrency','projectschedulee','projectschedulee.schedulemodulee','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $delivery_project->project_leads_id)->first();
+        
+        // if($finance->projectdetail->referral_id != '0') 
+        // {
+        //     $gst_rate = 18;
+        //     $price = $finance->total_proposal_value;
+        //     $GST_amount = ($price * $gst_rate) / 100;
+        //     $total_price = $price + $GST_amount;
+
+        //     $installment = $finance->contractdetails->order_closed_value;
+        //     $commission = $finance->sales_comm_amount;
+        //     $total_commission = $installment * $commission/100;
+        // }
+        // else
+        // {
+        //     $gst_rate = 18;
+        //     $price = number_format($finance->contractdetails->order_closed_value, 0, ".", "");
+        //     $GST_amount = ($price * $gst_rate) / 100;
+        //     $total_price = $price + $GST_amount;
+
+        //     $total_commission = 0;
+        // }
+        
+        // return $delivery_project;
+        return view(' freelancer/mydeliveryprojectview', compact('delivery_project','finance'));
     }
 
     public function projectSchedule($id)

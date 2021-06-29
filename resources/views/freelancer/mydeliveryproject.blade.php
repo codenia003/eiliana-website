@@ -38,8 +38,8 @@ My Delivery Projects
             <th>Project Title</th>
             <th>Skills</th>
             <th>Client Name</th>
-            <th>Freelancer Name</th>
-            <th>Status Date</th>
+            <th>Mode of Engagement</th>
+            <th>More Action</th>
          </tr>
         </thead>
         <tbody>
@@ -49,8 +49,19 @@ My Delivery Projects
                 <td>{{ $delivry_project->userprojects->projectdetail->project_title }}</td>
                 <td>{{ $delivry_project->userprojects->projectdetail->key_skills }}</td>
                 <td>{{ $delivry_project->userprojects->projectdetail->companydetails->full_name }}</td>
-                <td>{{ $delivry_project->userprojects->fromuser->full_name }}</td>
-                <td>{{ \Carbon\Carbon::parse($delivry_project->created_at)->format('F d, Y') }}</td>
+                <td>
+                    @if ($delivry_project->userprojects->projectdetail->projectamount->pricing_model == '1')
+                        Hourly
+                    @elseif($delivry_project->userprojects->projectdetail->projectamount->pricing_model == '2')
+                        Retainership
+                    @else
+                        Project Amount
+                    @endif
+                </td>
+                {{-- <td>{{ \Carbon\Carbon::parse($delivry_project->created_at)->format('F d, Y') }}</td> --}}
+                <td>
+                    <a href="{{ route('delivery-project.view',$delivry_project->order_finance_id) }}"><i class="fas fa-info-circle"></i></a>
+                </td>
             </tr>
         @endforeach
         </tbody>

@@ -38,8 +38,8 @@ My Delivery Jobs
     <table class="table table-striped" id="myrequirement-table">
         <thead>
             <tr>
-                <th>Proposal Id</th>
-                <th>Customer Name</th>
+                <th>Id</th>
+                {{-- <th>Customer Name</th> --}}
                 <th>Resource Name</th>
                 <th>Date of Onboarding</th>
                 <th>Price Per Month</th>
@@ -50,7 +50,7 @@ My Delivery Jobs
             @foreach($delivery_job as $delvry_job)
             <tr>
                 <td>{{ $delvry_job->job_order_id }}</td>
-                <td>{{ $delvry_job->userjobs->fromuser->full_name }}</td>
+                {{-- <td>{{ $delvry_job->userjobs->fromuser->full_name }}</td> --}}
                 <td>{{ $delvry_job->userjobs->resource_name }}</td>
                 <td>{{ \Carbon\Carbon::parse($delvry_job->date_of_boarding)->format('F d, Y') }}</td>
                 <td>{{ $delvry_job->userjobs->price_per_month }}</td>

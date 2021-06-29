@@ -549,6 +549,7 @@ Route::group(
 
         Route::get('delivery-contract-job', 'FreelancerController@myDeliveryJob')->name('delivery-contract-job');
         Route::get('delivery-project', 'FreelancerController@myDeliveryProject')->name('delivery-project');
+        Route::get('delivery-project/{id}', 'FreelancerController@myDeliveryProjectView')->name('delivery-project.view');
 
         Route::post('proposal-project-status-change', 'FreelancerController@proposalProjectStatus')->name('proposal-project-status-change');
         Route::post('proposal-job-status-change', 'FreelancerController@proposalJobStatus')->name('proposal-job-status-change');

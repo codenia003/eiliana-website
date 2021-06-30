@@ -63,7 +63,7 @@ type="text/css"/>
                              <td></td>
                             @endif
                             <td>{{ $lead->subject }}</td>
-                            <td>{{ $lead->delivery_timeline }} Day</td>
+                            <td>{{ $lead->delivery_timeline }} Days</td>
                             <form action="" method="POST">
                                @csrf
                                 <td>

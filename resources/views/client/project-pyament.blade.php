@@ -28,6 +28,8 @@
                 <form action="{{ route('project-contract-payment') }}" method="POST" id="educationForm">
                     @csrf
                     <input type="hidden" name="contract_id" value="{{ $projectlead->contractdetails->contract_id }}">
+                    <input type="hidden" name="model_engagement" value="{{ $projectlead->contractdetails->model_engagement }}">
+
                     <div class="main-moudle">
                      
                     @if($projectlead->contractdetails->model_engagement == '1')
@@ -145,7 +147,7 @@
                             
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label> Module Scope</label>
+                                    <label><span class="module_num">{{ $key + 1 }}</span>. Module Scope</label>
                                     <input type="text" name="module_scope" class="form-control" value="{{ $modulee->module_scope }}" readonly>
                                 </div>
                                 <div class="form-group col-6">
@@ -157,6 +159,35 @@
                                     </select>
                                 </div>
                             </div>
+                            @foreach ($projectlead->contractdetails->paymentschedule as $item)
+                                <div class="form-row">
+                                    <div class="form-group col-4">
+                                        @if ($item->advance_payment == '1')
+                                            <label>Adv. Payment </label><small>(Excluding GST)</small>
+                                        @else
+                                            <label>{{ $key + 1 }} Installment</label><small>(Excluding GST)</small>
+                                        @endif
+                                        <input type="text" class="form-control" name="installment_amount" value="{{ $item->installment_amount }}" readonly>
+                                    </div>
+                                    {{--<div class="form-group col-3">
+                                        <label>Payment Due Date</label>
+                                        <input class="form-control" type="text" name="payment_due_date" value="{{ $item->paymwnt_due_date }}" readonly>
+                                    </div>--}}
+                                    <div class="form-group col-4">
+                                        <label>Milestone No. </label>
+                                        <input type="number" class="form-control" name="" value="{{ $modulee->milestone_no }}" readonly>
+                                        <input type="hidden" name="milestone_no" value="{{ $modulee->milestone_no }}">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label>Status</label>
+                                        <select name="status[]" class="form-control" disabled>
+                                            <option value="1" {{ ($item->status=='1')? "selected" : "" }}>Pending</option>
+                                            <option value="2" {{ ($item->status=='2')? "selected" : "" }}>Paid</option>
+                                            <option value="3" {{ ($item->status=='3')? "selected" : "" }}>Cancel</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            @endforeach
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label>Remarks</label>
@@ -166,8 +197,8 @@
                         @endforeach
                         
                         <!-- <h4 class="modal-title">Customer Payment Schedules</h4> -->
-                        @foreach ($projectlead->contractdetails->paymentschedule as $item)
-                            <div class="form-row">
+                        {{--@foreach ($projectlead->contractdetails->paymentschedule as $item)
+                            {{-- <div class="form-row">
                                 <div class="form-group col-4">
                                     @if ($item->advance_payment == '1')
                                         <label>Adv. Payment </label><small>(Excluding GST)</small>
@@ -175,15 +206,16 @@
                                         <label>{{ $item->installment_no }} Installment</label><small>(Excluding GST)</small>
                                     @endif
                                     <input type="text" class="form-control" name="installment_amount" value="{{ $item->installment_amount }}" readonly>
-                                </div>
+                                </div>--}}
                                 {{--<div class="form-group col-3">
                                     <label>Payment Due Date</label>
                                     <input class="form-control" type="text" name="payment_due_date" value="{{ $item->paymwnt_due_date }}" readonly>
                                 </div>--}}
-                                <div class="form-group col-4">
+                                {{--<div class="form-group col-4">
                                     <label>Milestone No. </label>
-                                    @foreach($projectlead->projectschedulee->schedulemodulee as $schedulemodulee)
-                                       <input type="number" class="form-control" name="milestone_no" value="{{ $schedulemodulee->milestone_no }}" readonly>
+                                    @foreach($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                                       <input type="number" class="form-control" name="milestone_no" value="{{ $modulee->milestone_no }}" readonly>
+                                       <input type="hidden" name="milestone_no" value="{{ $modulee->milestone_no }}">
                                     @endforeach
                                 </div>
                                 <div class="form-group col-4">
@@ -195,7 +227,7 @@
                                     </select>
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach--}}
                       @endif
                     </div>
                     @isset($next_installment->installment_amount)

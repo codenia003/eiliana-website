@@ -66,7 +66,7 @@ type="text/css"/>
 						<button class="btn times" data-dismiss="modal"><i class="fas fa-times"></i></button>
 						<div class="eiliana-logo">
 							<img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="SVG">
-							<h4>On Boardind</h4>
+							<h4>On Boarding</h4>
 							<div class="onboarding border-0 login-body">
 								<div class="form-row">
 									<div class="form-group col-12">

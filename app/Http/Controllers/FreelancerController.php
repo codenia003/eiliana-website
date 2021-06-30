@@ -25,6 +25,9 @@ use App\Models\JobOrderFinance;
 use App\Models\Finance;
 use App\Models\Country;
 use App\Models\ProjectScheduleModule;
+use App\Models\ProjectSubScheduleModule;
+use App\Models\ProjectContractDetails;
+use App\Models\ProjectPaymentSchedule;
 use App\Notifications\UserNotification;
 
 class FreelancerController extends Controller
@@ -131,6 +134,7 @@ class FreelancerController extends Controller
         // return $projectlead->projectschedulee->project_schedule_id;
         //return $projectlead;
         $update_status = ProjectScheduleModule::where('project_schedule_id',$projectlead->projectschedulee->project_schedule_id)->where('module_status', '!=','3')->first();
+        
         if(!empty($update_status)) {
             $update_status = $update_status->project_schedule_module_id;
         }
@@ -153,6 +157,18 @@ class FreelancerController extends Controller
             $projectschedule->module_status = $input['modulestatus'];
             $projectschedule->module_remark = $input['module_remark'];
             $projectschedule->save();
+
+            $project_contract_details = ProjectContractDetails::where('project_leads_id', '=', $input['lead_id'])->first();
+            
+            if($project_contract_details->model_engagement == '3')
+            {
+                $get_installment_no = ProjectPaymentSchedule::where('project_leads_id', '=', $input['lead_id'])->first();
+            
+                $project_payment_schedule = ProjectPaymentSchedule::find($get_installment_no->payment_schedule_id);
+                $project_payment_schedule->installment_no = $get_installment_no->installment_no + 1;
+                $project_payment_schedule->status = 1;
+                $project_payment_schedule->save();
+            }
 
             $response['success'] = '1';
             $response['msg'] = 'Schedule Status changed successfully';
@@ -190,6 +206,56 @@ class FreelancerController extends Controller
         $projectschedules = ProjectSchedule::find($input['project_schedule_id']);
         $projectschedules->satuts = '2';
         $projectschedules->save();
+
+        $insertedId = $projectschedules->project_schedule_id;
+
+        foreach ($input['module_id'] as $key => $value) {
+
+            if($input['module_id'] == '1'){
+                $current_pending = '1';
+            } else {
+                $current_pending = '0';
+            }
+
+            $schedulemodule = new ProjectScheduleModule;
+            $schedulemodule->project_schedule_id = $insertedId;
+            $schedulemodule->module_scope = $input['module_scope'][$key];
+            // $schedulemodule->module_start_date = $input['module_start_date'][$key];
+            // $schedulemodule->module_end_date = $input['module_end_date'][$key];
+            if($input['pricing_model'] == '3')
+            {
+                $schedulemodule->payable_amount = $input['payable_amount'][$key];
+                $schedulemodule->milestone_no = $input['milestone_no'][$key];
+            }
+            
+            // $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
+            // $schedulemodule->hours_approved = $input['hours_approved'][$key];
+            // $schedulemodule->modify_hours = $input['modify_hours'][$key];
+            //$schedulemodule->module_status = $input['module_status'][$key];
+            $schedulemodule->module_remark = $input['remarks'][$key];
+            $schedulemodule->current = $current_pending;
+            $schedulemodule->save();
+
+            $insertedScheduleId = $schedulemodule->project_schedule_module_id;
+
+            foreach ($input['sub_module_id'] as $key1 => $value1) {
+
+                if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
+
+                    $subschedulemodule = new ProjectSubScheduleModule;
+                    $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
+                    $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
+                    $subschedulemodule->module_description = $input['sub_module_description'][$key1];
+                    $subschedulemodule->module_status = $input['sub_module_status'][$key1];
+                    $subschedulemodule->save();
+                }
+            }
+        }
+
+
+        $projectschedule_module = ProjectScheduleModule::find($input['module_id']);
+        $projectschedule_module->milestone_no = $input['milestone_no'];
+        $projectschedule_module->save();
 
         return redirect('/freelancer/my-project')->with('success', 'Project Schedule Completed');
     }

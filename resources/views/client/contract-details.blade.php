@@ -121,6 +121,7 @@
                                 <label>Milestone No.</label>
                                 @foreach($projectlead->projectschedulee->schedulemodulee as $schedulemodulee)
                                     <input type="number" class="form-control" name="milestone_no" value="{{ $schedulemodulee->milestone_no }}" readonly>
+                                    <input type="hidden" name="milestone_no" value="{{ $schedulemodulee->milestone_no }}">
                                 @endforeach
                             </div>
                         </div>

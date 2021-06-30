@@ -32,6 +32,7 @@ use App\Models\EmployerType;
 use App\Models\Technology;
 use App\Models\Location;
 use App\Models\CustomerIndustry;
+use App\Models\Currency;
 use stdClass;
 
 class ProfileController extends JoshController
@@ -97,6 +98,7 @@ class ProfileController extends JoshController
         $locations = Location::all();
         $projectcategorys = ProjectCategory::where('parent_id', '0')->get();
         $subprojectcategorys = ProjectCategory::where('parent_id', '!=', '0')->get();
+        $currency = Currency::all();
 
         if (count($proexps) > 0) {
             $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
@@ -115,7 +117,7 @@ class ProfileController extends JoshController
         }
         //$designations = Designation::all();
         // print_r($childtechnologies);
-        return view('profile/prof-exp', compact('proexps','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework','locations','subprojectcategorys'));
+        return view('profile/prof-exp', compact('proexps','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework','locations','subprojectcategorys','currency'));
     }
 
     public function getframework(Request $request)
@@ -390,6 +392,7 @@ class ProfileController extends JoshController
             $professionalExperience->preferred_location = $input['preferred_location'];
             $professionalExperience->development_project = $input['development_project'];
             $professionalExperience->rateperhour = $input['rateperhour'];
+            $professionalExperience->currency_id = $input['currency_id'];
             $professionalExperience->indexing = $indexing;
             $professionalExperience->save();
 

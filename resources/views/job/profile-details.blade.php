@@ -155,21 +155,26 @@ Job Post
                                                                 <td class="heading">Project Type</td>
                                                                 <td>: {{ $project->projecttypes->name }}</td>
                                                             </tr>
+
+                                                            @isset($project->technologuname)
                                                             <tr>
                                                                 <td class="heading">Technology</td>
                                                                 <td>:  {{ $project->technologuname->technology_name }}</td>
-                                                            </tr>
-                                                            </tr>
+                                                            </tr>  
+                                                            @endisset
+
                                                             <tr>
                                                                 <td class="heading">Duration</td>
                                                                 <td>:  {{ $project->duration }}</td>
                                                             </tr>
-                                                            </tr>
+
+                                                            {{-- @isset($project->frameworkname)
                                                             <tr>
                                                                 <td class="heading">Framework</td>
                                                                 <td>:  {{ $project->frameworkname->technology_name }}</td>
                                                             </tr>
-                                                            </tr>
+                                                            @endisset --}}
+
                                                             <tr>
                                                                 <td class="heading">Customer Industry</td>
                                                                 <td>:  {{ $project->industry }}</td>

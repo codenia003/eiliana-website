@@ -391,9 +391,15 @@ class JobController extends JoshController
         $proexps = ProfessionalExperience::where('user_id', $id)->first();
         $projects = UserProject::with('projecttypes', 'technologuname', 'frameworkname')->where('user_id', $id)->get();
         $employers = Employers::where('user_id', $id)->get();
-        $staffingleadsid = ContractStaffingLeads::all()->last()->staffing_leads_id;
-        //$staffingleadsid = 0;
-        $staffingleadsid = $staffingleadsid + 1;
+        $staffingleadsid = ContractStaffingLeads::all()->last();
+     
+        if (!empty($staffingleadsid->staffing_leads_id)) {
+            $staffingleadsid = $staffingleadsid->staffing_leads_id + 1;
+        } else {
+            $staffingleadsid = 1;
+        }
+        
+        
 
         $staffingleadcheck = ContractStaffingLeads::where('from_user_id', '=', Sentinel::getUser()->id)->where('to_user_id', '=', $id)->first();
 

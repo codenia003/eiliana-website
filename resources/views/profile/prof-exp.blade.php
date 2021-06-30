@@ -143,9 +143,17 @@
                         @endif
                     </div>
                     <div class="form-row rateperhour {{ in_array(1, $model_engagement_new) ? "" : "d-none" }}">
-                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Rate Per Hour</label>
                             <input type="number" name="rateperhour" class="form-control" min="100" value="{{  $proexp->rateperhour }}"/>
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                            <label for="currency_id">Currency</label>
+                            <select class="form-control" name="currency_id" id="currency_id" required>
+                                @foreach ($currency as $currencies)
+                                    <option value="{{ $currencies->currency_id }}" {{ ($proexp->currency_id==$currencies->currency_id)? "selected" : "" }}>{{ $currencies->code }} - {{ $currencies->symbol}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     @endif
@@ -285,9 +293,17 @@
                         @endif
                     </div>
                     <div class="form-row rateperhour">
-                        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Rate Per Hour</label>
                             <input type="number" name="rateperhour" class="form-control" min="100" value="" />
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                            <label for="currency_id">Currency</label>
+                            <select class="form-control" name="currency_id" id="currency_id" required>
+                                @foreach ($currency as $currencies)
+                                    <option value="{{ $currencies->currency_id }}">{{ $currencies->code }} - {{ $currencies->symbol}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     @endif

@@ -110,21 +110,13 @@
                     </div>
 
                     <div class="module-1">
-                        @forelse ($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                        @forelse ($projectlead->projectschedulee->schedulemodulee1 as $key => $modulee)
                         <div class="module-3 remove-qual-1 submodule-1">
                             <input type="hidden" name="module_id[]" id="module_id" value="1">
                             <div class="form-row">
-                                <div class="form-group col-6">
-                                    <label><span class="module_num">{{ $key + 1 }}</span>. Module Scope</label>
+                                <div class="form-group col-12">
+                                    <label><span class="module_num">{{ $modulee->milestone_no }}</span>. Module Scope</label>
                                     <input type="text" name="module_scope[]" class="form-control" value="{{ $modulee->module_scope }}" readonly>
-                                </div>
-                                <div class="form-group col-6">
-                                    <label>Module Status</label>
-                                    <select name="module_status" class="form-control" id="module_status" disabled>
-                                        <option value="1" {{ ($modulee->module_status=='1')? "selected" : "" }}>Started</option>
-                                        <option value="2" {{ ($modulee->module_status=='2')? "selected" : "" }}>In Progress</option>
-                                        <option value="3" {{ ($modulee->module_status=='3')? "selected" : "" }}>Completed</option>
-                                    </select>
                                 </div>
                             </div>
                             @if($projectlead->projectdetail->projectAmount->pricing_model == '3')
@@ -211,13 +203,13 @@
                             @endif
 
                             <div class="sub-module-1">
-                                @foreach ($modulee->subschedulemodulee as  $key1 => $submodulee)
+                                @foreach ($modulee->subschedulemodulee1 as  $key1 => $submodulee)
                                     <div class="sub-module-3 remove-qual-1">
                                         <input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
                                         <input type="hidden" name="last_module_id[]" id="last_module_id" value="1">
                                         <div class="form-row">
                                             <div class="form-group col-12">
-                                                <label><span class="module_num">{{ $key + 1 }}</span>.<span class="sub_module_num">{{ $key1 + 1 }}</span>. Sub-module Scope</label>
+                                                <label><span class="module_num">{{ $modulee->milestone_no }}</span>.<span class="sub_module_num">{{ $key1 + 1 }}</span>. Sub-module Scope</label>
                                                 <input type="text" class="form-control" name="sub_module_scope[]" value="{{ $submodulee->module_scope }}" required>
                                             </div>
                                         </div>
@@ -252,10 +244,10 @@
                             </div>
                             @if(empty($update_status))
                                 @if($projectlead->projectdetail->projectAmount->pricing_model == '3')
-                                    <div class="mb-3 mt-3">
+                                    {{--<div class="mb-3 mt-3">
                                         <button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addSubModule('1')">Add Sub-Module <span class="fa fa-plus"></span></button>
                                         <button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0" onclick="removeSubModule('1')">Erase Sub-Module <span class="fas fa-times"></span></button>
-                                    </div>
+                                    </div>--}}
                                 @endif
                             @endempty
                         </div>
@@ -273,10 +265,10 @@
 
                     @if(empty($update_status))
                         @if($projectlead->projectdetail->projectAmount->pricing_model == '3')
-                            <div class="mb-3 mt-3">
+                            {{--<div class="mb-3 mt-3">
                                 <button class="btn btn-md btn-info btn-copy-ps" type="button">Add Module <span class="fa fa-plus"></span></button>
                                 <button type="button" class="remove-ps btn btn-md btn-info ml-3 rounded-0">Erase Module <span class="fas fa-times"></span></button>
-                            </div>
+                            </div>--}}
                         @endif
                         <div class="form-group text-right mt-5">
                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
@@ -312,7 +304,7 @@
                     <div class="form-row">
                         <div class="form-group col-12">
                             <label>Payable Amount</label>
-                            @foreach($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                            @foreach($projectlead->projectschedulee->schedulemodulee1 as $key => $modulee)
                               <input type="number" class="form-control" name="payable_amount[]" value="{{ $modulee->payable_amount }}" readonly>
                             @endforeach
                         </div>
@@ -386,10 +378,10 @@
                 </div>
             @if(empty($update_status))
                @if($projectlead->projectdetail->projectAmount->pricing_model == '3')
-                <div class="mb-3 mt-3" id="submodulebutton">
+               {{--<div class="mb-3 mt-3" id="submodulebutton">
                     <button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addSubModule('1')">Add Sub-Module <span class="fa fa-plus"></span></button>
                     <button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0" onclick="removeSubModule('1')">Erase Sub-Module <span class="fas fa-times"></span></button>
-                </div>
+                </div>--}}
                 @endif
             @endempty
             </div>
@@ -469,7 +461,7 @@ function sendToClient(module_id){
         lead_id: lead_id,
         project_schedule_id: project_schedule_id
     };
-    // console.log(data);
+   console.log(data);
     $.ajax({
         type: 'POST',
         url: url,

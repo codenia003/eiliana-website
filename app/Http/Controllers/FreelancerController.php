@@ -137,16 +137,33 @@ class FreelancerController extends Controller
         
         if(!empty($update_status)) {
             $update_status = $update_status->project_schedule_module_id;
+            //return $update_status;
         }
 
         return view('freelancer/project-schedule', compact('projectlead','update_status'));
 
     }
 
+    public function nextProjectScheduleModule($id)
+    {
+        $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
+        // return $projectlead->projectschedulee->project_schedule_id;
+        //return $projectlead;
+        $update_status = ProjectScheduleModule::where('project_schedule_id',$projectlead->projectschedulee->project_schedule_id)->where('module_status', '!=','3')->first();
+        
+        if(!empty($update_status)) {
+            $update_status = $update_status->project_schedule_module_id;
+            //return $update_status;
+        }
+
+        return view('freelancer/next_project_module', compact('projectlead','update_status'));
+    }
+
     public function projectScheduleUpdate(Request $request)
     {
 
         $input = $request->except('_token');
+        //return $input;die;
         $response['success'] = '0';
 
         $projectschedulecheck = ProjectScheduleModule::where('project_schedule_module_id', '=', $input['module_id'])->where('module_status', '==', $input['modulestatus'])->first();
@@ -160,7 +177,16 @@ class FreelancerController extends Controller
 
             $project_contract_details = ProjectContractDetails::where('project_leads_id', '=', $input['lead_id'])->first();
             
-            if($project_contract_details->model_engagement == '3')
+            if($project_contract_details->model_engagement == '2')
+            {
+                $get_installment_no = ProjectPaymentSchedule::where('project_leads_id', '=', $input['lead_id'])->first();
+            
+                $project_payment_schedule = ProjectPaymentSchedule::find($get_installment_no->payment_schedule_id);
+                $project_payment_schedule->installment_no = $get_installment_no->installment_no + 1;
+                $project_payment_schedule->status = 1;
+                $project_payment_schedule->save();
+            }
+            elseif($project_contract_details->model_engagement == '3')
             {
                 $get_installment_no = ProjectPaymentSchedule::where('project_leads_id', '=', $input['lead_id'])->first();
             
@@ -207,55 +233,55 @@ class FreelancerController extends Controller
         $projectschedules->satuts = '2';
         $projectschedules->save();
 
-        $insertedId = $projectschedules->project_schedule_id;
+        // $insertedId = $projectschedules->project_schedule_id;
 
-        foreach ($input['module_id'] as $key => $value) {
+        // foreach ($input['module_id'] as $key => $value) {
 
-            if($input['module_id'] == '1'){
-                $current_pending = '1';
-            } else {
-                $current_pending = '0';
-            }
+        //     if($input['module_id'] == '1'){
+        //         $current_pending = '1';
+        //     } else {
+        //         $current_pending = '0';
+        //     }
 
-            $schedulemodule = new ProjectScheduleModule;
-            $schedulemodule->project_schedule_id = $insertedId;
-            $schedulemodule->module_scope = $input['module_scope'][$key];
-            // $schedulemodule->module_start_date = $input['module_start_date'][$key];
-            // $schedulemodule->module_end_date = $input['module_end_date'][$key];
-            if($input['pricing_model'] == '3')
-            {
-                $schedulemodule->payable_amount = $input['payable_amount'][$key];
-                $schedulemodule->milestone_no = $input['milestone_no'][$key];
-            }
+        //     $schedulemodule = new ProjectScheduleModule;
+        //     $schedulemodule->project_schedule_id = $insertedId;
+        //     $schedulemodule->module_scope = $input['module_scope'][$key];
+        //     // $schedulemodule->module_start_date = $input['module_start_date'][$key];
+        //     // $schedulemodule->module_end_date = $input['module_end_date'][$key];
+        //     if($input['pricing_model'] == '3')
+        //     {
+        //         $schedulemodule->payable_amount = $input['payable_amount'][$key];
+        //         $schedulemodule->milestone_no = $input['milestone_no'][$key];
+        //     }
             
-            // $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
-            // $schedulemodule->hours_approved = $input['hours_approved'][$key];
-            // $schedulemodule->modify_hours = $input['modify_hours'][$key];
-            //$schedulemodule->module_status = $input['module_status'][$key];
-            $schedulemodule->module_remark = $input['remarks'][$key];
-            $schedulemodule->current = $current_pending;
-            $schedulemodule->save();
+        //     // $schedulemodule->hours_proposed = $input['hours_proposed'][$key];
+        //     // $schedulemodule->hours_approved = $input['hours_approved'][$key];
+        //     // $schedulemodule->modify_hours = $input['modify_hours'][$key];
+        //     //$schedulemodule->module_status = $input['module_status'][$key];
+        //     $schedulemodule->module_remark = $input['remarks'][$key];
+        //     $schedulemodule->current = $current_pending;
+        //     $schedulemodule->save();
 
-            $insertedScheduleId = $schedulemodule->project_schedule_module_id;
+        //     $insertedScheduleId = $schedulemodule->project_schedule_module_id;
 
-            foreach ($input['sub_module_id'] as $key1 => $value1) {
+        //     foreach ($input['sub_module_id'] as $key1 => $value1) {
 
-                if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
+        //         if ($input['sub_module_id'][$key1] == $input['module_id'][$key]) {
 
-                    $subschedulemodule = new ProjectSubScheduleModule;
-                    $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
-                    $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
-                    $subschedulemodule->module_description = $input['sub_module_description'][$key1];
-                    $subschedulemodule->module_status = $input['sub_module_status'][$key1];
-                    $subschedulemodule->save();
-                }
-            }
-        }
+        //             $subschedulemodule = new ProjectSubScheduleModule;
+        //             $subschedulemodule->project_schedule_module_id = $insertedScheduleId;
+        //             $subschedulemodule->module_scope = $input['sub_module_scope'][$key1];
+        //             $subschedulemodule->module_description = $input['sub_module_description'][$key1];
+        //             $subschedulemodule->module_status = $input['sub_module_status'][$key1];
+        //             $subschedulemodule->save();
+        //         }
+        //     }
+        // }
 
 
-        $projectschedule_module = ProjectScheduleModule::find($input['module_id']);
-        $projectschedule_module->milestone_no = $input['milestone_no'];
-        $projectschedule_module->save();
+        // $projectschedule_module = ProjectScheduleModule::find($input['module_id']);
+        // $projectschedule_module->milestone_no = $input['milestone_no'];
+        // $projectschedule_module->save();
 
         return redirect('/freelancer/my-project')->with('success', 'Project Schedule Completed');
     }

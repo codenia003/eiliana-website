@@ -1,74 +1,58 @@
-@extends('layouts/default')
-
-{{-- Page title --}}
-@section('title')
-Project Schedule
-@parent
-@stop
-
-{{-- page level styles --}}
-@section('header_styles')
-<!--page level css starts-->
-<link href="{{ asset('vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}" rel="stylesheet" />
-<link href="{{ asset('vendors/iCheck/css/all.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('vendors/sweetalert/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('vendors/select2/css/select2-bootstrap.css') }}">
-<link href="{{ asset('vendors/flatpickr/css/flatpickr.min.css') }}" rel="stylesheet"
-type="text/css"/>
-@yield('profile_css')
-<!--end of page level css-->
+@extends('profile/layout')
+@section('profile_css')
+<style>
+    .profile-basic button.btn-info span {
+        float: right;
+        font-size: 20px;
+        position: relative;
+        left: 5px;
+    }
+</style>
 @stop
 
 @section('top')
 <div class="bg-red">
-  	<div class="px-5 py-2">
-    	<div class="align-items-center">
-        	<span class="border-title"><i class="fa fa-bars"></i></span>
-        	<span class="h5 text-white">Project Schedule</span>
-         	<!-- <span class="h4 text-white float-right font-weight-light">75% <div class="loader"></div></span> -->
-    	</div>
-  	</div>
+    <div class="px-5 py-2">
+        <div class="align-items-center">
+            <span class="border-title"><i class="fa fa-bars"></i></span>
+            <span class="h5 text-white ml-2">Next Project Module: {{ $projectlead->projectdetail->project_title }}</span>
+        </div>
+    </div>
 </div>
 @stop
-{{-- content --}}
-@section('content')
-<div class="profile-setting">
-	<div class="container space-2">
-	    <div class="row">
-	        <div class="col-lg-8">
-	        	<div id="notific">
-		            @include('notifications')
-		        </div>
-	             <div class="singup-body login-body profile-basic project-schedule">
-					<div class="card">
-					<div class="bg-blue">
-						<div class="px-5 py-2">
-							<span class="h5 text-white" style="margin-left: -25px;">Project Schedule</span>
-						</div>
-					</div>
-						<div class="card-body p-4">
-							<form action="{{ route('projectschedule.update-modify') }}" method="POST" id="educationForm">
+@section('profile_content')
+<div class="profile-information">
+    <div id="notific">
+        @include('notifications')
+    </div>
+     <div class="singup-body login-body profile-basic">
+        <div class="card">
+        <div class="bg-blue">
+            <div class="px-5 py-2">
+                <span class="h5 text-white" style="margin-left: -25px;">Next Project Module</span>
+            </div>
+        </div>
+        <div class="card-body p-4">
+							<form action="{{ route('projectschedule.create') }}" method="POST" id="educationForm">
 								@csrf
-                                <input type="hidden" name="project_leads_id" value="{{ $projectleads->project_leads_id }}">
-                                <input type="hidden" name="project_schedule_id" value="{{ $projectleads->projectschedulee->project_schedule_id }}">
-                                <input type="hidden" name="pricing_model" value="{{ $projectleads->projectdetail->projectAmount->pricing_model }}">
+                                <input type="hidden" name="project_leads_id" value="{{ $projectlead->project_leads_id }}">
+                                <input type="hidden" name="pricing_model" value="{{ $projectlead->projectdetail->projectAmount->pricing_model }}">
 								<div class="main-moudle">
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Project Name</label>
-                                            <input type="text" class="form-control" name="project_title" value="{{ $projectleads->projectdetail->project_title }}" readonly>
+                                            <input type="text" class="form-control" name="project_title" value="{{ $projectlead->projectdetail->project_title }}" readonly>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Project Id</label>
-                                            <input type="text" class="form-control" name="project_id" value="{{ $projectleads->project_id }}" readonly>
+                                            <input type="text" class="form-control" name="project_id" value="{{ $projectlead->project_id }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group basic-info mb-3">
                                         <label>Type Of Project:
-                                                @if ($projectleads->projectdetail->type_of_project == '1')
+                                                @if ($projectlead->projectdetail->type_of_project == '1')
                                                 <span>Maintenance</span>
-                                                @elseif($projectleads->projectdetail->type_of_project == '2')
+                                                @elseif($projectlead->projectdetail->type_of_project == '2')
                                                 <span>New Development</span>
                                                 @else
                                                 <span>Maintenance Cum New Development</span>
@@ -78,7 +62,7 @@ type="text/css"/>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label>Customer Objective Of Project (Optional)</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4" required>{{ $projectleads->projectschedulee->customer_objective }}</textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="customer_objective" rows="4" required></textarea>
                                         </div>
                                     </div>
                                     {{-- <div class="form-group basic-info mb-3">
@@ -106,14 +90,14 @@ type="text/css"/>
                                     {{--<div class="form-row">
                                         <div class="form-group col-6">
                                             <label>Project Start Date</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_start_date" value="{{ $projectleads->projectschedulee->project_start_date }}" required>
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_start_date" value="" required>
                                         </div>
                                         <div class="form-group col-6">
                                             <label>Project End Date</label>
-                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="{{ $projectleads->projectschedulee->project_end_date }}" required>
+                                            <input class="flatpickr flatpickr-input form-control" type="text" name="project_end_date" value="" required>
                                         </div>
                                     </div>--}}
-                                    @if($projectleads->projectdetail->projectAmount->pricing_model == '1')
+                                    @if($projectlead->projectdetail->projectAmount->pricing_model == '1')
                                         <div class="form-row">
                                             <div class="form-group col-6">
                                                 <label>Hours Proposed</label>
@@ -126,76 +110,77 @@ type="text/css"/>
                                                 <input class="form-control" type="hidden" name="hours_approved" value="0" >
                                             </div>
                                         </div>
-                                    @elseif($projectleads->projectdetail->projectAmount->pricing_model == '2')
+                                    @elseif($projectlead->projectdetail->projectAmount->pricing_model == '2')
                                         <div class="form-row">
                                             <div class="form-group col-12">
                                                 <label>Agreed Scope Of Work</label>
-                                                <input class="form-control" type="text" name="scope_of_work" value="{{ $projectleads->projectschedulee->scope_of_work }}">
+                                                <input class="form-control" type="text" name="scope_of_work">
                                             </div>
                                         </div>
                                     @endif
 
-                                    @if($projectleads->projectdetail->referral_id != '0') 
+                                    @if($projectlead->projectdetail->referral_id != '0') 
                                         <div class="form-row">
                                             <div class="form-group col-12">
-                                                <label>Total Proposal Value<small>({{ $projectleads->projectdetail->projectCurrency->symbol }})</small></label>
-                                                <input class="form-control" type="text" name="total_proposal_value" value="{{ $projectleads->total_proposal_value }}" readonly>
+                                                <label>Total Proposal Value<small>({{ $projectlead->projectdetail->projectCurrency->symbol }})</small></label>
+                                                <input class="form-control" type="text" name="total_proposal_value" value="{{ $projectlead->total_proposal_value }}" readonly>
                                             </div>
                                         </div>
                                     @endif
                                 </div>
+                                
 
 								<div class="module-1">
-                                    @forelse ($projectleads->projectschedulee->schedulemodulee1 as $key => $modulee)
 									<div class="module-3 remove-qual-1 submodule-1">
 										<input type="hidden" name="module_id[]" id="module_id" value="1">
 										<div class="form-row">
 											<div class="form-group col-12">
-                                                <label><span class="module_num">{{ $modulee->milestone_no }}</span>. Module Scope</label>
-                                                <input type="text" name="module_scope[]" class="form-control" value="{{ $modulee->module_scope }}" readonly>
+												<label><span class="module_num">1</span>. Module Scope</label>
+												<input type="text" name="module_scope[]" class="form-control" required>
 											</div>
 										</div>
-                                        @if($projectleads->projectdetail->projectAmount->pricing_model == '3')
+                                        @if($projectlead->projectdetail->projectAmount->pricing_model == '3')
+                                           {{-- <h4 class="title">Customer Payment Schedules</h4> --}}
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label> Milestone No.</label>
-                                                    <select class="form-control" name="milestone_no[]" disabled>
+                                                    <select class="form-control milestone_no" name="milestone_no[]" required>
                                                         <option value=""> </option>
                                                         @for ($i = 1; $i < 101; $i++)
-                                                        <option value="{{ $i }}" {{ ($modulee->milestone_no == $i)? "selected" : "" }}>{{ $i }}</option>
+                                                        <option value="{{ $i }}">{{ $i }}</option>
                                                         @endfor
                                                     </select>
-                                                    <input type="hidden" name="milestone_no" value="{{ $modulee->milestone_no }}">
                                                 </div>
                                             </div>
+                                            
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label>Payable Amount</label>
-                                                    <input type="number" name="payable_amount[]" class="form-control" value="{{ $modulee->payable_amount }}" required>
+                                                    <input type="number" name="payable_amount[]" class="form-control" required>
                                                 </div>
                                             </div>
                                         @endif
 										{{--<div class="form-row">
 											<div class="form-group col-6">
 												<label>Module Start Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="{{ $modulee->module_start_date }}" required>
+												<input class="flatpickr flatpickr-input form-control" type="text" name="module_start_date[]" value="" required>
 											</div>
 											<div class="form-group col-6">
 												<label>Module End Date</label>
-												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="{{ $modulee->module_end_date }}" required>
+												<input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="" required>
 											</div>
-										</div>
-										<div class="form-row">
+										</div>--}}
+										{{-- <div class="form-row">
 											<div class="form-group col-6">
 												<label>Hours Proposed</label>
-												<input class="form-control" type="text" name="hours_proposed[]" value="{{ $modulee->hours_proposed }}" required>
+												<input class="form-control" type="text" name="hours_proposed[]" required>
 											</div>
 											<div class="form-group col-6">
 												<label>Hours Approved</label>
-												<input class="form-control" type="text" name="hours_approved[]" value="{{ $modulee->hours_approved }}" required>
+												<input class="form-control" type="text" name="hours_approved[]" required>
 											</div>
-										</div>
-										<div class="form-row">
+										</div> --}}
+										{{-- <div class="form-row">
 											<div class="form-group col-6">
 												<label>Modify Hours</label>
 												<input class="form-control" type="text" name="modify_hours[]">
@@ -213,58 +198,44 @@ type="text/css"/>
 										</div>
 
 										<div class="sub-module-1">
-                                            @foreach ($modulee->subschedulemodulee1 as  $key1 => $submodulee)
-                                                <div class="sub-module-3 remove-qual-1">
-                                                    <input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
-                                                    <input type="hidden" name="last_module_id[]" id="last_module_id" value="1">
-                                                    <div class="form-row">
-                                                        <div class="form-group col-12">
-                                                            <label><span class="module_num">{{ $modulee->milestone_no }}</span>.<span class="sub_module_num">{{ $key1 + 1 }}</span>. Sub-module Scope</label>
-                                                            <input type="text" class="form-control" name="sub_module_scope[]" value="{{ $submodulee->module_scope }}" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-12">
-                                                            <label>Sub-module Description</label>
-                                                            <textarea class="form-control" name="sub_module_description[]" rows="4" required>{{ $submodulee->module_description }}</textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row d-none">
-                                                        <div class="form-group col-6">
-                                                            <label>Sub-module Status (Optional)</label>
-                                                            <select name="sub_module_status[]" class="form-control" readonly>
-                                                                <option value="1">To be Started</option>
-                                                                <option value="2">In Progress</option>
-                                                                <option value="3">Completed</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    {{--<div class="form-row d-none">
-                                                        <div class="form-group col-6">
-                                                            <label>Sub-module Status (Optional)</label>
-                                                            <select name="sub_module_status[]" class="form-control" disabled>
-                                                                <option value="1" {{ ($submodulee->sub_module_status=='1')? "selected" : "" }}>To be Started</option>
-                                                                <option value="2" {{ ($submodulee->sub_module_status=='2')? "selected" : "" }}>In Progress</option>
-                                                                <option value="3" {{ ($submodulee->sub_module_status=='3')? "selected" : "" }}>Completed</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>--}}
-                                                </div>
-                                            @endforeach
+										    <div class="sub-module-3 remove-qual-1">
+												<input type="hidden" name="sub_module_id[]" id="sub_module_id" value="1">
+                                                <input type="hidden" name="last_module_id[]" id="last_module_id" value="1">
+												<div class="form-row">
+													<div class="form-group col-12">
+														<label><span class="module_num">1</span>.<span class="sub_module_num">1</span>. Sub-module Scope</label>
+														<input type="text" class="form-control" name="sub_module_scope[]" required>
+													</div>
+												</div>
+												<div class="form-row">
+													<div class="form-group col-12">
+														<label>Sub-module Description</label>
+                                                        <textarea class="form-control" name="sub_module_description[]" rows="4" required></textarea>
+													</div>
+												</div>
+												<div class="form-row d-none">
+													<div class="form-group col-6">
+														<label>Sub-module Status (Optional)</label>
+														<select name="sub_module_status[]" class="form-control" readonly>
+															<option value="1">To be Started</option>
+                                                            <option value="2">In Progress</option>
+                                                            <option value="3">Completed</option>
+														</select>
+													</div>
+												</div>
+											</div>
 										</div>
 										<div class="mb-3 mt-3">
 											<button class="btn btn-md btn-info btn-copy-sm" type="button" onclick="addSubModule('1')">Add Sub-Module <span class="fa fa-plus"></span></button>
 											<button type="button" class="remove-sm btn btn-md btn-info ml-3 rounded-0" onclick="removeSubModule('1')">Erase Sub-Module <span class="fas fa-times"></span></button>
 										</div>
 									</div>
-                                    @empty
-                                        <p>No data</p>
-                                    @endforelse
 								</div>
+
 								<div class="form-row">
                                     <div class="form-group col-12">
                                         <label>Remarks</label>
-                                        <textarea class="form-control" name="remarks" rows="4" required>{{ $projectleads->projectschedulee->remarks }}</textarea>
+                                        <textarea class="form-control" name="remarks" rows="4" required></textarea>
                                     </div>
                                 </div>
 								<div class="mb-3 mt-3">
@@ -282,9 +253,7 @@ type="text/css"/>
 								</div>
 							</form>
 						</div>
-					</div>
-				</div>
-				<div class="module-2 d-none">
+                        <div class="module-2 d-none">
 					<input type="hidden" name="module_id[]" id="module_id" value="0">
 					<div class="form-row">
                         <div class="form-group col-12">
@@ -292,17 +261,27 @@ type="text/css"/>
                             <input type="text" name="module_scope[]" class="form-control">
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-12">
-                            <label> Milestone No.</label>
-                            <select class="form-control" name="milestone_no[]" required>
-                                <option value=""> </option>
-                                @for ($i = 1; $i < 101; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                                @endfor
-                            </select>
+                    @if($projectlead->projectdetail->projectAmount->pricing_model == '3')
+                        {{-- <h4 class="title">Customer Payment Schedules</h4> --}}
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label> Milestone No.</label>
+                                <select class="form-control milestone_no" name="milestone_no[]" required>
+                                    <option value=""> </option>
+                                    @for ($i = 1; $i < 101; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label>Payable Amount</label>
+                                <input type="number" name="payable_amount[]" class="form-control" required>
+                            </div>
+                        </div>
+                    @endif
                     {{--<div class="form-row">
                         <div class="form-group col-6">
                             <label>Module Start Date</label>
@@ -313,7 +292,7 @@ type="text/css"/>
                             <input class="flatpickr flatpickr-input form-control" type="text" name="module_end_date[]" value="">
                         </div>
                     </div>--}}
-                    <div class="form-row">
+                    {{-- <div class="form-row">
                         <div class="form-group col-6">
                             <label>Hours Proposed</label>
                             <input class="form-control" type="text" name="hours_proposed[]">
@@ -322,7 +301,7 @@ type="text/css"/>
                             <label>Hours Approved</label>
                             <input class="form-control" type="text" name="hours_approved[]">
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="form-row">
                         <div class="form-group col-6">
                             <label>Modify Hours</label>
@@ -402,23 +381,99 @@ type="text/css"/>
                         </div>
                     </div>
                 </div>
-	        </div>
-			 @include('layouts.left')
-	    </div>
-	    <!-- End Row -->
-	</div>
+        </div>
+    </div>
 </div>
 @stop
-{{-- footer scripts --}}
-@section('footer_scripts')
-<!--global js starts-->
+
+@section('profile_script')
 <script src="{{ asset('vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendors/iCheck/js/icheck.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/assets/js/profile_custom.js') }}"></script>
 <script src="{{ asset('vendors/sweetalert/js/sweetalert2.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('vendors/select2/js/select2.js') }}"></script>
 <script src="{{ asset('vendors/flatpickr/js/flatpickr.min.js') }}" type="text/javascript"></script>
-@yield('profile_script')
+<script>
+function sendToClient(module_id){
+    // console.log(module_id);
+    $('.spinner-border').removeClass("d-none");
+    var url = '/freelancer/project-schedule-update';
+    var modulestatus = $('#module_status').find('option:selected').val();
+    var actual_module_start_date = $('#actual_module_start_date').val();
+    var module_remark = $('#module_remark').val();
+    var to_user_id = {{ $projectlead->projectdetail->posted_by_user_id }};
+    var lead_id = {{ $projectlead->project_leads_id }};
+    var project_schedule_id = {{ $projectlead->projectschedulee->project_schedule_id }};
+
+    if(actual_module_start_date.trim() == ''){
+        $("#start_picker").addClass("has-error");
+        $("#start_picker .help-block").removeClass("d-none");
+        $('.spinner-border').addClass("d-none");
+        return false;
+    }
+
+    if(module_remark.trim() == ''){
+        $("#remark_id").addClass("has-error");
+        $("#remark_id .help-block").removeClass("d-none");
+        $('.spinner-border').addClass("d-none");
+        return false;
+    }
+
+    var data= {
+        _token: "{{ csrf_token() }}",
+        module_id: module_id,
+        modulestatus: modulestatus,
+        actual_module_start_date: actual_module_start_date,
+        module_remark: module_remark,
+        to_user_id: to_user_id,
+        lead_id: lead_id,
+        project_schedule_id: project_schedule_id
+    };
+   console.log(data);
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: function(data) {
+            var userCheck = data;
+            $('.spinner-border').addClass("d-none");
+            if (userCheck.success == '1') {
+                // Swal.fire({
+                //     type: 'success',
+                //     title: 'Success...',
+                //     text: userCheck.msg,
+                //     showConfirmButton: false,
+                //     timer: 2000
+                // });
+                var msg = userCheck.msg;
+                var redirect = '';
+                //var redirect = '/freelancer/my-project';
+                
+                //window.location.href = '/freelancer/my-project';
+            } else {
+                var msg = userCheck.errors;
+                var redirect = '#';
+                // Swal.fire({
+                //     type: 'error',
+                //     title: 'Oops...',
+                //     text: userCheck.errors,
+                //     showConfirmButton: false,
+                //     timer: 3000
+                // });
+                // if (userCheck.success == '2') {
+                //     window.location.href = '/freelancer/my-opportunity';
+                // }
+            }
+            toggleRegPopup(msg,redirect);
+
+        },
+        error: function(xhr, status, error) {
+            console.log("error: ",error);
+        },
+    });
+}
+</script>
+
 <script>
     $('#educationForm').bootstrapValidator({});
     $(document).ready(function() {
@@ -527,7 +582,4 @@ type="text/css"/>
 		}
     }
 </script>
-
-<!--global js end-->
 @stop
-

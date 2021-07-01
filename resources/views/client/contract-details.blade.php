@@ -113,13 +113,13 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Payble Amount({{ $projectlead->projectdetail->projectCurrency->symbol }})</label>
-                                @foreach($projectlead->projectschedulee->schedulemodulee as $schedulemodulee)
+                                @foreach($projectlead->projectschedulee->schedulemodulee1 as $schedulemodulee)
                                     <input type="number" class="form-control" name="payable_amount" value="{{ $schedulemodulee->payable_amount }}" readonly>
                                 @endforeach
                             </div>
                             <div class="form-group col-6">
                                 <label>Milestone No.</label>
-                                @foreach($projectlead->projectschedulee->schedulemodulee as $schedulemodulee)
+                                @foreach($projectlead->projectschedulee->schedulemodulee1 as $schedulemodulee)
                                     <input type="number" class="form-control" name="milestone_no" value="{{ $schedulemodulee->milestone_no }}" readonly>
                                     <input type="hidden" name="milestone_no" value="{{ $schedulemodulee->milestone_no }}">
                                 @endforeach

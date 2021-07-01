@@ -14,4 +14,9 @@ class ProjectSchedule extends Model
     {
         return $this->hasMany('App\Models\ProjectScheduleModule', 'project_schedule_id', 'project_schedule_id');
     }
+
+    public function schedulemodulee1()
+    {
+        return $this->hasMany('App\Models\ProjectScheduleModule', 'project_schedule_id', 'project_schedule_id')->latest()->take(1);
+    }
 }

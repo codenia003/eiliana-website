@@ -173,6 +173,7 @@ class ClientController extends JoshController
     public function projectLeadSchedule(Request $request) {
 
         $input = $request->except('_token');
+        //return $input;die;
         $user = Sentinel::getUser();
         $response['success'] = '0';
 
@@ -219,15 +220,15 @@ class ClientController extends JoshController
                 if($input['pricing_model'] == '3')
                 {
                     
-                    $projectschedulemodules = ProjectScheduleModule::where('project_schedule_id', $projectschedules->project_schedule_id)->get();
-                    
-                    foreach($projectschedulemodules as $key => $modules){
+                    $projectschedulemodules = ProjectScheduleModule::where('project_schedule_id', $input['schedule_id'])->latest()->first();
+                    //return $projectschedulemodules;
+                    // foreach($projectschedulemodules as $key => $modules){
                         $paymentschedule = new ProjectPaymentSchedule;
                         $paymentschedule->project_leads_id = $projectschedules->project_leads_id;
                         $paymentschedule->contract_id = $insertedId;
                         $paymentschedule->advance_payment = '0';
                         $paymentschedule->installment_no = 1;
-                        $paymentschedule->installment_amount = $modules->payable_amount;
+                        $paymentschedule->installment_amount = $projectschedulemodules->payable_amount;
                         $paymentschedule->paymwnt_due_date = $paymentExpires;
                         $paymentschedule->milestones_name = 'NA';
                         $paymentschedule->status = '1';
@@ -240,7 +241,7 @@ class ClientController extends JoshController
                         $milestone_wise_payment->installment_amount = $paymentschedule->installment_amount;
                         $milestone_wise_payment->payment_id = '';
                         $milestone_wise_payment->save();
-                    }
+                    //}
                     
                 } else {
                     $paymentschedule = new ProjectPaymentSchedule;
@@ -258,8 +259,6 @@ class ClientController extends JoshController
                         $paymentschedule->installment_amount = $project_amounts->project_amount_to;
                     }
 
-                    //$paymentschedule->installment_amount = $project_amounts->project_amount_to;
-                    // $paymentschedule->milestones_name = $input['milestones_name'][$key];
                     $paymentschedule->status = '1';
                     $paymentschedule->save();
 
@@ -460,6 +459,27 @@ class ClientController extends JoshController
                     $paymentschedule->payment_id = $input['payment_id'];
                     $paymentschedule->save();
 
+                    $milestone_payment_check = MilestoneWisePayment::where('payment_schedule_id', $input['payment_schedule_id'])->first();
+                    
+                    if(empty($milestone_payment_check->payment_id))
+                    {
+                        $milestone_wise_payment = MilestoneWisePayment::where('payment_schedule_id', $input['payment_schedule_id'])->first();
+                        $milestone_wise_payment->payment_schedule_id = $paymentschedule->payment_schedule_id;
+                        $milestone_wise_payment->installment_no = $paymentschedule->installment_no;
+                        $milestone_wise_payment->installment_amount = $paymentschedule->installment_amount;
+                        $milestone_wise_payment->payment_id = $input['payment_id'];
+                        $milestone_wise_payment->save();
+                    }
+                    else{
+                        
+                        $milestone_wise_payment = new MilestoneWisePayment;
+                        $milestone_wise_payment->payment_schedule_id = $paymentschedule->payment_schedule_id;
+                        $milestone_wise_payment->installment_no = $paymentschedule->installment_no;
+                        $milestone_wise_payment->installment_amount = $paymentschedule->installment_amount;
+                        $milestone_wise_payment->payment_id = $input['payment_id'];
+                        $milestone_wise_payment->save();
+                    }
+
                     $url = '/project/project-based-finance/'. $input['proposal_id'];
                 }
                 else
@@ -469,15 +489,28 @@ class ClientController extends JoshController
                     $paymentschedule->payment_id = $input['payment_id'];
                     $paymentschedule->save();
 
-                    $milestone_wise_payment = new MilestoneWisePayment;
-                    $milestone_wise_payment->payment_schedule_id = $paymentschedule->payment_schedule_id;
-                    $milestone_wise_payment->installment_no = $paymentschedule->installment_no;
-                    $milestone_wise_payment->milestone_no = $input['milestone_no'];
-                    $milestone_wise_payment->installment_amount = $paymentschedule->installment_amount;
-                    $milestone_wise_payment->payment_id = $input['payment_id'];
-                    $milestone_wise_payment->save();
+                    $milestone_payment_check = MilestoneWisePayment::where('payment_schedule_id', $input['payment_schedule_id'])->first();
+                    
+                    if(empty($milestone_payment_check->payment_id))
+                    {
+                        $milestone_wise_payment = MilestoneWisePayment::where('payment_schedule_id', $input['payment_schedule_id'])->first();
+                        $milestone_wise_payment->payment_schedule_id = $paymentschedule->payment_schedule_id;
+                        $milestone_wise_payment->installment_no = $paymentschedule->installment_no;
+                        $milestone_wise_payment->milestone_no = $input['milestone_no'];
+                        $milestone_wise_payment->installment_amount = $paymentschedule->installment_amount;
+                        $milestone_wise_payment->payment_id = $input['payment_id'];
+                        $milestone_wise_payment->save();
+                    }
+                    else{
 
-
+                        $milestone_wise_payment = new MilestoneWisePayment;
+                        $milestone_wise_payment->payment_schedule_id = $paymentschedule->payment_schedule_id;
+                        $milestone_wise_payment->installment_no = $paymentschedule->installment_no;
+                        $milestone_wise_payment->milestone_no = $input['milestone_no'];
+                        $milestone_wise_payment->installment_amount = $paymentschedule->installment_amount;
+                        $milestone_wise_payment->payment_id = $input['payment_id'];
+                        $milestone_wise_payment->save();
+                    }
 
                     $url = '/project/project-based-finance/'. $input['proposal_id'];
                 }
@@ -540,7 +573,6 @@ class ClientController extends JoshController
 
 
                 $projectleads = ProjectLeads::where('project_leads_id', $input['project_leads_id'])->first();
-
                 $user = User::find($projectleads->from_user_id);
 
                 $advance_body = 'Payemnt process by Client';
@@ -579,7 +611,7 @@ class ClientController extends JoshController
     }
     public function projectPayments($id)
     {
-        $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee1','projectschedulee.schedulemodulee1.subschedulemodulee')->where('project_leads_id', $id)->first();
 
         $next_installment = ProjectPaymentSchedule::where('project_leads_id',$id)->where('status', '!=','2')->first();
         //return $next_installment;

@@ -84,7 +84,7 @@ class ProjectController extends JoshController
     }
     public function projectScheduleModify($id)
     {
-        $projectleads = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectschedulee.schedulemodulee.subschedulemodulee')->where('project_leads_id', $id)->first();
+        $projectleads = ProjectLeads::with('projectdetail','projectschedulee','projectschedulee.schedulemodulee1','projectschedulee.schedulemodulee1.subschedulemodulee')->where('project_leads_id', $id)->first();
         $user = User::where('id', $projectleads->from_user_id)->first();
 
         //return $projectleads;
@@ -398,7 +398,7 @@ class ProjectController extends JoshController
                 $current_pending = '0';
             }
 
-            $schedulemodule = ProjectScheduleModule::find($input['project_schedule_id']);
+            $schedulemodule = ProjectScheduleModule::where('project_schedule_id', $input['project_schedule_id'])->latest()->first();
             $schedulemodule->project_schedule_id = $insertedId;
             $schedulemodule->module_scope = $input['module_scope'][$key];
             // $schedulemodule->module_start_date = $input['module_start_date'][$key];
@@ -1014,7 +1014,7 @@ class ProjectController extends JoshController
     public function projectBasedFinance($id)
     {
         //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
-        $projectlead = ProjectLeads::with('fromuser','projectdetail','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('fromuser','projectdetail','projectschedulee','projectschedulee.schedulemodulee1','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
         if($projectlead->projectdetail->referral_id != '0')
         {
             $gst_rate = 18;
@@ -1041,7 +1041,7 @@ class ProjectController extends JoshController
     public function projectFinanceModify($id)
     {
         //$projectlead = ProjectLeads::with('projectdetail','contractdetails','contractdetails.orderinvoice','contractdetails.paymentschedule','contractdetails.advacne_amount')->where('project_leads_id', $id)->first();
-        $projectlead = ProjectLeads::with('fromuser','projectdetail','projectschedulee','projectschedulee.schedulemodulee','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
+        $projectlead = ProjectLeads::with('fromuser','projectdetail','projectschedulee','projectschedulee.schedulemodulee1','projectdetail.projectamount','projectdetail.projectCurrency','contractdetails','contractdetails.paymentschedule')->where('project_leads_id', $id)->first();
         
         if($projectlead->contractdetails->model_engagement == '1')
         {
@@ -1125,7 +1125,7 @@ class ProjectController extends JoshController
     {
         $input = $request->except('_token');
         //return $input;
-        $orderfinancecehck = ProjectOrderFinance::where('project_leads_id', '=', $input['proposal_id'])->where('status', '=', '1')->first();
+        $orderfinancecehck = ProjectOrderFinance::where('project_leads_id', '=', $input['proposal_id'])->where('status', '!=', '1')->first();
         if ($orderfinancecehck === null) {
 
             $orderfinmace = new ProjectOrderFinance;

@@ -99,12 +99,14 @@
                     </div>
 
                     <div class="module-1">
-                        @forelse ($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                        @forelse ($projectlead->projectschedulee->schedulemodulee1 as $key => $modulee)
                             <div class="module-3 remove-qual-1 submodule-1">
                                 <input type="hidden" name="module_id[]" id="module_id" value="1">
                                 <div class="form-row">
                                     <div class="form-group col-12">
-                                        <label><span class="module_num">{{ $key + 1 }}</span>. Module Scope</label>
+                                        {{--<label><span class="module_num">{{ $key + 1 }}</span>. Module Scope</label>--}}
+                                        <label><span class="module_num">{{ $modulee->milestone_no }}</span>. Module Scope</label>
+                                        
                                         <input type="text" name="module_scope[]" class="form-control" value="{{ $modulee->module_scope }}" readonly>
                                     </div>
                                 </div>
@@ -112,7 +114,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label> Milestone No.</label>
-                                            <select class="form-control" name="milestone_no[]" disabled>
+                                            <select class="form-control" name="milestone_no[]" id="milestone_no" disabled>
                                                 <option value=""> </option>
                                                 @for ($i = 1; $i < 101; $i++)
                                                 <option value="{{ $i }}" {{ ($modulee->milestone_no== $i)? "selected" : "" }}>{{ $i }}</option>
@@ -160,11 +162,11 @@
                                 </div>--}}
 
                                 <div class="sub-module-1">
-                                    @foreach ($modulee->subschedulemodulee as  $key1 => $submodulee)
+                                    @foreach ($modulee->subschedulemodulee1 as  $key1 => $submodulee)
                                         <div class="sub-module-3 remove-qual-1">
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label><span class="module_num">{{ $key + 1 }}</span>.<span class="sub_module_num">{{ $key1 + 1 }}</span>. Sub-module Scope</label>
+                                                    <label><span class="module_num">{{ $modulee->milestone_no }}</span>.<span class="sub_module_num">{{ $key1 + 1 }}</span>. Sub-module Scope</label>
                                                     <input type="text" class="form-control" name="sub_module_scope[]" value="{{ $submodulee->module_scope }}" readonly>
                                                 </div>
                                             </div>
@@ -222,11 +224,13 @@
 function projectleadSchedule(schedule_id,pricing_model,project_leads_id,lead_status){
     $('.spinner-border').removeClass("d-none");
     var url = '/client/project-lead-schedule';
+    var milestone_no = $('#milestone_no').val();
     var data= {
         _token: "{{ csrf_token() }}",
         schedule_id: schedule_id,
         lead_status: lead_status,
         pricing_model: pricing_model,
+        milestone_no: milestone_no,
         project_leads_id: project_leads_id
     };
     console.log(data);

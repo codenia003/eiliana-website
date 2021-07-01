@@ -53,7 +53,7 @@
                             </div>
                         </div>
 
-                        @foreach($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                        @foreach($projectlead->projectschedulee->schedulemodulee1 as $key => $modulee)
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label>Project Start Date</label>
@@ -83,7 +83,7 @@
                             </div>
                         @endforeach
 
-                    @elseif($projectlead->projectdetail->projectAmount->pricing_model == '2')
+                    @elseif($projectlead->contractdetails->model_engagement == '2')
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Proposal Id</label>
@@ -95,7 +95,7 @@
                             </div>
                         </div>
 
-                        @foreach($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                        @foreach($projectlead->projectschedulee->schedulemodulee1 as $key => $modulee)
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label>Project Start Date</label>
@@ -109,7 +109,7 @@
                                     <input type="text" name="module_scope" class="form-control" value="{{ $modulee->module_scope }}" readonly>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label>Module Status </label>
+                                    <label><span class="module_num">{{ $key + 1 }}</span>. Module Status </label>
                                     <select name="module_status[]" class="form-control" disabled>
                                         <option value="1" {{ ($modulee->module_status=='1')? "selected" : "" }}>To be Started</option>
                                         <option value="2" {{ ($modulee->module_status=='2')? "selected" : "" }}>In Progress</option>
@@ -117,6 +117,30 @@
                                     </select>
                                 </div>
                             </div>
+
+
+                            @foreach ($projectlead->contractdetails->paymentschedule as $item)
+                                <div class="form-row">
+                                    <div class="form-group col-6">
+                                        @if ($item->advance_payment == '1')
+                                            <label>Adv. Payment </label><small>(Excluding GST)</small>
+                                        @else
+                                         {{--<label>{{ $key + 1 }} Installment</label><small>(Excluding GST)</small>--}}
+                                        <label>{{ $item->installment_no }} Installment</label><small>(Excluding GST)</small>
+                                        @endif
+                                        <input type="text" class="form-control" name="installment_amount" value="{{ $item->installment_amount }}" readonly>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label>Status</label>
+                                        <select name="status[]" class="form-control" disabled>
+                                            <option value="1" {{ ($item->status=='1')? "selected" : "" }}>Pending</option>
+                                            <option value="2" {{ ($item->status=='2')? "selected" : "" }}>Paid</option>
+                                            <option value="3" {{ ($item->status=='3')? "selected" : "" }}>Cancel</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            @endforeach
+
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label>Remarks</label>
@@ -125,7 +149,7 @@
                             </div>
                         @endforeach
 
-                    @elseif($projectlead->projectdetail->projectAmount->pricing_model == '3')
+                    @elseif($projectlead->contractdetails->model_engagement == '3')
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label>Proposal Id</label>
@@ -137,7 +161,7 @@
                             </div>
                         </div>
 
-                        @foreach($projectlead->projectschedulee->schedulemodulee as $key => $modulee)
+                        @foreach($projectlead->projectschedulee->schedulemodulee1 as $key => $modulee)
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label>Project Start Date</label>
@@ -147,7 +171,8 @@
                             
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label><span class="module_num">{{ $key + 1 }}</span>. Module Scope</label>
+                                <label><span class="module_num">{{ $modulee->milestone_no }}</span>. Module Scope</label>
+                                    {{--<label><span class="module_num">{{ $key + 1 }}</span>. Module Scope</label>--}}
                                     <input type="text" name="module_scope" class="form-control" value="{{ $modulee->module_scope }}" readonly>
                                 </div>
                                 <div class="form-group col-6">
@@ -165,7 +190,8 @@
                                         @if ($item->advance_payment == '1')
                                             <label>Adv. Payment </label><small>(Excluding GST)</small>
                                         @else
-                                            <label>{{ $key + 1 }} Installment</label><small>(Excluding GST)</small>
+                                         {{--<label>{{ $key + 1 }} Installment</label><small>(Excluding GST)</small>--}}
+                                        <label>{{ $item->installment_no }} Installment</label><small>(Excluding GST)</small>
                                         @endif
                                         <input type="text" class="form-control" name="installment_amount" value="{{ $item->installment_amount }}" readonly>
                                     </div>

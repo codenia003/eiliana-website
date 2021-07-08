@@ -33,23 +33,23 @@ My Delivery Projects
 <div class="my-alldata card-body table-responsive-lg table-responsive-sm table-responsive-md">
     <table class="table table-striped" id="myrequirement-table">
         <thead>
-         <tr>
-            <th> Id</th>
-            <th>Project Title</th>
-            <th>Skills</th>
-            <th>Client Name</th>
-            <th>Mode of Engagement</th>
-            <th>More Action</th>
+         <tr class="d-flex">
+            <th class="col-2">Id</th>
+            <th class="col-2">Project Title</th>
+            <th class="col-2">Skills</th>
+            <th class="col-2">Client Name</th>
+            <th class="col-2">Mode of Engagement</th>
+            <th class="col-2">More Action</th>
          </tr>
         </thead>
         <tbody>
         @foreach($delivery_project as $delivry_project)
-            <tr>
-                <td>{{ $delivry_project->order_finance_id }}</td>
-                <td>{{ $delivry_project->userprojects->projectdetail->project_title }}</td>
-                <td>{{ $delivry_project->userprojects->projectdetail->key_skills }}</td>
-                <td>{{ $delivry_project->userprojects->projectdetail->companydetails->full_name }}</td>
-                <td>
+            <tr class="d-flex">
+                <td class="col-2">{{ $delivry_project->order_finance_id }}</td>
+                <td class="col-2">{{ $delivry_project->userprojects->projectdetail->project_title }}</td>
+                <td class="col-2">{{ $delivry_project->userprojects->projectdetail->key_skills }}</td>
+                <td class="col-2">{{ $delivry_project->userprojects->projectdetail->companydetails->full_name }}</td>
+                <td class="col-2">
                     @if ($delivry_project->userprojects->projectdetail->projectamount->pricing_model == '1')
                         Hourly
                     @elseif($delivry_project->userprojects->projectdetail->projectamount->pricing_model == '2')
@@ -59,9 +59,13 @@ My Delivery Projects
                     @endif
                 </td>
                 {{-- <td>{{ \Carbon\Carbon::parse($delivry_project->created_at)->format('F d, Y') }}</td> --}}
-                <td>
+                <td class="col-2">
                     <a href="{{ route('delivery-project.view',$delivry_project->order_finance_id) }}"><i class="fas fa-info-circle"></i></a>
-                </td>
+                
+                    @if ($delivry_project->userprojects->projectdetail->projectamount->pricing_model == '1')
+                        <a href="{{ route('delivery-project.view',$delivry_project->order_finance_id) }}">Renew</a>
+                    @endif
+                    </td>
             </tr>
         @endforeach
         </tbody>

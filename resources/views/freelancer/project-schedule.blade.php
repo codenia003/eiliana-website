@@ -176,7 +176,7 @@
                                     <div class="form-group col-6">
                                         <label>Module Status</label>
                                         <select name="module_status" class="form-control" id="module_status">
-                                            <option value="1" {{ ($modulee->module_status=='1')? "selected" : "" }}>Started</option>
+                                            <option value="1" {{ ($modulee->module_status=='1')? "selected" : "" }}>To be Started</option>
                                             <option value="2" {{ ($modulee->module_status=='2')? "selected" : "" }}>In Progress</option>
                                             <option value="3" {{ ($modulee->module_status=='3')? "selected" : "" }}>Completed</option>
                                         </select>

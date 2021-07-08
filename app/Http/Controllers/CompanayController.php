@@ -34,17 +34,18 @@ class CompanayController extends JoshController
         $user = Sentinel::getUser();
         $user_email = Sentinel::getUser()->email;
         $role = DB::table('user_registration')->where('email', '=', $user_email)->first();
-        if(isset($role->user_type_parent_id)){
-            if($role->user_type_parent_id!=1){
-                return view('team/teams');
-            }
-            else{
-                return view('team/bench', compact('teaminvitations','role'));
-            }
-        }
-        else{
-            return view('team/bench', compact('teaminvitations','role'));
-        }
+        // if(isset($role->user_type_parent_id)){
+        //     if($role->user_type_parent_id!=1){
+        //         return view('team/teams');
+        //     }
+        //     else{
+        //         return view('team/bench', compact('teaminvitations','role'));
+        //     }
+        // }
+        // else{
+        //     return view('team/bench', compact('teaminvitations','role'));
+        // }
+        return view('team/teams');
         
     }
 

@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'user' => \App\Http\Middleware\SentinelUser::class,
         'company' => \App\Http\Middleware\SentinelCopmany::class,
         'usertype' => \App\Http\Middleware\SentinelUserType::class,
+        'profilefill' => \App\Http\Middleware\ProfileFill::class,
     ];
 }

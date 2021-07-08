@@ -394,7 +394,7 @@ Route::group(
 );
 
 Route::group(
-    ['middleware' => 'user'],
+    ['middleware' => ['user', 'profilefill']],
     function () {
         Route::get('home', 'FrontEndController@getDashboard')->name('home');
         Route::get('post-job', 'JobController@index')->name('post-job');
@@ -435,7 +435,7 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'job', 'middleware' => 'user'],
+    ['prefix' => 'job', 'middleware' => ['user', 'profilefill']],
     function () {
         Route::get('job-apply/{id}', 'JobController@jobApplyLead')->name('joblead.view');
         Route::post('post-job-lead', 'JobController@postJobLead')->name('postJobLead.new');
@@ -458,7 +458,7 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'chat', 'middleware' => 'user'],
+    ['prefix' => 'chat', 'middleware' => ['user', 'profilefill']],
     function () {
         Route::post('fetch_chat_history', 'ChatController@fetchChatHistory')->name('fetch_chat_history');
         Route::post('insert_chat', 'ChatController@insertChat')->name('insert_chat');
@@ -466,7 +466,7 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'client', 'middleware' => 'user'],
+    ['prefix' => 'client', 'middleware' => ['user', 'profilefill']],
     function () {
         Route::get('my-lead', 'ClientController@myLead')->name('my-lead');
         Route::get('my-lead/{id}', 'ClientController@myLeadView')->name('my-lead.view');
@@ -526,7 +526,7 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'freelancer', 'middleware' => 'user'],
+    ['prefix' => 'freelancer', 'middleware' => ['user', 'profilefill']],
     function () {
         Route::get('my-lead', 'FreelancerController@myLead')->name('my-lead');
         Route::get('my-opportunity', 'FreelancerController@myOpportunity')->name('my-opportunity');
@@ -562,7 +562,7 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'advance-search', 'middleware' => 'user'],
+    ['prefix' => 'advance-search', 'middleware' => ['user', 'profilefill']],
     function () {
         Route::get('jobs', 'AdvanceSearchController@jobs')->name('jobs');
         Route::post('jobs', 'AdvanceSearchController@jobs')->name('jobs');
@@ -581,7 +581,7 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'company', 'middleware' => ['user', 'company']],
+    ['prefix' => 'company', 'middleware' => ['user', 'company', 'profilefill']],
     function () {
         Route::get('bench', 'CompanayController@index');
         Route::get('teams', 'CompanayController@teamsForm');

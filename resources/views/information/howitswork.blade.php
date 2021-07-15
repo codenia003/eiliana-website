@@ -2,9 +2,11 @@
 
 {{-- Page title --}}
 @section('title')
-How Its Work
 @parent
+How it works
 @stop
+@section('meta_description', 'How Eiliana Works. At Eiliana, we believe that we\'re the bridge between the one\'s who help talents find the right project and clients find the right talent for their job.')
+
 
 {{-- page level styles --}}
 @section('header_styles')

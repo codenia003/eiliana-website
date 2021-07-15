@@ -2562,3 +2562,7 @@ button {
 .message-part p {
     font-size: 17px;
 }
+
+.bg-youtube {
+    background-color: #fc0100 !important;
+}

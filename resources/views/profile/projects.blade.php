@@ -104,6 +104,10 @@
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label>Project Url</label>
+                                <input type="url" name="project_link[]" class="form-control" value="{{ $project->project_link }}" />
+                            </div>
                             {{-- @isset($project->upload_file)
                                 <img class="img-fluid" src="{{ url($project->upload_file) }}" />
                             @endisset --}}
@@ -199,6 +203,10 @@
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label>Project Url</label>
+                                <input type="url" name="project_link[]" class="form-control"/>
+                            </div>
                             @if(Sentinel::getUser()->interested == "2")
                             <div class="form-group">
                                 <label>Employer</label>
@@ -226,7 +234,7 @@
                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                             Next >>>
                         </button>
-                        <!-- <button class="btn btn-outline-primary" type="reset">Discard</button> -->
+                        <button class="btn btn-outline-primary" type="button" onclick="location.href='{{ url('/resume') }}'">Skip >>></button>
                     </div>
                 </div>
             </form>
@@ -309,6 +317,10 @@
             <input type="file" class="custom-file-input" id="customFile" name="upload_file[]">
             <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
+    </div>
+    <div class="form-group">
+        <label>Project Url</label>
+        <input type="url" name="project_link[]" class="form-control" />
     </div>
     @if(Sentinel::getUser()->interested == "2")
     <div class="form-group">

@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Hire Us
 @parent
+Hire Us
 @stop
 
 {{-- page level styles --}}

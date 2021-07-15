@@ -2,9 +2,10 @@
 
 {{-- Page title --}}
 @section('title')
-Basic Information
 @parent
+Signup for freelance jobs & Hire Freelancers
 @stop
+@section('meta_description', 'Signup to Eiliana, get skilled techies for your Company projects or Create your account for free, and get millions of freelancing projects according to your skill sets.')
 
 {{-- page level styles --}}
 @section('header_styles')
@@ -152,6 +153,22 @@ type="text/css"/>
                         <div class="form-group d-none">
                             <label>Middle Name</label>
                             <input type="text" name="middle_name" class="form-control"/>
+                        </div>
+                        <div class="form-group basic-info profile-anonymous">
+                            <label>Gender</label>
+                            <br>
+                            <div class="form-check form-check-inline mb-3">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="male" class="custom-control-input" name="gender" value="male" checked>
+                                    <label class="custom-control-label" for="male">Male</label>
+                                </div>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="female" class="custom-control-input" name="gender" value="female">
+                                    <label class="custom-control-label" for="female">Female</label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-row">

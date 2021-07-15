@@ -2,7 +2,10 @@
 
 {{-- Page title --}}
 @section('title')
-Job Post
+Resume Preview :
+@if(isset($user->full_name))
+    {{ $user->full_name }}
+@endif
 @parent
 @stop
 
@@ -27,6 +30,7 @@ Job Post
             <div class="align-items-center">
                 <span class="border-title"><i class="fa fa-bars"></i></span>
                 <span class="h5 text-white ml-2">
+                    Resume Preview :
                     @if(isset($user->full_name))
                         {{ $user->full_name }}
                     @endif
@@ -52,9 +56,13 @@ Job Post
                         <div class="row align-items-center">
                             <div class="col-md-3">
                                 <div class="contract-profile mb-1">
-                                    <a href="#">
-                                        <img src="{{ asset('images/authors/no_avatar.jpg') }}" alt="..." class="img-fluid"/>
-                                    </a>
+                                    {{-- <a href="#"> --}}
+                                        @if(Sentinel::getUser()->pic)
+                                        <img src="{{ url('/') }}{{ Sentinel::getUser()->pic }}" alt="..." class="img-fluid"/>
+                                        @else
+                                        <img src="{{ asset('assets/img/profile/mobile-profile.png') }}" alt="..." class="img-fluid"/>
+                                        @endif
+                                    {{-- </a> --}}
                                 </div>
                             </div>
                             <div class="col-md-7">
@@ -306,7 +314,7 @@ Job Post
                     <div class="form-group text-right mt-5 singup-body">
                         <div class="btn-group" role="group">
                             <a href="{{ route('welcome') }}"  class="btn btn-primary">
-                                Next >>>
+                                Submit >>>
                             </a>
                             <!-- <button class="btn btn-outline-primary" type="reset">Discard</button> -->
                         </div>

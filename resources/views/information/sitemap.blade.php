@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Site Map
 @parent
+Site Map
 @stop
 
 {{-- page level styles --}}

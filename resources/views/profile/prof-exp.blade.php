@@ -52,7 +52,6 @@
                             <label>Technology Preference</label>
                             <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple required>
                             {{-- <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required> --}}
-                                <option selected="" value="">H</option>
                                 @foreach ($technologies as $technology)
                                 <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_technologies)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
                                 @endforeach
@@ -110,7 +109,8 @@
 
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Project Sub Category</label>
-                            <select name="project_sub_category" id="project_sub_category" class="form-control" required>
+                            <select name="project_sub_category" id="project_sub_category" class="form-control">
+                                <option value="0"></option>
                                 @foreach ($subprojectcategorys as $category)
                                 @if ($category->parent_id == $proexp->project_category)
                                     <option value="{{ $category->id }}" {{ ($proexp->project_sub_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
@@ -188,26 +188,41 @@
                         </div>
                         <!-- <span style="color: red;font-size: 12px;">Note: Candidates needs to mention overall projects executed by them in there professional journey</span> -->
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                            <label>Current Location</label>
-                            <select name="current_location" class="form-control" required>
-                                <option value=""></option>
-                                @foreach ($locations as $location)
-                                <option value="{{ $location->location_id }}" {{ ($proexp->current_location == $location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
-                                @endforeach
-                            </select>
+                    @if(Sentinel::getUser()->interested == "1")
+                        <div class="form-row">
+                            <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Current Location</label>
+                                <select name="current_location" class="form-control" required>
+                                    <option value=""></option>
+                                    @foreach ($locations as $location)
+                                    <option value="{{ $location->location_id }}" {{ ($proexp->current_location == $location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <input type="hidden" name="preferred_location" value="0">
                         </div>
-                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                            <label>Preferred Location</label>
-                            <select name="preferred_location" class="form-control" required>
-                                <option value=""></option>
-                                @foreach ($locations as $location)
-                                <option value="{{ $location->location_id }}" {{ ($proexp->preferred_location == $location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
-                                @endforeach
-                            </select>
+                    @else 
+                        <div class="form-row">
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                <label>Current Location</label>
+                                <select name="current_location" class="form-control" required>
+                                    <option value=""></option>
+                                    @foreach ($locations as $location)
+                                    <option value="{{ $location->location_id }}" {{ ($proexp->current_location == $location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                                <label>Preferred Location</label>
+                                <select name="preferred_location" class="form-control" required>
+                                    <option value=""></option>
+                                    @foreach ($locations as $location)
+                                    <option value="{{ $location->location_id }}" {{ ($proexp->preferred_location == $location->location_id)? "selected" : "" }}>{{ $location->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @empty
                     <div class="form-row">
                         <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
@@ -258,8 +273,8 @@
 
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Project Sub Category</label>
-                            <select name="project_sub_category" id="project_sub_category" class="form-control" required>
-                                <option value=""></option>
+                            <select name="project_sub_category" id="project_sub_category" class="form-control">
+                                <option value="0"></option>
                             </select>
                         </div>
                         {{--<div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">

@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Careers
 @parent
+Careers
 @stop
 
 {{-- page level styles --}}

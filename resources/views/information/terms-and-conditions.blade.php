@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Terms And Conditions
 @parent
+Terms And Conditions
 @stop
 
 {{-- page level styles --}}

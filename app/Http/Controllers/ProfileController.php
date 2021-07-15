@@ -98,7 +98,14 @@ class ProfileController extends JoshController
         $locations = Location::all();
         $projectcategorys = ProjectCategory::where('parent_id', '0')->get();
         $subprojectcategorys = ProjectCategory::where('parent_id', '!=', '0')->get();
-        $currency = Currency::all();
+        
+        if (!empty(Session::get('countrydata') && Session::get('countrydata')->countryName == 'India')) {
+            $currency = Currency::where('display_status', '1')->where('currency_id', '=', '1')->get();
+            $locations = Location::where('location_type', '=', '1')->get();
+        } else {
+            $currency = Currency::where('display_status', '1')->where('currency_id', '!=', '1')->get();
+            $locations = Location::where('location_type', '=', '0')->get();
+         }
 
         if (count($proexps) > 0) {
             $model_engagement_new = (array) json_decode($proexps[0]['model_engagement'],true);
@@ -427,6 +434,7 @@ class ProfileController extends JoshController
                 $userproject->version = '1';
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];
+                $userproject->project_link = $input['project_link'][$key];
                 $userproject->employer_id = $input['employer_id'][$key];
                 $userproject->display_status = 1;
 
@@ -455,6 +463,7 @@ class ProfileController extends JoshController
                 $userproject->industry = $input['industry'][$key];
                 $userproject->project_details = $input['project_details'][$key];
                 $userproject->employer_id = $input['employer_id'][$key];
+                $userproject->project_link = $input['project_link'][$key];
                 $userproject->display_status = 1;
 
                 if (isset($input['upload_file'][$key])) {
@@ -466,7 +475,7 @@ class ProfileController extends JoshController
                     $file->move($destinationPath, $safeName);
 
                     //save new file path into db
-                    $userproject->upload_file =url('/').'/uploads/projects/'.$safeName;
+                    $userproject->upload_file = '/uploads/projects/'.$safeName;
                 }
 
                 $userproject->save();
@@ -588,7 +597,7 @@ class ProfileController extends JoshController
                 ->log('Profile Pic Updated successfully');
         }
 
-        return redirect('/profile')->with('success', 'Profile Pic Updated successfully');
+        return Redirect::back()->with('success', 'Profile Pic Updated successfully');
 
     }
 

@@ -2,9 +2,11 @@
 
 {{-- Page title --}}
 @section('title')
-Sales Referral
 @parent
+Earn extra money with project referral program
 @stop
+@section('meta_description', 'With Eiliana Refer more, earn more. Eiliana runs the referral program where you can recommend the work and help them to get their project done by us. You can earn great incentive through this program.')
+
 
 @section('top')
 <div class="bg-red">

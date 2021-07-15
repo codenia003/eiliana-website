@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Privacy Policy
 @parent
+Privacy Policy
 @stop
 
 {{-- page level styles --}}

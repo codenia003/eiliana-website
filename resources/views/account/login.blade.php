@@ -2,9 +2,10 @@
 
 {{-- Page title --}}
 @section('title')
-Login
 @parent
+Login for freelance jobs & Hire Freelancers
 @stop
+@section('meta_description', 'Log in at Eiliana, best freelancing website in India and Globally. Hire expert freelancers for your projects or get Freelancing jobs under one roof, grow your business with Eiliana. Get access to millions of freelancers and Freelancing projects.')
 
 {{-- page level styles --}}
 @section('header_styles')

@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Login As
 @parent
+Login As
 @stop
 
 {{-- page level styles --}}

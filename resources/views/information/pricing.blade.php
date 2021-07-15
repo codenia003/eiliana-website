@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Pricing Plan
 @parent
+Pricing Plan
 @stop
 
 {{-- page level styles --}}

@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Welcome
 @parent
+Welcome
 @stop
 
 {{-- page level styles --}}

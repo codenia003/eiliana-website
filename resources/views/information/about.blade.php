@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-About
 @parent
+About
 @stop
 
 {{-- page level styles --}}

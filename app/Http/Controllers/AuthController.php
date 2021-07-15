@@ -292,6 +292,7 @@ class AuthController extends JoshController
                     'anonymous' => $request->get('anonymous'),
                     'pseudoName' => $request->get('pseudoName'),
                     'country' => $request->get('country'),
+                    'gender' => $request->get('gender'),
                     'provider' => $registration_data->provider,
                     'provider_id' => $registration_data->provider_id,
                     'provider_as' => $registration_data->provider_as,
@@ -368,6 +369,7 @@ class AuthController extends JoshController
                     'anonymous' => $request->get('anonymous'),
                     'pseudoName' => $request->get('pseudoName'),
                     'country' => $request->get('country'),
+                    'gender' => $request->get('gender'),
                     ]), $activate
                 );
                 $response['message'] = trans('auth/message.signup.success');
@@ -387,7 +389,7 @@ class AuthController extends JoshController
                     ->log('Registered');
 
                 $invitation = $request->session()->get('teaminvitation');
-                if($invitation === null){
+                if($invitation === null) {
                     $company_id = 0;
                 } else {
                     $company_id = $invitation['from_user_id'];

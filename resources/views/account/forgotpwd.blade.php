@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Change Password
 @parent
+Change Password
 @stop
 
 {{-- page level styles --}}

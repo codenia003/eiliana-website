@@ -8,7 +8,7 @@
     <meta name="google-site-verification" content="-vzG1ZlYcexP65J-fgwdsJYu7YafFOJ5JNjIGZvfhj4">
     <title>
         @section('title')
-        | Welcome To Eiliana
+        Eiliana | 
         @show
     </title>
     <meta name="description" content="@yield('meta_description','Hire Best Developers for your Projects')">
@@ -149,11 +149,11 @@
                                 <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Lead</a>
                             </li> -->
                             <li class="nav-item">
-                                {{-- <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Sales Referral</a> --}}
-                                <a class="nav-link" onclick="togglePopup()">My Sales Referral</a>
+                                <a class="nav-link" href="{{ url('/freelancer/my-lead') }}">My Sales Referral</a>
+                                {{-- <a class="nav-link" onclick="togglePopup()">My Sales Referral</a> --}}
                             </li>
                             <li class="nav-item opportunity" id="myDropdown">
-                                <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#" style="font-size: 14px;">My Opportunity
+                                <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#" style="font-size: 14px;">My Dashboard
                                 <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu sub_navbar">
@@ -186,8 +186,8 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                {{-- <a class="nav-link" href="{{ url('/freelancer/my-save-job') }}">My Save Job</a> --}}
-                                <a class="nav-link" onclick="togglePopup()">My Save Job</a>
+                                <a class="nav-link" href="{{ url('/freelancer/my-save-job') }}">My Save Job</a>
+                                {{-- <a class="nav-link" onclick="togglePopup()">My Save Job</a> --}}
                             </li>
                         @else
                             <li class="nav-item">
@@ -196,7 +196,7 @@
                             </li>
 
                             <li class="nav-item opportunity" id="myDropdown">
-                                <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#">My Opportunity <b class="caret"></b></a>
+                                <a data-toggle="dropdown" class="nav-link dropdown-toggle user-action" href="#">My Dashboard <b class="caret"></b></a>
                                 <ul class="dropdown-menu sub_navbar">
                                     <li class="nav-item">
                                       <a class="dropdown-item" href="#" style="font-size: 14px;font-weight: 500;color: #000 !important;">My Proposal &nbsp;&nbsp;&nbsp;&nbsp;&raquo;</a>
@@ -455,19 +455,19 @@
                     <h5 class="text-white font-weight-500">Company</h5>
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('about') }}">About</a></li> --}}
-                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">About</a></li>
-                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('careers') }}">Careers</a></li> --}}
-                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Careers</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('about') }}">About</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">About</a></li> --}}
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('careers') }}">Careers</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Careers</a></li> --}}
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('blog') }}">Blogs</a></li>
-                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('customers') }}">Customers</a></li> --}}
-                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Customers</a></li>
-                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('hire-us') }}">Hire us</a></li> --}}
-                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Hire us</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('customers') }}">Customers</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Customers</a></li> --}}
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('hire-us') }}">Hire us</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Hire us</a></li> --}}
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('termsandconditions') }}">Terms & Privacy Policy</a></li>
                         <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('contact-us') }}">Contact Us</a></li>
-                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('sitemap') }}">Sitemap</a></li> --}}
-                        <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Sitemap</a></li>
+                        <li class="nav-item"><a class="nav-link text-white pl-0" href="{{ route('sitemap') }}">Sitemap</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link text-white pl-0" onclick="togglePopup()">Sitemap</a></li> --}}
                     </ul>
                     <!-- End Nav Link -->
                 </div>
@@ -495,23 +495,28 @@
                     <ul class="list-inline mb-0">
                         <!-- Social Networks -->
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-ghost-light bg-facebook" href="https://www.facebook.com/eilianaglobal" target="_blank">
+                            <a class="btn btn-icon btn-ghost-light bg-facebook" href="https://www.facebook.com/eilianaworld" target="_blank">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-ghost-light bg-twitter" href="https://twitter.com/ComEiliana" target="_blank">
+                            <a class="btn btn-icon btn-ghost-light bg-twitter" href="https://twitter.com/EilianaWorld" target="_blank">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-ghost-light bg-linkedin" href="https://www.linkedin.com/company/76387030/admin/" target="_blank">
+                            <a class="btn btn-icon btn-ghost-light bg-linkedin" href="https://www.linkedin.com/company/eiliana-world" target="_blank">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-ghost-light bg-instagram" href="https://www.instagram.com/eiliana_global/" target="_blank">
+                            <a class="btn btn-icon btn-ghost-light bg-instagram" href="https://www.instagram.com/eiliana_world/" target="_blank">
                                 <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-icon btn-ghost-light bg-youtube" href="https://www.youtube.com/channel/UCoy4zPo99B4Pg4G4g1FCyeQ" target="_blank">
+                                <i class="fab fa-youtube"></i>
                             </a>
                         </li>
                         <!-- End Social Networks -->

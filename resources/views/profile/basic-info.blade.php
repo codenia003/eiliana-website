@@ -58,7 +58,7 @@
                     <div class="form-check form-check-inline">
                         <div class="custom-control custom-radio">
                             <input type="radio" id="anonymous" name="anonymous" class="custom-control-input" value="1" {{ (Sentinel::getUser()->anonymous=="1")? "checked" : "" }} onchange="changeAnonymus(event)">
-                            <label class="custom-control-label" for="anonymous">Anonymus</label>
+                            <label class="custom-control-label" for="anonymous">Anonymous</label>
                         </div>
                     </div>
                 </div>
@@ -155,7 +155,8 @@
                     <label>Interested In</label>
                     <div class="form-check form-check-inline ml-3">
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="Freelance" class="custom-control-input" name="interested" onchange="changeInterested(event)" value="1" {{ ($user->interested=="1")? "checked" : "" }}>
+                            <input type="radio" id="Freelance" class="custom-control-input" name="interested" value="1" {{ ($user->interested=="1")? "checked" : "" }}>
+                            {{-- <input type="radio" id="Freelance" class="custom-control-input" name="interested" onchange="changeInterested(event)" value="1" {{ ($user->interested=="1")? "checked" : "" }}> --}}
                             <label class="custom-control-label" for="Freelance">Freelance Projects</label>
                         </div>
                     </div>
@@ -173,7 +174,7 @@
                     </div> -->
                 </div>
 
-                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                {{-- <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog" role="document">
                        <div class="modal-content">
                            <div class="modal-header bg-warning text-white">
@@ -184,33 +185,33 @@
                            </div>
                            <div class="modal-body">
                                 <div class="form-group basic-info">
-                                <!-- <label>Interested In</label> -->
-                                <div class="form-check form-check-inline ml-3">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="Education" class="custom-control-input" name="wanttofill" value="1" {{ ($user->wanttofill=="1")? "checked" : "" }}>
-                                        <label class="custom-control-label" for="Education">Education</label>
+                                    <!-- <label>Interested In</label> -->
+                                    <div class="form-check form-check-inline ml-3">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="Education" class="custom-control-input" name="wanttofill" value="1" {{ ($user->wanttofill=="1")? "checked" : "" }}>
+                                            <label class="custom-control-label" for="Education">Education</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="Certification" class="custom-control-input" name="wanttofill" value="2" {{ ($user->wanttofill=="2")? "checked" : "" }}>
-                                        <label class="custom-control-label" for="Certification">Certification</label>
+                                    <div class="form-check form-check-inline">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="Certification" class="custom-control-input" name="wanttofill" value="2" {{ ($user->wanttofill=="2")? "checked" : "" }}>
+                                            <label class="custom-control-label" for="Certification">Certification</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="popBoth" class="custom-control-input" name="wanttofill" value="3" {{ ($user->wanttofill=="3")? "checked" : "" }}>
-                                        <label class="custom-control-label" for="popBoth">Both</label>
+                                    <div class="form-check form-check-inline">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="popBoth" class="custom-control-input" name="wanttofill" value="3" {{ ($user->wanttofill=="3")? "checked" : "" }}>
+                                            <label class="custom-control-label" for="popBoth">Both</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="No" class="custom-control-input" name="wanttofill" value="4" {{ ($user->wanttofill=="4")? "checked" : "" }}>
-                                        <label class="custom-control-label" for="No">No</label>
+                                    <div class="form-check form-check-inline">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="No" class="custom-control-input" name="wanttofill" value="4" {{ ($user->wanttofill=="4")? "checked" : "" }}>
+                                            <label class="custom-control-label" for="No">No</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                           </div>
                            <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit">
                                     <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
@@ -219,7 +220,7 @@
                            </div>
                        </div>
                    </div>
-               </div>
+               </div> --}}
                 <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">
                         <button class="btn btn-primary" type="submit">

@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Contact Us
 @parent
+Contact Us
 @stop
 
 {{-- page level styles --}}

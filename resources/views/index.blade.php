@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Home
 @parent
+{{$homepage->title}}
 @stop
 @section('meta_keywords', $homepage->keywords)
 @section('meta_description', $homepage->description)
@@ -465,10 +465,9 @@ Home
                     </figure>
                     <div class="media-body card-header1" id="headingOne">
                         <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne">In-Demand Skills</h4>
+                            aria-expanded="true" aria-controls="collapseOne">Highly-Skilled Freelancers</h4>
                         <p class="font-size-1 mb-0" id="collapseOne" class="collapse show" aria-labelledby="headingOne">
-                            From iOS Developers to Data Scientists, our ever-growing talent pool has the most trending
-                            skillset.</p>
+                            Name the talent, and we are on it to connect. From IOS Developer freelancers to Data Scientist freelancers, all are on a surge to serve you best.</p>
                     </div>
                 </div>
                 <!-- End Contacts -->
@@ -482,9 +481,8 @@ Home
                     </figure>
                     <div class="media-body card-header1" id="headingTwo">
                         <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseTwo"
-                            aria-expanded="false" aria-controls="collapseTwo">Transparent Pay</h4>
-                        <p class="font-size-1 mb-0" id="collapseTwo" class="collapse" aria-labelledby="headingTwo">As a
-                            client you will always know what you’re paying for, upfront. And as a talent you will always get your payments timely.</p>
+                            aria-expanded="false" aria-controls="collapseTwo">Transparency</h4>
+                        <p class="font-size-1 mb-0" id="collapseTwo" class="collapse" aria-labelledby="headingTwo">As a client, you will always know what you’re paying for, up front. And as a freelancer, you will always get fair pay.</p>
                     </div>
                 </div>
                 <!-- End Contacts -->
@@ -497,7 +495,7 @@ Home
                     </figure>
                     <div class="media-body card-header1" id="headingThree">
                         <h4 class="mb-1 text-orange" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">24X7 Support</h4>
-                        <p class="font-size-1 mb-0" id="collapseThree" class="collapse" aria-labelledby="headingThree">Got questions? Our round-the-clock support is always available to assist you, anytime anywhere.</p>
+                        <p class="font-size-1 mb-0" id="collapseThree" class="collapse" aria-labelledby="headingThree">We are always here to rescue. Our round-the-clock support is always available to assist you, anytime anywhere.</p>
                     </div>
                 </div>
                 <!-- End Contacts -->
@@ -581,15 +579,15 @@ Home
                     </figure>
                 </div>
                 <div class="col-12 col-md-7 col-lg-7 pb-lg-5 mb-md-0 pt-lg-4 pl-lg-4 pl-4">
-                    <h1 class="headingmain1">New age projects coupled with unique features for Freelancers ...</h1>
+                    <h1 class="headingmain1">The perks of working with Eiliana-</h1>
                     <ul class="list-unstyled list-article">
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> No minimum account balance required</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Weekly payment reimbursements </li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> International projects, upcoming in 70 countries</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Visibility of offline recommendations and portfolio from other clients/companies worked for</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> No minimum account balance required to apply for freelancer jobs</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Weekly payment disbursements </li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> International projects, upcoming in 70 countries on boarding on our freelance website</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Showcase your former work and let your offline client write some testimonials on Eiliana</li>
                         <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Online Project tracker for better visibility and hour tracking</li>
                         <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Success fees model</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Anonymity and privacy - earn parallel income, no need to disclose you credentials</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Anonymity and privacy - earn incremental income, no need to disclose your credentials as a freelancer</li>
                     </ul>
                 </div>
             </div>
@@ -599,7 +597,7 @@ Home
                 class="fa fa-angle-right"></span></a> --}}
     </div>
 </section>
-
+{{-- peomfiomf --}}
 <section class="section container our-solution four-slider space-1">
     <div class="text-center">
         <h1 class="headingmain1">Crowd <span><img src="/assets/img/heart-icon.jpg"></span> Favourites</h1>
@@ -826,7 +824,7 @@ Home
         <div class="explore-more">
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-4">
-                    <h1 class="headingmain1">Agility @Eiliana</h1>
+                    <h1 class="headingmain1">Agility</h1>
                     <ul class="list-unstyled list-article">
                         <li>
                             <div class="d-flex">
@@ -835,7 +833,7 @@ Home
                                         alt="Image Description">
                                 </div>
                                 <div class="media-body">
-                                    <span>Choose experienced Professionals from Global Talent Pool.</span>
+                                    <span>Choose experienced freelancer from the Global Talent Pool.</span>
                                 </div>
                             </div>
                         </li>
@@ -846,7 +844,7 @@ Home
                                         alt="Image Description">
                                 </div>
                                 <div class="media-body">
-                                    <span>Experienced Professionals availablity helps manage Business Risk on Pay Per Use Model.</span>
+                                    <span>Utilize the best talent to help manage Business Risk on Pay per Use Model.</span>
                                 </div>
                             </div>
                         </li>
@@ -857,7 +855,7 @@ Home
                                         alt="Image Description">
                                 </div>
                                 <div class="media-body">
-                                    <span>Managed Delivery Model at Eiliana facilitates smooth project Delivery.</span>
+                                    <span>Manage Delivery Model at Eiliana that facilitates smooth project Delivery.</span>
                                 </div>
                             </div>
                         </li>
@@ -879,7 +877,7 @@ Home
                                         alt="Image Description">
                                 </div>
                                 <div class="media-body">
-                                    <span>Access to Super Niche Skills improves project performance.</span>
+                                    <span>Access to Super Niche Skills that helps in transforming the project performance.</span>
                                 </div>
                             </div>
                         </li>

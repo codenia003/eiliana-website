@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Teams 
 @parent
+Teams 
 @stop
 
 {{-- page level styles --}}

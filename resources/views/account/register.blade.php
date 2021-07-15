@@ -2,9 +2,10 @@
 
 {{-- Page title --}}
 @section('title')
-Register
 @parent
+Signup for freelance jobs & Hire Freelancers
 @stop
+@section('meta_description', 'Signup to Eiliana, get skilled techies for your Company projects or Create your account for free, and get millions of freelancing projects according to your skill sets.')
 
 {{-- page level styles --}}
 @section('header_styles')

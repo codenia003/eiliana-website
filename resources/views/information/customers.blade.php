@@ -2,8 +2,8 @@
 
 {{-- Page title --}}
 @section('title')
-Customers
 @parent
+Customers
 @stop
 
 {{-- page level styles --}}

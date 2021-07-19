@@ -579,15 +579,15 @@
                     </figure>
                 </div>
                 <div class="col-12 col-md-7 col-lg-7 pb-lg-5 mb-md-0 pt-lg-4 pl-lg-4 pl-4">
-                    <h1 class="headingmain1">The perks of working with Eiliana-</h1>
+                    <h1 class="headingmain1">Working with Eiliana brings enhanced value for freelancers, know how?</h1>
                     <ul class="list-unstyled list-article">
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> No minimum account balance required to apply for freelancer jobs</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Weekly payment disbursements </li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> International projects, upcoming in 70 countries on boarding on our freelance website</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Showcase your former work and let your offline client write some testimonials on Eiliana</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Online Project tracker for better visibility and hour tracking</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Success fees model</li>
-                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Anonymity and privacy - earn incremental income, no need to disclose your credentials as a freelancer</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> No minimum account balance required to bid for projects</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> We work on the weekly payment disbursements model</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> We will be launching our services in 70+ countries</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Add credibility by getting reviewed by offline clients</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Access to online project tracker for better & enhanced visibility</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> Get charged only after payment through Success fee model</li>
+                        <li><img class="img-fluid" src="/assets/img/photo/icon.png"> You can keep your profile anonymous as a freelancer</li>
                     </ul>
                 </div>
             </div>

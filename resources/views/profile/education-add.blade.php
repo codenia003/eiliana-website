@@ -42,29 +42,41 @@
                             <!-- <button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
                             <input type="hidden" name="graduation_type[]" value="3">
                             <input type="hidden" name="education_id[]" id="education_id" value="{{ $education->education_id }}">
+                            <input type="hidden" name="education_id_2[]" id="education_id_2" value="{{ $education->education_id }}">
                             <div class="form-row">
                                 <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Under Graduation</label>
-                                    <select name="degree[]" class="form-control">
+                                    <select name="degree[]" class="form-control" onchange="changeDegree(event,'{{ $education->education_id }}')" id="degree">
                                         <option value=""></option>
                                         @foreach ($qualifications as $qualification)
                                         @if ($qualification->type == 'UG')
                                         <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }} >{{ $qualification->name }}</option>
                                         @endif
                                         @endforeach
+                                        <option value="0" {{ ($education->degree=='0')? "selected" : "" }}>Others</option>
                                     </select>
+                                    @if ($education->degree == '0')
+                                    <input type="text" class="form-control mt-2" name="degree_name[]" id="degree_name_{{ $education->education_id }}" value="{{ $education->degree_name }}">
+                                    @else
+                                    <input type="text" class="form-control mt-2 d-none" name="degree_name[]" id="degree_name_{{ $education->education_id }}" value="">
+                                    @endif
                                 </div>
                                 <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
                                 <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>University Name</label>
-                                    <select name="name[]" class="form-control">
+                                    <select name="name[]" class="form-control" onchange="changeUniversity(event,'{{ $education->education_id }}')" id="university_name">
                                         <option value=""></option>
                                         @foreach ($universities as $university)
                                         <option value="{{ $university->university_id }}" {{ ($education->name==$university->university_id)? "selected" : "" }} >{{ $university->name }}</option>
                                         @endforeach
+                                        <option value="0">Others</option>
                                     </select>
-                                    <!-- <input type="text" name="name[]" class="form-control" value="{{ $education->name }}" required /> -->
+                                    @if ($education->name == '0')
+                                    <input type="text" class="form-control mt-2" name="university_name[]" id="university_name_{{ $education->education_id }}" value="{{ $education->university_name }}">
+                                    @else
+                                    <input type="text" class="form-control mt-2 d-none" name="university_name[]" id="university_name_{{ $education->education_id }}" value="">
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-row">
@@ -82,10 +94,10 @@
                                         <div class="col">
                                             <select class="form-control" required="" name="year[]">
                                                 <option value="">Till</option>
+                                                <option value="0" {{ ($education->year=='0')? "selected" : "" }}>Purchasing</option>
                                                 @for ($i = 1960; $i < 2022; $i++)
                                                 <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
                                                 @endfor
-                                                <option value="0" {{ ($education->year=='0')? "selected" : "" }}>Purchasing</option>
                                             </select>
                                         </div>
                                     </div>
@@ -107,30 +119,34 @@
 	        		<div class="ug-qualification">
 			        	<span class="h4 text-left mt-3 mb-4 d-inline-block">Under Graduation</span>
 		            	<input type="hidden" name="graduation_type[]" value="3">
-		            	<input type="hidden" name="education_id[]" value="0">
+		            	<input type="hidden" name="education_id[]" id="education_id" value="0">
+		            	<input type="hidden" name="education_id_2[]" id="education_id_2" value="0">
 		            	<div class="form-row">
 				            <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
 				                <label>Under Graduation</label>
-				                <select name="degree[]" required="" class="form-control" >
+				                <select name="degree[]" required="" class="form-control" onchange="changeDegree(event, '0')" id="degree">
 		                            <option value=""></option>
 		                            @foreach ($qualifications as $qualification)
 			                        @if ($qualification->type == 'UG')
 			                        <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
 			                        @endif
 			                        @endforeach
+                                    <option value="0">Others</option>
+                                    <input type="text" class="form-control mt-2 d-none" name="degree_name[]" id="degree_name_0">
 		                        </select>
 				            </div>
 				            <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
 				            </div>
 				            <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
 				                <label>University Name</label>
-				                <select name="name[]" class="form-control">
+				                <select name="name[]" class="form-control" onchange="changeUniversity(event,'0')" id="university_name">
 		                            <option value=""></option>
 		                            @foreach ($universities as $university)
 			                        <option value="{{ $university->university_id }}">{{ $university->name }}</option>
 			                        @endforeach
+                                    <option value="0">Others</option>
 		                        </select>
-				                <!-- <input type="text" name="name[]" class="form-control" required /> -->
+                                <input type="text" class="form-control mt-2 d-none" name="university_name[]" id="university_name_0">
 				            </div>
 				        </div>
 		            	<div class="form-row">
@@ -148,10 +164,10 @@
 			                    	<div class="col">
 			                    		<select class="form-control" required="" name="year[]">
 	                                        <option value="">Till</option>
+                                            <option value="0">Purchasing</option>
 	                                        @for ($i = 1960; $i < 2022; $i++)
 	                                        <option value="{{ $i }}">{{ $i }}</option>
 	                                        @endfor
-                                            <option value="0">Purchasing</option>
 	                                    </select>
 				                    </div>
 				                </div>
@@ -178,7 +194,7 @@
             		<button type="button" class="remove-ug btn btn-md btn-info ml-3 rounded-0">Erase Education <span class="fas fa-times"></span></button>
 		        </div>
 		        <div class="pg-qualification-1">
-		        	@forelse ($pg_educations as $education)
+		        	@forelse ($pg_educations as $key => $education)
                         <div class="pg-qualification-3 remove-qual-{{ $education->education_id }}">
                             <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graduation</span>
                             <!-- <button type="button" onclick="ConfirmDelete('{{ $education->education_id }}','1')" class="btn btn-danger float-right mt-3 rounded-0"><i class="fas fa-times"></i></button> -->
@@ -188,26 +204,37 @@
                             <div class="form-row">
                                 <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Post Graduation</label>
-                                    <select name="degree[]" class="form-control">
+                                    <select name="degree[]" class="form-control" onchange="changeDegree(event,'{{ $education->education_id }}')" id="degree">
                                         <option value=""></option>
                                         @foreach ($qualifications as $qualification)
                                         @if ($qualification->type == 'PG')
                                         <option value="{{ $qualification->qualification_id }}" {{ ($education->degree==$qualification->qualification_id)? "selected" : "" }} >{{ $qualification->name }}</option>
                                         @endif
                                         @endforeach
+                                        <option value="0">Others</option>
                                     </select>
+                                    @if ($education->degree == '0')
+                                    <input type="text" class="form-control mt-2" name="degree_name[]" id="degree_name_{{ $education->education_id }}" value="{{ $education->degree_name }}">
+                                    @else
+                                    <input type="text" class="form-control mt-2 d-none" name="degree_name[]" id="degree_name_{{ $education->education_id }}" value="">
+                                    @endif
                                 </div>
                                 <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
                                 <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>University Name</label>
-                                    <!-- <input type="text" name="name[]" class="form-control" value="{{ $education->name }}" /> -->
-                                    <select name="name[]" class="form-control">
+                                    <select name="name[]" class="form-control" onchange="changeUniversity(event,'{{ $education->education_id }}')" id="university_name">
                                         <option value=""></option>
                                         @foreach ($universities as $university)
                                         <option value="{{ $university->university_id }}" {{ ($education->name==$university->university_id)? "selected" : "" }} >{{ $university->name }}</option>
                                         @endforeach
+                                        <option value="0">Others</option>
                                     </select>
+                                    @if ($education->name == '0')
+                                    <input type="text" class="form-control mt-2" name="university_name[]" id="university_name_{{ $education->education_id }}" value="{{ $education->university_name }}">
+                                    @else
+                                    <input type="text" class="form-control mt-2 d-none" name="university_name[]" id="university_name_{{ $education->education_id }}" value="">
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-row" style="font-family: Montserrat;">
@@ -225,10 +252,10 @@
                                         <div class="col">
                                             <select class="form-control" required="" name="year[]">
                                                 <option value="">Till</option>
+                                                <option value="0" {{ ($education->year=='0')? "selected" : "" }}>Purchasing</option>
                                                 @for ($i = 1960; $i < 2022; $i++)
                                                 <option value="{{ $i }}" {{ ($education->year==$i)? "selected" : "" }}>{{ $i }}</option>
                                                 @endfor
-                                                <option value="0" {{ ($education->year=='0')? "selected" : "" }}>Purchasing</option>
                                             </select>
                                         </div>
                                     </div>
@@ -247,19 +274,14 @@
                             </div>
                         </div>
 					@empty
-                        <div class="pg-qualification">
+                        <div class="pg-qualification pg-qualification-3">
                             <span class="h4 text-left mt-3 mb-4 d-inline-block">Post Graduation </span>
                             <input type="hidden" name="graduation_type[]" value="4">
-                            <input type="hidden" name="education_id[]" value="0">
+                            <input type="hidden" name="education_id[]" id="education_id" value="0">
                             <div class="form-row">
-                                <?php
-                                            // echo "<pre>";
-                                            // print_r($qualifications);
-
-                                        ?>
                                 <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
                                     <label>Post Graduation</label>
-                                    <select name="degree[]" class="form-control">
+                                    <select name="degree[]" class="form-control" onchange="changeDegree(event, '0')" id="degree">
                                         <option value=""></option>
 
                                         @foreach ($qualifications as $qualification)
@@ -267,19 +289,22 @@
                                         <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
                                         @endif
                                         @endforeach
+                                        <option value="0">Others</option>
                                     </select>
+                                    <input type="text" class="form-control mt-2 d-none" name="degree_name[]" id="degree_name_0">
                                 </div>
                                 <div class="form-group col-12 col-sm-12 col-md-1 col-lg-1">
                                 </div>
                                 <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
                                     <label>University Name</label>
-                                    <select name="name[]" class="form-control">
+                                    <select name="name[]" class="form-control" onchange="changeUniversity(event,'0')" id="university_name">
                                         <option value=""></option>
                                         @foreach ($universities as $university)
                                         <option value="{{ $university->university_id }}">{{ $university->name }}</option>
                                         @endforeach
+                                        <option value="0">Others</option>
                                     </select>
-                                    <!-- <input type="text" name="name[]" class="form-control" required/> -->
+                                    <input type="text" class="form-control mt-2 d-none" name="university_name[]" id="university_name_0">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -297,10 +322,10 @@
                                         <div class="col">
                                             <select class="form-control" name="year[]">
                                                 <option value="">Till</option>
+                                                <option value="0">Purchasing</option>
                                                 @for ($i = 1960; $i < 2022; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                                 @endfor
-                                                <option value="0">Purchasing</option>
                                             </select>
                                         </div>
                                     </div>
@@ -344,27 +369,30 @@
 
 	<input type="hidden" name="graduation_type[]" value="3">
 	<input type="hidden" name="education_id[]" id="education_id" value="0">
+	<input type="hidden" name="education_id_2[]" id="education_id_2" value="0">
 	<div class="form-row">
         <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
             <label>Under Graduation</label>
-            <select name="degree[]" required="" class="form-control">
+            <select name="degree[]" required="" class="form-control" onchange="changeDegree(event,'0')" id="degree">
                 <option value=""></option>
                 @foreach ($qualifications as $qualification)
                 @if ($qualification->type == 'UG')
                 <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
                 @endif
                 @endforeach
+                <option value="0">Others</option>
             </select>
         </div>
         <div class="form-group col-1">
         </div>
         <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
             <label>University Name</label>
-            <select name="name[]" class="form-control">
+            <select name="name[]" class="form-control" onchange="changeUniversity(event,'0')" id="university_name">
 	            <option value=""></option>
 	            @foreach ($universities as $university)
 	            <option value="{{ $university->university_id }}">{{ $university->name }}</option>
 	            @endforeach
+                <option value="0">Others</option>
 	        </select>
         </div>
     </div>
@@ -412,26 +440,27 @@
 	<div class="form-row">
         <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4">
             <label>Post Graduation</label>
-            <select name="degree[]" class="form-control" required>
+            <select name="degree[]" class="form-control" onchange="changeDegree(event, '0')" id="degree" required>
                 <option value=""></option>
                 @foreach ($qualifications as $qualification)
                 @if ($qualification->type == 'PG')
                 <option value="{{ $qualification->qualification_id }}">{{ $qualification->name }}</option>
                 @endif
                 @endforeach
+                <option value="0">Others</option>
             </select>
         </div>
         <div class="form-group col-1">
         </div>
         <div class="form-group col-12 col-sm-12 col-md-7 col-lg-7">
             <label>University Name</label>
-            <select name="name[]" class="form-control">
+            <select name="name[]" class="form-control" onchange="changeUniversity(event,'0')" id="university_name">
                 <option value=""></option>
                 @foreach ($universities as $university)
                 <option value="{{ $university->university_id }}">{{ $university->name }}</option>
                 @endforeach
+                <option value="0">Others</option>
             </select>
-            <!-- <input type="text" name="name[]" class="form-control" required/> -->
         </div>
     </div>
 	<div class="form-row">
@@ -449,10 +478,10 @@
             	<div class="col">
             		<select class="form-control" required="" name="year[]">
                         <option value="">Till</option>
+                        <option value="0">  </option>
                         @for ($i = 1960; $i < 2022; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
-                        <option value="0">Purchasing</option>
                     </select>
                 </div>
             </div>

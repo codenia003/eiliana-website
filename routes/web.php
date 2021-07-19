@@ -292,6 +292,7 @@ Route::group(
 //     }]
 // );
 Route::get('/', 'HomeController@index')->name('/');
+Route::get('ip_details', 'HomeController@getipdetails');
 
 // account
 Route::group(
@@ -403,8 +404,6 @@ Route::group(
         Route::get('post-project', 'ProjectController@postProject')->name('post-project');
         Route::post('confirmation-post-project', 'ProjectController@confirmationPostProjecton')->name('confirmation-post-project');
         Route::post('post-project-on', 'ProjectController@postProjecton')->name('post-project-on');
-
-        Route::get('welcome', 'InformationController@welcome')->name('welcome');
 
         Route::get('project/{id}', 'ProjectController@getProjectDeatils')->name('project.view');
         Route::get('job/{id}', 'JobController@getJobDeatils')->name('jobdetails');
@@ -574,10 +573,11 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'usertype', 'middleware' => 'usertype'],
+    ['middleware' => 'user'],
     function () {
+        Route::get('welcome', 'InformationController@welcome')->name('welcome');
 
-    }
+    }   
 );
 
 Route::group(

@@ -53,7 +53,7 @@
                             <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" multiple required>
                             {{-- <select name="technologty_pre[]" class="form-control select2" id="technologty_pre" onchange="change_framework();" multiple required> --}}
                                 @foreach ($technologies as $technology)
-                                <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_technologies)) ? 'selected' : '' }} >{{ $technology->technology_name }}</option>
+                                <option value="{{ $technology->technology_id }}" {{ (in_array($technology->technology_id, $selected_technologies)) ? 'selected' : '' }}>{{ $technology->technology_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -109,11 +109,11 @@
 
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Project Sub Category</label>
-                            <select name="project_sub_category" id="project_sub_category" class="form-control">
+                            <select class="form-control select2" required="" name="project_sub_category[]" id="project_sub_category" multiple>
                                 <option value="0"></option>
                                 @foreach ($subprojectcategorys as $category)
                                 @if ($category->parent_id == $proexp->project_category)
-                                    <option value="{{ $category->id }}" {{ ($proexp->project_sub_category==$category->id)? "selected" : "" }} >{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" {{ (in_array($category->id, explode(",", $proexp->project_sub_category))) ? 'selected' : '' }} >{{ $category->name }}</option>
                                 @endif
                                 @endforeach
 
@@ -126,7 +126,7 @@
                         <label>Model Of Freelancing Engagement</label>
                         <br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1" {{ in_array(1, $model_engagement_new) ? "checked" : "" }}>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1" {{ in_array(1, $model_engagement_new) ? "checked" : "" }} required>
                             <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -152,6 +152,20 @@
                             <select class="form-control" name="currency_id" id="currency_id" required>
                                 @foreach ($currency as $currencies)
                                     <option value="{{ $currencies->currency_id }}" {{ ($proexp->currency_id==$currencies->currency_id)? "selected" : "" }}>{{ $currencies->code }} - {{ $currencies->symbol}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row rateperhour {{ in_array(1, $model_engagement_new) ? "" : "d-none" }}">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                            <label>Rate Per Hour</label>
+                            <input type="number" name="rateperhour_2" class="form-control" min="5" value="{{  $proexp->rateperhour_2 }}"/>
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                            <label for="currency_id_2">Currency</label>
+                            <select class="form-control" name="currency_id_2" id="currency_id_2" required>
+                                @foreach ($currency2 as $currencies)
+                                    <option value="{{ $currencies->currency_id }}" {{ ($proexp->currency_id_2==$currencies->currency_id)? "selected" : "" }}>{{ $currencies->code }} - {{ $currencies->symbol}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -273,7 +287,7 @@
 
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Project Sub Category</label>
-                            <select name="project_sub_category" id="project_sub_category" class="form-control">
+                            <select class="form-control select2" required="" name="project_sub_category[]" id="project_sub_category" multiple>
                                 <option value="0"></option>
                             </select>
                         </div>
@@ -292,7 +306,7 @@
                         <label>Model Of Engagement</label>
                         <br>
                         <div class="form-check form-check-inline">
-    					  	<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1" checked>
+    					  	<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1" checked required>
     					  	<label class="form-check-label" for="inlineCheckbox1">Hourly</label>
     					</div>
     					<div class="form-check form-check-inline">
@@ -307,6 +321,7 @@
                             <span class="text-danger">{{ $errors->first('model_engagement') }}</span>
                         @endif
                     </div>
+                    @if (!empty(Session::get('countrydata') && Session::get('countrydata')->countryName == 'India')) {
                     <div class="form-row rateperhour">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Rate Per Hour</label>
@@ -316,6 +331,21 @@
                             <label for="currency_id">Currency</label>
                             <select class="form-control" name="currency_id" id="currency_id" required>
                                 @foreach ($currency as $currencies)
+                                    <option value="{{ $currencies->currency_id }}">{{ $currencies->code }} - {{ $currencies->symbol}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    @endif
+                    <div class="form-row rateperhour">
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                            <label>Rate Per Hour</label>
+                            <input type="number" name="rateperhour_2" class="form-control" min="100" value="" />
+                        </div>
+                        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
+                            <label for="currency_id_2">Currency</label>
+                            <select class="form-control" name="currency_id_2" id="currency_id_2" required>
+                                @foreach ($currency2 as $currencies)
                                     <option value="{{ $currencies->currency_id }}">{{ $currencies->code }} - {{ $currencies->symbol}}</option>
                                 @endforeach
                             </select>

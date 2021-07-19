@@ -68,8 +68,8 @@ class ProfileController extends JoshController
 
     public function education()
     {
-        $educationtype = EducationType::all();
-        $qualifications = Qualification::all();
+        $educationtype = EducationType::get();
+        $qualifications = Qualification::where('display_status', '1')->get();
         $universities = University::orderBy('name', 'asc')->get();
         $user = Sentinel::getUser();
         $ug_educations = Education::where('user_id', $user->id)->where('graduation_type', '3')->get();
@@ -101,6 +101,7 @@ class ProfileController extends JoshController
         
         if (!empty(Session::get('countrydata') && Session::get('countrydata')->countryName == 'India')) {
             $currency = Currency::where('display_status', '1')->where('currency_id', '=', '1')->get();
+            $currency2 = Currency::where('display_status', '1')->where('currency_id', '!=', '1')->get();
             $locations = Location::where('location_type', '=', '1')->get();
         } else {
             $currency = Currency::where('display_status', '1')->where('currency_id', '!=', '1')->get();
@@ -124,7 +125,7 @@ class ProfileController extends JoshController
         }
         //$designations = Designation::all();
         // print_r($childtechnologies);
-        return view('profile/prof-exp', compact('proexps','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework','locations','subprojectcategorys','currency'));
+        return view('profile/prof-exp', compact('proexps','model_engagement_new','projectcategorys','technologies','selected_technologies','childtechnologies','selected_framework','locations','subprojectcategorys','currency','currency2'));
     }
 
     public function getframework(Request $request)
@@ -145,7 +146,7 @@ class ProfileController extends JoshController
         $projecttypes = ProjectType::all();
         $customerindustries = CustomerIndustry::all();
 
-        return view('profile/projects', compact('projects','employers','technologies', 'frameworks','projecttypes','customerindustries'));
+        return view('profile/projects', compact('projects','employers','technologies','frameworks','projecttypes','customerindustries'));
     }
 
     public function employer()
@@ -261,9 +262,11 @@ class ProfileController extends JoshController
                     $education->education_type = $input['education_type'][$key];
                     $education->graduation_type = $input['graduation_type'][$key];
                     $education->name = $input['name'][$key];
+                    $education->university_name = $input['university_name'][$key];
                     $education->month = $input['month'][$key];
                     $education->year = $input['year'][$key];
                     $education->degree = $input['degree'][$key];
+                    $education->degree_name = $input['degree_name'][$key];
                     $education->save();
                 } else {
                     $education = new Education;
@@ -271,9 +274,11 @@ class ProfileController extends JoshController
                     $education->education_type = $input['education_type'][$key];
                     $education->graduation_type = $input['graduation_type'][$key];
                     $education->name = $input['name'][$key];
+                    $education->university_name = $input['university_name'][$key];
                     $education->month = $input['month'][$key];
                     $education->year = $input['year'][$key];
                     $education->degree = $input['degree'][$key];
+                    $education->degree_name = $input['degree_name'][$key];
                     $education->save();
                 }
             }
@@ -393,13 +398,18 @@ class ProfileController extends JoshController
             //$professionalExperience->designation = $input['designation'];
             if(!empty($input['project_sub_category']))
             {
-                $professionalExperience->project_sub_category = $input['project_sub_category'];
+                $projectsub_category = $request->input('project_sub_category');
+                $projectsub_category = implode(',', $projectsub_category);
+                $professionalExperience->project_sub_category =  $projectsub_category;
+                
             }
             $professionalExperience->current_location = $input['current_location'];
             $professionalExperience->preferred_location = $input['preferred_location'];
             $professionalExperience->development_project = $input['development_project'];
             $professionalExperience->rateperhour = $input['rateperhour'];
             $professionalExperience->currency_id = $input['currency_id'];
+            $professionalExperience->rateperhour_2 = $input['rateperhour_2'];
+            $professionalExperience->currency_id_2 = $input['currency_id_2'];
             $professionalExperience->indexing = $indexing;
             $professionalExperience->save();
 

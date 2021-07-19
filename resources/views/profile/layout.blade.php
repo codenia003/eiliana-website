@@ -79,7 +79,7 @@ type="text/css"/>
 @yield('profile_script')
 <script>
     $(window).bind("load", function() {
-        change_category1();
+        // change_category1();
     });
     // $('#registerprofexpForm').bootstrapValidator({});
     $(document).ready(function() {
@@ -90,6 +90,10 @@ type="text/css"/>
         placeholder: 'Select a value',
     });
     $('#framework').select2({
+        theme: 'bootstrap',
+        placeholder: 'Select a value',
+    });
+	$('#project_sub_category').select2({
         theme: 'bootstrap',
         placeholder: 'Select a value',
     });
@@ -140,14 +144,40 @@ type="text/css"/>
 
 	$(function(){
 	  	$(".btn-copy-ug").on('click', function(){
-	  		var str = $("#graduation_type").val();
+	  		// var str = $("#graduation_type").val();
+			var str = $(".ug-qualification-3:last #education_id").val();
+            var x = parseInt(str) + parseInt(1);
+            console.log(x);
 	  		var element = '<div class="ug-qualification-3">'+$('.ug-qualification-2').html()+'</div>';
 	  		$('.ug-qualification-1').append(element);
 
+			$('.ug-qualification-3:last #education_id').val(x);
+
+			$('.ug-qualification-3:last #degree').attr("onchange","changeDegree(event, "+x+");");
+			$('.ug-qualification-3:last #degree').after('<input type="text" class="form-control mt-2 d-none" name="degree_name[]" id="degree_name_'+x+'">');
+
+			$('.ug-qualification-3:last #university_name').attr("onchange","changeUniversity(event, "+x+");");
+			$('.ug-qualification-3:last #university_name').after('<input type="text" class="form-control mt-2 d-none" name="university_name[]" id="university_name_'+x+'">');
+
 	  	});
+
+
 	  	$(".btn-copy-pg").on('click', function(){
+
+			var str = $(".pg-qualification-3:last #education_id").val();
+            var x = parseInt(str) + parseInt(1);
+            console.log(x);
+
 	  		var element = '<div class="pg-qualification-3">'+$('.pg-qualification-2').html()+'</div>';
 	  		$('.pg-qualification-1').append(element);
+
+			$('.pg-qualification-3:last #education_id').val(x);
+
+			$('.pg-qualification-3:last #degree').attr("onchange","changeDegree(event, "+x+");");
+			$('.pg-qualification-3:last #degree').after('<input type="text" class="form-control mt-2 d-none" name="degree_name[]" id="degree_name_'+x+'" required>');
+
+			$('.pg-qualification-3:last #university_name').attr("onchange","changeUniversity(event, "+x+");");
+			$('.pg-qualification-3:last #university_name').after('<input type="text" class="form-control mt-2 d-none" name="university_name[]" id="university_name_'+x+'" required>');
 	  	});
 	  	$(".btn-copy-c").on('click', function(){
 	  		var element = '<div class="certification-3">'+$('.certification-2').html()+'</div>';
@@ -174,7 +204,7 @@ type="text/css"/>
 	});
 
 	$(document).on('click','.remove-ug',function() {
-		var edu_id = $(".ug-qualification-3:last input#education_id").val();
+		var edu_id = $(".ug-qualification-3:last input#education_id_2").val();
 		if (edu_id != '0') {
 			ConfirmDelete(edu_id,'1');
 		} else {
@@ -183,7 +213,7 @@ type="text/css"/>
 	 	// $(this).parent('.ug-qualification-3').remove();
 	});
 	$(document).on('click','.remove-pg',function() {
-		var edu_id = $(".pg-qualification-3:last input#education_id").val();
+		var edu_id = $(".pg-qualification-3:last input#education_id_2").val();
 		if (edu_id != '0') {
 			ConfirmDelete(edu_id,'1');
 		} else {
@@ -323,6 +353,39 @@ type="text/css"/>
         });
     }
 
+	function changeDegree(event,id)
+	{
+		var myVal = event.target.value;
+
+		console.log(id);
+		console.log(myVal);
+
+		if(myVal == '0'){
+            $('#degree_name_'+id).removeClass("d-none");
+        } else {
+            $('#degree_name_'+id).addClass("d-none");
+        }
+	}
+
+	function changeDegree(event,id)
+	{
+		var myVal = event.target.value;
+		if(myVal == '0'){
+            $('#degree_name_'+id).removeClass("d-none");
+        } else {
+            $('#degree_name_'+id).addClass("d-none");
+        }
+	}
+
+	function changeUniversity(event,id)
+	{
+		var myVal = event.target.value;
+		if(myVal == '0'){
+            $('#university_name_'+id).removeClass("d-none");
+        } else {
+            $('#university_name_'+id).addClass("d-none");
+        }
+	}
 
 	function change_duplicate_framework()
     {

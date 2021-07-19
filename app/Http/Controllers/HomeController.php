@@ -24,6 +24,12 @@ class HomeController extends JoshController
     public function index(Request $request)
     {
         $ipaddress = $request->ip();
+        if ($ipaddress = '127.0.0.1') {
+            $ipaddress = '47.15.222.10';
+        } else {
+            $ipaddress = $request->ip();   
+        }
+        
         $api_key = 'e32fad358f0351a2258c214c96efbb1894f2721c96a5ebadce9a92ecfc8cd4d6';
 
         $data = file_get_contents("http://api.ipinfodb.com/v3/ip-city/?key=$api_key&ip=$ipaddress&format=json");
@@ -31,6 +37,7 @@ class HomeController extends JoshController
         $country = $data->countryName;
         // print_r($country);
         // die;
+        $request->session()->forget('countrydata');
         $request->session()->put('countrydata', $data);
         
         $jobs = Job::with('companydetails','locations')->latest()->limit(1)->get();
@@ -47,5 +54,24 @@ class HomeController extends JoshController
         $projectcategorie = ProjectCategory::where('slug' , $slug)->first();
         // return $projectcategorie;
         return view('home.projectcategorie', compact('projectcategorie'));
+    }
+
+    public function getipdetails(Request $request) {
+        
+        $ipaddress = $request->ip();
+        if ($ipaddress = '127.0.0.1') {
+            $ipaddress = '47.15.222.10';
+        } else {
+            $ipaddress = $request->ip();   
+        }
+
+        $api_key = 'e32fad358f0351a2258c214c96efbb1894f2721c96a5ebadce9a92ecfc8cd4d6';
+
+        $data = file_get_contents("http://api.ipinfodb.com/v3/ip-city/?key=$api_key&ip=$ipaddress&format=json");
+
+        return $data;
+        $data = json_decode($data);
+        print_r($data);
+        die;
     }
 }

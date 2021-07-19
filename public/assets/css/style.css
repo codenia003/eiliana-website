@@ -2566,3 +2566,8 @@ button {
 .bg-youtube {
     background-color: #fc0100 !important;
 }
+
+.list-group.list-group-flush {
+    overflow-y: scroll;
+    max-height: 350px;
+}

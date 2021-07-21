@@ -106,6 +106,7 @@ class ProfileController extends JoshController
         } else {
             $currency = Currency::where('display_status', '1')->where('currency_id', '!=', '1')->get();
             $locations = Location::where('location_type', '=', '0')->get();
+            $currency2 = [];
          }
 
         if (count($proexps) > 0) {

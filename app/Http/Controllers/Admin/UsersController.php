@@ -34,6 +34,7 @@ use App\Models\ProjectCategory;
 use App\Models\CustomerIndustry;
 use App\Models\ProjectType;
 use App\Models\EmployerType;
+use App\Models\TeamUser;
 
 class UsersController extends JoshController
 {
@@ -377,7 +378,17 @@ class UsersController extends JoshController
             // Delete the user
             //to allow soft deleted, we are performing query on users model instead of Sentinel model
             User::destroy($id);
+
             Activation::where('user_id', $user->id)->delete();
+            Education::where('user_id', $user->id)->delete();
+            Certificate::where('user_id', $user->id)->delete();
+            ProfessionalExperience::where('user_id', $user->id)->delete();
+            UserProject::where('user_id', $user->id)->delete();
+            Employers::where('user_id', $user->id)->delete();
+            EmployerDetails::where('user_id', $user->id)->delete();
+            TeamUser::where('user_id', $user->id)->delete();
+            
+
             // Prepare the success message
             $success = trans('users/message.success.delete');
             //Activity log for user delete
@@ -415,7 +426,7 @@ class UsersController extends JoshController
             // Send the activation code through email
             $data=[
                'user_name' => $user->first_name .' '. $user->last_name,
-            'activationUrl' => URL::route('activate', [$user->id, Activation::create($user)->code])
+                'activationUrl' => URL::route('activate', [$user->id, Activation::create($user)->code])
             ];
             Mail::to($user->email)
                 ->send(new Restore($data));

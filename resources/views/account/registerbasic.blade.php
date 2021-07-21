@@ -85,11 +85,11 @@ type="text/css"/>
                         <div class="form-row company_show d-none">
                             <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>Company Name</label>
-                                <input type="text" name="company_name" class="form-control" />
+                                <input type="text" name="company_name" class="form-control" id="company_name" required />
                             </div>
                             <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>GST Number/PAN Number</label>
-                                <input type="text" name="gst_number" class="form-control" />
+                                <input type="text" name="gst_number" class="form-control" id="gst_number" required />
                             </div>
                         </div>
                         {{-- <div class="form-group basic-info d-none">
@@ -174,7 +174,7 @@ type="text/css"/>
                         <div class="form-row">
                             <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 anonymousShow">
                                 <label>Alias</label>
-                                <input type="text" name="pseudoName" class="form-control" />
+                                <input type="text" name="pseudoName" class="form-control" id="pseudoName"/>
                             </div>
 
                             <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 anonymousShow-1">
@@ -236,34 +236,46 @@ type="text/css"/>
 
     function changeAnonymus(e) {
         var publicAnonymus = e.target.value;
+        var bootstrapValidator = $('#register_basic_form').data('bootstrapValidator');
         // console.log(publicAnonymus);
         if (publicAnonymus == '1') {
             $('.anonymousShow-1').removeClass("col-lg-12");
             $('.anonymousShow-1').addClass("col-lg-6");
             $('.anonymousShow').removeClass("d-none");
+            bootstrapValidator.enableFieldValidators('pseudoName', true);
+            // $('#register_basic_form').bootstrapValidator('revalidateField', $('#pseudoName'));
         } else {
             $('.anonymousShow').addClass("d-none");
             $('.anonymousShow-1').removeClass("col-lg-6");
             $('.anonymousShow-1').addClass("col-lg-12");
+            bootstrapValidator.enableFieldValidators('pseudoName', false);
+            // $('#register_basic_form').bootstrapValidator('revalidateField', $('#pseudoName'));
         }
     }
 
     function changeCompnay(e){
         var value = e.target.value;
         var radio = $('input[name="register_as"]:checked').val();
+        var bootstrapValidator = $('#register_basic_form').data('bootstrapValidator');
         // console.log(value);
         if (value == "2") {
             $('.company_show').addClass("d-none");
             $('.anonymousShow-1 label').text("Date Of Birth");
             $('.profile-anonymous').removeClass("d-none");
+            bootstrapValidator.enableFieldValidators('company_name', false);
+            bootstrapValidator.enableFieldValidators('gst_number', false);
         } else {
             $('.company_show').removeClass("d-none");
-            $('.anonymousShow-1 label').text("Date Of Incorporation"); 
+            $('.anonymousShow-1 label').text("Date Of Incorporation");
+            bootstrapValidator.enableFieldValidators('company_name', true);
+            bootstrapValidator.enableFieldValidators('gst_number', true);
+
             if(radio == '1'){
                 $('.profile-anonymous').addClass("d-none");
                 $('.anonymousShow').addClass("d-none");
                 $('.anonymousShow-1').removeClass("col-lg-6");
                 $('.anonymousShow-1').addClass("col-lg-12");
+                bootstrapValidator.enableFieldValidators('pseudoName', false);
             }
         }
         
@@ -272,7 +284,8 @@ type="text/css"/>
     function changePanelAnonymus(e){
         var publicAnonymus = e.target.value;
         var status = $('#applyas option:selected').val();
-        console.log(status);
+        var bootstrapValidator = $('#register_basic_form').data('bootstrapValidator');
+        // console.log(status);
         if (publicAnonymus == '2') {
             $('.profile-anonymous').addClass("d-none");
             $('.anonymousShow-1').removeClass("col-lg-12");
@@ -285,6 +298,7 @@ type="text/css"/>
                 $('.anonymousShow').addClass("d-none");
                 $('.anonymousShow-1').removeClass("col-lg-6");
                 $('.anonymousShow-1').addClass("col-lg-12"); 
+                bootstrapValidator.enableFieldValidators('pseudoName', false);
             }
         }
     }

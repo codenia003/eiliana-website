@@ -155,7 +155,7 @@
                     <label>Interested In</label>
                     <div class="form-check form-check-inline ml-3">
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="Freelance" class="custom-control-input" name="interested" value="1" {{ ($user->interested=="1")? "checked" : "" }}>
+                            <input type="radio" id="Freelance" class="custom-control-input" name="interested" value="1" {{ ($user->interested=="1")? "checked" : "" }} required>
                             {{-- <input type="radio" id="Freelance" class="custom-control-input" name="interested" onchange="changeInterested(event)" value="1" {{ ($user->interested=="1")? "checked" : "" }}> --}}
                             <label class="custom-control-label" for="Freelance">Freelance Projects</label>
                         </div>

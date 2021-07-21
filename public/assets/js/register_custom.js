@@ -10,6 +10,7 @@ $(document).ready(function() {
 
     $('#reg_form').bootstrapValidator({
         excluded: [':disabled'],
+        live: 'enabled',
         fields: {
             mobile: {
                 validators: {
@@ -210,6 +211,13 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: 'Country is required',
+                    }
+                },
+            },
+            pseudoName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Alias is required',
                     }
                 },
             },

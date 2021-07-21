@@ -126,7 +126,7 @@
                         <label>Model Of Freelancing Engagement</label>
                         <br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1" {{ in_array(1, $model_engagement_new) ? "checked" : "" }} required>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1" {{ in_array(1, $model_engagement_new) ? "checked" : "" }}>
                             <label class="form-check-label" for="inlineCheckbox1">Hourly</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -144,7 +144,7 @@
                     </div>
                     <div class="form-row rateperhour {{ in_array(1, $model_engagement_new) ? "" : "d-none" }}">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                            <label>Rate Per Hour</label>
+                            <label>Rate Per Hour (for india customers)</label>
                             <input type="number" name="rateperhour" class="form-control" min="100" value="{{  $proexp->rateperhour }}"/>
                         </div>
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
@@ -158,7 +158,7 @@
                     </div>
                     <div class="form-row rateperhour {{ in_array(1, $model_engagement_new) ? "" : "d-none" }}">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                            <label>Rate Per Hour</label>
+                            <label>Rate Per Hour (for international customers)</label>
                             <input type="number" name="rateperhour_2" class="form-control" min="5" value="{{  $proexp->rateperhour_2 }}"/>
                         </div>
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
@@ -306,7 +306,7 @@
                         <label>Model Of Engagement</label>
                         <br>
                         <div class="form-check form-check-inline">
-    					  	<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1" checked required>
+    					  	<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="model_engagement[]" value="1" checked>
     					  	<label class="form-check-label" for="inlineCheckbox1">Hourly</label>
     					</div>
     					<div class="form-check form-check-inline">
@@ -321,10 +321,10 @@
                             <span class="text-danger">{{ $errors->first('model_engagement') }}</span>
                         @endif
                     </div>
-                    @if (!empty(Session::get('countrydata') && Session::get('countrydata')->countryName == 'India')) {
+                    @if (!empty(Session::get('countrydata') && Session::get('countrydata')->countryName == 'India'))
                     <div class="form-row rateperhour">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                            <label>Rate Per Hour</label>
+                            <label>Rate Per Hour (for india customers)</label>
                             <input type="number" name="rateperhour" class="form-control" min="100" value="" />
                         </div>
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
@@ -339,7 +339,7 @@
                     @endif
                     <div class="form-row rateperhour">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
-                            <label>Rate Per Hour</label>
+                            <label>Rate Per Hour (for international customers)</label>
                             <input type="number" name="rateperhour_2" class="form-control" min="100" value="" />
                         </div>
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
@@ -382,6 +382,20 @@
     		                {!! Form::selectRange('development_project', 1, 20, null, ['class' => 'form-control','required' =>'']) !!}
     		            </div>
     		        </div>
+                    @if(Sentinel::getUser()->interested == "1")
+                        <div class="form-row">
+                            <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Current Location</label>
+                                <select name="current_location" class="form-control" required>
+                                    <option value=""></option>
+                                    @foreach ($locations as $location)
+                                    <option value="{{ $location->location_id }}">{{ $location->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <input type="hidden" name="preferred_location" value="0">
+                        </div>
+                    @else 
                     <div class="form-row">
                         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6">
                             <label>Current Location</label>
@@ -402,6 +416,7 @@
                             </select>
                         </div>
                     </div>
+                    @endif
                 @endforelse
                 <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">

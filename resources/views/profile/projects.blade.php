@@ -230,11 +230,13 @@
                 </div>
                 <div class="form-group text-right mt-5">
                     <div class="btn-group" role="group">
+                        <button class="btn btn-outline-primary" type="button" onclick="location.href='{{ url('/resume') }}'">Skip >>></button>
+                        
                         <button class="btn btn-primary" type="submit">
                             <span class="spinner-border spinner-border-sm mr-1 d-none"></span>
                             Next >>>
                         </button>
-                        <button class="btn btn-outline-primary" type="button" onclick="location.href='{{ url('/resume') }}'">Skip >>></button>
+                        
                     </div>
                 </div>
             </form>
